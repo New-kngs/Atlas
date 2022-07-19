@@ -104,6 +104,12 @@
     <Compile Include="frmItem\frmItem.Designer.cs">
       <DependentUpon>frmItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmProcess\frmPorcess_Modify.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -160,11 +166,17 @@
     <EmbeddedResource Include="Base\PopUpBase.resx">
       <DependentUpon>PopUpBase.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmEmployee\frmEmployee.resx">
+      <DependentUpon>frmEmployee.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmEquitment\frmEquitment.resx">
       <DependentUpon>frmEquitment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmItem\frmItem.resx">
       <DependentUpon>frmItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmProcess\frmPorcess_Modify.resx">
       <DependentUpon>frmPorcess_Modify.cs</DependentUpon>
@@ -223,7 +235,9 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="frmdepartment\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AtlasDTO\AtlasDTO.csproj">
       <Project>{b4c8c339-791a-4219-9070-118f960a9490}</Project>
