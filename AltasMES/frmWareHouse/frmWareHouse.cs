@@ -31,6 +31,10 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvWH, "변경사원", "ModifyUser", align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvWH, "미사용여부", "DeletedYN", align: DataGridViewContentAlignment.MiddleCenter);
 
+            DataLoad();
+        }
+        private void DataLoad()
+        {
             service = new ServiceHelper("api/WareHouse");
             ResMessage<List<WareHouseVO>> result = service.GetAsync<List<WareHouseVO>>("AllWareHouse");
             if (result != null)
