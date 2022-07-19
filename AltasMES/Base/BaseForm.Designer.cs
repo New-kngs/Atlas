@@ -1,5 +1,5 @@
 ﻿
-namespace AltasMES.Base
+namespace AltasMES
 {
     partial class BaseForm
     {
