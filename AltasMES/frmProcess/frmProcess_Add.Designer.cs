@@ -44,13 +44,13 @@
             // lblTitle
             // 
             this.lblTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblTitle.Size = new System.Drawing.Size(563, 47);
+            this.lblTitle.Size = new System.Drawing.Size(376, 47);
             this.lblTitle.Text = "공정 등록";
             // 
             // panel1
             // 
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.panel1.Size = new System.Drawing.Size(563, 47);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
+            this.panel1.Size = new System.Drawing.Size(376, 47);
             // 
             // imageList1
             // 
@@ -65,19 +65,24 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.groupBox1);
             this.panel2.Controls.Add(this.btnCancel);
             this.panel2.Controls.Add(this.btnAdd);
-            this.panel2.Controls.Add(this.groupBox1);
             this.panel2.Controls.Add(this.txtProcess);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Location = new System.Drawing.Point(0, 47);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.panel2.Size = new System.Drawing.Size(563, 364);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
+            this.panel2.Size = new System.Drawing.Size(376, 230);
+            this.panel2.Controls.SetChildIndex(this.panel3, 0);
             this.panel2.Controls.SetChildIndex(this.label1, 0);
             this.panel2.Controls.SetChildIndex(this.txtProcess, 0);
-            this.panel2.Controls.SetChildIndex(this.groupBox1, 0);
             this.panel2.Controls.SetChildIndex(this.btnAdd, 0);
             this.panel2.Controls.SetChildIndex(this.btnCancel, 0);
+            this.panel2.Controls.SetChildIndex(this.groupBox1, 0);
+            // 
+            // panel3
+            // 
+            this.panel3.Size = new System.Drawing.Size(352, 212);
             // 
             // label1
             // 
@@ -92,7 +97,7 @@
             // txtProcess
             // 
             this.txtProcess.Location = new System.Drawing.Point(112, 28);
-            this.txtProcess.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtProcess.Margin = new System.Windows.Forms.Padding(2);
             this.txtProcess.Name = "txtProcess";
             this.txtProcess.Size = new System.Drawing.Size(213, 29);
             this.txtProcess.TabIndex = 1;
@@ -102,9 +107,9 @@
             this.groupBox1.Controls.Add(this.radioButton2);
             this.groupBox1.Controls.Add(this.radioButton1);
             this.groupBox1.Location = new System.Drawing.Point(52, 70);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(272, 90);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
@@ -114,7 +119,7 @@
             // 
             this.radioButton2.AutoSize = true;
             this.radioButton2.Location = new System.Drawing.Point(154, 38);
-            this.radioButton2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.radioButton2.Margin = new System.Windows.Forms.Padding(2);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(40, 25);
             this.radioButton2.TabIndex = 0;
@@ -126,7 +131,7 @@
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Location = new System.Drawing.Point(74, 38);
-            this.radioButton1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.radioButton1.Margin = new System.Windows.Forms.Padding(2);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(37, 25);
             this.radioButton1.TabIndex = 0;
@@ -142,7 +147,7 @@
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAdd.ImageIndex = 6;
             this.btnAdd.ImageList = this.imageList1;
-            this.btnAdd.Location = new System.Drawing.Point(296, 177);
+            this.btnAdd.Location = new System.Drawing.Point(109, 177);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -160,7 +165,7 @@
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancel.ImageIndex = 5;
             this.btnCancel.ImageList = this.imageList1;
-            this.btnCancel.Location = new System.Drawing.Point(386, 177);
+            this.btnCancel.Location = new System.Drawing.Point(199, 177);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -175,7 +180,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(563, 411);
+            this.ClientSize = new System.Drawing.Size(376, 277);
             this.Margin = new System.Windows.Forms.Padding(5, 8, 5, 8);
             this.Name = "frmProcess_Add";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

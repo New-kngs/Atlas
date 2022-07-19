@@ -71,16 +71,28 @@ namespace AltasMES
             this.panel2.Controls.Add(this.txtProcess);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Size = new System.Drawing.Size(376, 214);
+            this.panel2.Controls.SetChildIndex(this.panel3, 0);
+            this.panel2.Controls.SetChildIndex(this.label1, 0);
+            this.panel2.Controls.SetChildIndex(this.txtProcess, 0);
+            this.panel2.Controls.SetChildIndex(this.label2, 0);
+            this.panel2.Controls.SetChildIndex(this.textBox1, 0);
+            this.panel2.Controls.SetChildIndex(this.btnAdd, 0);
+            this.panel2.Controls.SetChildIndex(this.btnCancel, 0);
+            this.panel2.Controls.SetChildIndex(this.label3, 0);
+            // 
+            // panel3
+            // 
+            this.panel3.Size = new System.Drawing.Size(352, 196);
             // 
             // btnCancel
             // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancel.ImageIndex = 5;
             this.btnCancel.ImageList = this.imageList1;
-            this.btnCancel.Location = new System.Drawing.Point(201, 165);
+            this.btnCancel.Location = new System.Drawing.Point(208, 154);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -93,13 +105,13 @@ namespace AltasMES
             // 
             // btnAdd
             // 
-            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAdd.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAdd.ImageIndex = 2;
             this.btnAdd.ImageList = this.imageList1;
-            this.btnAdd.Location = new System.Drawing.Point(111, 165);
+            this.btnAdd.Location = new System.Drawing.Point(118, 154);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);

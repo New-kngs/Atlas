@@ -70,6 +70,16 @@ namespace AltasMES
             this.panel2.Controls.Add(this.txtProcess);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Size = new System.Drawing.Size(376, 214);
+            this.panel2.Controls.SetChildIndex(this.panel3, 0);
+            this.panel2.Controls.SetChildIndex(this.label1, 0);
+            this.panel2.Controls.SetChildIndex(this.txtProcess, 0);
+            this.panel2.Controls.SetChildIndex(this.groupBox1, 0);
+            this.panel2.Controls.SetChildIndex(this.btnAdd, 0);
+            this.panel2.Controls.SetChildIndex(this.btnCancel, 0);
+            // 
+            // panel3
+            // 
+            this.panel3.Size = new System.Drawing.Size(352, 196);
             // 
             // btnCancel
             // 
