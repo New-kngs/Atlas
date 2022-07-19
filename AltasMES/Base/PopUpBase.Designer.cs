@@ -119,6 +119,6 @@
         protected System.Windows.Forms.Panel panel1;
         protected System.Windows.Forms.ImageList imageList1;
         protected System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
+        protected System.Windows.Forms.Panel panel3;
     }
 }
