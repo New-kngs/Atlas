@@ -8,7 +8,7 @@ namespace AtlasDTO
 {
     public class ProcessVO
     {
-        public string ProcessID { get; set; }
+        public int ProcessID { get; set; }
         public string ProcessName { get; set; }
         public string FailCheck { get; set; }
         public string CreateDate { get; set; }
