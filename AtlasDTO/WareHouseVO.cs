@@ -9,7 +9,7 @@ namespace AtlasDTO
     public class WareHouseVO
     {
         //WHID, WHName, ItemCategory, CreateDate, CreateUser, ModifyDate, ModifyUser, DeletedYN
-        public int WHID { get; set; }
+        public string WHID { get; set; }
         public string WHName { get; set; }
         public string ItemCategory { get; set; }
         public string CreateDate { get; set; }

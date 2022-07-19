@@ -22,7 +22,7 @@ namespace AtlasMVCAPI.Models
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = new SqlConnection(strConn);
-                cmd.CommandText = @"select WHID, WHName, ItemCategory, convert(varchar(10), CreateDate, 120) CreateDate, CreateUser, convert(varchar(10), ModifyDate, 120) ModifyDate, ModifyUser, DeletedYN
+                cmd.CommandText = @"select WHID, WHName, ItemCategory, convert(varchar(20), CreateDate, 120) CreateDate, CreateUser, convert(varchar(20), ModifyDate, 120) ModifyDate, ModifyUser, DeletedYN
                                     from TB_Warehouse";
 
                 cmd.Connection.Open();
