@@ -86,6 +86,12 @@
     <Compile Include="Base\PopUpBase.Designer.cs">
       <DependentUpon>PopUpBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmEmployee\frmEmployee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEmployee\frmEmployee.Designer.cs">
+      <DependentUpon>frmEmployee.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmEquitment\frmEquitment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -208,9 +214,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="frmEmployee\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\AtlasDTO\AtlasDTO.csproj">
       <Project>{b4c8c339-791a-4219-9070-118f960a9490}</Project>

@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AltasMES
+namespace AltasMES.frmEmployee
 {
-    public partial class BaseForm : Form
+    public partial class frmEmployee : Form
     {
-        public BaseForm()
+        public frmEmployee()
         {
             InitializeComponent();
         }
