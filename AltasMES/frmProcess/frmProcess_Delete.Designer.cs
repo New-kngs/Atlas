@@ -82,7 +82,7 @@ namespace AltasMES
             // 
             // panel3
             // 
-            this.panel3.Size = new System.Drawing.Size(352, 196);
+            this.panel3.Size = new System.Drawing.Size(255, 0);
             // 
             // btnCancel
             // 
@@ -177,6 +177,7 @@ namespace AltasMES
             this.Name = "frmProcess_Delete";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "공정 삭제";
+            this.Load += new System.EventHandler(this.frmProcess_Delete_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

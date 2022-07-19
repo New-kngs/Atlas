@@ -61,16 +61,26 @@ namespace AltasMES
         {
             ProcessVO process = new ProcessVO()
             {
+                ProcessID = Convert.ToInt32(dgvProcess.SelectedRows[0].Cells["ProcessID"].Value),
                 ProcessName = (dgvProcess.SelectedRows[0].Cells["ProcessName"].Value).ToString(),
                 FailCheck = (dgvProcess.SelectedRows[0].Cells["FailCheck"].Value).ToString()
             };
             frmPorcess_Modify frm = new frmPorcess_Modify(process);
-            frm.ShowDialog();
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                LoadData();
+            }
         }
         
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            frmProcess_Delete frm = new frmProcess_Delete();
+            ProcessVO process = new ProcessVO()
+            {
+                ProcessID = Convert.ToInt32(dgvProcess.SelectedRows[0].Cells["ProcessID"].Value),
+                ProcessName = (dgvProcess.SelectedRows[0].Cells["ProcessName"].Value).ToString(),
+                FailCheck = (dgvProcess.SelectedRows[0].Cells["FailCheck"].Value).ToString()
+            };
+            frmProcess_Delete frm = new frmProcess_Delete(process);
             frm.ShowDialog();
         }
 
