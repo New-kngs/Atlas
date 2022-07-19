@@ -16,9 +16,9 @@ namespace AtlasMVCAPI.Controllers
         /// <summary>
         /// 등록된 모든 창고를 조회해서 반환
         /// </summary>
-        //https://localhost:44391/api/Employee/AllWareHouse
+        //https://localhost:44391/api/WareHouse/AllWareHouse
         [Route("AllWareHouse")]
-        public IHttpActionResult GetAllEmployee()
+        public IHttpActionResult GetAllWareHouse()
         {
             try
             {
