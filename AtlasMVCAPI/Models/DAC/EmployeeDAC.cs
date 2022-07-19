@@ -22,9 +22,9 @@ namespace AtlasMVCAPI.Models
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = new SqlConnection(strConn);
-                cmd.CommandText = @"SELECT EmpID,EmpName, EmpPwd, EmpPhone, EmpEmail, D.DeptName, E.CreateDate as CreateDate,
-                                    E.CreateUser as CreateUser, E.ModifyDate as ModifyDate ,E.ModifyUser as ModifyUser,DeletedYN
-                                    FROM TB_Employees E INNER JOIN TB_Derpartment D ON E.DeptID = D.DeptID ";
+                cmd.CommandText = @"SELECT EmpID,EmpName, EmpPwd, EmpPhone, EmpEmail, D.DeptName, convert(nvarchar(20),E.CreateDate,120) as CreateDate,
+                                    E.CreateUser as CreateUser,  convert(nvarchar(20), E.ModifyDate,120) as ModifyDate ,E.ModifyUser as ModifyUser,convert(nvarchar(5), DeletedYN) as DeletedYN
+                                    FROM TB_Employees E INNER JOIN TB_Derpartment D ON E.DeptID = D.DeptID";
 
                 cmd.Connection.Open();
                 List<EmployeeVO> list = Helper.DataReaderMapToList<EmployeeVO>(cmd.ExecuteReader());

@@ -20,15 +20,15 @@ namespace AtlasDTO
 
         public string DeptName { get; set; }
 
-        public DateTime Createtime { get; set; }
+        public string CreateDate { get; set; }
 
         public string CreateUser { get; set; }
 
-        public DateTime ModifyDate { get; set; }
+        public string ModifyDate { get; set; }
 
         public string ModifyUser { get; set; }
 
-        public char DeleteYN { get; set; }
+        public string DeletedYN { get; set; }
 
     }
 }
