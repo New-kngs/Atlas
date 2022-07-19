@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace AltasMES
 {
-    public partial class frmWareHouse_Add : PopUpBase
+    public partial class frmWareHouse_Add : Form
     {
         public frmWareHouse_Add()
         {
