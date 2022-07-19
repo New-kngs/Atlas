@@ -9,6 +9,7 @@ using AtlasDTO;
 
 namespace AtlasMVCAPI.Controllers
 {
+
     [RoutePrefix("api/Employee")]
     public class EmployeeController : ApiController
     {

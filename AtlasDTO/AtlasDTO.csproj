@@ -46,6 +46,7 @@
     <Compile Include="ProcessVO.cs" />
     <Compile Include="ResMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WareHouseVO.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
