@@ -32,8 +32,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtProcess = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.rdN = new System.Windows.Forms.RadioButton();
+            this.rdY = new System.Windows.Forms.RadioButton();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
@@ -82,7 +82,7 @@
             // 
             // panel3
             // 
-            this.panel3.Size = new System.Drawing.Size(352, 212);
+            this.panel3.Size = new System.Drawing.Size(158, 0);
             // 
             // label1
             // 
@@ -104,8 +104,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Controls.Add(this.rdN);
+            this.groupBox1.Controls.Add(this.rdY);
             this.groupBox1.Location = new System.Drawing.Point(52, 70);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
@@ -115,29 +115,29 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "자재투입여부";
             // 
-            // radioButton2
+            // rdN
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(154, 38);
-            this.radioButton2.Margin = new System.Windows.Forms.Padding(2);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(40, 25);
-            this.radioButton2.TabIndex = 0;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "N";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rdN.AutoSize = true;
+            this.rdN.Location = new System.Drawing.Point(154, 38);
+            this.rdN.Margin = new System.Windows.Forms.Padding(2);
+            this.rdN.Name = "rdN";
+            this.rdN.Size = new System.Drawing.Size(40, 25);
+            this.rdN.TabIndex = 0;
+            this.rdN.TabStop = true;
+            this.rdN.Text = "N";
+            this.rdN.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // rdY
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(74, 38);
-            this.radioButton1.Margin = new System.Windows.Forms.Padding(2);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(37, 25);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Y";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rdY.AutoSize = true;
+            this.rdY.Location = new System.Drawing.Point(74, 38);
+            this.rdY.Margin = new System.Windows.Forms.Padding(2);
+            this.rdY.Name = "rdY";
+            this.rdY.Size = new System.Drawing.Size(37, 25);
+            this.rdY.TabIndex = 0;
+            this.rdY.TabStop = true;
+            this.rdY.Text = "Y";
+            this.rdY.UseVisualStyleBackColor = true;
             // 
             // btnAdd
             // 
@@ -156,6 +156,7 @@
             this.btnAdd.Text = "등록";
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnCancel
             // 
@@ -185,6 +186,7 @@
             this.Name = "frmProcess_Add";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "공정등록";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmProcess_Add_FormClosing);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -197,8 +199,8 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton rdN;
+        private System.Windows.Forms.RadioButton rdY;
         private System.Windows.Forms.TextBox txtProcess;
         private System.Windows.Forms.Label label1;
         protected System.Windows.Forms.Button btnCancel;

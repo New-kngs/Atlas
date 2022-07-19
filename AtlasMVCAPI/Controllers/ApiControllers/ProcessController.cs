@@ -44,5 +44,65 @@ namespace AtlasMVCAPI.Controllers.ApiControllers
                 });
             }
         }
+
+        //POST : https://localhost:44391/api/Process/SaveProcess
+        [HttpPost]
+        [Route("SaveProcess")]
+        public IHttpActionResult SaveProcess(ProcessVO process)
+        {
+            try
+            {
+                ProcessDAC db = new ProcessDAC();
+                bool flag = db.SaveProcess(process);
+
+                ResMessage result = new ResMessage()
+                {
+                    ErrCode = (!flag) ? -9 : 0,
+                    ErrMsg = (!flag) ? "저장중 오류발생" : "S"
+                };
+
+                return Ok(result);
+            }
+            catch (Exception err)
+            {
+                System.Diagnostics.Debug.WriteLine(err.Message);
+
+                return Ok(new ResMessage()
+                {
+                    ErrCode = -9,
+                    ErrMsg = err.Message
+                });
+            }
+        }
+
+        //POST : https://localhost:44391/api/Process/UpdateProcess
+        [HttpPost]
+        [Route("UpdateProcess")]
+        public IHttpActionResult UpdateProcess(ProcessVO process)
+        {
+            try
+            {
+                ProcessDAC db = new ProcessDAC();
+                bool flag = db.UpdateProcess(process);
+
+                ResMessage result = new ResMessage()
+                {
+                    ErrCode = (!flag) ? -9 : 0,
+                    ErrMsg = (!flag) ? "저장중 오류발생" : "S"
+                };
+
+                return Ok(result);
+            }
+            catch (Exception err)
+            {
+                System.Diagnostics.Debug.WriteLine(err.Message);
+
+                return Ok(new ResMessage()
+                {
+                    ErrCode = -9,
+                    ErrMsg = err.Message
+                });
+            }
+        }
     }
 }

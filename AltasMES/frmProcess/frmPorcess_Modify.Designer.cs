@@ -33,8 +33,8 @@ namespace AltasMES
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.rdN = new System.Windows.Forms.RadioButton();
+            this.rdY = new System.Windows.Forms.RadioButton();
             this.txtProcess = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
@@ -79,7 +79,7 @@ namespace AltasMES
             // 
             // panel3
             // 
-            this.panel3.Size = new System.Drawing.Size(352, 196);
+            this.panel3.Size = new System.Drawing.Size(158, 0);
             // 
             // btnCancel
             // 
@@ -117,11 +117,12 @@ namespace AltasMES
             this.btnAdd.Text = "수정";
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Controls.Add(this.rdN);
+            this.groupBox1.Controls.Add(this.rdY);
             this.groupBox1.Location = new System.Drawing.Point(54, 58);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
@@ -131,29 +132,29 @@ namespace AltasMES
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "자재투입여부";
             // 
-            // radioButton2
+            // rdN
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(154, 38);
-            this.radioButton2.Margin = new System.Windows.Forms.Padding(2);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(40, 25);
-            this.radioButton2.TabIndex = 0;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "N";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rdN.AutoSize = true;
+            this.rdN.Location = new System.Drawing.Point(154, 38);
+            this.rdN.Margin = new System.Windows.Forms.Padding(2);
+            this.rdN.Name = "rdN";
+            this.rdN.Size = new System.Drawing.Size(40, 25);
+            this.rdN.TabIndex = 0;
+            this.rdN.TabStop = true;
+            this.rdN.Text = "N";
+            this.rdN.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // rdY
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(74, 38);
-            this.radioButton1.Margin = new System.Windows.Forms.Padding(2);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(37, 25);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Y";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rdY.AutoSize = true;
+            this.rdY.Location = new System.Drawing.Point(74, 38);
+            this.rdY.Margin = new System.Windows.Forms.Padding(2);
+            this.rdY.Name = "rdY";
+            this.rdY.Size = new System.Drawing.Size(37, 25);
+            this.rdY.TabIndex = 0;
+            this.rdY.TabStop = true;
+            this.rdY.Text = "Y";
+            this.rdY.UseVisualStyleBackColor = true;
             // 
             // txtProcess
             // 
@@ -181,6 +182,7 @@ namespace AltasMES
             this.Name = "frmPorcess_Modify";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "공정 수정";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPorcess_Modify_FormClosing);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -195,8 +197,8 @@ namespace AltasMES
         protected System.Windows.Forms.Button btnCancel;
         protected System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton rdN;
+        private System.Windows.Forms.RadioButton rdY;
         private System.Windows.Forms.TextBox txtProcess;
         private System.Windows.Forms.Label label1;
     }
