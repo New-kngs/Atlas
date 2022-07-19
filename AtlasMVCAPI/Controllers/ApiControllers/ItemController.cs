@@ -8,7 +8,7 @@ using AtlasMVCAPI.Models;
 using AtlasDTO;
 using System.Diagnostics;
 
-namespace AtlasMVCAPI.Controllers.ApiControllers
+namespace AtlasMVCAPI.Controllers
 {
     [RoutePrefix("api/Item")]
     public class ItemController : ApiController

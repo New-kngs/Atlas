@@ -10,13 +10,16 @@ using System.Windows.Forms;
 
 namespace AltasMES
 {
-    public partial class frmWareHouse_Add : PopUpBase
+    public partial class frmWareHouse_Add : Form
     {
         public frmWareHouse_Add()
         {
             InitializeComponent();
         }
 
-        
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
