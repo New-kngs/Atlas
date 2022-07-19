@@ -11,8 +11,6 @@ using System.Windows.Forms;
 
 namespace AltasMES
 {
-
-    
     public partial class frmProcess : BaseForm
     {
         ServiceHelper srv = null;
@@ -81,7 +79,10 @@ namespace AltasMES
                 FailCheck = (dgvProcess.SelectedRows[0].Cells["FailCheck"].Value).ToString()
             };
             frmProcess_Delete frm = new frmProcess_Delete(process);
-            frm.ShowDialog();
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                LoadData();
+            }
         }
 
         private void frmProcess_FormClosing(object sender, FormClosingEventArgs e)
