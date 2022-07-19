@@ -91,7 +91,7 @@ namespace AltasMES
         {
             Label lbl = sender as Label;
             OpenCreateForm("frmItem");
-            OpenCreateForm("frmEmployee");
+            OpenCreateForm("frmWareHouse");
 
         }
 
