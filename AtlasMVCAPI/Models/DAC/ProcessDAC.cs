@@ -22,8 +22,8 @@ namespace AtlasMVCAPI.Models
             {
                 cmd.Connection = new SqlConnection(strConn);
                 cmd.CommandText = @"select ProcessID, ProcessName, FailCheck, convert(varchar(20), CreateDate, 120) CreateDate, 
-                                    CreateUser, convert(varchar(20), ModifyDate, 120) ModifyDate, ModifyUser
-                                    from TB_Process";
+                    CreateUser, convert(varchar(20), ModifyDate, 120) ModifyDate,ModifyUser, DeletedYN from TB_Process 
+                    where DeletedYN Like 'N'";
 
                 cmd.Connection.Open();
                 List<ProcessVO> list = Helper.DataReaderMapToList<ProcessVO>(cmd.ExecuteReader());
@@ -71,6 +71,26 @@ namespace AtlasMVCAPI.Models
                 cmd.Parameters.AddWithValue("@ModifyUser", "김길동");
                 cmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
 
+                cmd.Connection.Open();
+                int iRowAffect = cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+
+                return (iRowAffect > 0);
+            }
+        }
+
+        public bool DeleteProcess(ProcessVO process)
+        {
+            using (SqlCommand cmd = new SqlCommand
+            {
+                Connection = new SqlConnection(strConn),
+                CommandText = @"update TB_Process set DeletedYN = 'Y', ModifyDate=@ModifyDate, ModifyUser = @ModifyUser where ProcessID = @ProcessID"
+
+            })
+            {
+                cmd.Parameters.AddWithValue("@ProcessID", process.ProcessID);
+                cmd.Parameters.AddWithValue("@ModifyUser", "김길동");
+                cmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
                 cmd.Connection.Open();
                 int iRowAffect = cmd.ExecuteNonQuery();
                 cmd.Connection.Close();

@@ -43,7 +43,7 @@ namespace AltasMES
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(986, 63);
+            this.panel1.Size = new System.Drawing.Size(536, 63);
             this.panel1.TabIndex = 3;
             // 
             // lblTitle
@@ -52,7 +52,7 @@ namespace AltasMES
             this.lblTitle.Font = new System.Drawing.Font("맑은 고딕", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.Location = new System.Drawing.Point(0, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(986, 63);
+            this.lblTitle.Size = new System.Drawing.Size(536, 63);
             this.lblTitle.TabIndex = 1;
             this.lblTitle.Text = "제품 등록";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -63,7 +63,7 @@ namespace AltasMES
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 63);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(986, 560);
+            this.panel2.Size = new System.Drawing.Size(536, 417);
             this.panel2.TabIndex = 4;
             // 
             // panel3
@@ -75,14 +75,14 @@ namespace AltasMES
             this.panel3.Location = new System.Drawing.Point(12, 6);
             this.panel3.Name = "panel3";
             this.panel3.Padding = new System.Windows.Forms.Padding(5);
-            this.panel3.Size = new System.Drawing.Size(962, 542);
+            this.panel3.Size = new System.Drawing.Size(512, 399);
             this.panel3.TabIndex = 0;
             // 
             // frmItem_Add
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(986, 623);
+            this.ClientSize = new System.Drawing.Size(536, 480);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "frmItem_Add";
