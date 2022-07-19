@@ -21,8 +21,8 @@ namespace AtlasMVCAPI.Models
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = new SqlConnection(strConn);
-                cmd.CommandText = @"select ProcessID, ProcessName, FailCheck, convert(varchar(10), CreateDate, 120) CreateDate, 
-                                    CreateUser, convert(varchar(10), ModifyDate, 120) ModifyDate, ModifyUser
+                cmd.CommandText = @"select ProcessID, ProcessName, FailCheck, convert(varchar(20), CreateDate, 120) CreateDate, 
+                                    CreateUser, convert(varchar(20), ModifyDate, 120) ModifyDate, ModifyUser
                                     from TB_Process";
 
                 cmd.Connection.Open();
@@ -65,11 +65,11 @@ namespace AtlasMVCAPI.Models
 
             })
             {
+                cmd.Parameters.AddWithValue("@ProcessID", process.ProcessID);
                 cmd.Parameters.AddWithValue("@ProcessName", process.ProcessName);
                 cmd.Parameters.AddWithValue("@FailCheck", process.FailCheck);
-                cmd.Parameters.AddWithValue("@ModifyUser", process.ModifyUser);
+                cmd.Parameters.AddWithValue("@ModifyUser", "김길동");
                 cmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
-                cmd.Parameters.AddWithValue("@CreateUser", "김길동");
 
                 cmd.Connection.Open();
                 int iRowAffect = cmd.ExecuteNonQuery();

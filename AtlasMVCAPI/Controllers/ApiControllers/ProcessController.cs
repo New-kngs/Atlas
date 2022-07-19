@@ -7,7 +7,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace AtlasMVCAPI.Controllers.ApiControllers
+namespace AtlasMVCAPI.Controllers
 {
     [RoutePrefix("api/Process")]
     public class ProcessController : ApiController
@@ -75,6 +75,7 @@ namespace AtlasMVCAPI.Controllers.ApiControllers
             }
         }
 
+
         //POST : https://localhost:44391/api/Process/UpdateProcess
         [HttpPost]
         [Route("UpdateProcess")]
@@ -88,7 +89,7 @@ namespace AtlasMVCAPI.Controllers.ApiControllers
                 ResMessage result = new ResMessage()
                 {
                     ErrCode = (!flag) ? -9 : 0,
-                    ErrMsg = (!flag) ? "저장중 오류발생" : "S"
+                    ErrMsg = (!flag) ? "수정 중 오류발생" : "S"
                 };
 
                 return Ok(result);
