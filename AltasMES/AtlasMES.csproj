@@ -68,6 +68,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\BaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Base\BaseForm.Designer.cs">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Base\BaseStyle1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,12 +85,6 @@
     </Compile>
     <Compile Include="Base\PopUpBase.Designer.cs">
       <DependentUpon>PopUpBase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmEmployee\frmEmployee.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmEmployee\frmEmployee.Designer.cs">
-      <DependentUpon>frmEmployee.cs</DependentUpon>
     </Compile>
     <Compile Include="frmEquitment\frmEquitment.cs">
       <SubType>Form</SubType>
@@ -139,14 +139,14 @@
     <Compile Include="Util\AdvancedList.cs" />
     <Compile Include="Util\DataGridUtil.cs" />
     <Compile Include="Util\ServiceHelper.cs" />
+    <EmbeddedResource Include="Base\BaseForm.resx">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Base\BaseStyle1.resx">
       <DependentUpon>BaseStyle1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Base\PopUpBase.resx">
       <DependentUpon>PopUpBase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmEmployee\frmEmployee.resx">
-      <DependentUpon>frmEmployee.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmEquitment\frmEquitment.resx">
       <DependentUpon>frmEquitment.cs</DependentUpon>
@@ -208,7 +208,9 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="frmEmployee\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AtlasDTO\AtlasDTO.csproj">
       <Project>{b4c8c339-791a-4219-9070-118f960a9490}</Project>
