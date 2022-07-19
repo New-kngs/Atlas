@@ -90,8 +90,8 @@ namespace AltasMES
         private void Btn_Click(object sender, EventArgs e)
         {
             Label lbl = sender as Label;
-            OpenCreateForm("frmProcess");
-           // OpenCreateForm("frmEmployee");
+            OpenCreateForm("frmItem");
+            OpenCreateForm("frmEmployee");
 
         }
 
