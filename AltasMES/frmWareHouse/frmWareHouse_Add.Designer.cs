@@ -105,6 +105,7 @@ namespace AltasMES
             this.btnCancel.TabIndex = 19;
             this.btnCancel.Text = "취소";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnAdd
             // 
