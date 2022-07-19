@@ -108,11 +108,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ApiControllers\EmployeeController.cs" />
+    <Compile Include="Controllers\ApiControllers\ItemController.cs" />
     <Compile Include="Controllers\ApiControllers\ProcessController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DAC\EmployeeDAC.cs" />
+    <Compile Include="Models\DAC\ItemDAC.cs" />
     <Compile Include="Models\DAC\ProcessDAC.cs" />
     <Compile Include="Models\Helper\Helper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
