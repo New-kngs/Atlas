@@ -52,5 +52,24 @@ namespace AltasMES
         {
             service.Dispose();
         }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            frmItem_Add pop = new frmItem_Add();
+            if (pop.ShowDialog() == DialogResult.OK)
+            {
+
+            }
+        }
+
+        private void btnDetail_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void btnModify_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
