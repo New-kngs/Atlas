@@ -86,5 +86,6 @@ where ItemCategory Like '완제품'";
 
                 return list;
             }
+        }
     }
 }
