@@ -197,6 +197,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\AdvancedList.cs" />
+    <Compile Include="Util\CommonUtil.cs" />
     <Compile Include="Util\DataGridUtil.cs" />
     <Compile Include="Util\ServiceHelper.cs" />
     <EmbeddedResource Include="Base\BaseForm.resx">
