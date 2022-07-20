@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace AltasMES
 {
-    public partial class frmEquitment : BaseStyle1
+    public partial class frmEquipment_Add : Form
     {
-        public frmEquitment()
+        public frmEquipment_Add()
         {
             InitializeComponent();
+        }
+
+        private void frmEquipment_Add_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

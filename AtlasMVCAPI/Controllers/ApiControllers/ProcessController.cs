@@ -13,7 +13,7 @@ namespace AtlasMVCAPI.Controllers
     public class ProcessController : ApiController
     {
         /// <summary>
-        /// 등록된 모든 사용자를 조회해서 반환
+        /// 등록된 모든 공정를 조회해서 반환
         /// </summary>
         //https://localhost:44391/api/Process/AllProcess
         [Route("AllProcess")]
