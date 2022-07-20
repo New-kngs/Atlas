@@ -119,5 +119,20 @@ namespace AtlasMVCAPI.Models
             }
         }
 
+        public List<ComboItemVO> GetEquipName()
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.CommandText = @"select EquipID Code, EquipName Name, EquipCategory Category from TB_Equipment";
+
+                cmd.Connection.Open();
+                List<ComboItemVO> list = Helper.DataReaderMapToList<ComboItemVO>(cmd.ExecuteReader());
+                cmd.Connection.Close();
+
+                return list;
+            }
+        }
+
     }
 }

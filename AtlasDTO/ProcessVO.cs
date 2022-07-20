@@ -17,5 +17,7 @@ namespace AtlasDTO
         public string ModifyUser { get; set; }
         public string StateYN { get; set; }
 
+        public int EquipID { get; set; }
+
     }
 }

@@ -27,10 +27,6 @@ namespace AltasMES
             this.Close();
         }
 
-        private void frmProcess_Delete_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -66,11 +62,7 @@ namespace AltasMES
             }
         }
 
-        private void frmProcess_Delete_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if(service != null) 
-                service.Dispose();
-        }
+
 
         private void frmProcess_Using_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -78,6 +70,12 @@ namespace AltasMES
             {
                 e.Handled = true;
             }
+        }
+
+        private void frmProcess_Using_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (service != null)
+                service.Dispose();
         }
     }
 }

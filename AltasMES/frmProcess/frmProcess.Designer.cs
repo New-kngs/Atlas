@@ -176,7 +176,7 @@ namespace AltasMES
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1034, 682);
             this.Name = "frmProcess";
-            this.Text = "frmProcess";
+            this.Text = "공정";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmProcess_FormClosing);
             this.Load += new System.EventHandler(this.frmProcess_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmProcess_KeyPress);
