@@ -74,8 +74,9 @@ namespace AtlasMVCAPI.Models
         /// </summary>
         public List<ItemVO> GetProduct()
         {
-            using (SqlCommand cmd = new SqlCommand(strConn))
+            using (SqlCommand cmd = new SqlCommand()) // strConn
             {
+                cmd.Connection = new SqlConnection(strConn);
                 cmd.CommandText = @"select ItemName, ItemPrice, ItemExplain, ItemImage 
 from TB_Item 
 where ItemCategory Like '완제품'";

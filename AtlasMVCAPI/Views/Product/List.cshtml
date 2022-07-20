@@ -6,11 +6,72 @@
 }
 <h2>List</h2>
 
-@foreach(var item in Model)
-            {
-                <div>
-                    <h3>@item.ItemImage</h3>
-                    <h3>@item.ItemName</h3>
-                    <h3>@item.ItemPrice</h3>
+@foreach (var item in Model)
+{
+    <div>
+        <h3>@item.ItemImage</h3>
+        <h3>@item.ItemName</h3>
+        <h3>@item.ItemPrice</h3>
+    </div>
+}
+<!-- Main content -->
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h5 class="m-0">Featured</h5>
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-title">Special title treatment</h6>
+
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="#" class="btn btn-primary">장바구니</a>
+                    </div>
                 </div>
-            }
+
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h5 class="m-0">Featured</h5>
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-title">Special title treatment</h6>
+
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="#" class="btn btn-primary">장바구니</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.col-md-6 -->
+            <div class="col-lg-6">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h5 class="m-0">Featured</h5>
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-title">Special title treatment</h6>
+
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="#" class="btn btn-primary">장바구니</a>
+                    </div>
+                </div>
+
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h5 class="m-0">Featured</h5>
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-title">Special title treatment</h6>
+
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="#" class="btn btn-primary">장바구니</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.col-md-6 -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content -->

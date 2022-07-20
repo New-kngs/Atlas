@@ -11,12 +11,13 @@ namespace AtlasMVCAPI.WebControllers
 {
     public class ProductController : Controller
     {
-        // GET: Product
-        public ActionResult List()
+        // GET: 전체 제품 목록을 조회
+        // https://localhost:44391/Product/List
+        public ActionResult List(int page=1)
         {
             ItemDAC db = new ItemDAC();
             List<ItemVO> model = db.GetProduct();
-            // db.Dispose();
+            //db.Dispose();
             return View(model);
         }
     }
