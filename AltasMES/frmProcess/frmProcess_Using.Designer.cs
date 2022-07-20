@@ -1,7 +1,7 @@
 ﻿
 namespace AltasMES
 {
-    partial class frmProcess_Delete
+    partial class frmProcess_Using
     {
         /// <summary>
         /// Required designer variable.
@@ -29,13 +29,13 @@ namespace AltasMES
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProcess_Delete));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProcess_Using));
             this.btnCancel = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnChk = new System.Windows.Forms.Button();
             this.txtProcess = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtDeleteChk = new System.Windows.Forms.TextBox();
+            this.txtUsingChk = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -44,7 +44,7 @@ namespace AltasMES
             // lblTitle
             // 
             this.lblTitle.Size = new System.Drawing.Size(376, 63);
-            this.lblTitle.Text = "공정 미사용";
+            this.lblTitle.Text = "공정 사용";
             // 
             // panel1
             // 
@@ -65,8 +65,8 @@ namespace AltasMES
             // 
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.btnCancel);
-            this.panel2.Controls.Add(this.btnAdd);
-            this.panel2.Controls.Add(this.txtDeleteChk);
+            this.panel2.Controls.Add(this.btnChk);
+            this.panel2.Controls.Add(this.txtUsingChk);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.txtProcess);
             this.panel2.Controls.Add(this.label1);
@@ -75,14 +75,13 @@ namespace AltasMES
             this.panel2.Controls.SetChildIndex(this.label1, 0);
             this.panel2.Controls.SetChildIndex(this.txtProcess, 0);
             this.panel2.Controls.SetChildIndex(this.label2, 0);
-            this.panel2.Controls.SetChildIndex(this.txtDeleteChk, 0);
-            this.panel2.Controls.SetChildIndex(this.btnAdd, 0);
+            this.panel2.Controls.SetChildIndex(this.txtUsingChk, 0);
+            this.panel2.Controls.SetChildIndex(this.btnChk, 0);
             this.panel2.Controls.SetChildIndex(this.btnCancel, 0);
             this.panel2.Controls.SetChildIndex(this.label3, 0);
             // 
             // panel3
             // 
-            this.panel3.Location = new System.Drawing.Point(53, 17);
             this.panel3.Size = new System.Drawing.Size(0, 0);
             // 
             // btnCancel
@@ -104,24 +103,24 @@ namespace AltasMES
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // btnAdd
+            // btnChk
             // 
-            this.btnAdd.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdd.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAdd.ImageIndex = 6;
-            this.btnAdd.ImageList = this.imageList1;
-            this.btnAdd.Location = new System.Drawing.Point(118, 154);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.btnAdd.Size = new System.Drawing.Size(73, 34);
-            this.btnAdd.TabIndex = 21;
-            this.btnAdd.Text = "확인";
-            this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            this.btnChk.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnChk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnChk.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnChk.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnChk.ImageIndex = 6;
+            this.btnChk.ImageList = this.imageList1;
+            this.btnChk.Location = new System.Drawing.Point(118, 154);
+            this.btnChk.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnChk.Name = "btnChk";
+            this.btnChk.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.btnChk.Size = new System.Drawing.Size(73, 34);
+            this.btnChk.TabIndex = 21;
+            this.btnChk.Text = "확인";
+            this.btnChk.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnChk.UseVisualStyleBackColor = true;
+            this.btnChk.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // txtProcess
             // 
@@ -135,7 +134,7 @@ namespace AltasMES
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(49, 38);
+            this.label1.Location = new System.Drawing.Point(47, 39);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 21);
@@ -145,20 +144,20 @@ namespace AltasMES
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(65, 93);
+            this.label2.Location = new System.Drawing.Point(63, 94);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(42, 21);
             this.label2.TabIndex = 17;
             this.label2.Text = "확인";
             // 
-            // txtDeleteChk
+            // txtUsingChk
             // 
-            this.txtDeleteChk.Location = new System.Drawing.Point(109, 90);
-            this.txtDeleteChk.Margin = new System.Windows.Forms.Padding(2);
-            this.txtDeleteChk.Name = "txtDeleteChk";
-            this.txtDeleteChk.Size = new System.Drawing.Size(213, 29);
-            this.txtDeleteChk.TabIndex = 18;
+            this.txtUsingChk.Location = new System.Drawing.Point(109, 90);
+            this.txtUsingChk.Margin = new System.Windows.Forms.Padding(2);
+            this.txtUsingChk.Name = "txtUsingChk";
+            this.txtUsingChk.Size = new System.Drawing.Size(213, 29);
+            this.txtUsingChk.TabIndex = 18;
             // 
             // label3
             // 
@@ -168,18 +167,19 @@ namespace AltasMES
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(223, 15);
             this.label3.TabIndex = 22;
-            this.label3.Text = "삭제를 하시려면 공정명을 입력해주세요";
+            this.label3.Text = "사용을 하시려면 공정명을 입력해주세요";
             // 
-            // frmProcess_Delete
+            // frmProcess_Using
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(376, 277);
             this.Margin = new System.Windows.Forms.Padding(5, 10, 5, 10);
-            this.Name = "frmProcess_Delete";
+            this.Name = "frmProcess_Using";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "공정 미사용";
+            this.Text = "공정 재사용";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmProcess_Delete_FormClosing);
+            this.Load += new System.EventHandler(this.frmProcess_Delete_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -191,8 +191,8 @@ namespace AltasMES
 
         private System.Windows.Forms.Label label3;
         protected System.Windows.Forms.Button btnCancel;
-        protected System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.TextBox txtDeleteChk;
+        protected System.Windows.Forms.Button btnChk;
+        private System.Windows.Forms.TextBox txtUsingChk;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtProcess;
         private System.Windows.Forms.Label label1;

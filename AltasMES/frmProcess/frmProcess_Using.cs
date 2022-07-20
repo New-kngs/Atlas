@@ -11,11 +11,11 @@ using System.Windows.Forms;
 
 namespace AltasMES
 {
-    public partial class frmProcess_Delete : PopUpBase
+    public partial class frmProcess_Using : PopUpBase
     {
         public ProcessVO process { get; set; }
         ServiceHelper service = null;
-        public frmProcess_Delete(ProcessVO process)
+        public frmProcess_Using(ProcessVO process)
         {
             InitializeComponent();
             this.process = process;
@@ -27,15 +27,20 @@ namespace AltasMES
             this.Close();
         }
 
+        private void frmProcess_Delete_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtDeleteChk.Text.Trim()))
+            if (string.IsNullOrWhiteSpace(txtUsingChk.Text.Trim()))
             {
                 MessageBox.Show("문구를 입력해주세요");
                 return;
             }
 
-            if (txtProcess.Text.Equals(txtDeleteChk.Text))
+            if (txtProcess.Text.Equals(txtUsingChk.Text))
             {
                 service = new ServiceHelper("api/Process");
 
@@ -44,11 +49,11 @@ namespace AltasMES
                     ProcessID = this.process.ProcessID
                 };
 
-                ResMessage<List<ProcessVO>> result = service.PostAsync<ProcessVO, List<ProcessVO>>("DeleteProcess", process);
+                ResMessage<List<ProcessVO>> result = service.PostAsync<ProcessVO, List<ProcessVO>>("UsingProcess", process);
 
                 if (result.ErrCode == 0)
                 {
-                    MessageBox.Show("성공적으로 삭제되었습니다.");
+                    MessageBox.Show("공정을 다시 사용하실 수 있습니다.");
                     this.DialogResult = DialogResult.OK;
                 }
                 else
