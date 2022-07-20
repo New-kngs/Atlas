@@ -82,7 +82,7 @@
             // 
             // panel3
             // 
-            this.panel3.Size = new System.Drawing.Size(61, 0);
+            this.panel3.Size = new System.Drawing.Size(0, 0);
             // 
             // label1
             // 
@@ -187,6 +187,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "공정등록";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmProcess_Add_FormClosing);
+            this.Load += new System.EventHandler(this.frmProcess_Add_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmProcess_Add_KeyPress);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

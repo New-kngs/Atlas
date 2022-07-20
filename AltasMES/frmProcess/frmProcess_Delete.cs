@@ -41,7 +41,8 @@ namespace AltasMES
 
                 ProcessVO process = new ProcessVO
                 {
-                    ProcessID = this.process.ProcessID
+                    ProcessID = this.process.ProcessID,
+                    ModifyUser = this.process.ModifyUser
                 };
 
                 ResMessage<List<ProcessVO>> result = service.PostAsync<ProcessVO, List<ProcessVO>>("DeleteProcess", process);
@@ -73,6 +74,31 @@ namespace AltasMES
             {
                 e.Handled = true;
             }
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDeleteChk_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtProcess_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

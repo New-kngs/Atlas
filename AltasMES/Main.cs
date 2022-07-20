@@ -26,9 +26,9 @@ namespace AltasMES
         private void Main_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
-            EmpID = "EMP_0004";
-            EmpName = "강지모";
-            DeptID = "Product";
+            this.EmpID = "EMP_0004";
+            this.EmpName = "강지모";
+            this.DeptID = "Product";
 
         }
 
