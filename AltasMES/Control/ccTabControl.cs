@@ -53,7 +53,7 @@ namespace AltasMES
                 else
                     img = Properties.Resources.close_grey;
 
-                Point imgLocation = new Point(18, 2);
+                Point imgLocation = new Point(20, 5);
 
                 e.Graphics.DrawImage(img, new Point(r.X + this.GetTabRect(e.Index).Width - imgLocation.X, imgLocation.Y));
 

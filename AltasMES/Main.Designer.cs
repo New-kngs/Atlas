@@ -238,10 +238,11 @@ namespace AltasMES
             // 
             this.TabControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.TabControl1.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.TabControl1.Location = new System.Drawing.Point(136, 71);
             this.TabControl1.Name = "TabControl1";
             this.TabControl1.SelectedIndex = 0;
-            this.TabControl1.Size = new System.Drawing.Size(1121, 28);
+            this.TabControl1.Size = new System.Drawing.Size(1121, 27);
             this.TabControl1.TabIndex = 10;
             this.TabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             this.TabControl1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tabControl1_MouseDown);
