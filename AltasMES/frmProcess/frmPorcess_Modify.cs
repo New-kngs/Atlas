@@ -74,5 +74,18 @@ namespace AltasMES
             if (service != null)
                 service.Dispose();
         }
+
+        private void btnCancel_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b' && e.KeyChar != 13)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void frmPorcess_Modify_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

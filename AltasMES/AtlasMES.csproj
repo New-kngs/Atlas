@@ -12,6 +12,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>게시\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -24,7 +25,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -103,6 +103,12 @@
     </Compile>
     <Compile Include="frmEquipment\frmEquipment_Add.Designer.cs">
       <DependentUpon>frmEquipment_Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmEquipment\frmEquipment_Modify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEquipment\frmEquipment_Modify.Designer.cs">
+      <DependentUpon>frmEquipment_Modify.cs</DependentUpon>
     </Compile>
     <Compile Include="frmItem\frmItem.cs">
       <SubType>Form</SubType>
@@ -210,6 +216,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmEquipment\frmEquipment_Add.resx">
       <DependentUpon>frmEquipment_Add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEquipment\frmEquipment_Modify.resx">
+      <DependentUpon>frmEquipment_Modify.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmItem\frmItem.resx">
       <DependentUpon>frmItem.cs</DependentUpon>
