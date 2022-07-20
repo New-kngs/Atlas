@@ -31,26 +31,19 @@ namespace AltasMES
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEquipment));
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.dgvEquipment = new System.Windows.Forms.DataGridView();
+            this.dgvEquip = new System.Windows.Forms.DataGridView();
             this.BasePanel1.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.Basepanel4.SuspendLayout();
             this.Basepanel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEquipment)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEquip)).BeginInit();
             this.SuspendLayout();
             // 
             // panel2
             // 
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Size = new System.Drawing.Size(1034, 682);
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.groupBox3);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Size = new System.Drawing.Size(1034, 502);
+            this.panel2.Controls.Add(this.groupBox3);
             // 
             // groupBox2
             // 
@@ -58,7 +51,7 @@ namespace AltasMES
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(690, 20);
+            this.btnAdd.TabIndex = 0;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // imageList1
@@ -72,11 +65,11 @@ namespace AltasMES
             // 
             // btnExecl
             // 
-            this.btnExecl.Location = new System.Drawing.Point(942, 20);
+            this.btnExecl.TabIndex = 3;
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(858, 20);
+            this.btnDelete.TabIndex = 2;
             // 
             // lblTitle
             // 
@@ -85,28 +78,29 @@ namespace AltasMES
             // 
             // btnModify
             // 
-            this.btnModify.Location = new System.Drawing.Point(774, 20);
+            this.btnModify.TabIndex = 1;
+            this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.dgvEquipment);
+            this.groupBox3.Controls.Add(this.dgvEquip);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1034, 502);
+            this.groupBox3.Size = new System.Drawing.Size(1034, 491);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "설비목록";
             // 
-            // dgvEquipment
+            // dgvEquip
             // 
-            this.dgvEquipment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEquipment.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvEquipment.Location = new System.Drawing.Point(3, 17);
-            this.dgvEquipment.Name = "dgvEquipment";
-            this.dgvEquipment.RowTemplate.Height = 23;
-            this.dgvEquipment.Size = new System.Drawing.Size(1028, 482);
-            this.dgvEquipment.TabIndex = 0;
+            this.dgvEquip.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEquip.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvEquip.Location = new System.Drawing.Point(3, 17);
+            this.dgvEquip.Name = "dgvEquip";
+            this.dgvEquip.RowTemplate.Height = 23;
+            this.dgvEquip.Size = new System.Drawing.Size(1028, 471);
+            this.dgvEquip.TabIndex = 0;
             // 
             // frmEquipment
             // 
@@ -115,15 +109,17 @@ namespace AltasMES
             this.ClientSize = new System.Drawing.Size(1034, 682);
             this.Name = "frmEquipment";
             this.Text = "설비";
-            this.Load += new System.EventHandler(this.frmEquitment_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmEquipment_FormClosing);
+            this.Load += new System.EventHandler(this.frmEquipment_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmEquipment_KeyPress);
             this.BasePanel1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.Basepanel4.ResumeLayout(false);
             this.Basepanel2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEquipment)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEquip)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -131,6 +127,6 @@ namespace AltasMES
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.DataGridView dgvEquipment;
+        private System.Windows.Forms.DataGridView dgvEquip;
     }
 }

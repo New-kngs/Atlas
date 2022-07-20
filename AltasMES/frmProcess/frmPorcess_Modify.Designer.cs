@@ -79,7 +79,7 @@ namespace AltasMES
             // 
             // panel3
             // 
-            this.panel3.Size = new System.Drawing.Size(60, 0);
+            this.panel3.Size = new System.Drawing.Size(0, 0);
             // 
             // btnCancel
             // 
@@ -94,11 +94,12 @@ namespace AltasMES
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnCancel.Size = new System.Drawing.Size(73, 34);
-            this.btnCancel.TabIndex = 15;
+            this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "취소";
             this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.btnCancel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.btnCancel_KeyPress);
             // 
             // btnAdd
             // 
@@ -113,7 +114,7 @@ namespace AltasMES
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnAdd.Size = new System.Drawing.Size(73, 34);
-            this.btnAdd.TabIndex = 16;
+            this.btnAdd.TabIndex = 3;
             this.btnAdd.Text = "수정";
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -139,7 +140,7 @@ namespace AltasMES
             this.rdN.Margin = new System.Windows.Forms.Padding(2);
             this.rdN.Name = "rdN";
             this.rdN.Size = new System.Drawing.Size(40, 25);
-            this.rdN.TabIndex = 0;
+            this.rdN.TabIndex = 2;
             this.rdN.TabStop = true;
             this.rdN.Text = "N";
             this.rdN.UseVisualStyleBackColor = true;
@@ -151,7 +152,7 @@ namespace AltasMES
             this.rdY.Margin = new System.Windows.Forms.Padding(2);
             this.rdY.Name = "rdY";
             this.rdY.Size = new System.Drawing.Size(37, 25);
-            this.rdY.TabIndex = 0;
+            this.rdY.TabIndex = 1;
             this.rdY.TabStop = true;
             this.rdY.Text = "Y";
             this.rdY.UseVisualStyleBackColor = true;
@@ -162,7 +163,7 @@ namespace AltasMES
             this.txtProcess.Margin = new System.Windows.Forms.Padding(2);
             this.txtProcess.Name = "txtProcess";
             this.txtProcess.Size = new System.Drawing.Size(213, 29);
-            this.txtProcess.TabIndex = 13;
+            this.txtProcess.TabIndex = 0;
             // 
             // label1
             // 
@@ -183,6 +184,7 @@ namespace AltasMES
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "공정 수정";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPorcess_Modify_FormClosing);
+            this.Load += new System.EventHandler(this.frmPorcess_Modify_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

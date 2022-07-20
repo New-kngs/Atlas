@@ -19,17 +19,17 @@ namespace AltasMES
             InitializeComponent();
         }
 
-        private void frmEquitment_Load(object sender, EventArgs e)
+        private void frmEquipment_Load(object sender, EventArgs e)
         {
-            DataGridUtil.SetInitGridView(dgvEquipment);
-            DataGridUtil.AddGridTextBoxColumn(dgvEquipment, "설비ID", "EquipID", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvEquipment, "설비명", "EquipName", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvEquipment, "설비유형", "EquipCategory", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvEquipment, "생성날짜", "CreateDate", colwidth: 200);
-            DataGridUtil.AddGridTextBoxColumn(dgvEquipment, "생성사용자", "CreateUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvEquipment, "변경날짜", "ModifyDate", colwidth: 200);
-            DataGridUtil.AddGridTextBoxColumn(dgvEquipment, "변경사용자", "ModifyUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvEquipment, "사용여부", "StateYN", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.SetInitGridView(dgvEquip);
+            DataGridUtil.AddGridTextBoxColumn(dgvEquip, "설비ID", "EquipID", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvEquip, "설비명", "EquipName", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvEquip, "설비유형", "EquipCategory", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvEquip, "생성날짜", "CreateDate", colwidth: 200);
+            DataGridUtil.AddGridTextBoxColumn(dgvEquip, "생성사용자", "CreateUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvEquip, "변경날짜", "ModifyDate", colwidth: 200);
+            DataGridUtil.AddGridTextBoxColumn(dgvEquip, "변경사용자", "ModifyUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvEquip, "사용여부", "StateYN", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
 
             LoadData();
         }
@@ -39,7 +39,7 @@ namespace AltasMES
             ResMessage<List<EquipmentVO>> result = service.GetAsync<List<EquipmentVO>>("AllEquipment");
             if (result.Data != null)
             {
-                dgvEquipment.DataSource = new AdvancedList<EquipmentVO>(result.Data);
+                dgvEquip.DataSource = new AdvancedList<EquipmentVO>(result.Data);
             }
             else
             {
@@ -50,7 +50,39 @@ namespace AltasMES
         private void btnAdd_Click(object sender, EventArgs e)
         {
             frmEquipment_Add frm = new frmEquipment_Add();
-            frm.ShowDialog();
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                LoadData();
+            }
+        }
+
+        private void frmEquipment_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b' && e.KeyChar != 13)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void frmEquipment_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            service.Dispose();
+        }
+
+        private void btnModify_Click(object sender, EventArgs e)
+        {
+            EquipmentVO equip = new EquipmentVO()
+            {
+                EquipID = Convert.ToInt32(dgvEquip.SelectedRows[0].Cells["EquipID"].Value),
+                EquipName = (dgvEquip.SelectedRows[0].Cells["EquipName"].Value).ToString(),
+                EquipCategory = (dgvEquip.SelectedRows[0].Cells["EquipCategory"].Value).ToString()
+            };
+
+            frmEquipment_Modify frm = new frmEquipment_Modify(equip);
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                LoadData();
+            }
         }
     }
 }

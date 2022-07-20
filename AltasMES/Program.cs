@@ -19,7 +19,6 @@ namespace AltasMES
 
 
             Application.Run(new Main());
-
         }
     }
 }
