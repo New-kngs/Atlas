@@ -35,7 +35,6 @@ namespace AltasMES
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvItem = new System.Windows.Forms.DataGridView();
-            this.btnDetail = new System.Windows.Forms.Button();
             this.BasePanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.Basepanel4.SuspendLayout();
@@ -55,16 +54,6 @@ namespace AltasMES
             this.groupBox2.Controls.Add(this.comboBox1);
             this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.txtSearch);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.btnDetail);
-            this.groupBox1.Controls.SetChildIndex(this.btnModify, 0);
-            this.groupBox1.Controls.SetChildIndex(this.lblTitle, 0);
-            this.groupBox1.Controls.SetChildIndex(this.btnDelete, 0);
-            this.groupBox1.Controls.SetChildIndex(this.btnExecl, 0);
-            this.groupBox1.Controls.SetChildIndex(this.btnAdd, 0);
-            this.groupBox1.Controls.SetChildIndex(this.btnDetail, 0);
             // 
             // btnAdd
             // 
@@ -125,41 +114,23 @@ namespace AltasMES
             // 
             this.groupBox3.Controls.Add(this.dgvItem);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Font = new System.Drawing.Font("맑은 고딕", 10.2F, System.Drawing.FontStyle.Bold);
+            this.groupBox3.Font = new System.Drawing.Font("맑은 고딕", 9.75F);
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(1034, 491);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "제품 현황";
+            this.groupBox3.Text = "제품목록";
             // 
             // dgvItem
             // 
             this.dgvItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvItem.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvItem.Location = new System.Drawing.Point(3, 22);
+            this.dgvItem.Location = new System.Drawing.Point(3, 21);
             this.dgvItem.Name = "dgvItem";
             this.dgvItem.RowTemplate.Height = 23;
-            this.dgvItem.Size = new System.Drawing.Size(1028, 466);
+            this.dgvItem.Size = new System.Drawing.Size(1028, 467);
             this.dgvItem.TabIndex = 2;
-            // 
-            // btnDetail
-            // 
-            this.btnDetail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDetail.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDetail.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnDetail.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDetail.ImageIndex = 3;
-            this.btnDetail.ImageList = this.imageList1;
-            this.btnDetail.Location = new System.Drawing.Point(579, 20);
-            this.btnDetail.Name = "btnDetail";
-            this.btnDetail.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.btnDetail.Size = new System.Drawing.Size(116, 37);
-            this.btnDetail.TabIndex = 8;
-            this.btnDetail.Text = "상세 내용";
-            this.btnDetail.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDetail.UseVisualStyleBackColor = true;
-            this.btnDetail.Click += new System.EventHandler(this.btnDetail_Click);
             // 
             // frmItem
             // 
@@ -167,7 +138,7 @@ namespace AltasMES
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1034, 682);
             this.Name = "frmItem";
-            this.Text = "frmItem";
+            this.Text = "제품";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmItem_FormClosing);
             this.Load += new System.EventHandler(this.frmItem_Load);
             this.BasePanel1.ResumeLayout(false);
@@ -190,6 +161,5 @@ namespace AltasMES
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.DataGridView dgvItem;
-        protected System.Windows.Forms.Button btnDetail;
     }
 }

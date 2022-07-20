@@ -13,7 +13,7 @@ namespace AltasMES
 {
     public partial class frmItem : BaseForm
     {
-        ServiceHelper service = null;
+        ServiceHelper srv = null;
         public frmItem()
         {
             InitializeComponent();
@@ -24,22 +24,26 @@ namespace AltasMES
             //ItmeImage, ItemExplain
 
             DataGridUtil.SetInitGridView(dgvItem);
-            DataGridUtil.AddGridTextBoxColumn(dgvItem, "제품ID", "ItemID", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvItem, "제품ID", "ItemID", colwidth: 100, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvItem, "제품명", "ItemName", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvItem, "거래처ID", "CustomerID", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvItem, "재고수량", "CurrentQty", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvItem, "창고ID", "WHID", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvItem, "제품유형", "ItemCategory", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvItem, "제품규격", "ItemSize", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvItem, "생성날짜", "CreateDate", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvItem, "생성사용자", "CreateUser", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvItem, "변경날짜", "ModifyDate", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvItem, "삭제여부", "StateYN", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvItem, "사용여부", "StateYN", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvItem, "거래처명", "CustomerName", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvItem, "재고수량", "CurrentQty", colwidth: 100, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvItem, "안전재고량", "SafeQty", colwidth: 100, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvItem, "창고ID", "WHID", colwidth: 100, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvItem, "제품유형", "ItemCategory", colwidth: 100, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvItem, "제품규격", "ItemSize", colwidth: 100, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvItem, "생성날짜", "CreateDate", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvItem, "생성사용자", "CreateUser", colwidth: 100, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvItem, "변경날짜", "ModifyDate", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvItem, "사용여부", "StateYN", colwidth: 100, align: DataGridViewContentAlignment.MiddleCenter);
 
+            LoadDate();
+        }
 
-            service = new ServiceHelper("api/Item");
-            ResMessage<List<ItemVO>> result = service.GetAsync<List<ItemVO>>("AllItem");
+        public void LoadDate()
+        {
+            srv = new ServiceHelper("api/Item");
+            ResMessage<List<ItemVO>> result = srv.GetAsync<List<ItemVO>>("AllItem");
             if (result != null)
             {
                 dgvItem.DataSource = new AdvancedList<ItemVO>(result.Data);
@@ -52,7 +56,8 @@ namespace AltasMES
 
         private void frmItem_FormClosing(object sender, FormClosingEventArgs e)
         {
-            service.Dispose();
+            if (srv != null)
+                srv.Dispose();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -60,18 +65,17 @@ namespace AltasMES
             frmItem_Add pop = new frmItem_Add();
             if (pop.ShowDialog() == DialogResult.OK)
             {
-
+                LoadDate();
             }
-        }
-
-        private void btnDetail_Click(object sender, EventArgs e)
-        {
-           
-        }
+        }        
 
         private void btnModify_Click(object sender, EventArgs e)
-        {
+        {            
+            frmItem_Modify pop = new frmItem_Modify();
+            if (pop.ShowDialog() == DialogResult.OK)
+            {
 
+            }
         }
     }
 }

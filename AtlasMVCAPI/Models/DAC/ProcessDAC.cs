@@ -22,7 +22,7 @@ namespace AtlasMVCAPI.Models
             {
                 cmd.Connection = new SqlConnection(strConn);
                 cmd.CommandText = @"select ProcessID, ProcessName, FailCheck, convert(varchar(20), CreateDate, 120) CreateDate, 
-                    CreateUser, convert(varchar(20), ModifyDate, 120) ModifyDate,ModifyUser, StateYN from TB_Process ";
+                    CreateUser, convert(varchar(20), ModifyDate, 120) ModifyDate,ModifyUser, StateYN, EquipID from TB_Process ";
 
                 cmd.Connection.Open();
                 List<ProcessVO> list = Helper.DataReaderMapToList<ProcessVO>(cmd.ExecuteReader());
@@ -116,6 +116,21 @@ namespace AtlasMVCAPI.Models
                 cmd.Connection.Close();
 
                 return (iRowAffect > 0);
+            }
+        }
+
+        public List<ComboItemVO> GetEquipName()
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.CommandText = @" select CONVERT(varchar(10), EquipID) Code, EquipName CodeName, '설비' Category from TB_Equipment";
+
+                cmd.Connection.Open();
+                List<ComboItemVO> list = Helper.DataReaderMapToList<ComboItemVO>(cmd.ExecuteReader());
+                cmd.Connection.Close();
+
+                return list;
             }
         }
 

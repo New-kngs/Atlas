@@ -134,12 +134,6 @@
     <Compile Include="frmItem\frmItem_Add.Designer.cs">
       <DependentUpon>frmItem_Add.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmItem\frmItem_Detail.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmItem\frmItem_Detail.Designer.cs">
-      <DependentUpon>frmItem_Detail.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmItem\frmItem_Modify.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -206,6 +200,18 @@
     <Compile Include="frmWareHouse\frmWareHouse_Delete.Designer.cs">
       <DependentUpon>frmWareHouse_Delete.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmWareHouse\frmWareHouse_Modify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmWareHouse\frmWareHouse_Modify.Designer.cs">
+      <DependentUpon>frmWareHouse_Modify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmWareHouse\frmWareHouse_Using.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmWareHouse\frmWareHouse_Using.Designer.cs">
+      <DependentUpon>frmWareHouse_Using.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -248,9 +254,6 @@
     <EmbeddedResource Include="frmItem\frmItem_Add.resx">
       <DependentUpon>frmItem_Add.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmItem\frmItem_Detail.resx">
-      <DependentUpon>frmItem_Detail.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmItem\frmItem_Modify.resx">
       <DependentUpon>frmItem_Modify.cs</DependentUpon>
     </EmbeddedResource>
@@ -283,6 +286,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmWareHouse\frmWareHouse_Delete.resx">
       <DependentUpon>frmWareHouse_Delete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWareHouse\frmWareHouse_Modify.resx">
+      <DependentUpon>frmWareHouse_Modify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWareHouse\frmWareHouse_Using.resx">
+      <DependentUpon>frmWareHouse_Using.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
