@@ -23,7 +23,7 @@ namespace AtlasMVCAPI.Models
             {
                 cmd.Connection = new SqlConnection(strConn);
                 cmd.CommandText = @"SELECT EmpID,EmpName, EmpPwd, EmpPhone, EmpEmail, D.DeptName, convert(nvarchar(20),E.CreateDate,120) as CreateDate,
-                                    E.CreateUser as CreateUser,  convert(nvarchar(20), E.ModifyDate,120) as ModifyDate ,E.ModifyUser as ModifyUser,convert(nvarchar(5), DeletedYN) as DeletedYN
+                                    E.CreateUser as CreateUser,  convert(nvarchar(20), E.ModifyDate,120) as ModifyDate ,E.ModifyUser as ModifyUser,convert(nvarchar(5), StateYN) as StateYN
                                     FROM TB_Employees E INNER JOIN TB_Derpartment D ON E.DeptID = D.DeptID";
 
                 cmd.Connection.Open();
