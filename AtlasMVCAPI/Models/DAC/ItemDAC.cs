@@ -32,6 +32,21 @@ namespace AtlasMVCAPI.Models
             }
         }
 
+        public List<ComboItemVO> GetAllItemCategory()
+        {           
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.CommandText = "select Code, Category, CodeName from TB_CommonCode where Category in ('완제품','반제품','자재')";
+
+                cmd.Connection.Open();
+                List<ComboItemVO> list = Helper.DataReaderMapToList<ComboItemVO>(cmd.ExecuteReader());
+                cmd.Connection.Close();
+
+                return list;
+            }
+        }
+
         //public bool SaveItem(ItemVO process)
         //{
         //    using (SqlCommand cmd = new SqlCommand())

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AtlasDTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,8 @@ namespace AltasMES
 {
     public partial class frmItem_Add : Form
     {
+        ServiceHelper srv = null;
+
         public frmItem_Add()
         {
             InitializeComponent();
@@ -19,6 +22,8 @@ namespace AltasMES
 
         private void frmItem_Add_Load(object sender, EventArgs e)
         {
+            srv = new ServiceHelper("api/Item");
+            ResMessage<List<ComboItemVO>> result = srv.GetAsync<List<ComboItemVO>>("AllItemCategory");
 
         }
 
