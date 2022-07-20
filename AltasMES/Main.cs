@@ -18,10 +18,17 @@ namespace AltasMES
             InitializeComponent();
         }
 
+        public  string EmpID { get; set; }
+        public  string EmpName { get; set; }
+        public  string DeptID  {get; set;}
+
+
         private void Main_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
-          
+            EmpID = "EMP_0004";
+            EmpName = "강지모";
+            DeptID = "Product";
 
         }
 
