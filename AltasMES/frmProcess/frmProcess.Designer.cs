@@ -33,9 +33,13 @@ namespace AltasMES
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvProcess = new System.Windows.Forms.DataGridView();
             this.btnSetting = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtProcessName = new System.Windows.Forms.TextBox();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.BasePanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.Basepanel4.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.Basepanel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -48,17 +52,20 @@ namespace AltasMES
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnSearch);
+            this.groupBox2.Controls.Add(this.txtProcessName);
+            this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Text = "검색조건";
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btnSetting);
+            this.groupBox1.Controls.SetChildIndex(this.btnSetting, 0);
             this.groupBox1.Controls.SetChildIndex(this.btnModify, 0);
             this.groupBox1.Controls.SetChildIndex(this.lblTitle, 0);
             this.groupBox1.Controls.SetChildIndex(this.btnDelete, 0);
             this.groupBox1.Controls.SetChildIndex(this.btnExecl, 0);
             this.groupBox1.Controls.SetChildIndex(this.btnAdd, 0);
-            this.groupBox1.Controls.SetChildIndex(this.btnSetting, 0);
             // 
             // btnAdd
             // 
@@ -127,6 +134,40 @@ namespace AltasMES
             this.btnSetting.UseVisualStyleBackColor = true;
             this.btnSetting.Click += new System.EventHandler(this.btnSetting_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(24, 48);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(51, 19);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "공정명";
+            // 
+            // txtProcessName
+            // 
+            this.txtProcessName.Location = new System.Drawing.Point(81, 45);
+            this.txtProcessName.Name = "txtProcessName";
+            this.txtProcessName.Size = new System.Drawing.Size(215, 26);
+            this.txtProcessName.TabIndex = 1;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearch.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSearch.ImageIndex = 3;
+            this.btnSearch.ImageList = this.imageList1;
+            this.btnSearch.Location = new System.Drawing.Point(312, 38);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.btnSearch.Size = new System.Drawing.Size(78, 37);
+            this.btnSearch.TabIndex = 7;
+            this.btnSearch.Text = "조회";
+            this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
             // frmProcess
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -139,6 +180,8 @@ namespace AltasMES
             this.BasePanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.Basepanel4.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.Basepanel2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -153,5 +196,8 @@ namespace AltasMES
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.DataGridView dgvProcess;
         protected System.Windows.Forms.Button btnSetting;
+        private System.Windows.Forms.TextBox txtProcessName;
+        private System.Windows.Forms.Label label1;
+        protected System.Windows.Forms.Button btnSearch;
     }
 }

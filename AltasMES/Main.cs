@@ -41,6 +41,8 @@ namespace AltasMES
 
 
             string[] btnName = { "제품", "BOM", "창고", "설비", "공정" };
+            string[] btnTag = { "frmItem", "frmBOM", "frmWareHouse", "frmEquipment", "frmProcess" };
+
 
             for (int i = 0; i < btnName.Length; i++)
             {
@@ -53,6 +55,7 @@ namespace AltasMES
                 btn.FlatStyle = FlatStyle.Flat;
                 btn.FlatAppearance.BorderSize = 0;
                 btn.TabStop = false;
+                btn.Tag = btnTag[i];
                 btn.ImageAlign = ContentAlignment.MiddleLeft;
                 btn.Image = imageList1.Images[i+1];
                 btn.TextAlign = ContentAlignment.MiddleRight;
@@ -89,9 +92,8 @@ namespace AltasMES
 
         private void Btn_Click(object sender, EventArgs e)
         {
-            Label lbl = sender as Label;
-            OpenCreateForm("frmItem");
-            OpenCreateForm("frmWareHouse");
+            Button btn = sender as Button;
+            OpenCreateForm(btn.Tag.ToString());
 
         }
 
@@ -122,8 +124,8 @@ namespace AltasMES
                 lbl.TextAlign = ContentAlignment.MiddleCenter;
                 lbl.TabIndex = i;
                 lbl.Text = labelName[i];
-                lbl.MouseHover += Lbl_MouseHover;
-                lbl.MouseLeave += Lbl_MouseLeave;
+                //lbl.MouseHover += Lbl_MouseHover;
+                //lbl.MouseLeave += Lbl_MouseLeave;
                 panel2.Controls.Add(lbl);
 
             }
@@ -157,32 +159,16 @@ namespace AltasMES
                 lbl.TextAlign = ContentAlignment.MiddleCenter;
                 lbl.TabIndex = i;
                 lbl.Text = labelName[i];
-                lbl.MouseHover += Lbl_MouseHover;
-                lbl.MouseLeave += Lbl_MouseLeave;
+                //lbl.MouseHover += Lbl_MouseHover;
+                //lbl.MouseLeave += Lbl_MouseLeave;
                 panel2.Controls.Add(lbl);
 
             }
 
         }
 
-        private void Lbl_MouseLeave(object sender, EventArgs e)
-        {
-            Label lbl = sender as Label;
-            lbl.BackColor = Color.FromArgb(255, 255, 255);
-        }
-
-        private void Lbl_MouseHover(object sender, EventArgs e)
-        {
-            Label lbl = sender as Label;
-            lbl.BackColor = Color.FromArgb(179, 215, 243);
-        }
-
-        private void Lbl_Click(object sender, EventArgs e)
-        {
-            
-            
-        }
-
+       
+  
         private void OpenCreateForm(string prgName)
         {
             string appName = Assembly.GetEntryAssembly().GetName().Name;

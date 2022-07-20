@@ -44,12 +44,12 @@ namespace AltasMES
             // 
             // lblTitle
             // 
-            this.lblTitle.Size = new System.Drawing.Size(376, 63);
+            this.lblTitle.Size = new System.Drawing.Size(375, 63);
             this.lblTitle.Text = "공정 수정";
             // 
             // panel1
             // 
-            this.panel1.Size = new System.Drawing.Size(376, 63);
+            this.panel1.Size = new System.Drawing.Size(375, 63);
             // 
             // imageList1
             // 
@@ -69,7 +69,7 @@ namespace AltasMES
             this.panel2.Controls.Add(this.groupBox1);
             this.panel2.Controls.Add(this.txtProcess);
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Size = new System.Drawing.Size(376, 214);
+            this.panel2.Size = new System.Drawing.Size(375, 219);
             this.panel2.Controls.SetChildIndex(this.panel3, 0);
             this.panel2.Controls.SetChildIndex(this.label1, 0);
             this.panel2.Controls.SetChildIndex(this.txtProcess, 0);
@@ -79,7 +79,7 @@ namespace AltasMES
             // 
             // panel3
             // 
-            this.panel3.Size = new System.Drawing.Size(158, 0);
+            this.panel3.Size = new System.Drawing.Size(60, 0);
             // 
             // btnCancel
             // 
@@ -89,7 +89,7 @@ namespace AltasMES
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancel.ImageIndex = 5;
             this.btnCancel.ImageList = this.imageList1;
-            this.btnCancel.Location = new System.Drawing.Point(201, 165);
+            this.btnCancel.Location = new System.Drawing.Point(200, 165);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -108,7 +108,7 @@ namespace AltasMES
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAdd.ImageIndex = 3;
             this.btnAdd.ImageList = this.imageList1;
-            this.btnAdd.Location = new System.Drawing.Point(111, 165);
+            this.btnAdd.Location = new System.Drawing.Point(110, 165);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -178,7 +178,7 @@ namespace AltasMES
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(376, 277);
+            this.ClientSize = new System.Drawing.Size(375, 282);
             this.Name = "frmPorcess_Modify";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "공정 수정";

@@ -35,10 +35,10 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.lblProcessName = new System.Windows.Forms.Label();
-            this.txtProcessName = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtProcessName = new System.Windows.Forms.TextBox();
+            this.lblProcessName = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -52,7 +52,7 @@
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(799, 63);
             this.lblTitle.TabIndex = 1;
-            this.lblTitle.Text = "공정관계세팅설정";
+            this.lblTitle.Text = "공정-설비 관계설정";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel1
@@ -102,22 +102,14 @@
             this.panel3.Size = new System.Drawing.Size(775, 399);
             this.panel3.TabIndex = 0;
             // 
-            // lblProcessName
+            // groupBox2
             // 
-            this.lblProcessName.AutoSize = true;
-            this.lblProcessName.Location = new System.Drawing.Point(14, 12);
-            this.lblProcessName.Name = "lblProcessName";
-            this.lblProcessName.Size = new System.Drawing.Size(58, 21);
-            this.lblProcessName.TabIndex = 4;
-            this.lblProcessName.Text = "공정명";
-            // 
-            // txtProcessName
-            // 
-            this.txtProcessName.Location = new System.Drawing.Point(79, 8);
-            this.txtProcessName.Name = "txtProcessName";
-            this.txtProcessName.ReadOnly = true;
-            this.txtProcessName.Size = new System.Drawing.Size(310, 29);
-            this.txtProcessName.TabIndex = 5;
+            this.groupBox2.Location = new System.Drawing.Point(458, 56);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(281, 324);
+            this.groupBox2.TabIndex = 6;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "할당된 설비 목록";
             // 
             // groupBox1
             // 
@@ -128,14 +120,22 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "전체 설비 목록";
             // 
-            // groupBox2
+            // txtProcessName
             // 
-            this.groupBox2.Location = new System.Drawing.Point(458, 56);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(281, 324);
-            this.groupBox2.TabIndex = 6;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "할당된 설비 목록";
+            this.txtProcessName.Location = new System.Drawing.Point(79, 8);
+            this.txtProcessName.Name = "txtProcessName";
+            this.txtProcessName.ReadOnly = true;
+            this.txtProcessName.Size = new System.Drawing.Size(310, 29);
+            this.txtProcessName.TabIndex = 5;
+            // 
+            // lblProcessName
+            // 
+            this.lblProcessName.AutoSize = true;
+            this.lblProcessName.Location = new System.Drawing.Point(14, 12);
+            this.lblProcessName.Name = "lblProcessName";
+            this.lblProcessName.Size = new System.Drawing.Size(58, 21);
+            this.lblProcessName.TabIndex = 4;
+            this.lblProcessName.Text = "공정명";
             // 
             // frmProcess_Setting
             // 
@@ -150,7 +150,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmProcess_Setting";
-            this.Text = "PopUpBase";
+            this.Text = "공정-설비 관계 설정";
             this.Load += new System.EventHandler(this.fmrProcess_Setting_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

@@ -2029,6 +2029,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ApiControllers\EmployeeController.cs" />
+    <Compile Include="Controllers\ApiControllers\EquipmentController.cs" />
     <Compile Include="Controllers\ApiControllers\ItemController.cs" />
     <Compile Include="Controllers\ApiControllers\ProcessController.cs" />
     <Compile Include="Controllers\ApiControllers\WareHouseController.cs" />
@@ -2036,6 +2037,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DAC\EmployeeDAC.cs" />
+    <Compile Include="Models\DAC\EquipmentDAC.cs" />
     <Compile Include="Models\DAC\ItemDAC.cs" />
     <Compile Include="Models\DAC\ProcessDAC.cs" />
     <Compile Include="Models\DAC\WareHouseDAC.cs" />
