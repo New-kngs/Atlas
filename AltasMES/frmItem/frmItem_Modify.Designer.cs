@@ -1,7 +1,7 @@
 ﻿
 namespace AltasMES
 {
-    partial class frmItem_Add
+    partial class frmItem_Modify
     {
         /// <summary>
         /// Required designer variable.
@@ -73,7 +73,7 @@ namespace AltasMES
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(732, 63);
-            this.panel1.TabIndex = 3;
+            this.panel1.TabIndex = 4;
             // 
             // lblTitle
             // 
@@ -83,7 +83,7 @@ namespace AltasMES
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(732, 63);
             this.lblTitle.TabIndex = 1;
-            this.lblTitle.Text = "제품 등록";
+            this.lblTitle.Text = "제품 수정";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel2
@@ -93,7 +93,7 @@ namespace AltasMES
             this.panel2.Location = new System.Drawing.Point(0, 63);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(732, 586);
-            this.panel2.TabIndex = 4;
+            this.panel2.TabIndex = 5;
             // 
             // panel3
             // 
@@ -295,10 +295,9 @@ namespace AltasMES
             this.btnAdd.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnAdd.Size = new System.Drawing.Size(78, 37);
             this.btnAdd.TabIndex = 65;
-            this.btnAdd.Text = "등록";
+            this.btnAdd.Text = "수정";
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // txtItemID
             // 
@@ -387,7 +386,7 @@ namespace AltasMES
             this.label3.TabIndex = 49;
             this.label3.Text = "제품명";
             // 
-            // frmItem_Add
+            // frmItem_Modify
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -395,9 +394,8 @@ namespace AltasMES
             this.ClientSize = new System.Drawing.Size(732, 649);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Name = "frmItem_Add";
-            this.Text = "frmItem_Add";
-            this.Load += new System.EventHandler(this.frmItem_Add_Load);
+            this.Name = "frmItem_Modify";
+            this.Text = "frmItem_Modify";
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
@@ -415,9 +413,24 @@ namespace AltasMES
         protected System.Windows.Forms.Label lblTitle;
         protected System.Windows.Forms.Panel panel2;
         protected System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TextBox txtImage;
-        private System.Windows.Forms.TextBox txtItemID;
+        private System.Windows.Forms.ComboBox cboSize;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cboCusID;
+        private System.Windows.Forms.ComboBox cboWhID;
+        private System.Windows.Forms.ComboBox cboCategory;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        protected System.Windows.Forms.Button btnImgFind;
+        private System.Windows.Forms.TextBox txtImage;
+        private System.Windows.Forms.TextBox txtExplain;
+        private System.Windows.Forms.TextBox txtSafeQty;
+        private System.Windows.Forms.TextBox txtQty;
+        private System.Windows.Forms.TextBox txtPrice;
+        private System.Windows.Forms.TextBox txtName;
+        protected System.Windows.Forms.Button btnCancel;
+        protected System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.TextBox txtItemID;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label2;
@@ -426,20 +439,5 @@ namespace AltasMES
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        protected System.Windows.Forms.Button btnImgFind;
-        protected System.Windows.Forms.Button btnCancel;
-        protected System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox txtExplain;
-        private System.Windows.Forms.TextBox txtSafeQty;
-        private System.Windows.Forms.TextBox txtQty;
-        private System.Windows.Forms.TextBox txtPrice;
-        private System.Windows.Forms.TextBox txtName;
-        private System.Windows.Forms.ComboBox cboCusID;
-        private System.Windows.Forms.ComboBox cboWhID;
-        private System.Windows.Forms.ComboBox cboCategory;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox cboSize;
-        private System.Windows.Forms.Label label1;
     }
 }

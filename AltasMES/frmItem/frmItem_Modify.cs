@@ -10,21 +10,11 @@ using System.Windows.Forms;
 
 namespace AltasMES
 {
-    public partial class frmItem_Add : Form
+    public partial class frmItem_Modify : Form
     {
-        public frmItem_Add()
+        public frmItem_Modify()
         {
             InitializeComponent();
-        }
-
-        private void frmItem_Add_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
