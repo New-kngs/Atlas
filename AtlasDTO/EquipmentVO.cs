@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace AtlasDTO
 {
-    public class ProcessVO
+    public class EquipmentVO
     {
-        public int ProcessID { get; set; }
-        public string ProcessName { get; set; }
-        public string FailCheck { get; set; }
+        public int EquipID { get; set; }
+        public string EquipName { get; set; }
+        public string EquipCategory { get; set; }
         public string CreateDate { get; set; }
         public string CreateUser { get; set; }
         public string ModifyDate { get; set; }

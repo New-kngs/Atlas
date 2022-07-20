@@ -2029,6 +2029,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ApiControllers\EmployeeController.cs" />
+    <Compile Include="Controllers\ApiControllers\EquipmentController.cs" />
     <Compile Include="Controllers\ApiControllers\ItemController.cs" />
     <Compile Include="Controllers\ApiControllers\ProcessController.cs" />
     <Compile Include="Controllers\ApiControllers\WareHouseController.cs" />
@@ -2036,11 +2037,15 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DAC\EmployeeDAC.cs" />
+    <Compile Include="Models\DAC\EquipmentDAC.cs" />
     <Compile Include="Models\DAC\ItemDAC.cs" />
     <Compile Include="Models\DAC\ProcessDAC.cs" />
     <Compile Include="Models\DAC\WareHouseDAC.cs" />
     <Compile Include="Models\Helper\Helper.cs" />
+    <Compile Include="Models\PagingInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\PagingHelper.cs" />
+    <Compile Include="Util\ServiceHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -2063,7 +2068,6 @@
     <Content Include="dist\js\adminlte.min.js.map" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_LayoutPageEIS.cshtml" />
-    <Content Include="Views\Shared\_LayoutPageOrder.cshtml" />
     <Content Include="plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.css.map" />
     <Content Include="plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.min.css.map" />
     <Content Include="plugins\bootstrap-colorpicker\js\bootstrap-colorpicker.js.map" />
@@ -2180,6 +2184,7 @@
     <Content Include="plugins\summernote\summernote.js.map" />
     <Content Include="plugins\summernote\summernote.min.js.map" />
     <Content Include="plugins\toastr\toastr.js.map" />
+    <Content Include="Views\Shared\_LayoutPageOrder.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

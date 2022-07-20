@@ -34,7 +34,11 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvItem, "생성날짜", "CreateDate", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvItem, "생성사용자", "CreateUser", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvItem, "변경날짜", "ModifyDate", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
+<<<<<<< HEAD
             DataGridUtil.AddGridTextBoxColumn(dgvItem, "삭제여부", "StateYN", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
+=======
+            DataGridUtil.AddGridTextBoxColumn(dgvItem, "사용여부", "StateYN", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
+>>>>>>> 45f44d8f68ad9a56a0bce54a3175602e662619a0
 
             service = new ServiceHelper("api/Item");
             ResMessage<List<ItemVO>> result = service.GetAsync<List<ItemVO>>("AllItem");
@@ -51,6 +55,25 @@ namespace AltasMES
         private void frmItem_FormClosing(object sender, FormClosingEventArgs e)
         {
             service.Dispose();
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            frmItem_Add pop = new frmItem_Add();
+            if (pop.ShowDialog() == DialogResult.OK)
+            {
+
+            }
+        }
+
+        private void btnDetail_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void btnModify_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

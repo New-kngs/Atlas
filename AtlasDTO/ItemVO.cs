@@ -23,7 +23,7 @@ namespace AtlasDTO
         public string CreateUser { get; set; }
         public string ModifyDate { get; set; }
         public string ModifyUser { get; set; }
-        public string DeletedYN { get; set; }
+        public string StateYN { get; set; }
 
     }
 }
