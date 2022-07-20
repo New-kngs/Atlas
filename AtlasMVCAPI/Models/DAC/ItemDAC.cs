@@ -32,25 +32,25 @@ namespace AtlasMVCAPI.Models
             }
         }
 
-        public bool SaveItem(ItemVO process)
-        {
-            using (SqlCommand cmd = new SqlCommand())
-            {
-                cmd.Connection = new SqlConnection(strConn),
-                cmd.CommandText = @"insert into TB_Process (ProcessName, FailCheck, CreateUser)
-                                values ( @ProcessName,@FailCheck, @CreateUser)";
+        //public bool SaveItem(ItemVO process)
+        //{
+        //    using (SqlCommand cmd = new SqlCommand())
+        //    {
+        //        cmd.Connection = new SqlConnection(strConn);
+        //        cmd.CommandText = @"insert into TB_Process (ProcessName, FailCheck, CreateUser)
+        //                        values ( @ProcessName,@FailCheck, @CreateUser)";
 
 
-                cmd.Parameters.AddWithValue("@ProcessName", process.ProcessName);
-                cmd.Parameters.AddWithValue("@FailCheck", process.FailCheck);
-                cmd.Parameters.AddWithValue("@CreateUser", "김길동");
+        //        cmd.Parameters.AddWithValue("@ProcessName", process.ProcessName);
+        //        cmd.Parameters.AddWithValue("@FailCheck", process.FailCheck);
+        //        cmd.Parameters.AddWithValue("@CreateUser", "김길동");
 
-                cmd.Connection.Open();
-                int iRowAffect = cmd.ExecuteNonQuery();
-                cmd.Connection.Close();
+        //        cmd.Connection.Open();
+        //        int iRowAffect = cmd.ExecuteNonQuery();
+        //        cmd.Connection.Close();
 
-                return (iRowAffect > 0);
-            }
-        }
+        //        return (iRowAffect > 0);
+        //    }
+        //}
     }
 }
