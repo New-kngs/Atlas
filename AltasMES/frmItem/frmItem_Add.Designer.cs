@@ -33,37 +33,37 @@ namespace AltasMES
             this.lblTitle = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.cboSize = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cboCusID = new System.Windows.Forms.ComboBox();
+            this.cboWhID = new System.Windows.Forms.ComboBox();
+            this.cboCategory = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnImgFind = new System.Windows.Forms.Button();
+            this.txtImage = new System.Windows.Forms.TextBox();
+            this.txtExplain = new System.Windows.Forms.TextBox();
+            this.txtSafeQty = new System.Windows.Forms.TextBox();
+            this.txtQty = new System.Windows.Forms.TextBox();
+            this.txtPrice = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.txtItemID = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.txtItemID = new System.Windows.Forms.TextBox();
-            this.txtImage = new System.Windows.Forms.TextBox();
-            this.btnImgFind = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.txtName = new System.Windows.Forms.TextBox();
-            this.txtPrice = new System.Windows.Forms.TextBox();
-            this.txtQty = new System.Windows.Forms.TextBox();
-            this.txtSafeQty = new System.Windows.Forms.TextBox();
-            this.txtExplain = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cboCategory = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.cboWhID = new System.Windows.Forms.ComboBox();
-            this.cboCusID = new System.Windows.Forms.ComboBox();
-            this.cboSize = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -131,6 +131,212 @@ namespace AltasMES
             this.panel3.Size = new System.Drawing.Size(708, 568);
             this.panel3.TabIndex = 0;
             // 
+            // cboSize
+            // 
+            this.cboSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboSize.FormattingEnabled = true;
+            this.cboSize.Location = new System.Drawing.Point(125, 151);
+            this.cboSize.Name = "cboSize";
+            this.cboSize.Size = new System.Drawing.Size(180, 29);
+            this.cboSize.TabIndex = 88;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.Location = new System.Drawing.Point(12, 155);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(74, 21);
+            this.label1.TabIndex = 87;
+            this.label1.Text = "제품규격";
+            // 
+            // cboCusID
+            // 
+            this.cboCusID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCusID.FormattingEnabled = true;
+            this.cboCusID.Location = new System.Drawing.Point(125, 311);
+            this.cboCusID.Name = "cboCusID";
+            this.cboCusID.Size = new System.Drawing.Size(180, 29);
+            this.cboCusID.TabIndex = 82;
+            // 
+            // cboWhID
+            // 
+            this.cboWhID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboWhID.FormattingEnabled = true;
+            this.cboWhID.Location = new System.Drawing.Point(125, 351);
+            this.cboWhID.Name = "cboWhID";
+            this.cboWhID.Size = new System.Drawing.Size(180, 29);
+            this.cboWhID.TabIndex = 81;
+            // 
+            // cboCategory
+            // 
+            this.cboCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCategory.FormattingEnabled = true;
+            this.cboCategory.Location = new System.Drawing.Point(125, 31);
+            this.cboCategory.Name = "cboCategory";
+            this.cboCategory.Size = new System.Drawing.Size(180, 29);
+            this.cboCategory.TabIndex = 79;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label8.Location = new System.Drawing.Point(12, 35);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(74, 21);
+            this.label8.TabIndex = 80;
+            this.label8.Text = "제품유형";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.pictureBox1);
+            this.groupBox1.Controls.Add(this.btnImgFind);
+            this.groupBox1.Controls.Add(this.txtImage);
+            this.groupBox1.Location = new System.Drawing.Point(327, 17);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(359, 363);
+            this.groupBox1.TabIndex = 73;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "이미지";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox1.Location = new System.Drawing.Point(6, 28);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(347, 286);
+            this.pictureBox1.TabIndex = 61;
+            this.pictureBox1.TabStop = false;
+            // 
+            // btnImgFind
+            // 
+            this.btnImgFind.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnImgFind.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnImgFind.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnImgFind.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnImgFind.ImageIndex = 0;
+            this.btnImgFind.Location = new System.Drawing.Point(275, 320);
+            this.btnImgFind.Name = "btnImgFind";
+            this.btnImgFind.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.btnImgFind.Size = new System.Drawing.Size(78, 37);
+            this.btnImgFind.TabIndex = 64;
+            this.btnImgFind.Text = "찾기";
+            this.btnImgFind.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnImgFind.UseVisualStyleBackColor = true;
+            // 
+            // txtImage
+            // 
+            this.txtImage.Location = new System.Drawing.Point(6, 325);
+            this.txtImage.Name = "txtImage";
+            this.txtImage.Size = new System.Drawing.Size(263, 29);
+            this.txtImage.TabIndex = 63;
+            // 
+            // txtExplain
+            // 
+            this.txtExplain.Location = new System.Drawing.Point(125, 409);
+            this.txtExplain.Multiline = true;
+            this.txtExplain.Name = "txtExplain";
+            this.txtExplain.Size = new System.Drawing.Size(555, 75);
+            this.txtExplain.TabIndex = 71;
+            // 
+            // txtSafeQty
+            // 
+            this.txtSafeQty.Location = new System.Drawing.Point(125, 271);
+            this.txtSafeQty.Name = "txtSafeQty";
+            this.txtSafeQty.Size = new System.Drawing.Size(180, 29);
+            this.txtSafeQty.TabIndex = 70;
+            // 
+            // txtQty
+            // 
+            this.txtQty.Location = new System.Drawing.Point(125, 231);
+            this.txtQty.Name = "txtQty";
+            this.txtQty.Size = new System.Drawing.Size(180, 29);
+            this.txtQty.TabIndex = 69;
+            // 
+            // txtPrice
+            // 
+            this.txtPrice.Location = new System.Drawing.Point(125, 191);
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.Size = new System.Drawing.Size(180, 29);
+            this.txtPrice.TabIndex = 68;
+            // 
+            // txtName
+            // 
+            this.txtName.Location = new System.Drawing.Point(125, 111);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(180, 29);
+            this.txtName.TabIndex = 67;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCancel.ImageIndex = 0;
+            this.btnCancel.Location = new System.Drawing.Point(374, 509);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.btnCancel.Size = new System.Drawing.Size(78, 37);
+            this.btnCancel.TabIndex = 66;
+            this.btnCancel.Text = "취소";
+            this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancel.UseVisualStyleBackColor = true;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAdd.ImageIndex = 0;
+            this.btnAdd.Location = new System.Drawing.Point(257, 509);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.btnAdd.Size = new System.Drawing.Size(78, 37);
+            this.btnAdd.TabIndex = 65;
+            this.btnAdd.Text = "등록";
+            this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // txtItemID
+            // 
+            this.txtItemID.Location = new System.Drawing.Point(125, 71);
+            this.txtItemID.Name = "txtItemID";
+            this.txtItemID.Size = new System.Drawing.Size(180, 29);
+            this.txtItemID.TabIndex = 62;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label9.Location = new System.Drawing.Point(12, 412);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(80, 21);
+            this.label9.TabIndex = 59;
+            this.label9.Text = "상세 설명";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label6.Location = new System.Drawing.Point(12, 355);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(57, 21);
+            this.label6.TabIndex = 57;
+            this.label6.Text = "창고ID";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label2.Location = new System.Drawing.Point(12, 315);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(73, 21);
+            this.label2.TabIndex = 56;
+            this.label2.Text = "거래처ID";
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -181,211 +387,6 @@ namespace AltasMES
             this.label3.TabIndex = 49;
             this.label3.Text = "제품명";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.Location = new System.Drawing.Point(12, 315);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 21);
-            this.label2.TabIndex = 56;
-            this.label2.Text = "거래처ID";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label6.Location = new System.Drawing.Point(12, 355);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(57, 21);
-            this.label6.TabIndex = 57;
-            this.label6.Text = "창고ID";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label9.Location = new System.Drawing.Point(12, 412);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(80, 21);
-            this.label9.TabIndex = 59;
-            this.label9.Text = "상세 설명";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(6, 28);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(347, 286);
-            this.pictureBox1.TabIndex = 61;
-            this.pictureBox1.TabStop = false;
-            // 
-            // txtItemID
-            // 
-            this.txtItemID.Location = new System.Drawing.Point(125, 71);
-            this.txtItemID.Name = "txtItemID";
-            this.txtItemID.Size = new System.Drawing.Size(180, 29);
-            this.txtItemID.TabIndex = 62;
-            // 
-            // txtImage
-            // 
-            this.txtImage.Location = new System.Drawing.Point(6, 325);
-            this.txtImage.Name = "txtImage";
-            this.txtImage.Size = new System.Drawing.Size(263, 29);
-            this.txtImage.TabIndex = 63;
-            // 
-            // btnImgFind
-            // 
-            this.btnImgFind.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnImgFind.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnImgFind.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnImgFind.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnImgFind.ImageIndex = 0;
-            this.btnImgFind.Location = new System.Drawing.Point(275, 320);
-            this.btnImgFind.Name = "btnImgFind";
-            this.btnImgFind.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.btnImgFind.Size = new System.Drawing.Size(78, 37);
-            this.btnImgFind.TabIndex = 64;
-            this.btnImgFind.Text = "찾기";
-            this.btnImgFind.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnImgFind.UseVisualStyleBackColor = true;
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdd.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAdd.ImageIndex = 0;
-            this.btnAdd.Location = new System.Drawing.Point(257, 509);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.btnAdd.Size = new System.Drawing.Size(78, 37);
-            this.btnAdd.TabIndex = 65;
-            this.btnAdd.Text = "등록";
-            this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.UseVisualStyleBackColor = true;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCancel.ImageIndex = 0;
-            this.btnCancel.Location = new System.Drawing.Point(374, 509);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.btnCancel.Size = new System.Drawing.Size(78, 37);
-            this.btnCancel.TabIndex = 66;
-            this.btnCancel.Text = "취소";
-            this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.UseVisualStyleBackColor = true;
-            // 
-            // txtName
-            // 
-            this.txtName.Location = new System.Drawing.Point(125, 111);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(180, 29);
-            this.txtName.TabIndex = 67;
-            // 
-            // txtPrice
-            // 
-            this.txtPrice.Location = new System.Drawing.Point(125, 191);
-            this.txtPrice.Name = "txtPrice";
-            this.txtPrice.Size = new System.Drawing.Size(180, 29);
-            this.txtPrice.TabIndex = 68;
-            // 
-            // txtQty
-            // 
-            this.txtQty.Location = new System.Drawing.Point(125, 231);
-            this.txtQty.Name = "txtQty";
-            this.txtQty.Size = new System.Drawing.Size(180, 29);
-            this.txtQty.TabIndex = 69;
-            // 
-            // txtSafeQty
-            // 
-            this.txtSafeQty.Location = new System.Drawing.Point(125, 271);
-            this.txtSafeQty.Name = "txtSafeQty";
-            this.txtSafeQty.Size = new System.Drawing.Size(180, 29);
-            this.txtSafeQty.TabIndex = 70;
-            // 
-            // txtExplain
-            // 
-            this.txtExplain.Location = new System.Drawing.Point(125, 409);
-            this.txtExplain.Multiline = true;
-            this.txtExplain.Name = "txtExplain";
-            this.txtExplain.Size = new System.Drawing.Size(555, 75);
-            this.txtExplain.TabIndex = 71;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.pictureBox1);
-            this.groupBox1.Controls.Add(this.btnImgFind);
-            this.groupBox1.Controls.Add(this.txtImage);
-            this.groupBox1.Location = new System.Drawing.Point(327, 17);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(359, 363);
-            this.groupBox1.TabIndex = 73;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "이미지";
-            // 
-            // cboCategory
-            // 
-            this.cboCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboCategory.FormattingEnabled = true;
-            this.cboCategory.Location = new System.Drawing.Point(125, 31);
-            this.cboCategory.Name = "cboCategory";
-            this.cboCategory.Size = new System.Drawing.Size(180, 29);
-            this.cboCategory.TabIndex = 79;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label8.Location = new System.Drawing.Point(12, 35);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(74, 21);
-            this.label8.TabIndex = 80;
-            this.label8.Text = "제품유형";
-            // 
-            // cboWhID
-            // 
-            this.cboWhID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboWhID.FormattingEnabled = true;
-            this.cboWhID.Location = new System.Drawing.Point(125, 351);
-            this.cboWhID.Name = "cboWhID";
-            this.cboWhID.Size = new System.Drawing.Size(180, 29);
-            this.cboWhID.TabIndex = 81;
-            // 
-            // cboCusID
-            // 
-            this.cboCusID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboCusID.FormattingEnabled = true;
-            this.cboCusID.Location = new System.Drawing.Point(125, 311);
-            this.cboCusID.Name = "cboCusID";
-            this.cboCusID.Size = new System.Drawing.Size(180, 29);
-            this.cboCusID.TabIndex = 82;
-            // 
-            // cboSize
-            // 
-            this.cboSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboSize.FormattingEnabled = true;
-            this.cboSize.Location = new System.Drawing.Point(125, 151);
-            this.cboSize.Name = "cboSize";
-            this.cboSize.Size = new System.Drawing.Size(180, 29);
-            this.cboSize.TabIndex = 88;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.Location = new System.Drawing.Point(12, 155);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 21);
-            this.label1.TabIndex = 87;
-            this.label1.Text = "제품규격";
-            // 
             // frmItem_Add
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -401,9 +402,9 @@ namespace AltasMES
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
