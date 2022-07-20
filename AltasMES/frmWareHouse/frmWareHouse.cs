@@ -79,5 +79,10 @@ namespace AltasMES
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = resResult.Data;
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
