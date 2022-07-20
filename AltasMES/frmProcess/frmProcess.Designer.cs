@@ -32,6 +32,7 @@ namespace AltasMES
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProcess));
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvProcess = new System.Windows.Forms.DataGridView();
+            this.btnSetting = new System.Windows.Forms.Button();
             this.BasePanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.Basepanel4.SuspendLayout();
@@ -49,6 +50,16 @@ namespace AltasMES
             // 
             this.groupBox2.Text = "검색조건";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnSetting);
+            this.groupBox1.Controls.SetChildIndex(this.btnModify, 0);
+            this.groupBox1.Controls.SetChildIndex(this.lblTitle, 0);
+            this.groupBox1.Controls.SetChildIndex(this.btnDelete, 0);
+            this.groupBox1.Controls.SetChildIndex(this.btnExecl, 0);
+            this.groupBox1.Controls.SetChildIndex(this.btnAdd, 0);
+            this.groupBox1.Controls.SetChildIndex(this.btnSetting, 0);
+            // 
             // btnAdd
             // 
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -61,6 +72,7 @@ namespace AltasMES
             this.imageList1.Images.SetKeyName(2, "Delete.png");
             this.imageList1.Images.SetKeyName(3, "Serach.png");
             this.imageList1.Images.SetKeyName(4, "Execl.png");
+            this.imageList1.Images.SetKeyName(5, "setting (1).png");
             // 
             // btnDelete
             // 
@@ -97,6 +109,24 @@ namespace AltasMES
             this.dgvProcess.Size = new System.Drawing.Size(1028, 470);
             this.dgvProcess.TabIndex = 0;
             // 
+            // btnSetting
+            // 
+            this.btnSetting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSetting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSetting.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSetting.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSetting.ImageIndex = 5;
+            this.btnSetting.ImageList = this.imageList1;
+            this.btnSetting.Location = new System.Drawing.Point(511, 20);
+            this.btnSetting.Name = "btnSetting";
+            this.btnSetting.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.btnSetting.Size = new System.Drawing.Size(184, 37);
+            this.btnSetting.TabIndex = 6;
+            this.btnSetting.Text = "공정-설비 관계설정";
+            this.btnSetting.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSetting.UseVisualStyleBackColor = true;
+            this.btnSetting.Click += new System.EventHandler(this.btnSetting_Click);
+            // 
             // frmProcess
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -122,5 +152,6 @@ namespace AltasMES
 
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.DataGridView dgvProcess;
+        protected System.Windows.Forms.Button btnSetting;
     }
 }

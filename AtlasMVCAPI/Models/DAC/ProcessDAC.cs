@@ -22,8 +22,7 @@ namespace AtlasMVCAPI.Models
             {
                 cmd.Connection = new SqlConnection(strConn);
                 cmd.CommandText = @"select ProcessID, ProcessName, FailCheck, convert(varchar(20), CreateDate, 120) CreateDate, 
-                    CreateUser, convert(varchar(20), ModifyDate, 120) ModifyDate,ModifyUser, DeletedYN from TB_Process 
-                    where DeletedYN Like 'N'";
+                    CreateUser, convert(varchar(20), ModifyDate, 120) ModifyDate,ModifyUser, DeletedYN from TB_Process ";
 
                 cmd.Connection.Open();
                 List<ProcessVO> list = Helper.DataReaderMapToList<ProcessVO>(cmd.ExecuteReader());

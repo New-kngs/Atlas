@@ -29,7 +29,7 @@ namespace AltasMES
             col.Name = propertyName;
             col.HeaderText = headerText;
             col.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            col.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            //col.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             col.DataPropertyName = propertyName;
             col.DefaultCellStyle.Alignment = align;
             col.Width = colwidth;

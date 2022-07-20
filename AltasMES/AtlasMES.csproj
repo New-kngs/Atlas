@@ -140,6 +140,12 @@
     <Compile Include="frmProcess\frmProcess_Delete.Designer.cs">
       <DependentUpon>frmProcess_Delete.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmProcess\frmProcess_Setting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProcess\frmProcess_Setting.Designer.cs">
+      <DependentUpon>frmProcess_Setting.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmWareHouse\frmWareHouse.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -198,6 +204,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmProcess\frmProcess_Delete.resx">
       <DependentUpon>frmProcess_Delete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProcess\frmProcess_Setting.resx">
+      <DependentUpon>frmProcess_Setting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmWareHouse\frmWareHouse.resx">
       <DependentUpon>frmWareHouse.cs</DependentUpon>

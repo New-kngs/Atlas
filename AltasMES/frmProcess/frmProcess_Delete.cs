@@ -66,5 +66,10 @@ namespace AltasMES
             }
         }
 
+        private void frmProcess_Delete_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(service != null) 
+                service.Dispose();
+        }
     }
 }

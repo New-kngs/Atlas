@@ -63,6 +63,7 @@ namespace AltasMES
 
         private void frmProcess_Add_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if(service!=null)
             service.Dispose();
         }
     }
