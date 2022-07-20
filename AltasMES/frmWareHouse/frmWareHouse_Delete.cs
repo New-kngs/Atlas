@@ -34,7 +34,7 @@ namespace AltasMES
                 MessageBox.Show("창고명을 입력해주세요");
                 return;
             }
-
+            
             if (txtWH.Text.Equals(txtDeleteChk.Text))
             {
                 service = new ServiceHelper("api/WareHouse");
@@ -67,7 +67,9 @@ namespace AltasMES
                 service.Dispose();
         }
 
-        private void frmWareHouse_Delete_KeyPress(object sender, KeyPressEventArgs e)
+
+
+        private void frmWareHouse_Delete_KeyPress_1(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b' && e.KeyChar != 13)
             {

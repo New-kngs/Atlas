@@ -16,6 +16,8 @@ namespace AltasMES
         public ProcessVO process { get; set; }
         ServiceHelper service = null;
         List<ProcessVO> processList = null;
+        ResMessage<List<ComboItemVO>> result;
+        ResMessage<List<ProcessVO>> allList;
         public frmProcess_Setting(ProcessVO process)
         {
             InitializeComponent();
@@ -27,7 +29,8 @@ namespace AltasMES
         {
             //설비목록 가져오기
             service = new ServiceHelper("api/Process");
-            ResMessage<List<ComboItemVO>> result = service.GetAsync<List<ComboItemVO>>("GetEquipName");
+            allList = service.GetAsync<List<ProcessVO>>("AllProcess");
+            result = service.GetAsync<List<ComboItemVO>>("GetEquipName");
             if (result != null)
             {
                 //dgvProcess.DataSource = new AdvancedList<ProcessVO>(result.Data);
@@ -52,10 +55,20 @@ namespace AltasMES
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            processList = new List<ProcessVO>()
+            /*string eqID = result.Data.Find((c) => c.CodeName.Equals(cboEquip.Text)).Code;
+            int processID = allList.Data.Find((c) => c.EquipID.Equals(eqID)).ProcessID;
+            ProcessVO newEquip = new ProcessVO()
             {
+                EquipID = Convert.ToInt32(eqID),
+                ProcessID = processID,
+                
+
+               
+
+                //prodPartList.Find((p) => p.Name == cboName.Text).Code,
 
             };
+            processList.Add(newEquip);*/
         }
     }
 }

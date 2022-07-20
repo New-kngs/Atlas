@@ -92,6 +92,10 @@ namespace AltasMES
             this.lblTitle.Size = new System.Drawing.Size(174, 51);
             this.lblTitle.Text = "창고관리";
             // 
+            // btnModify
+            // 
+            this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
+            // 
             // cboWH
             // 
             this.cboWH.FormattingEnabled = true;
@@ -180,7 +184,6 @@ namespace AltasMES
             this.ClientSize = new System.Drawing.Size(1034, 682);
             this.Name = "frmWarehouse";
             this.Text = "frmWarehouse";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmWarehouse_FormClosing);
             this.Load += new System.EventHandler(this.frmWarehouse_Load);
             this.BasePanel1.ResumeLayout(false);
