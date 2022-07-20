@@ -138,7 +138,7 @@ namespace AltasMES
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1034, 682);
             this.Name = "frmItem";
-            this.Text = "frmItem";
+            this.Text = "제품";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmItem_FormClosing);
             this.Load += new System.EventHandler(this.frmItem_Load);
             this.BasePanel1.ResumeLayout(false);
