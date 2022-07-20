@@ -22,15 +22,15 @@ namespace AltasMES
             {
                 ComboItemVO newItem = new ComboItemVO();
                 newItem.Code = "";
-                newItem.Name = blankText;
+                newItem.CodeName = blankText;
                 newItem.Category = category;
 
                 list.Insert(0, new ComboItemVO
-                { Code = "", Name = blankText, Category = category }
+                { Code = "", CodeName = blankText, Category = category }
                 );
             }
 
-            cbo.DisplayMember = "Name";
+            cbo.DisplayMember = "CodeName";
             cbo.ValueMember = "Code";
             cbo.DataSource = list;
         }

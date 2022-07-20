@@ -124,7 +124,7 @@ namespace AtlasMVCAPI.Models
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = new SqlConnection(strConn);
-                cmd.CommandText = @"select EquipID Code, EquipName Name, EquipCategory Category from TB_Equipment";
+                cmd.CommandText = @" select CONVERT(varchar(10), EquipID) Code, EquipName Name, '설비' Category from TB_Equipment";
 
                 cmd.Connection.Open();
                 List<ComboItemVO> list = Helper.DataReaderMapToList<ComboItemVO>(cmd.ExecuteReader());
