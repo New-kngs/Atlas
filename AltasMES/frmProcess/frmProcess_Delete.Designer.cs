@@ -98,7 +98,7 @@ namespace AltasMES
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnCancel.Size = new System.Drawing.Size(73, 34);
-            this.btnCancel.TabIndex = 20;
+            this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "취소";
             this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -117,7 +117,7 @@ namespace AltasMES
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnAdd.Size = new System.Drawing.Size(73, 34);
-            this.btnAdd.TabIndex = 21;
+            this.btnAdd.TabIndex = 1;
             this.btnAdd.Text = "확인";
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -158,7 +158,7 @@ namespace AltasMES
             this.txtDeleteChk.Margin = new System.Windows.Forms.Padding(2);
             this.txtDeleteChk.Name = "txtDeleteChk";
             this.txtDeleteChk.Size = new System.Drawing.Size(213, 29);
-            this.txtDeleteChk.TabIndex = 18;
+            this.txtDeleteChk.TabIndex = 0;
             // 
             // label3
             // 
@@ -180,6 +180,7 @@ namespace AltasMES
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "공정 미사용";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmProcess_Delete_FormClosing);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmProcess_Delete_KeyPress);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

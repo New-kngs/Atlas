@@ -69,6 +69,7 @@ namespace AltasMES
             // 
             // btnAdd
             // 
+            this.btnAdd.TabIndex = 1;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // imageList1
@@ -128,7 +129,7 @@ namespace AltasMES
             this.btnSetting.Name = "btnSetting";
             this.btnSetting.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnSetting.Size = new System.Drawing.Size(184, 37);
-            this.btnSetting.TabIndex = 6;
+            this.btnSetting.TabIndex = 0;
             this.btnSetting.Text = "공정-설비 관계설정";
             this.btnSetting.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSetting.UseVisualStyleBackColor = true;
@@ -148,7 +149,7 @@ namespace AltasMES
             this.txtProcessName.Location = new System.Drawing.Point(81, 45);
             this.txtProcessName.Name = "txtProcessName";
             this.txtProcessName.Size = new System.Drawing.Size(215, 26);
-            this.txtProcessName.TabIndex = 1;
+            this.txtProcessName.TabIndex = 5;
             // 
             // btnSearch
             // 
@@ -162,7 +163,7 @@ namespace AltasMES
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnSearch.Size = new System.Drawing.Size(78, 37);
-            this.btnSearch.TabIndex = 7;
+            this.btnSearch.TabIndex = 6;
             this.btnSearch.Text = "조회";
             this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -177,6 +178,7 @@ namespace AltasMES
             this.Text = "frmProcess";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmProcess_FormClosing);
             this.Load += new System.EventHandler(this.frmProcess_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmProcess_KeyPress);
             this.BasePanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.Basepanel4.ResumeLayout(false);
