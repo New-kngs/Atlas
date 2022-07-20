@@ -41,7 +41,7 @@ namespace AltasMES
 
 
             string[] btnName = { "제품", "BOM", "창고", "설비", "공정" };
-            string[] btnTag = { "frmItem", "frmBOM", "frmWareHouse", "frmEquitment", "frmProcess" };
+            string[] btnTag = { "frmItem", "frmBOM", "frmWareHouse", "frmEquipment", "frmProcess" };
 
 
             for (int i = 0; i < btnName.Length; i++)

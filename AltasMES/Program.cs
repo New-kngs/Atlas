@@ -17,11 +17,9 @@ namespace AltasMES
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-<<<<<<< HEAD
-            Application.Run(new frmEquipment());
-=======
+
             Application.Run(new Main());
->>>>>>> f4230cfd3d9a4b9a2796743d02389152d4bb6d9f
+
         }
     }
 }

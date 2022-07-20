@@ -43,13 +43,14 @@ namespace AltasMES
             // 
             // panel2
             // 
-            this.panel2.Location = new System.Drawing.Point(0, 728);
-            this.panel2.Size = new System.Drawing.Size(1034, 0);
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Size = new System.Drawing.Size(1034, 682);
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.groupBox3);
-            this.panel1.Size = new System.Drawing.Size(1034, 548);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Size = new System.Drawing.Size(1034, 502);
             // 
             // groupBox2
             // 
@@ -92,7 +93,7 @@ namespace AltasMES
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1034, 548);
+            this.groupBox3.Size = new System.Drawing.Size(1034, 502);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "설비목록";
@@ -104,7 +105,7 @@ namespace AltasMES
             this.dgvEquipment.Location = new System.Drawing.Point(3, 17);
             this.dgvEquipment.Name = "dgvEquipment";
             this.dgvEquipment.RowTemplate.Height = 23;
-            this.dgvEquipment.Size = new System.Drawing.Size(1028, 528);
+            this.dgvEquipment.Size = new System.Drawing.Size(1028, 482);
             this.dgvEquipment.TabIndex = 0;
             // 
             // frmEquipment
