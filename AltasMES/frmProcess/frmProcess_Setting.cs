@@ -19,7 +19,7 @@ namespace AltasMES
             InitializeComponent();
 
             this.process = process;
-            txtProcessName.Text = process.ProcessName;
+            txtProcess.Text = process.ProcessName;
         }
         private void fmrProcess_Setting_Load(object sender, EventArgs e)
         {

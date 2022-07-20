@@ -31,34 +31,34 @@ namespace AltasMES
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEquipment));
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.dgvEquipment = new System.Windows.Forms.DataGridView();
+            this.dgvEquip = new System.Windows.Forms.DataGridView();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.txtEquip = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.BasePanel1.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.Basepanel4.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.Basepanel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEquipment)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEquip)).BeginInit();
             this.SuspendLayout();
             // 
             // panel2
             // 
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Size = new System.Drawing.Size(1034, 682);
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.groupBox3);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Size = new System.Drawing.Size(1034, 502);
+            this.panel2.Controls.Add(this.groupBox3);
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnSearch);
+            this.groupBox2.Controls.Add(this.txtEquip);
+            this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Text = "검색조건";
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(690, 20);
+            this.btnAdd.TabIndex = 0;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // imageList1
@@ -72,11 +72,12 @@ namespace AltasMES
             // 
             // btnExecl
             // 
-            this.btnExecl.Location = new System.Drawing.Point(942, 20);
+            this.btnExecl.TabIndex = 3;
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(858, 20);
+            this.btnDelete.TabIndex = 2;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // lblTitle
             // 
@@ -85,28 +86,63 @@ namespace AltasMES
             // 
             // btnModify
             // 
-            this.btnModify.Location = new System.Drawing.Point(774, 20);
+            this.btnModify.TabIndex = 1;
+            this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.dgvEquipment);
+            this.groupBox3.Controls.Add(this.dgvEquip);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox3.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1034, 502);
+            this.groupBox3.Size = new System.Drawing.Size(1034, 491);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "설비목록";
             // 
-            // dgvEquipment
+            // dgvEquip
             // 
-            this.dgvEquipment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEquipment.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvEquipment.Location = new System.Drawing.Point(3, 17);
-            this.dgvEquipment.Name = "dgvEquipment";
-            this.dgvEquipment.RowTemplate.Height = 23;
-            this.dgvEquipment.Size = new System.Drawing.Size(1028, 482);
-            this.dgvEquipment.TabIndex = 0;
+            this.dgvEquip.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEquip.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvEquip.Location = new System.Drawing.Point(3, 19);
+            this.dgvEquip.Name = "dgvEquip";
+            this.dgvEquip.RowTemplate.Height = 23;
+            this.dgvEquip.Size = new System.Drawing.Size(1028, 469);
+            this.dgvEquip.TabIndex = 0;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearch.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSearch.ImageIndex = 3;
+            this.btnSearch.ImageList = this.imageList1;
+            this.btnSearch.Location = new System.Drawing.Point(314, 35);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.btnSearch.Size = new System.Drawing.Size(78, 37);
+            this.btnSearch.TabIndex = 9;
+            this.btnSearch.Text = "조회";
+            this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // txtEquip
+            // 
+            this.txtEquip.Location = new System.Drawing.Point(83, 42);
+            this.txtEquip.Name = "txtEquip";
+            this.txtEquip.Size = new System.Drawing.Size(215, 26);
+            this.txtEquip.TabIndex = 8;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(26, 45);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(51, 19);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "설비명";
             // 
             // frmEquipment
             // 
@@ -115,15 +151,19 @@ namespace AltasMES
             this.ClientSize = new System.Drawing.Size(1034, 682);
             this.Name = "frmEquipment";
             this.Text = "설비";
-            this.Load += new System.EventHandler(this.frmEquitment_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmEquipment_FormClosing);
+            this.Load += new System.EventHandler(this.frmEquipment_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmEquipment_KeyPress);
             this.BasePanel1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.Basepanel4.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.Basepanel2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEquipment)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEquip)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -131,6 +171,9 @@ namespace AltasMES
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.DataGridView dgvEquipment;
+        private System.Windows.Forms.DataGridView dgvEquip;
+        protected System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.TextBox txtEquip;
+        private System.Windows.Forms.Label label1;
     }
 }

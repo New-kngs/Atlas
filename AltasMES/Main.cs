@@ -18,11 +18,31 @@ namespace AltasMES
             InitializeComponent();
         }
 
+        public  string EmpID { get; set; }
+        public  string EmpName { get; set; }
+        public  string DeptID  {get; set;}
+
+
         private void Main_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
-          
+            this.EmpID = "EMP_0004";
+            this.EmpName = "강지모";
+            this.DeptID = "Product";
 
+            toolStripLblUser.Text = "사용자 : " +EmpName;
+            toolStripLblDept.Text = "부서 : " +DeptID;
+
+            timer1.Interval = 1000;
+            toolStripLblTime.Text = "현재 시간 : " +DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            timer1.Start();
+            timer1.Tick += Timer1_Tick;
+               
+        }
+
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            toolStripLblTime.Text = "현재 시간 : " +DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
         }
 
         private void StandardStrip_Click(object sender, EventArgs e)
@@ -41,7 +61,7 @@ namespace AltasMES
 
 
             string[] btnName = { "제품", "BOM", "창고", "설비", "공정" };
-            string[] btnTag = { "frmItem", "frmBOM", "frmWareHouse", "frmEquipment", "frmProcess" };
+            string[] btnTag = { "frmItem", "frmBOM", "frmWarehouse", "frmEquipment", "frmProcess" };
 
 
             for (int i = 0; i < btnName.Length; i++)
@@ -177,7 +197,10 @@ namespace AltasMES
             }
 
             Form frm = (Form)Activator.CreateInstance(frmType);
+            frm.WindowState = FormWindowState.Maximized;
             frm.MdiParent = this;
+            frm.MaximizeBox = false;
+            frm.MinimizeBox = false;
             frm.ControlBox = false;
             frm.Show();
         }
@@ -186,7 +209,7 @@ namespace AltasMES
         {
             if (this.ActiveMdiChild == null)
             {
-                tabControl1.Visible = false;
+                TabControl1.Visible = false;
             }
             else
             {   //모든 Form은 최대화
@@ -196,9 +219,9 @@ namespace AltasMES
                 if (this.ActiveMdiChild.Tag == null) //신규
                 {
                     TabPage tp = new TabPage(this.ActiveMdiChild.Text + "    ");
-                    tp.Parent = tabControl1;
+                    tp.Parent = TabControl1;
                     tp.Tag = this.ActiveMdiChild;
-                    tabControl1.SelectedTab = tp;
+                    TabControl1.SelectedTab = tp;
 
 
                     //자식폼이 닫힐때 탭페이지도 같이 삭제
@@ -207,12 +230,12 @@ namespace AltasMES
                 }
                 else //기존에 추가되었던 탭페이지
                 {
-                    tabControl1.SelectedTab = (TabPage)this.ActiveMdiChild.Tag;
+                    TabControl1.SelectedTab = (TabPage)this.ActiveMdiChild.Tag;
                 }
 
-                if (!tabControl1.Visible)
+                if (!TabControl1.Visible)
                 {
-                    tabControl1.Visible = true;
+                    TabControl1.Visible = true;
                 }
             }
         }
@@ -225,19 +248,19 @@ namespace AltasMES
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedTab != null)
+            if (TabControl1.SelectedTab != null)
             {
-                Form frm = (Form)tabControl1.SelectedTab.Tag;
+                Form frm = (Form)TabControl1.SelectedTab.Tag;
                 frm.Select();
             }
         }
 
         private void tabControl1_MouseDown(object sender, MouseEventArgs e)
         {
-             for (int i = 0; i < tabControl1.TabPages.Count; i++)
+             for (int i = 0; i < TabControl1.TabPages.Count; i++)
             {
-                var r = tabControl1.GetTabRect(i);
-                var closeImage = imageList1.Images[0];
+                var r = TabControl1.GetTabRect(i);
+                var closeImage = Properties.Resources.close_grey;
                 var closeRect = new Rectangle((r.Right - closeImage.Width), r.Top + (r.Height - closeImage.Height) / 2,
                     closeImage.Width, closeImage.Height);
 

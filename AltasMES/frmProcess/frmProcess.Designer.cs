@@ -69,6 +69,7 @@ namespace AltasMES
             // 
             // btnAdd
             // 
+            this.btnAdd.TabIndex = 1;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // imageList1
@@ -128,7 +129,7 @@ namespace AltasMES
             this.btnSetting.Name = "btnSetting";
             this.btnSetting.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnSetting.Size = new System.Drawing.Size(184, 37);
-            this.btnSetting.TabIndex = 6;
+            this.btnSetting.TabIndex = 0;
             this.btnSetting.Text = "공정-설비 관계설정";
             this.btnSetting.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSetting.UseVisualStyleBackColor = true;
@@ -142,17 +143,18 @@ namespace AltasMES
             this.label1.Size = new System.Drawing.Size(51, 19);
             this.label1.TabIndex = 0;
             this.label1.Text = "공정명";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // txtProcessName
             // 
             this.txtProcessName.Location = new System.Drawing.Point(81, 45);
             this.txtProcessName.Name = "txtProcessName";
             this.txtProcessName.Size = new System.Drawing.Size(215, 26);
-            this.txtProcessName.TabIndex = 1;
+            this.txtProcessName.TabIndex = 5;
+            this.txtProcessName.TextChanged += new System.EventHandler(this.txtProcessName_TextChanged);
             // 
             // btnSearch
             // 
-            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -162,7 +164,7 @@ namespace AltasMES
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnSearch.Size = new System.Drawing.Size(78, 37);
-            this.btnSearch.TabIndex = 7;
+            this.btnSearch.TabIndex = 6;
             this.btnSearch.Text = "조회";
             this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -174,9 +176,10 @@ namespace AltasMES
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1034, 682);
             this.Name = "frmProcess";
-            this.Text = "frmProcess";
+            this.Text = "공정";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmProcess_FormClosing);
             this.Load += new System.EventHandler(this.frmProcess_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmProcess_KeyPress);
             this.BasePanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.Basepanel4.ResumeLayout(false);

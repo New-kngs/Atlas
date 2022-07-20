@@ -40,15 +40,18 @@ namespace AltasMES
             this.ProductionStrip = new System.Windows.Forms.ToolStripButton();
             this.LogOutStrip = new System.Windows.Forms.ToolStripButton();
             this.SystemStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripLblTime = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripLblDept = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripLblUser = new System.Windows.Forms.ToolStripLabel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.TabControl1 = new AltasMES.ccTabControl();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.MaintoolStrip.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -166,36 +169,6 @@ namespace AltasMES
             this.SystemStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.SystemStripButton1.Click += new System.EventHandler(this.SystemStripButton1_Click);
             // 
-            // statusStrip1
-            // 
-            this.statusStrip1.BackColor = System.Drawing.Color.White;
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(136, 556);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1121, 22);
-            this.statusStrip1.TabIndex = 3;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(121, 17);
-            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
-            this.tabControl1.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tabControl1.Location = new System.Drawing.Point(136, 71);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1121, 27);
-            this.tabControl1.TabIndex = 5;
-            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
-            this.tabControl1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tabControl1_MouseDown);
-            // 
             // imageList1
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
@@ -222,17 +195,63 @@ namespace AltasMES
             this.menuStrip1.Enabled = false;
             this.menuStrip1.Location = new System.Drawing.Point(136, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(776, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1121, 24);
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.Visible = false;
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLblTime,
+            this.toolStripLblDept,
+            this.toolStripLblUser});
+            this.toolStrip1.Location = new System.Drawing.Point(136, 553);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(1121, 25);
+            this.toolStrip1.TabIndex = 8;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripLblTime
+            // 
+            this.toolStripLblTime.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripLblTime.Name = "toolStripLblTime";
+            this.toolStripLblTime.Size = new System.Drawing.Size(95, 22);
+            this.toolStripLblTime.Text = "toolStripLblTime";
+            // 
+            // toolStripLblDept
+            // 
+            this.toolStripLblDept.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripLblDept.Name = "toolStripLblDept";
+            this.toolStripLblDept.Size = new System.Drawing.Size(95, 22);
+            this.toolStripLblDept.Text = "toolStripLblDept";
+            // 
+            // toolStripLblUser
+            // 
+            this.toolStripLblUser.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripLblUser.Name = "toolStripLblUser";
+            this.toolStripLblUser.Size = new System.Drawing.Size(92, 22);
+            this.toolStripLblUser.Text = "toolStripLblUser";
+            // 
+            // TabControl1
+            // 
+            this.TabControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.TabControl1.Location = new System.Drawing.Point(136, 71);
+            this.TabControl1.Name = "TabControl1";
+            this.TabControl1.SelectedIndex = 0;
+            this.TabControl1.Size = new System.Drawing.Size(1121, 28);
+            this.TabControl1.TabIndex = 10;
+            this.TabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+            this.TabControl1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tabControl1_MouseDown);
             // 
             // Main
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.ClientSize = new System.Drawing.Size(1257, 578);
-            this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.TabControl1);
+            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.MaintoolStrip);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.panel1);
@@ -248,8 +267,8 @@ namespace AltasMES
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.MaintoolStrip.ResumeLayout(false);
             this.MaintoolStrip.PerformLayout();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -263,14 +282,17 @@ namespace AltasMES
         private System.Windows.Forms.ToolStripButton SalesStrip;
         private System.Windows.Forms.ToolStripButton ProductionStrip;
         private System.Windows.Forms.ToolStripButton LogOutStrip;
-        private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripButton SystemStripButton1;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripLabel toolStripLblTime;
+        private System.Windows.Forms.ToolStripLabel toolStripLblDept;
+        private System.Windows.Forms.ToolStripLabel toolStripLblUser;
+        private System.Windows.Forms.Timer timer1;
+        private ccTabControl TabControl1;
     }
 }
 

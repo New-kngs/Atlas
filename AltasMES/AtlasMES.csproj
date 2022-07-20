@@ -12,6 +12,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>게시\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -24,7 +25,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -86,6 +86,12 @@
     <Compile Include="Base\PopUpBase.Designer.cs">
       <DependentUpon>PopUpBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Control\ccTabControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Control\ccTabControl.Designer.cs">
+      <DependentUpon>ccTabControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmEmployee\frmEmployee.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,6 +109,18 @@
     </Compile>
     <Compile Include="frmEquipment\frmEquipment_Add.Designer.cs">
       <DependentUpon>frmEquipment_Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmEquipment\frmEquipment_Modify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEquipment\frmEquipment_Modify.Designer.cs">
+      <DependentUpon>frmEquipment_Modify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmEquipment\frmEquipment_Delete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEquipment\frmEquipment_Delete.Designer.cs">
+      <DependentUpon>frmEquipment_Delete.cs</DependentUpon>
     </Compile>
     <Compile Include="frmItem\frmItem.cs">
       <SubType>Form</SubType>
@@ -176,6 +194,12 @@
     <Compile Include="frmWareHouse\frmWareHouse_Add.Designer.cs">
       <DependentUpon>frmWareHouse_Add.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmWareHouse\frmWareHouse_Delete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmWareHouse\frmWareHouse_Delete.Designer.cs">
+      <DependentUpon>frmWareHouse_Delete.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -185,6 +209,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\AdvancedList.cs" />
+    <Compile Include="Util\CommonUtil.cs" />
     <Compile Include="Util\DataGridUtil.cs" />
     <Compile Include="Util\ServiceHelper.cs" />
     <EmbeddedResource Include="Base\BaseForm.resx">
@@ -204,6 +229,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmEquipment\frmEquipment_Add.resx">
       <DependentUpon>frmEquipment_Add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEquipment\frmEquipment_Modify.resx">
+      <DependentUpon>frmEquipment_Modify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEquipment\frmEquipment_Delete.resx">
+      <DependentUpon>frmEquipment_Delete.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmItem\frmItem.resx">
       <DependentUpon>frmItem.cs</DependentUpon>
@@ -240,6 +271,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmWareHouse\frmWareHouse_Add.resx">
       <DependentUpon>frmWareHouse_Add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWareHouse\frmWareHouse_Delete.resx">
+      <DependentUpon>frmWareHouse_Delete.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
@@ -288,6 +322,12 @@
       <Project>{b4c8c339-791a-4219-9070-118f960a9490}</Project>
       <Name>AtlasDTO</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close-grey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close-red.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

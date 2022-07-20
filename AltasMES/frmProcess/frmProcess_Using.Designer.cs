@@ -97,7 +97,7 @@ namespace AltasMES
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnCancel.Size = new System.Drawing.Size(73, 34);
-            this.btnCancel.TabIndex = 20;
+            this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "취소";
             this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -116,7 +116,7 @@ namespace AltasMES
             this.btnChk.Name = "btnChk";
             this.btnChk.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnChk.Size = new System.Drawing.Size(73, 34);
-            this.btnChk.TabIndex = 21;
+            this.btnChk.TabIndex = 1;
             this.btnChk.Text = "확인";
             this.btnChk.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnChk.UseVisualStyleBackColor = true;
@@ -157,7 +157,7 @@ namespace AltasMES
             this.txtUsingChk.Margin = new System.Windows.Forms.Padding(2);
             this.txtUsingChk.Name = "txtUsingChk";
             this.txtUsingChk.Size = new System.Drawing.Size(213, 29);
-            this.txtUsingChk.TabIndex = 18;
+            this.txtUsingChk.TabIndex = 0;
             // 
             // label3
             // 
@@ -178,8 +178,8 @@ namespace AltasMES
             this.Name = "frmProcess_Using";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "공정 재사용";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmProcess_Delete_FormClosing);
-            this.Load += new System.EventHandler(this.frmProcess_Delete_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmProcess_Using_FormClosing);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmProcess_Using_KeyPress);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

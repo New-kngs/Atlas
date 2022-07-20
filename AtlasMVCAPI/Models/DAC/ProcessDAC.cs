@@ -44,7 +44,7 @@ namespace AtlasMVCAPI.Models
             {
                 cmd.Parameters.AddWithValue("@ProcessName", process.ProcessName);
                 cmd.Parameters.AddWithValue("@FailCheck", process.FailCheck);
-                cmd.Parameters.AddWithValue("@CreateUser", "김길동");
+                cmd.Parameters.AddWithValue("@CreateUser", process.CreateUser);
 
                 cmd.Connection.Open();
                 int iRowAffect = cmd.ExecuteNonQuery();
@@ -67,7 +67,7 @@ namespace AtlasMVCAPI.Models
                 cmd.Parameters.AddWithValue("@ProcessID", process.ProcessID);
                 cmd.Parameters.AddWithValue("@ProcessName", process.ProcessName);
                 cmd.Parameters.AddWithValue("@FailCheck", process.FailCheck);
-                cmd.Parameters.AddWithValue("@ModifyUser", "김길동");
+                cmd.Parameters.AddWithValue("@ModifyUser", process.ModifyUser);
                 cmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
 
                 cmd.Connection.Open();
@@ -83,12 +83,13 @@ namespace AtlasMVCAPI.Models
             using (SqlCommand cmd = new SqlCommand
             {
                 Connection = new SqlConnection(strConn),
+
                 CommandText = @"update TB_Process set StateYN = 'N', ModifyDate=@ModifyDate, ModifyUser = @ModifyUser where ProcessID = @ProcessID"
 
             })
             {
                 cmd.Parameters.AddWithValue("@ProcessID", process.ProcessID);
-                cmd.Parameters.AddWithValue("@ModifyUser", "김길동");
+                cmd.Parameters.AddWithValue("@ModifyUser", process.ModifyUser);
                 cmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
                 cmd.Connection.Open();
                 int iRowAffect = cmd.ExecuteNonQuery();
@@ -108,13 +109,28 @@ namespace AtlasMVCAPI.Models
             })
             {
                 cmd.Parameters.AddWithValue("@ProcessID", process.ProcessID);
-                cmd.Parameters.AddWithValue("@ModifyUser", "김길동");
+                cmd.Parameters.AddWithValue("@ModifyUser", process.ModifyUser);
                 cmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
                 cmd.Connection.Open();
                 int iRowAffect = cmd.ExecuteNonQuery();
                 cmd.Connection.Close();
 
                 return (iRowAffect > 0);
+            }
+        }
+
+        public List<ComboItemVO> GetEquipName()
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.CommandText = @"select EquipID Code, EquipName Name, EquipCategory Category from TB_Equipment";
+
+                cmd.Connection.Open();
+                List<ComboItemVO> list = Helper.DataReaderMapToList<ComboItemVO>(cmd.ExecuteReader());
+                cmd.Connection.Close();
+
+                return list;
             }
         }
 

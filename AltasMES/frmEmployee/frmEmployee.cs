@@ -39,7 +39,7 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvEmp, "생성사용자", "CreateUser");
             DataGridUtil.AddGridTextBoxColumn(dgvEmp, "수정날짜", "ModifyDate");
             DataGridUtil.AddGridTextBoxColumn(dgvEmp, "수정사용자", "ModifyUser");
-            DataGridUtil.AddGridTextBoxColumn(dgvEmp, "미사용여부", "DeletedYN");
+            DataGridUtil.AddGridTextBoxColumn(dgvEmp, "미사용여부", "StateYN");
 
 
             lblTitle.Text = "사용자";

@@ -56,7 +56,9 @@ namespace AltasMES
             {
                 ProcessID = this.process.ProcessID,
                 ProcessName = txtProcess.Text,
-                FailCheck = chk
+                FailCheck = chk,
+                ModifyUser = this.process.ModifyUser
+
             };
 
             ResMessage<List<ProcessVO>> result = service.PostAsync<ProcessVO, List<ProcessVO>>("UpdateProcess", process);
@@ -72,7 +74,22 @@ namespace AltasMES
         private void frmPorcess_Modify_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (service != null)
+            {
                 service.Dispose();
+            }
+        }
+
+        private void btnCancel_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b' && e.KeyChar != 13)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void frmPorcess_Modify_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

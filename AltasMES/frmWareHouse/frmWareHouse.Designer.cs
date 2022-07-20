@@ -32,12 +32,12 @@ namespace AltasMES
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmWarehouse));
             this.cboWH = new System.Windows.Forms.ComboBox();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.btnRJT = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvWH = new System.Windows.Forms.DataGridView();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.dgvPDT = new System.Windows.Forms.DataGridView();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.BasePanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -65,7 +65,6 @@ namespace AltasMES
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.btnRJT);
             this.groupBox2.Controls.Add(this.cboWH);
             this.groupBox2.Controls.Add(this.btnSearch);
             this.groupBox2.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -83,6 +82,10 @@ namespace AltasMES
             this.imageList1.Images.SetKeyName(2, "Delete.png");
             this.imageList1.Images.SetKeyName(3, "Serach.png");
             this.imageList1.Images.SetKeyName(4, "Execl.png");
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // lblTitle
             // 
@@ -114,22 +117,6 @@ namespace AltasMES
             this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSearch.UseVisualStyleBackColor = true;
             // 
-            // btnRJT
-            // 
-            this.btnRJT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRJT.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnRJT.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnRJT.ImageIndex = 1;
-            this.btnRJT.ImageList = this.imageList1;
-            this.btnRJT.Location = new System.Drawing.Point(277, 32);
-            this.btnRJT.Name = "btnRJT";
-            this.btnRJT.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.btnRJT.Size = new System.Drawing.Size(125, 37);
-            this.btnRJT.TabIndex = 10;
-            this.btnRJT.Text = "미사용처리";
-            this.btnRJT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRJT.UseVisualStyleBackColor = true;
-            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.dgvWH);
@@ -152,6 +139,7 @@ namespace AltasMES
             this.dgvWH.RowTemplate.Height = 23;
             this.dgvWH.Size = new System.Drawing.Size(1028, 141);
             this.dgvWH.TabIndex = 1;
+            this.dgvWH.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvWH_CellClick);
             // 
             // dataGridView1
             // 
@@ -219,8 +207,8 @@ namespace AltasMES
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.DataGridView dgvWH;
         private System.Windows.Forms.DataGridView dataGridView1;
-        protected System.Windows.Forms.Button btnRJT;
         private System.Windows.Forms.ComboBox cboWH;
         protected System.Windows.Forms.Button btnSearch;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

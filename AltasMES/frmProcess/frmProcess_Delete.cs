@@ -41,7 +41,8 @@ namespace AltasMES
 
                 ProcessVO process = new ProcessVO
                 {
-                    ProcessID = this.process.ProcessID
+                    ProcessID = this.process.ProcessID,
+                    ModifyUser = this.process.ModifyUser
                 };
 
                 ResMessage<List<ProcessVO>> result = service.PostAsync<ProcessVO, List<ProcessVO>>("DeleteProcess", process);
@@ -65,6 +66,39 @@ namespace AltasMES
         {
             if(service != null) 
                 service.Dispose();
+        }
+
+        private void frmProcess_Delete_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b' && e.KeyChar != 13)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDeleteChk_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtProcess_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

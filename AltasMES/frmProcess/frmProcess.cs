@@ -29,7 +29,10 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvProcess, "생성사용자", "CreateUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvProcess, "변경날짜", "ModifyDate", colwidth: 200);
             DataGridUtil.AddGridTextBoxColumn(dgvProcess, "변경사용자", "ModifyUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
+
             DataGridUtil.AddGridTextBoxColumn(dgvProcess, "사용여부", "StateYN", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
+
+
 
             LoadData();
         }
@@ -49,7 +52,11 @@ namespace AltasMES
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            frmProcess_Add frm = new frmProcess_Add();
+            ProcessVO process = new ProcessVO()
+            {
+                CreateUser = ((Main)this.MdiParent).EmpName.ToString()
+            };
+            frmProcess_Add frm = new frmProcess_Add(process);
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
@@ -62,7 +69,8 @@ namespace AltasMES
             {
                 ProcessID = Convert.ToInt32(dgvProcess.SelectedRows[0].Cells["ProcessID"].Value),
                 ProcessName = (dgvProcess.SelectedRows[0].Cells["ProcessName"].Value).ToString(),
-                FailCheck = (dgvProcess.SelectedRows[0].Cells["FailCheck"].Value).ToString()
+                FailCheck = (dgvProcess.SelectedRows[0].Cells["FailCheck"].Value).ToString(),
+                ModifyUser = ((Main)this.MdiParent).EmpName.ToString()
             };
 
             if ((dgvProcess.SelectedRows[0].Cells["StateYN"].Value).ToString() == "N")
@@ -89,7 +97,8 @@ namespace AltasMES
             {
                 ProcessID = Convert.ToInt32(dgvProcess.SelectedRows[0].Cells["ProcessID"].Value),
                 ProcessName = (dgvProcess.SelectedRows[0].Cells["ProcessName"].Value).ToString(),
-                FailCheck = (dgvProcess.SelectedRows[0].Cells["FailCheck"].Value).ToString()
+                FailCheck = (dgvProcess.SelectedRows[0].Cells["FailCheck"].Value).ToString(),
+                ModifyUser = ((Main)this.MdiParent).EmpName.ToString()
             };
 
 
@@ -103,7 +112,10 @@ namespace AltasMES
         }
         private void frmProcess_FormClosing(object sender, FormClosingEventArgs e)
         {
-            srv.Dispose();
+            if (srv != null)
+            {
+                srv.Dispose();
+            }
         }
 
 
@@ -122,13 +134,6 @@ namespace AltasMES
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtProcessName.Text))
-            {
-                MessageBox.Show("공정명을 입력해주세요");
-                return;
-            }
-            
-
             srv = new ServiceHelper("api/Process");
             ResMessage<List<ProcessVO>> result = srv.GetAsync<List<ProcessVO>>("AllProcess");
             if (result.Data != null)
@@ -138,14 +143,34 @@ namespace AltasMES
                 {
                     MessageBox.Show("검색된 공정이 없습니다. 다시 확인하여 주세요");
                     txtProcessName.Text = string.Empty;
+                    LoadData();
                     return;
                 }
+                txtProcessName.Text = string.Empty;
                 dgvProcess.DataSource = list;
             }
             else
             {
                 MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
             }
+        }
+
+        private void frmProcess_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b' && e.KeyChar != 13)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtProcessName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

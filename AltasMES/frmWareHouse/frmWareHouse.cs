@@ -22,14 +22,23 @@ namespace AltasMES
         private void frmWarehouse_Load(object sender, EventArgs e)
         {
             DataGridUtil.SetInitGridView(dgvWH);
-            DataGridUtil.AddGridTextBoxColumn(dgvWH, "창고ID", "WHID", align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvWH, "창고이름", "WHName", align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvWH, "제품유형", "ItemCategory", align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvWH, "생성날짜", "CreateDate", align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvWH, "생성사원", "CreateUser", align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvWH, "변경날짜", "ModifyDate", align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvWH, "변경사원", "ModifyUser", align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvWH, "미사용여부", "DeletedYN", align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvWH, "창고ID", "WHID", colwidth: 200 ,align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvWH, "창고이름", "WHName", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvWH, "제품유형", "ItemCategory", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvWH, "생성날짜", "CreateDate", colwidth: 300, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvWH, "생성사원", "CreateUser", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvWH, "변경날짜", "ModifyDate", colwidth: 300, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvWH, "변경사원", "ModifyUser", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvWH, "사용여부", "StateYN", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
+
+            //ItemID, ItemName, CurrentQty, WHID, ItemCategory, ItemSize
+            DataGridUtil.SetInitGridView(dgvPDT);
+            DataGridUtil.AddGridTextBoxColumn(dgvPDT, "창고ID", "WHID", colwidth: 300, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvPDT, "제품ID", "ItemID", colwidth: 250, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvPDT, "제품이름", "ItemName", colwidth: 300, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvPDT, "제품유형", "ItemCategory", colwidth: 250, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvPDT, "제품사이즈", "ItemSize", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvPDT, "현재재고", "CurrentQty", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
 
             DataLoad();
         }
@@ -40,6 +49,7 @@ namespace AltasMES
             if (result != null)
             {
                 dgvWH.DataSource = new AdvancedList<WareHouseVO>(result.Data);
+                //dgvWH.DataSource = result.Data;
             }
             else
             {
@@ -56,6 +66,34 @@ namespace AltasMES
         private void frmWarehouse_FormClosing(object sender, FormClosingEventArgs e)
         {
             service.Dispose();
+        }
+                
+
+        private void dgvWH_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string whid = dgvWH[0, e.RowIndex].Value.ToString();
+
+            ResMessage<List<ItemVO>> resResult = service.GetAsync<List<ItemVO>>($"WareHouseInfo/{whid}");
+
+            dgvPDT.DataSource = resResult.Data;
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = resResult.Data;
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            WareHouseVO wareHouse = new WareHouseVO()
+            {
+                WHID = dgvWH.SelectedRows[0].Cells["WHID"].Value.ToString(),
+                WHName = (dgvWH.SelectedRows[0].Cells["WHName"].Value).ToString(),
+                StateYN = (dgvWH.SelectedRows[0].Cells["StateYN"].Value).ToString()
+            };
+
+            frmWareHouse_Delete frm = new frmWareHouse_Delete(wareHouse);
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                DataLoad();
+            }
         }
     }
 }
