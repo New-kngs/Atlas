@@ -38,6 +38,7 @@ namespace AltasMES
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.dgvPDT = new System.Windows.Forms.DataGridView();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.BasePanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -152,6 +153,7 @@ namespace AltasMES
             this.dgvWH.RowTemplate.Height = 23;
             this.dgvWH.Size = new System.Drawing.Size(1028, 141);
             this.dgvWH.TabIndex = 1;
+            this.dgvWH.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvWH_CellClick);
             // 
             // dataGridView1
             // 
@@ -222,5 +224,6 @@ namespace AltasMES
         protected System.Windows.Forms.Button btnRJT;
         private System.Windows.Forms.ComboBox cboWH;
         protected System.Windows.Forms.Button btnSearch;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
