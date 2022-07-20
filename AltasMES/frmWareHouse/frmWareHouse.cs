@@ -48,8 +48,8 @@ namespace AltasMES
             ResMessage<List<WareHouseVO>> result = service.GetAsync<List<WareHouseVO>>("AllWareHouse");
             if (result != null)
             {
-                /*dgvWH.DataSource = new AdvancedList<WareHouseVO>(result.Data);*/
-                dgvWH.DataSource = result.Data;
+                dgvWH.DataSource = new AdvancedList<WareHouseVO>(result.Data);
+                //dgvWH.DataSource = result.Data;
             }
             else
             {
@@ -82,7 +82,18 @@ namespace AltasMES
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            WareHouseVO wareHouse = new WareHouseVO()
+            {
+                WHID = dgvWH.SelectedRows[0].Cells["WHID"].Value.ToString(),
+                WHName = (dgvWH.SelectedRows[0].Cells["WHName"].Value).ToString(),
+                StateYN = (dgvWH.SelectedRows[0].Cells["StateYN"].Value).ToString()
+            };
 
+            frmWareHouse_Delete frm = new frmWareHouse_Delete(wareHouse);
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                DataLoad();
+            }
         }
     }
 }

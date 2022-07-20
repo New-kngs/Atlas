@@ -194,6 +194,12 @@
     <Compile Include="frmWareHouse\frmWareHouse_Add.Designer.cs">
       <DependentUpon>frmWareHouse_Add.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmWareHouse\frmWareHouse_Delete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmWareHouse\frmWareHouse_Delete.Designer.cs">
+      <DependentUpon>frmWareHouse_Delete.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -267,6 +273,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmWareHouse\frmWareHouse_Add.resx">
       <DependentUpon>frmWareHouse_Add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWareHouse\frmWareHouse_Delete.resx">
+      <DependentUpon>frmWareHouse_Delete.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
