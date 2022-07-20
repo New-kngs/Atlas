@@ -1,0 +1,119 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPageOrder.cshtml";
+}
+
+<h2>Index</h2>
+
+<style>
+    .carousel slide {
+        width: 100px;
+        margin: auto;
+    }
+
+    .d-block w-100 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        min-height: 100px;
+    }
+
+    #showSlides {
+        width: 600px;
+        margin: auto;
+    }
+
+    #colorPibu {
+        background-color: antiquewhite;
+    }
+
+    .jumbotron {
+        background-color: antiquewhite;
+    }
+
+    #backImage {
+        position: relative;
+    }
+
+    .imgtext {
+        position: absolute;
+        z-index: inherit;
+        width: 50%;
+        height: 50%;
+    }
+</style>
+<script>
+    $('.carousel').carousel({
+        interval: 500 //2000, 기본 5초
+    })</script>
+<div id="showSlides">
+    <div id="demo" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <!-- 슬라이드 쇼 -->
+            <div class="carousel-item active" style="color:black;">
+                <div class="row">
+                    <div class="col-sm">
+                        <h1>매트리스 생산 시스템</h1>
+                        <p>스프링 제조에서 매트리스 포장에 이르는 전 공정을 자동화하여, 가장 위생적인 환경에서 최고의 제품을 한치의 오차도 없이 생산하고 있습니다.</p>
+                    </div>
+                    <div class="col-sm">
+                        <img class="d-block w-100" src="https://www.lgcns.com/wp-content/uploads/2022/01/img_itService_%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0.png" alt="First slide">
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item" style="color:black;">
+                <div class="row">
+                    <div class="col-sm">
+                        <h1>스마트팩토리</h1>
+                        <p>IT신기술로 공장 지능화를 선도하며, 제조현장의 패러다임을 바꿔나가고 있습니다.</p>
+                    </div>
+                    <div class="col-sm">
+                        <img class="d-block w-100"
+                             src="https://www.lgcns.com/wp-content/uploads/2022/01/img_itService_%EC%8A%A4%EB%A7%88%ED%8A%B8%ED%8C%A9%ED%86%A0%EB%A6%AC.png"
+                             alt="Second slide">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- / 슬라이드 쇼 끝 -->
+    <!-- 왼쪽 오른쪽 화살표 버튼 -->
+    <a class="carousel-control-prev" href="#demo" data-slide="prev" style="color:black;">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <!-- <span>Previous</span> -->
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next" style="color:black;">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <!-- <span>Next</span> -->
+    </a>
+    <!-- / 화살표 버튼 끝 -->
+    <!-- 인디케이터 -->
+    <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li> <!--0번부터시작-->
+        <li data-target="#demo" data-slide-to="1"></li>
+    </ul>
+    <!-- 인디케이터 끝 -->
+</div>
+<!-- 그리드 시작 -->
+@*id="colorPibu" style="background:transparent !important"*@
+<div class="jumbotron">
+    <h4>Metress Factory는<br />차별화된 경쟁력을 보유하고 있습니다.</h4>
+    <div class="row justify-content-md-center">
+        <div id="backImage" class="col-xs-1 col-lg-4">
+            <img id="backImage" src="https://www.lgcns.com/wp-content/uploads/2022/03/IMG_%E1%84%89%E1%85%B3%E1%84%86%E1%85%A1%E1%84%90%E1%85%B3%E1%84%91%E1%85%A2%E1%86%A8%E1%84%90%E1%85%A9%E1%84%85%E1%85%B501_1.png" alt="그림1" width="100%" height="50%" imgtext />
+            <span class="imgtext">1. <br />제조업의 경쟁력은 공장 최적화에서 출발해야 합니다. </span>
+            <p>공장의 경쟁력인 원가절감과 품질향상을 위해 많은 기업들이 공정을 최적화하고 공장의 운영체계를 혁신하고자 노력합니다. </p>
+        </div>
+        <div id="backImage" class="col-xs-1 col-lg-4">
+            <img src="https://www.lgcns.com/wp-content/uploads/2022/03/IMG_%E1%84%89%E1%85%B3%E1%84%86%E1%85%A1%E1%84%90%E1%85%B3%E1%84%91%E1%85%A2%E1%86%A8%E1%84%90%E1%85%A9%E1%84%85%E1%85%B501_2.png" width="100%" height="50%" />
+            <span class="imgtext">2. <br />Mattress Factory는 지능형 공장을 구현합니다.</span>
+            <p>고객현장과 산업특성에 맞춰 공장라인의 최적화 설계, 설비 공급과 통합 제어, 설비와 생산 솔루션의 통합 등 토털 솔루션을 제공합니다.</p>
+        </div>
+        <div id="backImage" class="col-xs-1 col-lg-4">
+            <img src="https://www.lgcns.com/wp-content/uploads/2022/03/IMG_%E1%84%89%E1%85%B3%E1%84%86%E1%85%A1%E1%84%90%E1%85%B3%E1%84%91%E1%85%A2%E1%86%A8%E1%84%90%E1%85%A9%E1%84%85%E1%85%B501_3.png" width="100%" height="50%" />
+            Mattress Factory는 국내외에 다양한 성공사례를 보유하고 있습니다.
+            <p>세계 최고 수준의 제조 경쟁력을 갖춘 공장을 구현합니다. 글로벌 기업에게 스마트팩토리 솔루션을 제공하고 있습니다.</p>
+        </div>
+    </div>
+</div>
