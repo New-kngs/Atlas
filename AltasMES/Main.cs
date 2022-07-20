@@ -30,6 +30,19 @@ namespace AltasMES
             this.EmpName = "강지모";
             this.DeptID = "Product";
 
+            toolStripLblUser.Text = "사용자 : " +EmpName;
+            toolStripLblDept.Text = "부서 : " +DeptID;
+
+            timer1.Interval = 1000;
+            toolStripLblTime.Text = "현재 시간 : " +DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            timer1.Start();
+            timer1.Tick += Timer1_Tick;
+               
+        }
+
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            toolStripLblTime.Text = "현재 시간 : " +DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
         }
 
         private void StandardStrip_Click(object sender, EventArgs e)
@@ -184,7 +197,10 @@ namespace AltasMES
             }
 
             Form frm = (Form)Activator.CreateInstance(frmType);
+            frm.WindowState = FormWindowState.Maximized;
             frm.MdiParent = this;
+            frm.MaximizeBox = false;
+            frm.MinimizeBox = false;
             frm.ControlBox = false;
             frm.Show();
         }
