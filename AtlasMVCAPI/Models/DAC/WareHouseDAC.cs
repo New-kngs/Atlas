@@ -56,5 +56,25 @@ namespace AtlasMVCAPI.Models
                     return null;
             }
         }
+
+        public bool DeleteWareHouse(WareHouseVO wareHouse)
+        {
+            using (SqlCommand cmd = new SqlCommand
+            {
+                Connection = new SqlConnection(strConn),
+                CommandText = @"update TB_Warehouse 
+                                set StateYN = 'N', ModifyDate=@ModifyDate, ModifyUser = @ModifyUser where WHID = @WHID"
+            })
+            {
+                cmd.Parameters.AddWithValue("@WHID", wareHouse.WHID);
+                cmd.Parameters.AddWithValue("@ModifyUser", "김길동");
+                cmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
+                cmd.Connection.Open();
+                int iRowAffect = cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+
+                return (iRowAffect > 0);
+            }
+        }
     }
 }

@@ -83,8 +83,6 @@ namespace AtlasMVCAPI.Models
             using (SqlCommand cmd = new SqlCommand
             {
                 Connection = new SqlConnection(strConn),
-<<<<<<< HEAD
-=======
                 CommandText = @"update TB_Process set StateYN = 'N', ModifyDate=@ModifyDate, ModifyUser = @ModifyUser where ProcessID = @ProcessID"
 
             })
@@ -105,7 +103,6 @@ namespace AtlasMVCAPI.Models
             using (SqlCommand cmd = new SqlCommand
             {
                 Connection = new SqlConnection(strConn),
->>>>>>> 45f44d8f68ad9a56a0bce54a3175602e662619a0
                 CommandText = @"update TB_Process set StateYN = 'Y', ModifyDate=@ModifyDate, ModifyUser = @ModifyUser where ProcessID = @ProcessID"
 
             })
