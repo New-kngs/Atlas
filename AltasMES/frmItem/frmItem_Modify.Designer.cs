@@ -1,5 +1,5 @@
 ﻿
-namespace AltasMES.frmItem
+namespace AltasMES
 {
     partial class frmItem_Modify
     {
