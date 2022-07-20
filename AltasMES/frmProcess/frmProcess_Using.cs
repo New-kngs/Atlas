@@ -26,7 +26,7 @@ namespace AltasMES
         {
             this.Close();
         }
-
+        
         private void frmProcess_Delete_Load(object sender, EventArgs e)
         {
 

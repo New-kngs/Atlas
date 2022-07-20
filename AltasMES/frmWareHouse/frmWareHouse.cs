@@ -79,6 +79,7 @@ namespace AltasMES
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = resResult.Data;
         }
+                
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
@@ -93,6 +94,33 @@ namespace AltasMES
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 DataLoad();
+            }
+        }
+
+        private void btnModify_Click(object sender, EventArgs e)
+        {
+            WareHouseVO wareHouse = new WareHouseVO()
+            {
+                WHID = dgvWH.SelectedRows[0].Cells["WHID"].Value.ToString(),
+                WHName = (dgvWH.SelectedRows[0].Cells["WHName"].Value).ToString(),
+                StateYN = (dgvWH.SelectedRows[0].Cells["StateYN"].Value).ToString()
+            };
+
+            if ((dgvWH.SelectedRows[0].Cells["StateYN"].Value).ToString() == "N")
+            {
+                frmWareHouse_Using frmusing = new frmWareHouse_Using(wareHouse);
+                if (frmusing.ShowDialog() == DialogResult.OK)
+                {
+                    DataLoad();
+                }
+            }
+            else
+            {
+                frmWareHouse_Modify frm = new frmWareHouse_Modify(wareHouse);
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    DataLoad();
+                }
             }
         }
     }

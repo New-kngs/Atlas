@@ -76,5 +76,45 @@ namespace AtlasMVCAPI.Models
                 return (iRowAffect > 0);
             }
         }
+
+        public bool UsingWareHouse(WareHouseVO wareHouse)
+        {
+            using (SqlCommand cmd = new SqlCommand
+            {
+                Connection = new SqlConnection(strConn),
+                CommandText = @"update TB_Warehouse set StateYN = 'Y', ModifyDate=@ModifyDate, ModifyUser = @ModifyUser where WHID = @WHID"
+            })
+            {
+                cmd.Parameters.AddWithValue("@WHID", wareHouse.WHID);
+                cmd.Parameters.AddWithValue("@ModifyUser", "김길동");
+                cmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
+                cmd.Connection.Open();
+                int iRowAffect = cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+
+                return (iRowAffect > 0);
+            }
+        }
+
+        public bool UpdateWareHouse(WareHouseVO wareHouse)
+        {
+            using (SqlCommand cmd = new SqlCommand
+            {
+                Connection = new SqlConnection(strConn),
+                CommandText = @"update TB_Warehouse set WHName=@WHName, ItemCategory=@ItemCategory, ModifyDate=@ModifyDate, ModifyUser = @ModifyUser                  where WHID = @WHID"
+            })
+            {
+                cmd.Parameters.AddWithValue("@WHID", wareHouse.WHID);
+                cmd.Parameters.AddWithValue("@WHName", wareHouse.WHName);
+                cmd.Parameters.AddWithValue("@ItemCategory", wareHouse.ItemCategory);
+                cmd.Parameters.AddWithValue("@ModifyUser", "김길동");
+                cmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
+                cmd.Connection.Open();
+                int iRowAffect = cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+
+                return (iRowAffect > 0);
+            }
+        }
     }
 }
