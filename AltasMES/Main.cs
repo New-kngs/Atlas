@@ -51,7 +51,7 @@ namespace AltasMES
                 btn.Text = btnName[i];
                 btn.Font = new Font("맑은 고딕", 12, style: FontStyle.Bold);
                 btn.Location = new Point(15, 50 + i * 50);
-                btn.Size = new Size(100, 40);
+                btn.Size = new Size(110, 40);
                 btn.FlatStyle = FlatStyle.Flat;
                 btn.FlatAppearance.BorderSize = 0;
                 btn.TabStop = false;
@@ -65,36 +65,13 @@ namespace AltasMES
             }
 
 
-            //string[] labelName = { "제품", "BOM", "창고", "설비", "공정", "사용자", "부서" };
-            //string frmName = "frmEmployee";
-
-            //for (int i = 0; i < labelName.Length; i++)
-            //{
-
-            //    Label lbl = new Label();
-            //    lbl.Font = new Font("맑은 고딕", 12, style:FontStyle.Bold);
-            //    lbl.Location = new Point(25, 50 + i * 40);
-            //    lbl.Name = "label" + i.ToString();
-            //    lbl.Size = new Size(80, 23);
-            //    lbl.TextAlign = ContentAlignment.MiddleCenter;
-            //    lbl.TabIndex = i;
-            //    lbl.Text = labelName[i];
-            //    if(i == 5) { lbl.Tag = frmName; }
-            //    lbl.Click += Lbl_Click;
-            //    lbl.MouseHover += Lbl_MouseHover;
-            //    lbl.MouseLeave += Lbl_MouseLeave;
-            //    panel2.Controls.Add(lbl);
-
-            //}
-
-
         }
 
         private void Btn_Click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
             OpenCreateForm(btn.Tag.ToString());
-
+           
         }
 
         private void SalesStrip_Click(object sender, EventArgs e)
@@ -104,29 +81,34 @@ namespace AltasMES
             Label mainlbl = new Label();
             mainlbl.Text = "영업관리";
             mainlbl.Font = new Font("맑은 고딕", 14, style: FontStyle.Bold);
-            mainlbl.BackColor = Color.FromArgb(230, 230, 230);
+            mainlbl.BackColor = Color.FromArgb(255, 255, 255);
             mainlbl.Location = new Point(5, 0);
             mainlbl.Size = new Size(130, 28);
             mainlbl.TextAlign = ContentAlignment.MiddleCenter;
             panel2.Controls.Add(mainlbl);
 
 
-            string[] labelName = { "주문", "발주", "출하", "거래처" };
+            string[] btnName = { "주문", "발주", "출하", "거래처" };
+            string[] btnTag = { "frmOrder", "frmPurchase", "frmShip", "frmAccount"};
 
-            for (int i = 0; i < labelName.Length; i++)
+            for (int i = 0; i < btnName.Length; i++)
             {
 
-                Label lbl = new Label();
-                lbl.Font = new Font("맑은 고딕", 12, style: FontStyle.Bold);
-                lbl.Location = new Point(25, 50 + i * 40);
-                lbl.Name = "label" + i.ToString();
-                lbl.Size = new Size(80, 23);
-                lbl.TextAlign = ContentAlignment.MiddleCenter;
-                lbl.TabIndex = i;
-                lbl.Text = labelName[i];
-                //lbl.MouseHover += Lbl_MouseHover;
-                //lbl.MouseLeave += Lbl_MouseLeave;
-                panel2.Controls.Add(lbl);
+                Button btn = new Button();
+                btn.Text = btnName[i];
+                btn.Font = new Font("맑은 고딕", 12, style: FontStyle.Bold);
+                btn.Location = new Point(15, 50 + i * 50);
+                btn.Size = new Size(110, 40);
+                btn.FlatStyle = FlatStyle.Flat;
+                btn.FlatAppearance.BorderSize = 0;
+                btn.TabStop = false;
+                btn.Tag = btnTag[i];
+                btn.ImageAlign = ContentAlignment.MiddleLeft;
+                btn.Image = imageList1.Images[i + 6];
+                btn.TextAlign = ContentAlignment.MiddleRight;
+                btn.Padding = new Padding(5, 0, 5, 0);
+                btn.Click += Btn_Click;
+                panel2.Controls.Add(btn);
 
             }
 
@@ -139,29 +121,34 @@ namespace AltasMES
             Label mainlbl = new Label();
             mainlbl.Text = "생산관리";
             mainlbl.Font = new Font("맑은 고딕", 14, style: FontStyle.Bold);
-            mainlbl.BackColor = Color.FromArgb(230, 230, 230);
+            mainlbl.BackColor = Color.FromArgb(255, 255, 255);
             mainlbl.Location = new Point(5, 0);
             mainlbl.Size = new Size(130, 28);
             mainlbl.TextAlign = ContentAlignment.MiddleCenter;
             panel2.Controls.Add(mainlbl);
 
-            string[] labelName = { "생산계획", "작업지시", "불량현황" };
 
+            string[] btnName = { "생산계획", "작업지시", "불량현황" };
+            string[] btnTag = { "frmPlan", "frmOperation", "frmFail"};
 
-            for (int i = 0; i < labelName.Length; i++)
+            for (int i = 0; i < btnName.Length; i++)
             {
 
-                Label lbl = new Label();
-                lbl.Font = new Font("맑은 고딕", 12, style: FontStyle.Bold);
-                lbl.Location = new Point(25, 50 + i * 40);
-                lbl.Name = "label" + i.ToString();
-                lbl.Size = new Size(80, 23);
-                lbl.TextAlign = ContentAlignment.MiddleCenter;
-                lbl.TabIndex = i;
-                lbl.Text = labelName[i];
-                //lbl.MouseHover += Lbl_MouseHover;
-                //lbl.MouseLeave += Lbl_MouseLeave;
-                panel2.Controls.Add(lbl);
+                Button btn = new Button();
+                btn.Text = btnName[i];
+                btn.Font = new Font("맑은 고딕", 12, style: FontStyle.Bold);
+                btn.Location = new Point(5, 50 + i * 50);
+                btn.Size = new Size(130, 40);
+                btn.FlatStyle = FlatStyle.Flat;
+                btn.FlatAppearance.BorderSize = 0;
+                btn.TabStop = false;
+                btn.Tag = btnTag[i];
+                btn.ImageAlign = ContentAlignment.MiddleLeft;
+                btn.Image = imageList1.Images[i + 10];
+                btn.TextAlign = ContentAlignment.MiddleRight;
+                btn.Padding = new Padding(5, 0, 5, 0);
+                btn.Click += Btn_Click;
+                panel2.Controls.Add(btn);
 
             }
 
@@ -173,6 +160,11 @@ namespace AltasMES
         {
             string appName = Assembly.GetEntryAssembly().GetName().Name;
             Type frmType = Type.GetType($"{appName}.{prgName}");
+
+            if(frmType == null) {
+                MessageBox.Show("폼 등록이 필요합니다.");
+                return;
+            }
 
             foreach (Form form in Application.OpenForms)
             {
@@ -254,6 +246,45 @@ namespace AltasMES
                     this.ActiveMdiChild.Close();
                     break;
                 }
+            }
+        }
+
+        private void SystemStripButton1_Click(object sender, EventArgs e)
+        {
+            panel2.Controls.Clear();
+
+            Label mainlbl = new Label();
+            mainlbl.Text = "시스템관리";
+            mainlbl.Font = new Font("맑은 고딕", 14, style: FontStyle.Bold);
+            mainlbl.BackColor = Color.FromArgb(255, 255, 255);
+            mainlbl.Location = new Point(5, 0);
+            mainlbl.Size = new Size(130, 28);
+            mainlbl.TextAlign = ContentAlignment.MiddleCenter;
+            panel2.Controls.Add(mainlbl);
+
+
+            string[] btnName = { "사용자", "부서", "사용이력" };
+            string[] btnTag = { "frmEmployee", "frmDepartment", "frmEmpHis" };
+
+            for (int i = 0; i < btnName.Length; i++)
+            {
+
+                Button btn = new Button();
+                btn.Text = btnName[i];
+                btn.Font = new Font("맑은 고딕", 12, style: FontStyle.Bold);
+                btn.Location = new Point(5, 50 + i * 50);
+                btn.Size = new Size(125, 40);
+                btn.FlatStyle = FlatStyle.Flat;
+                btn.FlatAppearance.BorderSize = 0;
+                btn.TabStop = false;
+                btn.Tag = btnTag[i];
+                btn.ImageAlign = ContentAlignment.MiddleLeft;
+                btn.Image = imageList1.Images[i + 13];
+                btn.TextAlign = ContentAlignment.MiddleRight;
+                btn.Padding = new Padding(5, 0, 5, 0);
+                btn.Click += Btn_Click;
+                panel2.Controls.Add(btn);
+
             }
         }
     }

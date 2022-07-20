@@ -39,7 +39,7 @@ namespace AltasMES
             this.SalesStrip = new System.Windows.Forms.ToolStripButton();
             this.ProductionStrip = new System.Windows.Forms.ToolStripButton();
             this.LogOutStrip = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.SystemStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -91,7 +91,7 @@ namespace AltasMES
             this.SalesStrip,
             this.ProductionStrip,
             this.LogOutStrip,
-            this.toolStripButton1});
+            this.SystemStripButton1});
             this.MaintoolStrip.Location = new System.Drawing.Point(136, 0);
             this.MaintoolStrip.Name = "MaintoolStrip";
             this.MaintoolStrip.Size = new System.Drawing.Size(1121, 71);
@@ -153,17 +153,18 @@ namespace AltasMES
             this.LogOutStrip.Text = "로그아웃";
             this.LogOutStrip.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
-            // toolStripButton1
+            // SystemStripButton1
             // 
-            this.toolStripButton1.AutoSize = false;
-            this.toolStripButton1.Font = new System.Drawing.Font("맑은 고딕", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(110, 65);
-            this.toolStripButton1.Text = "시스템관리";
-            this.toolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.SystemStripButton1.AutoSize = false;
+            this.SystemStripButton1.Font = new System.Drawing.Font("맑은 고딕", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.SystemStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("SystemStripButton1.Image")));
+            this.SystemStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.SystemStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.SystemStripButton1.Name = "SystemStripButton1";
+            this.SystemStripButton1.Size = new System.Drawing.Size(110, 65);
+            this.SystemStripButton1.Text = "시스템관리";
+            this.SystemStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.SystemStripButton1.Click += new System.EventHandler(this.SystemStripButton1_Click);
             // 
             // statusStrip1
             // 
@@ -205,6 +206,16 @@ namespace AltasMES
             this.imageList1.Images.SetKeyName(3, "storage.png");
             this.imageList1.Images.SetKeyName(4, "equipment.png");
             this.imageList1.Images.SetKeyName(5, "process.png");
+            this.imageList1.Images.SetKeyName(6, "order.png");
+            this.imageList1.Images.SetKeyName(7, "purchase.png");
+            this.imageList1.Images.SetKeyName(8, "ship.png");
+            this.imageList1.Images.SetKeyName(9, "Account.png");
+            this.imageList1.Images.SetKeyName(10, "plan.png");
+            this.imageList1.Images.SetKeyName(11, "workorder.png");
+            this.imageList1.Images.SetKeyName(12, "fail.png");
+            this.imageList1.Images.SetKeyName(13, "Employee.png");
+            this.imageList1.Images.SetKeyName(14, "Department.png");
+            this.imageList1.Images.SetKeyName(15, "EmpHis.png");
             // 
             // menuStrip1
             // 
@@ -259,7 +270,7 @@ namespace AltasMES
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton SystemStripButton1;
     }
 }
 
