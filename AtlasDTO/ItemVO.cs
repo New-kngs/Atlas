@@ -18,7 +18,7 @@ namespace AtlasDTO
         public int ItemPrice { get; set; }
         public string ItemCategory { get; set; }
         public string ItemSize { get; set; }
-        public string ItmeImage { get; set; }
+        public string ItemImage { get; set; }
         public string ItemExplain { get; set; }
         public string CreateDate { get; set; }
         public string CreateUser { get; set; }

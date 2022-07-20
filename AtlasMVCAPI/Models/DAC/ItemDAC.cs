@@ -67,5 +67,24 @@ namespace AtlasMVCAPI.Models
         //        return (iRowAffect > 0);
         //    }
         //}
+
+        /// <summary>
+        /// 웹사이트에 (완)제품 목록을 Paging하여 보여준다
+        /// 작성자 : 지현
+        /// </summary>
+        public List<ItemVO> GetProduct()
+        {
+            using (SqlCommand cmd = new SqlCommand(strConn))
+            {
+                cmd.CommandText = @"select ItemName, ItemPrice, ItemExplain, ItemImage 
+from TB_Item 
+where ItemCategory Like '완제품'";
+
+                cmd.Connection.Open();
+                List<ItemVO> list = Helper.DataReaderMapToList<ItemVO>(cmd.ExecuteReader());
+                cmd.Connection.Close();
+
+                return list;
+            }
     }
 }
