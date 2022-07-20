@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace AltasMES
 {
-    public partial class frmProcess_test : PopUpBase
+    public partial class frmProcess_Setting : Form
     {
-        public frmProcess_test()
+        public frmProcess_Setting()
         {
             InitializeComponent();
+        }
+
+        private void fmrProcess_Setting_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

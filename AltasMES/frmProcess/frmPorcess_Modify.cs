@@ -31,10 +31,7 @@ namespace AltasMES
             this.Close();
         }
 
-        private void frmPorcess_Modify_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            //srv.Dispose();
-        }
+        
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -71,6 +68,11 @@ namespace AltasMES
             }
             else
                 MessageBox.Show(result.ErrMsg);
+        }
+        private void frmPorcess_Modify_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (service != null)
+                service.Dispose();
         }
     }
 }

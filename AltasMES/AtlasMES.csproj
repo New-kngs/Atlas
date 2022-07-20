@@ -140,17 +140,11 @@
     <Compile Include="frmProcess\frmProcess_Delete.Designer.cs">
       <DependentUpon>frmProcess_Delete.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmProcess\frmProcess_test.cs">
+    <Compile Include="frmProcess\frmProcess_Setting.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmProcess\frmProcess_test.Designer.cs">
-      <DependentUpon>frmProcess_test.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmProcess\frmProcess_test1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmProcess\frmProcess_test1.Designer.cs">
-      <DependentUpon>frmProcess_test1.cs</DependentUpon>
+    <Compile Include="frmProcess\frmProcess_Setting.Designer.cs">
+      <DependentUpon>frmProcess_Setting.cs</DependentUpon>
     </Compile>
     <Compile Include="frmWareHouse\frmWareHouse.cs">
       <SubType>Form</SubType>
@@ -211,11 +205,8 @@
     <EmbeddedResource Include="frmProcess\frmProcess_Delete.resx">
       <DependentUpon>frmProcess_Delete.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmProcess\frmProcess_test.resx">
-      <DependentUpon>frmProcess_test.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmProcess\frmProcess_test1.resx">
-      <DependentUpon>frmProcess_test1.cs</DependentUpon>
+    <EmbeddedResource Include="frmProcess\frmProcess_Setting.resx">
+      <DependentUpon>frmProcess_Setting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmWareHouse\frmWareHouse.resx">
       <DependentUpon>frmWareHouse.cs</DependentUpon>

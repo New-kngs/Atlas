@@ -11,8 +11,6 @@ using System.Windows.Forms;
 
 namespace AltasMES
 {
-
-    
     public partial class frmProcess : BaseForm
     {
         ServiceHelper srv = null;
@@ -26,11 +24,12 @@ namespace AltasMES
             DataGridUtil.SetInitGridView(dgvProcess);
             DataGridUtil.AddGridTextBoxColumn(dgvProcess, "공정ID", "ProcessID", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvProcess, "공정명", "ProcessName", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvProcess, "불량확인여부", "FailCheck", colwidth: 300, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvProcess, "생성날짜", "CreateDate");
-            DataGridUtil.AddGridTextBoxColumn(dgvProcess, "생성사용자", "CreateUser", colwidth: 300, align: DataGridViewContentAlignment.MiddleLeft);
-            DataGridUtil.AddGridTextBoxColumn(dgvProcess, "변경날짜", "ModifyDate");
-            DataGridUtil.AddGridTextBoxColumn(dgvProcess, "변경사용자", "ModifyUser", colwidth: 200, align: DataGridViewContentAlignment.MiddleLeft);
+            DataGridUtil.AddGridTextBoxColumn(dgvProcess, "불량확인여부", "FailCheck", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvProcess, "생성날짜", "CreateDate", colwidth: 200);
+            DataGridUtil.AddGridTextBoxColumn(dgvProcess, "생성사용자", "CreateUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvProcess, "변경날짜", "ModifyDate", colwidth: 200);
+            DataGridUtil.AddGridTextBoxColumn(dgvProcess, "변경사용자", "ModifyUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvProcess, "미사용", "DeletedYN", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
 
             LoadData();
         }
@@ -38,7 +37,7 @@ namespace AltasMES
         {
             srv = new ServiceHelper("api/Process");
             ResMessage<List<ProcessVO>> result = srv.GetAsync<List<ProcessVO>>("AllProcess");
-            if (result != null)
+            if (result.Data != null)
             {
                 dgvProcess.DataSource = new AdvancedList<ProcessVO>(result.Data);
             }
@@ -81,12 +80,26 @@ namespace AltasMES
                 FailCheck = (dgvProcess.SelectedRows[0].Cells["FailCheck"].Value).ToString()
             };
             frmProcess_Delete frm = new frmProcess_Delete(process);
-            frm.ShowDialog();
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                LoadData();
+            }
         }
 
         private void frmProcess_FormClosing(object sender, FormClosingEventArgs e)
         {
             srv.Dispose();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnSetting_Click(object sender, EventArgs e)
+        {
+            frmProcess_Setting frm = new frmProcess_Setting();
+            frm.ShowDialog();
         }
     }
 }

@@ -35,7 +35,7 @@ namespace AltasMES
             this.txtProcess = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtDeleteChk = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -66,7 +66,7 @@ namespace AltasMES
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.btnCancel);
             this.panel2.Controls.Add(this.btnAdd);
-            this.panel2.Controls.Add(this.textBox1);
+            this.panel2.Controls.Add(this.txtDeleteChk);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.txtProcess);
             this.panel2.Controls.Add(this.label1);
@@ -75,14 +75,14 @@ namespace AltasMES
             this.panel2.Controls.SetChildIndex(this.label1, 0);
             this.panel2.Controls.SetChildIndex(this.txtProcess, 0);
             this.panel2.Controls.SetChildIndex(this.label2, 0);
-            this.panel2.Controls.SetChildIndex(this.textBox1, 0);
+            this.panel2.Controls.SetChildIndex(this.txtDeleteChk, 0);
             this.panel2.Controls.SetChildIndex(this.btnAdd, 0);
             this.panel2.Controls.SetChildIndex(this.btnCancel, 0);
             this.panel2.Controls.SetChildIndex(this.label3, 0);
             // 
             // panel3
             // 
-            this.panel3.Size = new System.Drawing.Size(255, 0);
+            this.panel3.Size = new System.Drawing.Size(137, 0);
             // 
             // btnCancel
             // 
@@ -120,11 +120,12 @@ namespace AltasMES
             this.btnAdd.Text = "삭제";
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // txtProcess
             // 
             this.txtProcess.Location = new System.Drawing.Point(111, 35);
-            this.txtProcess.Margin = new System.Windows.Forms.Padding(2);
+            this.txtProcess.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtProcess.Name = "txtProcess";
             this.txtProcess.ReadOnly = true;
             this.txtProcess.Size = new System.Drawing.Size(213, 29);
@@ -150,13 +151,13 @@ namespace AltasMES
             this.label2.TabIndex = 17;
             this.label2.Text = "삭제 확인";
             // 
-            // textBox1
+            // txtDeleteChk
             // 
-            this.textBox1.Location = new System.Drawing.Point(109, 90);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(213, 29);
-            this.textBox1.TabIndex = 18;
+            this.txtDeleteChk.Location = new System.Drawing.Point(109, 90);
+            this.txtDeleteChk.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtDeleteChk.Name = "txtDeleteChk";
+            this.txtDeleteChk.Size = new System.Drawing.Size(213, 29);
+            this.txtDeleteChk.TabIndex = 18;
             // 
             // label3
             // 
@@ -177,6 +178,7 @@ namespace AltasMES
             this.Name = "frmProcess_Delete";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "공정 삭제";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmProcess_Delete_FormClosing);
             this.Load += new System.EventHandler(this.frmProcess_Delete_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -190,7 +192,7 @@ namespace AltasMES
         private System.Windows.Forms.Label label3;
         protected System.Windows.Forms.Button btnCancel;
         protected System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtDeleteChk;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtProcess;
         private System.Windows.Forms.Label label1;
