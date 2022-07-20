@@ -14,6 +14,7 @@ namespace AltasMES
     public partial class frmItem_Add : Form
     {
         ServiceHelper srv = null;
+        //ResMessage<List<ComboItemVO>> categoryList = null;
 
         public frmItem_Add()
         {
@@ -22,8 +23,12 @@ namespace AltasMES
 
         private void frmItem_Add_Load(object sender, EventArgs e)
         {
+            string[] category = { "완제품", "반제품", "자재" };
+
             srv = new ServiceHelper("api/Item");
-            ResMessage<List<ComboItemVO>> result = srv.GetAsync<List<ComboItemVO>>("AllItemCategory");
+            //categoryList = srv.GetAsync<List<ComboItemVO>>("AllItemCategory");
+            //CommonUtil.ComboBinding(cboCategory, categoryList, "완제품", blankText: "전체");
+           
 
         }
 
