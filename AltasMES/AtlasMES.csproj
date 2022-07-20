@@ -86,6 +86,12 @@
     <Compile Include="Base\PopUpBase.Designer.cs">
       <DependentUpon>PopUpBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Control\ccTabControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Control\ccTabControl.Designer.cs">
+      <DependentUpon>ccTabControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmEmployee\frmEmployee.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -325,6 +331,12 @@
       <Project>{b4c8c339-791a-4219-9070-118f960a9490}</Project>
       <Name>AtlasDTO</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close-grey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close-red.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
