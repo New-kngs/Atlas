@@ -78,5 +78,35 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
+
+        //POST : https://localhost:44391/api/WareHouse/DeleteWareHouse
+        [HttpPost]
+        [Route("DeleteWareHouse")]
+        public IHttpActionResult DeleteWareHouse(WareHouseVO wareHouse)
+        {
+            try
+            {
+                WareHouseDAC db = new WareHouseDAC();
+                bool flag = db.DeleteWareHouse(wareHouse);
+
+                ResMessage result = new ResMessage()
+                {
+                    ErrCode = (!flag) ? -9 : 0,
+                    ErrMsg = (!flag) ? "삭제 중 오류발생" : "S"
+                };
+
+                return Ok(result);
+            }
+            catch (Exception err)
+            {
+                System.Diagnostics.Debug.WriteLine(err.Message);
+
+                return Ok(new ResMessage()
+                {
+                    ErrCode = -9,
+                    ErrMsg = err.Message
+                });
+            }
+        }
     }
 }

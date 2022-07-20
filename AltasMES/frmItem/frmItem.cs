@@ -35,8 +35,6 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvItem, "생성사용자", "CreateUser", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvItem, "변경날짜", "ModifyDate", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
 
-            DataGridUtil.AddGridTextBoxColumn(dgvItem, "삭제여부", "StateYN", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
-
             DataGridUtil.AddGridTextBoxColumn(dgvItem, "사용여부", "StateYN", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
 
 
