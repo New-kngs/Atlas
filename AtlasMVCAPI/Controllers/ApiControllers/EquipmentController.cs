@@ -105,15 +105,15 @@ namespace AtlasMVCAPI.Controllers
             }
         }
 
-        //POST : https://localhost:44391/api/Process/DeleteProcess
+        //POST : https://localhost:44391/api/Equipment/DeleteEquip
         [HttpPost]
-        [Route("DeleteProcess")]
-        public IHttpActionResult DeleteProcess(ProcessVO process)
+        [Route("DeleteEquip")]
+        public IHttpActionResult DeleteEquip(EquipmentVO equip)
         {
             try
             {
-                ProcessDAC db = new ProcessDAC();
-                bool flag = db.DeleteProcess(process);
+                EquipmentDAC db = new EquipmentDAC();
+                bool flag = db.DeleteEquip(equip);
 
                 ResMessage result = new ResMessage()
                 {

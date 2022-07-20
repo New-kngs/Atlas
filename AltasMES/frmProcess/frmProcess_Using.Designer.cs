@@ -178,8 +178,7 @@ namespace AltasMES
             this.Name = "frmProcess_Using";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "공정 재사용";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmProcess_Delete_FormClosing);
-            this.Load += new System.EventHandler(this.frmProcess_Delete_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmProcess_Using_FormClosing);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmProcess_Using_KeyPress);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

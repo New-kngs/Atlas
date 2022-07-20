@@ -143,6 +143,7 @@ namespace AltasMES
             this.label1.Size = new System.Drawing.Size(51, 19);
             this.label1.TabIndex = 0;
             this.label1.Text = "공정명";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // txtProcessName
             // 
@@ -150,10 +151,10 @@ namespace AltasMES
             this.txtProcessName.Name = "txtProcessName";
             this.txtProcessName.Size = new System.Drawing.Size(215, 26);
             this.txtProcessName.TabIndex = 5;
+            this.txtProcessName.TextChanged += new System.EventHandler(this.txtProcessName_TextChanged);
             // 
             // btnSearch
             // 
-            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -175,7 +176,7 @@ namespace AltasMES
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1034, 682);
             this.Name = "frmProcess";
-            this.Text = "frmProcess";
+            this.Text = "공정";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmProcess_FormClosing);
             this.Load += new System.EventHandler(this.frmProcess_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmProcess_KeyPress);
