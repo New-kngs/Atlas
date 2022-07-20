@@ -39,12 +39,12 @@ namespace AltasMES
             this.SalesStrip = new System.Windows.Forms.ToolStripButton();
             this.ProductionStrip = new System.Windows.Forms.ToolStripButton();
             this.LogOutStrip = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.MaintoolStrip.SuspendLayout();
@@ -59,7 +59,7 @@ namespace AltasMES
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(136, 417);
+            this.panel1.Size = new System.Drawing.Size(136, 578);
             this.panel1.TabIndex = 1;
             // 
             // panel2
@@ -68,7 +68,7 @@ namespace AltasMES
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 72);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(136, 345);
+            this.panel2.Size = new System.Drawing.Size(136, 506);
             this.panel2.TabIndex = 2;
             // 
             // pictureBox1
@@ -94,19 +94,19 @@ namespace AltasMES
             this.toolStripButton1});
             this.MaintoolStrip.Location = new System.Drawing.Point(136, 0);
             this.MaintoolStrip.Name = "MaintoolStrip";
-            this.MaintoolStrip.Size = new System.Drawing.Size(776, 72);
+            this.MaintoolStrip.Size = new System.Drawing.Size(1121, 71);
             this.MaintoolStrip.TabIndex = 2;
             this.MaintoolStrip.Text = "toolStrip1";
             // 
             // StandardStrip
             // 
-            this.StandardStrip.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.StandardStrip.AutoSize = false;
+            this.StandardStrip.Font = new System.Drawing.Font("맑은 고딕", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.StandardStrip.Image = ((System.Drawing.Image)(resources.GetObject("StandardStrip.Image")));
             this.StandardStrip.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.StandardStrip.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.StandardStrip.Margin = new System.Windows.Forms.Padding(10, 1, 10, 2);
             this.StandardStrip.Name = "StandardStrip";
-            this.StandardStrip.Size = new System.Drawing.Size(83, 69);
+            this.StandardStrip.Size = new System.Drawing.Size(110, 65);
             this.StandardStrip.Text = "기준정보관리";
             this.StandardStrip.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.StandardStrip.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -114,27 +114,27 @@ namespace AltasMES
             // 
             // SalesStrip
             // 
-            this.SalesStrip.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.SalesStrip.AutoSize = false;
+            this.SalesStrip.Font = new System.Drawing.Font("맑은 고딕", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.SalesStrip.Image = ((System.Drawing.Image)(resources.GetObject("SalesStrip.Image")));
             this.SalesStrip.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.SalesStrip.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.SalesStrip.Margin = new System.Windows.Forms.Padding(10, 1, 10, 2);
             this.SalesStrip.Name = "SalesStrip";
-            this.SalesStrip.Size = new System.Drawing.Size(59, 69);
+            this.SalesStrip.Size = new System.Drawing.Size(110, 65);
             this.SalesStrip.Text = "영업관리";
             this.SalesStrip.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.SalesStrip.Click += new System.EventHandler(this.SalesStrip_Click);
             // 
             // ProductionStrip
             // 
-            this.ProductionStrip.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.ProductionStrip.AutoSize = false;
+            this.ProductionStrip.Font = new System.Drawing.Font("맑은 고딕", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.ProductionStrip.ForeColor = System.Drawing.SystemColors.ControlText;
             this.ProductionStrip.Image = ((System.Drawing.Image)(resources.GetObject("ProductionStrip.Image")));
             this.ProductionStrip.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.ProductionStrip.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ProductionStrip.Margin = new System.Windows.Forms.Padding(10, 1, 10, 2);
             this.ProductionStrip.Name = "ProductionStrip";
-            this.ProductionStrip.Size = new System.Drawing.Size(59, 69);
+            this.ProductionStrip.Size = new System.Drawing.Size(110, 65);
             this.ProductionStrip.Text = "생산관리";
             this.ProductionStrip.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.ProductionStrip.Click += new System.EventHandler(this.ProductionStrip_Click);
@@ -142,24 +142,37 @@ namespace AltasMES
             // LogOutStrip
             // 
             this.LogOutStrip.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.LogOutStrip.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.LogOutStrip.AutoSize = false;
+            this.LogOutStrip.Font = new System.Drawing.Font("맑은 고딕", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.LogOutStrip.Image = ((System.Drawing.Image)(resources.GetObject("LogOutStrip.Image")));
             this.LogOutStrip.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.LogOutStrip.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.LogOutStrip.Margin = new System.Windows.Forms.Padding(0, 5, 0, 2);
             this.LogOutStrip.Name = "LogOutStrip";
-            this.LogOutStrip.Size = new System.Drawing.Size(59, 65);
+            this.LogOutStrip.Size = new System.Drawing.Size(73, 64);
             this.LogOutStrip.Text = "로그아웃";
             this.LogOutStrip.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.AutoSize = false;
+            this.toolStripButton1.Font = new System.Drawing.Font("맑은 고딕", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(110, 65);
+            this.toolStripButton1.Text = "시스템관리";
+            this.toolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // statusStrip1
             // 
             this.statusStrip1.BackColor = System.Drawing.Color.White;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(136, 395);
+            this.statusStrip1.Location = new System.Drawing.Point(136, 556);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(776, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1121, 22);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -174,10 +187,10 @@ namespace AltasMES
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.tabControl1.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tabControl1.Location = new System.Drawing.Point(136, 72);
+            this.tabControl1.Location = new System.Drawing.Point(136, 71);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(776, 27);
+            this.tabControl1.Size = new System.Drawing.Size(1121, 27);
             this.tabControl1.TabIndex = 5;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             this.tabControl1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tabControl1_MouseDown);
@@ -203,22 +216,10 @@ namespace AltasMES
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.Visible = false;
             // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold);
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Margin = new System.Windows.Forms.Padding(10, 1, 10, 2);
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(71, 69);
-            this.toolStripButton1.Text = "시스템관리";
-            this.toolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
             // Main
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
-            this.ClientSize = new System.Drawing.Size(912, 417);
+            this.ClientSize = new System.Drawing.Size(1257, 578);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.MaintoolStrip);
@@ -227,8 +228,9 @@ namespace AltasMES
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
             this.Name = "Main";
-            this.Text = "Form1";
+            this.Text = "AltasMES";
             this.Load += new System.EventHandler(this.Main_Load);
             this.MdiChildActivate += new System.EventHandler(this.Main_MdiChildActivate);
             this.panel1.ResumeLayout(false);
