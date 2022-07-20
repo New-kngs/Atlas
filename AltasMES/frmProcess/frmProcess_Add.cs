@@ -15,9 +15,11 @@ namespace AltasMES
     public partial class frmProcess_Add : PopUpBase
     {
         ServiceHelper service = null;
-        public frmProcess_Add()
+        public ProcessVO process { get; set; }
+        public frmProcess_Add(ProcessVO process)
         {
             InitializeComponent();
+            this.process = process;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -47,7 +49,8 @@ namespace AltasMES
             ProcessVO process = new ProcessVO
             {
                 ProcessName = txtProcess.Text,
-                FailCheck = chk
+                FailCheck = chk,
+                CreateUser = this.process.CreateUser
             };
 
             ResMessage<List<ProcessVO>> result = service.PostAsync<ProcessVO, List<ProcessVO>>("SaveProcess", process);
@@ -73,6 +76,11 @@ namespace AltasMES
             {
                 e.Handled = true;
             }
+        }
+
+        private void frmProcess_Add_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

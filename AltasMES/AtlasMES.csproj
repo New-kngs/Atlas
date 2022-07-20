@@ -116,6 +116,12 @@
     <Compile Include="frmEquipment\frmEquipment_Modify.Designer.cs">
       <DependentUpon>frmEquipment_Modify.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmEquipment\frmEquipment_Delete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEquipment\frmEquipment_Delete.Designer.cs">
+      <DependentUpon>frmEquipment_Delete.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmItem\frmItem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -232,6 +238,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmEquipment\frmEquipment_Modify.resx">
       <DependentUpon>frmEquipment_Modify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEquipment\frmEquipment_Delete.resx">
+      <DependentUpon>frmEquipment_Delete.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmItem\frmItem.resx">
       <DependentUpon>frmItem.cs</DependentUpon>

@@ -131,6 +131,7 @@ namespace AltasMES
             this.txtProcess.ReadOnly = true;
             this.txtProcess.Size = new System.Drawing.Size(213, 29);
             this.txtProcess.TabIndex = 18;
+            this.txtProcess.TextChanged += new System.EventHandler(this.txtProcess_TextChanged);
             // 
             // label1
             // 
@@ -141,6 +142,7 @@ namespace AltasMES
             this.label1.Size = new System.Drawing.Size(58, 21);
             this.label1.TabIndex = 17;
             this.label1.Text = "공정명";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -151,6 +153,7 @@ namespace AltasMES
             this.label2.Size = new System.Drawing.Size(42, 21);
             this.label2.TabIndex = 17;
             this.label2.Text = "확인";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // txtDeleteChk
             // 
@@ -159,6 +162,7 @@ namespace AltasMES
             this.txtDeleteChk.Name = "txtDeleteChk";
             this.txtDeleteChk.Size = new System.Drawing.Size(213, 29);
             this.txtDeleteChk.TabIndex = 0;
+            this.txtDeleteChk.TextChanged += new System.EventHandler(this.txtDeleteChk_TextChanged);
             // 
             // label3
             // 
@@ -169,6 +173,7 @@ namespace AltasMES
             this.label3.Size = new System.Drawing.Size(223, 15);
             this.label3.TabIndex = 22;
             this.label3.Text = "삭제를 하시려면 공정명을 입력해주세요";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // frmProcess_Delete
             // 

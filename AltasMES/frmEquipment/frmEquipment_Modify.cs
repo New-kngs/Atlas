@@ -49,7 +49,8 @@ namespace AltasMES
             {
                 EquipName = txtEquip.Text,
                 EquipCategory = cboCategory.Text,
-                EquipID = this.equip.EquipID
+                EquipID = this.equip.EquipID,
+                ModifyUser = this.equip.ModifyUser
             };
 
             ResMessage<List<EquipmentVO>> result = service.PostAsync<EquipmentVO, List<EquipmentVO>>("UpdateEquip", equip);
@@ -61,6 +62,22 @@ namespace AltasMES
             }
             else
                 MessageBox.Show(result.ErrMsg);
+        }
+
+        private void frmEquipment_Modify_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b' && e.KeyChar != 13)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void frmEquipment_Modify_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (service != null)
+            {
+                service.Dispose();
+            }
         }
     }
 }

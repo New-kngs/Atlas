@@ -43,7 +43,7 @@ namespace AtlasMVCAPI.Models
             {
                 cmd.Parameters.AddWithValue("@EquipName", equip.EquipName);
                 cmd.Parameters.AddWithValue("@EquipCategory", equip.EquipCategory);
-                cmd.Parameters.AddWithValue("@CreateUser", "김길동");
+                cmd.Parameters.AddWithValue("@CreateUser", equip.CreateUser);
 
                 cmd.Connection.Open();
                 int iRowAffect = cmd.ExecuteNonQuery();
@@ -65,7 +65,7 @@ namespace AtlasMVCAPI.Models
                 cmd.Parameters.AddWithValue("@EquipName", equip.EquipName);
                 cmd.Parameters.AddWithValue("@EquipCategory", equip.EquipCategory);
                 cmd.Parameters.AddWithValue("@EquipID", equip.EquipID);
-                cmd.Parameters.AddWithValue("@ModifyUser", "김길동");
+                cmd.Parameters.AddWithValue("@ModifyUser", equip.ModifyUser);
                 cmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
 
                 cmd.Connection.Open();
@@ -86,7 +86,7 @@ namespace AtlasMVCAPI.Models
             })
             {
                 cmd.Parameters.AddWithValue("@EquipID", equip.EquipID);
-                cmd.Parameters.AddWithValue("@ModifyUser", "김길동");
+                cmd.Parameters.AddWithValue("@ModifyUser", equip.ModifyUser);
                 cmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
                 cmd.Connection.Open();
                 int iRowAffect = cmd.ExecuteNonQuery();

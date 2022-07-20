@@ -14,9 +14,11 @@ namespace AltasMES
     public partial class frmEquipment_Add : Form
     {
         ServiceHelper service = null;
-        public frmEquipment_Add()
+        public EquipmentVO equip { get; set; }
+        public frmEquipment_Add(EquipmentVO equip)
         {
             InitializeComponent();
+            this.equip = equip;
         }
 
         private void frmEquipment_Add_Load(object sender, EventArgs e)
@@ -57,7 +59,8 @@ namespace AltasMES
             EquipmentVO process = new EquipmentVO
             {
                 EquipName = txtEquip.Text,
-                EquipCategory = cboCategory.Text  
+                EquipCategory = cboCategory.Text,
+                CreateUser = this.equip.CreateUser
             };
 
             ResMessage<List<EquipmentVO>> result = service.PostAsync<EquipmentVO, List<EquipmentVO>>("SaveEquip", process);

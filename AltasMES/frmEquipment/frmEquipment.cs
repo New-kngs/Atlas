@@ -49,7 +49,12 @@ namespace AltasMES
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            frmEquipment_Add frm = new frmEquipment_Add();
+            EquipmentVO equip = new EquipmentVO()
+            {
+                CreateUser = ((Main)this.MdiParent).EmpName.ToString()
+            };
+
+            frmEquipment_Add frm = new frmEquipment_Add(equip);
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
@@ -75,13 +80,53 @@ namespace AltasMES
             {
                 EquipID = Convert.ToInt32(dgvEquip.SelectedRows[0].Cells["EquipID"].Value),
                 EquipName = (dgvEquip.SelectedRows[0].Cells["EquipName"].Value).ToString(),
-                EquipCategory = (dgvEquip.SelectedRows[0].Cells["EquipCategory"].Value).ToString()
+                EquipCategory = (dgvEquip.SelectedRows[0].Cells["EquipCategory"].Value).ToString(),
+                ModifyUser = ((Main)this.MdiParent).EmpName.ToString()
             };
 
             frmEquipment_Modify frm = new frmEquipment_Modify(equip);
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            EquipmentVO equip = new EquipmentVO()
+            {
+                EquipID = Convert.ToInt32(dgvEquip.SelectedRows[0].Cells["EquipID"].Value),
+                EquipName = (dgvEquip.SelectedRows[0].Cells["EquipName"].Value).ToString(),
+                EquipCategory = (dgvEquip.SelectedRows[0].Cells["EquipCategory"].Value).ToString(),
+                ModifyUser = ((Main)this.MdiParent).EmpName.ToString()
+            };
+            frmEquipment_Delete frm = new frmEquipment_Delete(equip);
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                LoadData();
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            service = new ServiceHelper("api/Equipment");
+            ResMessage<List<EquipmentVO>> result = service.GetAsync<List<EquipmentVO>>("AllEquipment");
+            if (result.Data != null)
+            {
+                List<EquipmentVO> list = result.Data.FindAll((p) => p.EquipName.Contains(txtEquip.Text));
+                if (list.Count <= 0)
+                {
+                    MessageBox.Show("검색된 설비가 없습니다. 다시 확인하여 주세요");
+                    txtEquip.Text = string.Empty;
+                    LoadData();
+                    return;
+                }
+                txtEquip.Text = string.Empty;
+                dgvEquip.DataSource = list;
+            }
+            else
+            {
+                MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
             }
         }
     }

@@ -44,7 +44,7 @@ namespace AtlasMVCAPI.Models
             {
                 cmd.Parameters.AddWithValue("@ProcessName", process.ProcessName);
                 cmd.Parameters.AddWithValue("@FailCheck", process.FailCheck);
-                cmd.Parameters.AddWithValue("@CreateUser", "김길동");
+                cmd.Parameters.AddWithValue("@CreateUser", process.CreateUser);
 
                 cmd.Connection.Open();
                 int iRowAffect = cmd.ExecuteNonQuery();
@@ -67,7 +67,7 @@ namespace AtlasMVCAPI.Models
                 cmd.Parameters.AddWithValue("@ProcessID", process.ProcessID);
                 cmd.Parameters.AddWithValue("@ProcessName", process.ProcessName);
                 cmd.Parameters.AddWithValue("@FailCheck", process.FailCheck);
-                cmd.Parameters.AddWithValue("@ModifyUser", "김길동");
+                cmd.Parameters.AddWithValue("@ModifyUser", process.ModifyUser);
                 cmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
 
                 cmd.Connection.Open();
@@ -89,7 +89,7 @@ namespace AtlasMVCAPI.Models
             })
             {
                 cmd.Parameters.AddWithValue("@ProcessID", process.ProcessID);
-                cmd.Parameters.AddWithValue("@ModifyUser", "김길동");
+                cmd.Parameters.AddWithValue("@ModifyUser", process.ModifyUser);
                 cmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
                 cmd.Connection.Open();
                 int iRowAffect = cmd.ExecuteNonQuery();
@@ -109,7 +109,7 @@ namespace AtlasMVCAPI.Models
             })
             {
                 cmd.Parameters.AddWithValue("@ProcessID", process.ProcessID);
-                cmd.Parameters.AddWithValue("@ModifyUser", "김길동");
+                cmd.Parameters.AddWithValue("@ModifyUser", process.ModifyUser);
                 cmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
                 cmd.Connection.Open();
                 int iRowAffect = cmd.ExecuteNonQuery();
