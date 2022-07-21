@@ -22,7 +22,7 @@ namespace AtlasMVCAPI.Models
             {
                 cmd.Connection = new SqlConnection(strConn);
                 cmd.CommandText = @"select ProcessID, ProcessName, FailCheck, convert(varchar(20), CreateDate, 120) CreateDate, 
-                    CreateUser, convert(varchar(20), ModifyDate, 120) ModifyDate,ModifyUser, StateYN, EquipID from TB_Process ";
+                    CreateUser, convert(varchar(20), ModifyDate, 120) ModifyDate,ModifyUser, StateYN from TB_Process ";
 
                 cmd.Connection.Open();
                 List<ProcessVO> list = Helper.DataReaderMapToList<ProcessVO>(cmd.ExecuteReader());
@@ -134,5 +134,40 @@ namespace AtlasMVCAPI.Models
             }
         }
 
+        public bool SaveProcessEquip(List<EquipDetailsVO> equip)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand
+                {
+                    Connection = new SqlConnection(strConn),
+                    CommandText = @"insert into TB_EquipmentDetails(ProcessID, EquipID, CreateDate, CreateUser)
+                                values(@ProcessID, @EquipID, @CreateDate, @CreateUser)"
+
+                })
+                {
+                    cmd.Parameters.Add("@ProcessID", System.Data.SqlDbType.Int);
+                    cmd.Parameters.Add("@EquipID", System.Data.SqlDbType.Int);
+                    cmd.Parameters.Add("@CreateUser", System.Data.SqlDbType.NVarChar, 50);
+                    cmd.Parameters.Add("@CreateDate", System.Data.SqlDbType.DateTime);
+
+                    cmd.Connection.Open();
+                    foreach (EquipDetailsVO item in equip)
+                    {
+                        cmd.Parameters["@ProcessID"].Value = item.ProcessID;
+                        cmd.Parameters["@EquipID"].Value = item.EquipID;
+                        cmd.Parameters["@CreateDate"].Value = DateTime.Now;
+                        cmd.Parameters["@CreateUser"].Value = item.CreateUser;
+                        cmd.ExecuteNonQuery();
+                    }
+                    cmd.Connection.Close();
+                    return true;
+                }
+            }catch(Exception err)
+            {
+                return false;
+            }
+            
+        }
     }
 }

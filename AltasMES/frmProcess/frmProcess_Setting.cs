@@ -15,7 +15,8 @@ namespace AltasMES
     {
         public ProcessVO process { get; set; }
         ServiceHelper service = null;
-        List<ProcessVO> processList = null;
+        List<EquipDetailsVO> processList = null;
+        EquipDetailsVO newEquip;
         ResMessage<List<ComboItemVO>> result;
         ResMessage<List<ProcessVO>> allList;
         public frmProcess_Setting(ProcessVO process)
@@ -41,6 +42,15 @@ namespace AltasMES
                 MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
             }
 
+            DataGridUtil.SetInitGridView(dgvList);
+            DataGridUtil.AddGridTextBoxColumn(dgvList, "공정ID", "ProcessID", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter, visibility: false);
+            DataGridUtil.AddGridTextBoxColumn(dgvList, "설비ID", "EquipID", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter, visibility: false);
+            DataGridUtil.AddGridTextBoxColumn(dgvList, "생성사용자", "CreateUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter, visibility: false);
+            DataGridUtil.AddGridTextBoxColumn(dgvList, "설비명", "EquipName", colwidth: 250, align: DataGridViewContentAlignment.MiddleCenter);
+
+
+
+
         }
         public void LoadData()
         {
@@ -55,20 +65,89 @@ namespace AltasMES
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            /*string eqID = result.Data.Find((c) => c.CodeName.Equals(cboEquip.Text)).Code;
-            int processID = allList.Data.Find((c) => c.EquipID.Equals(eqID)).ProcessID;
-            ProcessVO newEquip = new ProcessVO()
+
+            if (processList == null)
             {
-                EquipID = Convert.ToInt32(eqID),
-                ProcessID = processID,
-                
+                processList = new List<EquipDetailsVO>();
+            }
+            if (cboEquip.SelectedIndex == 0)
+            {
+                MessageBox.Show("추가할 설비가 없습니다. \n설비를 선택해 주세요");
+                return;
+            }
 
-               
+            int code = Convert.ToInt32(result.Data.Find((c) => c.CodeName.Equals(cboEquip.Text)).Code);
+            int idx = processList.FindIndex((p) => p.EquipID == code);
+            if (idx >= 0)
+            {
+                MessageBox.Show("이미 설비가 있습니다.");
+                return;
+            }
+            else
+            {
+                newEquip = new EquipDetailsVO()
+                {
+                    EquipID = Convert.ToInt32(result.Data.Find((c) => c.CodeName.Equals(cboEquip.Text)).Code),
+                    ProcessID = allList.Data.Find((p) => p.ProcessName.Equals(txtProcess.Text)).ProcessID,
+                    CreateUser = process.CreateUser,
+                    EquipName = cboEquip.Text
+                };
 
-                //prodPartList.Find((p) => p.Name == cboName.Text).Code,
 
-            };
-            processList.Add(newEquip);*/
+
+                processList.Add(newEquip);
+                cboEquip.SelectedIndex = 0;
+
+            }
+
+
+            dgvList.DataSource = null;
+            dgvList.DataSource = processList;
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (dgvList.SelectedRows.Count < 1)
+            {
+                MessageBox.Show("삭제할 설비를 선택해 주세요");
+                return;
+            }
+            if (processList == null)
+            {
+                processList = new List<EquipDetailsVO>();
+            }
+
+            string ptCode = dgvList.SelectedRows[0].Cells["EquipID"].Value.ToString();
+
+            EquipDetailsVO itemList = processList.Find((p) => p.EquipID.ToString() == ptCode);
+            processList.Remove(itemList);
+
+            dgvList.DataSource = null;
+            dgvList.DataSource = processList;
+            dgvList.ClearSelection();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+
+            service = new ServiceHelper("api/Process");
+          
+                
+                ResMessage<List<EquipDetailsVO>> result = service.PostAsync<List<EquipDetailsVO>, List<EquipDetailsVO>>("SaveProcessEquip", processList);
+
+                if (result.ErrCode == 0)
+                {
+                    MessageBox.Show("성공적으로 등록되었습니다.");
+                    this.DialogResult = DialogResult.OK;
+                }
+                else
+                    MessageBox.Show(result.ErrMsg);
+
+            }
     }
 }

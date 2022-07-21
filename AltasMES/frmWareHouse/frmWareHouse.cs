@@ -116,11 +116,11 @@ namespace AltasMES
             }
             else
             {
-                frmWareHouse_Modify frm = new frmWareHouse_Modify(wareHouse);
+                /*frmWareHouse_Modify frm = new frmWareHouse_Modify(wareHouse);
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     DataLoad();
-                }
+                }*/
             }
         }
     }

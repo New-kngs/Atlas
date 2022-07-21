@@ -35,14 +35,15 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvList = new System.Windows.Forms.DataGridView();
             this.cboEquip = new System.Windows.Forms.ComboBox();
             this.txtProcess = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblProcessName = new System.Windows.Forms.Label();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -98,7 +99,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.button1);
+            this.panel3.Controls.Add(this.btnSave);
+            this.panel3.Controls.Add(this.button2);
             this.panel3.Controls.Add(this.btnAdd);
             this.panel3.Controls.Add(this.groupBox1);
             this.panel3.Controls.Add(this.cboEquip);
@@ -110,6 +112,57 @@
             this.panel3.Padding = new System.Windows.Forms.Padding(5);
             this.panel3.Size = new System.Drawing.Size(424, 446);
             this.panel3.TabIndex = 0;
+            // 
+            // btnSave
+            // 
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.ImageIndex = 6;
+            this.btnSave.ImageList = this.imageList1;
+            this.btnSave.Location = new System.Drawing.Point(176, 395);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.btnSave.Size = new System.Drawing.Size(78, 37);
+            this.btnSave.TabIndex = 6;
+            this.btnSave.Text = "저장";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // button2
+            // 
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button2.ImageIndex = 7;
+            this.button2.ImageList = this.imageList1;
+            this.button2.Location = new System.Drawing.Point(336, 43);
+            this.button2.Name = "button2";
+            this.button2.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.button2.Size = new System.Drawing.Size(78, 31);
+            this.button2.TabIndex = 6;
+            this.button2.Text = "삭제";
+            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAdd.ImageIndex = 1;
+            this.btnAdd.ImageList = this.imageList1;
+            this.btnAdd.Location = new System.Drawing.Point(336, 8);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.btnAdd.Size = new System.Drawing.Size(78, 29);
+            this.btnAdd.TabIndex = 6;
+            this.btnAdd.Text = "추가";
+            this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // groupBox1
             // 
@@ -165,39 +218,6 @@
             this.lblProcessName.TabIndex = 4;
             this.lblProcessName.Text = "공정명";
             // 
-            // btnAdd
-            // 
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdd.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAdd.ImageIndex = 1;
-            this.btnAdd.ImageList = this.imageList1;
-            this.btnAdd.Location = new System.Drawing.Point(336, 22);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.btnAdd.Size = new System.Drawing.Size(78, 37);
-            this.btnAdd.TabIndex = 6;
-            this.btnAdd.Text = "추가";
-            this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // button1
-            // 
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.ImageIndex = 6;
-            this.button1.ImageList = this.imageList1;
-            this.button1.Location = new System.Drawing.Point(176, 395);
-            this.button1.Name = "button1";
-            this.button1.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.button1.Size = new System.Drawing.Size(78, 37);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "등록";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // frmProcess_Setting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
@@ -238,7 +258,8 @@
         private System.Windows.Forms.DataGridView dgvList;
         private System.Windows.Forms.ComboBox cboEquip;
         private System.Windows.Forms.Label label1;
-        protected System.Windows.Forms.Button button1;
+        protected System.Windows.Forms.Button btnSave;
         protected System.Windows.Forms.Button btnAdd;
+        protected System.Windows.Forms.Button button2;
     }
 }
