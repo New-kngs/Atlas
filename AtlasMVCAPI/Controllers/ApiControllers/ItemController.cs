@@ -71,5 +71,36 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
+
+
+        // Get : https://localhost:44391/api/Item
+        [HttpGet]
+        [Route("{id}")]
+        public IHttpActionResult GeTItemById(string id)
+        {
+            try
+            {
+                ItemDAC db = new ItemDAC();
+                ItemVO item = db.GeTItemById(id);
+
+                ResMessage<ItemVO> result = new ResMessage<ItemVO>()
+                {
+                    ErrCode = (item == null) ? -9 : 0,
+                    ErrMsg = (item == null) ? "조회중 오류발생" : "S",
+                    Data = item
+                };
+                return Ok(result);
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+
+                return Ok(new ResMessage()
+                {
+                    ErrCode = -9,
+                    ErrMsg = "서비스 관리자에게 문의하시기 바랍니다."
+                });
+            }
+        }
     }
 }

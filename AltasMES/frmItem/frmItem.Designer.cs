@@ -32,7 +32,7 @@ namespace AltasMES
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmItem));
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cboCategory = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvItem = new System.Windows.Forms.DataGridView();
             this.BasePanel1.SuspendLayout();
@@ -51,7 +51,7 @@ namespace AltasMES
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.comboBox1);
+            this.groupBox2.Controls.Add(this.cboCategory);
             this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.txtSearch);
             // 
@@ -101,14 +101,14 @@ namespace AltasMES
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // comboBox1
+            // cboCategory
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(19, 43);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 27);
-            this.comboBox1.TabIndex = 7;
+            this.cboCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCategory.FormattingEnabled = true;
+            this.cboCategory.Location = new System.Drawing.Point(19, 43);
+            this.cboCategory.Name = "cboCategory";
+            this.cboCategory.Size = new System.Drawing.Size(121, 27);
+            this.cboCategory.TabIndex = 7;
             // 
             // groupBox3
             // 
@@ -131,6 +131,7 @@ namespace AltasMES
             this.dgvItem.RowTemplate.Height = 23;
             this.dgvItem.Size = new System.Drawing.Size(1028, 467);
             this.dgvItem.TabIndex = 2;
+            this.dgvItem.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItem_CellClick);
             // 
             // frmItem
             // 
@@ -158,7 +159,7 @@ namespace AltasMES
         #endregion
         private System.Windows.Forms.TextBox txtSearch;
         protected System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cboCategory;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.DataGridView dgvItem;
     }
