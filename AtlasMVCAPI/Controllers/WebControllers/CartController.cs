@@ -9,9 +9,14 @@ namespace AtlasMVCAPI.Controllers.WebControllers
     public class CartController : Controller
     {
         // GET: 장바구니
-        public ActionResult Basket()
+        public ActionResult Index()
         {
             return View(); 
+        }
+        [HttpPost]
+        public ActionResult Basket()
+        {
+            return View();
         }
     }
 }

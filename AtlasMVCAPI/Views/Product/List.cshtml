@@ -21,7 +21,7 @@
                             <img src="@Model.Products.ToList()[i].ItemImage" class="card-img-top" alt="">
                             <h6 class="card-title">@Model.Products.ToList()[i].ItemExplain</h6>
                             <p class="card-text text-primary">@Model.Products.ToList()[i].ItemPrice.ToString("c")</p>
-                            @using (Html.BeginForm("AddToCart", "Cart"))
+                            @using (Html.BeginForm("Basket", "Cart"))
                             {
                                 @Html.Hidden("productID", Model.Products.ToList()[i].ItemID)
                                 @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
@@ -38,7 +38,7 @@
                             <img src="@Model.Products.ToList()[i+1].ItemImage" class="card-img-top" alt="">
                             <h6 class="card-title">@Model.Products.ToList()[i + 1].ItemExplain</h6>
                             <p class="card-text text-primary">@Model.Products.ToList()[i + 1].ItemPrice.ToString("c") </p>
-                            @using (Html.BeginForm("AddToCart", "Cart"))
+                            @using (Html.BeginForm("Basket", "Cart"))
                             {
                                 @Html.Hidden("productID", Model.Products.ToList()[i].ItemID)
                                 @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
