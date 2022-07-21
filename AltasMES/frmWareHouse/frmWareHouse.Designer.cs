@@ -55,13 +55,13 @@ namespace AltasMES
             // panel2
             // 
             this.panel2.Controls.Add(this.groupBox4);
-            this.panel2.Location = new System.Drawing.Point(0, 349);
-            this.panel2.Size = new System.Drawing.Size(1034, 333);
+            this.panel2.Location = new System.Drawing.Point(0, 379);
+            this.panel2.Size = new System.Drawing.Size(1034, 303);
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.groupBox3);
-            this.panel1.Size = new System.Drawing.Size(1034, 169);
+            this.panel1.Size = new System.Drawing.Size(1034, 199);
             // 
             // groupBox2
             // 
@@ -120,6 +120,7 @@ namespace AltasMES
             this.btnSearch.Text = "검색";
             this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // groupBox3
             // 
@@ -129,7 +130,7 @@ namespace AltasMES
             this.groupBox3.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1034, 169);
+            this.groupBox3.Size = new System.Drawing.Size(1034, 199);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "창고 목록";
@@ -141,7 +142,7 @@ namespace AltasMES
             this.dgvWH.Location = new System.Drawing.Point(3, 25);
             this.dgvWH.Name = "dgvWH";
             this.dgvWH.RowTemplate.Height = 23;
-            this.dgvWH.Size = new System.Drawing.Size(1028, 141);
+            this.dgvWH.Size = new System.Drawing.Size(1028, 171);
             this.dgvWH.TabIndex = 1;
             this.dgvWH.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvWH_CellClick);
             // 
@@ -152,7 +153,7 @@ namespace AltasMES
             this.dataGridView1.Location = new System.Drawing.Point(3, 25);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(1028, 141);
+            this.dataGridView1.Size = new System.Drawing.Size(1028, 171);
             this.dataGridView1.TabIndex = 0;
             // 
             // groupBox4
@@ -162,7 +163,7 @@ namespace AltasMES
             this.groupBox4.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.groupBox4.Location = new System.Drawing.Point(0, 0);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(1034, 333);
+            this.groupBox4.Size = new System.Drawing.Size(1034, 303);
             this.groupBox4.TabIndex = 1;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "창고 물품 상세";
@@ -174,7 +175,7 @@ namespace AltasMES
             this.dgvPDT.Location = new System.Drawing.Point(3, 25);
             this.dgvPDT.Name = "dgvPDT";
             this.dgvPDT.RowTemplate.Height = 23;
-            this.dgvPDT.Size = new System.Drawing.Size(1028, 305);
+            this.dgvPDT.Size = new System.Drawing.Size(1028, 275);
             this.dgvPDT.TabIndex = 0;
             // 
             // frmWarehouse
