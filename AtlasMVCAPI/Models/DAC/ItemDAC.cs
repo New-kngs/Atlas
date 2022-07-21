@@ -168,5 +168,14 @@ from (
                 return n;
             }
         }
+        /// <summary>
+        /// 장바구니에 추가한 (완)제품의 ID로, 해당 제품의 정보를 가져와라
+        /// 작성자 : 지현
+        /// </summary>
+        /// <returns></returns>
+        public int GetProductInfo()
+        {
+            return 0;
+        }
     }
 }
