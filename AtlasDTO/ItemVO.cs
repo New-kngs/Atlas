@@ -10,8 +10,7 @@ namespace AtlasDTO
     {
         public string ItemID { get; set; }
         public string ItemName { get; set; }
-        public string CustomerID { get; set; }
-        public string CustomerName { get; set; } // 추가
+        public string CustomerID { get; set; }        
         public int CurrentQty { get; set; }
         public int SafeQty { get; set; }
         public string WHID { get; set; }
@@ -26,7 +25,8 @@ namespace AtlasDTO
         public string ModifyUser { get; set; }
         public string StateYN { get; set; }
 
-
-
+        // 추가
+        public string CustomerName { get; set; } 
+        public string WHName { get; set; } 
     }
 }

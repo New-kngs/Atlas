@@ -181,7 +181,7 @@ namespace AltasMES
             this.btnAdd.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnAdd.Size = new System.Drawing.Size(73, 34);
             this.btnAdd.TabIndex = 102;
-            this.btnAdd.Text = "등록";
+            this.btnAdd.Text = "수정";
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -432,9 +432,9 @@ namespace AltasMES
             this.label6.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label6.Location = new System.Drawing.Point(12, 444);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(57, 21);
+            this.label6.Size = new System.Drawing.Size(58, 21);
             this.label6.TabIndex = 57;
-            this.label6.Text = "창고ID";
+            this.label6.Text = "창고명";
             // 
             // label2
             // 
@@ -442,9 +442,9 @@ namespace AltasMES
             this.label2.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label2.Location = new System.Drawing.Point(12, 394);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 21);
+            this.label2.Size = new System.Drawing.Size(74, 21);
             this.label2.TabIndex = 56;
-            this.label2.Text = "거래처ID";
+            this.label2.Text = "거래처명";
             // 
             // label12
             // 
@@ -510,7 +510,7 @@ namespace AltasMES
             this.MinimizeBox = false;
             this.Name = "frmItem_Modify";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmItem_Detail";
+            this.Text = "제품 상세";
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
