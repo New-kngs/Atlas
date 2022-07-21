@@ -14,14 +14,28 @@ namespace AltasMES
     public partial class frmItem : BaseForm
     {
         ServiceHelper srv = null;
+        ResMessage<List<ItemVO>> result;
+        
+
+
         public frmItem()
         {
             InitializeComponent();
+            srv = new ServiceHelper("api/Item");
         }
 
         private void frmItem_Load(object sender, EventArgs e)
         {
             //ItmeImage, ItemExplain
+
+            cboCategory.Items.AddRange(new string[] { "선택", "완제품", "반제품", "자재" });
+            cboCategory.SelectedIndex = 0;
+
+            //comboList = srv.GetAsync<List<ComboItemVO>>("AllItemCategory");
+            //if (comboList != null)
+            //{
+            //    CommonUtil.ComboBinding(cboCategory, comboList.Data, "자재", blankText: "선택");
+            //}
 
             DataGridUtil.SetInitGridView(dgvItem);
             DataGridUtil.AddGridTextBoxColumn(dgvItem, "제품ID", "ItemID", colwidth: 100, align: DataGridViewContentAlignment.MiddleCenter);
@@ -43,9 +57,8 @@ namespace AltasMES
         }
 
         public void LoadDate()
-        {
-            srv = new ServiceHelper("api/Item");
-            ResMessage<List<ItemVO>> result = srv.GetAsync<List<ItemVO>>("AllItem");
+        {            
+            result = srv.GetAsync<List<ItemVO>>("AllItem");
             if (result != null)
             {
                 dgvItem.DataSource = new AdvancedList<ItemVO>(result.Data);
@@ -74,12 +87,18 @@ namespace AltasMES
         }        
 
         private void btnModify_Click(object sender, EventArgs e)
-        {            
-            frmItem_Modify pop = new frmItem_Modify();
-            if (pop.ShowDialog() == DialogResult.OK)
-            {
+        {
 
-            }
+            //frmItem_Modify pop = new frmItem_Modify();
+            //if (pop.ShowDialog() == DialogResult.OK)
+            //{
+            //    LoadDate();
+            //}
+        }
+
+        private void dgvItem_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

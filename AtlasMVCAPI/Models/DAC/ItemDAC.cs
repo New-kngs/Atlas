@@ -29,7 +29,10 @@ namespace AtlasMVCAPI.Models
                 List<ItemVO> list = Helper.DataReaderMapToList<ItemVO>(cmd.ExecuteReader());
                 cmd.Connection.Close();
 
-                return list;
+                if (list != null && list.Count > 0)
+                    return list;
+                else
+                    return null;
             }
         }
 
@@ -42,11 +45,60 @@ namespace AtlasMVCAPI.Models
 
                 cmd.Connection.Open();
                 List<ComboItemVO> list = Helper.DataReaderMapToList<ComboItemVO>(cmd.ExecuteReader());
-                cmd.Connection.Close();
+                cmd.Connection.Close();                               
 
-                return list;
+                if (list != null && list.Count > 0)
+                    return list;
+                else
+                    return null;
             }
         }
+
+        // 일단 보류
+        public ItemVO GeTItemById(string id)
+        {                         
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.CommandText = @"select ItemID, ItemName, C.CustomerName, CurrentQty, SafeQty, W.WHName, ItemPrice, I.ItemCategory, ItemSize, ItemImage, ItemExplain, CONVERT(varchar(30), I.CreateDate, 120) CreateDate, I.CreateUser, CONVERT(varchar(30), I.ModifyDate, 120) ModifyDate, I.ModifyUser, I.StateYN 
+                                    from TB_Item I left outer join TB_Customer C on I.CustomerID = C.CustomerID
+			                                        inner join TB_Warehouse W on I.WHID = W.WHID
+                                    where ItemID = @id";
+
+                cmd.Parameters.AddWithValue("@id", id);
+
+                cmd.Connection.Open();
+                List<ItemVO> list = Helper.DataReaderMapToList<ItemVO>(cmd.ExecuteReader());
+                cmd.Connection.Close();
+
+                if (list != null && list.Count > 0)
+                    return list[0];
+                else
+                    return null;
+            }            
+        }
+
+        //public bool SaveItem(ItemVO item)
+        //{
+        //    using (SqlCommand cmd = new SqlCommand())
+        //    {
+        //        cmd.Connection = new SqlConnection(strConn);
+        //        cmd.CommandText = @"";
+            
+            
+        //        cmd.Parameters.AddWithValue("@", );
+                
+
+        //        cmd.Connection.Open();
+        //        int iRowAffect = cmd.ExecuteNonQuery();
+        //        cmd.Connection.Close();
+                                
+        //        return (iRowAffect > 0);
+        //    }
+        //}
+
+
+
 
         //public bool SaveItem(ItemVO process)
         //{

@@ -33,11 +33,13 @@ namespace AltasMES
             this.lblTitle = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.cboCategory2 = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.cboSize = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.cboCusID = new System.Windows.Forms.ComboBox();
-            this.cboWhID = new System.Windows.Forms.ComboBox();
-            this.cboCategory = new System.Windows.Forms.ComboBox();
+            this.cboCusName = new System.Windows.Forms.ComboBox();
+            this.cboWhName = new System.Windows.Forms.ComboBox();
+            this.cboCategory1 = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -50,7 +52,7 @@ namespace AltasMES
             this.txtName = new System.Windows.Forms.TextBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.txtItemID = new System.Windows.Forms.TextBox();
+            this.txtID = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -59,8 +61,6 @@ namespace AltasMES
             this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -75,7 +75,7 @@ namespace AltasMES
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(732, 79);
+            this.panel1.Size = new System.Drawing.Size(773, 79);
             this.panel1.TabIndex = 3;
             // 
             // lblTitle
@@ -84,7 +84,7 @@ namespace AltasMES
             this.lblTitle.Font = new System.Drawing.Font("맑은 고딕", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.Location = new System.Drawing.Point(0, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(732, 79);
+            this.lblTitle.Size = new System.Drawing.Size(773, 79);
             this.lblTitle.TabIndex = 1;
             this.lblTitle.Text = "제품 등록";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -96,7 +96,7 @@ namespace AltasMES
             this.panel2.Location = new System.Drawing.Point(0, 79);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(732, 739);
+            this.panel2.Size = new System.Drawing.Size(773, 739);
             this.panel2.TabIndex = 4;
             // 
             // panel3
@@ -105,13 +105,13 @@ namespace AltasMES
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.comboBox1);
+            this.panel3.Controls.Add(this.cboCategory2);
             this.panel3.Controls.Add(this.label5);
             this.panel3.Controls.Add(this.cboSize);
             this.panel3.Controls.Add(this.label1);
-            this.panel3.Controls.Add(this.cboCusID);
-            this.panel3.Controls.Add(this.cboWhID);
-            this.panel3.Controls.Add(this.cboCategory);
+            this.panel3.Controls.Add(this.cboCusName);
+            this.panel3.Controls.Add(this.cboWhName);
+            this.panel3.Controls.Add(this.cboCategory1);
             this.panel3.Controls.Add(this.label8);
             this.panel3.Controls.Add(this.groupBox1);
             this.panel3.Controls.Add(this.txtExplain);
@@ -121,7 +121,7 @@ namespace AltasMES
             this.panel3.Controls.Add(this.txtName);
             this.panel3.Controls.Add(this.btnCancel);
             this.panel3.Controls.Add(this.btnAdd);
-            this.panel3.Controls.Add(this.txtItemID);
+            this.panel3.Controls.Add(this.txtID);
             this.panel3.Controls.Add(this.label9);
             this.panel3.Controls.Add(this.label6);
             this.panel3.Controls.Add(this.label2);
@@ -135,8 +135,29 @@ namespace AltasMES
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel3.Name = "panel3";
             this.panel3.Padding = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.panel3.Size = new System.Drawing.Size(708, 718);
+            this.panel3.Size = new System.Drawing.Size(749, 718);
             this.panel3.TabIndex = 0;
+            // 
+            // cboCategory2
+            // 
+            this.cboCategory2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCategory2.FormattingEnabled = true;
+            this.cboCategory2.Location = new System.Drawing.Point(125, 88);
+            this.cboCategory2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cboCategory2.Name = "cboCategory2";
+            this.cboCategory2.Size = new System.Drawing.Size(180, 29);
+            this.cboCategory2.TabIndex = 89;
+            this.cboCategory2.SelectedIndexChanged += new System.EventHandler(this.cboCategory2_SelectedIndexChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label5.Location = new System.Drawing.Point(12, 93);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(74, 21);
+            this.label5.TabIndex = 90;
+            this.label5.Text = "제품유형";
             // 
             // cboSize
             // 
@@ -158,35 +179,36 @@ namespace AltasMES
             this.label1.TabIndex = 87;
             this.label1.Text = "제품규격";
             // 
-            // cboCusID
+            // cboCusName
             // 
-            this.cboCusID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboCusID.FormattingEnabled = true;
-            this.cboCusID.Location = new System.Drawing.Point(125, 438);
-            this.cboCusID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cboCusID.Name = "cboCusID";
-            this.cboCusID.Size = new System.Drawing.Size(180, 29);
-            this.cboCusID.TabIndex = 82;
+            this.cboCusName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCusName.FormattingEnabled = true;
+            this.cboCusName.Location = new System.Drawing.Point(125, 438);
+            this.cboCusName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cboCusName.Name = "cboCusName";
+            this.cboCusName.Size = new System.Drawing.Size(180, 29);
+            this.cboCusName.TabIndex = 82;
             // 
-            // cboWhID
+            // cboWhName
             // 
-            this.cboWhID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboWhID.FormattingEnabled = true;
-            this.cboWhID.Location = new System.Drawing.Point(125, 488);
-            this.cboWhID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cboWhID.Name = "cboWhID";
-            this.cboWhID.Size = new System.Drawing.Size(180, 29);
-            this.cboWhID.TabIndex = 81;
+            this.cboWhName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboWhName.FormattingEnabled = true;
+            this.cboWhName.Location = new System.Drawing.Point(125, 488);
+            this.cboWhName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cboWhName.Name = "cboWhName";
+            this.cboWhName.Size = new System.Drawing.Size(180, 29);
+            this.cboWhName.TabIndex = 81;
             // 
-            // cboCategory
+            // cboCategory1
             // 
-            this.cboCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboCategory.FormattingEnabled = true;
-            this.cboCategory.Location = new System.Drawing.Point(125, 39);
-            this.cboCategory.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cboCategory.Name = "cboCategory";
-            this.cboCategory.Size = new System.Drawing.Size(180, 29);
-            this.cboCategory.TabIndex = 79;
+            this.cboCategory1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCategory1.FormattingEnabled = true;
+            this.cboCategory1.Location = new System.Drawing.Point(125, 39);
+            this.cboCategory1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cboCategory1.Name = "cboCategory1";
+            this.cboCategory1.Size = new System.Drawing.Size(180, 29);
+            this.cboCategory1.TabIndex = 79;
+            this.cboCategory1.SelectedIndexChanged += new System.EventHandler(this.cboCategory1_SelectedIndexChanged);
             // 
             // label8
             // 
@@ -203,11 +225,11 @@ namespace AltasMES
             this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Controls.Add(this.btnImgFind);
             this.groupBox1.Controls.Add(this.txtImage);
-            this.groupBox1.Location = new System.Drawing.Point(321, 39);
+            this.groupBox1.Location = new System.Drawing.Point(340, 29);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox1.Size = new System.Drawing.Size(359, 429);
+            this.groupBox1.Size = new System.Drawing.Size(391, 478);
             this.groupBox1.TabIndex = 73;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "이미지";
@@ -218,7 +240,7 @@ namespace AltasMES
             this.pictureBox1.Location = new System.Drawing.Point(6, 35);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(347, 349);
+            this.pictureBox1.Size = new System.Drawing.Size(379, 393);
             this.pictureBox1.TabIndex = 61;
             this.pictureBox1.TabStop = false;
             // 
@@ -229,7 +251,7 @@ namespace AltasMES
             this.btnImgFind.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnImgFind.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnImgFind.ImageIndex = 0;
-            this.btnImgFind.Location = new System.Drawing.Point(280, 388);
+            this.btnImgFind.Location = new System.Drawing.Point(312, 433);
             this.btnImgFind.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnImgFind.Name = "btnImgFind";
             this.btnImgFind.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -241,10 +263,10 @@ namespace AltasMES
             // 
             // txtImage
             // 
-            this.txtImage.Location = new System.Drawing.Point(6, 391);
+            this.txtImage.Location = new System.Drawing.Point(6, 436);
             this.txtImage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtImage.Name = "txtImage";
-            this.txtImage.Size = new System.Drawing.Size(268, 29);
+            this.txtImage.Size = new System.Drawing.Size(300, 29);
             this.txtImage.TabIndex = 63;
             // 
             // txtExplain
@@ -253,7 +275,7 @@ namespace AltasMES
             this.txtExplain.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtExplain.Multiline = true;
             this.txtExplain.Name = "txtExplain";
-            this.txtExplain.Size = new System.Drawing.Size(555, 93);
+            this.txtExplain.Size = new System.Drawing.Size(600, 80);
             this.txtExplain.TabIndex = 71;
             // 
             // txtSafeQty
@@ -295,7 +317,7 @@ namespace AltasMES
             this.btnCancel.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancel.ImageIndex = 0;
-            this.btnCancel.Location = new System.Drawing.Point(374, 659);
+            this.btnCancel.Location = new System.Drawing.Point(415, 659);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -313,7 +335,7 @@ namespace AltasMES
             this.btnAdd.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAdd.ImageIndex = 0;
-            this.btnAdd.Location = new System.Drawing.Point(257, 659);
+            this.btnAdd.Location = new System.Drawing.Point(298, 659);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -324,13 +346,14 @@ namespace AltasMES
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // txtItemID
+            // txtID
             // 
-            this.txtItemID.Location = new System.Drawing.Point(125, 138);
-            this.txtItemID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtItemID.Name = "txtItemID";
-            this.txtItemID.Size = new System.Drawing.Size(180, 29);
-            this.txtItemID.TabIndex = 62;
+            this.txtID.Enabled = false;
+            this.txtID.Location = new System.Drawing.Point(125, 138);
+            this.txtID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtID.Name = "txtID";
+            this.txtID.Size = new System.Drawing.Size(180, 29);
+            this.txtID.TabIndex = 62;
             // 
             // label9
             // 
@@ -412,32 +435,12 @@ namespace AltasMES
             this.label3.TabIndex = 49;
             this.label3.Text = "제품명";
             // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(125, 88);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(180, 29);
-            this.comboBox1.TabIndex = 89;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label5.Location = new System.Drawing.Point(12, 93);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(74, 21);
-            this.label5.TabIndex = 90;
-            this.label5.Text = "제품유형";
-            // 
             // frmItem_Add
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(732, 818);
+            this.ClientSize = new System.Drawing.Size(773, 818);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -466,7 +469,7 @@ namespace AltasMES
         protected System.Windows.Forms.Panel panel2;
         protected System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TextBox txtImage;
-        private System.Windows.Forms.TextBox txtItemID;
+        private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label6;
@@ -485,13 +488,13 @@ namespace AltasMES
         private System.Windows.Forms.TextBox txtQty;
         private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.TextBox txtName;
-        private System.Windows.Forms.ComboBox cboCusID;
-        private System.Windows.Forms.ComboBox cboWhID;
-        private System.Windows.Forms.ComboBox cboCategory;
+        private System.Windows.Forms.ComboBox cboCusName;
+        private System.Windows.Forms.ComboBox cboWhName;
+        private System.Windows.Forms.ComboBox cboCategory1;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox cboSize;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cboCategory2;
         private System.Windows.Forms.Label label5;
     }
 }
