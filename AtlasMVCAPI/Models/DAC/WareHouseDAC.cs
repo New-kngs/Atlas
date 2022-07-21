@@ -68,7 +68,7 @@ namespace AtlasMVCAPI.Models
             })
             {
                 cmd.Parameters.AddWithValue("@WHID", wareHouse.WHID);
-                cmd.Parameters.AddWithValue("@ModifyUser", "김길동");
+                cmd.Parameters.AddWithValue("@ModifyUser", wareHouse.ModifyUser);
                 cmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
                 cmd.Connection.Open();
                 int iRowAffect = cmd.ExecuteNonQuery();
@@ -87,7 +87,7 @@ namespace AtlasMVCAPI.Models
             })
             {
                 cmd.Parameters.AddWithValue("@WHID", wareHouse.WHID);
-                cmd.Parameters.AddWithValue("@ModifyUser", "김길동");
+                cmd.Parameters.AddWithValue("@ModifyUser", wareHouse.ModifyUser);
                 cmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
                 cmd.Connection.Open();
                 int iRowAffect = cmd.ExecuteNonQuery();
@@ -108,7 +108,7 @@ namespace AtlasMVCAPI.Models
                 cmd.Parameters.AddWithValue("@WHID", wareHouse.WHID);
                 cmd.Parameters.AddWithValue("@WHName", wareHouse.WHName);
                 cmd.Parameters.AddWithValue("@ItemCategory", wareHouse.ItemCategory);
-                cmd.Parameters.AddWithValue("@ModifyUser", "김길동");
+                cmd.Parameters.AddWithValue("@ModifyUser", wareHouse.ModifyUser);
                 cmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
                 cmd.Connection.Open();
                 int iRowAffect = cmd.ExecuteNonQuery();
@@ -130,7 +130,7 @@ namespace AtlasMVCAPI.Models
             {
                 cmd.Parameters.AddWithValue("@WHName", wareHouse.WHName);
                 cmd.Parameters.AddWithValue("@ItemCategory", wareHouse.ItemCategory);
-                cmd.Parameters.AddWithValue("@CreateUser", "김길동");
+                cmd.Parameters.AddWithValue("@CreateUser", wareHouse.CreateUser);
                 cmd.Parameters.AddWithValue("@CreateDate", DateTime.Now);
                 cmd.Connection.Open();
                 int iRowAffect = cmd.ExecuteNonQuery();
