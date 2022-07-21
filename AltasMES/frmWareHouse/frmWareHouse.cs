@@ -22,7 +22,7 @@ namespace AltasMES
         private void frmWarehouse_Load(object sender, EventArgs e)
         {
             DataGridUtil.SetInitGridView(dgvWH);
-            DataGridUtil.AddGridTextBoxColumn(dgvWH, "창고ID", "WHID", colwidth: 200 ,align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvWH, "창고ID", "WHID", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvWH, "창고이름", "WHName", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvWH, "제품유형", "ItemCategory", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvWH, "생성날짜", "CreateDate", colwidth: 300, align: DataGridViewContentAlignment.MiddleCenter);
@@ -79,7 +79,7 @@ namespace AltasMES
         {
             service.Dispose();
         }
-                
+
 
         private void dgvWH_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -91,7 +91,7 @@ namespace AltasMES
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = resResult.Data;
         }
-                
+
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
@@ -144,6 +144,11 @@ namespace AltasMES
 
             string category = cboWH.Text;
             List<WareHouseVO> resultVO = volist.Data.FindAll((r) => r.ItemCategory == category);
+
+            if (cboWH.SelectedIndex == 0)
+                dgvWH.DataSource = volist.Data;
+            else
+                dgvWH.DataSource = resultVO;
         }
     }
 }
