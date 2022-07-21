@@ -169,5 +169,21 @@ namespace AtlasMVCAPI.Models
             }
             
         }
+
+        public List<EquipDetailsVO> GetProcessEquip()
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.CommandText = @"select ProcessID, e.EquipID, EquipName
+                                    from TB_EquipmentDetails ed join TB_Equipment e on ed.EquipID = e.EquipID";
+
+                cmd.Connection.Open();
+                List<EquipDetailsVO> list = Helper.DataReaderMapToList<EquipDetailsVO>(cmd.ExecuteReader());
+                cmd.Connection.Close();
+
+                return list;
+            }
+        }
     }
 }
