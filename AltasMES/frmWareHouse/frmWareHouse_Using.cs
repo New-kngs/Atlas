@@ -41,7 +41,8 @@ namespace AltasMES
 
                 WareHouseVO wareHouse = new WareHouseVO
                 {
-                    WHID = this.wareHouse.WHID
+                    WHID = this.wareHouse.WHID,
+                    ModifyUser = this.wareHouse.ModifyUser
                 };
 
                 ResMessage<List<WareHouseVO>> result = service.PostAsync<WareHouseVO, List<WareHouseVO>>("UsingWareHouse", wareHouse);

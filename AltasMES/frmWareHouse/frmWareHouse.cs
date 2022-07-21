@@ -25,9 +25,9 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvWH, "창고ID", "WHID", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvWH, "창고이름", "WHName", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvWH, "제품유형", "ItemCategory", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvWH, "생성날짜", "CreateDate", colwidth: 300, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvWH, "생성날짜", "CreateDate", colwidth: 270, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvWH, "생성사원", "CreateUser", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvWH, "변경날짜", "ModifyDate", colwidth: 300, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvWH, "변경날짜", "ModifyDate", colwidth: 270, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvWH, "변경사원", "ModifyUser", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvWH, "사용여부", "StateYN", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
 
@@ -47,6 +47,8 @@ namespace AltasMES
         }
         private void DataLoad()
         {
+            cboWH.SelectedIndex = 0;
+
             service = new ServiceHelper("api/WareHouse");
             ResMessage<List<WareHouseVO>> result = service.GetAsync<List<WareHouseVO>>("AllWareHouse");
             if (result != null)
@@ -99,7 +101,8 @@ namespace AltasMES
             {
                 WHID = dgvWH.SelectedRows[0].Cells["WHID"].Value.ToString(),
                 WHName = (dgvWH.SelectedRows[0].Cells["WHName"].Value).ToString(),
-                StateYN = (dgvWH.SelectedRows[0].Cells["StateYN"].Value).ToString()
+                StateYN = (dgvWH.SelectedRows[0].Cells["StateYN"].Value).ToString(),
+                ModifyUser = ((Main)this.MdiParent).EmpName.ToString()
             };
 
             frmWareHouse_Delete frm = new frmWareHouse_Delete(wareHouse);
@@ -115,7 +118,8 @@ namespace AltasMES
             {
                 WHID = dgvWH.SelectedRows[0].Cells["WHID"].Value.ToString(),
                 WHName = (dgvWH.SelectedRows[0].Cells["WHName"].Value).ToString(),
-                StateYN = (dgvWH.SelectedRows[0].Cells["StateYN"].Value).ToString()
+                StateYN = (dgvWH.SelectedRows[0].Cells["StateYN"].Value).ToString(),
+                ModifyUser = ((Main)this.MdiParent).EmpName.ToString()
             };
 
             if ((dgvWH.SelectedRows[0].Cells["StateYN"].Value).ToString() == "N")
