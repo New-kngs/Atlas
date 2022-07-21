@@ -85,13 +85,21 @@ namespace AltasMES
 
         private void dgvWH_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            string whid = dgvWH[0, e.RowIndex].Value.ToString();
+            if (e.RowIndex > 0)
+            {
+                string whid = dgvWH[0, e.RowIndex].Value.ToString();
 
-            ResMessage<List<ItemVO>> resResult = service.GetAsync<List<ItemVO>>($"WareHouseInfo/{whid}");
+                ResMessage<List<ItemVO>> resResult = service.GetAsync<List<ItemVO>>($"WareHouseInfo/{whid}");
 
-            dgvPDT.DataSource = resResult.Data;
-            dataGridView1.DataSource = null;
-            dataGridView1.DataSource = resResult.Data;
+                dgvPDT.DataSource = resResult.Data;
+                dataGridView1.DataSource = null;
+                dataGridView1.DataSource = resResult.Data;                
+            }
+            else
+            {
+                return;
+            }
+            
         }
 
 

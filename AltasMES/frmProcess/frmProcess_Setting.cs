@@ -48,9 +48,26 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvList, "생성사용자", "CreateUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter, visibility: false);
             DataGridUtil.AddGridTextBoxColumn(dgvList, "설비명", "EquipName", colwidth: 250, align: DataGridViewContentAlignment.MiddleCenter);
 
+            LoadEquip();
+
+        }
+        public void LoadEquip()
+        {
+            int processID = this.process.ProcessID;
+
+            ResMessage<List<EquipDetailsVO>> result = service.GetAsync<List<EquipDetailsVO>>("GetProcessEquip");
 
 
+            processList = result.Data.FindAll((p) => p.ProcessID == processID).ToList();
 
+            if (result.Data != null)
+            {
+                dgvList.DataSource = new AdvancedList<EquipDetailsVO>(processList);
+            }
+            else
+            {
+                MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
+            }
         }
         public void LoadData()
         {
@@ -93,8 +110,6 @@ namespace AltasMES
                     EquipName = cboEquip.Text
                 };
 
-
-
                 processList.Add(newEquip);
                 cboEquip.SelectedIndex = 0;
 
@@ -123,7 +138,7 @@ namespace AltasMES
             processList.Remove(itemList);
 
             dgvList.DataSource = null;
-            dgvList.DataSource = processList;
+            dgvList.DataSource = new AdvancedList<EquipDetailsVO>(processList);
             dgvList.ClearSelection();
         }
 
@@ -136,18 +151,16 @@ namespace AltasMES
         {
 
             service = new ServiceHelper("api/Process");
-          
-                
-                ResMessage<List<EquipDetailsVO>> result = service.PostAsync<List<EquipDetailsVO>, List<EquipDetailsVO>>("SaveProcessEquip", processList);
+            ResMessage<List<EquipDetailsVO>> result = service.PostAsync<List<EquipDetailsVO>, List<EquipDetailsVO>>("SaveProcessEquip", processList);
 
-                if (result.ErrCode == 0)
-                {
-                    MessageBox.Show("성공적으로 등록되었습니다.");
-                    this.DialogResult = DialogResult.OK;
-                }
-                else
-                    MessageBox.Show(result.ErrMsg);
-
+            if (result.ErrCode == 0)
+            {
+                MessageBox.Show("성공적으로 등록되었습니다.");
+                this.DialogResult = DialogResult.OK;
             }
+            else
+                MessageBox.Show(result.ErrMsg);
+
+        }
     }
 }
