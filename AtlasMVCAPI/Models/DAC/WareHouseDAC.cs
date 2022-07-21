@@ -1,5 +1,6 @@
 ﻿using AtlasDTO;
 using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -109,6 +110,28 @@ namespace AtlasMVCAPI.Models
                 cmd.Parameters.AddWithValue("@ItemCategory", wareHouse.ItemCategory);
                 cmd.Parameters.AddWithValue("@ModifyUser", "김길동");
                 cmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
+                cmd.Connection.Open();
+                int iRowAffect = cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+
+                return (iRowAffect > 0);
+            }
+        }
+
+        public bool SaveWareHouse(WareHouseVO wareHouse)
+        {
+            //@WHName, @ItemCategory, @CreateDate, @CreateUser
+            using (SqlCommand cmd = new SqlCommand
+            {
+                Connection = new SqlConnection(strConn),
+                CommandText = "SP_CreateWareHouse",
+                CommandType = CommandType.StoredProcedure
+            })
+            {
+                cmd.Parameters.AddWithValue("@WHName", wareHouse.WHName);
+                cmd.Parameters.AddWithValue("@ItemCategory", wareHouse.ItemCategory);
+                cmd.Parameters.AddWithValue("@CreateUser", "김길동");
+                cmd.Parameters.AddWithValue("@CreateDate", DateTime.Now);
                 cmd.Connection.Open();
                 int iRowAffect = cmd.ExecuteNonQuery();
                 cmd.Connection.Close();

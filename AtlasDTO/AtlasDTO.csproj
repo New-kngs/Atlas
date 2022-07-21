@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="ComboItemVO.cs" />
     <Compile Include="EmployeeVO.cs" />
+    <Compile Include="EquipDetailsVO.cs" />
     <Compile Include="EquipmentVO.cs" />
     <Compile Include="ItemVO.cs" />
     <Compile Include="ProcessVO.cs" />

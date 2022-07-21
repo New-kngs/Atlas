@@ -40,6 +40,9 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvPDT, "제품사이즈", "ItemSize", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvPDT, "현재재고", "CurrentQty", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
 
+            cboWH.Items.AddRange(new string[] { "선택", "완제품", "반제품", "자재" });
+            cboWH.SelectedIndex = 0;
+
             DataLoad();
         }
         private void DataLoad()
@@ -59,8 +62,17 @@ namespace AltasMES
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            frmWareHouse_Add frm = new frmWareHouse_Add();
-            frm.ShowDialog();
+            WareHouseVO wareHouse = new WareHouseVO()
+            {
+                CreateUser = ((Main)this.MdiParent).EmpName.ToString()
+            };
+
+            frmWareHouse_Add frm = new frmWareHouse_Add(wareHouse);
+            //frm.wareHouse = wareHouse;
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                DataLoad();
+            }
         }
 
         private void frmWarehouse_FormClosing(object sender, FormClosingEventArgs e)
@@ -116,12 +128,22 @@ namespace AltasMES
             }
             else
             {
-                frmWareHouse_Modify frm = new frmWareHouse_Modify(wareHouse);
-                if (frm.ShowDialog() == DialogResult.OK)
-                {
-                    DataLoad();
-                }
+                //frmWareHouse_Modify frm = new frmWareHouse_Modify(wareHouse);
+                //if (frm.ShowDialog() == DialogResult.OK)
+                //{
+                //    DataLoad();
+                //}
+                MessageBox.Show("이미 사용중인 창고입니다.");
             }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            service = new ServiceHelper("api/WareHouse");
+            ResMessage<List<WareHouseVO>> volist = service.GetAsync<List<WareHouseVO>>("AllWareHouse");
+
+            string category = cboWH.Text;
+            List<WareHouseVO> resultVO = volist.Data.FindAll((r) => r.ItemCategory == category);
         }
     }
 }

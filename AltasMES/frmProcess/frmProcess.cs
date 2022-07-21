@@ -125,7 +125,8 @@ namespace AltasMES
             {
                 ProcessID = Convert.ToInt32(dgvProcess.SelectedRows[0].Cells["ProcessID"].Value),
                 ProcessName = (dgvProcess.SelectedRows[0].Cells["ProcessName"].Value).ToString(),
-                FailCheck = (dgvProcess.SelectedRows[0].Cells["FailCheck"].Value).ToString()
+                FailCheck = (dgvProcess.SelectedRows[0].Cells["FailCheck"].Value).ToString(),
+                CreateUser = ((Main)this.MdiParent).EmpName.ToString()
             };
 
             frmProcess_Setting frm = new frmProcess_Setting(process);
