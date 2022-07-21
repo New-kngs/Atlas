@@ -175,7 +175,16 @@ from (
         /// <returns></returns>
         public int GetProductInfo()
         {
-            return 0;
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.CommandText = "select count(*) from TB_Item  where ItemCategory='완제품'";
+
+                cmd.Connection.Open();
+                int n = Convert.ToInt32(cmd.ExecuteScalar());
+                cmd.Connection.Close();
+                return n;
+            }
         }
     }
 }
