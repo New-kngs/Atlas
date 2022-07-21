@@ -24,7 +24,18 @@ namespace AtlasPOP
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            
+
+
+
+            timer1.Interval = 1000;
+            toolStripLblTime.Text = "현재 시간 : " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            timer1.Start();
+            timer1.Tick += Timer1_Tick;
+        }
+
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            toolStripLblTime.Text = "현재 시간 : " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
         }
 
         private void button9_Click(object sender, EventArgs e)
@@ -86,6 +97,13 @@ namespace AtlasPOP
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+
+               
+            
         }
     }
 }
