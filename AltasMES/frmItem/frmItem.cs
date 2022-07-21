@@ -14,23 +14,21 @@ namespace AltasMES
     public partial class frmItem : BaseForm
     {
         ServiceHelper srv = null;
-        ResMessage<List<ItemVO>> itemList;
-        
+        ResMessage<List<ItemVO>> itemList;        
+
         public frmItem()
         {
-            InitializeComponent();
-            srv = new ServiceHelper("api/Item");
-            itemList = srv.GetAsync<List<ItemVO>>("AllItem");
+            InitializeComponent();  
         }
 
         private void frmItem_Load(object sender, EventArgs e)
         {
+            
             //ItmeImage, ItemExplain
 
             cboCategory.Items.AddRange(new string[] { "선택", "완제품", "반제품", "자재" });
             cboCategory.SelectedIndex = 0;
 
-            
             DataGridUtil.SetInitGridView(dgvItem);
             DataGridUtil.AddGridTextBoxColumn(dgvItem, "제품ID", "ItemID", colwidth: 100, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvItem, "제품명", "ItemName", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
@@ -47,11 +45,15 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvItem, "변경사용자", "ModifyUser", colwidth: 100, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvItem, "사용여부", "StateYN", colwidth: 100, align: DataGridViewContentAlignment.MiddleCenter);
 
-            LoadDate();
+            LoadData();
         }
 
-        public void LoadDate()
-        {   
+        public void LoadData()
+        {
+
+            srv = new ServiceHelper("api/Item");
+            itemList = srv.GetAsync<List<ItemVO>>("AllItem");
+
             if (itemList != null)
                 dgvItem.DataSource = new AdvancedList<ItemVO>(itemList.Data);
             else
@@ -69,7 +71,7 @@ namespace AltasMES
             frmItem_Add pop = new frmItem_Add();
             if (pop.ShowDialog() == DialogResult.OK)
             {
-                LoadDate();
+                LoadData();
             }
         }        
 
@@ -87,16 +89,32 @@ namespace AltasMES
         {
 
         }
+        
 
-        private void button1_Click(object sender, EventArgs e)
+        private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //if (cboCategory.SelectedIndex > 0)
-            //    itemList.Data.FindAll(p => p.ItemCategory.Contains(cboCategory.Text));
+            if (e.KeyChar == 13)
+            {
+                btnSearch_Click(sender, e);
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            LoadData();
+
+            if (cboCategory.SelectedIndex > 0)
+                itemList.Data = itemList.Data.FindAll((p) => p.ItemCategory.Contains(cboCategory.Text));
+
+            if (!string.IsNullOrWhiteSpace(txtSearch.Text))
+                itemList.Data = itemList.Data.FindAll((p) => p.ItemName.Contains(txtSearch.Text));
+
+            dgvItem.DataSource = itemList.Data;
+        }
+
+        private void cboCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
             
-
-
-            //dgvItem.DataSource = itemList;
-
         }
     }
 }

@@ -152,6 +152,7 @@ namespace AltasMES
             this.txtProcessName.Size = new System.Drawing.Size(215, 26);
             this.txtProcessName.TabIndex = 5;
             this.txtProcessName.TextChanged += new System.EventHandler(this.txtProcessName_TextChanged);
+            this.txtProcessName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtProcessName_KeyPress);
             // 
             // btnSearch
             // 
