@@ -14,14 +14,13 @@ namespace AltasMES
     public partial class frmItem : BaseForm
     {
         ServiceHelper srv = null;
-        ResMessage<List<ItemVO>> result;
+        ResMessage<List<ItemVO>> itemList;
         
-
-
         public frmItem()
         {
             InitializeComponent();
             srv = new ServiceHelper("api/Item");
+            itemList = srv.GetAsync<List<ItemVO>>("AllItem");
         }
 
         private void frmItem_Load(object sender, EventArgs e)
@@ -31,12 +30,7 @@ namespace AltasMES
             cboCategory.Items.AddRange(new string[] { "선택", "완제품", "반제품", "자재" });
             cboCategory.SelectedIndex = 0;
 
-            //comboList = srv.GetAsync<List<ComboItemVO>>("AllItemCategory");
-            //if (comboList != null)
-            //{
-            //    CommonUtil.ComboBinding(cboCategory, comboList.Data, "자재", blankText: "선택");
-            //}
-
+            
             DataGridUtil.SetInitGridView(dgvItem);
             DataGridUtil.AddGridTextBoxColumn(dgvItem, "제품ID", "ItemID", colwidth: 100, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvItem, "제품명", "ItemName", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
@@ -57,24 +51,17 @@ namespace AltasMES
         }
 
         public void LoadDate()
-        {            
-            result = srv.GetAsync<List<ItemVO>>("AllItem");
-            if (result != null)
-            {
-                dgvItem.DataSource = new AdvancedList<ItemVO>(result.Data);
-            }
+        {   
+            if (itemList != null)
+                dgvItem.DataSource = new AdvancedList<ItemVO>(itemList.Data);
             else
-            {
-                MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
-            }
+                MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");            
         }
 
         private void frmItem_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (srv != null)
-            {
                 srv.Dispose();
-            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -98,6 +85,17 @@ namespace AltasMES
 
         private void dgvItem_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //if (cboCategory.SelectedIndex > 0)
+            //    itemList.Data.FindAll(p => p.ItemCategory.Contains(cboCategory.Text));
+            
+
+
+            //dgvItem.DataSource = itemList;
 
         }
     }
