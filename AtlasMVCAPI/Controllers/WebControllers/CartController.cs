@@ -6,12 +6,12 @@ using System.Web.Mvc;
 
 namespace AtlasMVCAPI.Controllers.WebControllers
 {
-    public class HomeController : Controller
+    public class CartController : Controller
     {
-        // GET: 홈페이지
-        public ActionResult Index()
+        // GET: 장바구니
+        public ActionResult Basket()
         {
-            return View();
+            return View(); 
         }
     }
 }

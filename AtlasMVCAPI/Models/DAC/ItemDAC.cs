@@ -84,15 +84,15 @@ namespace AtlasMVCAPI.Models
         //    {
         //        cmd.Connection = new SqlConnection(strConn);
         //        cmd.CommandText = @"";
-            
-            
+
+
         //        cmd.Parameters.AddWithValue("@", );
-                
+
 
         //        cmd.Connection.Open();
         //        int iRowAffect = cmd.ExecuteNonQuery();
         //        cmd.Connection.Close();
-                                
+
         //        return (iRowAffect > 0);
         //    }
         //}
@@ -122,23 +122,50 @@ namespace AtlasMVCAPI.Models
         //}
 
         /// <summary>
-        /// 웹사이트에 (완)제품 목록을 Paging하여 보여준다
+        /// 웹사이트에 (완)제품 목록을 최대 4개까지 보여준다
         /// 작성자 : 지현
         /// </summary>
-        public List<ItemVO> GetProduct()
+        public List<ItemVO> GetProductListPage(int page, int page_size)
         {
-            using (SqlCommand cmd = new SqlCommand()) // strConn
+            using (SqlCommand cmd = new SqlCommand
             {
-                cmd.Connection = new SqlConnection(strConn);
-                cmd.CommandText = @"select ItemName, ItemPrice, ItemExplain, ItemImage 
-from TB_Item 
-where ItemCategory Like '완제품'";
+                Connection = new SqlConnection(strConn),
+                CommandText = @"select ItemID, ItemName, ItemPrice, ItemCategory, ItemImage, ItemExplain 
+from ( 
+		select ItemID, ItemName, ItemPrice, ItemCategory, ItemImage, ItemExplain 
+				, row_number() over(order by ItemID) as RowNum 
+				from TB_Item 
+                where ItemCategory = '완제품' 
+) A where RowNum between ((@page-1) * @page_size) + 1 and (@page * @page_size)"
+            })
+            {
+                cmd.Parameters.AddWithValue("@page", page);
+                cmd.Parameters.AddWithValue("@page_size", page_size);
 
                 cmd.Connection.Open();
                 List<ItemVO> list = Helper.DataReaderMapToList<ItemVO>(cmd.ExecuteReader());
                 cmd.Connection.Close();
 
                 return list;
+            }
+        }
+        /// <summary>
+        /// (완)제품의 전체 갯수
+        /// 작성자 : 지현
+        /// </summary>
+        /// <returns></returns>
+        public int GetProductTotalCount()
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                // = strConn;
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.CommandText = "select count(*) from TB_Item  where ItemCategory='완제품'";
+
+                cmd.Connection.Open();
+                int n = Convert.ToInt32(cmd.ExecuteScalar());
+                cmd.Connection.Close();
+                return n;
             }
         }
     }
