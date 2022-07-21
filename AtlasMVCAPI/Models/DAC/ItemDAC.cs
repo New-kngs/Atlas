@@ -21,7 +21,7 @@ namespace AtlasMVCAPI.Models
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = new SqlConnection(strConn);
-                cmd.CommandText = @"select ItemID, ItemName, C.CustomerName, CurrentQty, SafeQty, WHID, ItemPrice, ItemCategory, ItemSize, ItmeImage, ItemExplain, CONVERT(varchar(30), I.CreateDate, 120) CreateDate, I.CreateUser, CONVERT(varchar(30), I.ModifyDate, 120) ModifyDate, I.ModifyUser, I.StateYN
+                cmd.CommandText = @"select ItemID, ItemName, C.CustomerName, CurrentQty, SafeQty, WHID, ItemPrice, ItemCategory, ItemSize, ItemImage, ItemExplain, CONVERT(varchar(30), I.CreateDate, 120) CreateDate, I.CreateUser, CONVERT(varchar(30), I.ModifyDate, 120) ModifyDate, I.ModifyUser, I.StateYN 
                                     from TB_Item I left outer join TB_Customer C on I.CustomerID = C.CustomerID";
 
                 cmd.Connection.Open();

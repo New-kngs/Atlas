@@ -59,7 +59,9 @@ namespace AltasMES
         private void frmItem_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (srv != null)
+            {
                 srv.Dispose();
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
