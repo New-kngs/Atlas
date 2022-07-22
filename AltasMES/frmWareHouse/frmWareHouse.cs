@@ -18,27 +18,28 @@ namespace AltasMES
         {
             InitializeComponent();
         }
-
         private void frmWarehouse_Load(object sender, EventArgs e)
         {
             DataGridUtil.SetInitGridView(dgvWH);
             DataGridUtil.AddGridTextBoxColumn(dgvWH, "창고ID", "WHID", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvWH, "창고이름", "WHName", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvWH, "제품유형", "ItemCategory", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvWH, "창고이름", "WHName", colwidth: 200, align: DataGridViewContentAlignment.MiddleLeft);
+            DataGridUtil.AddGridTextBoxColumn(dgvWH, "제품유형", "ItemCategory", colwidth: 200, align: DataGridViewContentAlignment.MiddleLeft);
             DataGridUtil.AddGridTextBoxColumn(dgvWH, "생성날짜", "CreateDate", colwidth: 270, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvWH, "생성사원", "CreateUser", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvWH, "생성사원", "CreateUser", colwidth: 200, align: DataGridViewContentAlignment.MiddleLeft);
             DataGridUtil.AddGridTextBoxColumn(dgvWH, "변경날짜", "ModifyDate", colwidth: 270, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvWH, "변경사원", "ModifyUser", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvWH, "변경사원", "ModifyUser", colwidth: 200, align: DataGridViewContentAlignment.MiddleLeft);
             DataGridUtil.AddGridTextBoxColumn(dgvWH, "사용여부", "StateYN", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
+            dgvWH.DefaultCellStyle.Font = new Font("맑은고딕", 12, FontStyle.Regular);
 
             //ItemID, ItemName, CurrentQty, WHID, ItemCategory, ItemSize
             DataGridUtil.SetInitGridView(dgvPDT);
             DataGridUtil.AddGridTextBoxColumn(dgvPDT, "창고ID", "WHID", colwidth: 300, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvPDT, "제품ID", "ItemID", colwidth: 250, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvPDT, "제품이름", "ItemName", colwidth: 300, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvPDT, "제품이름", "ItemName", colwidth: 300, align: DataGridViewContentAlignment.MiddleLeft);
             DataGridUtil.AddGridTextBoxColumn(dgvPDT, "제품유형", "ItemCategory", colwidth: 250, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvPDT, "제품사이즈", "ItemSize", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvPDT, "현재재고", "CurrentQty", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvPDT, "현재재고", "CurrentQty", colwidth: 200, align: DataGridViewContentAlignment.MiddleRight);
+            dgvPDT.DefaultCellStyle.Font = new Font("맑은고딕", 12, FontStyle.Regular);
 
             cboWH.Items.AddRange(new string[] { "선택", "완제품", "반제품", "자재" });
             cboWH.SelectedIndex = 0;
@@ -85,21 +86,19 @@ namespace AltasMES
 
         private void dgvWH_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex > 0)
+            if (e.RowIndex > -1)
             {
                 string whid = dgvWH[0, e.RowIndex].Value.ToString();
 
                 ResMessage<List<ItemVO>> resResult = service.GetAsync<List<ItemVO>>($"WareHouseInfo/{whid}");
-
+                dgvPDT.DataSource = null;
                 dgvPDT.DataSource = resResult.Data;
-                dataGridView1.DataSource = null;
-                dataGridView1.DataSource = resResult.Data;                
             }
             else
             {
                 return;
             }
-            
+
         }
 
 
@@ -113,10 +112,27 @@ namespace AltasMES
                 ModifyUser = ((Main)this.MdiParent).EmpName.ToString()
             };
 
-            frmWareHouse_Delete frm = new frmWareHouse_Delete(wareHouse);
-            if (frm.ShowDialog() == DialogResult.OK)
+            //frmWareHouse_Delete frm = new frmWareHouse_Delete(wareHouse);
+            //if (frm.ShowDialog() == DialogResult.OK)
+            //{
+            //    DataLoad();
+            //}
+            if ((dgvWH.SelectedRows[0].Cells["StateYN"].Value).ToString() == "Y")
             {
-                DataLoad();
+                frmWareHouse_Delete frm = new frmWareHouse_Delete(wareHouse);
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    DataLoad();
+                }
+            }
+            else
+            {
+                //frmWareHouse_Modify frm = new frmWareHouse_Modify(wareHouse);
+                //if (frm.ShowDialog() == DialogResult.OK)
+                //{
+                //    DataLoad();
+                //}
+                MessageBox.Show("이미 삭제(미사용)처리된 창고입니다.");
             }
         }
 
@@ -158,9 +174,16 @@ namespace AltasMES
             List<WareHouseVO> resultVO = volist.Data.FindAll((r) => r.ItemCategory == category);
 
             if (cboWH.SelectedIndex == 0)
-                dgvWH.DataSource = volist.Data;
+            {
+                //dgvWH.DataSource = volist.Data;
+                DataLoad();
+            }
             else
-                dgvWH.DataSource = resultVO;
+            {
+                //dgvWH.DataSource = resultVO;
+                dgvWH.DataSource = new AdvancedList<WareHouseVO>(resultVO);
+            }
+                
         }
     }
 }

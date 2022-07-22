@@ -19,8 +19,9 @@ namespace AtlasPOP
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            frmMain frm = new frmMain();
-            frm.Show();
+            this.Close();
+            
+            this.DialogResult = DialogResult.OK;
         }
     }
 }

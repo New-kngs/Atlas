@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Newtonsoft.Json;
 
 namespace AtlasMVCAPI.Controllers
 {
@@ -208,6 +209,11 @@ namespace AtlasMVCAPI.Controllers
         {
             try
             {
+                /*if (equip == null || equip.Count < 1)
+                {
+                    throw new Exception("전달된 데이터가 없습니다.");
+                }*/
+
                 ProcessDAC db = new ProcessDAC();
                 bool flag = db.SaveProcessEquip(equip);
 

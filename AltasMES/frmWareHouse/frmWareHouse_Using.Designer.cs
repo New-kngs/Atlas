@@ -36,13 +36,13 @@ namespace AltasMES
             this.txtUsingChk = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.btnAdd = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.txtWH = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -114,6 +114,19 @@ namespace AltasMES
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "excel.png");
+            this.imageList1.Images.SetKeyName(1, "plus.png");
+            this.imageList1.Images.SetKeyName(2, "trash.png");
+            this.imageList1.Images.SetKeyName(3, "pencil.png");
+            this.imageList1.Images.SetKeyName(4, "search.png");
+            this.imageList1.Images.SetKeyName(5, "arrow-left.png");
+            this.imageList1.Images.SetKeyName(6, "check.png");
+            this.imageList1.Images.SetKeyName(7, "close.png");
+            // 
             // btnAdd
             // 
             this.btnAdd.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -183,19 +196,6 @@ namespace AltasMES
             this.lblTitle.Text = "창고 사용";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "excel.png");
-            this.imageList1.Images.SetKeyName(1, "plus.png");
-            this.imageList1.Images.SetKeyName(2, "trash.png");
-            this.imageList1.Images.SetKeyName(3, "pencil.png");
-            this.imageList1.Images.SetKeyName(4, "search.png");
-            this.imageList1.Images.SetKeyName(5, "arrow-left.png");
-            this.imageList1.Images.SetKeyName(6, "check.png");
-            this.imageList1.Images.SetKeyName(7, "close.png");
-            // 
             // frmWareHouse_Using
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -204,6 +204,7 @@ namespace AltasMES
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "frmWareHouse_Using";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmWareHouse_Using";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmWareHouse_Using_FormClosing);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmWareHouse_Using_KeyPress);
