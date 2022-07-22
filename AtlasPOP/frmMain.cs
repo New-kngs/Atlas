@@ -12,6 +12,12 @@ namespace AtlasPOP
 {
     public partial class frmMain : Form
     {
+
+        public string EmpID { get; set; }
+        public string EmpName { get; set; }
+        public string DeptID { get; set; }
+        
+
         public frmMain()
         {
             InitializeComponent();
@@ -24,11 +30,18 @@ namespace AtlasPOP
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            this.EmpID = "EMP_0004";
+            this.EmpName = "강지모";
+            this.DeptID = "Product";
 
+            statusStrip1.Visible = false;
 
+            toolStripLblUser.Text = "사용자 : " + EmpName;
+            toolStripLblDept.Text = "부서 : " + DeptID;
 
             timer1.Interval = 1000;
             toolStripLblTime.Text = "현재 시간 : " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            label1.Text = DateTime.Now.ToString("HH:mm:ss");
             timer1.Start();
             timer1.Tick += Timer1_Tick;
         }
@@ -36,13 +49,8 @@ namespace AtlasPOP
         private void Timer1_Tick(object sender, EventArgs e)
         {
             toolStripLblTime.Text = "현재 시간 : " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            label1.Text = DateTime.Now.ToString("HH:mm:ss");
         }
-
-        private void button9_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void button6_Click(object sender, EventArgs e)
         {
             frmOperation frm = new frmOperation();
@@ -103,6 +111,26 @@ namespace AtlasPOP
         {
 
                
+            
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            if(btnLogout.Text != "로그아웃")
+            {
+                frmLogin frm = new frmLogin();
+                if(frm.ShowDialog() == DialogResult.OK)
+                {
+                    label1.Visible = false;
+                    statusStrip1.Visible = true;
+                    lblProcessName.Text = "안녕하세요";
+                    btnLogout.Text = "로그아웃";
+                }
+            }
+            else
+            {
+                this.Close();
+            }
             
         }
     }

@@ -69,10 +69,6 @@ namespace AltasMES
                 MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
             }
         }
-        public void LoadData()
-        {
-            //필요할려나..?
-        }
 
         private void frmProcess_Setting_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -114,8 +110,6 @@ namespace AltasMES
                 cboEquip.SelectedIndex = 0;
 
             }
-
-
             dgvList.DataSource = null;
             dgvList.DataSource = processList;
         }
@@ -145,10 +139,14 @@ namespace AltasMES
         private void button1_Click(object sender, EventArgs e)
         {
 
+
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            //리스트에 string으로 만들어서 넘긴다. 
+            //[{ "ProcessID" : 14, "EquipID" : 3, "CreateUser" : "강지모" }]
+
 
             service = new ServiceHelper("api/Process");
             ResMessage<List<EquipDetailsVO>> result = service.PostAsync<List<EquipDetailsVO>, List<EquipDetailsVO>>("SaveProcessEquip", processList);
@@ -156,7 +154,6 @@ namespace AltasMES
             if (result.ErrCode == 0)
             {
                 MessageBox.Show("성공적으로 등록되었습니다.");
-                this.DialogResult = DialogResult.OK;
             }
             else
                 MessageBox.Show(result.ErrMsg);
