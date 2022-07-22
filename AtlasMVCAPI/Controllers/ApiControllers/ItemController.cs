@@ -13,7 +13,7 @@ namespace AtlasMVCAPI.Controllers
     [RoutePrefix("api/Item")]
     public class ItemController : ApiController
     {
-        // Get : https://localhost:44391/api/Item
+        // Get : https://localhost:44391/api/Item/AllItem
         [Route("AllItem")]
         public IHttpActionResult GetallItem()
         {
@@ -43,7 +43,7 @@ namespace AtlasMVCAPI.Controllers
         }
 
 
-        // Get : https://localhost:44391/api/Item
+        // Get : https://localhost:44391/api/Item/AllItemCategory
         [Route("AllItemCategory")]
         public IHttpActionResult GetAllItemCategory()
         {

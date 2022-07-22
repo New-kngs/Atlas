@@ -74,7 +74,7 @@ namespace AltasMES
             ItemVO item = new ItemVO
             {
                 ItemCategory = cboCategory1.Text,
-                ItemID = txtID.Text,
+                p_ItemCode = txtID.Text, // LastNumID 를 만들기 위해 // MT
                 ItemName = txtName.Text,
                 ItemSize = cboSize.Text,
                 ItemPrice = Convert.ToInt32(txtPrice.Text),
@@ -85,7 +85,6 @@ namespace AltasMES
                 ItemExplain = txtExplain.Text,
                 ItemImage = txtImage.Text                
             };
-
             ResMessage<List<ItemVO>> resultItem = srv.PostAsync<ItemVO, List<ItemVO>>("saveItem", item);
 
             if (result.ErrCode == 0)
