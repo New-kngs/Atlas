@@ -71,14 +71,14 @@ namespace AltasMES
             {
                 if (cboCategory.SelectedIndex == 0) // 텍스트 조건만
                 {
-                    citemList = itemList.FindAll(p => p.ItemName.Contains(txtSearch.Text));
+                    citemList = itemList.FindAll(p => p.ItemName.ToLower().Contains(txtSearch.Text.ToLower()));
 
                     dgvItem.DataSource = null;
                     dgvItem.DataSource = new AdvancedList<ItemVO>(citemList);
                 }
                 else //
                 {
-                    list = citemList.FindAll(p => p.ItemName.Contains(txtSearch.Text));
+                    list = citemList.FindAll(p => p.ItemName.ToLower().Contains(txtSearch.Text.ToLower()));
                     dgvItem.DataSource = null;
                     dgvItem.DataSource = new AdvancedList<ItemVO>(list);
                 }
