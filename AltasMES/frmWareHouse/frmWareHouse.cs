@@ -18,7 +18,6 @@ namespace AltasMES
         {
             InitializeComponent();
         }
-
         private void frmWarehouse_Load(object sender, EventArgs e)
         {
             DataGridUtil.SetInitGridView(dgvWH);
@@ -85,21 +84,19 @@ namespace AltasMES
 
         private void dgvWH_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex > 0)
+            if (e.RowIndex > -1)
             {
                 string whid = dgvWH[0, e.RowIndex].Value.ToString();
 
                 ResMessage<List<ItemVO>> resResult = service.GetAsync<List<ItemVO>>($"WareHouseInfo/{whid}");
-
+                dgvPDT.DataSource = null;
                 dgvPDT.DataSource = resResult.Data;
-                dataGridView1.DataSource = null;
-                dataGridView1.DataSource = resResult.Data;                
             }
             else
             {
                 return;
             }
-            
+
         }
 
 
@@ -113,10 +110,27 @@ namespace AltasMES
                 ModifyUser = ((Main)this.MdiParent).EmpName.ToString()
             };
 
-            frmWareHouse_Delete frm = new frmWareHouse_Delete(wareHouse);
-            if (frm.ShowDialog() == DialogResult.OK)
+            //frmWareHouse_Delete frm = new frmWareHouse_Delete(wareHouse);
+            //if (frm.ShowDialog() == DialogResult.OK)
+            //{
+            //    DataLoad();
+            //}
+            if ((dgvWH.SelectedRows[0].Cells["StateYN"].Value).ToString() == "Y")
             {
-                DataLoad();
+                frmWareHouse_Delete frm = new frmWareHouse_Delete(wareHouse);
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    DataLoad();
+                }
+            }
+            else
+            {
+                //frmWareHouse_Modify frm = new frmWareHouse_Modify(wareHouse);
+                //if (frm.ShowDialog() == DialogResult.OK)
+                //{
+                //    DataLoad();
+                //}
+                MessageBox.Show("이미 삭제(미사용)처리된 창고입니다.");
             }
         }
 
@@ -158,9 +172,16 @@ namespace AltasMES
             List<WareHouseVO> resultVO = volist.Data.FindAll((r) => r.ItemCategory == category);
 
             if (cboWH.SelectedIndex == 0)
-                dgvWH.DataSource = volist.Data;
+            {
+                //dgvWH.DataSource = volist.Data;
+                DataLoad();
+            }
             else
-                dgvWH.DataSource = resultVO;
+            {
+                //dgvWH.DataSource = resultVO;
+                dgvWH.DataSource = new AdvancedList<WareHouseVO>(resultVO);
+            }
+                
         }
     }
 }
