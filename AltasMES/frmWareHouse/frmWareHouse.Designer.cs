@@ -37,6 +37,7 @@ namespace AltasMES
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.dgvPDT = new System.Windows.Forms.DataGridView();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.label1 = new System.Windows.Forms.Label();
             this.BasePanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -63,10 +64,11 @@ namespace AltasMES
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.cboWH);
             this.groupBox2.Controls.Add(this.btnSearch);
             this.groupBox2.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.groupBox2.Text = "검색 및 설정";
+            this.groupBox2.Text = "검색";
             // 
             // btnAdd
             // 
@@ -97,7 +99,7 @@ namespace AltasMES
             // cboWH
             // 
             this.cboWH.FormattingEnabled = true;
-            this.cboWH.Location = new System.Drawing.Point(19, 37);
+            this.cboWH.Location = new System.Drawing.Point(99, 39);
             this.cboWH.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboWH.Name = "cboWH";
             this.cboWH.Size = new System.Drawing.Size(168, 29);
@@ -110,7 +112,7 @@ namespace AltasMES
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSearch.ImageIndex = 3;
             this.btnSearch.ImageList = this.imageList1;
-            this.btnSearch.Location = new System.Drawing.Point(193, 32);
+            this.btnSearch.Location = new System.Drawing.Point(273, 35);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnSearch.Size = new System.Drawing.Size(78, 37);
@@ -141,7 +143,7 @@ namespace AltasMES
             this.dgvWH.RowTemplate.Height = 23;
             this.dgvWH.Size = new System.Drawing.Size(1028, 251);
             this.dgvWH.TabIndex = 1;
-            this.dgvWH.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvWH_CellClick);            
+            this.dgvWH.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvWH_CellClick);
             // 
             // groupBox4
             // 
@@ -165,6 +167,16 @@ namespace AltasMES
             this.dgvPDT.Size = new System.Drawing.Size(1028, 195);
             this.dgvPDT.TabIndex = 0;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.Location = new System.Drawing.Point(19, 43);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(74, 21);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "제품유형";
+            // 
             // frmWarehouse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -179,6 +191,7 @@ namespace AltasMES
             this.panel1.ResumeLayout(false);
             this.Basepanel4.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.Basepanel2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -199,5 +212,6 @@ namespace AltasMES
         private System.Windows.Forms.ComboBox cboWH;
         protected System.Windows.Forms.Button btnSearch;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Label label1;
     }
 }
