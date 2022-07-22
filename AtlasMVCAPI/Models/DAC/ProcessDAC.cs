@@ -135,37 +135,54 @@ namespace AtlasMVCAPI.Models
         }
 
         public bool SaveProcessEquip(List<EquipDetailsVO> equip)
-        {
+        {           
+            SqlConnection conn = new SqlConnection(strConn);
+            conn.Open();
+
+            SqlTransaction trans = conn.BeginTransaction();
+
             try
             {
-                using (SqlCommand cmd = new SqlCommand
+                using (SqlCommand cmd = new SqlCommand())
                 {
-                    Connection = new SqlConnection(strConn),
-                    CommandText = @"insert into TB_EquipmentDetails(ProcessID, EquipID, CreateDate, CreateUser)
-                                values(@ProcessID, @EquipID, @CreateDate, @CreateUser)"
+                    cmd.Connection = conn;
+                    cmd.CommandText = @"delete from TB_EquipmentDetails where ProcessID=@ProcessID";
+                    cmd.Transaction = trans;                
+                    cmd.Parameters.AddWithValue("@ProcessID", equip[0].ProcessID);
 
-                })
-                {
-                    cmd.Parameters.Add("@ProcessID", System.Data.SqlDbType.Int);
+                    cmd.ExecuteNonQuery();
+
+                    cmd.CommandText = @"insert into TB_EquipmentDetails(ProcessID, EquipID, EquipName, CreateDate, CreateUser)
+                                     values(@ProcessID, @EquipID, @EquipName, @CreateDate, @CreateUser)";
+                
                     cmd.Parameters.Add("@EquipID", System.Data.SqlDbType.Int);
+                    cmd.Parameters.Add("@EquipName", System.Data.SqlDbType.NVarChar, 50);
                     cmd.Parameters.Add("@CreateUser", System.Data.SqlDbType.NVarChar, 50);
                     cmd.Parameters.Add("@CreateDate", System.Data.SqlDbType.DateTime);
 
-                    cmd.Connection.Open();
+                    int iRowAffect = 0;
                     foreach (EquipDetailsVO item in equip)
                     {
-                        cmd.Parameters["@ProcessID"].Value = item.ProcessID;
                         cmd.Parameters["@EquipID"].Value = item.EquipID;
+                        cmd.Parameters["@EquipName"].Value = item.EquipName;
                         cmd.Parameters["@CreateDate"].Value = DateTime.Now;
                         cmd.Parameters["@CreateUser"].Value = item.CreateUser;
-                        cmd.ExecuteNonQuery();
-                    }
-                    cmd.Connection.Close();
-                    return true;
+                    
+                        iRowAffect += cmd.ExecuteNonQuery();
+                    }                    
+                    trans.Commit();                    
+                    return (iRowAffect > 0);
                 }
-            }catch(Exception err)
+            }
+            catch(Exception err)
             {
+                string sss = err.Message;
+                trans.Rollback();                
                 return false;
+            }
+            finally
+            {
+                conn.Close();
             }
             
         }
@@ -175,8 +192,8 @@ namespace AtlasMVCAPI.Models
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = new SqlConnection(strConn);
-                cmd.CommandText = @"select ProcessID, e.EquipID, EquipName
-                                    from TB_EquipmentDetails ed join TB_Equipment e on ed.EquipID = e.EquipID";
+                cmd.CommandText = @"select ProcessID, EquipID, EquipName, CreateUser
+                                    from TB_EquipmentDetails";
 
                 cmd.Connection.Open();
                 List<EquipDetailsVO> list = Helper.DataReaderMapToList<EquipDetailsVO>(cmd.ExecuteReader());

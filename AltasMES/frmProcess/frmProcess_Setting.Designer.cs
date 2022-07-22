@@ -186,6 +186,7 @@
             // 
             // cboEquip
             // 
+            this.cboEquip.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboEquip.FormattingEnabled = true;
             this.cboEquip.Location = new System.Drawing.Point(79, 44);
             this.cboEquip.Name = "cboEquip";
