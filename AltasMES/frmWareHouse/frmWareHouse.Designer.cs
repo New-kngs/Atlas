@@ -34,7 +34,6 @@ namespace AltasMES
             this.btnSearch = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvWH = new System.Windows.Forms.DataGridView();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.dgvPDT = new System.Windows.Forms.DataGridView();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
@@ -47,7 +46,6 @@ namespace AltasMES
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvWH)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPDT)).BeginInit();
             this.SuspendLayout();
@@ -125,7 +123,6 @@ namespace AltasMES
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.dgvWH);
-            this.groupBox3.Controls.Add(this.dataGridView1);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
@@ -144,17 +141,7 @@ namespace AltasMES
             this.dgvWH.RowTemplate.Height = 23;
             this.dgvWH.Size = new System.Drawing.Size(1028, 251);
             this.dgvWH.TabIndex = 1;
-            this.dgvWH.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvWH_CellClick);
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 25);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(1028, 251);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvWH.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvWH_CellClick);            
             // 
             // groupBox4
             // 
@@ -197,7 +184,6 @@ namespace AltasMES
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvWH)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPDT)).EndInit();
             this.ResumeLayout(false);
@@ -210,7 +196,6 @@ namespace AltasMES
         private System.Windows.Forms.DataGridView dgvPDT;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.DataGridView dgvWH;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ComboBox cboWH;
         protected System.Windows.Forms.Button btnSearch;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;

@@ -204,6 +204,7 @@ namespace AltasMES
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "frmWareHouse_Delete";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmWareHouse_Delete";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmWareHouse_Delete_FormClosing);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmWareHouse_Delete_KeyPress_1);

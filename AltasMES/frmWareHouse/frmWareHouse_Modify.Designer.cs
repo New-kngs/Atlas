@@ -184,6 +184,7 @@ namespace AltasMES
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblTitle);
             this.Name = "frmWareHouse_Modify";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmWareHouse_Modify";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmWareHouse_Modify_FormClosing);
             this.panel1.ResumeLayout(false);
