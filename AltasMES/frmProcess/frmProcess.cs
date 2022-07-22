@@ -173,5 +173,13 @@ namespace AltasMES
         {
 
         }
+
+        private void txtProcessName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                btnSearch_Click(sender, e);
+            }
+        }
     }
 }

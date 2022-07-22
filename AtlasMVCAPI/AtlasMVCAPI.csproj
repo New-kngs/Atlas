@@ -2033,6 +2033,7 @@
     <Compile Include="Controllers\ApiControllers\ItemController.cs" />
     <Compile Include="Controllers\ApiControllers\ProcessController.cs" />
     <Compile Include="Controllers\ApiControllers\WareHouseController.cs" />
+    <Compile Include="Controllers\WebControllers\CartController.cs" />
     <Compile Include="Controllers\WebControllers\HomeController.cs" />
     <Compile Include="Controllers\WebControllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
@@ -2045,6 +2046,7 @@
     <Compile Include="Models\DAC\WareHouseDAC.cs" />
     <Compile Include="Models\Helper\Helper.cs" />
     <Compile Include="Models\PagingInfo.cs" />
+    <Compile Include="Models\ProductListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\PagingHelper.cs" />
     <Compile Include="Util\ServiceHelper.cs" />
@@ -2189,6 +2191,7 @@
     <Content Include="Views\Shared\_LayoutPageOrder.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Product\List.cshtml" />
+    <Content Include="Views\Cart\Basket.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

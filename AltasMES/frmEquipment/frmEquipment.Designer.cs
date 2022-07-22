@@ -134,6 +134,7 @@ namespace AltasMES
             this.txtEquip.Name = "txtEquip";
             this.txtEquip.Size = new System.Drawing.Size(215, 26);
             this.txtEquip.TabIndex = 8;
+            this.txtEquip.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEquip_KeyPress);
             // 
             // label1
             // 

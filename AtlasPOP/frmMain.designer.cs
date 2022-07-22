@@ -42,8 +42,8 @@ namespace AtlasPOP
             this.btnOperation = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripLblTime = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStriplblUser = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblProcessName = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
@@ -271,8 +271,8 @@ namespace AtlasPOP
             this.statusStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1,
-            this.toolStripStatusLabel2});
+            this.toolStripLblTime,
+            this.toolStriplblUser});
             this.statusStrip1.Location = new System.Drawing.Point(211, 833);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
@@ -281,17 +281,17 @@ namespace AtlasPOP
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // toolStripStatusLabel1
+            // toolStripLblTime
             // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(152, 39);
-            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+            this.toolStripLblTime.Name = "toolStripLblTime";
+            this.toolStripLblTime.Size = new System.Drawing.Size(152, 39);
+            this.toolStripLblTime.Text = "toolStripStatusLabel1";
             // 
-            // toolStripStatusLabel2
+            // toolStriplblUser
             // 
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(152, 39);
-            this.toolStripStatusLabel2.Text = "toolStripStatusLabel2";
+            this.toolStriplblUser.Name = "toolStriplblUser";
+            this.toolStriplblUser.Size = new System.Drawing.Size(152, 39);
+            this.toolStriplblUser.Text = "toolStripStatusLabel2";
             // 
             // lblProcessName
             // 
@@ -501,6 +501,10 @@ namespace AtlasPOP
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -558,8 +562,8 @@ namespace AtlasPOP
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripLblTime;
+        private System.Windows.Forms.ToolStripStatusLabel toolStriplblUser;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblItemName;
         private System.Windows.Forms.Label label7;
