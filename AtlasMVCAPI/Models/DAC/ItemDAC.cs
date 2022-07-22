@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Configuration;
 using AtlasDTO;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace AtlasMVCAPI.Models
 {
@@ -78,48 +79,39 @@ namespace AtlasMVCAPI.Models
             }            
         }
 
-        //public bool SaveItem(ItemVO item)
-        //{
-        //    using (SqlCommand cmd = new SqlCommand())
-        //    {
-        //        cmd.Connection = new SqlConnection(strConn);
-        //        cmd.CommandText = @"";
+        // @ItemName, @CustomerID, @CurrentQty, @SafeQty, @WHID, @ItemPrice, @ItemCategory, @ItemSize, @ItemImage, @ItemExplain, @CreateDate, @CreateUser
 
+        public bool SaveItem(ItemVO item)
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.CommandText = "SP_SaveItem";
+                cmd.CommandType = CommandType.StoredProcedure;
 
-        //        cmd.Parameters.AddWithValue("@", );
+                cmd.Parameters.AddWithValue("@p_ItemCode", item.p_ItemCode);
+                cmd.Parameters.AddWithValue("@ItemName", item.ItemName);
+                cmd.Parameters.AddWithValue("@CustomerID", item.CustomerID);
+                cmd.Parameters.AddWithValue("@CurrentQty", item.CurrentQty);
+                cmd.Parameters.AddWithValue("@SafeQty", item.SafeQty);
+                cmd.Parameters.AddWithValue("@WHID", item.WHID);
+                cmd.Parameters.AddWithValue("@ItemPrice", item.ItemPrice);
+                cmd.Parameters.AddWithValue("@ItemCategory", item.ItemCategory);
+                cmd.Parameters.AddWithValue("@ItemSize", item.ItemSize);
+                cmd.Parameters.AddWithValue("@ItemImage", item.ItemImage);
+                cmd.Parameters.AddWithValue("@ItemExplain", item.ItemExplain);
+                cmd.Parameters.AddWithValue("@CreateDate", DateTime.Now);
+                cmd.Parameters.AddWithValue("@CreateUser", item.CreateUser);
 
+                cmd.Connection.Open();
+                int iRowAffect = cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
 
-        //        cmd.Connection.Open();
-        //        int iRowAffect = cmd.ExecuteNonQuery();
-        //        cmd.Connection.Close();
+                return (iRowAffect > 0);
+            }
+        }
 
-        //        return (iRowAffect > 0);
-        //    }
-        //}
-
-
-
-
-        //public bool SaveItem(ItemVO process)
-        //{
-        //    using (SqlCommand cmd = new SqlCommand())
-        //    {
-        //        cmd.Connection = new SqlConnection(strConn);
-        //        cmd.CommandText = @"insert into TB_Process (ProcessName, FailCheck, CreateUser)
-        //                        values ( @ProcessName,@FailCheck, @CreateUser)";
-
-
-        //        cmd.Parameters.AddWithValue("@ProcessName", process.ProcessName);
-        //        cmd.Parameters.AddWithValue("@FailCheck", process.FailCheck);
-        //        cmd.Parameters.AddWithValue("@CreateUser", "김길동");
-
-        //        cmd.Connection.Open();
-        //        int iRowAffect = cmd.ExecuteNonQuery();
-        //        cmd.Connection.Close();
-
-        //        return (iRowAffect > 0);
-        //    }
-        //}
+       
 
         /// <summary>
         /// 웹사이트에 (완)제품 목록을 최대 4개까지 보여준다

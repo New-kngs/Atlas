@@ -73,7 +73,7 @@ namespace AtlasMVCAPI.Controllers
         }
 
 
-        // Get : https://localhost:44391/api/Item
+        // Get : https://localhost:44391/api/Item/{id}
         [HttpGet]
         [Route("{id}")]
         public IHttpActionResult GeTItemById(string id)
@@ -102,5 +102,36 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
+
+
+        // POST : https://localhost:44391/api/Item/saveItem
+        [HttpPost]
+        [Route("saveItem")]
+        public IHttpActionResult SaveItem(ItemVO item)
+        {
+            try
+            {
+                ItemDAC db = new ItemDAC();
+                bool flag = db.SaveItem(item);
+
+                ResMessage result = new ResMessage()
+                {
+                    ErrCode = (item == null) ? -9 : 0,
+                    ErrMsg = (item == null) ? "저장중 오류발생" : "S"
+                };
+                return Ok(result);
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+
+                return Ok(new ResMessage()
+                {
+                    ErrCode = -9,
+                    ErrMsg = err.Message
+                });
+            }
+        }
+
     }
 }
