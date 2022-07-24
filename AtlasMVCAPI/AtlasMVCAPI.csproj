@@ -2047,6 +2047,7 @@
     <Compile Include="Models\DAC\EmployeeDAC.cs" />
     <Compile Include="Models\DAC\EquipmentDAC.cs" />
     <Compile Include="Models\DAC\ItemDAC.cs" />
+    <Compile Include="Models\DAC\LoginDAC.cs" />
     <Compile Include="Models\DAC\popDAC.cs" />
     <Compile Include="Models\DAC\ProcessDAC.cs" />
     <Compile Include="Models\DAC\WareHouseDAC.cs" />
@@ -2199,7 +2200,7 @@
     <Content Include="Views\Product\List.cshtml" />
     <Content Include="Views\Cart\Basket.cshtml" />
     <Content Include="Views\Cart\AddToCart.cshtml" />
-    <Content Include="Views\Login\Customer.cshtml" />
+    <Content Include="Views\Login\Lock.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

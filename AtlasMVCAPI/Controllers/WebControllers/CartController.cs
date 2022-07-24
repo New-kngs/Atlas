@@ -15,7 +15,7 @@ namespace AtlasMVCAPI.Controllers.WebControllers
         {
             // line에 추가된 정보로 장바구니를 보여줌
             Cart cart = GetCart();
-            return View(cart); 
+            return View(cart);
         }
         [HttpPost]
         public ActionResult AddToCart(string productID, string returnUrl)
@@ -28,7 +28,7 @@ namespace AtlasMVCAPI.Controllers.WebControllers
             ItemDAC db = new ItemDAC();
             ItemVO product = db.GetProductInfo(productID);
 
-            if(product != null) // 조회된 제품이 없다면
+            if (product != null) // 조회된 제품이 없다면
             {
                 // 장바구니 추가
                 Cart cart = GetCart();

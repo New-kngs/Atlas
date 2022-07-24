@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AtlasDTO;
+using AtlasMVCAPI.Models.DAC;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,34 +10,45 @@ namespace AtlasMVCAPI.Controllers.WebControllers
 {
     public class LoginController : Controller
     {
-        // GET: Login
-        public ActionResult Customer()
+        // 잠겨진 로그인 창
+        public ActionResult Lock()
         {
             return View();
         }
-        //[HttpPost]
-        //public ActionResult Login(string UserID, string UserPWD)
-        //{
-        //    Cuso user = db.Login(UserID, UserPWD);
-        //    if (user != null)
-        //    {
-        //        Session["UserInfo"] = user;
-        //        Session["UserName"] = user.UserName;
-        //        return RedirectToAction("Index", "Home");
-        //    }
-        //    else
-        //    {
-        //        return RedirectToAction("Index", "Login");
-        //    }
-        //}
+
+        /// <summary>
+        /// 거래처, 임원 둘 중 누가 로그인 하냐에 따라서 Layout이 달라짐
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult ButtonClick(string LoginID, string LoginPWD)
+        {
+            LoginDAC db = new LoginDAC();
+            LoginVO user = db.LoginCheck(LoginID, LoginPWD);
+            if (user.CustomerID != null) // 사용자가 거래처라면
+            {
+                Session["UserVO"] = user;
+                return RedirectToAction("List", "Product");
+            }
+            else if (user.EmpID != null) // 사용자가 임원이라면
+            {
+                Session["UserVO"] = user;
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                // ID와 PWD를 잘못 입력하셨습니다. 재시도 해주세요.
+                return View(); // ????
+            }
+        }
 
 
-        //public ActionResult Logout()
-        //{
-        //    Session["UserInfo"] = null;
-        //    Session.Clear();
+        public ActionResult Logout()
+        {
+            Session["UserInfo"] = null;
+            Session.Clear();
 
-        //    return RedirectToAction("Index", "Home");
-        //}
+            return RedirectToAction("Lock", "Login");
+        }
     }
 }
