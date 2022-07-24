@@ -41,12 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BOMVO.cs" />
     <Compile Include="ComboItemVO.cs" />
+    <Compile Include="CustomerVO.cs" />
     <Compile Include="EmployeeVO.cs" />
     <Compile Include="EquipDetailsVO.cs" />
     <Compile Include="EquipmentVO.cs" />
     <Compile Include="ItemVO.cs" />
     <Compile Include="OperationVO.cs" />
+    <Compile Include="OrderVO.cs" />
     <Compile Include="ProcessVO.cs" />
     <Compile Include="ResMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -37,11 +37,58 @@ namespace AtlasMVCAPI.Models
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = new SqlConnection(strConn);
-                cmd.CommandText = @"select ItemName, CustomerID, ItemCategory, WHID
+                cmd.CommandText = @"select ItemID,ItemName, CustomerID, ItemCategory, WHID
                                   from TB_Item";
 
                 cmd.Connection.Open();
                 List<ItemVO> list = Helper.DataReaderMapToList<ItemVO>(cmd.ExecuteReader());
+                cmd.Connection.Close();
+
+                return list;
+            }
+        }
+
+
+        public List<OrderVO> GetCustomerID()
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.CommandText = @"select OrderID, CustomerID from TB_Order";
+
+                cmd.Connection.Open();
+                List<OrderVO> list = Helper.DataReaderMapToList<OrderVO>(cmd.ExecuteReader());
+                cmd.Connection.Close();
+
+                return list;
+            }
+        }
+
+        public List<CustomerVO> GetCustomerName()
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.CommandText = @"select CustomerID, CustomerName from TB_Customer";
+
+                cmd.Connection.Open();
+                List<CustomerVO> list = Helper.DataReaderMapToList<CustomerVO>(cmd.ExecuteReader());
+                cmd.Connection.Close();
+
+                return list;
+            }
+        }
+
+        public List<BOMVO> GetResourceBOM()
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.CommandText = @"select ITEMID, ParentID,ChildID, UnitQty
+                                    from TB_BOM";
+
+                cmd.Connection.Open();
+                List<BOMVO> list = Helper.DataReaderMapToList<BOMVO>(cmd.ExecuteReader());
                 cmd.Connection.Close();
 
                 return list;

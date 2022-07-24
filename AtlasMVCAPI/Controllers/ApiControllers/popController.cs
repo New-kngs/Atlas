@@ -48,7 +48,7 @@ namespace AtlasMVCAPI.Controllers
         }
 
         /// <summary>
-        /// 등록된 모든 공정를 조회해서 반환
+        /// 등록된 모든 제품을 조회해서 반환
         /// </summary>
         //https://localhost:44391/api/pop/getItem
         [Route("getItem")]
@@ -80,6 +80,112 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
+
+        /// <summary>
+        /// 등록된 모든 거래처ID를 조회해서 반환
+        /// </summary>
+        //https://localhost:44391/api/pop/GetCustomer
+        [Route("GetCustomer")]
+        public IHttpActionResult GetCustomerID()
+        {
+            try
+            {
+                popDAC db = new popDAC();
+                List<OrderVO> list = db.GetCustomerID();
+
+                ResMessage<List<OrderVO>> result = new ResMessage<List<OrderVO>>()
+                {
+                    ErrCode = (list == null) ? -9 : 0,
+                    ErrMsg = (list == null) ? "조회중 오류발생" : "S",
+                    Data = list
+                };
+
+                return Ok(result);
+            }
+            catch (Exception err)
+            {
+                System.Diagnostics.Debug.WriteLine(err.Message);
+
+                return Ok(new ResMessage()
+                {
+                    ErrCode = -9,
+                    //ErrMsg = err.Message
+                    ErrMsg = "서비스 관리자에게 문의하시기 바랍니다."
+                });
+            }
+        }
+
+        /// <summary>
+        /// 등록된 모든 거래처명을 조회해서 반환
+        /// </summary>
+        //https://localhost:44391/api/pop/GetCustomerName
+        [Route("GetCustomerName")]
+        public IHttpActionResult GetCustomerName()
+        {
+            try
+            {
+                popDAC db = new popDAC();
+                List<CustomerVO> list = db.GetCustomerName();
+
+                ResMessage<List<CustomerVO>> result = new ResMessage<List<CustomerVO>>()
+                {
+                    ErrCode = (list == null) ? -9 : 0,
+                    ErrMsg = (list == null) ? "조회중 오류발생" : "S",
+                    Data = list
+                };
+
+                return Ok(result);
+            }
+            catch (Exception err)
+            {
+                System.Diagnostics.Debug.WriteLine(err.Message);
+
+                return Ok(new ResMessage()
+                {
+                    ErrCode = -9,
+                    //ErrMsg = err.Message
+                    ErrMsg = "서비스 관리자에게 문의하시기 바랍니다."
+                });
+            }
+        }
+
+        /// <summary>
+        /// 제품생산에 필요한 자재수량
+        /// </summary>
+        //https://localhost:44391/api/pop/GetResourceBOM
+        [Route("GetResourceBOM")]
+        public IHttpActionResult GetResourceBOM()
+        {
+            try
+            {
+                popDAC db = new popDAC();
+                List<BOMVO> list = db.GetResourceBOM();
+
+                ResMessage<List<BOMVO>> result = new ResMessage<List<BOMVO>>()
+                {
+                    ErrCode = (list == null) ? -9 : 0,
+                    ErrMsg = (list == null) ? "조회중 오류발생" : "S",
+                    Data = list
+                };
+
+                return Ok(result);
+            }
+            catch (Exception err)
+            {
+                System.Diagnostics.Debug.WriteLine(err.Message);
+
+                return Ok(new ResMessage()
+                {
+                    ErrCode = -9,
+                    //ErrMsg = err.Message
+                    ErrMsg = "서비스 관리자에게 문의하시기 바랍니다."
+                });
+            }
+        }
+
+
+
+
 
         //POST : https://localhost:44391/api/Process/SaveProcess
         [HttpPost]

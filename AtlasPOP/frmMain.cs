@@ -20,11 +20,16 @@ namespace AtlasPOP
         public string DeptID { get; set; }
         public OperationVO oper { get; set; }
         public string OperID { get; set; }
-        string op = "";
+
+        string itemID;
+        string OrderID;
+        string CustomerID;
 
         ServiceHelper service = null;
         ResMessage<List<ItemVO>> itemList;
         ResMessage<List<OperationVO>> operList;
+        ResMessage<List<OrderVO>> oderList;
+        ResMessage<List<CustomerVO>> customerList;
         public frmMain()
         {
             InitializeComponent();
@@ -50,12 +55,16 @@ namespace AtlasPOP
             label1.Text = DateTime.Now.ToString("HH:mm:ss");
             timer1.Start();
             timer1.Tick += Timer1_Tick;
+
+            LoadData();
         }
         public void LoadData()
         {
             service = new ServiceHelper("api/pop");
-            itemList = service.GetAsync<List<ItemVO>>("AllOperation");
+            itemList = service.GetAsync<List<ItemVO>>("getItem");
             operList = service.GetAsync<List<OperationVO>>("AllOperation");
+            oderList = service.GetAsync<List<OrderVO>>("GetCustomer");
+            customerList = service.GetAsync<List<CustomerVO>>("GetCustomerName");
             if (itemList.Data != null)
             {
                 
@@ -79,10 +88,13 @@ namespace AtlasPOP
             frm.DataSendEvent += new DataGetEventHandler(this.DataGet);
             if(frm.ShowDialog() == DialogResult.OK)
             {
-                /*string itemID = operList.Data.Find((n) => n.OpID == OperID).ItemID;
-                lblItemName.Text = itemList.Data.Find((n)=>n.ItemID == itemID).ItemName;
-                lblOrderQty.Text = "40";
-                lblClient.Text = "거래처";*/
+                itemID = operList.Data.Find((n) => n.OpID == OperID).ItemID;
+                OrderID = operList.Data.Find((n) => n.OpID == OperID).OrderID;
+                CustomerID = oderList.Data.Find((n) => n.OrderID == OrderID).CustomerID;
+
+                lblItemName.Text = itemList.Data.Find((n) => n.ItemID == itemID).ItemName;
+                lblClient.Text = customerList.Data.Find((n) => n.CustomerID == CustomerID).CustomerName;
+                lblOrderQty.Text = operList.Data.Find((n) => n.OpID == OperID).PlanQty.ToString();
             } 
         }
 
@@ -109,11 +121,7 @@ namespace AtlasPOP
             frm.ShowDialog();
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-            frmResource frm = new frmResource();
-            frm.ShowDialog();
-        }
+
 
         private void button7_Click(object sender, EventArgs e)
         {
@@ -166,6 +174,11 @@ namespace AtlasPOP
                 this.Close();
             }
             
+        }
+        private void btnResource_Click(object sender, EventArgs e)
+        {
+            frmResource frm = new frmResource(itemID);
+            frm.ShowDialog();
         }
     }
 }

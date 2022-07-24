@@ -90,12 +90,13 @@ namespace AtlasPOP
             this.tableLayoutPanel1.Controls.Add(this.panel10, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 79F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1235, 702);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1411, 878);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -107,7 +108,8 @@ namespace AtlasPOP
             this.tableLayoutPanel2.Controls.Add(this.btnFail, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.btnLaping, 0, 5);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(1052, 115);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(1201, 144);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 6;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
@@ -116,9 +118,9 @@ namespace AtlasPOP
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(180, 548);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(207, 685);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // btnStart
@@ -127,9 +129,10 @@ namespace AtlasPOP
             this.btnStart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnStart.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnStart.ForeColor = System.Drawing.Color.Lime;
-            this.btnStart.Location = new System.Drawing.Point(3, 3);
+            this.btnStart.Location = new System.Drawing.Point(3, 4);
+            this.btnStart.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(174, 85);
+            this.btnStart.Size = new System.Drawing.Size(201, 106);
             this.btnStart.TabIndex = 0;
             this.btnStart.Text = "시작";
             this.btnStart.UseVisualStyleBackColor = false;
@@ -141,9 +144,10 @@ namespace AtlasPOP
             this.btnEnd.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnEnd.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnEnd.ForeColor = System.Drawing.Color.Red;
-            this.btnEnd.Location = new System.Drawing.Point(3, 94);
+            this.btnEnd.Location = new System.Drawing.Point(3, 118);
+            this.btnEnd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnEnd.Name = "btnEnd";
-            this.btnEnd.Size = new System.Drawing.Size(174, 85);
+            this.btnEnd.Size = new System.Drawing.Size(201, 106);
             this.btnEnd.TabIndex = 1;
             this.btnEnd.Text = "종료";
             this.btnEnd.UseVisualStyleBackColor = false;
@@ -155,9 +159,10 @@ namespace AtlasPOP
             this.btnFail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnFail.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnFail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnFail.Location = new System.Drawing.Point(3, 367);
+            this.btnFail.Location = new System.Drawing.Point(3, 460);
+            this.btnFail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnFail.Name = "btnFail";
-            this.btnFail.Size = new System.Drawing.Size(174, 85);
+            this.btnFail.Size = new System.Drawing.Size(201, 106);
             this.btnFail.TabIndex = 2;
             this.btnFail.Text = "불량 등록";
             this.btnFail.UseVisualStyleBackColor = false;
@@ -169,9 +174,10 @@ namespace AtlasPOP
             this.btnLaping.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnLaping.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnLaping.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnLaping.Location = new System.Drawing.Point(3, 458);
+            this.btnLaping.Location = new System.Drawing.Point(3, 574);
+            this.btnLaping.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnLaping.Name = "btnLaping";
-            this.btnLaping.Size = new System.Drawing.Size(174, 87);
+            this.btnLaping.Size = new System.Drawing.Size(201, 107);
             this.btnLaping.TabIndex = 3;
             this.btnLaping.Text = "포장";
             this.btnLaping.UseVisualStyleBackColor = false;
@@ -181,13 +187,14 @@ namespace AtlasPOP
             // 
             this.tableLayoutPanel3.ColumnCount = 1;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel3.Controls.Add(this.btnResource, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.btnPerformance, 0, 5);
             this.tableLayoutPanel3.Controls.Add(this.btnOperation, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.button7, 0, 2);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 115);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 144);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 6;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
@@ -196,7 +203,7 @@ namespace AtlasPOP
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(179, 548);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(205, 685);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
             // btnResource
@@ -205,13 +212,14 @@ namespace AtlasPOP
             this.btnResource.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnResource.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnResource.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnResource.Location = new System.Drawing.Point(3, 94);
+            this.btnResource.Location = new System.Drawing.Point(3, 118);
+            this.btnResource.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnResource.Name = "btnResource";
-            this.btnResource.Size = new System.Drawing.Size(173, 85);
+            this.btnResource.Size = new System.Drawing.Size(199, 106);
             this.btnResource.TabIndex = 0;
             this.btnResource.Text = "자재투입";
             this.btnResource.UseVisualStyleBackColor = false;
-            this.btnResource.Click += new System.EventHandler(this.button4_Click);
+            this.btnResource.Click += new System.EventHandler(this.btnResource_Click);
             // 
             // btnPerformance
             // 
@@ -219,9 +227,10 @@ namespace AtlasPOP
             this.btnPerformance.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnPerformance.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnPerformance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnPerformance.Location = new System.Drawing.Point(3, 458);
+            this.btnPerformance.Location = new System.Drawing.Point(3, 574);
+            this.btnPerformance.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnPerformance.Name = "btnPerformance";
-            this.btnPerformance.Size = new System.Drawing.Size(173, 87);
+            this.btnPerformance.Size = new System.Drawing.Size(199, 107);
             this.btnPerformance.TabIndex = 1;
             this.btnPerformance.Text = "작업 현황";
             this.btnPerformance.UseVisualStyleBackColor = false;
@@ -233,9 +242,10 @@ namespace AtlasPOP
             this.btnOperation.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnOperation.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnOperation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnOperation.Location = new System.Drawing.Point(3, 3);
+            this.btnOperation.Location = new System.Drawing.Point(3, 4);
+            this.btnOperation.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnOperation.Name = "btnOperation";
-            this.btnOperation.Size = new System.Drawing.Size(173, 85);
+            this.btnOperation.Size = new System.Drawing.Size(199, 106);
             this.btnOperation.TabIndex = 2;
             this.btnOperation.Text = "작업지시";
             this.btnOperation.UseVisualStyleBackColor = false;
@@ -247,9 +257,10 @@ namespace AtlasPOP
             this.button7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button7.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.button7.Location = new System.Drawing.Point(3, 185);
+            this.button7.Location = new System.Drawing.Point(3, 232);
+            this.button7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(173, 85);
+            this.button7.Size = new System.Drawing.Size(199, 106);
             this.button7.TabIndex = 3;
             this.button7.Text = "실적조회";
             this.button7.UseVisualStyleBackColor = false;
@@ -264,38 +275,39 @@ namespace AtlasPOP
             this.toolStripLblTime,
             this.toolStripLblUser,
             this.toolStripLblDept});
-            this.statusStrip1.Location = new System.Drawing.Point(185, 666);
+            this.statusStrip1.Location = new System.Drawing.Point(211, 833);
             this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(16, 0, 1, 0);
             this.statusStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.statusStrip1.Size = new System.Drawing.Size(864, 36);
+            this.statusStrip1.Size = new System.Drawing.Size(987, 45);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // toolStripLblTime
             // 
             this.toolStripLblTime.Name = "toolStripLblTime";
-            this.toolStripLblTime.Size = new System.Drawing.Size(121, 31);
+            this.toolStripLblTime.Size = new System.Drawing.Size(152, 39);
             this.toolStripLblTime.Text = "toolStripStatusLabel1";
             // 
             // toolStripLblUser
             // 
             this.toolStripLblUser.Name = "toolStripLblUser";
-            this.toolStripLblUser.Size = new System.Drawing.Size(121, 31);
+            this.toolStripLblUser.Size = new System.Drawing.Size(152, 39);
             this.toolStripLblUser.Text = "toolStripStatusLabel2";
             // 
             // toolStripLblDept
             // 
             this.toolStripLblDept.Name = "toolStripLblDept";
-            this.toolStripLblDept.Size = new System.Drawing.Size(121, 31);
+            this.toolStripLblDept.Size = new System.Drawing.Size(152, 39);
             this.toolStripLblDept.Text = "toolStripStatusLabel1";
             // 
             // lblProcessName
             // 
             this.lblProcessName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblProcessName.Font = new System.Drawing.Font("굴림", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblProcessName.Location = new System.Drawing.Point(188, 0);
+            this.lblProcessName.Location = new System.Drawing.Point(214, 0);
             this.lblProcessName.Name = "lblProcessName";
-            this.lblProcessName.Size = new System.Drawing.Size(858, 112);
+            this.lblProcessName.Size = new System.Drawing.Size(981, 140);
             this.lblProcessName.TabIndex = 3;
             this.lblProcessName.Text = "로그인을 해주세요";
             this.lblProcessName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -306,9 +318,10 @@ namespace AtlasPOP
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.panel9);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(188, 115);
+            this.panel1.Location = new System.Drawing.Point(214, 144);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(858, 548);
+            this.panel1.Size = new System.Drawing.Size(981, 685);
             this.panel1.TabIndex = 4;
             // 
             // label1
@@ -316,9 +329,9 @@ namespace AtlasPOP
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("맑은 고딕", 99.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(38, 153);
+            this.label1.Location = new System.Drawing.Point(43, 191);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 175);
+            this.label1.Size = new System.Drawing.Size(0, 221);
             this.label1.TabIndex = 2;
             // 
             // panel9
@@ -332,26 +345,28 @@ namespace AtlasPOP
             this.panel9.Controls.Add(this.lblItemName);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel9.Location = new System.Drawing.Point(0, 0);
+            this.panel9.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(858, 88);
+            this.panel9.Size = new System.Drawing.Size(981, 110);
             this.panel9.TabIndex = 1;
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.DarkGray;
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 78);
+            this.panel2.Location = new System.Drawing.Point(0, 98);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(858, 10);
+            this.panel2.Size = new System.Drawing.Size(981, 12);
             this.panel2.TabIndex = 1;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("굴림", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label7.Location = new System.Drawing.Point(653, 11);
+            this.label7.Location = new System.Drawing.Point(746, 14);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(105, 22);
+            this.label7.Size = new System.Drawing.Size(133, 28);
             this.label7.TabIndex = 0;
             this.label7.Text = "주문 수량";
             this.label7.Click += new System.EventHandler(this.label3_Click);
@@ -360,9 +375,9 @@ namespace AtlasPOP
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("굴림", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label5.Location = new System.Drawing.Point(402, 11);
+            this.label5.Location = new System.Drawing.Point(459, 14);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(76, 22);
+            this.label5.Size = new System.Drawing.Size(96, 28);
             this.label5.TabIndex = 0;
             this.label5.Text = "거래처";
             this.label5.Click += new System.EventHandler(this.label3_Click);
@@ -371,9 +386,9 @@ namespace AtlasPOP
             // 
             this.lblOrderQty.AutoSize = true;
             this.lblOrderQty.Font = new System.Drawing.Font("굴림", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblOrderQty.Location = new System.Drawing.Point(699, 50);
+            this.lblOrderQty.Location = new System.Drawing.Point(799, 62);
             this.lblOrderQty.Name = "lblOrderQty";
-            this.lblOrderQty.Size = new System.Drawing.Size(0, 22);
+            this.lblOrderQty.Size = new System.Drawing.Size(0, 28);
             this.lblOrderQty.TabIndex = 0;
             this.lblOrderQty.Click += new System.EventHandler(this.label2_Click);
             // 
@@ -381,9 +396,9 @@ namespace AtlasPOP
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("굴림", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label3.Location = new System.Drawing.Point(119, 11);
+            this.label3.Location = new System.Drawing.Point(136, 14);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(105, 22);
+            this.label3.Size = new System.Drawing.Size(133, 28);
             this.label3.TabIndex = 0;
             this.label3.Text = "생산 제품";
             this.label3.Click += new System.EventHandler(this.label3_Click);
@@ -392,9 +407,9 @@ namespace AtlasPOP
             // 
             this.lblClient.AutoSize = true;
             this.lblClient.Font = new System.Drawing.Font("굴림", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblClient.Location = new System.Drawing.Point(336, 50);
+            this.lblClient.Location = new System.Drawing.Point(384, 62);
             this.lblClient.Name = "lblClient";
-            this.lblClient.Size = new System.Drawing.Size(0, 22);
+            this.lblClient.Size = new System.Drawing.Size(0, 28);
             this.lblClient.TabIndex = 0;
             this.lblClient.Click += new System.EventHandler(this.label2_Click);
             // 
@@ -402,9 +417,9 @@ namespace AtlasPOP
             // 
             this.lblItemName.AutoSize = true;
             this.lblItemName.Font = new System.Drawing.Font("굴림", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblItemName.Location = new System.Drawing.Point(85, 50);
+            this.lblItemName.Location = new System.Drawing.Point(97, 62);
             this.lblItemName.Name = "lblItemName";
-            this.lblItemName.Size = new System.Drawing.Size(0, 22);
+            this.lblItemName.Size = new System.Drawing.Size(0, 28);
             this.lblItemName.TabIndex = 0;
             this.lblItemName.Click += new System.EventHandler(this.label2_Click);
             // 
@@ -412,9 +427,10 @@ namespace AtlasPOP
             // 
             this.panel8.Controls.Add(this.tableLayoutPanel4);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel8.Location = new System.Drawing.Point(1052, 3);
+            this.panel8.Location = new System.Drawing.Point(1201, 4);
+            this.panel8.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(180, 106);
+            this.panel8.Size = new System.Drawing.Size(207, 132);
             this.panel8.TabIndex = 6;
             // 
             // tableLayoutPanel4
@@ -424,11 +440,12 @@ namespace AtlasPOP
             this.tableLayoutPanel4.Controls.Add(this.btnLogout, 0, 1);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(180, 106);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(207, 132);
             this.tableLayoutPanel4.TabIndex = 6;
             // 
             // btnLogout
@@ -436,9 +453,10 @@ namespace AtlasPOP
             this.btnLogout.BackColor = System.Drawing.Color.Black;
             this.btnLogout.Font = new System.Drawing.Font("굴림", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnLogout.ForeColor = System.Drawing.Color.White;
-            this.btnLogout.Location = new System.Drawing.Point(3, 34);
+            this.btnLogout.Location = new System.Drawing.Point(3, 43);
+            this.btnLogout.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(174, 69);
+            this.btnLogout.Size = new System.Drawing.Size(199, 85);
             this.btnLogout.TabIndex = 5;
             this.btnLogout.Text = "로그인";
             this.btnLogout.UseVisualStyleBackColor = false;
@@ -451,7 +469,7 @@ namespace AtlasPOP
             this.panel10.Location = new System.Drawing.Point(3, 2);
             this.panel10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(179, 108);
+            this.panel10.Size = new System.Drawing.Size(205, 136);
             this.panel10.TabIndex = 7;
             // 
             // pictureBox1
@@ -461,7 +479,7 @@ namespace AtlasPOP
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(179, 108);
+            this.pictureBox1.Size = new System.Drawing.Size(205, 136);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -472,12 +490,13 @@ namespace AtlasPOP
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(1235, 702);
+            this.ClientSize = new System.Drawing.Size(1411, 878);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmMain";
