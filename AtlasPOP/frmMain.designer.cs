@@ -44,9 +44,12 @@ namespace AtlasPOP
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripLblTime = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripLblUser = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripLblDept = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblProcessName = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.lblOrderQty = new System.Windows.Forms.Label();
@@ -54,14 +57,11 @@ namespace AtlasPOP
             this.lblClient = new System.Windows.Forms.Label();
             this.lblItemName = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.btnLogout = new System.Windows.Forms.Button();
             this.panel10 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.toolStripLblDept = new System.Windows.Forms.ToolStripStatusLabel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -69,9 +69,9 @@ namespace AtlasPOP
             this.panel1.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel8.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
             this.panel10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.tableLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -266,7 +266,6 @@ namespace AtlasPOP
             this.toolStripLblDept});
             this.statusStrip1.Location = new System.Drawing.Point(185, 666);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 14, 0);
             this.statusStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.statusStrip1.Size = new System.Drawing.Size(864, 36);
             this.statusStrip1.TabIndex = 2;
@@ -283,6 +282,12 @@ namespace AtlasPOP
             this.toolStripLblUser.Name = "toolStripLblUser";
             this.toolStripLblUser.Size = new System.Drawing.Size(121, 31);
             this.toolStripLblUser.Text = "toolStripStatusLabel2";
+            // 
+            // toolStripLblDept
+            // 
+            this.toolStripLblDept.Name = "toolStripLblDept";
+            this.toolStripLblDept.Size = new System.Drawing.Size(121, 31);
+            this.toolStripLblDept.Text = "toolStripStatusLabel1";
             // 
             // lblProcessName
             // 
@@ -306,6 +311,16 @@ namespace AtlasPOP
             this.panel1.Size = new System.Drawing.Size(858, 548);
             this.panel1.TabIndex = 4;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("맑은 고딕", 99.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(38, 153);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(0, 175);
+            this.label1.TabIndex = 2;
+            // 
             // panel9
             // 
             this.panel9.Controls.Add(this.panel2);
@@ -320,6 +335,15 @@ namespace AtlasPOP
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(858, 88);
             this.panel9.TabIndex = 1;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.DarkGray;
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 78);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(858, 10);
+            this.panel2.TabIndex = 1;
             // 
             // label7
             // 
@@ -393,6 +417,20 @@ namespace AtlasPOP
             this.panel8.Size = new System.Drawing.Size(180, 106);
             this.panel8.TabIndex = 6;
             // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 1;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Controls.Add(this.btnLogout, 0, 1);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 2;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(180, 106);
+            this.tableLayoutPanel4.TabIndex = 6;
+            // 
             // btnLogout
             // 
             this.btnLogout.BackColor = System.Drawing.Color.Black;
@@ -432,46 +470,6 @@ namespace AtlasPOP
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // toolStripLblDept
-            // 
-            this.toolStripLblDept.Name = "toolStripLblDept";
-            this.toolStripLblDept.Size = new System.Drawing.Size(121, 31);
-            this.toolStripLblDept.Text = "toolStripStatusLabel1";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("맑은 고딕", 99.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(38, 153);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(451, 175);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "label1";
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.DarkGray;
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 78);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(858, 10);
-            this.panel2.TabIndex = 1;
-            // 
-            // tableLayoutPanel4
-            // 
-            this.tableLayoutPanel4.ColumnCount = 1;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Controls.Add(this.btnLogout, 0, 1);
-            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 2;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(180, 106);
-            this.tableLayoutPanel4.TabIndex = 6;
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -495,9 +493,9 @@ namespace AtlasPOP
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
             this.panel8.ResumeLayout(false);
+            this.tableLayoutPanel4.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.tableLayoutPanel4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

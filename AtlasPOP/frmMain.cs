@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AltasMES;
+using AtlasDTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,8 +18,13 @@ namespace AtlasPOP
         public string EmpID { get; set; }
         public string EmpName { get; set; }
         public string DeptID { get; set; }
-        
+        public OperationVO oper { get; set; }
+        public string OperID { get; set; }
+        string op = "";
 
+        ServiceHelper service = null;
+        ResMessage<List<ItemVO>> itemList;
+        ResMessage<List<OperationVO>> operList;
         public frmMain()
         {
             InitializeComponent();
@@ -35,7 +42,6 @@ namespace AtlasPOP
             this.DeptID = "Product";
 
             statusStrip1.Visible = false;
-
             toolStripLblUser.Text = "사용자 : " + EmpName;
             toolStripLblDept.Text = "부서 : " + DeptID;
 
@@ -45,16 +51,44 @@ namespace AtlasPOP
             timer1.Start();
             timer1.Tick += Timer1_Tick;
         }
+        public void LoadData()
+        {
+            service = new ServiceHelper("api/pop");
+            itemList = service.GetAsync<List<ItemVO>>("AllOperation");
+            operList = service.GetAsync<List<OperationVO>>("AllOperation");
+            if (itemList.Data != null)
+            {
+                
+            }
+            else
+            {
+                MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
+            }
+        }
+
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
             toolStripLblTime.Text = "현재 시간 : " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             label1.Text = DateTime.Now.ToString("HH:mm:ss");
         }
+
         private void button6_Click(object sender, EventArgs e)
         {
             frmOperation frm = new frmOperation();
-            frm.ShowDialog();
+            frm.DataSendEvent += new DataGetEventHandler(this.DataGet);
+            if(frm.ShowDialog() == DialogResult.OK)
+            {
+                /*string itemID = operList.Data.Find((n) => n.OpID == OperID).ItemID;
+                lblItemName.Text = itemList.Data.Find((n)=>n.ItemID == itemID).ItemName;
+                lblOrderQty.Text = "40";
+                lblClient.Text = "거래처";*/
+            } 
+        }
+
+        private void DataGet(string data)
+        {
+            this.OperID = data;
         }
 
         private void button8_Click(object sender, EventArgs e)
