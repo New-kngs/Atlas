@@ -12,8 +12,9 @@ namespace AtlasMVCAPI.Models
         public int CurrentPage { get; set; }  //현재 페이지 번호
 
         //전체 페이지수
-        public int TotalPages { 
-            get { return (int)Math.Ceiling((decimal)TotalItems/ItemsPerPage); } 
+        public int TotalPages
+        {
+            get { return (int)Math.Ceiling((decimal)TotalItems / ItemsPerPage); }
         }
     }
 }
