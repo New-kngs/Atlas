@@ -82,5 +82,15 @@ namespace AltasMES
             }
 
         }
+
+        private void dgvPdt_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void frmBOM_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            service.Dispose();
+        }
     }
 }
