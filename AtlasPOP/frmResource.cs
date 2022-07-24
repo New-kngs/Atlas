@@ -22,12 +22,13 @@ namespace AtlasPOP
         }
         public frmResource(string itemID)
         {
+            InitializeComponent();
             this.itemID = itemID;
         }
 
         private void frmResource_Load(object sender, EventArgs e)
         {
-
+            LoadData();
         }
         public void LoadData()
         {
@@ -35,7 +36,8 @@ namespace AtlasPOP
             ResMessage<List<BOMVO>> resource = service.GetAsync<List<BOMVO>>("GetResourceBOM");
             if (resource.Data != null)
             {
-                dgvList.DataSource = resource;
+                resource.Data = resource.Data.FindAll((r) => r.ItemID == itemID);
+                dgvList.DataSource = resource.Data;
             }
             else
             {

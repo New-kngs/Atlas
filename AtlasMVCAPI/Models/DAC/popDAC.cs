@@ -84,7 +84,7 @@ namespace AtlasMVCAPI.Models
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = new SqlConnection(strConn);
-                cmd.CommandText = @"select ITEMID, ParentID,ChildID, UnitQty
+                cmd.CommandText = @"select ItemID, ParentID,ChildID, UnitQty
                                     from TB_BOM";
 
                 cmd.Connection.Open();
