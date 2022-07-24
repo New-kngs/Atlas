@@ -111,7 +111,7 @@ namespace AtlasMVCAPI.Models
             }
         }
 
-       
+
 
         /// <summary>
         /// 웹사이트에 (완)제품 목록을 최대 4개까지 보여준다
@@ -165,17 +165,24 @@ from (
         /// 작성자 : 지현
         /// </summary>
         /// <returns></returns>
-        public int GetProductInfo()
+        public ItemVO GetProductInfo(string id)
         {
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = new SqlConnection(strConn);
-                cmd.CommandText = "select count(*) from TB_Item  where ItemCategory='완제품'";
+                cmd.CommandText = @"select ItemID, ItemName, ItemPrice, ItemCategory, ItemSize, ItemImage, ItemExplain 
+                                    from TB_Item  where ItemID = @id";
+                cmd.Parameters.AddWithValue("@id", id);
+
 
                 cmd.Connection.Open();
-                int n = Convert.ToInt32(cmd.ExecuteScalar());
+                List<ItemVO> list = Helper.DataReaderMapToList<ItemVO>(cmd.ExecuteReader());
                 cmd.Connection.Close();
-                return n;
+
+                if (list != null && list.Count > 0)
+                    return list[0];
+                else
+                    return null;
             }
         }
     }
