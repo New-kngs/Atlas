@@ -85,7 +85,18 @@ namespace AltasMES
 
         private void dgvPdt_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex > -1)
+            {
+                string pdtID = dgvPdt[0, e.RowIndex].Value.ToString();
 
+                ResMessage<List<ItemVO>> resResult = service.GetAsync<List<ItemVO>>($"AllItem/{pdtID}");
+                dgvA.DataSource = null;
+                dgvA.DataSource = resResult.Data;
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void frmBOM_FormClosing(object sender, FormClosingEventArgs e)
