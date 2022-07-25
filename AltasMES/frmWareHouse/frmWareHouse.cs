@@ -44,14 +44,14 @@ namespace AltasMES
             cboWH.Items.AddRange(new string[] { "선택", "완제품", "반제품", "자재" });
             cboWH.SelectedIndex = 0;
 
+            service = new ServiceHelper("");
             DataLoad();
         }
         private void DataLoad()
         {
             cboWH.SelectedIndex = 0;
-
-            service = new ServiceHelper("api/WareHouse");
-            ResMessage<List<WareHouseVO>> result = service.GetAsync<List<WareHouseVO>>("AllWareHouse");
+            
+            ResMessage<List<WareHouseVO>> result = service.GetAsync<List<WareHouseVO>>("api/WareHouse/AllWareHouse");
             if (result != null)
             {
                 dgvWH.DataSource = new AdvancedList<WareHouseVO>(result.Data);
@@ -90,7 +90,7 @@ namespace AltasMES
             {
                 string whid = dgvWH[0, e.RowIndex].Value.ToString();
 
-                ResMessage<List<ItemVO>> resResult = service.GetAsync<List<ItemVO>>($"WareHouseInfo/{whid}");
+                ResMessage<List<ItemVO>> resResult = service.GetAsync<List<ItemVO>>($"api/WareHouse/WareHouseInfo/{whid}");
                 dgvPDT.DataSource = null;
                 dgvPDT.DataSource = resResult.Data;
             }
@@ -167,8 +167,7 @@ namespace AltasMES
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            service = new ServiceHelper("api/WareHouse");
-            ResMessage<List<WareHouseVO>> volist = service.GetAsync<List<WareHouseVO>>("AllWareHouse");
+            ResMessage<List<WareHouseVO>> volist = service.GetAsync<List<WareHouseVO>>("api/WareHouse/AllWareHouse");
 
             string category = cboWH.Text;
             List<WareHouseVO> resultVO = volist.Data.FindAll((r) => r.ItemCategory == category);

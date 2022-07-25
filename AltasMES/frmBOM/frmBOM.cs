@@ -25,33 +25,34 @@ namespace AltasMES
             //ItemID, ItemName, CurrentQty, WHID, ItemCategory, ItemSize
             DataGridUtil.SetInitGridView(dgvPdt);
             DataGridUtil.AddGridTextBoxColumn(dgvPdt, "제품ID", "ItemID", colwidth: 205, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvPdt, "제품이름", "ItemName", colwidth: 265, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvPdt, "제품유형", "ItemCategory", colwidth: 205, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvPdt, "제품이름", "ItemName", colwidth: 265, align: DataGridViewContentAlignment.MiddleLeft);
+            DataGridUtil.AddGridTextBoxColumn(dgvPdt, "제품유형", "ItemCategory", colwidth: 205, align: DataGridViewContentAlignment.MiddleLeft);
             DataGridUtil.AddGridTextBoxColumn(dgvPdt, "제품사이즈", "ItemSize", colwidth: 165, align: DataGridViewContentAlignment.MiddleCenter);
 
             DataGridUtil.SetInitGridView(dgvA);
             DataGridUtil.AddGridTextBoxColumn(dgvA, "제품ID", "ItemID", colwidth: 205, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvA, "제품이름", "ItemName", colwidth: 265, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvA, "제품유형", "ItemCategory", colwidth: 205, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvA, "제품사이즈", "ItemSize", colwidth: 165, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvA, "제품이름", "ItemName", colwidth: 265, align: DataGridViewContentAlignment.MiddleLeft);
+            DataGridUtil.AddGridTextBoxColumn(dgvA, "제품유형", "ItemCategory", colwidth: 200, align: DataGridViewContentAlignment.MiddleLeft);
+            DataGridUtil.AddGridTextBoxColumn(dgvA, "제품사이즈", "ItemSize", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
 
             DataGridUtil.SetInitGridView(dgvD);
             DataGridUtil.AddGridTextBoxColumn(dgvD, "제품ID", "ItemID", colwidth: 205, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvD, "제품이름", "ItemName", colwidth: 265, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvD, "제품유형", "ItemCategory", colwidth: 205, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvD, "제품사이즈", "ItemSize", colwidth: 165, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvD, "제품이름", "ItemName", colwidth: 265, align: DataGridViewContentAlignment.MiddleLeft);
+            DataGridUtil.AddGridTextBoxColumn(dgvD, "제품유형", "ItemCategory", colwidth: 200, align: DataGridViewContentAlignment.MiddleLeft);
+            DataGridUtil.AddGridTextBoxColumn(dgvD, "제품사이즈", "ItemSize", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
 
             cboPdt.Items.AddRange(new string[] { "선택", "완제품", "반제품", "자재" });
             cboPdt.SelectedIndex = 0;
+
+            service = new ServiceHelper("");
 
             DataLoad();
         }
         private void DataLoad()
         {
             cboPdt.SelectedIndex = 0;
-
-            service = new ServiceHelper("api/Item");
-            ResMessage<List<ItemVO>> result = service.GetAsync<List<ItemVO>>("AllItem");
+            
+            ResMessage<List<ItemVO>> result = service.GetAsync<List<ItemVO>>("api/Item/AllItem");
             if (result != null)
             {
                 dgvPdt.DataSource = new AdvancedList<ItemVO>(result.Data);
@@ -64,8 +65,7 @@ namespace AltasMES
         }
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            service = new ServiceHelper("api/Item");
-            ResMessage<List<ItemVO>> volist = service.GetAsync<List<ItemVO>>("AllItem");
+            ResMessage<List<ItemVO>> volist = service.GetAsync<List<ItemVO>>("api/Item/AllItem");
 
             string category = cboPdt.Text;
             List<ItemVO> resultVO = volist.Data.FindAll((r) => r.ItemCategory == category);
@@ -85,13 +85,20 @@ namespace AltasMES
 
         private void dgvPdt_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            ResMessage<List<BOMVO>> resResult = service.GetAsync<List<BOMVO>>("api/BOM/AllBOMItem");
+
             if (e.RowIndex > -1)
             {
                 string pdtID = dgvPdt[0, e.RowIndex].Value.ToString();
+                List<BOMVO> listF = resResult.Data.FindAll((r) => r.ParentID == pdtID);
 
-                ResMessage<List<ItemVO>> resResult = service.GetAsync<List<ItemVO>>($"AllItem/{pdtID}");
+                //List<BOMVO> resultVO = list.FindAll((r) => r.ParentID == prtID);
                 dgvA.DataSource = null;
-                dgvA.DataSource = resResult.Data;
+                dgvA.DataSource = listF;
+
+                List<BOMVO> listR = resResult.Data.FindAll((r) => r.ChildID == pdtID);
+                dgvD.DataSource = null;
+                dgvD.DataSource = listR;
             }
             else
             {
@@ -101,7 +108,10 @@ namespace AltasMES
 
         private void frmBOM_FormClosing(object sender, FormClosingEventArgs e)
         {
-            service.Dispose();
+            if (service != null)
+            {
+                service.Dispose();
+            }
         }
     }
 }
