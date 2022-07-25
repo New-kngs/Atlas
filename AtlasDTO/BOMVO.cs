@@ -8,7 +8,8 @@ namespace AtlasDTO
 {
     public class BOMVO
     {
-       public string BOMID { get; set; }
+        //BOMID, B.ItemID, ParentID, ChildID, UnitQty, B.CreateDate, B.CreateUser, B.ModifyDate, B.ModifyUser, B.StateYN, ItemName, ItemCategory, ItemSize
+        public string BOMID { get; set; }
        public string ItemID { get; set; }
         public string ParentID { get; set; }
         public string ChildID { get; set; }
@@ -23,6 +24,8 @@ namespace AtlasDTO
         public string ItemName { get; set; }
         public int PlanQty { get; set; }
         public int Qty { get; set; }
+        public string ItemCategory { get; set; }
+        public string ItemSize { get; set; }
 
     }
 }
