@@ -109,7 +109,6 @@ namespace AltasMES
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            service = new ServiceHelper("api/Equipment");
             ResMessage<List<EquipmentVO>> result = service.GetAsync<List<EquipmentVO>>("AllEquipment");
             if (result.Data != null)
             {

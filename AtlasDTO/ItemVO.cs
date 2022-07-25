@@ -10,10 +10,10 @@ namespace AtlasDTO
     {
         public string ItemID { get; set; }
         public string ItemName { get; set; }
-        public string CustomerID { get; set; }        
+        public string CustomerID { get; set; } // 
         public int CurrentQty { get; set; }
         public int SafeQty { get; set; }
-        public string WHID { get; set; }
+        public string WHID { get; set; } //
         public int ItemPrice { get; set; }
         public string ItemCategory { get; set; }
         public string ItemSize { get; set; }

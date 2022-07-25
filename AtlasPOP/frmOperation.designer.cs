@@ -162,6 +162,7 @@ namespace AtlasPOP
             this.Name = "frmOperation";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmOperation";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmOperation_FormClosing);
             this.Load += new System.EventHandler(this.frmOperation_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

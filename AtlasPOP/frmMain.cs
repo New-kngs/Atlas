@@ -84,6 +84,12 @@ namespace AtlasPOP
 
         private void button6_Click(object sender, EventArgs e)
         {
+            if(btnLogout.Text != "로그아웃")
+            {
+                MessageBox.Show("로그인을 해주세요");
+                return;
+            }
+
             frmOperation frm = new frmOperation();
             frm.DataSendEvent += new DataGetEventHandler(this.DataGet);
             if(frm.ShowDialog() == DialogResult.OK)
@@ -105,18 +111,33 @@ namespace AtlasPOP
 
         private void button8_Click(object sender, EventArgs e)
         {
+            if (btnLogout.Text != "로그아웃")
+            {
+                MessageBox.Show("로그인을 해주세요");
+                return;
+            }
             frmLaping frm = new frmLaping();
             frm.ShowDialog();
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
+            if (btnLogout.Text != "로그아웃")
+            {
+                MessageBox.Show("로그인을 해주세요");
+                return;
+            }
             frmPerformance frm = new frmPerformance();
             frm.ShowDialog();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
+            if (btnLogout.Text != "로그아웃")
+            {
+                MessageBox.Show("로그인을 해주세요");
+                return;
+            }
             frmFail frm = new frmFail();
             frm.ShowDialog();
         }
@@ -125,40 +146,38 @@ namespace AtlasPOP
 
         private void button7_Click(object sender, EventArgs e)
         {
+            if (btnLogout.Text != "로그아웃")
+            {
+                MessageBox.Show("로그인을 해주세요");
+                return;
+            }
             frmOperStatus frm = new frmOperStatus();
             frm.ShowDialog();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (btnLogout.Text != "로그아웃")
+            {
+                MessageBox.Show("로그인을 해주세요");
+                return;
+            }
             MessageBox.Show("공정이 시작되었습니다.");
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            if (btnLogout.Text != "로그아웃")
+            {
+                MessageBox.Show("로그인을 해주세요");
+                return;
+            }
             MessageBox.Show("공정이 종료되었습니다");
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-
-               
-            
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            if(btnLogout.Text != "로그아웃")
+            if (btnLogout.Text != "로그아웃")
             {
                 frmLogin frm = new frmLogin();
                 if(frm.ShowDialog() == DialogResult.OK)
@@ -177,7 +196,19 @@ namespace AtlasPOP
         }
         private void btnResource_Click(object sender, EventArgs e)
         {
-            frmResource frm = new frmResource(itemID);
+            if (btnLogout.Text != "로그아웃")
+            {
+                MessageBox.Show("로그인을 해주세요");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(itemID))
+            {
+                MessageBox.Show("공정을 먼저 선택해주세요");
+                return;
+            }
+
+
+            frmResource frm = new frmResource(itemID, oper);
             frm.ShowDialog();
         }
     }
