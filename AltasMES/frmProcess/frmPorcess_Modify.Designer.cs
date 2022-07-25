@@ -131,7 +131,7 @@ namespace AltasMES
             this.groupBox1.Size = new System.Drawing.Size(272, 90);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "자재투입여부";
+            this.groupBox1.Text = "불량검사여부";
             // 
             // rdN
             // 
