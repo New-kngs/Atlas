@@ -18,6 +18,10 @@ namespace AtlasMVCAPI.Models
             strConn = WebConfigurationManager.ConnectionStrings["DB"].ConnectionString;
         }
 
+        /// <summary>
+        /// Author : 정희록
+        /// </summary>
+        /// <returns>모든 창고정보를 가져오기</returns>
         public List<WareHouseVO> GetAllWareHouse()
         {
             using (SqlCommand cmd = new SqlCommand())
@@ -37,6 +41,11 @@ namespace AtlasMVCAPI.Models
             }
         }
 
+        /// <summary>
+        /// Author : 정희록
+        /// </summary>
+        /// <param name="whid"></param>
+        /// <returns>선택한 창고의 상세정보 가져오기 </returns>
         public List<ItemVO> GetWareHouseInfo(string whid)
         {
             using (SqlCommand cmd = new SqlCommand())
@@ -58,6 +67,11 @@ namespace AtlasMVCAPI.Models
             }
         }
 
+        /// <summary>
+        /// Author : 정희록
+        /// </summary>
+        /// <param name="wareHouse"></param>
+        /// <returns>선택한 창고를 미사용으로 처리</returns>
         public bool DeleteWareHouse(WareHouseVO wareHouse)
         {
             using (SqlCommand cmd = new SqlCommand
@@ -78,6 +92,11 @@ namespace AtlasMVCAPI.Models
             }
         }
 
+        /// <summary>
+        /// Author : 정희록
+        /// </summary>
+        /// <param name="wareHouse"></param>
+        /// <returns>미사용중인 창고를 사용처리</returns>
         public bool UsingWareHouse(WareHouseVO wareHouse)
         {
             using (SqlCommand cmd = new SqlCommand
@@ -97,6 +116,11 @@ namespace AtlasMVCAPI.Models
             }
         }
 
+        /// <summary>
+        /// Author : 정희록
+        /// </summary>
+        /// <param name="wareHouse"></param>
+        /// <returns>창고정보 수정</returns>
         public bool UpdateWareHouse(WareHouseVO wareHouse)
         {
             using (SqlCommand cmd = new SqlCommand
@@ -118,6 +142,11 @@ namespace AtlasMVCAPI.Models
             }
         }
 
+        /// <summary>
+        /// Author : 정희록
+        /// </summary>
+        /// <param name="wareHouse"></param>
+        /// <returns>새로운 창고 생성</returns>
         public bool SaveWareHouse(WareHouseVO wareHouse)
         {
             //@WHName, @ItemCategory, @CreateDate, @CreateUser

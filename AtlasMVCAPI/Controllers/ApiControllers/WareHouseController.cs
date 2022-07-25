@@ -14,8 +14,9 @@ namespace AtlasMVCAPI.Controllers
     public class WareHouseController : ApiController
     {
         /// <summary>
-        /// 등록된 모든 창고를 조회해서 반환
+        /// Author : 정희록
         /// </summary>
+        /// <returns>등록된 모든 창고를 조회해서 반환</returns>
         //https://localhost:44391/api/WareHouse/AllWareHouse
         [Route("AllWareHouse")]
         public IHttpActionResult GetAllWareHouse()
@@ -47,8 +48,10 @@ namespace AtlasMVCAPI.Controllers
         }
 
         /// <summary>
-        /// 선택된 창고를 조회해서 반환
+        /// Author : 정희록
         /// </summary>
+        /// <param name="whid"></param>
+        /// <returns>선택한 창고의 상세정보 가져오기 </returns>
         //https://localhost:44391/api/WareHouse/WareHouseInfo/wh_0001
         [HttpGet]
         [Route("WareHouseInfo/{whid}")]
@@ -79,6 +82,11 @@ namespace AtlasMVCAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Author : 정희록
+        /// </summary>
+        /// <param name="wareHouse"></param>
+        /// <returns>새로운 창고 생성</returns>
         //POST : https://localhost:44391/api/WareHouse/SaveWareHouse
         [HttpPost]
         [Route("SaveWareHouse")]
@@ -109,6 +117,11 @@ namespace AtlasMVCAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Author : 정희록
+        /// </summary>
+        /// <param name="wareHouse"></param>
+        /// <returns>선택한 창고를 미사용으로 처리</returns>
         //POST : https://localhost:44391/api/WareHouse/DeleteWareHouse
         [HttpPost]
         [Route("DeleteWareHouse")]
@@ -139,6 +152,11 @@ namespace AtlasMVCAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Author : 정희록
+        /// </summary>
+        /// <param name="wareHouse"></param>
+        /// <returns>미사용중인 창고를 사용처리</returns>
         //POST : https://localhost:44391/api/WareHouse/UsingWareHouse
         [HttpPost]
         [Route("UsingWareHouse")]
@@ -169,6 +187,11 @@ namespace AtlasMVCAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Author : 정희록
+        /// </summary>
+        /// <param name="wareHouse"></param>
+        /// <returns>창고정보 수정</returns>
         //POST : https://localhost:44391/api/WareHouse/UpdateWareHouse
         [HttpPost]
         [Route("UpdateWareHouse")]
