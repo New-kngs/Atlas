@@ -22,7 +22,7 @@ namespace AtlasMVCAPI.Models
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = new SqlConnection(strConn);
-                cmd.CommandText = @"select CustomerName from TB_Customer where Category = '입고'";
+                cmd.CommandText = @"select CustomerID, CustomerName from TB_Customer where Category = '입고'";
 
                 cmd.Connection.Open();
                 List<CustomerVO> list = Helper.DataReaderMapToList<CustomerVO>(cmd.ExecuteReader());

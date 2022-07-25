@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -33,6 +34,34 @@ namespace AltasMES
             cbo.DisplayMember = "CodeName";
             cbo.ValueMember = "Code";
             cbo.DataSource = list;
+        }
+
+
+        public static void ComboBinding<T>(ComboBox cbo, List<T> src, string dispalyField, string valueField, bool blankItem = true, string blankText = "")
+        {
+            //var list = (from item in src
+            //            where item.Category.Contains(category)
+            //            select item).ToList();
+
+            if (blankItem)
+            {
+                T newItem = default(T);
+                newItem = Activator.CreateInstance<T>();
+                PropertyInfo prop;
+                prop = newItem.GetType().GetProperty(valueField);
+                if (prop != null)
+                    prop.SetValue(newItem, "", null);
+
+                prop = newItem.GetType().GetProperty(dispalyField);
+                if (prop != null)
+                    prop.SetValue(newItem, blankText, null);
+
+                src.Insert(0, newItem);
+            }
+
+            cbo.ValueMember = valueField;
+            cbo.DisplayMember = dispalyField;
+            cbo.DataSource = src;
         }
 
     }
