@@ -84,8 +84,9 @@ namespace AtlasMVCAPI.Models
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = new SqlConnection(strConn);
-                cmd.CommandText = @"select ItemID, ParentID,ChildID, UnitQty
-                                    from TB_BOM";
+                cmd.CommandText = @"select b.ItemID,ItemName, ParentID,ChildID,UnitQty, PlanQty, (UnitQty * PlanQty) Qty
+                                    from TB_BOM b join TB_Item i on b.ChildID = i.ItemID
+                                    join TB_Operation o on b.ItemID = o.ItemID";
 
                 cmd.Connection.Open();
                 List<BOMVO> list = Helper.DataReaderMapToList<BOMVO>(cmd.ExecuteReader());

@@ -19,5 +19,10 @@ namespace AtlasDTO
         public string ModifyUser { get; set; }
         public string StateYN { get; set; }
 
+        //추가------------------------------
+        public string ItemName { get; set; }
+        public int PlanQty { get; set; }
+        public int Qty { get; set; }
+
     }
 }
