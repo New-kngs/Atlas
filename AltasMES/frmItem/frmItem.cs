@@ -111,7 +111,11 @@ namespace AltasMES
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            frmItem_Add pop = new frmItem_Add();
+            ItemVO item = new ItemVO()
+            {
+                CreateUser = ((Main)this.MdiParent).EmpName.ToString()
+            };
+            frmItem_Add pop = new frmItem_Add(item);
             if (pop.ShowDialog() == DialogResult.OK)
             {
                 //LoadData();
