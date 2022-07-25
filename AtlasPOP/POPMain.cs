@@ -23,7 +23,8 @@ namespace AtlasPOP
         string itemID;
         string OrderID;
         string CustomerID;
-
+        int ProcessID;
+        string ProcessName;
         ServiceHelper service = null;
         ResMessage<List<ItemVO>> itemList;
         ResMessage<List<OperationVO>> operList;
@@ -96,6 +97,7 @@ namespace AtlasPOP
             OrderID = operList.Data.Find((n) => n.OpID == OperID).OrderID;
             CustomerID = oderList.Data.Find((n) => n.OrderID == OrderID).CustomerID;
 
+            lblProcessName.Text = operList.Data.Find((n) => n.OpID == OperID).ProcessName;
             lblItemName.Text = itemList.Data.Find((n) => n.ItemID == itemID).ItemName;
             lblClient.Text = customerList.Data.Find((n) => n.CustomerID == CustomerID).CustomerName;
             lblOrderQty.Text = operList.Data.Find((n) => n.OpID == OperID).PlanQty.ToString();

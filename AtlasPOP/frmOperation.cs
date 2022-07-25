@@ -29,6 +29,8 @@ namespace AtlasPOP
             DataGridUtil.SetInitGridView(dgvList);
             DataGridUtil.AddGridTextBoxColumn(dgvList, "작업지시ID", "OpID", colwidth: 200);
             DataGridUtil.AddGridTextBoxColumn(dgvList, "작업지시일시", "OpDate", colwidth: 200);
+            DataGridUtil.AddGridTextBoxColumn(dgvList, "공정ID", "ProcessID", colwidth: 200);
+            DataGridUtil.AddGridTextBoxColumn(dgvList, "공정명", "ProcessName", colwidth: 200);
             DataGridUtil.AddGridTextBoxColumn(dgvList, "제품ID", "ItemID", colwidth: 150);
             DataGridUtil.AddGridTextBoxColumn(dgvList, "주문ID", "OrderID", colwidth: 200);
             DataGridUtil.AddGridTextBoxColumn(dgvList, "계획수량", "PlanQty", colwidth: 150);
@@ -53,9 +55,8 @@ namespace AtlasPOP
         private void btnOK_Click(object sender, EventArgs e)
         {           
             string OpID = dgvList.SelectedRows[0].Cells["OpID"].Value.ToString();
-
-
-            DataSendEvent(OpID);            
+            DataSendEvent(OpID);
+            this.Close();
         }
 
         private void frmOperation_FormClosing(object sender, FormClosingEventArgs e)
