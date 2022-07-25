@@ -369,7 +369,6 @@ namespace AtlasPOP
             this.label7.Size = new System.Drawing.Size(133, 28);
             this.label7.TabIndex = 0;
             this.label7.Text = "주문 수량";
-            this.label7.Click += new System.EventHandler(this.label3_Click);
             // 
             // label5
             // 
@@ -380,7 +379,6 @@ namespace AtlasPOP
             this.label5.Size = new System.Drawing.Size(96, 28);
             this.label5.TabIndex = 0;
             this.label5.Text = "거래처";
-            this.label5.Click += new System.EventHandler(this.label3_Click);
             // 
             // lblOrderQty
             // 
@@ -390,7 +388,6 @@ namespace AtlasPOP
             this.lblOrderQty.Name = "lblOrderQty";
             this.lblOrderQty.Size = new System.Drawing.Size(0, 28);
             this.lblOrderQty.TabIndex = 0;
-            this.lblOrderQty.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
@@ -401,7 +398,6 @@ namespace AtlasPOP
             this.label3.Size = new System.Drawing.Size(133, 28);
             this.label3.TabIndex = 0;
             this.label3.Text = "생산 제품";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // lblClient
             // 
@@ -411,7 +407,6 @@ namespace AtlasPOP
             this.lblClient.Name = "lblClient";
             this.lblClient.Size = new System.Drawing.Size(0, 28);
             this.lblClient.TabIndex = 0;
-            this.lblClient.Click += new System.EventHandler(this.label2_Click);
             // 
             // lblItemName
             // 
@@ -421,7 +416,6 @@ namespace AtlasPOP
             this.lblItemName.Name = "lblItemName";
             this.lblItemName.Size = new System.Drawing.Size(0, 28);
             this.lblItemName.TabIndex = 0;
-            this.lblItemName.Click += new System.EventHandler(this.label2_Click);
             // 
             // panel8
             // 
@@ -486,7 +480,6 @@ namespace AtlasPOP
             // 
             // timer1
             // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // frmMain
             // 

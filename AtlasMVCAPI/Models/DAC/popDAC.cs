@@ -15,7 +15,10 @@ namespace AtlasMVCAPI.Models
         {
             strConn = WebConfigurationManager.ConnectionStrings["DB"].ConnectionString;
         }
-
+        /// <summary>
+        /// 작업지시서 가져오기
+        /// </summary>
+        /// <returns></returns>
         public List<OperationVO> GetAllOpration()
         {
             using (SqlCommand cmd = new SqlCommand())
@@ -31,7 +34,10 @@ namespace AtlasMVCAPI.Models
                 return list;
             }
         }
-
+        /// <summary>
+        /// 제품 목록 가져오기
+        /// </summary>
+        /// <returns></returns>
         public List<ItemVO> GetItem()
         {
             using (SqlCommand cmd = new SqlCommand())
@@ -48,7 +54,10 @@ namespace AtlasMVCAPI.Models
             }
         }
 
-
+        /// <summary>
+        /// 거채러ID 가져오기
+        /// </summary>
+        /// <returns></returns>
         public List<OrderVO> GetCustomerID()
         {
             using (SqlCommand cmd = new SqlCommand())
@@ -63,7 +72,10 @@ namespace AtlasMVCAPI.Models
                 return list;
             }
         }
-
+        /// <summary>
+        /// 거래처 명 가져오기
+        /// </summary>
+        /// <returns></returns>
         public List<CustomerVO> GetCustomerName()
         {
             using (SqlCommand cmd = new SqlCommand())
@@ -78,13 +90,16 @@ namespace AtlasMVCAPI.Models
                 return list;
             }
         }
-
+        /// <summary>
+        /// 선택된 제품에 필요한 자재 목록 가져오기
+        /// </summary>
+        /// <returns></returns>
         public List<BOMVO> GetResourceBOM()
         {
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = new SqlConnection(strConn);
-                cmd.CommandText = @"select b.ItemID,ItemName, ParentID,ChildID,UnitQty, PlanQty, (UnitQty * PlanQty) Qty
+                cmd.CommandText = @" select b.ItemID,ItemName, ParentID,ChildID,UnitQty, PlanQty, (UnitQty * PlanQty) Qty, CurrentQty
                                     from TB_BOM b join TB_Item i on b.ChildID = i.ItemID
                                     join TB_Operation o on b.ItemID = o.ItemID";
 
@@ -93,6 +108,28 @@ namespace AtlasMVCAPI.Models
                 cmd.Connection.Close();
 
                 return list;
+            }
+        }
+        /// <summary>
+        /// 자재 투입여부 업데이트
+        /// </summary>
+        /// <param name="OpID"></param>
+        /// <returns></returns>
+        public bool UpdateResourceYN(string OpID)
+        {
+            using (SqlCommand cmd = new SqlCommand
+            {
+                Connection = new SqlConnection(strConn),
+                CommandText = @"update TB_Operation set ResourceYN = 'Y' where OpID = @OpID"
+            })
+            {
+                cmd.Parameters.AddWithValue("@OpID", OpID);
+
+                cmd.Connection.Open();
+                int iRowAffect = cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+
+                return (iRowAffect > 0);
             }
         }
 
