@@ -55,8 +55,13 @@ namespace AtlasPOP
             string OpID = dgvList.SelectedRows[0].Cells["OpID"].Value.ToString();
 
 
-            DataSendEvent(OpID);
-            this.DialogResult = DialogResult.OK;
+            DataSendEvent(OpID);            
+        }
+
+        private void frmOperation_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            POPMain main = (POPMain)this.MdiParent;
+            main.ChangeValue();
         }
     }
 }

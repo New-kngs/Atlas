@@ -147,8 +147,6 @@ namespace AltasMES
             //리스트에 string으로 만들어서 넘긴다. 
             //[{ "ProcessID" : 14, "EquipID" : 3, "CreateUser" : "강지모" }]
 
-
-            service = new ServiceHelper("api/Process");
             ResMessage<List<EquipDetailsVO>> result = service.PostAsync<List<EquipDetailsVO>, List<EquipDetailsVO>>("SaveProcessEquip", processList);
 
             if (result.ErrCode == 0)

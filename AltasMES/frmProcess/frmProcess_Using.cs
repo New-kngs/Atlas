@@ -21,13 +21,10 @@ namespace AltasMES
             this.process = process;
             txtProcess.Text = process.ProcessName;
         }
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
-     
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
