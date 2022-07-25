@@ -15,7 +15,11 @@ namespace AltasMES
     {
         ServiceHelper srv = null;
         ResMessage<List<ComboItemVO>> comboList;
-        ResMessage<List<ItemVO>> itemList;
+        ResMessage<List<WareHouseVO>> whcomboList; // 창고 콤보
+        ResMessage<List<ItemVO>> itemList;        
+        ResMessage<List<CustomerVO>> cusList; // 거래처 콤보
+
+        ResMessage<List<WareHouseVO>> result;
 
         string ItemCode = string.Empty;
         string Item = "";
@@ -26,7 +30,7 @@ namespace AltasMES
 
         private void frmItem_Add_Load(object sender, EventArgs e)
         {
-            srv = new ServiceHelper("api/Item");
+            srv = new ServiceHelper("api/Item");            
 
             cboCategory1.Items.AddRange(new string[] { "선택", "완제품", "반제품", "자재" });
             cboCategory1.SelectedIndex = 0;
@@ -34,14 +38,15 @@ namespace AltasMES
             cboSize.Items.AddRange(new string[] { "선택", "S", "D", "Q", "K" });
             cboSize.SelectedIndex = 0;
 
-            cboCusName.Items.AddRange(new string[] { "선택", "테스트1" });
-            cboCusName.SelectedIndex = 0;
+            //cboCusName.Items.AddRange(new string[] { "선택", "테스트1" });
+            //cboCusName.SelectedIndex = 0;
 
-            cboWhName.Items.AddRange(new string[] { "선택", "테스트2" });
-            cboWhName.SelectedIndex = 0;
+            //cboWhName.Items.AddRange(new string[] { "선택", "테스트2" });
+            //cboWhName.SelectedIndex = 0;
 
             itemList = srv.GetAsync<List<ItemVO>>("AllItem");
             comboList = srv.GetAsync<List<ComboItemVO>>("AllItemCategory");
+            
 
         }
 
@@ -103,23 +108,37 @@ namespace AltasMES
 
         private void cboCategory1_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
-            if (cboCategory1.SelectedIndex == 1)
-            {                
-                if (comboList != null)
+            if (cboCategory1.SelectedIndex == 1) // 완제품 -> 해당 창고 
+            {
+                srv = new ServiceHelper("api/WareHouse");
+                whcomboList = srv.GetAsync<List<WareHouseVO>>("AllWareHouse");                
+
+                if (comboList != null)                    
+                {
                     CommonUtil.ComboBinding(cboCategory2, comboList.Data, "완제품", blankText: "선택");
+
+                    //result.Data = whcomboList.Data.FindAll(p => p.ItemCategory == "완제품");
+                    //cboWhName.DisplayMember = "WHName";
+                    //cboWhName.DataSource = result;
+                }
             }
             
-            if (cboCategory1.SelectedIndex == 2)
+            if (cboCategory1.SelectedIndex == 2) // 반제품 -> 해당 창고 
             {                
                 if (comboList != null)
                     CommonUtil.ComboBinding(cboCategory2, comboList.Data, "반제품", blankText: "선택");
             }
             
-            if (cboCategory1.SelectedIndex == 3)
+            if (cboCategory1.SelectedIndex == 3) // 자재 -> 해당 창고 / 거래처 목록
             {               
                 if (comboList != null)
+                {
                     CommonUtil.ComboBinding(cboCategory2, comboList.Data, "자재", blankText: "선택");
+                    srv = new ServiceHelper("api/Customer");
+                    cusList = srv.GetAsync<List<CustomerVO>>("CustomerType");                    
+                    cboCusName.DisplayMember = "CustomerName";
+                    cboCusName.DataSource = cusList.Data;            
+                }
             }            
         }
 
@@ -128,20 +147,8 @@ namespace AltasMES
             if(cboCategory2.SelectedIndex != 0)
             {
                 ItemCode = comboList.Data.Find((c) => c.CodeName.Equals(cboCategory2.Text)).Code;
-                Item = itemList.Data.Find((c) => c.ItemID.Contains(ItemCode)).ItemID;
-                int list =Convert.ToInt32(itemList.Data.Find((c) => c.ItemID.Contains(ItemCode)).ItemID.Substring(2,3).Max());
-                
-                
-
-                int num = Convert.ToInt32(Item.Substring(2, Item.Length - 2));
-
-                
                 txtID.Text = ItemCode;
-            }
-            
-
-            
-
+            }            
         }
 
         private void btnImgFind_Click(object sender, EventArgs e)

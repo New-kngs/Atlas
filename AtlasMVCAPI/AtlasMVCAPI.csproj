@@ -2035,6 +2035,7 @@
     <Compile Include="Controllers\ApiControllers\popController.cs" />
     <Compile Include="Controllers\ApiControllers\ProcessController.cs" />
     <Compile Include="Controllers\ApiControllers\WareHouseController.cs" />
+    <Compile Include="Controllers\ApiControllers\CustomerController.cs" />
     <Compile Include="Controllers\WebControllers\CartController.cs" />
     <Compile Include="Controllers\WebControllers\HomeController.cs" />
     <Compile Include="Controllers\WebControllers\LoginController.cs" />
@@ -2044,6 +2045,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DAC\BOMDAC.cs" />
+    <Compile Include="Models\DAC\CustomerDAC.cs" />
     <Compile Include="Models\DAC\EmployeeDAC.cs" />
     <Compile Include="Models\DAC\EquipmentDAC.cs" />
     <Compile Include="Models\DAC\ItemDAC.cs" />
