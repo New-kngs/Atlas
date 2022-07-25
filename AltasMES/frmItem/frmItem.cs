@@ -24,8 +24,8 @@ namespace AltasMES
 
         private void frmItem_Load(object sender, EventArgs e)
         {
-            srv = new ServiceHelper("api/Item");
-            ResMessage<List<ItemVO>> result = srv.GetAsync<List<ItemVO>>("AllItem");
+            srv = new ServiceHelper("");
+            ResMessage<List<ItemVO>> result = srv.GetAsync<List<ItemVO>>("api/Item/AllItem");
             if (result != null)
             {
                 itemList = result.Data;
@@ -109,6 +109,7 @@ namespace AltasMES
 
         }
 
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             ItemVO item = new ItemVO()
@@ -143,7 +144,22 @@ namespace AltasMES
         private void frmItem_Shown(object sender, EventArgs e)
         {
             dgvItem.ClearSelection();
-        }        
+        }
+
+        //public void LoadData()
+        //{
+        //    srv = new ServiceHelper("");
+        //    ResMessage<List<ItemVO>> result = srv.GetAsync<List<ItemVO>>("api/Item/AllItem");
+        //    if (result != null)
+        //    {
+        //        itemList = result.Data;
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
+        //        return;
+        //    }
+        //}
 
         private void frmItem_FormClosing(object sender, FormClosingEventArgs e)
         {

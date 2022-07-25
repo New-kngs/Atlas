@@ -69,6 +69,12 @@ namespace AltasMES
                 MessageBox.Show("제품유형 선택을 선택해 주세요.");
                 return;
             }
+            
+            if (string.IsNullOrWhiteSpace(txtSafeQty.Text))
+            {
+                MessageBox.Show("안전재고량을 입력해주세요");
+                return;
+            }            
 
             ItemVO item = new ItemVO
             {
