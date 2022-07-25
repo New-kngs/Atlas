@@ -27,13 +27,13 @@ namespace AtlasPOP
         {
 
             DataGridUtil.SetInitGridView(dgvList);
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "공정ID", "OpID", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "공정명", "OpDate", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "불량확인여부", "ItemID", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "생성날짜", "OrderID", colwidth: 200);
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "생성사용자", "PlanQty", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "변경날짜", "OpState", colwidth: 200);
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "변경사용자", "EmpID", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvList, "작업지시ID", "OpID", colwidth: 200);
+            DataGridUtil.AddGridTextBoxColumn(dgvList, "작업지시일시", "OpDate", colwidth: 200);
+            DataGridUtil.AddGridTextBoxColumn(dgvList, "제품ID", "ItemID", colwidth: 150);
+            DataGridUtil.AddGridTextBoxColumn(dgvList, "주문ID", "OrderID", colwidth: 200);
+            DataGridUtil.AddGridTextBoxColumn(dgvList, "계획수량", "PlanQty", colwidth: 150);
+            DataGridUtil.AddGridTextBoxColumn(dgvList, "공정상태", "OpState", colwidth: 200);
+            DataGridUtil.AddGridTextBoxColumn(dgvList, "담당ID", "EmpID", colwidth: 150);
             LoadData();
         }
         public void LoadData()

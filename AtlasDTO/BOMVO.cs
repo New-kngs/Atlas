@@ -23,6 +23,7 @@ namespace AtlasDTO
         public string ItemName { get; set; }
         public int PlanQty { get; set; }
         public int Qty { get; set; }
+        public int CurrentQty { get; set; }
 
     }
 }
