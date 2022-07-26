@@ -43,6 +43,7 @@ namespace AtlasPOP
             this.btnFail = new System.Windows.Forms.Button();
             this.btnLaping = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.btnLogout = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.lblProcessName = new System.Windows.Forms.Label();
@@ -60,7 +61,6 @@ namespace AtlasPOP
             this.toolStripLblUser = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripLblDept = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.panel5 = new System.Windows.Forms.Panel();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -86,6 +86,7 @@ namespace AtlasPOP
             // 
             // tableLayoutPanel2
             // 
+            this.tableLayoutPanel2.BackColor = System.Drawing.Color.DarkGray;
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
@@ -120,6 +121,7 @@ namespace AtlasPOP
             this.btnResource.TabIndex = 0;
             this.btnResource.Text = "자재투입";
             this.btnResource.UseVisualStyleBackColor = false;
+            this.btnResource.Click += new System.EventHandler(this.btnResource_Click);
             // 
             // btnPerformance
             // 
@@ -176,7 +178,7 @@ namespace AtlasPOP
             // 
             // tableLayoutPanel3
             // 
-            this.tableLayoutPanel3.BackColor = System.Drawing.Color.DimGray;
+            this.tableLayoutPanel3.BackColor = System.Drawing.Color.DarkGray;
             this.tableLayoutPanel3.ColumnCount = 1;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.Controls.Add(this.btnStart, 0, 0);
@@ -257,7 +259,7 @@ namespace AtlasPOP
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.DimGray;
+            this.panel1.BackColor = System.Drawing.Color.DarkGray;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.panel5);
             this.panel1.Controls.Add(this.btnLogout);
@@ -270,16 +272,25 @@ namespace AtlasPOP
             this.panel1.Size = new System.Drawing.Size(1223, 125);
             this.panel1.TabIndex = 1;
             // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.DarkGray;
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel5.Location = new System.Drawing.Point(0, 113);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(1221, 10);
+            this.panel5.TabIndex = 8;
+            // 
             // btnLogout
             // 
             this.btnLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLogout.BackColor = System.Drawing.Color.Black;
             this.btnLogout.Font = new System.Drawing.Font("굴림", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnLogout.ForeColor = System.Drawing.Color.White;
-            this.btnLogout.Location = new System.Drawing.Point(1045, 21);
+            this.btnLogout.Location = new System.Drawing.Point(1045, 31);
             this.btnLogout.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(174, 85);
+            this.btnLogout.Size = new System.Drawing.Size(174, 75);
             this.btnLogout.TabIndex = 6;
             this.btnLogout.Text = "로그인";
             this.btnLogout.UseVisualStyleBackColor = false;
@@ -298,6 +309,7 @@ namespace AtlasPOP
             // 
             // lblProcessName
             // 
+            this.lblProcessName.BackColor = System.Drawing.Color.DarkGray;
             this.lblProcessName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblProcessName.Font = new System.Drawing.Font("굴림", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblProcessName.Location = new System.Drawing.Point(0, 0);
@@ -330,7 +342,7 @@ namespace AtlasPOP
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.BackColor = System.Drawing.Color.DimGray;
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.DarkGray;
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
@@ -354,6 +366,7 @@ namespace AtlasPOP
             // 
             // lblOrderQty
             // 
+            this.lblOrderQty.BackColor = System.Drawing.Color.DarkGray;
             this.lblOrderQty.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblOrderQty.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderQty.Location = new System.Drawing.Point(581, 55);
@@ -449,15 +462,6 @@ namespace AtlasPOP
             this.toolStripLblDept.Size = new System.Drawing.Size(121, 17);
             this.toolStripLblDept.Text = "toolStripStatusLabel3";
             // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.Color.DarkGray;
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(0, 113);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1221, 10);
-            this.panel5.TabIndex = 8;
-            // 
             // POPMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -473,6 +477,7 @@ namespace AtlasPOP
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "POPMain";
             this.Text = "Form1";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.POPMain_Load);
             this.panel2.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);

@@ -1,4 +1,5 @@
 ﻿using AltasMES;
+using AltasPOP;
 using AtlasDTO;
 using System;
 using System.Collections.Generic;
@@ -33,21 +34,21 @@ namespace AtlasPOP
 
         private void frmResource_Load(object sender, EventArgs e)
         {
-            DataGridUtil.SetInitGridView(dgvList);
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "BOMID", "BOMID", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter, visibility: false);
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "제품ID", "ItemID", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter, visibility: false);
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "부모ID", "ParentID", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter,visibility:false);
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "제품ID", "ChildID", colwidth: 100);
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "제품명", "ItemName", colwidth: 150);
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "필요갯수", "UnitQty", colwidth: 80, align: DataGridViewContentAlignment.MiddleRight);
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "계획수량", "PlanQty", colwidth: 80, align: DataGridViewContentAlignment.MiddleRight);
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "총 수량", "Qty", colwidth: 80, align: DataGridViewContentAlignment.MiddleRight);
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "재고량", "CurrentQty", colwidth: 80, align: DataGridViewContentAlignment.MiddleRight);
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "생성일시", "CreateDate", colwidth: 200, visibility: false);
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "생성사용자", "CreateUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter, visibility: false);
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "변경일지", "ModifyDate", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter, visibility: false);
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "변경사용자", "ModifyUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter, visibility: false);
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "사용유무", "StateYN", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter, visibility: false);
+            popDataGridUtil.SetInitGridView(dgvList);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "BOMID", "BOMID", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter, visibility: false);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "제품ID", "ItemID", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter, visibility: false);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "부모ID", "ParentID", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter,visibility:false);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "제품ID", "ChildID", colwidth: 100);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "제품명", "ItemName", colwidth: 150);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "필요갯수", "UnitQty", colwidth: 80, align: DataGridViewContentAlignment.MiddleRight);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "계획수량", "PlanQty", colwidth: 80, align: DataGridViewContentAlignment.MiddleRight);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "총 수량", "Qty", colwidth: 80, align: DataGridViewContentAlignment.MiddleRight);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "재고량", "CurrentQty", colwidth: 80, align: DataGridViewContentAlignment.MiddleRight);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "생성일시", "CreateDate", colwidth: 200, visibility: false);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "생성사용자", "CreateUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter, visibility: false);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "변경일지", "ModifyDate", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter, visibility: false);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "변경사용자", "ModifyUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter, visibility: false);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "사용유무", "StateYN", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter, visibility: false);
 
 
             LoadData();

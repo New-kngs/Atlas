@@ -1,4 +1,5 @@
 ﻿using AltasMES;
+using AltasPOP;
 using AtlasDTO;
 using System;
 using System.Collections.Generic;
@@ -26,14 +27,16 @@ namespace AtlasPOP
         private void frmOperation_Load(object sender, EventArgs e)
         {
 
-            DataGridUtil.SetInitGridView(dgvList);
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "작업지시ID", "OpID", colwidth: 200);
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "작업지시일시", "OpDate", colwidth: 200);
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "제품ID", "ItemID", colwidth: 150);
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "주문ID", "OrderID", colwidth: 200);
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "계획수량", "PlanQty", colwidth: 150);
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "공정상태", "OpState", colwidth: 200);
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "담당ID", "EmpID", colwidth: 150);
+            popDataGridUtil.SetInitGridView(dgvList);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "작업지시ID", "OpID", colwidth: 150, DataGridViewContentAlignment.MiddleCenter);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "작업지시일시", "OpDate", colwidth: 280);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "공정ID", "ProcessID", colwidth: 150, DataGridViewContentAlignment.MiddleCenter);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "공정명", "ProcessName", colwidth: 200);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "제품ID", "ItemID", colwidth: 150, DataGridViewContentAlignment.MiddleCenter);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "주문ID", "OrderID", colwidth: 150, DataGridViewContentAlignment.MiddleCenter);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "계획수량", "PlanQty", colwidth: 120,DataGridViewContentAlignment.MiddleRight);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "공정상태", "OpState", colwidth: 120, DataGridViewContentAlignment.MiddleCenter);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "담당ID", "EmpID", colwidth: 150, DataGridViewContentAlignment.MiddleCenter);
             LoadData();
         }
         public void LoadData()
@@ -51,11 +54,10 @@ namespace AtlasPOP
         }
 
         private void btnOK_Click(object sender, EventArgs e)
-        {           
+        {
             string OpID = dgvList.SelectedRows[0].Cells["OpID"].Value.ToString();
-
-
-            DataSendEvent(OpID);            
+            DataSendEvent(OpID);
+            this.Close();
         }
 
         private void frmOperation_FormClosing(object sender, FormClosingEventArgs e)
