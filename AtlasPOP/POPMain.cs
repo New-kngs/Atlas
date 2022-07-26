@@ -123,7 +123,7 @@ namespace AtlasPOP
 
         private void btnResource_Click(object sender, EventArgs e)
         {
-            frmResource frm = new frmResource(itemID, oper);
+            frmResource frm = new frmResource(itemID, OperID);
             frm.MdiParent = this;
             //frm.DataSendEvent += new DataGetEventHandler(this.DataGet);
             frm.Show();
