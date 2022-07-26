@@ -17,6 +17,7 @@ namespace AtlasDTO
         public string ModifyDate { get; set; }
         public string ModifyUser { get; set; }
 
-
+        // 추가
+        public string CustomerName { get; set; }
     }
 }

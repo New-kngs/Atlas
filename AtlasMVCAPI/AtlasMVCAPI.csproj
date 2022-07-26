@@ -2036,19 +2036,23 @@
     <Compile Include="Controllers\ApiControllers\ProcessController.cs" />
     <Compile Include="Controllers\ApiControllers\WareHouseController.cs" />
     <Compile Include="Controllers\ApiControllers\CustomerController.cs" />
+    <Compile Include="Controllers\ApiControllers\OrderController.cs" />
+    <Compile Include="Controllers\WebControllers\CartController.cs" />
     <Compile Include="Controllers\WebControllers\HomeController.cs" />
     <Compile Include="Controllers\WebControllers\LoginController.cs" />
-    <Compile Include="Controllers\WebControllers\OrderController.cs" />
+    <Compile Include="Controllers\WebControllers\OrderWebController.cs" />
     <Compile Include="Controllers\WebControllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\DAC\BOMDAC.cs" />
     <Compile Include="Models\DAC\CustomerDAC.cs" />
     <Compile Include="Models\DAC\EmployeeDAC.cs" />
     <Compile Include="Models\DAC\EquipmentDAC.cs" />
     <Compile Include="Models\DAC\ItemDAC.cs" />
     <Compile Include="Models\DAC\LoginDAC.cs" />
+    <Compile Include="Models\DAC\OrderDAC.cs" />
     <Compile Include="Models\DAC\popDAC.cs" />
     <Compile Include="Models\DAC\ProcessDAC.cs" />
     <Compile Include="Models\DAC\WareHouseDAC.cs" />
@@ -2211,7 +2215,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Order\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AtlasDTO\AtlasDTO.csproj">
