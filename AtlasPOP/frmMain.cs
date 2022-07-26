@@ -208,8 +208,8 @@ namespace AtlasPOP
             }
 
 
-            frmResource frm = new frmResource(itemID, oper);
-            frm.ShowDialog();
+            /*frmResource frm = new frmResource(itemID, );
+            frm.ShowDialog();*/
         }
     }
 }

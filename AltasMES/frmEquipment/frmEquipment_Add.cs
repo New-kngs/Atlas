@@ -23,6 +23,7 @@ namespace AltasMES
 
         private void frmEquipment_Add_Load(object sender, EventArgs e)
         {
+            
             cboCategory.Items.AddRange(new string[] { "선택", "생산설비", "조립설비", "포장설비" });
             cboCategory.SelectedIndex = 0;
         }

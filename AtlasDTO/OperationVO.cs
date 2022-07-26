@@ -24,8 +24,11 @@ namespace AtlasDTO
         public string ModifyDate { get; set; }
         public string ModifyUser { get; set; }
         public string ProcessName { get; set; }
-
+        public string resourceYN { get; set; }
         public int ProcessID { get; set; }
+
+        public string Date { get; set; }
+        public int Time { get; set; }
 
     }
 }

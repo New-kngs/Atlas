@@ -18,18 +18,18 @@ namespace AtlasPOP
         ServiceHelper service = null;
         public string itemID { get; set; }
         
-        public OperationVO oper { get; set; }
+        public string OperID { get; set; }
 
         ResMessage<List<BOMVO>> resource;
         public frmResource()
         {
             InitializeComponent();
         }
-        public frmResource(string itemID, OperationVO oper)
+        public frmResource(string itemID, string oper)
         {
             InitializeComponent();
             this.itemID = itemID;
-            this.oper = oper;
+            this.OperID = oper;
         }
 
         private void frmResource_Load(object sender, EventArgs e)
@@ -57,11 +57,11 @@ namespace AtlasPOP
         }
         public void LoadData()
         {
-            service = new ServiceHelper("api/pop");
-            resource = service.GetAsync<List<BOMVO>>("GetResourceBOM");
+            service = new ServiceHelper("");
+            resource = service.GetAsync<List<BOMVO>>("api/pop/GetResourceBOM");
             if (resource.Data != null)
             {
-                resource.Data = resource.Data.FindAll((r) => r.ItemID == itemID);
+                resource.Data = resource.Data.FindAll((r) => r.ItemID == itemID && r.OpID == OperID );
                 dgvList.DataSource = resource.Data;
             }
             else
@@ -81,20 +81,21 @@ namespace AtlasPOP
                 MessageBox.Show("투입할 재고가 부족합니다.");
                 return;
             }
+            //1. 자재투입 여부 업데이트
+            ResMessage<List<OperationVO>> result = service.PostAsync<string, List<OperationVO>>("api/pop/UpdateResourceYN/"+OperID, OperID);
 
-            ResMessage<List<OperationVO>> result = service.PostAsync<string, List<OperationVO>>("UpdateResourceYN", oper.OpID);
-            /*if (result.Data != null)
+            if (result.ErrCode == 0)
             {
                 MessageBox.Show("투입완료되었습니다.");
                 this.DialogResult = DialogResult.OK;
             }
             else
-            {
-                MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
-            }*/
+                MessageBox.Show(result.ErrMsg);
+
+            
 
 
-            //1. 자재투입 여부 업데이트
+            
             //2. 자재 재고 업데이트
             //   만약 재고가 부족하다면? 근데 재고 업데이트는....생산계획에서 해야하지 않을까...?그게 맞는거같은데 
 

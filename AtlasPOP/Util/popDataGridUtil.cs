@@ -16,6 +16,7 @@ namespace AltasPOP
             dgv.AllowUserToAddRows = false; //맨 마지막 줄에 *표시된 빈 줄 생성을 방지
             dgv.AutoGenerateColumns = false;//데이터소스의 컬럼으로 자동컬럼 생성을 방지 
             dgv.RowHeadersWidth = 50;
+            dgv.RowTemplate.Height = 34;
             dgv.DefaultCellStyle.Font = new Font("맑은고딕", 15, FontStyle.Regular);
         }
 

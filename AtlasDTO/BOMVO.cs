@@ -27,6 +27,7 @@ namespace AtlasDTO
         public int CurrentQty { get; set; }
         public string ItemCategory { get; set; }
         public string ItemSize { get; set; }
+        public string OpID { get; set; }
 
     }
 }
