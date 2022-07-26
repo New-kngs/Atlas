@@ -31,9 +31,9 @@ namespace AltasMES
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmOrder));
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.dgvWH = new System.Windows.Forms.DataGridView();
+            this.dgvOrder = new System.Windows.Forms.DataGridView();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.dgvPDT = new System.Windows.Forms.DataGridView();
+            this.dgvOrderSt = new System.Windows.Forms.DataGridView();
             this.BasePanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -41,9 +41,9 @@ namespace AltasMES
             this.Basepanel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvWH)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOrder)).BeginInit();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPDT)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOrderSt)).BeginInit();
             this.SuspendLayout();
             // 
             // panel2
@@ -78,7 +78,7 @@ namespace AltasMES
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.dgvWH);
+            this.groupBox3.Controls.Add(this.dgvOrder);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
@@ -88,19 +88,19 @@ namespace AltasMES
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "주문 목록";
             // 
-            // dgvWH
+            // dgvOrder
             // 
-            this.dgvWH.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvWH.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvWH.Location = new System.Drawing.Point(3, 25);
-            this.dgvWH.Name = "dgvWH";
-            this.dgvWH.RowTemplate.Height = 23;
-            this.dgvWH.Size = new System.Drawing.Size(1028, 228);
-            this.dgvWH.TabIndex = 1;
+            this.dgvOrder.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvOrder.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvOrder.Location = new System.Drawing.Point(3, 25);
+            this.dgvOrder.Name = "dgvOrder";
+            this.dgvOrder.RowTemplate.Height = 23;
+            this.dgvOrder.Size = new System.Drawing.Size(1028, 228);
+            this.dgvOrder.TabIndex = 1;
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.dgvPDT);
+            this.groupBox4.Controls.Add(this.dgvOrderSt);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox4.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.groupBox4.Location = new System.Drawing.Point(0, 0);
@@ -110,15 +110,15 @@ namespace AltasMES
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "주문 처리 현황";
             // 
-            // dgvPDT
+            // dgvOrderSt
             // 
-            this.dgvPDT.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPDT.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvPDT.Location = new System.Drawing.Point(3, 25);
-            this.dgvPDT.Name = "dgvPDT";
-            this.dgvPDT.RowTemplate.Height = 23;
-            this.dgvPDT.Size = new System.Drawing.Size(1028, 218);
-            this.dgvPDT.TabIndex = 0;
+            this.dgvOrderSt.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvOrderSt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvOrderSt.Location = new System.Drawing.Point(3, 25);
+            this.dgvOrderSt.Name = "dgvOrderSt";
+            this.dgvOrderSt.RowTemplate.Height = 23;
+            this.dgvOrderSt.Size = new System.Drawing.Size(1028, 218);
+            this.dgvOrderSt.TabIndex = 0;
             // 
             // frmOrder
             // 
@@ -136,9 +136,9 @@ namespace AltasMES
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvWH)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOrder)).EndInit();
             this.groupBox4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPDT)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOrderSt)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -146,8 +146,8 @@ namespace AltasMES
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.DataGridView dgvWH;
+        private System.Windows.Forms.DataGridView dgvOrder;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.DataGridView dgvPDT;
+        private System.Windows.Forms.DataGridView dgvOrderSt;
     }
 }
