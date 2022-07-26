@@ -276,7 +276,7 @@ namespace AltasMES
             this.txtExplain.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtExplain.Multiline = true;
             this.txtExplain.Name = "txtExplain";
-            this.txtExplain.Size = new System.Drawing.Size(600, 80);
+            this.txtExplain.Size = new System.Drawing.Size(606, 80);
             this.txtExplain.TabIndex = 71;
             // 
             // txtSafeQty

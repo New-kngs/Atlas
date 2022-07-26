@@ -1,7 +1,7 @@
 ﻿
 namespace AltasMES
 {
-    partial class frmItem_Modify
+    partial class frmItem_Delete
     {
         /// <summary>
         /// Required designer variable.
@@ -41,7 +41,6 @@ namespace AltasMES
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnImgFind = new System.Windows.Forms.Button();
             this.txtImage = new System.Windows.Forms.TextBox();
             this.txtExplain = new System.Windows.Forms.TextBox();
             this.txtSafeQty = new System.Windows.Forms.TextBox();
@@ -82,7 +81,7 @@ namespace AltasMES
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(773, 79);
-            this.panel1.TabIndex = 4;
+            this.panel1.TabIndex = 5;
             // 
             // lblTitle
             // 
@@ -92,7 +91,7 @@ namespace AltasMES
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(773, 79);
             this.lblTitle.TabIndex = 1;
-            this.lblTitle.Text = "제품 상세 내용";
+            this.lblTitle.Text = "삭제할 제품 상세 내용";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel2
@@ -103,7 +102,7 @@ namespace AltasMES
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(773, 813);
-            this.panel2.TabIndex = 5;
+            this.panel2.TabIndex = 6;
             // 
             // panel3
             // 
@@ -210,7 +209,6 @@ namespace AltasMES
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.pictureBox1);
-            this.groupBox1.Controls.Add(this.btnImgFind);
             this.groupBox1.Controls.Add(this.txtImage);
             this.groupBox1.Location = new System.Drawing.Point(340, 29);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -231,29 +229,13 @@ namespace AltasMES
             this.pictureBox1.TabIndex = 61;
             this.pictureBox1.TabStop = false;
             // 
-            // btnImgFind
-            // 
-            this.btnImgFind.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnImgFind.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnImgFind.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnImgFind.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnImgFind.ImageIndex = 0;
-            this.btnImgFind.Location = new System.Drawing.Point(312, 433);
-            this.btnImgFind.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnImgFind.Name = "btnImgFind";
-            this.btnImgFind.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.btnImgFind.Size = new System.Drawing.Size(73, 34);
-            this.btnImgFind.TabIndex = 64;
-            this.btnImgFind.Text = "찾기";
-            this.btnImgFind.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnImgFind.UseVisualStyleBackColor = true;
-            // 
             // txtImage
             // 
             this.txtImage.Location = new System.Drawing.Point(6, 436);
             this.txtImage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtImage.Name = "txtImage";
-            this.txtImage.Size = new System.Drawing.Size(300, 29);
+            this.txtImage.ReadOnly = true;
+            this.txtImage.Size = new System.Drawing.Size(379, 29);
             this.txtImage.TabIndex = 63;
             // 
             // txtExplain
@@ -262,6 +244,7 @@ namespace AltasMES
             this.txtExplain.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtExplain.Multiline = true;
             this.txtExplain.Name = "txtExplain";
+            this.txtExplain.ReadOnly = true;
             this.txtExplain.Size = new System.Drawing.Size(606, 80);
             this.txtExplain.TabIndex = 117;
             // 
@@ -270,6 +253,7 @@ namespace AltasMES
             this.txtSafeQty.Location = new System.Drawing.Point(125, 338);
             this.txtSafeQty.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSafeQty.Name = "txtSafeQty";
+            this.txtSafeQty.ReadOnly = true;
             this.txtSafeQty.Size = new System.Drawing.Size(180, 29);
             this.txtSafeQty.TabIndex = 116;
             // 
@@ -278,6 +262,7 @@ namespace AltasMES
             this.txtQty.Location = new System.Drawing.Point(125, 288);
             this.txtQty.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtQty.Name = "txtQty";
+            this.txtQty.ReadOnly = true;
             this.txtQty.Size = new System.Drawing.Size(180, 29);
             this.txtQty.TabIndex = 115;
             // 
@@ -286,6 +271,7 @@ namespace AltasMES
             this.txtPrice.Location = new System.Drawing.Point(125, 238);
             this.txtPrice.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPrice.Name = "txtPrice";
+            this.txtPrice.ReadOnly = true;
             this.txtPrice.Size = new System.Drawing.Size(180, 29);
             this.txtPrice.TabIndex = 114;
             // 
@@ -403,7 +389,6 @@ namespace AltasMES
             this.btnCancel.Text = "취소";
             this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnUpdate
             // 
@@ -418,10 +403,9 @@ namespace AltasMES
             this.btnUpdate.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnUpdate.Size = new System.Drawing.Size(73, 34);
             this.btnUpdate.TabIndex = 102;
-            this.btnUpdate.Text = "수정";
+            this.btnUpdate.Text = "삭제";
             this.btnUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // txtMDate
             // 
@@ -499,22 +483,16 @@ namespace AltasMES
             this.label5.TabIndex = 91;
             this.label5.Text = "등록사용자";
             // 
-            // frmItem_Modify
+            // frmItem_Delete
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(773, 892);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "frmItem_Modify";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "제품 상세";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmItem_Modify_FormClosing);
+            this.Name = "frmItem_Delete";
+            this.Text = "frmItem_Delete";
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
@@ -532,21 +510,14 @@ namespace AltasMES
         protected System.Windows.Forms.Label lblTitle;
         protected System.Windows.Forms.Panel panel2;
         protected System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TextBox txtCUser;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtMUser;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox txtCDate;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtMDate;
-        private System.Windows.Forms.Label label14;
-        protected System.Windows.Forms.Button btnCancel;
-        protected System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.TextBox txtWhName;
+        private System.Windows.Forms.TextBox txtCusName;
+        private System.Windows.Forms.TextBox txtSize;
+        private System.Windows.Forms.TextBox txtCategory;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        protected System.Windows.Forms.Button btnImgFind;
         private System.Windows.Forms.TextBox txtImage;
         private System.Windows.Forms.TextBox txtExplain;
         private System.Windows.Forms.TextBox txtSafeQty;
@@ -562,9 +533,15 @@ namespace AltasMES
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox txtCategory;
-        private System.Windows.Forms.TextBox txtSize;
-        private System.Windows.Forms.TextBox txtWhName;
-        private System.Windows.Forms.TextBox txtCusName;
+        protected System.Windows.Forms.Button btnCancel;
+        protected System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.TextBox txtMDate;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox txtMUser;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox txtCDate;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtCUser;
+        private System.Windows.Forms.Label label5;
     }
 }
