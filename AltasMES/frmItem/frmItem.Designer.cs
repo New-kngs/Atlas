@@ -69,6 +69,10 @@ namespace AltasMES
             this.imageList1.Images.SetKeyName(3, "Serach.png");
             this.imageList1.Images.SetKeyName(4, "Execl.png");
             // 
+            // btnDelete
+            // 
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // lblTitle
             // 
             this.lblTitle.Size = new System.Drawing.Size(98, 51);

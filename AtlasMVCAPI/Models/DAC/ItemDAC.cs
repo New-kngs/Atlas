@@ -119,13 +119,13 @@ namespace AtlasMVCAPI.Models
                                                    where ItemID = @ItemID";
 
                 cmd.Parameters.AddWithValue("@ItemID", item.ItemID);
-                cmd.Parameters.AddWithValue("@CurrentQty", item.ItemName);
-                cmd.Parameters.AddWithValue("@SafeQty", item.ItemName);
-                cmd.Parameters.AddWithValue("@ItemPrice", item.ItemName);
-                cmd.Parameters.AddWithValue("@ItemImage", item.ItemName);
-                cmd.Parameters.AddWithValue("@ItemExplain", item.ItemName);
+                cmd.Parameters.AddWithValue("@CurrentQty", item.CurrentQty);
+                cmd.Parameters.AddWithValue("@SafeQty", item.SafeQty);
+                cmd.Parameters.AddWithValue("@ItemPrice", item.ItemPrice);
+                cmd.Parameters.AddWithValue("@ItemImage", item.ItemImage);
+                cmd.Parameters.AddWithValue("@ItemExplain", item.ItemExplain);
                 cmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
-                cmd.Parameters.AddWithValue("@ModifyUser", item.ItemName);
+                cmd.Parameters.AddWithValue("@ModifyUser", item.ModifyUser);
 
                 cmd.Connection.Open();
                 int iRowAffect = cmd.ExecuteNonQuery();

@@ -189,5 +189,10 @@ namespace AltasMES
                 srv.Dispose();
             }
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

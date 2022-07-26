@@ -155,6 +155,7 @@ namespace AltasMES
             this.txtWhName.Location = new System.Drawing.Point(125, 439);
             this.txtWhName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtWhName.Name = "txtWhName";
+            this.txtWhName.ReadOnly = true;
             this.txtWhName.Size = new System.Drawing.Size(180, 29);
             this.txtWhName.TabIndex = 130;
             // 
@@ -163,6 +164,7 @@ namespace AltasMES
             this.txtCusName.Location = new System.Drawing.Point(125, 389);
             this.txtCusName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtCusName.Name = "txtCusName";
+            this.txtCusName.ReadOnly = true;
             this.txtCusName.Size = new System.Drawing.Size(180, 29);
             this.txtCusName.TabIndex = 129;
             // 
@@ -171,6 +173,7 @@ namespace AltasMES
             this.txtSize.Location = new System.Drawing.Point(125, 189);
             this.txtSize.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSize.Name = "txtSize";
+            this.txtSize.ReadOnly = true;
             this.txtSize.Size = new System.Drawing.Size(180, 29);
             this.txtSize.TabIndex = 128;
             // 
@@ -180,6 +183,7 @@ namespace AltasMES
             this.txtCategory.Location = new System.Drawing.Point(125, 40);
             this.txtCategory.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtCategory.Name = "txtCategory";
+            this.txtCategory.ReadOnly = true;
             this.txtCategory.Size = new System.Drawing.Size(180, 29);
             this.txtCategory.TabIndex = 127;
             // 
@@ -290,15 +294,16 @@ namespace AltasMES
             this.txtName.Location = new System.Drawing.Point(125, 138);
             this.txtName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtName.Name = "txtName";
+            this.txtName.ReadOnly = true;
             this.txtName.Size = new System.Drawing.Size(180, 29);
             this.txtName.TabIndex = 113;
             // 
             // txtID
             // 
-            this.txtID.Enabled = false;
             this.txtID.Location = new System.Drawing.Point(125, 88);
             this.txtID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtID.Name = "txtID";
+            this.txtID.ReadOnly = true;
             this.txtID.Size = new System.Drawing.Size(180, 29);
             this.txtID.TabIndex = 112;
             // 
@@ -423,6 +428,7 @@ namespace AltasMES
             this.txtMDate.Location = new System.Drawing.Point(446, 699);
             this.txtMDate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtMDate.Name = "txtMDate";
+            this.txtMDate.ReadOnly = true;
             this.txtMDate.Size = new System.Drawing.Size(180, 29);
             this.txtMDate.TabIndex = 98;
             // 
@@ -441,6 +447,7 @@ namespace AltasMES
             this.txtMUser.Location = new System.Drawing.Point(125, 698);
             this.txtMUser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtMUser.Name = "txtMUser";
+            this.txtMUser.ReadOnly = true;
             this.txtMUser.Size = new System.Drawing.Size(180, 29);
             this.txtMUser.TabIndex = 96;
             // 
@@ -459,6 +466,7 @@ namespace AltasMES
             this.txtCDate.Location = new System.Drawing.Point(446, 649);
             this.txtCDate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtCDate.Name = "txtCDate";
+            this.txtCDate.ReadOnly = true;
             this.txtCDate.Size = new System.Drawing.Size(180, 29);
             this.txtCDate.TabIndex = 94;
             // 
@@ -477,6 +485,7 @@ namespace AltasMES
             this.txtCUser.Location = new System.Drawing.Point(125, 648);
             this.txtCUser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtCUser.Name = "txtCUser";
+            this.txtCUser.ReadOnly = true;
             this.txtCUser.Size = new System.Drawing.Size(180, 29);
             this.txtCUser.TabIndex = 92;
             // 

@@ -25,8 +25,8 @@ namespace AltasMES
             txtID.Text = item.ItemID;
             txtName.Text = item.ItemName;
             txtSize.Text = item.ItemSize;
-            txtPrice.Text = Convert.ToString(item.ItemPrice);
-            txtQty.Text = Convert.ToString(item.CurrentQty);
+            txtPrice.Text =item.ItemPrice.ToString();
+            txtQty.Text = item.CurrentQty.ToString();
             txtSafeQty.Text = Convert.ToString(item.SafeQty);
             txtCusName.Text = item.CustomerName;
             txtWhName.Text = item.WHName;
