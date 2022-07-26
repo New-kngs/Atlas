@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using AtlasDTO;
 
-namespace AtlasDTO
+namespace AtlasMVCAPI.Models
 {
     public class CartLine // 카트 rowLine
     {

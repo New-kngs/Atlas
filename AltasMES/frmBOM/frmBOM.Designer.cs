@@ -79,7 +79,7 @@ namespace AltasMES
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.cboPdt);
             this.groupBox2.Controls.Add(this.btnSearch);
-            this.groupBox2.Text = "검색";
+            this.groupBox2.Text = "검색조건";
             // 
             // Basepanel3
             // 
@@ -164,6 +164,7 @@ namespace AltasMES
             this.cboPdt.Name = "cboPdt";
             this.cboPdt.Size = new System.Drawing.Size(168, 29);
             this.cboPdt.TabIndex = 11;
+            this.cboPdt.SelectedIndexChanged += new System.EventHandler(this.cboPdt_SelectedIndexChanged);
             // 
             // btnSearch
             // 
@@ -180,6 +181,7 @@ namespace AltasMES
             this.btnSearch.Text = "검색";
             this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Visible = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // label1
@@ -274,11 +276,11 @@ namespace AltasMES
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1034, 682);
-            this.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.Margin = new System.Windows.Forms.Padding(3);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmBOM";
-            this.Text = "frmBOM";
+            this.Text = "BOM정보";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmBOM_FormClosing);
             this.Load += new System.EventHandler(this.frmBOM_Load);
             this.BasePanel1.ResumeLayout(false);

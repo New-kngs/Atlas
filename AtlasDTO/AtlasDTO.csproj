@@ -42,7 +42,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BOMVO.cs" />
-    <Compile Include="Cart.cs" />
     <Compile Include="ComboItemVO.cs" />
     <Compile Include="CustomerVO.cs" />
     <Compile Include="EmployeeVO.cs" />
