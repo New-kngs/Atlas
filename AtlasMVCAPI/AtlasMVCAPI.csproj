@@ -2036,6 +2036,7 @@
     <Compile Include="Controllers\ApiControllers\ProcessController.cs" />
     <Compile Include="Controllers\ApiControllers\WareHouseController.cs" />
     <Compile Include="Controllers\ApiControllers\CustomerController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\WebControllers\CartController.cs" />
     <Compile Include="Controllers\WebControllers\HomeController.cs" />
     <Compile Include="Controllers\WebControllers\LoginController.cs" />
@@ -2051,6 +2052,7 @@
     <Compile Include="Models\DAC\EquipmentDAC.cs" />
     <Compile Include="Models\DAC\ItemDAC.cs" />
     <Compile Include="Models\DAC\LoginDAC.cs" />
+    <Compile Include="Models\DAC\OrderDAC.cs" />
     <Compile Include="Models\DAC\popDAC.cs" />
     <Compile Include="Models\DAC\ProcessDAC.cs" />
     <Compile Include="Models\DAC\WareHouseDAC.cs" />
