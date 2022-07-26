@@ -157,6 +157,25 @@ namespace AtlasMVCAPI.Models
             }
         }
 
+        public bool UsingItem(ItemVO item)
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.CommandText = @"update TB_Item set StateYN = 'Y', ModifyDate = @ModifyDate, ModifyUser = @ModifyUser where ItemID = @ItemID";
+
+                cmd.Parameters.AddWithValue("@ItemID", item.ItemID);
+                cmd.Parameters.AddWithValue("@ModifyUser", item.ModifyUser);
+                cmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
+
+                cmd.Connection.Open();
+                int iRowAffect = cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+
+                return (iRowAffect > 0);
+            }
+        }
+
 
 
         /// <summary>
