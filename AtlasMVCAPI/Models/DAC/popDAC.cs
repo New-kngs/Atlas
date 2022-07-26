@@ -24,7 +24,7 @@ namespace AtlasMVCAPI.Models
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = new SqlConnection(strConn);
-                cmd.CommandText = @"  select OpID, OpDate, ItemID, OrderID, op.ProcessID, ProcessName, PlanQty, OpState, BeginDate,EndDate, EmpID
+                cmd.CommandText = @"  select OpID, convert(varchar(20), OpDate, 120) OpDate, ItemID, OrderID, op.ProcessID, ProcessName, PlanQty, OpState, BeginDate,EndDate, EmpID
                     from TB_Operation op join TB_Process p on op.ProcessID = p.ProcessID";
 
                 cmd.Connection.Open();

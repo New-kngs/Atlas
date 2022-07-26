@@ -67,14 +67,6 @@ namespace AtlasPOP
             operList = service.GetAsync<List<OperationVO>>("AllOperation");
             oderList = service.GetAsync<List<OrderVO>>("GetCustomer");
             customerList = service.GetAsync<List<CustomerVO>>("GetCustomerName");
-            if (itemList.Data != null)
-            {
-
-            }
-            else
-            {
-                MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
-            }
         }
 
         private void btnOperation_Click(object sender, EventArgs e)
@@ -93,14 +85,15 @@ namespace AtlasPOP
 
         public void ChangeValue()
         {
-            itemID = operList.Data.Find((n) => n.OpID == OperID).ItemID;
-            OrderID = operList.Data.Find((n) => n.OpID == OperID).OrderID;
-            CustomerID = oderList.Data.Find((n) => n.OrderID == OrderID).CustomerID;
+                itemID = operList.Data.Find((n) => n.OpID == OperID).ItemID;
+                OrderID = operList.Data.Find((n) => n.OpID == OperID).OrderID;
+                CustomerID = oderList.Data.Find((n) => n.OrderID == OrderID).CustomerID;
 
-            lblProcessName.Text = operList.Data.Find((n) => n.OpID == OperID).ProcessName;
-            lblItemName.Text = itemList.Data.Find((n) => n.ItemID == itemID).ItemName;
-            lblClient.Text = customerList.Data.Find((n) => n.CustomerID == CustomerID).CustomerName;
-            lblOrderQty.Text = operList.Data.Find((n) => n.OpID == OperID).PlanQty.ToString();
+
+                lblProcessName.Text = operList.Data.Find((n) => n.OpID == OperID).ProcessName;
+                lblItemName.Text = itemList.Data.Find((n) => n.ItemID == itemID).ItemName;
+                lblClient.Text = customerList.Data.Find((n) => n.CustomerID == CustomerID).CustomerName;
+                lblOrderQty.Text = operList.Data.Find((n) => n.OpID == OperID).PlanQty.ToString();
         }
 
         private void DataGet(string data)
@@ -126,6 +119,14 @@ namespace AtlasPOP
             {
                 this.Close();
             }
+        }
+
+        private void btnResource_Click(object sender, EventArgs e)
+        {
+            frmResource frm = new frmResource(itemID, oper);
+            frm.MdiParent = this;
+            //frm.DataSendEvent += new DataGetEventHandler(this.DataGet);
+            frm.Show();
         }
     }
 }
