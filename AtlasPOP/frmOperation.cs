@@ -73,9 +73,9 @@ namespace AtlasPOP
         private void btnOK_Click(object sender, EventArgs e)
         {
             string OpID = dgvList.SelectedRows[0].Cells["OpID"].Value.ToString();
-            this.Close();
             DataSendEvent(OpID);
-            
+            this.Close();
+
         }
 
         private void frmOperation_FormClosing(object sender, FormClosingEventArgs e)

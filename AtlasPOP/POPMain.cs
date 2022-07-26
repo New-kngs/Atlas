@@ -145,9 +145,41 @@ namespace AtlasPOP
 
         private void btnResource_Click(object sender, EventArgs e)
         {
+            if (btnLogout.Text != "로그아웃")
+            {
+                MessageBox.Show("로그인을 해주세요");
+                return;
+            }
+            if (OperID == null)
+            {
+                MessageBox.Show("작업을 먼저 선택해주세요");
+                return;
+            }
+
             frmResource frm = new frmResource(itemID, OperID);
             frm.MdiParent = this;
-            //frm.DataSendEvent += new DataGetEventHandler(this.DataGet);
+            frm.Show();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnPerfomance_Click(object sender, EventArgs e)
+        {
+            if (btnLogout.Text != "로그아웃")
+            {
+                MessageBox.Show("로그인을 해주세요");
+                return;
+            }
+            if (OperID == null)
+            {
+                MessageBox.Show("작업을 먼저 선택해주세요");
+                return;
+            }
+            frmPerformance frm = new frmPerformance();
+            frm.MdiParent = this;
             frm.Show();
         }
     }

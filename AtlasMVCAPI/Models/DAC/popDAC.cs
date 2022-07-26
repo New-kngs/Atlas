@@ -148,7 +148,7 @@ namespace AtlasMVCAPI.Models
         /// </summary>
         /// <param name="OpID"></param>
         /// <returns></returns>
-        public bool UpdateResourceYN(string OpID)
+        public bool UpdateResourceYN(string OperID)
         {
             using (SqlCommand cmd = new SqlCommand
             {
@@ -156,7 +156,7 @@ namespace AtlasMVCAPI.Models
                 CommandText = @"update TB_Operation set ResourceYN = 'Y' where OpID = @OpID"
             })
             {
-                cmd.Parameters.AddWithValue("@OpID", OpID);
+                cmd.Parameters.AddWithValue("@OpID", OperID);
 
                 cmd.Connection.Open();
                 int iRowAffect = cmd.ExecuteNonQuery();
@@ -165,6 +165,38 @@ namespace AtlasMVCAPI.Models
                 return (iRowAffect > 0);
             }
         }
+
+        /// <summary>
+        /// 자재 재고 업데이트
+        /// </summary>
+        /// <param name="OpID"></param>
+        /// <returns></returns>
+        public bool UpdateResourceQty(List<BOMVO> qty)
+        {
+            SqlConnection conn = new SqlConnection(strConn);
+            conn.Open();
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = conn;
+                cmd.CommandText = @"update TB_Item set CurrentQty = @updateQty where ItemID= @itemID";
+                cmd.Parameters.Add("@updateQty", System.Data.SqlDbType.Int);
+                cmd.Parameters.Add("@itemID", System.Data.SqlDbType.NVarChar, 50);
+
+
+                int iRowAffect = 0;
+                foreach (BOMVO bom in qty)
+                {
+                    cmd.Parameters["@updateQty"].Value = bom.CurrentQty - bom.Qty;
+                    cmd.Parameters["@itemID"].Value = bom.ChildID;
+
+                    iRowAffect += cmd.ExecuteNonQuery();
+                }
+                conn.Close();
+                return (iRowAffect > 0);
+            }
+            
+        }
+
 
         public bool SaveProcess(ProcessVO process)
         {
