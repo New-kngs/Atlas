@@ -2036,7 +2036,6 @@
     <Compile Include="Controllers\ApiControllers\ProcessController.cs" />
     <Compile Include="Controllers\ApiControllers\WareHouseController.cs" />
     <Compile Include="Controllers\ApiControllers\CustomerController.cs" />
-    <Compile Include="Controllers\WebControllers\CartController.cs" />
     <Compile Include="Controllers\WebControllers\HomeController.cs" />
     <Compile Include="Controllers\WebControllers\LoginController.cs" />
     <Compile Include="Controllers\WebControllers\OrderController.cs" />
