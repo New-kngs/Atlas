@@ -142,7 +142,7 @@ namespace AltasMES
             this.groupBox5.Size = new System.Drawing.Size(505, 237);
             this.groupBox5.TabIndex = 2;
             this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "역전개";
+            this.groupBox5.Text = "역전개(상위제품)";
             // 
             // dgvD
             // 
@@ -204,7 +204,7 @@ namespace AltasMES
             this.groupBox4.Size = new System.Drawing.Size(505, 236);
             this.groupBox4.TabIndex = 1;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "정전개";
+            this.groupBox4.Text = "정전개(하위제품)";
             // 
             // dgvA
             // 
