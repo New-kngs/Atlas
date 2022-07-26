@@ -91,6 +91,12 @@ namespace AltasMES
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            if ((dgvProcess.SelectedRows[0].Cells["StateYN"].Value).ToString() == "N")
+            {
+                MessageBox.Show("이미 삭제된 공정입니다.");
+                return;
+            }
+
             ProcessVO process = new ProcessVO()
             {
                 ProcessID = Convert.ToInt32(dgvProcess.SelectedRows[0].Cells["ProcessID"].Value),
