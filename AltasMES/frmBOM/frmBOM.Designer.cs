@@ -159,7 +159,7 @@ namespace AltasMES
             // 
             this.cboPdt.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cboPdt.FormattingEnabled = true;
-            this.cboPdt.Location = new System.Drawing.Point(99, 40);
+            this.cboPdt.Location = new System.Drawing.Point(99, 39);
             this.cboPdt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboPdt.Name = "cboPdt";
             this.cboPdt.Size = new System.Drawing.Size(168, 29);
