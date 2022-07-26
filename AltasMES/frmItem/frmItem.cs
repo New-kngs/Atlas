@@ -62,7 +62,7 @@ namespace AltasMES
         {
             List<ItemVO> list;
 
-            if (string.IsNullOrWhiteSpace(txtSearch.Text)) // 텍스트 조건 없이 콤보박스만
+            if (string.IsNullOrWhiteSpace(txtSearch.Text.Trim())) // 텍스트 조건 없이 콤보박스만
             {
                 cboCategory_SelectedIndexChanged(this, e); 
             }
@@ -71,14 +71,14 @@ namespace AltasMES
             {
                 if (cboCategory.SelectedIndex == 0) // 텍스트 조건만
                 {
-                    citemList = itemList.FindAll(p => p.ItemName.ToLower().Contains(txtSearch.Text.ToLower()));
+                    citemList = itemList.FindAll(p => p.ItemName.ToLower().Contains(txtSearch.Text.ToLower().Trim()));
 
                     dgvItem.DataSource = null;
                     dgvItem.DataSource = new AdvancedList<ItemVO>(citemList);
                 }
                 else //
                 {
-                    list = citemList.FindAll(p => p.ItemName.ToLower().Contains(txtSearch.Text.ToLower()));
+                    list = citemList.FindAll(p => p.ItemName.ToLower().Contains(txtSearch.Text.ToLower().Trim()));
                     dgvItem.DataSource = null;
                     dgvItem.DataSource = new AdvancedList<ItemVO>(list);
                 }
@@ -89,6 +89,7 @@ namespace AltasMES
         {
             if (cboCategory.SelectedIndex == 0)
             {
+                txtSearch.Clear();
                 dgvItem.DataSource = null;
                 dgvItem.DataSource = new AdvancedList<ItemVO>(itemList);
             }
@@ -119,7 +120,7 @@ namespace AltasMES
             frmItem_Add pop = new frmItem_Add(item);
             if (pop.ShowDialog() == DialogResult.OK)
             {
-                //LoadData();
+                cboCategory_SelectedIndexChanged(this, e);
             }
         }
 
@@ -148,7 +149,7 @@ namespace AltasMES
 
         //public void LoadData()
         //{
-        //    srv = new ServiceHelper("");
+        //    //srv = new ServiceHelper("");
         //    ResMessage<List<ItemVO>> result = srv.GetAsync<List<ItemVO>>("api/Item/AllItem");
         //    if (result != null)
         //    {

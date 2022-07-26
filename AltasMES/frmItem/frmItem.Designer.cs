@@ -54,6 +54,7 @@ namespace AltasMES
             this.groupBox2.Controls.Add(this.cboCategory);
             this.groupBox2.Controls.Add(this.btnSearch);
             this.groupBox2.Controls.Add(this.txtSearch);
+            this.groupBox2.Text = "검색조건";
             // 
             // btnAdd
             // 

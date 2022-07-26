@@ -30,7 +30,7 @@ namespace AltasMES
         }
 
         private void frmItem_Add_Load(object sender, EventArgs e)
-        {
+        {            
             cboCategory1.Items.AddRange(new string[] { "선택", "완제품", "반제품", "자재" });
             cboCategory1.SelectedIndex = 0;
 
@@ -50,12 +50,11 @@ namespace AltasMES
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtName.Text))
+            if (string.IsNullOrWhiteSpace(txtName.Text.Trim()))
             {
                 MessageBox.Show("제품명을 입력해주세요");
                 return;
             }
-
             string itemName = txtName.Text;
             List<ItemVO> resultName = itemList.FindAll(p => p.ItemName == itemName);
             if (resultName.Count > 0)
@@ -64,18 +63,31 @@ namespace AltasMES
                 txtName.Clear();
                 return;
             }
-            if (cboCategory1.SelectedIndex == 0 && cboCategory2.SelectedIndex == 0)
+            if (cboCategory2.SelectedIndex < 1) //cboCategory1.SelectedIndex == 0 && 
             {
-                MessageBox.Show("제품유형 선택을 선택해 주세요.");
+                MessageBox.Show("제품유형 정확하게 선택을 선택해주세요.");
                 return;
             }
-            
+            if (cboSize.SelectedIndex < 1)
+            {
+                MessageBox.Show("제품 규격을 선택해주세요.");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(txtPrice.Text.Trim()))
+            {
+                MessageBox.Show("제품 단가를 입력해주세요");
+                return;
+            }
             if (string.IsNullOrWhiteSpace(txtSafeQty.Text))
             {
-                MessageBox.Show("안전재고량을 입력해주세요");
+                MessageBox.Show("제품 안전재고량을 입력해주세요");
                 return;
-            }            
-
+            }             
+            if (string.IsNullOrWhiteSpace(txtImage.Text.Trim()))
+            {
+                MessageBox.Show("제품 이미지를 등록해주세요");
+                return;
+            }
             ItemVO item = new ItemVO
             {
                 ItemCategory = cboCategory1.Text,
@@ -118,10 +130,7 @@ namespace AltasMES
                 //창고                
                 cboWhID.DisplayMember = "WHName";
                 cboWhID.ValueMember = "WHID";               
-                cboWhID.DataSource = whcomboList.FindAll(p => p.ItemCategory.Equals(selCategory));
-
-                //whcomboList.Insert(0, "선택");
-                //CommonUtil.ComboBinding<WareHouseVO>(cboWhName, whcomboList, "WHName", "WHID", blankText: "선택");
+                cboWhID.DataSource = whcomboList.FindAll(p => p.ItemCategory.Equals(selCategory));                
             }
 
             //선택된 카테고리가 자재인 경우 거래처 바인딩
