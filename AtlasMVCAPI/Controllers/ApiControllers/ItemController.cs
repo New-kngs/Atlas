@@ -116,8 +116,39 @@ namespace AtlasMVCAPI.Controllers
 
                 ResMessage result = new ResMessage()
                 {
-                    ErrCode = (item == null) ? -9 : 0,
-                    ErrMsg = (item == null) ? "저장중 오류발생" : "S"
+                    ErrCode = (!flag) ? -9 : 0,
+                    ErrMsg = (!flag) ? "저장중 오류발생" : "S"
+                };
+                return Ok(result);
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+
+                return Ok(new ResMessage()
+                {
+                    ErrCode = -9,
+                    ErrMsg = err.Message
+                });
+            }
+        }
+
+
+        //UpdateItem
+        // POST : https://localhost:44391/api/Item/UpdateItem
+        [HttpPost]
+        [Route("UpdateItem")]
+        public IHttpActionResult UpdateItem(ItemVO item)
+        {
+            try
+            {
+                ItemDAC db = new ItemDAC();
+                bool flag = db.UpdateItem(item);
+
+                ResMessage result = new ResMessage()
+                {
+                    ErrCode = (!flag) ? -9 : 0,
+                    ErrMsg = (!flag) ? "저장중 오류발생" : "S"
                 };
                 return Ok(result);
             }

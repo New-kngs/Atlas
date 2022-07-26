@@ -111,6 +111,31 @@ namespace AtlasMVCAPI.Models
             }
         }
 
+        public bool UpdateItem(ItemVO item)
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.CommandText = @"update TB_Item set CurrentQty = @CurrentQty, SafeQty = @SafeQty, ItemPrice = @ItemPrice, ItemImage = @ItemImage, ItemExplain = @ItemExplain, ModifyDate = @ModifyDate, ModifyUser = @ModifyUser
+                                                   where ItemID = @ItemID";
+
+                cmd.Parameters.AddWithValue("@CurrentQty", item.ItemName);
+                cmd.Parameters.AddWithValue("@SafeQty", item.ItemName);
+                cmd.Parameters.AddWithValue("@ItemPrice", item.ItemName);
+                cmd.Parameters.AddWithValue("@ItemImage", item.ItemName);
+                cmd.Parameters.AddWithValue("@ItemExplain", item.ItemName);
+                cmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
+                cmd.Parameters.AddWithValue("@ModifyUser", item.ItemName);
+
+                cmd.Connection.Open();
+                int iRowAffect = cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+
+                return (iRowAffect > 0);
+            }
+          
+        }
+
 
 
         /// <summary>

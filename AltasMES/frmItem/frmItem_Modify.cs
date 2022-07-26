@@ -21,37 +21,39 @@ namespace AltasMES
         {
             InitializeComponent();
             this.item = item;
-            cboCategory.Text = item.ItemCategory;
-            // 카테고리1, 카테고리2
-            txtItemID.Text = item.ItemID;
+            txtCategory.Text = item.ItemCategory;
+            txtID.Text = item.ItemID;
             txtName.Text = item.ItemName;
-            cboSize.Text = item.ItemSize;
+            txtSize.Text = item.ItemSize;
             txtPrice.Text = Convert.ToString(item.ItemPrice);
             txtQty.Text = Convert.ToString(item.CurrentQty);
             txtSafeQty.Text = Convert.ToString(item.SafeQty);
-            cboCusName.Text = item.CustomerName;
-            cboWhName.Text = item.WHName;
+            txtCusName.Text = item.CustomerName;
+            txtWhName.Text = item.WHName;
             txtExplain.Text = item.ItemExplain;
             txtCUser.Text = item.CreateUser;
             txtMUser.Text = item.ModifyUser;
             txtCDate.Text = item.CreateDate;
             txtMDate.Text = item.ModifyDate;
-            // 이미지
-        }
+            txtImage.Text = item.ItemImage;       
+        }        
 
-
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void btnUpdate_Click(object sender, EventArgs e)
         {
 
         }
-
-
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        
+        private void frmItem_Modify_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (srv != null)
+            {
+                srv.Dispose();
+            }
+        }
     }
 }

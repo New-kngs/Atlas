@@ -450,7 +450,7 @@ namespace AltasMES
             this.MinimizeBox = false;
             this.Name = "frmItem_Add";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "등록";
+            this.Text = "제품등록";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmItem_Add_FormClosing);
             this.Load += new System.EventHandler(this.frmItem_Add_Load);
             this.panel1.ResumeLayout(false);

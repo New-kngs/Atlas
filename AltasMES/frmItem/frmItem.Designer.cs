@@ -117,7 +117,7 @@ namespace AltasMES
             // 
             this.groupBox3.Controls.Add(this.dgvItem);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Font = new System.Drawing.Font("맑은 고딕", 9.75F);
+            this.groupBox3.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(1034, 491);
@@ -129,10 +129,10 @@ namespace AltasMES
             // 
             this.dgvItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvItem.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvItem.Location = new System.Drawing.Point(3, 21);
+            this.dgvItem.Location = new System.Drawing.Point(3, 25);
             this.dgvItem.Name = "dgvItem";
             this.dgvItem.RowTemplate.Height = 23;
-            this.dgvItem.Size = new System.Drawing.Size(1028, 467);
+            this.dgvItem.Size = new System.Drawing.Size(1028, 463);
             this.dgvItem.TabIndex = 2;
             this.dgvItem.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItem_CellClick);
             // 
