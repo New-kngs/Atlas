@@ -41,10 +41,10 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvPDT, "현재재고", "CurrentQty", colwidth: 200, align: DataGridViewContentAlignment.MiddleRight);
             dgvPDT.DefaultCellStyle.Font = new Font("맑은고딕", 12, FontStyle.Regular);
 
-            cboWH.Items.AddRange(new string[] { "선택", "완제품", "반제품", "자재" });
-            cboWH.SelectedIndex = 0;
-
             service = new ServiceHelper("");
+            cboWH.Items.AddRange(new string[] { "전체보기", "완제품", "반제품", "자재" });
+            cboWH.SelectedIndex = 0;
+                        
             DataLoad();
         }
         private void DataLoad()
@@ -183,6 +183,27 @@ namespace AltasMES
                 dgvWH.DataSource = new AdvancedList<WareHouseVO>(resultVO);
             }
                 
+        }
+
+        private void cboWH_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboWH.SelectedIndex == 0)
+            {
+                dgvWH.DataSource = null;
+                DataLoad();
+            }
+
+            else
+            {
+                ResMessage<List<WareHouseVO>> volist = service.GetAsync<List<WareHouseVO>>("api/WareHouse/AllWareHouse");
+
+                string category = cboWH.Text;
+                List<WareHouseVO> resultVO = volist.Data.FindAll((r) => r.ItemCategory == category);
+                dgvWH.DataSource = new AdvancedList<WareHouseVO>(resultVO);               
+
+            }
+
+            dgvWH.ClearSelection();
         }
     }
 }

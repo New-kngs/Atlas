@@ -23,7 +23,7 @@ namespace AtlasMVCAPI.Controllers
             try
             {
                 popDAC db = new popDAC();
-                List<OperationVO> list = db.GetAllOpration();
+                List<OperationVO> list = db.GetAllOperation();
 
                 ResMessage<List<OperationVO>> result = new ResMessage<List<OperationVO>>()
                 {

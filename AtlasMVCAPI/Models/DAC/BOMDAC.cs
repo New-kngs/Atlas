@@ -35,5 +35,24 @@ namespace AtlasMVCAPI.Models
                 return list;
             }
         }
+
+        public List<BOMVO> GetBOMForwardList()
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.CommandText = @"select BOMID, B.ItemID, ParentID, ChildID, UnitQty, 
+                                           convert(nvarchar(20), B.CreateDate, 23) CreateDate, B.CreateUser, 
+                                           convert(nvarchar(20), B.ModifyDate, 23) ModifyDate, B.ModifyUser, 
+                                           B.StateYN, ItemName, ItemCategory, ItemSize
+                                    from TB_BOM B inner join TB_Item I on B.ChildID = I.ItemID";
+
+                cmd.Connection.Open();
+                List<BOMVO> list = Helper.DataReaderMapToList<BOMVO>(cmd.ExecuteReader());
+                cmd.Connection.Close();
+
+                return list;
+            }
+        }
     }
 }
