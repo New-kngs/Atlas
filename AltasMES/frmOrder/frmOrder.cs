@@ -12,9 +12,16 @@ namespace AltasMES
 {
     public partial class frmOrder : BaseForm
     {
+        ServiceHelper srv = null;
         public frmOrder()
         {
             InitializeComponent();
+        }
+
+        private void frmOrder_Load(object sender, EventArgs e)
+        {
+            srv = new ServiceHelper("");
+
         }
     }
 }

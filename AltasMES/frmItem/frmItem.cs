@@ -15,8 +15,7 @@ namespace AltasMES
     {
         ServiceHelper srv = null;
         List<ItemVO> itemList = null;
-        List<ItemVO> citemList = null;  // 콤보 선택
-        List<ItemVO> delitemList = null;
+        List<ItemVO> citemList = null;  // 콤보 선택       
 
         string selId = string.Empty;
 
@@ -28,16 +27,7 @@ namespace AltasMES
         private void frmItem_Load(object sender, EventArgs e)
         {
             srv = new ServiceHelper("");
-            ResMessage<List<ItemVO>> result = srv.GetAsync<List<ItemVO>>("api/Item/AllItem");
-            if (result != null)
-            {
-                itemList = result.Data;
-            }
-            else
-            {
-                MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
-                return;
-            }
+            itemList = srv.GetAsync<List<ItemVO>>("api/Item/AllItem").Data;
 
             DataGridUtil.SetInitGridView(dgvItem);
             DataGridUtil.AddGridTextBoxColumn(dgvItem, "제품ID", "ItemID", colwidth: 90, align: DataGridViewContentAlignment.MiddleCenter);
@@ -57,21 +47,20 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvItem, "이미지", "ItmeImage", colwidth: 100, align: DataGridViewContentAlignment.MiddleCenter, visibility: false);
             DataGridUtil.AddGridTextBoxColumn(dgvItem, "설명", "ItemExplain", colwidth: 100, align: DataGridViewContentAlignment.MiddleCenter, visibility:false);
             
-            dgvItem.Columns["ItemPrice"].DefaultCellStyle.Format = "###,##0";            
-
+            dgvItem.Columns["ItemPrice"].DefaultCellStyle.Format = "###,##0";
+            
             cboCategory.Items.AddRange(new string[] { "선택", "완제품", "반제품", "자재" });
-            cboCategory.SelectedIndex = 0; // Loadata();
+            cboCategory.SelectedIndex = 0;
+
+            LoadData();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            List<ItemVO> list;
-
             if (string.IsNullOrWhiteSpace(txtSearch.Text.Trim())) // 텍스트 조건 없이 콤보박스만
             {
                 cboCategory_SelectedIndexChanged(this, e); 
             }
-
             else
             {
                 if (cboCategory.SelectedIndex == 0) // 텍스트 조건만
@@ -83,7 +72,7 @@ namespace AltasMES
                 }
                 else //
                 {
-                    list = citemList.FindAll(p => p.ItemName.ToLower().Contains(txtSearch.Text.ToLower().Trim()));
+                    List<ItemVO> list = citemList.FindAll(p => p.ItemName.ToLower().Contains(txtSearch.Text.ToLower().Trim()));
                     dgvItem.DataSource = null;
                     dgvItem.DataSource = new AdvancedList<ItemVO>(list);
                 }
@@ -92,11 +81,12 @@ namespace AltasMES
 
         private void cboCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
+            dgvItem.DataSource = null;
             if (cboCategory.SelectedIndex == 0)
             {
                 txtSearch.Clear();
                 dgvItem.DataSource = null;
-                dgvItem.DataSource = new AdvancedList<ItemVO>(itemList);
+                LoadData();                
             }
             else
             {
@@ -109,10 +99,7 @@ namespace AltasMES
                 }
             }
             dgvItem.ClearSelection();
-        }
-
-       
-
+        }     
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -123,7 +110,8 @@ namespace AltasMES
             frmItem_Add pop = new frmItem_Add(item);
             if (pop.ShowDialog() == DialogResult.OK)
             {
-                cboCategory_SelectedIndexChanged(this, e);
+                LoadData();
+                //cboCategory_SelectedIndexChanged(this, e);
             }
         }
 
@@ -143,7 +131,7 @@ namespace AltasMES
                 frmItem_Using pop = new frmItem_Using(item);
                 if (pop.ShowDialog() == DialogResult.OK)
                 {
-                    //LoadData();
+                    LoadData();
                 }
             }
             else
@@ -151,7 +139,7 @@ namespace AltasMES
                 frmItem_Modify pop = new frmItem_Modify(item);
                 if (pop.ShowDialog() == DialogResult.OK)
                 {
-                
+                    LoadData();
                 }
             }
         }
@@ -178,7 +166,7 @@ namespace AltasMES
                 frmItem_Delete pop = new frmItem_Delete(item);
                 if (pop.ShowDialog() == DialogResult.OK)
                 {
-
+                    LoadData();
                 }
             }
         }
@@ -188,7 +176,6 @@ namespace AltasMES
             if (e.RowIndex < 0) return;
 
             selId = (dgvItem[0, e.RowIndex].Value).ToString();
-
         }
 
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
@@ -199,25 +186,19 @@ namespace AltasMES
             }
         }
 
-        private void frmItem_Shown(object sender, EventArgs e)
+        public void LoadData()
         {
-            dgvItem.ClearSelection();
+            if (itemList != null)
+            {
+                dgvItem.DataSource = null;
+                dgvItem.DataSource = new AdvancedList<ItemVO>(itemList);                
+            }
+            else
+            {
+                MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
+                return;
+            }
         }
-
-        //public void LoadData()
-        //{
-        //    //srv = new ServiceHelper("");
-        //    ResMessage<List<ItemVO>> result = srv.GetAsync<List<ItemVO>>("api/Item/AllItem");
-        //    if (result != null)
-        //    {
-        //        itemList = result.Data;
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
-        //        return;
-        //    }
-        //}
 
         private void frmItem_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -227,6 +208,9 @@ namespace AltasMES
             }
         }
 
-        
+        private void frmItem_Shown(object sender, EventArgs e)
+        {
+            dgvItem.ClearSelection();
+        }
     }
 }

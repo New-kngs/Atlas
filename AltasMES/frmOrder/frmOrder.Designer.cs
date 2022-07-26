@@ -127,6 +127,7 @@ namespace AltasMES
             this.ClientSize = new System.Drawing.Size(1034, 682);
             this.Name = "frmOrder";
             this.Text = "주문";
+            this.Load += new System.EventHandler(this.frmOrder_Load);
             this.BasePanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
