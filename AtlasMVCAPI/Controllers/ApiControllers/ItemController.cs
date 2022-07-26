@@ -195,5 +195,36 @@ namespace AtlasMVCAPI.Controllers
             }
         }
 
+        // UsingItem
+        // POST : https://localhost:44391/api/Item/UsingItem
+        [HttpPost]
+        [Route("UsingItem")]
+        public IHttpActionResult UsingItem(ItemVO item)
+        {
+            try
+            {
+                ItemDAC db = new ItemDAC();
+                bool flag = db.UsingItem(item);
+
+                ResMessage result = new ResMessage()
+                {
+                    ErrCode = (!flag) ? -9 : 0,
+                    ErrMsg = (!flag) ? "수정 중 오류발생" : "S"
+                };
+
+                return Ok(result);
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+
+                return Ok(new ResMessage()
+                {
+                    ErrCode = -9,
+                    ErrMsg = err.Message
+                });
+            }
+        }
+
     }
 }

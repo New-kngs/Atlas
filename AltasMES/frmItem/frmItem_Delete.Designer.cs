@@ -33,6 +33,9 @@ namespace AltasMES
             this.lblTitle = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtDeleteChk = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.txtWhName = new System.Windows.Forms.TextBox();
             this.txtCusName = new System.Windows.Forms.TextBox();
             this.txtSize = new System.Windows.Forms.TextBox();
@@ -101,7 +104,7 @@ namespace AltasMES
             this.panel2.Location = new System.Drawing.Point(0, 79);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(773, 813);
+            this.panel2.Size = new System.Drawing.Size(773, 901);
             this.panel2.TabIndex = 6;
             // 
             // panel3
@@ -110,6 +113,9 @@ namespace AltasMES
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.label1);
+            this.panel3.Controls.Add(this.txtDeleteChk);
+            this.panel3.Controls.Add(this.label16);
             this.panel3.Controls.Add(this.txtWhName);
             this.panel3.Controls.Add(this.txtCusName);
             this.panel3.Controls.Add(this.txtSize);
@@ -146,8 +152,36 @@ namespace AltasMES
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel3.Name = "panel3";
             this.panel3.Padding = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.panel3.Size = new System.Drawing.Size(749, 790);
+            this.panel3.Size = new System.Drawing.Size(749, 878);
             this.panel3.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.Location = new System.Drawing.Point(283, 780);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(223, 15);
+            this.label1.TabIndex = 135;
+            this.label1.Text = "삭제를 하시려면 제품ID를 입력해주세요";
+            // 
+            // txtDeleteChk
+            // 
+            this.txtDeleteChk.Location = new System.Drawing.Point(286, 740);
+            this.txtDeleteChk.Margin = new System.Windows.Forms.Padding(2);
+            this.txtDeleteChk.Name = "txtDeleteChk";
+            this.txtDeleteChk.Size = new System.Drawing.Size(213, 29);
+            this.txtDeleteChk.TabIndex = 131;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(242, 744);
+            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(42, 21);
+            this.label16.TabIndex = 134;
+            this.label16.Text = "확인";
             // 
             // txtWhName
             // 
@@ -380,7 +414,7 @@ namespace AltasMES
             this.btnCancel.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancel.ImageIndex = 0;
-            this.btnCancel.Location = new System.Drawing.Point(415, 732);
+            this.btnCancel.Location = new System.Drawing.Point(415, 820);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -397,15 +431,16 @@ namespace AltasMES
             this.btnUpdate.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnUpdate.ImageIndex = 0;
-            this.btnUpdate.Location = new System.Drawing.Point(298, 732);
+            this.btnUpdate.Location = new System.Drawing.Point(298, 820);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnUpdate.Size = new System.Drawing.Size(73, 34);
             this.btnUpdate.TabIndex = 102;
-            this.btnUpdate.Text = "삭제";
+            this.btnUpdate.Text = "확인";
             this.btnUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // txtMDate
             // 
@@ -488,11 +523,13 @@ namespace AltasMES
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(773, 892);
+            this.ClientSize = new System.Drawing.Size(773, 980);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "frmItem_Delete";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmItem_Delete";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmItem_Delete_FormClosing);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
@@ -543,5 +580,8 @@ namespace AltasMES
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtCUser;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtDeleteChk;
+        private System.Windows.Forms.Label label16;
     }
 }
