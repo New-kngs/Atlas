@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace AtlasMVCAPI.Controllers.WebControllers
 {
-    public class OrderController : Controller
+    public class OrderWebController : Controller
     {
         // GET: Order
         public ActionResult Index()
