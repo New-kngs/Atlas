@@ -1,4 +1,5 @@
 ﻿@model AtlasMVCAPI.Models.Cart
+@using AtlasMVCAPI.Models
 
 @{
     ViewBag.Title = "Basket";
@@ -58,7 +59,11 @@
                                     </td>
 
                                     <td class="text-center">
-                                        <button type="button" class="btn btn-primary">주문하기</button>
+                                        @using (Html.BeginForm("ButtonOrder", "Cart", FormMethod.Post))
+                                        {
+                                            <button type="submit" class="btn btn-primary">주문하기</button> <!-- name="ModelCart"-->
+                                        }
+
                                     </td>
                                 </tr>
                             </tfoot>
