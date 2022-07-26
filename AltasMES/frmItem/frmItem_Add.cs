@@ -103,7 +103,7 @@ namespace AltasMES
                 ItemImage = txtImage.Text,
                 CreateUser = this.item.CreateUser
             };
-            ResMessage<List<ItemVO>> resultItem = srv.PostAsync<ItemVO, List<ItemVO>>("api/Item/saveItem", item);
+            ResMessage<List<ItemVO>> resultItem = srv.PostAsync<ItemVO, List<ItemVO>>("api/Item/SaveItem", item);
 
             if (resultItem.ErrCode == 0)
             {

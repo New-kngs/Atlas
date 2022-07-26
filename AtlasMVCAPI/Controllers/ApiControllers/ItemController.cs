@@ -103,10 +103,10 @@ namespace AtlasMVCAPI.Controllers
             }
         }
 
-
-        // POST : https://localhost:44391/api/Item/saveItem
+        // SaveItem
+        // POST : https://localhost:44391/api/Item/SaveItem
         [HttpPost]
-        [Route("saveItem")]
+        [Route("SaveItem")]
         public IHttpActionResult SaveItem(ItemVO item)
         {
             try
@@ -134,7 +134,7 @@ namespace AtlasMVCAPI.Controllers
         }
 
 
-        //UpdateItem
+        // UpdateItem
         // POST : https://localhost:44391/api/Item/UpdateItem
         [HttpPost]
         [Route("UpdateItem")]
@@ -148,7 +148,38 @@ namespace AtlasMVCAPI.Controllers
                 ResMessage result = new ResMessage()
                 {
                     ErrCode = (!flag) ? -9 : 0,
-                    ErrMsg = (!flag) ? "저장중 오류발생" : "S"
+                    ErrMsg = (!flag) ? "수정 중 오류발생" : "S"
+                };
+                return Ok(result);
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+
+                return Ok(new ResMessage()
+                {
+                    ErrCode = -9,
+                    ErrMsg = err.Message
+                });
+            }
+        }
+
+
+        // DeleteItem
+        // POST : https://localhost:44391/api/Item/DeleteItem
+        [HttpPost]
+        [Route("DeleteItem")]
+        public IHttpActionResult DeleteItem(ItemVO item)
+        {
+            try
+            {
+                ItemDAC db = new ItemDAC();
+                bool flag = db.DeleteItem(item);
+
+                ResMessage result = new ResMessage()
+                {
+                    ErrCode = (!flag) ? -9 : 0,
+                    ErrMsg = (!flag) ? "삭제 중 오류발생" : "S"
                 };
                 return Ok(result);
             }

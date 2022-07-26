@@ -55,7 +55,7 @@ namespace AtlasMVCAPI.Models
             }
         }
 
-        // 일단 보류
+        
         public ItemVO GeTItemById(string id)
         {                         
             using (SqlCommand cmd = new SqlCommand())
@@ -80,7 +80,6 @@ namespace AtlasMVCAPI.Models
         }
 
         // @ItemName, @CustomerID, @CurrentQty, @SafeQty, @WHID, @ItemPrice, @ItemCategory, @ItemSize, @ItemImage, @ItemExplain, @CreateDate, @CreateUser
-
         public bool SaveItem(ItemVO item)
         {
             using (SqlCommand cmd = new SqlCommand())
@@ -110,7 +109,7 @@ namespace AtlasMVCAPI.Models
                 return (iRowAffect > 0);
             }
         }
-
+        
         public bool UpdateItem(ItemVO item)
         {
             using (SqlCommand cmd = new SqlCommand())
@@ -119,13 +118,14 @@ namespace AtlasMVCAPI.Models
                 cmd.CommandText = @"update TB_Item set CurrentQty = @CurrentQty, SafeQty = @SafeQty, ItemPrice = @ItemPrice, ItemImage = @ItemImage, ItemExplain = @ItemExplain, ModifyDate = @ModifyDate, ModifyUser = @ModifyUser
                                                    where ItemID = @ItemID";
 
-                cmd.Parameters.AddWithValue("@CurrentQty", item.ItemName);
-                cmd.Parameters.AddWithValue("@SafeQty", item.ItemName);
-                cmd.Parameters.AddWithValue("@ItemPrice", item.ItemName);
-                cmd.Parameters.AddWithValue("@ItemImage", item.ItemName);
-                cmd.Parameters.AddWithValue("@ItemExplain", item.ItemName);
+                cmd.Parameters.AddWithValue("@ItemID", item.ItemID);
+                cmd.Parameters.AddWithValue("@CurrentQty", item.CurrentQty);
+                cmd.Parameters.AddWithValue("@SafeQty", item.SafeQty);
+                cmd.Parameters.AddWithValue("@ItemPrice", item.ItemPrice);
+                cmd.Parameters.AddWithValue("@ItemImage", item.ItemImage);
+                cmd.Parameters.AddWithValue("@ItemExplain", item.ItemExplain);
                 cmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
-                cmd.Parameters.AddWithValue("@ModifyUser", item.ItemName);
+                cmd.Parameters.AddWithValue("@ModifyUser", item.ModifyUser);
 
                 cmd.Connection.Open();
                 int iRowAffect = cmd.ExecuteNonQuery();
@@ -134,6 +134,27 @@ namespace AtlasMVCAPI.Models
                 return (iRowAffect > 0);
             }
           
+        }
+
+        public bool DeleteItem(ItemVO item)
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.CommandText = @"update TB_Item set StateYN = 'N', ModifyDate = @ModifyDate, ModifyUser = @ModifyUser
+                                                   where ItemID = @ItemID";
+
+                cmd.Parameters.AddWithValue("@ItemID", item.ItemID);
+                cmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
+                cmd.Parameters.AddWithValue("@ModifyUser", item.ModifyUser);
+                
+                cmd.Connection.Open();
+                int iRowAffect = cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+
+                return (iRowAffect > 0);
+
+            }
         }
 
 
