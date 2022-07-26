@@ -68,6 +68,24 @@ namespace AtlasPOP
             oderList = service.GetAsync<List<OrderVO>>("GetCustomer");
             customerList = service.GetAsync<List<CustomerVO>>("GetCustomerName");
         }
+        private void OpenCreateForm<T>() where T : Form, new()
+        {
+            //폼이 열린적이 없는 경우에는 new를 하고, 열린적이 있으면 열린 폼을 활성시킨다.
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.GetType() == typeof(T))
+                {
+                    form.Activate();
+                    form.BringToFront();
+
+                    return;
+                }
+            }
+
+            T frm = new T();
+            frm.MdiParent = this;
+            frm.Show();
+        }
 
         private void btnOperation_Click(object sender, EventArgs e)
         {
@@ -85,6 +103,8 @@ namespace AtlasPOP
 
         public void ChangeValue()
         {
+            if(OperID != null)
+            {
                 itemID = operList.Data.Find((n) => n.OpID == OperID).ItemID;
                 OrderID = operList.Data.Find((n) => n.OpID == OperID).OrderID;
                 CustomerID = oderList.Data.Find((n) => n.OrderID == OrderID).CustomerID;
@@ -94,6 +114,8 @@ namespace AtlasPOP
                 lblItemName.Text = itemList.Data.Find((n) => n.ItemID == itemID).ItemName;
                 lblClient.Text = customerList.Data.Find((n) => n.CustomerID == CustomerID).CustomerName;
                 lblOrderQty.Text = operList.Data.Find((n) => n.OpID == OperID).PlanQty.ToString();
+            }
+                
         }
 
         private void DataGet(string data)

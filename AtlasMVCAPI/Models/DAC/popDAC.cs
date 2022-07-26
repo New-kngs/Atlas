@@ -36,6 +36,37 @@ namespace AtlasMVCAPI.Models
                 return list;
             }
         }
+
+        /// <summary>
+        /// 작업지시서 검색 리스트 가져오기
+        /// </summary>
+        /// <returns></returns>
+        public List<OperationVO> GetSearchOperation(string dateFrom, string dateTo, string HourFrom, string HourTO)
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.CommandText = @"select OpID, convert(varchar(20), OpDate, 120) OpDate, resourceYN, ItemID, OrderID, op.ProcessID, ProcessName,    
+                                    PlanQty, OpState, BeginDate,EndDate, EmpID,
+                                    CONVERT(varchar(10),OpDate,120) Date, DatePart(hh,OpDate) Time
+                                    from TB_Operation op join TB_Process p on op.ProcessID = p.ProcessID
+                                    where CONVERT(varchar(10),OpDate,120) Between @dateFrom and @dateTo
+                                    and
+                                    DatePart(hh,OpDate) Between @HourFrom and @HourTo";
+
+                cmd.Parameters.AddWithValue("@dateFrom", dateFrom);
+                cmd.Parameters.AddWithValue("@dateTo", dateTo);
+                cmd.Parameters.AddWithValue("@HourFrom", HourFrom);
+                cmd.Parameters.AddWithValue("@HourTo", HourTO);
+
+                cmd.Connection.Open();
+                List<OperationVO> list = Helper.DataReaderMapToList<OperationVO>(cmd.ExecuteReader());
+                cmd.Connection.Close();
+
+                return list;
+            }
+        }
+
         /// <summary>
         /// 제품 목록 가져오기
         /// </summary>
