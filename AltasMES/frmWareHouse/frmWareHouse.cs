@@ -187,20 +187,19 @@ namespace AltasMES
 
         private void cboWH_SelectedIndexChanged(object sender, EventArgs e)
         {
+            dgvPDT.DataSource = null;
             if (cboWH.SelectedIndex == 0)
             {
                 dgvWH.DataSource = null;
                 DataLoad();
             }
-
             else
             {
                 ResMessage<List<WareHouseVO>> volist = service.GetAsync<List<WareHouseVO>>("api/WareHouse/AllWareHouse");
 
                 string category = cboWH.Text;
                 List<WareHouseVO> resultVO = volist.Data.FindAll((r) => r.ItemCategory == category);
-                dgvWH.DataSource = new AdvancedList<WareHouseVO>(resultVO);               
-
+                dgvWH.DataSource = new AdvancedList<WareHouseVO>(resultVO);  
             }
 
             dgvWH.ClearSelection();

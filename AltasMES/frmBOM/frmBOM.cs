@@ -82,7 +82,9 @@ namespace AltasMES
 
         }
         private void cboPdt_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        {            
+            dgvA.DataSource = null;
+            dgvD.DataSource = null;
             if (cboPdt.SelectedIndex == 0)
             {
                 dgvPdt.DataSource = null;
