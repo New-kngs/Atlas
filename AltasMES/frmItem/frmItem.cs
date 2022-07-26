@@ -135,13 +135,22 @@ namespace AltasMES
 
         private void btnModify_Click(object sender, EventArgs e)
         {
-            ItemVO item = srv.GetAsync<ItemVO>($"api/Item/{selId}").Data;
-            item.ModifyUser = ((Main)this.MdiParent).EmpName.ToString();
-
-            frmItem_Modify pop = new frmItem_Modify(item);
-            if (pop.ShowDialog() == DialogResult.OK)
+            if (selId == string.Empty)
             {
+                MessageBox.Show("수정할 제품을 선택해 주세요");
+                return;
+            }
+
+            else
+            {
+                ItemVO item = srv.GetAsync<ItemVO>($"api/Item/{selId}").Data;
+                item.ModifyUser = ((Main)this.MdiParent).EmpName.ToString();            
+
+                frmItem_Modify pop = new frmItem_Modify(item);
+                if (pop.ShowDialog() == DialogResult.OK)
+                {
                 
+                }
             }
         }
 

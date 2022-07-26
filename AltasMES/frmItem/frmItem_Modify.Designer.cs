@@ -33,6 +33,10 @@ namespace AltasMES
             this.lblTitle = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.txtWhName = new System.Windows.Forms.TextBox();
+            this.txtCusName = new System.Windows.Forms.TextBox();
+            this.txtSize = new System.Windows.Forms.TextBox();
+            this.txtCategory = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -63,10 +67,6 @@ namespace AltasMES
             this.label10 = new System.Windows.Forms.Label();
             this.txtCUser = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtCategory = new System.Windows.Forms.TextBox();
-            this.txtSize = new System.Windows.Forms.TextBox();
-            this.txtCusName = new System.Windows.Forms.TextBox();
-            this.txtWhName = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -149,6 +149,39 @@ namespace AltasMES
             this.panel3.Padding = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.panel3.Size = new System.Drawing.Size(749, 815);
             this.panel3.TabIndex = 1;
+            // 
+            // txtWhName
+            // 
+            this.txtWhName.Location = new System.Drawing.Point(125, 439);
+            this.txtWhName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtWhName.Name = "txtWhName";
+            this.txtWhName.Size = new System.Drawing.Size(180, 29);
+            this.txtWhName.TabIndex = 130;
+            // 
+            // txtCusName
+            // 
+            this.txtCusName.Location = new System.Drawing.Point(125, 389);
+            this.txtCusName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtCusName.Name = "txtCusName";
+            this.txtCusName.Size = new System.Drawing.Size(180, 29);
+            this.txtCusName.TabIndex = 129;
+            // 
+            // txtSize
+            // 
+            this.txtSize.Location = new System.Drawing.Point(125, 189);
+            this.txtSize.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtSize.Name = "txtSize";
+            this.txtSize.Size = new System.Drawing.Size(180, 29);
+            this.txtSize.TabIndex = 128;
+            // 
+            // txtCategory
+            // 
+            this.txtCategory.Enabled = false;
+            this.txtCategory.Location = new System.Drawing.Point(125, 40);
+            this.txtCategory.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtCategory.Name = "txtCategory";
+            this.txtCategory.Size = new System.Drawing.Size(180, 29);
+            this.txtCategory.TabIndex = 127;
             // 
             // label2
             // 
@@ -456,39 +489,6 @@ namespace AltasMES
             this.label5.Size = new System.Drawing.Size(90, 21);
             this.label5.TabIndex = 91;
             this.label5.Text = "등록사용자";
-            // 
-            // txtCategory
-            // 
-            this.txtCategory.Enabled = false;
-            this.txtCategory.Location = new System.Drawing.Point(125, 40);
-            this.txtCategory.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtCategory.Name = "txtCategory";
-            this.txtCategory.Size = new System.Drawing.Size(180, 29);
-            this.txtCategory.TabIndex = 127;
-            // 
-            // txtSize
-            // 
-            this.txtSize.Location = new System.Drawing.Point(125, 189);
-            this.txtSize.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtSize.Name = "txtSize";
-            this.txtSize.Size = new System.Drawing.Size(180, 29);
-            this.txtSize.TabIndex = 128;
-            // 
-            // txtCusName
-            // 
-            this.txtCusName.Location = new System.Drawing.Point(125, 389);
-            this.txtCusName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtCusName.Name = "txtCusName";
-            this.txtCusName.Size = new System.Drawing.Size(180, 29);
-            this.txtCusName.TabIndex = 129;
-            // 
-            // txtWhName
-            // 
-            this.txtWhName.Location = new System.Drawing.Point(125, 439);
-            this.txtWhName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtWhName.Name = "txtWhName";
-            this.txtWhName.Size = new System.Drawing.Size(180, 29);
-            this.txtWhName.TabIndex = 130;
             // 
             // frmItem_Modify
             // 

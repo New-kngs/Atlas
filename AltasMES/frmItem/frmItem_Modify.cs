@@ -35,12 +35,34 @@ namespace AltasMES
             txtMUser.Text = item.ModifyUser;
             txtCDate.Text = item.CreateDate;
             txtMDate.Text = item.ModifyDate;
-            txtImage.Text = item.ItemImage;       
-        }        
+            txtImage.Text = item.ItemImage;
 
+            //txtID.ReadOnly = true;
+        }
+
+        //CurrentQty SafeQty ItemPrice ItemImage ItemExplain ModifyDate ModifyUser
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            ItemVO item = new ItemVO
+            {
+                ItemID = txtID.Text,
+                CurrentQty = Convert.ToInt32(txtQty.Text),
+                SafeQty = Convert.ToInt32(txtSafeQty.Text),
+                ItemPrice = Convert.ToInt32(txtPrice.Text),
+                ItemImage = txtImage.Text,
+                ItemExplain = txtExplain.Text,
+                ModifyUser = this.item.ModifyUser
+            };
+            srv = new ServiceHelper("");
+            ResMessage<List<ItemVO>> result = srv.PostAsync<ItemVO, List<ItemVO>>("api/Item/UpdateItem", item);
 
+            if (result.ErrCode == 0)
+            {
+                MessageBox.Show("성공적으로 수정되었습니다.");
+                this.DialogResult = DialogResult.OK;
+            }
+            else
+                MessageBox.Show(result.ErrMsg);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
