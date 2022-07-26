@@ -35,7 +35,7 @@ namespace AtlasPOP
             this.btnResource = new System.Windows.Forms.Button();
             this.btnPerformance = new System.Windows.Forms.Button();
             this.btnOperation = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
+            this.btnPerfomance = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.btnStart = new System.Windows.Forms.Button();
@@ -93,7 +93,7 @@ namespace AtlasPOP
             this.tableLayoutPanel2.Controls.Add(this.btnResource, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.btnPerformance, 0, 5);
             this.tableLayoutPanel2.Controls.Add(this.btnOperation, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.button7, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.btnPerfomance, 0, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -152,19 +152,20 @@ namespace AtlasPOP
             this.btnOperation.UseVisualStyleBackColor = false;
             this.btnOperation.Click += new System.EventHandler(this.btnOperation_Click);
             // 
-            // button7
+            // btnPerfomance
             // 
-            this.button7.BackColor = System.Drawing.Color.Black;
-            this.button7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button7.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.button7.Location = new System.Drawing.Point(3, 148);
-            this.button7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(171, 64);
-            this.button7.TabIndex = 3;
-            this.button7.Text = "실적조회";
-            this.button7.UseVisualStyleBackColor = false;
+            this.btnPerfomance.BackColor = System.Drawing.Color.Black;
+            this.btnPerfomance.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPerfomance.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnPerfomance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnPerfomance.Location = new System.Drawing.Point(3, 148);
+            this.btnPerfomance.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnPerfomance.Name = "btnPerfomance";
+            this.btnPerfomance.Size = new System.Drawing.Size(171, 64);
+            this.btnPerfomance.TabIndex = 3;
+            this.btnPerfomance.Text = "실적조회";
+            this.btnPerfomance.UseVisualStyleBackColor = false;
+            this.btnPerfomance.Click += new System.EventHandler(this.btnPerfomance_Click);
             // 
             // panel3
             // 
@@ -502,7 +503,7 @@ namespace AtlasPOP
         private System.Windows.Forms.Button btnResource;
         private System.Windows.Forms.Button btnPerformance;
         private System.Windows.Forms.Button btnOperation;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button btnPerfomance;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Button btnEnd;

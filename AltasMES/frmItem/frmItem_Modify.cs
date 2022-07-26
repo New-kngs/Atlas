@@ -35,9 +35,7 @@ namespace AltasMES
             txtMUser.Text = item.ModifyUser;
             txtCDate.Text = item.CreateDate;
             txtMDate.Text = item.ModifyDate;
-            txtImage.Text = item.ItemImage;
-
-            //txtID.ReadOnly = true;
+            txtImage.Text = item.ItemImage;            
         }
 
         //CurrentQty SafeQty ItemPrice ItemImage ItemExplain ModifyDate ModifyUser

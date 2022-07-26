@@ -36,6 +36,37 @@ namespace AtlasMVCAPI.Models
                 return list;
             }
         }
+
+        /// <summary>
+        /// 작업지시서 검색 리스트 가져오기
+        /// </summary>
+        /// <returns></returns>
+        public List<OperationVO> GetSearchOperation(string dateFrom, string dateTo, string HourFrom, string HourTO)
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.CommandText = @"select OpID, convert(varchar(20), OpDate, 120) OpDate, resourceYN, ItemID, OrderID, op.ProcessID, ProcessName,    
+                                    PlanQty, OpState, BeginDate,EndDate, EmpID,
+                                    CONVERT(varchar(10),OpDate,120) Date, DatePart(hh,OpDate) Time
+                                    from TB_Operation op join TB_Process p on op.ProcessID = p.ProcessID
+                                    where CONVERT(varchar(10),OpDate,120) Between @dateFrom and @dateTo
+                                    and
+                                    DatePart(hh,OpDate) Between @HourFrom and @HourTo";
+
+                cmd.Parameters.AddWithValue("@dateFrom", dateFrom);
+                cmd.Parameters.AddWithValue("@dateTo", dateTo);
+                cmd.Parameters.AddWithValue("@HourFrom", HourFrom);
+                cmd.Parameters.AddWithValue("@HourTo", HourTO);
+
+                cmd.Connection.Open();
+                List<OperationVO> list = Helper.DataReaderMapToList<OperationVO>(cmd.ExecuteReader());
+                cmd.Connection.Close();
+
+                return list;
+            }
+        }
+
         /// <summary>
         /// 제품 목록 가져오기
         /// </summary>
@@ -117,7 +148,7 @@ namespace AtlasMVCAPI.Models
         /// </summary>
         /// <param name="OpID"></param>
         /// <returns></returns>
-        public bool UpdateResourceYN(string OpID)
+        public bool UpdateResourceYN(string OperID)
         {
             using (SqlCommand cmd = new SqlCommand
             {
@@ -125,7 +156,7 @@ namespace AtlasMVCAPI.Models
                 CommandText = @"update TB_Operation set ResourceYN = 'Y' where OpID = @OpID"
             })
             {
-                cmd.Parameters.AddWithValue("@OpID", OpID);
+                cmd.Parameters.AddWithValue("@OpID", OperID);
 
                 cmd.Connection.Open();
                 int iRowAffect = cmd.ExecuteNonQuery();
@@ -134,6 +165,38 @@ namespace AtlasMVCAPI.Models
                 return (iRowAffect > 0);
             }
         }
+
+        /// <summary>
+        /// 자재 재고 업데이트
+        /// </summary>
+        /// <param name="OpID"></param>
+        /// <returns></returns>
+        public bool UpdateResourceQty(List<BOMVO> qty)
+        {
+            SqlConnection conn = new SqlConnection(strConn);
+            conn.Open();
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = conn;
+                cmd.CommandText = @"update TB_Item set CurrentQty = @updateQty where ItemID= @itemID";
+                cmd.Parameters.Add("@updateQty", System.Data.SqlDbType.Int);
+                cmd.Parameters.Add("@itemID", System.Data.SqlDbType.NVarChar, 50);
+
+
+                int iRowAffect = 0;
+                foreach (BOMVO bom in qty)
+                {
+                    cmd.Parameters["@updateQty"].Value = bom.CurrentQty - bom.Qty;
+                    cmd.Parameters["@itemID"].Value = bom.ChildID;
+
+                    iRowAffect += cmd.ExecuteNonQuery();
+                }
+                conn.Close();
+                return (iRowAffect > 0);
+            }
+            
+        }
+
 
         public bool SaveProcess(ProcessVO process)
         {

@@ -15,7 +15,8 @@ namespace AltasMES
     {
         ServiceHelper srv = null;
         List<ItemVO> itemList = null;
-        List<ItemVO> citemList = null; // 콤보 선택
+        List<ItemVO> citemList = null;  // 콤보 선택
+        List<ItemVO> delitemList = null;
 
         string selId = string.Empty;
 
@@ -101,6 +102,7 @@ namespace AltasMES
             {
                 if (itemList != null)
                 {
+                    txtSearch.Clear();
                     citemList = itemList.FindAll(p => p.ItemCategory.Equals(cboCategory.Text));
                     dgvItem.DataSource = null;
                     dgvItem.DataSource = new AdvancedList<ItemVO>(citemList);
@@ -125,14 +127,6 @@ namespace AltasMES
             }
         }
 
-        private void dgvItem_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex < 0) return;
-
-            selId = (dgvItem[0, e.RowIndex].Value).ToString();
-            
-        }
-
         private void btnModify_Click(object sender, EventArgs e)
         {
             if (selId == string.Empty)
@@ -141,17 +135,60 @@ namespace AltasMES
                 return;
             }
 
+            ItemVO item = srv.GetAsync<ItemVO>($"api/Item/{selId}").Data;
+            item.ModifyUser = ((Main)this.MdiParent).EmpName.ToString();
+
+            if ((dgvItem.SelectedRows[0].Cells["StateYN"].Value).ToString() == "N")
+            {
+                frmItem_Using pop = new frmItem_Using(item);
+                if (pop.ShowDialog() == DialogResult.OK)
+                {
+                    //LoadData();
+                }
+            }
             else
             {
-                ItemVO item = srv.GetAsync<ItemVO>($"api/Item/{selId}").Data;
-                item.ModifyUser = ((Main)this.MdiParent).EmpName.ToString();            
-
                 frmItem_Modify pop = new frmItem_Modify(item);
                 if (pop.ShowDialog() == DialogResult.OK)
                 {
                 
                 }
             }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (selId == string.Empty)
+            {
+                MessageBox.Show("삭제할 제품을 선택해 주세요");
+                return;
+            }
+
+            if (dgvItem.SelectedRows[0].Cells["StateYN"].Value.ToString() == "N")
+            {
+                MessageBox.Show("이미 삭제된 제품 입니다.");
+                return;
+            }         
+
+            else
+            {
+                ItemVO item = srv.GetAsync<ItemVO>($"api/Item/{selId}").Data;
+                item.ModifyUser = ((Main)this.MdiParent).EmpName.ToString();
+
+                frmItem_Delete pop = new frmItem_Delete(item);
+                if (pop.ShowDialog() == DialogResult.OK)
+                {
+
+                }
+            }
+        }
+
+        private void dgvItem_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            selId = (dgvItem[0, e.RowIndex].Value).ToString();
+
         }
 
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
@@ -190,9 +227,6 @@ namespace AltasMES
             }
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }

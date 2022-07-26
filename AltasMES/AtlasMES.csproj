@@ -152,11 +152,23 @@
     <Compile Include="frmItem\frmItem_Add.Designer.cs">
       <DependentUpon>frmItem_Add.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmItem\frmItem_Delete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmItem\frmItem_Delete.Designer.cs">
+      <DependentUpon>frmItem_Delete.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmItem\frmItem_Modify.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmItem\frmItem_Modify.Designer.cs">
       <DependentUpon>frmItem_Modify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmItem\frmItem_Using.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmItem\frmItem_Using.Designer.cs">
+      <DependentUpon>frmItem_Using.cs</DependentUpon>
     </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
@@ -281,8 +293,14 @@
     <EmbeddedResource Include="frmItem\frmItem_Add.resx">
       <DependentUpon>frmItem_Add.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmItem\frmItem_Delete.resx">
+      <DependentUpon>frmItem_Delete.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmItem\frmItem_Modify.resx">
       <DependentUpon>frmItem_Modify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmItem\frmItem_Using.resx">
+      <DependentUpon>frmItem_Using.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>

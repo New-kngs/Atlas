@@ -26,6 +26,7 @@ namespace AtlasPOP
 
         private void frmOperation_Load(object sender, EventArgs e)
         {
+            service = new ServiceHelper("");
             popDataGridUtil.SetInitGridView(dgvList);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "작업지시ID", "OpID", colwidth: 130, DataGridViewContentAlignment.MiddleCenter);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "작업지시일시", "OpDate", colwidth: 250);
@@ -40,13 +41,12 @@ namespace AtlasPOP
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "날짜", "Date", visibility:false);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "시간", "Time", visibility: false);
             LoadData();
-
             TimeComboInit();
         }
         public void LoadData()
         {
-            service = new ServiceHelper("api/pop");
-            ResMessage<List<OperationVO>> result = service.GetAsync<List<OperationVO>>("AllOperation");
+            
+            ResMessage<List<OperationVO>> result = service.GetAsync<List<OperationVO>>("api/pop/AllOperation");
             if (result.Data != null)
             {
                 dgvList.DataSource = new AdvancedList<OperationVO>(result.Data);
@@ -58,14 +58,15 @@ namespace AtlasPOP
         }
         public void TimeComboInit()
         {
+            dtpTo.Value = DateTime.Now;
+            dtpFrom.Value = DateTime.Now.AddDays(-7);
 
-            int hour = DateTime.Now.Hour;
             for (int i = 1; i <= 24; i++)
             {
                 cboTimeFrom.Items.Add(i);
                 cboTimeTo.Items.Add(i);
             }
-            cboTimeFrom.SelectedIndex = cboTimeTo.SelectedIndex = hour-1;
+            cboTimeFrom.SelectedIndex = cboTimeTo.SelectedIndex = DateTime.Now.Hour -1;
         }
 
 
@@ -74,6 +75,7 @@ namespace AtlasPOP
             string OpID = dgvList.SelectedRows[0].Cells["OpID"].Value.ToString();
             DataSendEvent(OpID);
             this.Close();
+
         }
 
         private void frmOperation_FormClosing(object sender, FormClosingEventArgs e)
@@ -82,6 +84,31 @@ namespace AtlasPOP
             main.ChangeValue();
         }
 
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            ResMessage<List<OperationVO>> result = service.GetAsync<List<OperationVO>>("api/pop/SearchOper/"+ dtpFrom.Value.ToShortDateString() + "/" +dtpTo.Value.ToShortDateString()+"/"+cboTimeFrom.Text+"/"+cboTimeTo.Text);
+            if (result.Data != null)
+            {
+                dgvList.DataSource = new AdvancedList<OperationVO>(result.Data);
+            }
+            else
+            {
+                MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
+            }
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            dtpTo.Value = DateTime.Now;
+            dtpFrom.Value = DateTime.Now.AddDays(-7);
+            cboTimeFrom.SelectedIndex = cboTimeTo.SelectedIndex = DateTime.Now.Hour - 1;
+            LoadData();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
 

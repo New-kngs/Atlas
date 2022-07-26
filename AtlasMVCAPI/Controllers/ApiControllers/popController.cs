@@ -13,6 +13,8 @@ namespace AtlasMVCAPI.Controllers
     [RoutePrefix("api/pop")]
     public class popController : ApiController
     {
+
+        
         /// <summary>
         /// 등록된 모든 공정를 조회해서 반환
         /// </summary>
@@ -44,6 +46,41 @@ namespace AtlasMVCAPI.Controllers
                     //ErrMsg = err.Message
                     ErrMsg = "서비스 관리자에게 문의하시기 바랍니다."
                 }) ;
+            }
+        }
+        /// <summary>
+        /// 등록된 모든 공정를 조회해서 반환
+        /// </summary>
+        //https://localhost:44391/api/pop/SearchOper/{dateFrom}/{dateTo}/{HourFrom}/{HourTO}
+
+        [Route("SearchOper/{dateFrom}/{dateTo}/{HourFrom}/{HourTO}")]
+        [HttpGet]
+        public IHttpActionResult SearchOper(string dateFrom, string dateTo, string HourFrom, string HourTO)
+        {
+            try
+            {
+                popDAC db = new popDAC();
+                List<OperationVO> list = db.GetSearchOperation(dateFrom, dateTo, HourFrom, HourTO);
+
+                ResMessage<List<OperationVO>> result = new ResMessage<List<OperationVO>>()
+                {
+                    ErrCode = (list == null) ? -9 : 0,
+                    ErrMsg = (list == null) ? "조회중 오류발생" : "S",
+                    Data = list
+                };
+
+                return Ok(result);
+            }
+            catch (Exception err)
+            {
+                System.Diagnostics.Debug.WriteLine(err.Message);
+
+                return Ok(new ResMessage()
+                {
+                    ErrCode = -9,
+                    //ErrMsg = err.Message
+                    ErrMsg = "서비스 관리자에게 문의하시기 바랍니다."
+                });
             }
         }
 
@@ -183,9 +220,9 @@ namespace AtlasMVCAPI.Controllers
             }
         }
 
-        //POST : https://localhost:44391/api/pop/UpdateResourceYN/{OperID}
+        //POST : https://localhost:44391/api/pop/UpdateResourceYN
         [HttpPost]
-        [Route("UpdateResourceYN/{OPID}")]
+        [Route("UpdateResourceYN/{OperID}")]
         public IHttpActionResult UpdateResourceYN(string OperID)
         {
             try
@@ -212,11 +249,40 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
+        //POST : https://localhost:44391/api/pop/UpdateResourceQty
+        [HttpPost]
+        [Route("UpdateResourceQty/")]
+        public IHttpActionResult UpdateResourceQty(List<BOMVO> bom)
+        {
+            try
+            {
+                popDAC db = new popDAC();
+                bool flag = db.UpdateResourceQty(bom);
 
+                ResMessage result = new ResMessage()
+                {
+                    ErrCode = (!flag) ? -9 : 0,
+                    ErrMsg = (!flag) ? "수정 중 오류발생" : "S"
+                };
 
+                return Ok(result);
+            }
+            catch (Exception err)
+            {
+                System.Diagnostics.Debug.WriteLine(err.Message);
 
-        
-
+                return Ok(new ResMessage()
+                {
+                    ErrCode = -9,
+                    ErrMsg = err.Message
+                });
+            }
         }
+
+
+
+
+
+    }
     }
 
