@@ -19,7 +19,7 @@ namespace AtlasMVCAPI.Models
         /// 작업지시서 가져오기
         /// </summary>
         /// <returns></returns>
-        public List<OperationVO> GetAllOpration()
+        public List<OperationVO> GetAllOperation()
         {
             using (SqlCommand cmd = new SqlCommand())
             {

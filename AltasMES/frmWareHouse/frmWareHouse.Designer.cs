@@ -68,7 +68,7 @@ namespace AltasMES
             this.groupBox2.Controls.Add(this.cboWH);
             this.groupBox2.Controls.Add(this.btnSearch);
             this.groupBox2.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.groupBox2.Text = "검색";
+            this.groupBox2.Text = "검색조건";
             // 
             // btnAdd
             // 
@@ -104,6 +104,7 @@ namespace AltasMES
             this.cboWH.Name = "cboWH";
             this.cboWH.Size = new System.Drawing.Size(168, 29);
             this.cboWH.TabIndex = 9;
+            this.cboWH.SelectedIndexChanged += new System.EventHandler(this.cboWH_SelectedIndexChanged);
             // 
             // btnSearch
             // 
@@ -120,6 +121,7 @@ namespace AltasMES
             this.btnSearch.Text = "검색";
             this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Visible = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // groupBox3
@@ -183,7 +185,7 @@ namespace AltasMES
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1034, 682);
             this.Name = "frmWarehouse";
-            this.Text = "frmWarehouse";
+            this.Text = "창고관리";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmWarehouse_FormClosing);
             this.Load += new System.EventHandler(this.frmWarehouse_Load);
             this.BasePanel1.ResumeLayout(false);
