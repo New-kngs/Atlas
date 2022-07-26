@@ -28,17 +28,19 @@ namespace AtlasMVCAPI.Controllers.WebControllers
             if (user.CustomerID != null) // 사용자가 거래처라면
             {
                 Session["UserVO"] = user;
-                return RedirectToAction("List", "Product");
+                Session["CustomerName"] = user.CustomerName;
+                return RedirectToAction("Index", "Home");
             }
             else if (user.EmpID != null) // 사용자가 임원이라면
             {
                 Session["UserVO"] = user;
-                return RedirectToAction("Index", "Login");
+
+                return RedirectToAction("Lock", "Login");
             }
             else
             {
                 // ID와 PWD를 잘못 입력하셨습니다. 재시도 해주세요.
-                return View(); // ????
+                return RedirectToAction("Lock", "Login");
             }
         }
 
