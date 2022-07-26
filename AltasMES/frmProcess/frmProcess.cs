@@ -31,13 +31,13 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvProcess, "변경사용자", "ModifyUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvProcess, "사용여부", "StateYN", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
 
-            srv = new ServiceHelper("api/Process");
+            srv = new ServiceHelper("");
 
             LoadData();
         }
         public void LoadData()
         {
-            ResMessage<List<ProcessVO>> result = srv.GetAsync<List<ProcessVO>>("AllProcess");
+            ResMessage<List<ProcessVO>> result = srv.GetAsync<List<ProcessVO>>("api/Process/AllProcess");
             if (result.Data != null)
             {
                 dgvProcess.DataSource = new AdvancedList<ProcessVO>(result.Data);
@@ -133,7 +133,7 @@ namespace AltasMES
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            ResMessage<List<ProcessVO>> result = srv.GetAsync<List<ProcessVO>>("AllProcess");
+            ResMessage<List<ProcessVO>> result = srv.GetAsync<List<ProcessVO>>("api/Process/AllProcess");
             if (result.Data != null)
             {
                 List<ProcessVO> list = result.Data.FindAll((p) => p.ProcessName.Contains(txtProcessName.Text));
