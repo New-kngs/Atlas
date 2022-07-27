@@ -29,6 +29,8 @@ namespace AltasMES
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmItem_Delete));
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -61,6 +63,7 @@ namespace AltasMES
             this.label15 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -398,7 +401,8 @@ namespace AltasMES
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCancel.ImageIndex = 0;
+            this.btnCancel.ImageIndex = 5;
+            this.btnCancel.ImageList = this.imageList1;
             this.btnCancel.Location = new System.Drawing.Point(415, 710);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCancel.Name = "btnCancel";
@@ -415,7 +419,8 @@ namespace AltasMES
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnUpdate.ImageIndex = 0;
+            this.btnUpdate.ImageIndex = 6;
+            this.btnUpdate.ImageList = this.imageList1;
             this.btnUpdate.Location = new System.Drawing.Point(298, 710);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnUpdate.Name = "btnUpdate";
@@ -426,6 +431,19 @@ namespace AltasMES
             this.btnUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "excel.png");
+            this.imageList1.Images.SetKeyName(1, "plus.png");
+            this.imageList1.Images.SetKeyName(2, "trash.png");
+            this.imageList1.Images.SetKeyName(3, "pencil.png");
+            this.imageList1.Images.SetKeyName(4, "search.png");
+            this.imageList1.Images.SetKeyName(5, "arrow-left.png");
+            this.imageList1.Images.SetKeyName(6, "check.png");
+            this.imageList1.Images.SetKeyName(7, "close.png");
             // 
             // frmItem_Delete
             // 
@@ -484,5 +502,6 @@ namespace AltasMES
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtDeleteChk;
         private System.Windows.Forms.Label label16;
+        protected System.Windows.Forms.ImageList imageList1;
     }
 }

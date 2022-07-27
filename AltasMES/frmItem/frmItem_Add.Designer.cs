@@ -29,6 +29,8 @@ namespace AltasMES
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmItem_Add));
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -61,6 +63,7 @@ namespace AltasMES
             this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -250,7 +253,8 @@ namespace AltasMES
             this.btnImgFind.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnImgFind.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnImgFind.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnImgFind.ImageIndex = 0;
+            this.btnImgFind.ImageIndex = 4;
+            this.btnImgFind.ImageList = this.imageList1;
             this.btnImgFind.Location = new System.Drawing.Point(312, 433);
             this.btnImgFind.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnImgFind.Name = "btnImgFind";
@@ -317,7 +321,8 @@ namespace AltasMES
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCancel.ImageIndex = 0;
+            this.btnCancel.ImageIndex = 5;
+            this.btnCancel.ImageList = this.imageList1;
             this.btnCancel.Location = new System.Drawing.Point(415, 659);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCancel.Name = "btnCancel";
@@ -335,7 +340,8 @@ namespace AltasMES
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAdd.ImageIndex = 0;
+            this.btnAdd.ImageIndex = 6;
+            this.btnAdd.ImageList = this.imageList1;
             this.btnAdd.Location = new System.Drawing.Point(298, 659);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAdd.Name = "btnAdd";
@@ -436,6 +442,19 @@ namespace AltasMES
             this.label3.TabIndex = 49;
             this.label3.Text = "제품명";
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "excel.png");
+            this.imageList1.Images.SetKeyName(1, "plus.png");
+            this.imageList1.Images.SetKeyName(2, "trash.png");
+            this.imageList1.Images.SetKeyName(3, "pencil.png");
+            this.imageList1.Images.SetKeyName(4, "search.png");
+            this.imageList1.Images.SetKeyName(5, "arrow-left.png");
+            this.imageList1.Images.SetKeyName(6, "check.png");
+            this.imageList1.Images.SetKeyName(7, "close.png");
+            // 
             // frmItem_Add
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -498,5 +517,6 @@ namespace AltasMES
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cboCategory2;
         private System.Windows.Forms.Label label5;
+        protected System.Windows.Forms.ImageList imageList1;
     }
 }

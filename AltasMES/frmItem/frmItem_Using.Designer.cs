@@ -29,6 +29,8 @@ namespace AltasMES
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmItem_Using));
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -40,6 +42,7 @@ namespace AltasMES
             this.label2 = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -111,6 +114,7 @@ namespace AltasMES
             this.btnCancel.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancel.ImageIndex = 5;
+            this.btnCancel.ImageList = this.imageList1;
             this.btnCancel.Location = new System.Drawing.Point(198, 175);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnCancel.Name = "btnCancel";
@@ -128,6 +132,7 @@ namespace AltasMES
             this.btnChk.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnChk.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnChk.ImageIndex = 6;
+            this.btnChk.ImageList = this.imageList1;
             this.btnChk.Location = new System.Drawing.Point(108, 175);
             this.btnChk.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnChk.Name = "btnChk";
@@ -180,6 +185,19 @@ namespace AltasMES
             this.label1.TabIndex = 27;
             this.label1.Text = "제품ID";
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "excel.png");
+            this.imageList1.Images.SetKeyName(1, "plus.png");
+            this.imageList1.Images.SetKeyName(2, "trash.png");
+            this.imageList1.Images.SetKeyName(3, "pencil.png");
+            this.imageList1.Images.SetKeyName(4, "search.png");
+            this.imageList1.Images.SetKeyName(5, "arrow-left.png");
+            this.imageList1.Images.SetKeyName(6, "check.png");
+            this.imageList1.Images.SetKeyName(7, "close.png");
+            // 
             // frmItem_Using
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -213,5 +231,6 @@ namespace AltasMES
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.Label label1;
+        protected System.Windows.Forms.ImageList imageList1;
     }
 }
