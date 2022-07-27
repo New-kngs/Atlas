@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Configuration;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace AtlasMVCAPI.Models
 {
@@ -30,6 +31,28 @@ namespace AtlasMVCAPI.Models
                 cmd.Connection.Close();
 
                 return list;
+            }
+        }
+        /// <summary>
+        /// 주문명세를 생성한다 (작성자-지현)
+        /// </summary>
+        public void CreateOrder(string CustomerID, string CreateUser, string sbItemID, string sbQty)
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                // OrderID을 1 증가 후, OrderID를 다시 가져온다.
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.CommandText = "SP_CreateOrder";
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@CustomerID", CustomerID);
+                cmd.Parameters.AddWithValue("@CreateUser", CreateUser);
+                cmd.Parameters.AddWithValue("@sbItemID", sbItemID);
+                cmd.Parameters.AddWithValue("@sbQty", sbQty);
+
+                cmd.Connection.Open();
+                cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
             }
         }
     }

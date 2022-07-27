@@ -3,6 +3,7 @@ using AtlasMVCAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -47,6 +48,31 @@ namespace AtlasMVCAPI.Controllers.WebControllers
                 Session["Cart"] = cart;
             }
             return cart;
+        }
+
+        [HttpPost]
+        public ActionResult ButtonOrder()
+        {
+            Cart cart = Session["Cart"] as Cart;
+            StringBuilder sbItemId = new StringBuilder();
+            StringBuilder sbQty = new StringBuilder();
+            if (cart != null)
+            {
+                LoginVO loginUser = (LoginVO)Session["UserVO"];
+                Cart CartDetail = (Cart)Session["Cart"];
+
+                foreach (CartLine cartRow in CartDetail.Lines)
+                {
+                    sbItemId.Append(cartRow.Product.ItemID);
+                    sbQty.Append(cartRow.Qty);
+
+                    sbItemId.Append(',');
+                    sbQty.Append(',');
+                }
+                OrderDAC db = new OrderDAC();
+                db.CreateOrder(loginUser.CustomerID, loginUser.EmpName, sbItemId.ToString().TrimEnd(','), sbQty.ToString().TrimEnd(','));
+            }
+            return null;
         }
     }
 }

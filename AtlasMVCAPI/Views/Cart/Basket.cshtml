@@ -61,7 +61,18 @@
                                     <td class="text-center">
                                         @using (Html.BeginForm("ButtonOrder", "Cart", FormMethod.Post))
                                         {
-                                            <button type="submit" class="btn btn-primary">주문하기</button> <!-- name="ModelCart"-->
+                                            <button type="submit" class="btn btn-primary" onclick="MessageBox">
+                                                주문하기
+
+                                            </button> <!-- name="ModelCart"-->
+                                            @*if (Model != null)
+                                                {
+                                                    <script language="javaScript">
+                                                        function MessageBox() {
+                                                            alert("주문을 완료 하였습니다.");
+                                                        }
+                                                    </script>
+                                                }*@
                                         }
 
                                     </td>
