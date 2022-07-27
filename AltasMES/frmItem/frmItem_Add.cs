@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace AltasMES
 {
@@ -100,18 +101,18 @@ namespace AltasMES
                 CustomerID = cboCusID.SelectedValue.ToString(),
                 WHID = cboWhID.SelectedValue.ToString(),
                 ItemExplain = txtExplain.Text,
-                ItemImage = txtImage.Text,
                 CreateUser = this.item.CreateUser
             };
-            ResMessage<List<ItemVO>> resultItem = srv.PostAsync<ItemVO, List<ItemVO>>("api/Item/SaveItem", item);
+            ResMessage result = srv.ServerFileUpload("api/Item/SaveItem", txtImage.Text, item);
 
-            if (resultItem.ErrCode == 0)
+            if (result.ErrCode == 0)
             {
                 MessageBox.Show("성공적으로 등록되었습니다.");
                 this.DialogResult = DialogResult.OK;
+                this.Close();
             }
             else
-                MessageBox.Show(resultItem.ErrMsg);
+                MessageBox.Show(result.ErrMsg);
         }        
 
         private void cboCategory1_SelectedIndexChanged(object sender, EventArgs e)
@@ -163,6 +164,17 @@ namespace AltasMES
             {
                 txtImage.Text = dlg.FileName;
                 pictureBox1.ImageLocation = dlg.FileName;
+
+                //ResMessage res = srv.ServerFileUpload(dlg.FileName);
+
+                //if (res.ErrCode == 0)
+                //{
+                //    MessageBox.Show("파일이 업로드 되었습니다.");
+                //}
+                //else
+                //{
+                //    MessageBox.Show(res.ErrMsg);
+                //}
             }
         }
 

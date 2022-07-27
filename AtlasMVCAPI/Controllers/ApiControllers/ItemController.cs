@@ -7,6 +7,8 @@ using System.Web.Http;
 using AtlasMVCAPI.Models;
 using AtlasDTO;
 using System.Diagnostics;
+using System.Web;
+using System.IO;
 
 namespace AtlasMVCAPI.Controllers
 {
@@ -107,19 +109,59 @@ namespace AtlasMVCAPI.Controllers
         // POST : https://localhost:44391/api/Item/SaveItem
         [HttpPost]
         [Route("SaveItem")]
-        public IHttpActionResult SaveItem(ItemVO item)
+        public IHttpActionResult SaveItem()
         {
             try
             {
-                ItemDAC db = new ItemDAC();
-                bool flag = db.SaveItem(item);
+                //if (HttpContext.Current.Request.Files.Count > 0)
+                //{
+                    bool flag = false;
 
-                ResMessage result = new ResMessage()
-                {
-                    ErrCode = (!flag) ? -9 : 0,
-                    ErrMsg = (!flag) ? "저장중 오류발생" : "S"
-                };
-                return Ok(result);
+                    ItemVO prod = Newtonsoft.Json.JsonConvert.DeserializeObject<ItemVO>(HttpContext.Current.Request["Item"]);
+
+                    foreach (string file in HttpContext.Current.Request.Files)
+                    {
+                        var postedFile = HttpContext.Current.Request.Files[file];
+                        string uploadFileName = postedFile.FileName;
+                        //string originFileName = HttpContext.Current.Request[$"{file}_orgName"];
+
+                        //1.서버에 업로드된 파일을 서버에 저장
+                        string filePath = HttpContext.Current.Server.MapPath("~/Uploads/");
+                        if (!Directory.Exists(filePath))
+                        {
+                            Directory.CreateDirectory(filePath);
+                        }
+                        postedFile.SaveAs(filePath + uploadFileName);                        
+                    }
+
+                    //2.DB insert
+                    ItemDAC db = new ItemDAC();
+
+                    flag = db.SaveItem(prod);
+
+                    ResMessage result = new ResMessage()
+                    {
+                        ErrCode = (!flag) ? -9 : 0,
+                        ErrMsg = (!flag) ? "저장중 오류발생" : "S"
+                    };
+                    return Ok(result);
+
+                    ResMessage fileResult = new ResMessage()
+                    {
+                        ErrCode = (flag) ? 0 : -9,
+                        ErrMsg = (flag) ? "S" : "파일 저장 중 오류발생"
+                    };
+                    return Ok(fileResult);
+                //}
+                //else
+                //{
+                //    ResMessage fileResult = new ResMessage()
+                //    {
+                //        ErrCode = -9,
+                //        ErrMsg = "업로드된 파일이 없습니다."
+                //    };
+                //    return Ok(fileResult);
+                //}                
             }
             catch (Exception err)
             {

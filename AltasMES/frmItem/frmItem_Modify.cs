@@ -20,6 +20,9 @@ namespace AltasMES
         public frmItem_Modify(ItemVO item)
         {
             InitializeComponent();
+
+            srv = new ServiceHelper("");
+
             this.item = item;
             txtCategory.Text = item.ItemCategory;
             txtID.Text = item.ItemID;
@@ -31,7 +34,8 @@ namespace AltasMES
             txtCusName.Text = item.CustomerName;
             txtWhName.Text = item.WHName;
             txtExplain.Text = item.ItemExplain;            
-            txtImage.Text = item.ItemImage;            
+            txtImage.Text = item.ItemImage;
+            pictureBox1.ImageLocation = $"{srv.BaseServiceURL}Uploads/{item.ItemImage}";
         }
 
         //CurrentQty SafeQty ItemPrice ItemImage ItemExplain ModifyDate ModifyUser
