@@ -33,7 +33,7 @@ namespace AtlasPOP
             this.panel2 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnResource = new System.Windows.Forms.Button();
-            this.btnPerformance = new System.Windows.Forms.Button();
+            this.btnOperSatus = new System.Windows.Forms.Button();
             this.btnOperation = new System.Windows.Forms.Button();
             this.btnPerfomance = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -91,7 +91,7 @@ namespace AtlasPOP
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Controls.Add(this.btnResource, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.btnPerformance, 0, 5);
+            this.tableLayoutPanel2.Controls.Add(this.btnOperSatus, 0, 5);
             this.tableLayoutPanel2.Controls.Add(this.btnOperation, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnPerfomance, 0, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -123,19 +123,20 @@ namespace AtlasPOP
             this.btnResource.UseVisualStyleBackColor = false;
             this.btnResource.Click += new System.EventHandler(this.btnResource_Click);
             // 
-            // btnPerformance
+            // btnOperSatus
             // 
-            this.btnPerformance.BackColor = System.Drawing.Color.Black;
-            this.btnPerformance.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnPerformance.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnPerformance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnPerformance.Location = new System.Drawing.Point(3, 364);
-            this.btnPerformance.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnPerformance.Name = "btnPerformance";
-            this.btnPerformance.Size = new System.Drawing.Size(171, 68);
-            this.btnPerformance.TabIndex = 1;
-            this.btnPerformance.Text = "작업 현황";
-            this.btnPerformance.UseVisualStyleBackColor = false;
+            this.btnOperSatus.BackColor = System.Drawing.Color.Black;
+            this.btnOperSatus.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnOperSatus.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnOperSatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnOperSatus.Location = new System.Drawing.Point(3, 364);
+            this.btnOperSatus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnOperSatus.Name = "btnOperSatus";
+            this.btnOperSatus.Size = new System.Drawing.Size(171, 68);
+            this.btnOperSatus.TabIndex = 1;
+            this.btnOperSatus.Text = "작업 현황";
+            this.btnOperSatus.UseVisualStyleBackColor = false;
+            this.btnOperSatus.Click += new System.EventHandler(this.btnOperSatus_Click);
             // 
             // btnOperation
             // 
@@ -215,6 +216,7 @@ namespace AtlasPOP
             this.btnStart.TabIndex = 0;
             this.btnStart.Text = "시작";
             this.btnStart.UseVisualStyleBackColor = false;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
             // btnEnd
             // 
@@ -229,6 +231,7 @@ namespace AtlasPOP
             this.btnEnd.TabIndex = 1;
             this.btnEnd.Text = "종료";
             this.btnEnd.UseVisualStyleBackColor = false;
+            this.btnEnd.Click += new System.EventHandler(this.btnEnd_Click);
             // 
             // btnFail
             // 
@@ -243,6 +246,7 @@ namespace AtlasPOP
             this.btnFail.TabIndex = 2;
             this.btnFail.Text = "불량 등록";
             this.btnFail.UseVisualStyleBackColor = false;
+            this.btnFail.Click += new System.EventHandler(this.btnFail_Click);
             // 
             // btnLaping
             // 
@@ -257,6 +261,7 @@ namespace AtlasPOP
             this.btnLaping.TabIndex = 3;
             this.btnLaping.Text = "포장";
             this.btnLaping.UseVisualStyleBackColor = false;
+            this.btnLaping.Click += new System.EventHandler(this.btnLaping_Click);
             // 
             // panel1
             // 
@@ -501,7 +506,7 @@ namespace AtlasPOP
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button btnResource;
-        private System.Windows.Forms.Button btnPerformance;
+        private System.Windows.Forms.Button btnOperSatus;
         private System.Windows.Forms.Button btnOperation;
         private System.Windows.Forms.Button btnPerfomance;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;

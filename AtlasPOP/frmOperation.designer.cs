@@ -33,7 +33,6 @@ namespace AtlasPOP
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmOperation));
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnReset = new System.Windows.Forms.Button();
-            this.btnSearch = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.cboTimeTo = new System.Windows.Forms.ComboBox();
             this.cboTimeFrom = new System.Windows.Forms.ComboBox();
@@ -45,6 +44,7 @@ namespace AtlasPOP
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.btnClose = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -73,7 +73,7 @@ namespace AtlasPOP
             this.btnReset.BackColor = System.Drawing.Color.Black;
             this.btnReset.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnReset.ForeColor = System.Drawing.Color.White;
-            this.btnReset.Location = new System.Drawing.Point(600, 17);
+            this.btnReset.Location = new System.Drawing.Point(588, 19);
             this.btnReset.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(86, 33);
@@ -82,25 +82,11 @@ namespace AtlasPOP
             this.btnReset.UseVisualStyleBackColor = false;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
-            // btnSearch
-            // 
-            this.btnSearch.BackColor = System.Drawing.Color.Black;
-            this.btnSearch.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(520, 17);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(74, 33);
-            this.btnSearch.TabIndex = 6;
-            this.btnSearch.Text = "조회";
-            this.btnSearch.UseVisualStyleBackColor = false;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.Location = new System.Drawing.Point(15, 23);
+            this.label2.Location = new System.Drawing.Point(15, 26);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(74, 21);
             this.label2.TabIndex = 5;
@@ -111,7 +97,7 @@ namespace AtlasPOP
             this.cboTimeTo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTimeTo.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cboTimeTo.FormattingEnabled = true;
-            this.cboTimeTo.Location = new System.Drawing.Point(447, 19);
+            this.cboTimeTo.Location = new System.Drawing.Point(447, 22);
             this.cboTimeTo.Name = "cboTimeTo";
             this.cboTimeTo.Size = new System.Drawing.Size(67, 29);
             this.cboTimeTo.TabIndex = 2;
@@ -121,7 +107,7 @@ namespace AtlasPOP
             this.cboTimeFrom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTimeFrom.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cboTimeFrom.FormattingEnabled = true;
-            this.cboTimeFrom.Location = new System.Drawing.Point(222, 19);
+            this.cboTimeFrom.Location = new System.Drawing.Point(222, 22);
             this.cboTimeFrom.Name = "cboTimeFrom";
             this.cboTimeFrom.Size = new System.Drawing.Size(67, 29);
             this.cboTimeFrom.TabIndex = 2;
@@ -130,7 +116,7 @@ namespace AtlasPOP
             // 
             this.dtpTo.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtpTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpTo.Location = new System.Drawing.Point(320, 19);
+            this.dtpTo.Location = new System.Drawing.Point(320, 22);
             this.dtpTo.Name = "dtpTo";
             this.dtpTo.Size = new System.Drawing.Size(126, 29);
             this.dtpTo.TabIndex = 0;
@@ -139,7 +125,7 @@ namespace AtlasPOP
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("맑은 고딕", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.Location = new System.Drawing.Point(295, 18);
+            this.label1.Location = new System.Drawing.Point(295, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(28, 30);
             this.label1.TabIndex = 1;
@@ -149,7 +135,7 @@ namespace AtlasPOP
             // 
             this.dtpFrom.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFrom.Location = new System.Drawing.Point(95, 19);
+            this.dtpFrom.Location = new System.Drawing.Point(95, 22);
             this.dtpFrom.Name = "dtpFrom";
             this.dtpFrom.Size = new System.Drawing.Size(126, 29);
             this.dtpFrom.TabIndex = 0;
@@ -218,6 +204,20 @@ namespace AtlasPOP
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // btnSearch
+            // 
+            this.btnSearch.BackColor = System.Drawing.Color.Black;
+            this.btnSearch.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSearch.ForeColor = System.Drawing.Color.White;
+            this.btnSearch.Location = new System.Drawing.Point(517, 19);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(74, 33);
+            this.btnSearch.TabIndex = 6;
+            this.btnSearch.Text = "조회";
+            this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
             // frmOperation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -248,7 +248,6 @@ namespace AtlasPOP
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dtpFrom;
         private System.Windows.Forms.DataGridView dgvList;
-        private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ImageList imageList1;
@@ -258,5 +257,6 @@ namespace AtlasPOP
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Button btnSearch;
     }
 }

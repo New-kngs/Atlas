@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AltasMES;
+using AtlasDTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +14,52 @@ namespace AtlasPOP
 {
     public partial class frmOperStatus : Form
     {
-        public frmOperStatus()
+        public string itemID { get; set; }
+        public string OperID { get; set; }
+        ServiceHelper service;
+        public frmOperStatus(string itemID,string OperID)
         {
             InitializeComponent();
+            this.itemID = itemID;
+            this.OperID = OperID;
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnClose_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmOperStatus_Load(object sender, EventArgs e)
+        {
+            service = new ServiceHelper("");
+            ResMessage<List<ItemVO>> itemList = service.GetAsync<List<ItemVO>>("api/Item/AllItem");
+            ResMessage<List<OperationVO>> operList = service.GetAsync<List<OperationVO>>("api/pop/AllOperation");
+            ResMessage<List<OrderVO>> oderList = service.GetAsync<List<OrderVO>>("api/pop/GetCustomer");
+            ResMessage<List<CustomerVO>> customerList = service.GetAsync<List<CustomerVO>>("api/pop/GetCustomerName");
+
+            string OrderID = operList.Data.Find((n) => n.OpID.Equals(OperID)).OrderID;
+            string CustomerID = oderList.Data.Find((n) => n.OrderID.Equals(OrderID)).CustomerID;
+
+            txtItemName.Text = itemList.Data.Find((n) => n.ItemID.Equals(itemID)).ItemName;
+            txtItemID.Text = OperID;
+            txtProcessName.Text = operList.Data.Find((n) => n.OpID.Equals(OperID)).ProcessName;
+            txtClient.Text = customerList.Data.Find((n) => n.CustomerID.Equals(CustomerID)).CustomerName;
+            txtPlanQty.Text = operList.Data.Find((n) => n.OpID.Equals(OperID)).PlanQty.ToString();
+            txtCategory.Text = itemList.Data.Find((n) => n.ItemID.Equals(itemID)).ItemCategory;
+
+            lblStatus.Text = operList.Data.Find((n) => n.OpID.Equals(OperID)).OpState;
+            lblPlanQty.Text = operList.Data.Find((n) => n.OpID.Equals(OperID)).PlanQty.ToString();
+            lblComplete.Text = "28";
+            lblFail.Text = "2";
+
+
+
+
         }
     }
 }
