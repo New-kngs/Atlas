@@ -53,14 +53,14 @@ namespace AtlasMVCAPI.Controllers
         /// </summary>
         //https://localhost:44391/api/pop/SearchOper/{dateFrom}/{dateTo}/{HourFrom}/{HourTO}
 
-        [Route("SearchOper/{dateFrom}/{dateTo}/{HourFrom}/{HourTO}")]
+        [Route("SearchOper/{dateFrom}/{dateTo}")]
         [HttpGet]
-        public IHttpActionResult SearchOper(string dateFrom, string dateTo, string HourFrom, string HourTO)
+        public IHttpActionResult SearchOper(string dateFrom, string dateTo)
         {
             try
             {
                 popDAC db = new popDAC();
-                List<OperationVO> list = db.GetSearchOperation(dateFrom, dateTo, HourFrom, HourTO);
+                List<OperationVO> list = db.GetSearchOperation(dateFrom, dateTo);
 
                 ResMessage<List<OperationVO>> result = new ResMessage<List<OperationVO>>()
                 {
@@ -251,7 +251,7 @@ namespace AtlasMVCAPI.Controllers
         }
         //POST : https://localhost:44391/api/pop/UpdateResourceQty
         [HttpPost]
-        [Route("UpdateResourceQty/")]
+        [Route("UpdateResourceQty")]
         public IHttpActionResult UpdateResourceQty(List<BOMVO> bom)
         {
             try
@@ -279,7 +279,99 @@ namespace AtlasMVCAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// 작업지시서 공정명 콤보리스트
+        /// </summary>
+        //https://localhost:44391/api/pop/GetFailCode
+        [Route("GetFailCode")]
+        public IHttpActionResult GetFailCode()
+        {
+            try
+            {
+                popDAC db = new popDAC();
+                List<ComboItemVO> list = db.GetFailCode();
 
+                ResMessage<List<ComboItemVO>> result = new ResMessage<List<ComboItemVO>>()
+                {
+                    ErrCode = (list == null) ? -9 : 0,
+                    ErrMsg = (list == null) ? "조회중 오류발생" : "S",
+                    Data = list
+                };
+
+                return Ok(result);
+            }
+            catch (Exception err)
+            {
+                System.Diagnostics.Debug.WriteLine(err.Message);
+
+                return Ok(new ResMessage()
+                {
+                    ErrCode = -9,
+                    //ErrMsg = err.Message
+                    ErrMsg = "서비스 관리자에게 문의하시기 바랍니다."
+                });
+            }
+        }
+
+        //POST : https://localhost:44391/api/pop/PutInItem
+        [HttpPost]
+        [Route("PutInItem")]
+        public IHttpActionResult PutInItem(ItemVO item)
+        {
+            try
+            {
+                popDAC db = new popDAC();
+                bool flag = db.PutInItem(item);
+
+                ResMessage result = new ResMessage()
+                {
+                    ErrCode = (!flag) ? -9 : 0,
+                    ErrMsg = (!flag) ? "수정 중 오류발생" : "S"
+                };
+
+                return Ok(result);
+            }
+            catch (Exception err)
+            {
+                System.Diagnostics.Debug.WriteLine(err.Message);
+
+                return Ok(new ResMessage()
+                {
+                    ErrCode = -9,
+                    ErrMsg = err.Message
+                });
+            }
+        }
+
+        //POST : https://localhost:44391/api/pop/InsertFailLog
+        [HttpPost]
+        [Route("InsertFailLog")]
+        public IHttpActionResult InsertFailLog(FailVO fail)
+        {
+            try
+            {
+                popDAC db = new popDAC();
+                bool flag = db.InsertFailLog(fail);
+
+                ResMessage result = new ResMessage()
+                {
+                    ErrCode = (!flag) ? -9 : 0,
+                    ErrMsg = (!flag) ? "수정 중 오류발생" : "S"
+                };
+
+                return Ok(result);
+            }
+            catch (Exception err)
+            {
+                System.Diagnostics.Debug.WriteLine(err.Message);
+
+                return Ok(new ResMessage()
+                {
+                    ErrCode = -9,
+                    ErrMsg = err.Message
+                });
+            }
+        }
 
 
 

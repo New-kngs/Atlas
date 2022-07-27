@@ -41,7 +41,7 @@ namespace AtlasMVCAPI.Models
         /// 작업지시서 검색 리스트 가져오기
         /// </summary>
         /// <returns></returns>
-        public List<OperationVO> GetSearchOperation(string dateFrom, string dateTo, string HourFrom, string HourTO)
+        public List<OperationVO> GetSearchOperation(string dateFrom, string dateTo)
         {
             using (SqlCommand cmd = new SqlCommand())
             {
@@ -50,14 +50,10 @@ namespace AtlasMVCAPI.Models
                                     PlanQty, OpState, BeginDate,EndDate, EmpID,
                                     CONVERT(varchar(10),OpDate,120) Date, DatePart(hh,OpDate) Time
                                     from TB_Operation op join TB_Process p on op.ProcessID = p.ProcessID
-                                    where CONVERT(varchar(10),OpDate,120) Between @dateFrom and @dateTo
-                                    and
-                                    DatePart(hh,OpDate) Between @HourFrom and @HourTo";
+                                    where OpDate Between @dateFrom and @dateTo";
 
-                cmd.Parameters.AddWithValue("@dateFrom", dateFrom);
+                cmd.Parameters.AddWithValue("@dateFrom", dateFrom );
                 cmd.Parameters.AddWithValue("@dateTo", dateTo);
-                cmd.Parameters.AddWithValue("@HourFrom", HourFrom);
-                cmd.Parameters.AddWithValue("@HourTo", HourTO);
 
                 cmd.Connection.Open();
                 List<OperationVO> list = Helper.DataReaderMapToList<OperationVO>(cmd.ExecuteReader());
@@ -195,6 +191,74 @@ namespace AtlasMVCAPI.Models
                 return (iRowAffect > 0);
             }
             
+        }
+
+        /// <summary>
+        /// 작업지시서 공정명 콤보리스트
+        /// </summary>
+        /// <returns></returns>
+        public List<ComboItemVO> GetFailCode()
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.CommandText = @" select Code, CodeName, Category 
+                                    from TB_CommonCode";
+
+                cmd.Connection.Open();
+                List<ComboItemVO> list = Helper.DataReaderMapToList<ComboItemVO>(cmd.ExecuteReader());
+                cmd.Connection.Close();
+
+                return list;
+            }
+        }
+
+        /// <summary>
+        /// 작업종료된 제품 창고입고(자재 update)
+        /// </summary>
+        /// <param name="process"></param>
+        /// <returns></returns>
+        public bool PutInItem(ItemVO item)
+        {
+            using (SqlCommand cmd = new SqlCommand
+            {
+                Connection = new SqlConnection(strConn),
+                CommandText = "update TB_Item set CurrentQty = @CurrentQty where ItemID = @ItemID"
+
+            })
+            {
+                cmd.Parameters.AddWithValue("@CurrentQty", item.CurrentQty + item.CompleteQty);
+                cmd.Parameters.AddWithValue("@ItemID", item.ItemID);
+                cmd.Connection.Open();
+                int iRowAffect = cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+
+                return (iRowAffect > 0);
+            }
+        }
+
+        public bool InsertFailLog(FailVO fail)
+        {
+            using (SqlCommand cmd = new SqlCommand
+            {
+                Connection = new SqlConnection(strConn),
+                CommandText = @"  insert into TB_Fail (ItemID, FailQty, FailCode, OpID, CreateUser)
+                                values(@ItemID, @FailQty, @FailCode, @OpID, @CreateUser)"
+
+            })
+            {
+                cmd.Parameters.AddWithValue("@ItemID", fail.ItemID);
+                cmd.Parameters.AddWithValue("@FailQty", fail.FailQty);
+                cmd.Parameters.AddWithValue("@FailCode", fail.FailCode);
+                cmd.Parameters.AddWithValue("@OpID", fail.OpID);
+                cmd.Parameters.AddWithValue("@CreateUser", fail.CreateUser);
+
+                cmd.Connection.Open();
+                int iRowAffect = cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+
+                return (iRowAffect > 0);
+            }
         }
 
 
@@ -368,5 +432,7 @@ namespace AtlasMVCAPI.Models
                 return list;
             }
         }
+
+        
     }
 }

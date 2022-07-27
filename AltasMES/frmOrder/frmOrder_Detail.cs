@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AtlasPOP
+namespace AltasMES
 {
-    public partial class frmPerformance : Form
+    public partial class frmOrder_Detail : Form
     {
-        public frmPerformance()
+        public frmOrder_Detail()
         {
             InitializeComponent();
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }

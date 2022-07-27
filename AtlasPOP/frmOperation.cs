@@ -45,11 +45,15 @@ namespace AtlasPOP
         }
         public void LoadData()
         {
+
             
+
             ResMessage<List<OperationVO>> result = service.GetAsync<List<OperationVO>>("api/pop/AllOperation");
             if (result.Data != null)
             {
                 dgvList.DataSource = new AdvancedList<OperationVO>(result.Data);
+               
+
             }
             else
             {
@@ -86,7 +90,7 @@ namespace AtlasPOP
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            ResMessage<List<OperationVO>> result = service.GetAsync<List<OperationVO>>("api/pop/SearchOper/"+ dtpFrom.Value.ToShortDateString() + "/" +dtpTo.Value.ToShortDateString()+"/"+cboTimeFrom.Text+"/"+cboTimeTo.Text);
+            ResMessage<List<OperationVO>> result = service.GetAsync<List<OperationVO>>("api/pop/SearchOper/"+ dtpFrom.Value.ToShortDateString() + " " +cboTimeFrom.Text+ "/" +dtpTo.Value.ToShortDateString()+" "+cboTimeTo.Text);
             if (result.Data != null)
             {
                 dgvList.DataSource = new AdvancedList<OperationVO>(result.Data);
@@ -95,6 +99,9 @@ namespace AtlasPOP
             {
                 MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
             }
+
+
+
         }
 
         private void btnReset_Click(object sender, EventArgs e)
