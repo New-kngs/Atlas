@@ -123,19 +123,25 @@ namespace AltasMES
         {
             //localFileName  : 로컬에서 선택한 파일 전체경로
             //uploadFileName : 서버에 업로드할 파일명
-            string uploadFileName = DateTime.Now.ToString("yyyyMMddHHmmss") + new FileInfo(localFileName).Extension;  // Extension 확장자를 가져오는 // 이름은 이런형식으로
-            item.ItemImage = uploadFileName;
+            
+            MultipartFormDataContent content = new MultipartFormDataContent();   // MultipartFormDataContent 파일은 이걸로 넘겨 줘야함 !   
+            if (localFileName.Length > 0)
+            {
+                string uploadFileName = DateTime.Now.ToString("yyyyMMddHHmmss") + new FileInfo(localFileName).Extension;  // Extension 확장자를 가져오는 // 이름은 이런형식으로
+                item.ItemImage = uploadFileName;
 
+                FileStream fs = File.Open(localFileName, FileMode.Open);
+                content.Add(new StreamContent(fs), "file1", uploadFileName);
+            } 
+            else
+            {
+                item.ItemImage = "";
+            }
             string itemInfo = JsonConvert.SerializeObject(item);
-
-            FileStream fs = File.Open(localFileName, FileMode.Open);
-            MultipartFormDataContent content = new MultipartFormDataContent();   // MultipartFormDataContent 파일은 이걸로 넘겨 줘야함 !
-            content.Add(new StreamContent(fs), "file1", uploadFileName);
             content.Add(new StringContent(itemInfo), "Item");
 
             string url = $"{BaseServiceURL}{path}";  // /{path} 업로드는 하나니까 지움
             HttpResponseMessage res = client.PostAsync(url, content).Result;  // 주소 , 넘어가는 값
-
 
             if (res.IsSuccessStatusCode)
             {

@@ -84,11 +84,11 @@ namespace AltasMES
                 MessageBox.Show("제품 안전재고량을 입력해주세요");
                 return;
             }             
-            if (string.IsNullOrWhiteSpace(txtImage.Text.Trim()))
-            {
-                MessageBox.Show("제품 이미지를 등록해주세요");
-                return;
-            }
+            //if (string.IsNullOrWhiteSpace(txtImage.Text.Trim()))
+            //{
+            //    MessageBox.Show("제품 이미지를 등록해주세요");
+            //    return;
+            //}
             ItemVO item = new ItemVO
             {
                 ItemCategory = cboCategory1.Text,
