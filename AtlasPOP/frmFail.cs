@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AltasMES;
+using AtlasDTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,12 +14,24 @@ namespace AtlasPOP
 {
     public partial class frmFail : Form
     {
-        public frmFail()
+        public string OperID { get; set; }
+        ServiceHelper service;
+        public frmFail(int FailQty, string OperID)
         {
             InitializeComponent();
+            txtFailTOT.Text = FailQty.ToString();
+            this.OperID = OperID;
         }
 
         private void frmResource_Load(object sender, EventArgs e)
+        {
+            service = new ServiceHelper("");
+            ResMessage<List<ComboItemVO>> comboList = service.GetAsync<List<ComboItemVO>>("api/pop/GetFailCode");
+            CommonUtil.ComboBinding(cboFailList, comboList.Data, "불량코드", blankText: "선택");
+
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
         {
 
         }

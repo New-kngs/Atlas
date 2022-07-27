@@ -30,5 +30,7 @@ namespace AtlasDTO
         public string WHName { get; set; }
         public string p_ItemCode { get; set; }
 
+        public int CompleteQty { get; set; }
+
     }
 }

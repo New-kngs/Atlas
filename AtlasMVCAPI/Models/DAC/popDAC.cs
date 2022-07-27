@@ -197,19 +197,67 @@ namespace AtlasMVCAPI.Models
         /// 작업지시서 공정명 콤보리스트
         /// </summary>
         /// <returns></returns>
-        public List<ComboItemVO> GetProcessName()
+        public List<ComboItemVO> GetFailCode()
         {
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = new SqlConnection(strConn);
-                cmd.CommandText = @" select CONVERT(varchar(10), ProcessID) Code, ProcessName CodeName, '공정' Category 
-                                    from TB_Process";
+                cmd.CommandText = @" select Code, CodeName, Category 
+                                    from TB_CommonCode";
 
                 cmd.Connection.Open();
                 List<ComboItemVO> list = Helper.DataReaderMapToList<ComboItemVO>(cmd.ExecuteReader());
                 cmd.Connection.Close();
 
                 return list;
+            }
+        }
+
+        /// <summary>
+        /// 작업종료된 제품 창고입고(자재 update)
+        /// </summary>
+        /// <param name="process"></param>
+        /// <returns></returns>
+        public bool PutInItem(ItemVO item)
+        {
+            using (SqlCommand cmd = new SqlCommand
+            {
+                Connection = new SqlConnection(strConn),
+                CommandText = "update TB_Item set CurrentQty = @CurrentQty where ItemID = @ItemID"
+
+            })
+            {
+                cmd.Parameters.AddWithValue("@CurrentQty", item.CurrentQty + item.CompleteQty);
+                cmd.Parameters.AddWithValue("@ItemID", item.ItemID);
+                cmd.Connection.Open();
+                int iRowAffect = cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+
+                return (iRowAffect > 0);
+            }
+        }
+
+        public bool InsertFailLog(FailVO fail)
+        {
+            using (SqlCommand cmd = new SqlCommand
+            {
+                Connection = new SqlConnection(strConn),
+                CommandText = @"  insert into TB_Fail (ItemID, FailQty, FailCode, OpID, CreateUser)
+                                values(@ItemID, @FailQty, @FailCode, @OpID, @CreateUser)"
+
+            })
+            {
+                cmd.Parameters.AddWithValue("@ItemID", fail.ItemID);
+                cmd.Parameters.AddWithValue("@FailQty", fail.FailQty);
+                cmd.Parameters.AddWithValue("@FailCode", fail.FailCode);
+                cmd.Parameters.AddWithValue("@OpID", fail.OpID);
+                cmd.Parameters.AddWithValue("@CreateUser", fail.CreateUser);
+
+                cmd.Connection.Open();
+                int iRowAffect = cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+
+                return (iRowAffect > 0);
             }
         }
 
@@ -384,5 +432,7 @@ namespace AtlasMVCAPI.Models
                 return list;
             }
         }
+
+        
     }
 }

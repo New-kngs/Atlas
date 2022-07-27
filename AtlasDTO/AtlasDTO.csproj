@@ -47,6 +47,7 @@
     <Compile Include="EmployeeVO.cs" />
     <Compile Include="EquipDetailsVO.cs" />
     <Compile Include="EquipmentVO.cs" />
+    <Compile Include="FailVO.cs" />
     <Compile Include="ItemVO.cs" />
     <Compile Include="LoginVO.cs" />
     <Compile Include="OperationVO.cs" />

@@ -23,8 +23,8 @@ namespace AtlasPOP
         string itemID;
         string OrderID;
         string CustomerID;
-        int ProcessID;
-        string ProcessName;
+        int FailQty = 2;
+
         ServiceHelper service = null;
         ResMessage<List<ItemVO>> itemList;
         ResMessage<List<OperationVO>> operList;
@@ -171,13 +171,19 @@ namespace AtlasPOP
             frm.Show();
         }
 
-        private void button7_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnPerfomance_Click(object sender, EventArgs e)
         {
+            if (btnLogout.Text != "로그아웃")
+            {
+                MessageBox.Show("로그인을 해주세요");
+                return;
+            }
+            if (OperID == null)
+            {
+                MessageBox.Show("작업을 먼저 선택해주세요");
+                return;
+            }
             frmOperStatus frm = new frmOperStatus(itemID, OperID);
             frm.MdiParent = this;
             frm.Show();
@@ -190,7 +196,9 @@ namespace AtlasPOP
 
         private void btnFail_Click(object sender, EventArgs e)
         {
-            OpenCreateForm<frmFail>();
+            frmFail frm = new frmFail(FailQty, OperID);
+            frm.MdiParent = this;
+            frm.Show();
         }
 
         private void btnLaping_Click(object sender, EventArgs e)

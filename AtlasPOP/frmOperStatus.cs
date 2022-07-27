@@ -14,6 +14,7 @@ namespace AtlasPOP
 {
     public partial class frmOperStatus : Form
     {
+        ResMessage<List<ItemVO>> itemList;
         public string itemID { get; set; }
         public string OperID { get; set; }
         ServiceHelper service;
@@ -37,7 +38,7 @@ namespace AtlasPOP
         private void frmOperStatus_Load(object sender, EventArgs e)
         {
             service = new ServiceHelper("");
-            ResMessage<List<ItemVO>> itemList = service.GetAsync<List<ItemVO>>("api/Item/AllItem");
+            itemList = service.GetAsync<List<ItemVO>>("api/Item/AllItem");
             ResMessage<List<OperationVO>> operList = service.GetAsync<List<OperationVO>>("api/pop/AllOperation");
             ResMessage<List<OrderVO>> oderList = service.GetAsync<List<OrderVO>>("api/pop/GetCustomer");
             ResMessage<List<CustomerVO>> customerList = service.GetAsync<List<CustomerVO>>("api/pop/GetCustomerName");
@@ -54,12 +55,42 @@ namespace AtlasPOP
 
             lblStatus.Text = operList.Data.Find((n) => n.OpID.Equals(OperID)).OpState;
             lblPlanQty.Text = operList.Data.Find((n) => n.OpID.Equals(OperID)).PlanQty.ToString();
-            lblComplete.Text = "28";
-            lblFail.Text = "2";
+            if (lblStatus.Text.Equals("작업종료"))
+            {
+                lblComplete.Text = "28";
+                lblFail.Text = "2";
+            }
+            else
+            {
+                lblComplete.Text = lblStatus.Text;
+                lblFail.Text = lblStatus.Text;
+            }
+        }
 
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            if (!lblStatus.Text.Equals("작업종료"))
+            {
+                MessageBox.Show("작업종료가 되지 않았습니다.");
+                return;
+            }
+            ItemVO item = new ItemVO()
+            {
+                ItemID = itemID,
+                CurrentQty = itemList.Data.Find((c) => c.ItemID.Equals(itemID)).CurrentQty,
+                CompleteQty = Convert.ToInt32(lblComplete.Text)
+            };
+            ResMessage<List<ItemVO>> operList = service.PostAsync <ItemVO, List<ItemVO>>("api/pop/PutInItem", item);
 
-
-
+            if (operList.ErrCode == 0)
+            {
+                MessageBox.Show("입고완료되었습니다.");
+            }
+            else
+            {
+                MessageBox.Show("입고 중 문제가 발생하였습니다.");
+                return;
+            }
         }
     }
 }

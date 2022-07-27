@@ -101,6 +101,7 @@
             this.btnOK.TabIndex = 17;
             this.btnOK.Text = "창고입고";
             this.btnOK.UseVisualStyleBackColor = false;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -237,7 +238,6 @@
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(197, 109);
             this.lblStatus.TabIndex = 0;
-            this.lblStatus.Text = "생산완료";
             this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel6
@@ -260,7 +260,6 @@
             this.lblPlanQty.Name = "lblPlanQty";
             this.lblPlanQty.Size = new System.Drawing.Size(197, 109);
             this.lblPlanQty.TabIndex = 0;
-            this.lblPlanQty.Text = "20";
             this.lblPlanQty.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel7
@@ -283,7 +282,6 @@
             this.lblComplete.Name = "lblComplete";
             this.lblComplete.Size = new System.Drawing.Size(197, 109);
             this.lblComplete.TabIndex = 0;
-            this.lblComplete.Text = "18";
             this.lblComplete.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel8
@@ -306,7 +304,6 @@
             this.lblFail.Name = "lblFail";
             this.lblFail.Size = new System.Drawing.Size(199, 109);
             this.lblFail.TabIndex = 0;
-            this.lblFail.Text = "2";
             this.lblFail.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtPlanQty
@@ -319,7 +316,6 @@
             this.txtPlanQty.ReadOnly = true;
             this.txtPlanQty.Size = new System.Drawing.Size(274, 35);
             this.txtPlanQty.TabIndex = 9;
-            this.txtPlanQty.Text = "20";
             // 
             // txtClient
             // 
@@ -331,7 +327,6 @@
             this.txtClient.ReadOnly = true;
             this.txtClient.Size = new System.Drawing.Size(274, 35);
             this.txtClient.TabIndex = 10;
-            this.txtClient.Text = "시몬스침대 가산점\r\n";
             // 
             // txtItemID
             // 
@@ -343,7 +338,6 @@
             this.txtItemID.ReadOnly = true;
             this.txtItemID.Size = new System.Drawing.Size(274, 35);
             this.txtItemID.TabIndex = 11;
-            this.txtItemID.Text = "MT20220718\r\n";
             // 
             // txtProcessName
             // 
@@ -355,7 +349,6 @@
             this.txtProcessName.ReadOnly = true;
             this.txtProcessName.Size = new System.Drawing.Size(274, 35);
             this.txtProcessName.TabIndex = 12;
-            this.txtProcessName.Text = "란체스터 생산 공정\r\n";
             // 
             // txtCategory
             // 
@@ -367,7 +360,6 @@
             this.txtCategory.ReadOnly = true;
             this.txtCategory.Size = new System.Drawing.Size(100, 35);
             this.txtCategory.TabIndex = 13;
-            this.txtCategory.Text = "완제품";
             // 
             // label6
             // 
@@ -379,7 +371,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(106, 24);
             this.label6.TabIndex = 4;
-            this.label6.Text = "주문수량";
+            this.label6.Text = "계획수량";
             // 
             // txtItemName
             // 
@@ -391,7 +383,6 @@
             this.txtItemName.ReadOnly = true;
             this.txtItemName.Size = new System.Drawing.Size(274, 35);
             this.txtItemName.TabIndex = 14;
-            this.txtItemName.Text = "란체스터 베드S";
             // 
             // label3
             // 
@@ -459,7 +450,7 @@
             this.panel9.Controls.Add(this.label1);
             this.panel9.Location = new System.Drawing.Point(155, 9);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(623, 226);
+            this.panel9.Size = new System.Drawing.Size(623, 220);
             this.panel9.TabIndex = 18;
             // 
             // panel10
