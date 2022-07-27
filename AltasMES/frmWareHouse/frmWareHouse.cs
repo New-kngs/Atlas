@@ -42,7 +42,7 @@ namespace AltasMES
             dgvPDT.DefaultCellStyle.Font = new Font("맑은고딕", 12, FontStyle.Regular);
 
             service = new ServiceHelper("");
-            cboWH.Items.AddRange(new string[] { "전체보기", "완제품", "반제품", "자재" });
+            cboWH.Items.AddRange(new string[] { "전체", "완제품", "반제품", "자재" });
             cboWH.SelectedIndex = 0;
                         
             DataLoad();
