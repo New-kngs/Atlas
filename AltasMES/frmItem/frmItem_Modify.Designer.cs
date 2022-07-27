@@ -232,6 +232,7 @@ namespace AltasMES
             this.btnImgFind.Text = "찾기";
             this.btnImgFind.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnImgFind.UseVisualStyleBackColor = true;
+            this.btnImgFind.Click += new System.EventHandler(this.btnImgFind_Click);
             // 
             // txtImage
             // 

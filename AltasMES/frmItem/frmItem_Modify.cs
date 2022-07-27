@@ -46,18 +46,17 @@ namespace AltasMES
                 ItemID = txtID.Text,
                 CurrentQty = Convert.ToInt32(txtQty.Text),
                 SafeQty = Convert.ToInt32(txtSafeQty.Text),
-                ItemPrice = Convert.ToInt32(txtPrice.Text),
-                ItemImage = txtImage.Text,
+                ItemPrice = Convert.ToInt32(txtPrice.Text),                
                 ItemExplain = txtExplain.Text,
                 ModifyUser = this.item.ModifyUser
             };
-            srv = new ServiceHelper("");
-            ResMessage<List<ItemVO>> result = srv.PostAsync<ItemVO, List<ItemVO>>("api/Item/UpdateItem", item);
+            ResMessage result = srv.ServerFileUpload("api/Item/UpdateItem", txtImage.Text, item);
 
             if (result.ErrCode == 0)
             {
                 MessageBox.Show("성공적으로 수정되었습니다.");
                 this.DialogResult = DialogResult.OK;
+                this.Close();
             }
             else
                 MessageBox.Show(result.ErrMsg);
@@ -73,6 +72,16 @@ namespace AltasMES
             if (srv != null)
             {
                 srv.Dispose();
+            }
+        }
+
+        private void btnImgFind_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                txtImage.Text = dlg.FileName;
+                pictureBox1.ImageLocation = dlg.FileName;
             }
         }
     }

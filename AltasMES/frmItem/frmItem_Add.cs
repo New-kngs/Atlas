@@ -163,18 +163,7 @@ namespace AltasMES
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 txtImage.Text = dlg.FileName;
-                pictureBox1.ImageLocation = dlg.FileName;
-
-                //ResMessage res = srv.ServerFileUpload(dlg.FileName);
-
-                //if (res.ErrCode == 0)
-                //{
-                //    MessageBox.Show("파일이 업로드 되었습니다.");
-                //}
-                //else
-                //{
-                //    MessageBox.Show(res.ErrMsg);
-                //}
+                pictureBox1.ImageLocation = dlg.FileName;                
             }
         }
 
