@@ -19,7 +19,10 @@ namespace AltasMES
 
         public frmItem_Delete(ItemVO item)
         {
-            InitializeComponent();           
+            InitializeComponent();
+
+            srv = new ServiceHelper("");
+
             this.item = item;
             txtCategory.Text = item.ItemCategory;
             txtID.Text = item.ItemID;
@@ -30,12 +33,9 @@ namespace AltasMES
             txtSafeQty.Text = Convert.ToString(item.SafeQty);
             txtCusName.Text = item.CustomerName;
             txtWhName.Text = item.WHName;
-            txtExplain.Text = item.ItemExplain;
-            txtCUser.Text = item.CreateUser;
-            txtMUser.Text = item.ModifyUser;
-            txtCDate.Text = item.CreateDate;
-            txtMDate.Text = item.ModifyDate;
+            txtExplain.Text = item.ItemExplain;            
             txtImage.Text = item.ItemImage;
+            pictureBox1.ImageLocation = $"{srv.BaseServiceURL}Uploads/{item.ItemImage}";
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -47,14 +47,12 @@ namespace AltasMES
             }
             if (txtID.Text.Equals(txtDeleteChk.Text.Trim()))
             {
-                srv = new ServiceHelper("api/Item");
-
                 ItemVO item = new ItemVO()
                 {
                     ItemID = this.item.ItemID,
                     ModifyUser = this.item.ModifyUser
                 };
-                ResMessage<List<ItemVO>> result = srv.PostAsync<ItemVO, List<ItemVO>>("DeleteItem", item);
+                ResMessage<List<ItemVO>> result = srv.PostAsync<ItemVO, List<ItemVO>>("api/Item/DeleteItem", item);
                 if (result.ErrCode == 0)
                 {
                     MessageBox.Show("성공적으로 삭제되었습니다.");

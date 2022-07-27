@@ -43,7 +43,7 @@ namespace AltasMES
 
             service = new ServiceHelper("");
 
-            cboPdt.Items.AddRange(new string[] { "전체보기", "완제품", "반제품", "자재" });
+            cboPdt.Items.AddRange(new string[] { "전체", "완제품", "반제품", "자재" });
             cboPdt.SelectedIndex = 0;
             //DataLoad();
         }
@@ -154,6 +154,20 @@ namespace AltasMES
             if (service != null)
             {
                 service.Dispose();
+            }
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            BOMVO bom = new BOMVO()
+            {
+                CreateUser = ((Main)this.MdiParent).EmpName.ToString()
+            };
+
+            frmBOM_Add frm = new frmBOM_Add(bom);
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                DataLoad();
             }
         }
     }
