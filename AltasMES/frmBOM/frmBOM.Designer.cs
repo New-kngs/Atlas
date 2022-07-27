@@ -99,6 +99,7 @@ namespace AltasMES
             this.btnAdd.Location = new System.Drawing.Point(692, 20);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAdd.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // imageList1
             // 
