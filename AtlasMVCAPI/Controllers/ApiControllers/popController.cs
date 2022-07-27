@@ -53,14 +53,14 @@ namespace AtlasMVCAPI.Controllers
         /// </summary>
         //https://localhost:44391/api/pop/SearchOper/{dateFrom}/{dateTo}/{HourFrom}/{HourTO}
 
-        [Route("SearchOper/{dateFrom}/{dateTo}/{HourFrom}/{HourTO}")]
+        [Route("SearchOper/{dateFrom}/{dateTo}")]
         [HttpGet]
-        public IHttpActionResult SearchOper(string dateFrom, string dateTo, string HourFrom, string HourTO)
+        public IHttpActionResult SearchOper(string dateFrom, string dateTo)
         {
             try
             {
                 popDAC db = new popDAC();
-                List<OperationVO> list = db.GetSearchOperation(dateFrom, dateTo, HourFrom, HourTO);
+                List<OperationVO> list = db.GetSearchOperation(dateFrom, dateTo);
 
                 ResMessage<List<OperationVO>> result = new ResMessage<List<OperationVO>>()
                 {
@@ -279,9 +279,39 @@ namespace AtlasMVCAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// 작업지시서 공정명 콤보리스트
+        /// </summary>
+        //https://localhost:44391/api/pop/GetProcessName
+        [Route("GetProcessName")]
+        public IHttpActionResult GetProcessName()
+        {
+            try
+            {
+                popDAC db = new popDAC();
+                List<ComboItemVO> list = db.GetProcessName();
 
+                ResMessage<List<ComboItemVO>> result = new ResMessage<List<ComboItemVO>>()
+                {
+                    ErrCode = (list == null) ? -9 : 0,
+                    ErrMsg = (list == null) ? "조회중 오류발생" : "S",
+                    Data = list
+                };
 
+                return Ok(result);
+            }
+            catch (Exception err)
+            {
+                System.Diagnostics.Debug.WriteLine(err.Message);
 
+                return Ok(new ResMessage()
+                {
+                    ErrCode = -9,
+                    //ErrMsg = err.Message
+                    ErrMsg = "서비스 관리자에게 문의하시기 바랍니다."
+                });
+            }
+        }
 
     }
     }

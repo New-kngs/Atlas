@@ -70,6 +70,16 @@ namespace AtlasPOP
         }
         private void OpenCreateForm<T>() where T : Form, new()
         {
+            if (btnLogout.Text != "로그아웃")
+            {
+                MessageBox.Show("로그인을 해주세요");
+                return;
+            }
+            if (OperID == null)
+            {
+                MessageBox.Show("작업을 먼저 선택해주세요");
+                return;
+            }
             //폼이 열린적이 없는 경우에는 new를 하고, 열린적이 있으면 열린 폼을 활성시킨다.
             foreach (Form form in Application.OpenForms)
             {
@@ -168,6 +178,28 @@ namespace AtlasPOP
 
         private void btnPerfomance_Click(object sender, EventArgs e)
         {
+            frmOperStatus frm = new frmOperStatus(itemID, OperID);
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void btnOperSatus_Click(object sender, EventArgs e)
+        {
+            OpenCreateForm<frmPerformance>();
+        }
+
+        private void btnFail_Click(object sender, EventArgs e)
+        {
+            OpenCreateForm<frmFail>();
+        }
+
+        private void btnLaping_Click(object sender, EventArgs e)
+        {
+            OpenCreateForm<frmLaping>();
+        }
+
+        private void btnStart_Click(object sender, EventArgs e)
+        {
             if (btnLogout.Text != "로그아웃")
             {
                 MessageBox.Show("로그인을 해주세요");
@@ -178,9 +210,22 @@ namespace AtlasPOP
                 MessageBox.Show("작업을 먼저 선택해주세요");
                 return;
             }
-            frmPerformance frm = new frmPerformance();
-            frm.MdiParent = this;
-            frm.Show();
+            MessageBox.Show("시작이요");
+        }
+
+        private void btnEnd_Click(object sender, EventArgs e)
+        {
+            if (btnLogout.Text != "로그아웃")
+            {
+                MessageBox.Show("로그인을 해주세요");
+                return;
+            }
+            if (OperID == null)
+            {
+                MessageBox.Show("작업을 먼저 선택해주세요");
+                return;
+            }
+            MessageBox.Show("종료요");
         }
     }
 }
