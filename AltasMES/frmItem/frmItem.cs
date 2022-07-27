@@ -204,5 +204,16 @@ namespace AltasMES
                 srv.Dispose();
             }
         }
+
+        private void dgvItem_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {            
+            int curQty = Convert.ToInt32(dgvItem.Rows[e.RowIndex].Cells["CurrentQty"].Value);
+            int SfeQty = Convert.ToInt32(dgvItem.Rows[e.RowIndex].Cells["SafeQty"].Value);
+
+            if (curQty < SfeQty)
+            {
+                e.CellStyle.ForeColor = Color.Red;
+            }            
+        }
     }
 }

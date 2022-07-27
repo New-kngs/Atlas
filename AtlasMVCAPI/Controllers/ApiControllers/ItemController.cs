@@ -140,15 +140,7 @@ namespace AtlasMVCAPI.Controllers
                     ErrCode = (!flag) ? -9 : 0,
                     ErrMsg = (!flag) ? "저장중 오류발생" : "S"
                 };
-                return Ok(result);
-
-                ResMessage fileResult = new ResMessage()
-                {
-                    ErrCode = (flag) ? 0 : -9,
-                    ErrMsg = (flag) ? "S" : "파일 저장 중 오류발생"
-                };
-                return Ok(fileResult);
-                 
+                return Ok(result);                 
             }
             catch (Exception err)
             {

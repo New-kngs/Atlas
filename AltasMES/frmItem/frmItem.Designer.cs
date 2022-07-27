@@ -143,6 +143,7 @@ namespace AltasMES
             this.dgvItem.Size = new System.Drawing.Size(1028, 463);
             this.dgvItem.TabIndex = 2;
             this.dgvItem.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItem_CellClick);
+            this.dgvItem.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvItem_CellFormatting);
             // 
             // label1
             // 
