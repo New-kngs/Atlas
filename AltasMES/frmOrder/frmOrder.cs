@@ -14,7 +14,10 @@ namespace AltasMES
     public partial class frmOrder : BaseForm
     {
         ServiceHelper srv = null;
-        List<OrderVO> orderList;
+        List<OrderVO> orderList = null;
+
+        string selId = string.Empty;
+
         public frmOrder()
         {
             InitializeComponent();
@@ -22,8 +25,7 @@ namespace AltasMES
 
         private void frmOrder_Load(object sender, EventArgs e)
         {
-            srv = new ServiceHelper("");
-            orderList = srv.GetAsync<List<OrderVO>>("api/Order/GetAllOrder").Data;
+            srv = new ServiceHelper("");           
 
             DataGridUtil.SetInitGridView(dgvOrder);
             DataGridUtil.AddGridTextBoxColumn(dgvOrder, "주문ID", "OrderID", colwidth: 100, align: DataGridViewContentAlignment.MiddleCenter);
@@ -40,16 +42,30 @@ namespace AltasMES
 
         public void LoadData()
         {
-            if (orderList != null)
-            {
-                dgvOrder.DataSource = null;
-                dgvOrder.DataSource = new AdvancedList<OrderVO>(orderList);
-            }
-            else
+            orderList = srv.GetAsync<List<OrderVO>>("api/Order/GetAllOrder").Data;
+
+            if (orderList == null)
             {
                 MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
-                return;
             }
+
+            dgvOrder.DataSource = null;
+            dgvOrder.DataSource = new AdvancedList<OrderVO>(orderList);
+        }
+
+        private void frmOrder_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (srv != null)
+            {
+                srv.Dispose();
+            }
+        }
+
+        private void dgvOrder_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            selId = (dgvOrder[0, e.RowIndex].Value).ToString();
         }
     }
 }

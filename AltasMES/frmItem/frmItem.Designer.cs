@@ -58,6 +58,7 @@ namespace AltasMES
             this.groupBox2.Controls.Add(this.cboCategory);
             this.groupBox2.Controls.Add(this.btnSearch);
             this.groupBox2.Controls.Add(this.txtSearch);
+            this.groupBox2.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.groupBox2.Text = "검색조건";
             // 
             // btnAdd
@@ -90,7 +91,7 @@ namespace AltasMES
             // 
             this.txtSearch.Location = new System.Drawing.Point(294, 40);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(215, 26);
+            this.txtSearch.Size = new System.Drawing.Size(215, 29);
             this.txtSearch.TabIndex = 0;
             this.txtSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearch_KeyPress);
             // 
@@ -117,7 +118,7 @@ namespace AltasMES
             this.cboCategory.FormattingEnabled = true;
             this.cboCategory.Location = new System.Drawing.Point(96, 40);
             this.cboCategory.Name = "cboCategory";
-            this.cboCategory.Size = new System.Drawing.Size(121, 27);
+            this.cboCategory.Size = new System.Drawing.Size(121, 29);
             this.cboCategory.TabIndex = 7;
             this.cboCategory.SelectedIndexChanged += new System.EventHandler(this.cboCategory_SelectedIndexChanged);
             // 
