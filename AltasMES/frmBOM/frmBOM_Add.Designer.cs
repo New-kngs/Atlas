@@ -108,6 +108,7 @@ namespace AltasMES
             this.btnCopy.Text = "BOM복사";
             this.btnCopy.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCopy.UseVisualStyleBackColor = true;
+            this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
             // 
             // imageList1
             // 
@@ -128,7 +129,7 @@ namespace AltasMES
             this.cboPdt.FormattingEnabled = true;
             this.cboPdt.Location = new System.Drawing.Point(353, 11);
             this.cboPdt.Name = "cboPdt";
-            this.cboPdt.Size = new System.Drawing.Size(132, 28);
+            this.cboPdt.Size = new System.Drawing.Size(170, 28);
             this.cboPdt.TabIndex = 29;
             // 
             // label2
@@ -172,6 +173,7 @@ namespace AltasMES
             this.cboCategory.Name = "cboCategory";
             this.cboCategory.Size = new System.Drawing.Size(132, 28);
             this.cboCategory.TabIndex = 1;
+            this.cboCategory.SelectedIndexChanged += new System.EventHandler(this.cboCategory_SelectedIndexChanged);
             // 
             // btnCancel
             // 
@@ -190,6 +192,7 @@ namespace AltasMES
             this.btnCancel.Text = "취소";
             this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // label1
             // 
@@ -264,6 +267,7 @@ namespace AltasMES
             this.dgvUnreg.RowTemplate.Height = 23;
             this.dgvUnreg.Size = new System.Drawing.Size(334, 416);
             this.dgvUnreg.TabIndex = 0;
+            this.dgvUnreg.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUnreg_CellClick);
             // 
             // lblTitle
             // 
@@ -288,6 +292,7 @@ namespace AltasMES
             this.Name = "frmBOM_Add";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmBOM_Add";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmBOM_Add_FormClosing);
             this.Load += new System.EventHandler(this.frmBOM_Add_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

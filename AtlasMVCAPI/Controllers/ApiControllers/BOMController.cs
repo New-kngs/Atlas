@@ -80,5 +80,73 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
+
+        /// <summary>
+        /// Author : 정희록
+        /// </summary>
+        /// <returns>BOM등록이 되지 않은 제품을 조회해서 반환</returns>
+        //https://localhost:44391/api/BOM/UnregiItem
+        [Route("UnregiItem")]
+        public IHttpActionResult GetUnregiBOMList()
+        {
+            try
+            {
+                BOMDAC db = new BOMDAC();
+                List<BOMVO> list = db.GetUnregiBOMList();
+
+                ResMessage<List<BOMVO>> result = new ResMessage<List<BOMVO>>()
+                {
+                    ErrCode = (list == null) ? -9 : 0,
+                    ErrMsg = (list == null) ? "조회중 오류발생" : "S",
+                    Data = list
+                };
+
+                return Ok(result);
+            }
+            catch (Exception err)
+            {
+                System.Diagnostics.Debug.WriteLine(err.Message);
+
+                return Ok(new ResMessage()
+                {
+                    ErrCode = -9,
+                    ErrMsg = "서비스 관리자에게 문의하시기 바랍니다."
+                });
+            }
+        }
+
+        /// <summary>
+        /// Author : 정희록
+        /// </summary>
+        /// <returns>BOM등록된 제품을 조회해서 반환</returns>
+        //https://localhost:44391/api/BOM/RegiItem
+        [Route("RegiItem")]
+        public IHttpActionResult GetRegiBOMList()
+        {
+            try
+            {
+                BOMDAC db = new BOMDAC();
+                List<BOMVO> list = db.GetRegiBOMList();
+
+                ResMessage<List<BOMVO>> result = new ResMessage<List<BOMVO>>()
+                {
+                    ErrCode = (list == null) ? -9 : 0,
+                    ErrMsg = (list == null) ? "조회중 오류발생" : "S",
+                    Data = list
+                };
+
+                return Ok(result);
+            }
+            catch (Exception err)
+            {
+                System.Diagnostics.Debug.WriteLine(err.Message);
+
+                return Ok(new ResMessage()
+                {
+                    ErrCode = -9,
+                    ErrMsg = "서비스 관리자에게 문의하시기 바랍니다."
+                });
+            }
+        }
     }
 }
