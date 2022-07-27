@@ -30,11 +30,7 @@ namespace AltasMES
             txtSafeQty.Text = Convert.ToString(item.SafeQty);
             txtCusName.Text = item.CustomerName;
             txtWhName.Text = item.WHName;
-            txtExplain.Text = item.ItemExplain;
-            txtCUser.Text = item.CreateUser;
-            txtMUser.Text = item.ModifyUser;
-            txtCDate.Text = item.CreateDate;
-            txtMDate.Text = item.ModifyDate;
+            txtExplain.Text = item.ItemExplain;            
             txtImage.Text = item.ItemImage;
         }
 
