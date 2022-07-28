@@ -2034,6 +2034,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ApiControllers\BOMController.cs" />
+    <Compile Include="Controllers\ApiControllers\DepartmentController.cs" />
     <Compile Include="Controllers\ApiControllers\EmployeeController.cs" />
     <Compile Include="Controllers\ApiControllers\EquipmentController.cs" />
     <Compile Include="Controllers\ApiControllers\ItemController.cs" />
@@ -2053,6 +2054,7 @@
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\DAC\BOMDAC.cs" />
     <Compile Include="Models\DAC\CustomerDAC.cs" />
+    <Compile Include="Models\DAC\DepartmentDAC.cs" />
     <Compile Include="Models\DAC\EmployeeDAC.cs" />
     <Compile Include="Models\DAC\EquipmentDAC.cs" />
     <Compile Include="Models\DAC\ItemDAC.cs" />
