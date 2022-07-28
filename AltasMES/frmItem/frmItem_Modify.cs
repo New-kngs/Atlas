@@ -16,6 +16,7 @@ namespace AltasMES
         ServiceHelper srv = null;
 
         public ItemVO item { get; set; }
+        string preItemImage = string.Empty;
 
         public frmItem_Modify(ItemVO item)
         {
@@ -35,7 +36,11 @@ namespace AltasMES
             txtWhName.Text = item.WHName;
             txtExplain.Text = item.ItemExplain;            
             txtImage.Text = item.ItemImage;
-            pictureBox1.ImageLocation = $"{srv.BaseServiceURL}Uploads/{item.ItemImage}";
+            preItemImage = item.ItemImage;
+            if (item.ItemImage.Length > 1)
+            {
+                pictureBox1.ImageLocation = $"{srv.BaseServiceURL}Uploads/{item.ItemImage}";
+            }
         }
 
         //CurrentQty SafeQty ItemPrice ItemImage ItemExplain ModifyDate ModifyUser
@@ -48,9 +53,10 @@ namespace AltasMES
                 SafeQty = Convert.ToInt32(txtSafeQty.Text),
                 ItemPrice = Convert.ToInt32(txtPrice.Text),                
                 ItemExplain = txtExplain.Text,
-                ModifyUser = this.item.ModifyUser
+                ModifyUser = this.item.ModifyUser,
+                ItemImage = (preItemImage.Equals(txtImage.Text)) ? "" : txtImage.Text
             };
-            ResMessage result = srv.ServerFileUpload("api/Item/UpdateItem", txtImage.Text, item);
+            ResMessage result = srv.ServerFileUpload("api/Item/UpdateItem", item.ItemImage, item);
 
             if (result.ErrCode == 0)
             {

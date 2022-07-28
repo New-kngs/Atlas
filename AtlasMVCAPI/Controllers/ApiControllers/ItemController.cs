@@ -116,21 +116,22 @@ namespace AtlasMVCAPI.Controllers
                 bool flag = false;
 
                 ItemVO prod = Newtonsoft.Json.JsonConvert.DeserializeObject<ItemVO>(HttpContext.Current.Request["Item"]);
-
-                foreach (string file in HttpContext.Current.Request.Files)
+                if (prod.ItemImage.Length > 0)
                 {
-                    var postedFile = HttpContext.Current.Request.Files[file];
-                    string uploadFileName = postedFile.FileName;                    
-
-                    //1.서버에 업로드된 파일을 서버에 저장
-                    string filePath = HttpContext.Current.Server.MapPath("~/Uploads/");
-                    if (!Directory.Exists(filePath))
+                    foreach (string file in HttpContext.Current.Request.Files)
                     {
-                        Directory.CreateDirectory(filePath);
-                    }
-                    postedFile.SaveAs(filePath + uploadFileName);                        
-                }
+                        var postedFile = HttpContext.Current.Request.Files[file];
+                        string uploadFileName = postedFile.FileName;
 
+                        //1.서버에 업로드된 파일을 서버에 저장
+                        string filePath = HttpContext.Current.Server.MapPath("~/Uploads/");
+                        if (!Directory.Exists(filePath))
+                        {
+                            Directory.CreateDirectory(filePath);
+                        }
+                        postedFile.SaveAs(filePath + uploadFileName);
+                    }
+                }
                 //2.DB insert
                 ItemDAC db = new ItemDAC();
                 flag = db.SaveItem(prod);
@@ -166,19 +167,21 @@ namespace AtlasMVCAPI.Controllers
                 bool flag = false;
 
                 ItemVO prod = Newtonsoft.Json.JsonConvert.DeserializeObject<ItemVO>(HttpContext.Current.Request["Item"]);
-
-                foreach (string file in HttpContext.Current.Request.Files)
+                if (prod.ItemImage.Length > 0)
                 {
-                    var postedFile = HttpContext.Current.Request.Files[file];
-                    string uploadFileName = postedFile.FileName;                    
-
-                    //1.서버에 업로드된 파일을 서버에 저장
-                    string filePath = HttpContext.Current.Server.MapPath("~/Uploads/");
-                    if (!Directory.Exists(filePath))
+                    foreach (string file in HttpContext.Current.Request.Files)
                     {
-                        Directory.CreateDirectory(filePath);
+                        var postedFile = HttpContext.Current.Request.Files[file];
+                        string uploadFileName = postedFile.FileName;
+
+                        //1.서버에 업로드된 파일을 서버에 저장
+                        string filePath = HttpContext.Current.Server.MapPath("~/Uploads/");
+                        if (!Directory.Exists(filePath))
+                        {
+                            Directory.CreateDirectory(filePath);
+                        }
+                        postedFile.SaveAs(filePath + uploadFileName);
                     }
-                    postedFile.SaveAs(filePath + uploadFileName);
                 }
 
                 ItemDAC db = new ItemDAC();

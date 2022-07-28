@@ -121,9 +121,9 @@ namespace AltasMES
 
         public ResMessage ServerFileUpload(string path, string localFileName, ItemVO item)
         {
-            //localFileName  : 로컬에서 선택한 파일 전체경로
-            //uploadFileName : 서버에 업로드할 파일명
-            
+            // 이미지 등록           
+            // 이미지 수정
+
             MultipartFormDataContent content = new MultipartFormDataContent();   // MultipartFormDataContent 파일은 이걸로 넘겨 줘야함 !   
             if (localFileName.Length > 0)
             {
