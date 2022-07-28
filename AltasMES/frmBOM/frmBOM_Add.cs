@@ -361,5 +361,39 @@ namespace AltasMES
                 cboCategory.SelectedIndex = 0;
             }
         }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            int count = 0;
+            if (dgvUnreg.SelectedRows.Count < 1)
+            {
+                MessageBox.Show("등록할 BOM제품을 확인하여 주십시오.");
+                return;
+            }
+            if (dgvNew.Rows.Count <1)
+            {
+                MessageBox.Show("등록할 BOM구성을 확인하여 주십시오.");
+                return;
+            }
+            foreach (DataGridViewRow item in dgvNew.Rows)
+            {
+                if (item.Cells[2].Value != null)
+                {
+                    bool check = int.TryParse(item.Cells[2].Value.ToString(), out count);
+                    if (!check)
+                    {
+                        MessageBox.Show("수량은 숫자만 입력하십시오.");
+                        item.Cells[2].Value = 0;
+                        return;
+                    }
+                }
+                else if (Convert.ToInt32(item.Cells[2].Value) < 1)
+                {
+                    MessageBox.Show("수량을 확인해 주십시오.");
+                    return;
+                }
+            }
+
+        }
     }
 }
