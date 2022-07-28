@@ -22,7 +22,7 @@ namespace AtlasMVCAPI.Models
             {
                 cmd.Connection = new SqlConnection(strConn);
                 cmd.CommandText = @"select EquipID, EquipName, EquipCategory, convert(varchar(20), CreateDate, 120) CreateDate, 
-                    CreateUser, convert(varchar(20), ModifyDate, 120) ModifyDate, ModifyUser, StateYN from TB_Equipment ";
+                    CreateUser, convert(varchar(20), ModifyDate, 120) ModifyDate, ModifyUser, StateYN from TB_Equipment";
 
                 cmd.Connection.Open();
                 List<EquipmentVO> list = Helper.DataReaderMapToList<EquipmentVO>(cmd.ExecuteReader());
@@ -82,6 +82,26 @@ namespace AtlasMVCAPI.Models
             {
                 Connection = new SqlConnection(strConn),
                 CommandText = @"update TB_Equipment set StateYN = 'N', ModifyDate=@ModifyDate, ModifyUser = @ModifyUser where EquipID = @EquipID"
+
+            })
+            {
+                cmd.Parameters.AddWithValue("@EquipID", equip.EquipID);
+                cmd.Parameters.AddWithValue("@ModifyUser", equip.ModifyUser);
+                cmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
+                cmd.Connection.Open();
+                int iRowAffect = cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+
+                return (iRowAffect > 0);
+            }
+        }
+
+        public bool UsingEquip(EquipmentVO equip)
+        {
+            using (SqlCommand cmd = new SqlCommand
+            {
+                Connection = new SqlConnection(strConn),
+                CommandText = @"update TB_Equipment set StateYN = 'Y', ModifyDate=@ModifyDate, ModifyUser = @ModifyUser where EquipID = @EquipID"
 
             })
             {

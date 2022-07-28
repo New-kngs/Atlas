@@ -104,10 +104,6 @@ namespace AltasMES
                 FailCheck = (dgvProcess.SelectedRows[0].Cells["FailCheck"].Value).ToString(),
                 ModifyUser = ((Main)this.MdiParent).EmpName.ToString()
             };
-
-
-
-
             frmProcess_Delete frm = new frmProcess_Delete(process);
             if (frm.ShowDialog() == DialogResult.OK)
             {
