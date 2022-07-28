@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AtlasDTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,24 @@ namespace AltasMES
 {
     public partial class frmOrder_Detail : Form
     {
-        public frmOrder_Detail()
+        public OrderVO order { get; set; }
+        ServiceHelper srv = null;
+
+        public frmOrder_Detail(OrderVO order)
         {
             InitializeComponent();
+            this.order = order;
+
+        }
+
+        private void frmOrder_Detail_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

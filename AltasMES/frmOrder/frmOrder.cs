@@ -97,5 +97,46 @@ namespace AltasMES
                 srv.Dispose();
             }
         }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtSearch.Text.Trim()))
+            {
+                cboCustomer_SelectedIndexChanged(this, e);
+            }
+            else
+            {
+                if (cboCustomer.SelectedIndex == 0)
+                {
+                    List<OrderVO> list = srv.GetAsync<List<OrderVO>>("api/Order/GetSearchOrder/" + dtpFrom.Value.ToShortDateString() + "/" + dtpTo.Value.AddDays(1).ToShortDateString()).Data;
+
+                    dgvOrder.DataSource = null;
+                    dgvOrder.DataSource = new AdvancedList<OrderVO>(list);
+                }
+
+            }
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            if (selId == string.Empty)
+            {
+                MessageBox.Show("주문 항목을 선택해 주세요");
+                return;
+            }
+
+            OrderVO order = srv.GetAsync<OrderVO>($"/api/Order/{selId}").Data;            
+            order.ModifyUser = ((Main)this.MdiParent).EmpName.ToString();
+            frmOrder_Detail pop = new frmOrder_Detail(order);
+            if (pop.ShowDialog() == DialogResult.OK)
+            {
+                LoadData();
+            }
+        }
+
+        private void frmOrder_Shown(object sender, EventArgs e)
+        {
+            dgvOrder.ClearSelection();
+        }
     }
 }

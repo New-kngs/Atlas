@@ -98,6 +98,7 @@ namespace AltasMES
             // 
             // cboWH
             // 
+            this.cboWH.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboWH.FormattingEnabled = true;
             this.cboWH.Location = new System.Drawing.Point(99, 39);
             this.cboWH.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -177,6 +178,7 @@ namespace AltasMES
             this.dgvWH.RowTemplate.Height = 23;
             this.dgvWH.Size = new System.Drawing.Size(1022, 212);
             this.dgvWH.TabIndex = 1;
+            this.dgvWH.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvWH_CellClick);
             // 
             // tableLayoutPanel1
             // 
