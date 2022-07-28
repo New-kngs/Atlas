@@ -233,13 +233,14 @@ namespace AltasMES
                 
                 ResMessage<List<BOMVO>> volist = service.GetAsync<List<BOMVO>>("api/BOM/RegiItem");
 
-                List<BOMVO> list = volist.Data.FindAll((f) => f.ItemCategory == choice); 
+                List<BOMVO> list = volist.Data.FindAll((f) => f.ItemCategory == choice);
 
+                cboPdt.Items.Add("선택");
+                cboPdt.SelectedIndex = 0;
                 foreach (var lst in list)
                 {
                     cboPdt.Items.Add(lst.ItemName);
                 }
-                cboPdt.SelectedIndex = 0;
             }
 
 
