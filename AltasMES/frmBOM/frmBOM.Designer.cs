@@ -158,6 +158,7 @@ namespace AltasMES
             // 
             // cboPdt
             // 
+            this.cboPdt.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboPdt.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cboPdt.FormattingEnabled = true;
             this.cboPdt.Location = new System.Drawing.Point(99, 39);

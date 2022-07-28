@@ -87,7 +87,7 @@ namespace AltasMES
                 }
                 else
                 {
-                    List<ItemVO> citemList = itemList.FindAll(p => p.ItemName.ToLower().Contains(txtSearch.Text.ToLower().Trim()) && p.ItemCategory.Equals(cboCategory.Text));
+                    List<ItemVO> citemList = itemList.FindAll(p => p.ItemName.ToLower().Contains(txtSearch.Text.ToLower().Trim())); //&& p.ItemCategory.Equals(cboCategory.Text));
                     dgvItem.DataSource = null;
                     dgvItem.DataSource = new AdvancedList<ItemVO>(citemList);
                 }

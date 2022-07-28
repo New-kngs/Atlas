@@ -169,6 +169,7 @@ namespace AltasMES
             this.dgvItem.RowTemplate.Height = 23;
             this.dgvItem.Size = new System.Drawing.Size(1028, 464);
             this.dgvItem.TabIndex = 2;
+            this.dgvItem.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItem_CellClick);
             // 
             // frmItem
             // 

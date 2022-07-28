@@ -48,6 +48,7 @@ namespace AltasMES
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvUnreg = new System.Windows.Forms.DataGridView();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.btnClear = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -75,6 +76,7 @@ namespace AltasMES
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.btnClear);
             this.panel2.Controls.Add(this.btnCopy);
             this.panel2.Controls.Add(this.cboPdt);
             this.panel2.Controls.Add(this.label2);
@@ -131,6 +133,7 @@ namespace AltasMES
             this.cboPdt.Name = "cboPdt";
             this.cboPdt.Size = new System.Drawing.Size(197, 28);
             this.cboPdt.TabIndex = 29;
+            this.cboPdt.SelectedIndexChanged += new System.EventHandler(this.cboPdt_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -281,6 +284,25 @@ namespace AltasMES
             this.lblTitle.Text = "BOM 등록";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // btnClear
+            // 
+            this.btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClear.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClear.ImageIndex = 7;
+            this.btnClear.ImageList = this.imageList1;
+            this.btnClear.Location = new System.Drawing.Point(343, 8);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.btnClear.Size = new System.Drawing.Size(91, 34);
+            this.btnClear.TabIndex = 31;
+            this.btnClear.Text = "초기화";
+            this.btnClear.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
             // frmBOM_Add
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -326,5 +348,6 @@ namespace AltasMES
         private System.Windows.Forms.Button btnCopy;
         private System.Windows.Forms.ComboBox cboPdt;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnClear;
     }
 }
