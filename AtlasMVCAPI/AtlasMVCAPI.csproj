@@ -2028,6 +2028,8 @@
     <Content Include="Uploads\20220727164743.png" />
     <Content Include="Uploads\20220727164805.png" />
     <Content Include="Uploads\20220727180444.png" />
+    <Content Include="Uploads\20220728093109.PNG" />
+    <Content Include="Uploads\20220728093127.PNG" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

@@ -115,7 +115,7 @@ namespace AtlasMVCAPI.Controllers
             {                
                 bool flag = false;
 
-                ItemVO prod = Newtonsoft.Json.JsonConvert.DeserializeObject<ItemVO>(HttpContext.Current.Request["Item"]);
+                ItemVO prod = Newtonsoft.Json.JsonConvert.DeserializeObject<ItemVO>(HttpContext.Current.Request["Item"]); // string 'Item' 으로 받을걸 ItemVO 객체로 역직렬화
                 if (prod.ItemImage.Length > 0)
                 {
                     foreach (string file in HttpContext.Current.Request.Files)

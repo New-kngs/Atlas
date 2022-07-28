@@ -14,7 +14,8 @@ namespace AltasMES
     public partial class frmOrder : BaseForm
     {
         ServiceHelper srv = null;
-        List<OrderVO> orderList = null;
+        List<OrderVO> orderList = null;  // 주문
+        List<CustomerVO> cusList = null; // 출고 거래처 바인딩
 
         string selId = string.Empty;
 
@@ -36,6 +37,9 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvOrder, "생성날짜", "CreateDate", colwidth: 160, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvOrder, "변경사용자", "ModifyUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvOrder, "변경날짜", "ModifyDate", colwidth: 160, align: DataGridViewContentAlignment.MiddleCenter);
+
+            //DataGridUtil.SetInitGridView(dgvOrderState);
+            //DataGridUtil.AddGridTextBoxColumn(dgvOrderState, "")
 
             LoadData();
         }
