@@ -30,13 +30,12 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvEquip, "변경날짜", "ModifyDate", colwidth: 200);
             DataGridUtil.AddGridTextBoxColumn(dgvEquip, "변경사용자", "ModifyUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvEquip, "사용여부", "StateYN", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
-
+            service = new ServiceHelper("");
             LoadData();
         }
         public void LoadData()
         {
-            service = new ServiceHelper("api/Equipment");
-            ResMessage<List<EquipmentVO>> result = service.GetAsync<List<EquipmentVO>>("AllEquipment");
+            ResMessage<List<EquipmentVO>> result = service.GetAsync<List<EquipmentVO>>("api/Equipment/AllEquipment");
             if (result.Data != null)
             {
                 dgvEquip.DataSource = new AdvancedList<EquipmentVO>(result.Data);
