@@ -26,7 +26,11 @@ namespace AltasMES
 
         private void frmOrder_Load(object sender, EventArgs e)
         {
-            srv = new ServiceHelper("");           
+            srv = new ServiceHelper("");
+
+            cusList = srv.GetAsync<List<CustomerVO>>("api/Customer/AllCustomer").Data;           
+
+            CommonUtil.ComboBinding<CustomerVO>(cboCustomer, cusList.FindAll(p => p.Category.Equals("출고")), "CustomerName", "CustomerID", blankText: "선택");
 
             DataGridUtil.SetInitGridView(dgvOrder);
             DataGridUtil.AddGridTextBoxColumn(dgvOrder, "주문ID", "OrderID", colwidth: 100, align: DataGridViewContentAlignment.MiddleCenter);

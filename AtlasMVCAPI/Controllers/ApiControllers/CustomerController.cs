@@ -13,19 +13,14 @@ namespace AtlasMVCAPI.Controllers
     [RoutePrefix("api/Customer")]
     public class CustomerController : ApiController
     {
-
-        /// <summary>
-        /// 등록된 거래처중 입고처만 조회해서 반환
-        /// </summary>
-        /// <returns></returns>
-        //https://localhost:44391/api/Customer/CustomerType
-        [Route("CustomerType")]
-        public IHttpActionResult GetCustomerType()
+        // https://localhost:44391/api/Customer/AllCustomer
+        [Route("AllCustomer")]
+        public IHttpActionResult GetAllCustomer()
         {
             try
             {
                 CustomerDAC db = new CustomerDAC();
-                List<CustomerVO> list = db.GetCustomerType();
+                List<CustomerVO> list = db.GetAllCustomer();
 
                 ResMessage<List<CustomerVO>> result = new ResMessage<List<CustomerVO>>()
                 {
@@ -46,6 +41,9 @@ namespace AtlasMVCAPI.Controllers
                     ErrMsg = "서비스 관리자에게 문의하시기 바랍니다."
                 });
             }
-        }
+        }     
+
+
+        
     }
 }

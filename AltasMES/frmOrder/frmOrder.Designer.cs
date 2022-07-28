@@ -36,7 +36,7 @@ namespace AltasMES
             this.dgvOrderState = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.cboCategory = new System.Windows.Forms.ComboBox();
+            this.cboCustomer = new System.Windows.Forms.ComboBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -71,7 +71,7 @@ namespace AltasMES
             this.groupBox2.Controls.Add(this.dateTimePicker1);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.cboCategory);
+            this.groupBox2.Controls.Add(this.cboCustomer);
             this.groupBox2.Controls.Add(this.btnSearch);
             this.groupBox2.Controls.Add(this.txtSearch);
             this.groupBox2.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -168,14 +168,14 @@ namespace AltasMES
             this.label1.TabIndex = 18;
             this.label1.Text = "~";
             // 
-            // cboCategory
+            // cboCustomer
             // 
-            this.cboCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboCategory.FormattingEnabled = true;
-            this.cboCategory.Location = new System.Drawing.Point(96, 40);
-            this.cboCategory.Name = "cboCategory";
-            this.cboCategory.Size = new System.Drawing.Size(121, 29);
-            this.cboCategory.TabIndex = 17;
+            this.cboCustomer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCustomer.FormattingEnabled = true;
+            this.cboCustomer.Location = new System.Drawing.Point(96, 40);
+            this.cboCustomer.Name = "cboCustomer";
+            this.cboCustomer.Size = new System.Drawing.Size(121, 29);
+            this.cboCustomer.TabIndex = 17;
             // 
             // btnSearch
             // 
@@ -250,7 +250,7 @@ namespace AltasMES
         private System.Windows.Forms.DataGridView dgvOrderState;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cboCategory;
+        private System.Windows.Forms.ComboBox cboCustomer;
         protected System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;

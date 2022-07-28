@@ -40,12 +40,12 @@ namespace AltasMES
 
             srv = new ServiceHelper("");
 
-            cusList = srv.GetAsync<List<CustomerVO>>("api/Customer/CustomerType").Data;
+            cusList = srv.GetAsync<List<CustomerVO>>("api/Customer/AllCustomer").Data;
             whcomboList = srv.GetAsync<List<WareHouseVO>>("api/WareHouse/AllWareHouse").Data;
             itemList = srv.GetAsync<List<ItemVO>>("api/Item/AllItem").Data;
             comboList = srv.GetAsync<List<ComboItemVO>>("api/Item/AllItemCategory").Data;
 
-            CommonUtil.ComboBinding<CustomerVO>(cboCusID, cusList, "CustomerName", "CustomerID", blankText: "선택");
+            CommonUtil.ComboBinding<CustomerVO>(cboCusID, cusList.FindAll(p => p.Category.Equals("입고")), "CustomerName", "CustomerID", blankText: "선택");
                         
         }
 
@@ -124,9 +124,10 @@ namespace AltasMES
                 CommonUtil.ComboBinding(cboCategory2, comboList, selCategory, blankText: "선택");
 
                 //창고                
-                cboWhID.DisplayMember = "WHName";
-                cboWhID.ValueMember = "WHID";               
-                cboWhID.DataSource = whcomboList.FindAll(p => p.ItemCategory.Equals(selCategory));                
+                //cboWhID.DisplayMember = "WHName";
+                //cboWhID.ValueMember = "WHID";               
+                //cboWhID.DataSource = whcomboList.FindAll(p => p.ItemCategory.Equals(selCategory));
+                CommonUtil.ComboBinding<WareHouseVO>(cboWhID, whcomboList.FindAll(p => p.ItemCategory.Equals(selCategory)), "WHName", "WHID", blankText: "선택");
             }
 
             //선택된 카테고리가 자재인 경우 거래처 바인딩

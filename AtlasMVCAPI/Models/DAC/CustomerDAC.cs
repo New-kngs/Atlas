@@ -14,24 +14,25 @@ namespace AtlasMVCAPI.Models
         public CustomerDAC()
         {
             strConn = WebConfigurationManager.ConnectionStrings["DB"].ConnectionString;
-        }
+        }      
 
-        // 입고처만
-        public List<CustomerVO> GetCustomerType()
+        public List<CustomerVO> GetAllCustomer()
         {
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = new SqlConnection(strConn);
-                cmd.CommandText = @"select CustomerID, CustomerName from TB_Customer where Category like '%입고%'";
+                cmd.CommandText = @"select CustomerID, CustomerPwd, CustomerName, Category, Email, Address, Phone, EmpID, CONVERT(varchar(30), CreateDate, 120) CreateDate, CreateUser, CONVERT(varchar(30), ModifyDate, 120) ModifyDate, ModifyUser, StateYN 
+                                    from TB_Customer";
 
                 cmd.Connection.Open();
                 List<CustomerVO> list = Helper.DataReaderMapToList<CustomerVO>(cmd.ExecuteReader());
                 cmd.Connection.Close();
 
-                return list;
+                if (list != null && list.Count > 0)
+                    return list;
+                else
+                    return null;
             }
-
-
         }
     }
 }
