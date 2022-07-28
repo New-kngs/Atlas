@@ -33,12 +33,12 @@ namespace AltasMES
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.cboCategory = new System.Windows.Forms.ComboBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.dgvItem = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.dgvItem = new System.Windows.Forms.DataGridView();
             this.BasePanel1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.Basepanel4.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.Basepanel2.SuspendLayout();
@@ -49,7 +49,13 @@ namespace AltasMES
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.groupBox3);
+            this.panel2.Location = new System.Drawing.Point(0, 679);
+            this.panel2.Size = new System.Drawing.Size(1034, 3);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.groupBox3);
+            this.panel1.Size = new System.Drawing.Size(1034, 499);
             // 
             // groupBox2
             // 
@@ -122,30 +128,6 @@ namespace AltasMES
             this.cboCategory.TabIndex = 7;
             this.cboCategory.SelectedIndexChanged += new System.EventHandler(this.cboCategory_SelectedIndexChanged);
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.dgvItem);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.groupBox3.Location = new System.Drawing.Point(0, 0);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1034, 491);
-            this.groupBox3.TabIndex = 1;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "제품목록";
-            // 
-            // dgvItem
-            // 
-            this.dgvItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvItem.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvItem.Location = new System.Drawing.Point(3, 25);
-            this.dgvItem.Name = "dgvItem";
-            this.dgvItem.RowTemplate.Height = 23;
-            this.dgvItem.Size = new System.Drawing.Size(1028, 463);
-            this.dgvItem.TabIndex = 2;
-            this.dgvItem.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItem_CellClick);
-            this.dgvItem.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvItem_CellFormatting);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -166,6 +148,28 @@ namespace AltasMES
             this.label2.TabIndex = 14;
             this.label2.Text = "제품유형";
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.dgvItem);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox3.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.groupBox3.Location = new System.Drawing.Point(0, 0);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(1034, 499);
+            this.groupBox3.TabIndex = 2;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "제품목록";
+            // 
+            // dgvItem
+            // 
+            this.dgvItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvItem.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvItem.Location = new System.Drawing.Point(3, 25);
+            this.dgvItem.Name = "dgvItem";
+            this.dgvItem.RowTemplate.Height = 23;
+            this.dgvItem.Size = new System.Drawing.Size(1028, 471);
+            this.dgvItem.TabIndex = 2;
+            // 
             // frmItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -177,7 +181,7 @@ namespace AltasMES
             this.Load += new System.EventHandler(this.frmItem_Load);
             this.Shown += new System.EventHandler(this.frmItem_Shown);
             this.BasePanel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.Basepanel4.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -194,9 +198,9 @@ namespace AltasMES
         private System.Windows.Forms.TextBox txtSearch;
         protected System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.ComboBox cboCategory;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.DataGridView dgvItem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.DataGridView dgvItem;
     }
 }
