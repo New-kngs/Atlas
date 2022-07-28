@@ -21,6 +21,10 @@ namespace AltasMES
             this.equip = equip;
             txtEquip.Text = equip.EquipName;
         }
+        private void frmEquipment_Delete_Load(object sender, EventArgs e)
+        {
+            service = new ServiceHelper("");
+        }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -32,7 +36,7 @@ namespace AltasMES
 
             if (txtEquip.Text.Equals(txtDeleteChk.Text))
             {
-                service = new ServiceHelper("api/Equipment");
+               
 
                 EquipmentVO equip = new EquipmentVO
                 {
@@ -40,7 +44,7 @@ namespace AltasMES
                     ModifyUser = this.equip.ModifyUser
                 };
 
-                ResMessage<List<EquipmentVO>> result = service.PostAsync<EquipmentVO, List<EquipmentVO>>("DeleteEquip", equip);
+                ResMessage<List<EquipmentVO>> result = service.PostAsync<EquipmentVO, List<EquipmentVO>>("api/Equipment/DeleteEquip", equip);
 
                 if (result.ErrCode == 0)
                 {
@@ -72,5 +76,7 @@ namespace AltasMES
                 service.Dispose();
             }
         }
+
+        
     }
 }

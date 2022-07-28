@@ -12,7 +12,8 @@ namespace AtlasDTO
         public string ItemID { get; set; }
         public int FailQty { get; set; }
         public string FailCode { get; set; }
-        public int OpID { get; set; }
+        public string FailName { get; set; }
+        public string OpID { get; set; }
         public string CreateDate { get; set; }
         public string CreateUser { get; set; }
         public string ModifyDate { get; set; }

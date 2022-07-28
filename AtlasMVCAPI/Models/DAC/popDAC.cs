@@ -24,10 +24,11 @@ namespace AtlasMVCAPI.Models
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = new SqlConnection(strConn);
-                cmd.CommandText = @"select OpID, convert(varchar(20), OpDate, 120) OpDate, resourceYN, ItemID, OrderID, op.ProcessID, ProcessName,    
-                                        PlanQty, OpState, BeginDate,EndDate, EmpID,
-                                        CONVERT(varchar(10),OpDate,120) Date, DatePart(hh,OpDate) Time
-                                        from TB_Operation op join TB_Process p on op.ProcessID = p.ProcessID";
+                cmd.CommandText = @"select OpID, convert(varchar(20), OpDate, 120) OpDate, resourceYN, PutInYN, op.ItemID, ItemName, OrderID, op.ProcessID, ProcessName,    
+                                    PlanQty, OpState, BeginDate,EndDate, EmpID,
+                                    CONVERT(varchar(10),OpDate,120) Date, DatePart(hh,OpDate) Time
+                                    from TB_Operation op join TB_Process p on op.ProcessID = p.ProcessID
+                                    join TB_Item i on op.ItemID = i.ItemID";
 
                 cmd.Connection.Open();
                 List<OperationVO> list = Helper.DataReaderMapToList<OperationVO>(cmd.ExecuteReader());
@@ -162,6 +163,7 @@ namespace AtlasMVCAPI.Models
             }
         }
 
+
         /// <summary>
         /// 자재 재고 업데이트
         /// </summary>
@@ -237,21 +239,51 @@ namespace AtlasMVCAPI.Models
             }
         }
 
-        public bool InsertFailLog(FailVO fail)
+
+
+        public bool InsertFailLog(List<FailVO> failList)
+        {
+            SqlConnection conn = new SqlConnection(strConn);
+            conn.Open();
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = conn;
+                cmd.CommandText = @"insert into TB_Fail (ItemID, FailQty, FailCode, OpID, CreateUser)
+                                    values(@ItemID, @FailQty, @FailCode, @OpID, @CreateUser)";
+
+                cmd.Parameters.AddWithValue("@ItemID", failList[0].ItemID);
+                cmd.Parameters.AddWithValue("@OpID", failList[0].OpID);
+                cmd.Parameters.AddWithValue("@CreateUser", failList[0].CreateUser);
+
+                cmd.Parameters.Add("@FailQty", System.Data.SqlDbType.NVarChar, 50);
+                cmd.Parameters.Add("@FailCode", System.Data.SqlDbType.NVarChar, 50);
+
+                int iRowAffect = 0;
+                foreach(FailVO fail in failList)
+                {
+                    cmd.Parameters["@FailQty"].Value = fail.FailQty;
+                    cmd.Parameters["@FailCode"].Value = fail.FailCode;
+                    iRowAffect += cmd.ExecuteNonQuery();
+                }
+                conn.Close();
+                return (iRowAffect > 0);
+            }
+        }
+
+        /// <summary>
+        /// 창고 입고 여부 업데이트
+        /// </summary>
+        /// <param name="OpID"></param>
+        /// <returns></returns>
+        public bool UpdatePutInYN(string OperID)
         {
             using (SqlCommand cmd = new SqlCommand
             {
                 Connection = new SqlConnection(strConn),
-                CommandText = @"  insert into TB_Fail (ItemID, FailQty, FailCode, OpID, CreateUser)
-                                values(@ItemID, @FailQty, @FailCode, @OpID, @CreateUser)"
-
+                CommandText = @"update TB_Operation set PutInYN = 'Y' where OpID = @OpID"
             })
             {
-                cmd.Parameters.AddWithValue("@ItemID", fail.ItemID);
-                cmd.Parameters.AddWithValue("@FailQty", fail.FailQty);
-                cmd.Parameters.AddWithValue("@FailCode", fail.FailCode);
-                cmd.Parameters.AddWithValue("@OpID", fail.OpID);
-                cmd.Parameters.AddWithValue("@CreateUser", fail.CreateUser);
+                cmd.Parameters.AddWithValue("@OpID", OperID);
 
                 cmd.Connection.Open();
                 int iRowAffect = cmd.ExecuteNonQuery();
@@ -260,7 +292,6 @@ namespace AtlasMVCAPI.Models
                 return (iRowAffect > 0);
             }
         }
-
 
         public bool SaveProcess(ProcessVO process)
         {
@@ -354,10 +385,25 @@ namespace AtlasMVCAPI.Models
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = new SqlConnection(strConn);
-                cmd.CommandText = @" select CONVERT(varchar(10), EquipID) Code, EquipName CodeName, '설비' Category from TB_Equipment";
+                cmd.CommandText = @"select CONVERT(varchar(10), EquipID) Code, EquipName CodeName, '설비' Category from TB_Equipment";
 
                 cmd.Connection.Open();
                 List<ComboItemVO> list = Helper.DataReaderMapToList<ComboItemVO>(cmd.ExecuteReader());
+                cmd.Connection.Close();
+
+                return list;
+            }
+        }
+
+        public List<FailVO> GetOperID()
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.CommandText = @"select OpID from TB_Fail";
+
+                cmd.Connection.Open();
+                List<FailVO> list = Helper.DataReaderMapToList<FailVO>(cmd.ExecuteReader());
                 cmd.Connection.Close();
 
                 return list;

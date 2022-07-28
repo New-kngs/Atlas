@@ -1,5 +1,4 @@
 ﻿using AltasMES;
-using AltasPOP;
 using AtlasDTO;
 using System;
 using System.Collections.Generic;
@@ -15,7 +14,7 @@ namespace AtlasPOP
 {
     public partial class frmResource : Form
     {
-        ServiceHelper service = null;
+        popServiceHelper service = null;
         public string itemID { get; set; }
         
         public string OperID { get; set; }
@@ -50,7 +49,7 @@ namespace AtlasPOP
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "변경사용자", "ModifyUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter, visibility: false);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "사용유무", "StateYN", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter, visibility: false);
 
-            service = new ServiceHelper("");
+            service = new popServiceHelper("");
             LoadData();
 
             

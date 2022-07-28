@@ -346,12 +346,12 @@ namespace AtlasMVCAPI.Controllers
         //POST : https://localhost:44391/api/pop/InsertFailLog
         [HttpPost]
         [Route("InsertFailLog")]
-        public IHttpActionResult InsertFailLog(FailVO fail)
+        public IHttpActionResult InsertFailLog(List<FailVO> failList)
         {
             try
             {
                 popDAC db = new popDAC();
-                bool flag = db.InsertFailLog(fail);
+                bool flag = db.InsertFailLog(failList);
 
                 ResMessage result = new ResMessage()
                 {
@@ -369,6 +369,70 @@ namespace AtlasMVCAPI.Controllers
                 {
                     ErrCode = -9,
                     ErrMsg = err.Message
+                });
+            }
+        }
+
+        //POST : https://localhost:44391/api/pop/UpdatePutInYN
+        [HttpPost]
+        [Route("UpdatePutInYN/{OperID}")]
+        public IHttpActionResult UpdatePutInYN(string OperID)
+        {
+            try
+            {
+                popDAC db = new popDAC();
+                bool flag = db.UpdatePutInYN(OperID);
+
+                ResMessage result = new ResMessage()
+                {
+                    ErrCode = (!flag) ? -9 : 0,
+                    ErrMsg = (!flag) ? "수정 중 오류발생" : "S"
+                };
+
+                return Ok(result);
+            }
+            catch (Exception err)
+            {
+                System.Diagnostics.Debug.WriteLine(err.Message);
+
+                return Ok(new ResMessage()
+                {
+                    ErrCode = -9,
+                    ErrMsg = err.Message
+                });
+            }
+        }
+
+        /// <summary>
+        /// 등록된 모든 거래처명을 조회해서 반환
+        /// </summary>
+        //https://localhost:44391/api/pop/GetOperID
+        [Route("GetOperID")]
+        public IHttpActionResult GetOperID()
+        {
+            try
+            {
+                popDAC db = new popDAC();
+                List<FailVO> list = db.GetOperID();
+
+                ResMessage<List<FailVO>> result = new ResMessage<List<FailVO>>()
+                {
+                    ErrCode = (list == null) ? -9 : 0,
+                    ErrMsg = (list == null) ? "조회중 오류발생" : "S",
+                    Data = list
+                };
+
+                return Ok(result);
+            }
+            catch (Exception err)
+            {
+                System.Diagnostics.Debug.WriteLine(err.Message);
+
+                return Ok(new ResMessage()
+                {
+                    ErrCode = -9,
+                    //ErrMsg = err.Message
+                    ErrMsg = "서비스 관리자에게 문의하시기 바랍니다."
                 });
             }
         }

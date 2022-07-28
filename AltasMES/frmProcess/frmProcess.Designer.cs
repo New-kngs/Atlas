@@ -138,9 +138,10 @@ namespace AltasMES
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold);
             this.label1.Location = new System.Drawing.Point(24, 48);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 19);
+            this.label1.Size = new System.Drawing.Size(58, 21);
             this.label1.TabIndex = 0;
             this.label1.Text = "공정명";
             this.label1.Click += new System.EventHandler(this.label1_Click);

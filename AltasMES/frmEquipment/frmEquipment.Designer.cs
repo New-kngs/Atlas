@@ -54,6 +54,7 @@ namespace AltasMES
             this.groupBox2.Controls.Add(this.btnSearch);
             this.groupBox2.Controls.Add(this.txtEquip);
             this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold);
             this.groupBox2.Text = "검색조건";
             // 
             // btnAdd
@@ -93,7 +94,7 @@ namespace AltasMES
             // 
             this.groupBox3.Controls.Add(this.dgvEquip);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.groupBox3.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold);
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(1034, 491);
@@ -105,10 +106,10 @@ namespace AltasMES
             // 
             this.dgvEquip.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEquip.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvEquip.Location = new System.Drawing.Point(3, 19);
+            this.dgvEquip.Location = new System.Drawing.Point(3, 25);
             this.dgvEquip.Name = "dgvEquip";
             this.dgvEquip.RowTemplate.Height = 23;
-            this.dgvEquip.Size = new System.Drawing.Size(1028, 469);
+            this.dgvEquip.Size = new System.Drawing.Size(1028, 463);
             this.dgvEquip.TabIndex = 0;
             // 
             // btnSearch
@@ -132,7 +133,7 @@ namespace AltasMES
             // 
             this.txtEquip.Location = new System.Drawing.Point(83, 42);
             this.txtEquip.Name = "txtEquip";
-            this.txtEquip.Size = new System.Drawing.Size(215, 26);
+            this.txtEquip.Size = new System.Drawing.Size(215, 29);
             this.txtEquip.TabIndex = 8;
             this.txtEquip.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEquip_KeyPress);
             // 
@@ -141,7 +142,7 @@ namespace AltasMES
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(26, 45);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 19);
+            this.label1.Size = new System.Drawing.Size(58, 21);
             this.label1.TabIndex = 7;
             this.label1.Text = "설비명";
             // 

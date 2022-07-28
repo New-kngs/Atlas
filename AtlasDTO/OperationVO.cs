@@ -11,6 +11,7 @@ namespace AtlasDTO
         public string OpID { get; set; }
         public string OpDate { get; set; }
         public string ItemID { get; set; }
+        public string ItemName { get; set; }
         public string OrderID { get; set; }
         public int PlanQty { get; set; }
         public int CompleteQty { get; set; }
@@ -24,6 +25,7 @@ namespace AtlasDTO
         public string ModifyDate { get; set; }
         public string ModifyUser { get; set; }
         public string ProcessName { get; set; }
+        public string PutInYN { get; set; }
         public string resourceYN { get; set; }
         public int ProcessID { get; set; }
 

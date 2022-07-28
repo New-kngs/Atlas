@@ -32,10 +32,10 @@ namespace AtlasPOP
             this.components = new System.ComponentModel.Container();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnResource = new System.Windows.Forms.Button();
             this.btnOperSatus = new System.Windows.Forms.Button();
             this.btnOperation = new System.Windows.Forms.Button();
             this.btnPerfomance = new System.Windows.Forms.Button();
+            this.btnResource = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.btnStart = new System.Windows.Forms.Button();
@@ -107,21 +107,6 @@ namespace AtlasPOP
             this.tableLayoutPanel2.Size = new System.Drawing.Size(300, 304);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
-            // btnResource
-            // 
-            this.btnResource.BackColor = System.Drawing.Color.Silver;
-            this.btnResource.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnResource.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnResource.ForeColor = System.Drawing.Color.Black;
-            this.btnResource.Location = new System.Drawing.Point(3, 154);
-            this.btnResource.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnResource.Name = "btnResource";
-            this.btnResource.Size = new System.Drawing.Size(294, 42);
-            this.btnResource.TabIndex = 0;
-            this.btnResource.Text = "자재투입";
-            this.btnResource.UseVisualStyleBackColor = false;
-            this.btnResource.Click += new System.EventHandler(this.btnResource_Click);
-            // 
             // btnOperSatus
             // 
             this.btnOperSatus.BackColor = System.Drawing.Color.Silver;
@@ -155,6 +140,7 @@ namespace AtlasPOP
             // btnPerfomance
             // 
             this.btnPerfomance.BackColor = System.Drawing.Color.Silver;
+            this.btnPerfomance.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnPerfomance.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnPerfomance.ForeColor = System.Drawing.Color.Black;
             this.btnPerfomance.Location = new System.Drawing.Point(3, 204);
@@ -165,6 +151,21 @@ namespace AtlasPOP
             this.btnPerfomance.Text = "실적조회";
             this.btnPerfomance.UseVisualStyleBackColor = false;
             this.btnPerfomance.Click += new System.EventHandler(this.btnPerfomance_Click);
+            // 
+            // btnResource
+            // 
+            this.btnResource.BackColor = System.Drawing.Color.Silver;
+            this.btnResource.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnResource.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnResource.ForeColor = System.Drawing.Color.Black;
+            this.btnResource.Location = new System.Drawing.Point(3, 154);
+            this.btnResource.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnResource.Name = "btnResource";
+            this.btnResource.Size = new System.Drawing.Size(294, 42);
+            this.btnResource.TabIndex = 0;
+            this.btnResource.Text = "자재투입";
+            this.btnResource.UseVisualStyleBackColor = false;
+            this.btnResource.Click += new System.EventHandler(this.btnResource_Click);
             // 
             // panel3
             // 
