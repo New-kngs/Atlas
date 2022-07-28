@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AltasMES.frmDepartment
+namespace AltasMES
 {
     public partial class frmDepartment_Add : Form
     {

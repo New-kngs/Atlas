@@ -1,5 +1,5 @@
 ﻿
-namespace AltasMES.frmDepartment
+namespace AltasMES
 {
     partial class frmDepartment_Add
     {
