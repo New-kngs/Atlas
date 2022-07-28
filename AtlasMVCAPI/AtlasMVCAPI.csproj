@@ -2024,6 +2024,10 @@
     <Content Include="plugins\uplot\uPlot.iife.min.js" />
     <Content Include="plugins\uplot\uPlot.min.css" />
     <Content Include="Uploads\20220727162529.png" />
+    <Content Include="Uploads\20220727163243.gif" />
+    <Content Include="Uploads\20220727164743.png" />
+    <Content Include="Uploads\20220727164805.png" />
+    <Content Include="Uploads\20220727180444.png" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
