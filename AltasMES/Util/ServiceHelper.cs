@@ -69,7 +69,7 @@ namespace AltasMES
         // Get + ResMessage<T>
         public ResMessage<T> GetAsync<T>(string path)
         {
-            string url = $"{BaseServiceURL}/{path}";
+            string url = $"{BaseServiceURL}{path}";
 
             HttpResponseMessage res = client.GetAsync(url).Result;
             if (res.IsSuccessStatusCode)

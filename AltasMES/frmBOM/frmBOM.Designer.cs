@@ -281,7 +281,7 @@ namespace AltasMES
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmBOM";
-            this.Text = "BOM정보";
+            this.Text = "BOM";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmBOM_FormClosing);
             this.Load += new System.EventHandler(this.frmBOM_Load);
             this.BasePanel1.ResumeLayout(false);

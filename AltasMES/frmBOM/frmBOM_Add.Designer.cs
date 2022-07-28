@@ -129,7 +129,7 @@ namespace AltasMES
             this.cboPdt.FormattingEnabled = true;
             this.cboPdt.Location = new System.Drawing.Point(886, 11);
             this.cboPdt.Name = "cboPdt";
-            this.cboPdt.Size = new System.Drawing.Size(170, 28);
+            this.cboPdt.Size = new System.Drawing.Size(197, 28);
             this.cboPdt.TabIndex = 29;
             // 
             // label2

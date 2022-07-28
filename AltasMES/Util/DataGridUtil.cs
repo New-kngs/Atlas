@@ -18,6 +18,7 @@ namespace AltasMES
             dgv.RowHeadersWidth = 30;
             dgv.DefaultCellStyle.Font = new Font("맑은고딕", 12, FontStyle.Regular); // 컬럼 헤더
             dgv.MultiSelect = false;
+
         }
 
         public static void AddGridTextBoxColumn(DataGridView dgv,
@@ -26,7 +27,9 @@ namespace AltasMES
             int colwidth = 100,
             DataGridViewContentAlignment align = DataGridViewContentAlignment.MiddleLeft,
             bool visibility = true,
-            bool fixedCol = false)
+            bool fixedCol = false,
+            bool Readonly = true
+        )
         {
             DataGridViewTextBoxColumn col = new DataGridViewTextBoxColumn();
             col.Name = propertyName;
@@ -37,7 +40,7 @@ namespace AltasMES
             col.DefaultCellStyle.Alignment = align;
             col.Width = colwidth;
             col.Visible = visibility;
-            col.ReadOnly = true; //그리드뷰에서 데이터수정 불가
+            col.ReadOnly = Readonly; //그리드뷰에서 데이터수정 불가
             col.Frozen = fixedCol;
             dgv.Columns.Add(col);
         }
