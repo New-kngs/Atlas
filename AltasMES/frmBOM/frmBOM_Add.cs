@@ -53,7 +53,7 @@ namespace AltasMES
             DataGridUtil.SetInitGridView(dgvNew);
             DataGridUtil.AddGridTextBoxColumn(dgvNew, "제품ID", "ItemID", colwidth: 100, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvNew, "제품이름", "ItemName", colwidth: 200, align: DataGridViewContentAlignment.MiddleLeft);
-            DataGridUtil.AddGridTextBoxColumn(dgvNew, "수량", "UnitQty", colwidth: 70, align: DataGridViewContentAlignment.MiddleLeft, Readonly :false);
+            DataGridUtil.AddGridTextBoxColumn(dgvNew, "수량", "UnitQty", colwidth: 70, align: DataGridViewContentAlignment.MiddleRight, Readonly :false);
             DataGridViewButtonColumn btnB = new DataGridViewButtonColumn();
             btnB.HeaderText = "삭제";
             btnB.Text = "삭제";
@@ -71,40 +71,46 @@ namespace AltasMES
 
         private void dgvUnreg_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            dgvParts.DataSource = null;
-            dgvNew.DataSource = null;
-            
-
-            if (e.RowIndex > -1)
+            if (cboPdt.Visible == false)
             {
-                string size = dgvUnreg["ItemSize", e.RowIndex].Value.ToString();
-                string category = dgvUnreg["ItemCategory", e.RowIndex].Value.ToString();
-                string id = dgvUnreg["ItemID", e.RowIndex].Value.ToString();
+                dgvParts.DataSource = null;
+                dgvNew.DataSource = null;
 
-                ResMessage<List<ItemVO>> result = service.GetAsync<List<ItemVO>>("api/Item/AllItem");
 
-                List<ItemVO> listA = result.Data.FindAll((r) => r.ItemSize == size);
-                List<ItemVO> listB;
-                List<ItemVO> listC;
-
-                if (category == "완제품")
+                if (e.RowIndex > -1)
                 {
-                    listC = listA.FindAll((r) => r.ItemCategory == "반제품");
-                }
-                else
-                {
-                    listB = listA.FindAll((r) => r.ItemCategory == "자재");
-                    if (id.Contains("FR"))
+                    string size = dgvUnreg["ItemSize", e.RowIndex].Value.ToString();
+                    string category = dgvUnreg["ItemCategory", e.RowIndex].Value.ToString();
+                    string id = dgvUnreg["ItemID", e.RowIndex].Value.ToString();
+
+                    ResMessage<List<ItemVO>> result = service.GetAsync<List<ItemVO>>("api/Item/AllItem");
+
+                    List<ItemVO> listA = result.Data.FindAll((r) => r.ItemSize == size);
+                    List<ItemVO> listB;
+                    List<ItemVO> listC;
+
+                    if (category == "완제품")
                     {
-                        listC = listB.FindAll((r) => r.ItemID.Contains("F"));
+                        listC = listA.FindAll((r) => r.ItemCategory == "반제품");
                     }
                     else
                     {
-                        listC = listB.FindAll((r) => !r.ItemID.Contains("F"));
+                        listB = listA.FindAll((r) => r.ItemCategory == "자재");
+                        if (id.Contains("FR"))
+                        {
+                            listC = listB.FindAll((r) => r.ItemID.Contains("F"));
+                        }
+                        else
+                        {
+                            listC = listB.FindAll((r) => !r.ItemID.Contains("F"));
+                        }
                     }
-
-                } 
-                dgvParts.DataSource = listC;
+                    dgvParts.DataSource = listC;
+                }
+                else
+                {
+                    return;
+                }
             }
             else
             {
@@ -208,39 +214,57 @@ namespace AltasMES
             dgvUnreg.DataSource = null;
             dgvParts.DataSource = null;
             dgvNew.DataSource = null;
-            if (cboCategory.SelectedIndex == 0)
-            {
-                DataLoad();
-            }
+            if (cboPdt.Visible == false)
+            {                
+                if (cboCategory.SelectedIndex == 0)
+                {
+                    DataLoad();
+                }
+                else
+                {
+                    ResMessage<List<BOMVO>> volist = service.GetAsync<List<BOMVO>>("api/BOM/UnregiItem");
 
+                    string category = cboCategory.Text;
+                    List<BOMVO> resultVO = volist.Data.FindAll((r) => r.ItemCategory == category);
+
+                    dgvUnreg.DataSource = new AdvancedList<BOMVO>(resultVO);
+                }
+            }
             else
             {
-                ResMessage<List<BOMVO>> volist = service.GetAsync<List<BOMVO>>("api/BOM/UnregiItem");
+                cboPdtListLoad();
 
-                string category = cboCategory.Text;
-                List<BOMVO> resultVO = volist.Data.FindAll((r) => r.ItemCategory == category);
+                if (cboCategory.SelectedIndex == 0)
+                {
+                    DataLoad();
+                }
+                else
+                {
+                    ResMessage<List<BOMVO>> volist = service.GetAsync<List<BOMVO>>("api/BOM/UnregiItem");
 
-                dgvUnreg.DataSource = new AdvancedList<BOMVO>(resultVO);
+                    string category = cboCategory.Text;
+                    List<BOMVO> resultVO = volist.Data.FindAll((r) => r.ItemCategory == category);
+
+                    dgvUnreg.DataSource = new AdvancedList<BOMVO>(resultVO);
+                }
             }
-
             dgvUnreg.ClearSelection();
         }
 
         private void DataLoad()
         {
             ResMessage<List<BOMVO>> result = service.GetAsync<List<BOMVO>>("api/BOM/UnregiItem");
+            List<BOMVO> list = result.Data.FindAll((r) => r.ItemCategory.Contains("제품"));
 
             if (result != null)
             {
-                dgvUnreg.DataSource = new AdvancedList<BOMVO>(result.Data);
+                dgvUnreg.DataSource = new AdvancedList<BOMVO>(list);
             }
             else
             {
                 MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
             }
         }
-
-        
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
@@ -257,25 +281,85 @@ namespace AltasMES
             } 
             else
             {
-                dgvParts.DataSource = dgvNew.DataSource = null;
-                label2.Visible = cboPdt.Visible = true;
-                string choice = cboCategory.SelectedItem.ToString();
-                
-                ResMessage<List<BOMVO>> volist = service.GetAsync<List<BOMVO>>($"api/BOM/RegiItem/{choice}");
-
-                List<BOMVO> list = volist.Data.FindAll((f) => f.ItemCategory == choice);
-
-                cboPdt.Items.Clear();
-                cboPdt.Items.Add("선택");
-                cboPdt.SelectedIndex = 0;
-                foreach (var lst in list)
-                {
-                    cboPdt.Items.Add(lst.ItemName);
-                }
+                cboPdtListLoad();                
             }
+        }
+        private void cboPdtListLoad()
+        {
+            dgvParts.DataSource = dgvNew.DataSource = null;
+            label2.Visible = cboPdt.Visible = true;
+            string choice = cboCategory.SelectedItem.ToString();
+
+            ResMessage<List<BOMVO>> volist = service.GetAsync<List<BOMVO>>($"api/BOM/RegiItem/{choice}");
+
+            List<BOMVO> list = volist.Data.FindAll((f) => f.ItemCategory == choice);
+
+            cboPdt.Items.Clear();
+            cboPdt.Items.Add("선택");
+            cboPdt.SelectedIndex = 0;
+            foreach (var lst in list)
+            {
+                cboPdt.Items.Add(lst.ItemName);
+            }
+        }
+
+        private void cboPdt_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dgvNew.DataSource = null;
+            dgvParts.DataSource = null;
+            if (cboPdt.SelectedIndex == 0)
+            {
+                return;
+            }
+            else
+            {
+                ResMessage<List<ItemVO>> result = service.GetAsync<List<ItemVO>>("api/Item/AllItem");
+
+                string name = cboPdt.SelectedItem.ToString();
+                string id = result.Data.Find((b) => b.ItemName.Equals(name)).ItemID;
+                string category = result.Data.Find((b) => b.ItemName.Equals(name)).ItemCategory;
+                string size = result.Data.Find((b) => b.ItemName.Equals(name)).ItemSize;
+                List<ItemVO> list = result.Data.FindAll((f) => f.ItemSize == size);
+
+                ResMessage<List<BOMVO>> resResult = service.GetAsync<List<BOMVO>>("api/BOM/AllBOMItem");
+                ResMessage<List<BOMVO>> volist = service.GetAsync<List<BOMVO>>($"api/BOM/RegiItem/{"반제품"}");
+
+                if (category == "완제품")
+                {
+                    dgvNew.DataSource = volist.Data.FindAll((r) => r.ParentID == id);
+                    dgvParts.DataSource = list.FindAll((f) => f.ItemCategory == "반제품");
+                }
+                else
+                {
+                    dgvNew.DataSource = resResult.Data.FindAll((r) => r.ParentID == id);
+                    List<ItemVO> listA = list.FindAll((f) => f.ItemCategory == "자재");
+                    if (id.Contains("FR"))
+                    {
+                        dgvParts.DataSource = listA.FindAll((r) => r.ItemID.Contains("F"));
+                    }
+                    else
+                    {
+                        dgvParts.DataSource = listA.FindAll((r) => !r.ItemID.Contains("F"));
+                    }
+                    
+                    
+
+                }
 
 
+            }
+        }
 
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            var msg = MessageBox.Show($"현재 BOM설정이 초기화됩니다.", "초기화", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+            if (msg == DialogResult.Yes)
+            {
+                label2.Visible = cboPdt.Visible = false;
+                dgvNew.DataSource = null;
+                dgvParts.DataSource = null;
+                cboCategory.SelectedIndex = 0;
+            }
         }
     }
 }
