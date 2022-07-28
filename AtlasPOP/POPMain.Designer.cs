@@ -90,10 +90,9 @@ namespace AtlasPOP
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Controls.Add(this.btnResource, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.btnOperSatus, 0, 5);
             this.tableLayoutPanel2.Controls.Add(this.btnOperation, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnPerfomance, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.btnPerfomance, 0, 4);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -114,7 +113,7 @@ namespace AtlasPOP
             this.btnResource.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnResource.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnResource.ForeColor = System.Drawing.Color.Black;
-            this.btnResource.Location = new System.Drawing.Point(3, 54);
+            this.btnResource.Location = new System.Drawing.Point(3, 154);
             this.btnResource.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnResource.Name = "btnResource";
             this.btnResource.Size = new System.Drawing.Size(294, 42);
@@ -156,10 +155,9 @@ namespace AtlasPOP
             // btnPerfomance
             // 
             this.btnPerfomance.BackColor = System.Drawing.Color.Silver;
-            this.btnPerfomance.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnPerfomance.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnPerfomance.ForeColor = System.Drawing.Color.Black;
-            this.btnPerfomance.Location = new System.Drawing.Point(3, 104);
+            this.btnPerfomance.Location = new System.Drawing.Point(3, 204);
             this.btnPerfomance.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnPerfomance.Name = "btnPerfomance";
             this.btnPerfomance.Size = new System.Drawing.Size(294, 42);
@@ -183,6 +181,7 @@ namespace AtlasPOP
             this.tableLayoutPanel3.BackColor = System.Drawing.Color.White;
             this.tableLayoutPanel3.ColumnCount = 1;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Controls.Add(this.btnResource, 0, 3);
             this.tableLayoutPanel3.Controls.Add(this.btnStart, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.btnEnd, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.btnFail, 0, 4);

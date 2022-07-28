@@ -79,8 +79,8 @@ namespace AtlasMVCAPI.Models
             {
                 cmd.Connection = new SqlConnection(strConn);
                 cmd.CommandText = @"select I.ItemID, ItemName, ItemCategory, ItemSize, ParentID, ChildID, UnitQty, 
-                                           B.CreateDate, B.CreateUser, CONVERT(varchar(50), B.ModifyDate , 23) ModifyDate, B.ModifyUser, B.StateYN
-                                    from TB_Item I left outer join  TB_BOM B on I.ItemID = B.ItemID
+                                    CONVERT(varchar(50), B.CreateDate , 23) CreateDate, B.CreateUser, CONVERT(varchar(50), B.ModifyDate , 23) ModifyDate, B.ModifyUser, B.StateYN
+                                    from TB_BOM B right outer join TB_Item I on B.ItemID = I.ItemID
                                     where ChildID is not null";
 
                 cmd.Connection.Open();
