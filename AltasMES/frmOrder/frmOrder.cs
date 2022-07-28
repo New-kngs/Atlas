@@ -14,7 +14,8 @@ namespace AltasMES
     public partial class frmOrder : BaseForm
     {
         ServiceHelper srv = null;
-        List<OrderVO> orderList = null;
+        List<OrderVO> orderList = null;  // 주문
+        List<CustomerVO> cusList = null; // 출고 거래처 바인딩
 
         string selId = string.Empty;
 
@@ -25,7 +26,10 @@ namespace AltasMES
 
         private void frmOrder_Load(object sender, EventArgs e)
         {
-            srv = new ServiceHelper("");           
+            srv = new ServiceHelper("");
+
+            orderList = srv.GetAsync<List<OrderVO>>("api/Order/GetAllOrder").Data;
+            cusList = srv.GetAsync<List<CustomerVO>>("api/Customer/AllCustomer").Data;
 
             DataGridUtil.SetInitGridView(dgvOrder);
             DataGridUtil.AddGridTextBoxColumn(dgvOrder, "주문ID", "OrderID", colwidth: 100, align: DataGridViewContentAlignment.MiddleCenter);
@@ -37,7 +41,15 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvOrder, "변경사용자", "ModifyUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvOrder, "변경날짜", "ModifyDate", colwidth: 160, align: DataGridViewContentAlignment.MiddleCenter);
 
-            LoadData();
+
+            //DataGridUtil.SetInitGridView(dgvOrderState);
+            //DataGridUtil.AddGridTextBoxColumn(dgvOrderState, "")
+
+            CommonUtil.ComboBinding<CustomerVO>(cboCustomer, cusList.FindAll(p => p.Category.Equals("출고")), "CustomerName", "CustomerID", blankText: "선택");
+
+            LoadData();                     
+
+            
         }
 
         public void LoadData()
@@ -53,19 +65,37 @@ namespace AltasMES
             dgvOrder.DataSource = new AdvancedList<OrderVO>(orderList);
         }
 
-        private void frmOrder_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (srv != null)
-            {
-                srv.Dispose();
-            }
-        }
+        
 
         private void dgvOrder_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
 
             selId = (dgvOrder[0, e.RowIndex].Value).ToString();
+        }
+
+        private void cboCustomer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dgvOrder.DataSource = null;
+
+            if (cboCustomer.SelectedIndex == 0)
+            {
+                dgvOrder.DataSource = new AdvancedList<OrderVO>(orderList);
+            }
+            else
+            {
+                List<OrderVO> cOrderList = orderList.FindAll(p => p.CustomerName.Equals(cboCustomer.Text));
+                dgvOrder.DataSource = new AdvancedList<OrderVO>(cOrderList);
+            }
+            dgvOrder.ClearSelection();
+        }
+
+        private void frmOrder_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (srv != null)
+            {
+                srv.Dispose();
+            }
         }
     }
 }

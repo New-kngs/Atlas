@@ -73,15 +73,16 @@ namespace AtlasMVCAPI.Models
             }
         }
 
-        public List<BOMVO> GetRegiBOMList()
+        public List<BOMVO> GetRegiBOMList(string category)
         {
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = new SqlConnection(strConn);
-                cmd.CommandText = @"select I.ItemID, ItemName, ItemCategory, ItemSize, ParentID, ChildID, UnitQty, 
-                                    CONVERT(varchar(50), B.CreateDate , 23) CreateDate, B.CreateUser, CONVERT(varchar(50), B.ModifyDate , 23) ModifyDate, B.ModifyUser, B.StateYN
-                                    from TB_BOM B right outer join TB_Item I on B.ItemID = I.ItemID
-                                    where ChildID is not null";
+                cmd.CommandText = @"select I.ItemID, ItemName, ItemCategory, ItemSize, ParentID
+                                    from TB_BOM B left outer join TB_Item I on B.ItemID = I.ItemID
+                                    where ParentID is not null and ItemCategory = @ItemCategory
+                                    group by I.ItemID, ItemName,ItemCategory, ItemSize, ParentID";
+                cmd.Parameters.AddWithValue("@ItemCategory", category);
 
                 cmd.Connection.Open();
                 List<BOMVO> list = Helper.DataReaderMapToList<BOMVO>(cmd.ExecuteReader());

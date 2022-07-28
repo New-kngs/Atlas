@@ -119,14 +119,14 @@ namespace AtlasMVCAPI.Controllers
         /// Author : 정희록
         /// </summary>
         /// <returns>BOM등록된 제품을 조회해서 반환</returns>
-        //https://localhost:44391/api/BOM/RegiItem
-        [Route("RegiItem")]
-        public IHttpActionResult GetRegiBOMList()
+        //https://localhost:44391/api/BOM/RegiItem/반제품
+        [Route("RegiItem/{category}")]
+        public IHttpActionResult GetRegiBOMList(string category)
         {
             try
             {
                 BOMDAC db = new BOMDAC();
-                List<BOMVO> list = db.GetRegiBOMList();
+                List<BOMVO> list = db.GetRegiBOMList(category);
 
                 ResMessage<List<BOMVO>> result = new ResMessage<List<BOMVO>>()
                 {

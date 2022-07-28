@@ -2024,12 +2024,19 @@
     <Content Include="plugins\uplot\uPlot.iife.min.js" />
     <Content Include="plugins\uplot\uPlot.min.css" />
     <Content Include="Uploads\20220727162529.png" />
+    <Content Include="Uploads\20220727163243.gif" />
+    <Content Include="Uploads\20220727164743.png" />
+    <Content Include="Uploads\20220727164805.png" />
+    <Content Include="Uploads\20220727180444.png" />
+    <Content Include="Uploads\20220728093109.PNG" />
+    <Content Include="Uploads\20220728093127.PNG" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ApiControllers\BOMController.cs" />
+    <Compile Include="Controllers\ApiControllers\DepartmentController.cs" />
     <Compile Include="Controllers\ApiControllers\EmployeeController.cs" />
     <Compile Include="Controllers\ApiControllers\EquipmentController.cs" />
     <Compile Include="Controllers\ApiControllers\ItemController.cs" />
@@ -2049,6 +2056,7 @@
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\DAC\BOMDAC.cs" />
     <Compile Include="Models\DAC\CustomerDAC.cs" />
+    <Compile Include="Models\DAC\DepartmentDAC.cs" />
     <Compile Include="Models\DAC\EmployeeDAC.cs" />
     <Compile Include="Models\DAC\EquipmentDAC.cs" />
     <Compile Include="Models\DAC\ItemDAC.cs" />

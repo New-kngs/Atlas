@@ -99,7 +99,7 @@ namespace AltasMES
             // 
             this.groupBox3.Controls.Add(this.dgvProcess);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.groupBox3.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(1034, 491);
@@ -111,10 +111,10 @@ namespace AltasMES
             // 
             this.dgvProcess.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProcess.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvProcess.Location = new System.Drawing.Point(3, 18);
+            this.dgvProcess.Location = new System.Drawing.Point(3, 25);
             this.dgvProcess.Name = "dgvProcess";
             this.dgvProcess.RowTemplate.Height = 23;
-            this.dgvProcess.Size = new System.Drawing.Size(1028, 470);
+            this.dgvProcess.Size = new System.Drawing.Size(1028, 463);
             this.dgvProcess.TabIndex = 0;
             // 
             // btnSetting

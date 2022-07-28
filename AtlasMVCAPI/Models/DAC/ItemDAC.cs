@@ -115,9 +115,16 @@ namespace AtlasMVCAPI.Models
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = new SqlConnection(strConn);
-                cmd.CommandText = @"update TB_Item set CurrentQty = @CurrentQty, SafeQty = @SafeQty, ItemPrice = @ItemPrice, ItemImage = @ItemImage, ItemExplain = @ItemExplain, ModifyDate = @ModifyDate, ModifyUser = @ModifyUser
+                if (item.ItemImage.Length > 0)
+                {
+                    cmd.CommandText = @"update TB_Item set CurrentQty = @CurrentQty, SafeQty = @SafeQty, ItemPrice = @ItemPrice, ItemImage = @ItemImage, ItemExplain = @ItemExplain, ModifyDate = @ModifyDate, ModifyUser = @ModifyUser
                                                    where ItemID = @ItemID";
-
+                }
+                else
+                {
+                    cmd.CommandText = @"update TB_Item set CurrentQty = @CurrentQty, SafeQty = @SafeQty, ItemPrice = @ItemPrice, ItemExplain = @ItemExplain, ModifyDate = @ModifyDate, ModifyUser = @ModifyUser
+                                                   where ItemID = @ItemID";
+                }
                 cmd.Parameters.AddWithValue("@ItemID", item.ItemID);
                 cmd.Parameters.AddWithValue("@CurrentQty", item.CurrentQty);
                 cmd.Parameters.AddWithValue("@SafeQty", item.SafeQty);

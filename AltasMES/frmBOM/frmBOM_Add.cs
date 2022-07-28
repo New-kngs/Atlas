@@ -31,6 +31,7 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvUnreg, "제품ID", "ItemID", colwidth: 100, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvUnreg, "제품이름", "ItemName", colwidth: 200, align: DataGridViewContentAlignment.MiddleLeft);
             DataGridUtil.AddGridTextBoxColumn(dgvUnreg, "제품사이즈", "ItemSize", visibility: false);
+            DataGridUtil.AddGridTextBoxColumn(dgvUnreg, "제품유형", "ItemCategory", visibility: false);
 
             DataGridUtil.SetInitGridView(dgvParts);
             DataGridUtil.AddGridTextBoxColumn(dgvParts, "제품ID", "ItemID", colwidth: 100, align: DataGridViewContentAlignment.MiddleCenter);
@@ -42,17 +43,17 @@ namespace AltasMES
             btnA.DefaultCellStyle.Padding = new Padding(5, 1, 5, 1);
             btnA.UseColumnTextForButtonValue = true;
             dgvParts.Columns.Add(btnA);
-            foreach (DataGridViewRow row in dgvParts.Rows)
-            {
-                row.Cells[2].Value = "ItemID";
-            }
+            //foreach (DataGridViewRow row in dgvParts.Rows)
+            //{
+            //    row.Cells[2].Value = "ItemID";
+            //}
             //제품 추가 버튼 이벤트 등록
             dgvParts.CellClick += DgvParts_CellClick;
 
             DataGridUtil.SetInitGridView(dgvNew);
             DataGridUtil.AddGridTextBoxColumn(dgvNew, "제품ID", "ItemID", colwidth: 100, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvNew, "제품이름", "ItemName", colwidth: 200, align: DataGridViewContentAlignment.MiddleLeft);
-            DataGridUtil.AddGridTextBoxColumn(dgvNew, "수량", "UnitQty", colwidth: 70, align: DataGridViewContentAlignment.MiddleLeft);
+            DataGridUtil.AddGridTextBoxColumn(dgvNew, "수량", "UnitQty", colwidth: 70, align: DataGridViewContentAlignment.MiddleLeft, Readonly :false);
             DataGridViewButtonColumn btnB = new DataGridViewButtonColumn();
             btnB.HeaderText = "삭제";
             btnB.Text = "삭제";
@@ -60,12 +61,58 @@ namespace AltasMES
             btnB.DefaultCellStyle.Padding = new Padding(5, 1, 5, 1);
             btnB.UseColumnTextForButtonValue = true;
             dgvNew.Columns.Add(btnB);
+            dgvNew.CellClick += DgvNew_CellClick;
 
             service = new ServiceHelper("");
 
             cboCategory.Items.AddRange(new string[] { "전체", "완제품", "반제품" });
             cboCategory.SelectedIndex = 0;
         }
+
+        private void dgvUnreg_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dgvParts.DataSource = null;
+            dgvNew.DataSource = null;
+            
+
+            if (e.RowIndex > -1)
+            {
+                string size = dgvUnreg["ItemSize", e.RowIndex].Value.ToString();
+                string category = dgvUnreg["ItemCategory", e.RowIndex].Value.ToString();
+                string id = dgvUnreg["ItemID", e.RowIndex].Value.ToString();
+
+                ResMessage<List<ItemVO>> result = service.GetAsync<List<ItemVO>>("api/Item/AllItem");
+
+                List<ItemVO> listA = result.Data.FindAll((r) => r.ItemSize == size);
+                List<ItemVO> listB;
+                List<ItemVO> listC;
+
+                if (category == "완제품")
+                {
+                    listC = listA.FindAll((r) => r.ItemCategory == "반제품");
+                }
+                else
+                {
+                    listB = listA.FindAll((r) => r.ItemCategory == "자재");
+                    if (id.Contains("FR"))
+                    {
+                        listC = listB.FindAll((r) => r.ItemID.Contains("F"));
+                    }
+                    else
+                    {
+                        listC = listB.FindAll((r) => !r.ItemID.Contains("F"));
+                    }
+
+                } 
+                dgvParts.DataSource = listC;
+            }
+            else
+            {
+                return;
+            }
+        }
+
+
         //제품추가이벤트
         private void DgvParts_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -99,7 +146,7 @@ namespace AltasMES
                             dgvNew.CurrentCell = dgvCell;
 
                             cellEventArgs = new DataGridViewCellEventArgs(dgvCell.ColumnIndex, dgvCell.RowIndex);
-                            dgvNew_CellClick(this, cellEventArgs);
+                            DgvNew_CellClick(this, cellEventArgs);
                         }
                         return;
                     }
@@ -126,12 +173,12 @@ namespace AltasMES
                     dgvNew.CurrentCell = dgvCell;
 
                     cellEventArgs = new DataGridViewCellEventArgs(dgvCell.ColumnIndex, dgvCell.RowIndex);
-                    dgvNew_CellClick(this, cellEventArgs);
+                    DgvNew_CellClick(this, cellEventArgs);
                 }
             }
         }
 
-        private void dgvNew_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void DgvNew_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == dgvNew.Columns[""].Index)
             {
@@ -158,11 +205,11 @@ namespace AltasMES
 
         private void cboCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
+            dgvUnreg.DataSource = null;
+            dgvParts.DataSource = null;
+            dgvNew.DataSource = null;
             if (cboCategory.SelectedIndex == 0)
             {
-                dgvUnreg.DataSource = null;
-
-                //dgvPdt.DataSource = volist.Data;
                 DataLoad();
             }
 
@@ -193,25 +240,7 @@ namespace AltasMES
             }
         }
 
-        private void dgvUnreg_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex > -1)
-            {
-                string size = dgvUnreg["ItemSize", e.RowIndex].Value.ToString();
-
-                ResMessage<List<ItemVO>> result = service.GetAsync<List<ItemVO>>("api/Item/AllItem");
-
-                List<ItemVO> listA = result.Data.FindAll((r) => r.ItemSize == size);
-
-                List<ItemVO> listB = listA.FindAll((r) => r.ItemCategory == "반제품");
-
-                dgvParts.DataSource = listB;
-            }
-            else
-            {
-                return;
-            }
-        }
+        
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
@@ -220,6 +249,7 @@ namespace AltasMES
 
         private void btnCopy_Click(object sender, EventArgs e)
         {
+
             if (cboCategory.SelectedIndex == 0)
             {
                 MessageBox.Show("우선 제품유형을 완제품/반제품 중 선택하십시오.");
@@ -231,15 +261,17 @@ namespace AltasMES
                 label2.Visible = cboPdt.Visible = true;
                 string choice = cboCategory.SelectedItem.ToString();
                 
-                ResMessage<List<BOMVO>> volist = service.GetAsync<List<BOMVO>>("api/BOM/RegiItem");
+                ResMessage<List<BOMVO>> volist = service.GetAsync<List<BOMVO>>($"api/BOM/RegiItem/{choice}");
 
-                List<BOMVO> list = volist.Data.FindAll((f) => f.ItemCategory == choice); 
+                List<BOMVO> list = volist.Data.FindAll((f) => f.ItemCategory == choice);
 
+                cboPdt.Items.Clear();
+                cboPdt.Items.Add("선택");
+                cboPdt.SelectedIndex = 0;
                 foreach (var lst in list)
                 {
                     cboPdt.Items.Add(lst.ItemName);
                 }
-                cboPdt.SelectedIndex = 0;
             }
 
 

@@ -110,6 +110,18 @@
     <Compile Include="frmBOM\frmBOM_Add.Designer.cs">
       <DependentUpon>frmBOM_Add.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmDepartment\frmDepartment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDepartment\frmDepartment.Designer.cs">
+      <DependentUpon>frmDepartment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDepartment\frmDepartment_Add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDepartment\frmDepartment_Add.Designer.cs">
+      <DependentUpon>frmDepartment_Add.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmEmployee\frmEmployee.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -284,6 +296,12 @@
     <EmbeddedResource Include="frmBOM\frmBOM_Add.resx">
       <DependentUpon>frmBOM_Add.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmDepartment\frmDepartment.resx">
+      <DependentUpon>frmDepartment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDepartment\frmDepartment_Add.resx">
+      <DependentUpon>frmDepartment_Add.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmEmployee\frmEmployee.resx">
       <DependentUpon>frmEmployee.cs</DependentUpon>
     </EmbeddedResource>
@@ -395,9 +413,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="frmdepartment\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\AtlasDTO\AtlasDTO.csproj">
       <Project>{b4c8c339-791a-4219-9070-118f960a9490}</Project>

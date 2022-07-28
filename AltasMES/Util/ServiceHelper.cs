@@ -69,7 +69,7 @@ namespace AltasMES
         // Get + ResMessage<T>
         public ResMessage<T> GetAsync<T>(string path)
         {
-            string url = $"{BaseServiceURL}/{path}";
+            string url = $"{BaseServiceURL}{path}";
 
             HttpResponseMessage res = client.GetAsync(url).Result;
             if (res.IsSuccessStatusCode)
@@ -121,9 +121,12 @@ namespace AltasMES
 
         public ResMessage ServerFileUpload(string path, string localFileName, ItemVO item)
         {
-            //localFileName  : 로컬에서 선택한 파일 전체경로
-            //uploadFileName : 서버에 업로드할 파일명
+            // 이미지 등록
+            // 1. 등록할 이미지가 있다면 DateTime.Now + 확장자명 (문자열 했을때 깨져서 오류남)
+            // 2. 등록할 이미지가 없다면 "" (빈문자열)
             
+            // 이미지 수정 - 
+
             MultipartFormDataContent content = new MultipartFormDataContent();   // MultipartFormDataContent 파일은 이걸로 넘겨 줘야함 !   
             if (localFileName.Length > 0)
             {
@@ -131,14 +134,14 @@ namespace AltasMES
                 item.ItemImage = uploadFileName;
 
                 FileStream fs = File.Open(localFileName, FileMode.Open);
-                content.Add(new StreamContent(fs), "file1", uploadFileName);
+                content.Add(new StreamContent(fs), "file1", uploadFileName); 
             } 
             else
             {
                 item.ItemImage = "";
             }
             string itemInfo = JsonConvert.SerializeObject(item);
-            content.Add(new StringContent(itemInfo), "Item");
+            content.Add(new StringContent(itemInfo), "Item"); 
 
             string url = $"{BaseServiceURL}{path}";  // /{path} 업로드는 하나니까 지움
             HttpResponseMessage res = client.PostAsync(url, content).Result;  // 주소 , 넘어가는 값

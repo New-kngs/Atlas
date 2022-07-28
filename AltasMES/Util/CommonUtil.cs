@@ -64,5 +64,37 @@ namespace AltasMES
             cbo.DataSource = src;
         }
 
+
+
+        /// <summary>
+        /// 김준모/콤보박스 바인딩(조건 : 리스트{화면표시값, 벨류값} 필수) 
+        /// display Colum의 type이 string이어야한다.(int면 졷)
+        /// </summary>
+        /// <typeparam name="T">해당VO</typeparam>
+        /// <param name="cbo">콤보박스</param>
+        /// <param name="list">바인딩 할 List</param>
+        /// <param name="dis">화면표시, 블랭크추가시 prop명</param>
+        /// <param name="val">cbo벨류값</param>
+        /// <param name="blank">콤보박스 블랭크 유무 토글</param>
+        /// <param name="blankText">콤보박스 블랭크 텍스트란</param>       
+        public static void ComboBinding1<T>(ComboBox cbo, List<T> list, string dis, string val, bool blank = false, string blankText = "전체") where T : class
+        {
+            if (blank)
+            {
+                T obj = default(T);
+
+                obj = Activator.CreateInstance<T>();
+                obj.GetType().GetProperty(dis).SetValue(obj, blankText);
+
+                list.Insert(0, obj);
+            }
+            cbo.DataSource = null;
+            cbo.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbo.DisplayMember = dis;
+            cbo.ValueMember = val;
+
+            cbo.DataSource = list;
+        }
+
     }
 }

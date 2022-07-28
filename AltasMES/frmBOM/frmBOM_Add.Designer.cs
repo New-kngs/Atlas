@@ -99,7 +99,7 @@ namespace AltasMES
             this.btnCopy.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCopy.ImageIndex = 1;
             this.btnCopy.ImageList = this.imageList1;
-            this.btnCopy.Location = new System.Drawing.Point(971, 8);
+            this.btnCopy.Location = new System.Drawing.Point(226, 8);
             this.btnCopy.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnCopy.Name = "btnCopy";
             this.btnCopy.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -127,16 +127,16 @@ namespace AltasMES
             // 
             this.cboPdt.Font = new System.Drawing.Font("맑은 고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cboPdt.FormattingEnabled = true;
-            this.cboPdt.Location = new System.Drawing.Point(353, 11);
+            this.cboPdt.Location = new System.Drawing.Point(886, 11);
             this.cboPdt.Name = "cboPdt";
-            this.cboPdt.Size = new System.Drawing.Size(170, 28);
+            this.cboPdt.Size = new System.Drawing.Size(197, 28);
             this.cboPdt.TabIndex = 29;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.Location = new System.Drawing.Point(241, 13);
+            this.label2.Location = new System.Drawing.Point(774, 13);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(106, 21);
             this.label2.TabIndex = 28;
@@ -153,7 +153,7 @@ namespace AltasMES
             this.groupBox2.Size = new System.Drawing.Size(480, 444);
             this.groupBox2.TabIndex = 25;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "제품구성";
+            this.groupBox2.Text = "BOM구성";
             // 
             // dgvNew
             // 
@@ -169,7 +169,7 @@ namespace AltasMES
             // 
             this.cboCategory.Font = new System.Drawing.Font("맑은 고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cboCategory.FormattingEnabled = true;
-            this.cboCategory.Location = new System.Drawing.Point(98, 11);
+            this.cboCategory.Location = new System.Drawing.Point(88, 11);
             this.cboCategory.Name = "cboCategory";
             this.cboCategory.Size = new System.Drawing.Size(132, 28);
             this.cboCategory.TabIndex = 1;
@@ -198,7 +198,7 @@ namespace AltasMES
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.Location = new System.Drawing.Point(18, 13);
+            this.label1.Location = new System.Drawing.Point(8, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(74, 21);
             this.label1.TabIndex = 0;
