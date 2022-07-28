@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using AtlasDTO;
 
-namespace AltasPOP
+namespace AtlasPOP
 {
     public class popCommonUtil
     {

@@ -1,5 +1,4 @@
-﻿using AltasMES;
-using AtlasDTO;
+﻿using AtlasDTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,25 +14,157 @@ namespace AtlasPOP
     public partial class frmFail : Form
     {
         public string OperID { get; set; }
-        ServiceHelper service;
-        public frmFail(int FailQty, string OperID)
+        public string ItemID { get; set; }
+        public string EmpID { get; set; }
+        int maxNum = 0;
+        popServiceHelper service;
+
+        ResMessage<List<ItemVO>> itemList;
+        List<FailVO> failList;
+
+        public frmFail(int FailQty, string OperID, string ItemID, string EmpID)
         {
             InitializeComponent();
             txtFailTOT.Text = FailQty.ToString();
+            numQty.Maximum = maxNum = FailQty;
             this.OperID = OperID;
+            this.ItemID = ItemID;
+            this.EmpID = EmpID;
+
         }
 
         private void frmResource_Load(object sender, EventArgs e)
         {
-            service = new ServiceHelper("");
-            ResMessage<List<ComboItemVO>> comboList = service.GetAsync<List<ComboItemVO>>("api/pop/GetFailCode");
-            CommonUtil.ComboBinding(cboFailList, comboList.Data, "불량코드", blankText: "선택");
+            popDataGridUtil.SetInitGridView(dgvList);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "불량ID", "FailID", visibility: false);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "제품ID", "ItemID", visibility: false);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "불량코드", "FailCode", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "불량명", "FailName", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "불량갯수", "FailQty", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "생성사용자", "CreateUser", visibility: false);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "작업지시ID", "OpID", visibility: false);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "설비명", "CreateDate", visibility: false);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "설비명", "CreateUser", visibility: false);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "설비명", "ModifyDate", visibility: false);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "설비명", "ModifyUser", visibility: false);
 
+
+            service = new popServiceHelper("");
+            ResMessage<List<ComboItemVO>> comboList = service.GetAsync<List<ComboItemVO>>("api/pop/GetFailCode");
+            itemList = service.GetAsync<List<ItemVO>>("api/Item/AllItem");
+
+            popCommonUtil.ComboBinding(cboFailList, comboList.Data, "불량코드", blankText: "선택");
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            if(failList == null)
+            {
+                failList = new List<FailVO>();
+            }
+            if(cboFailList.SelectedIndex == 0)
+            {
+                MessageBox.Show("불량코드를 선택해주세요");
+                return;
+            }
+            if(numQty.Value == 0)
+            {
+                MessageBox.Show("불량 갯수를 입력해주세요");
+                return;
+            }
+            if(maxNum == 0)
+            {
+                MessageBox.Show("등록할 불량 제품이 없습니다");
+                return;
+            }
 
+
+            int idx = failList.FindIndex((i) => i.FailCode.Equals(cboFailList.SelectedValue));
+            if(idx >= 0)
+            {
+                failList[idx].FailQty += Convert.ToInt32(numQty.Value);
+            }
+            else
+            {
+                FailVO fail = new FailVO()
+                {
+                    ItemID = ItemID,
+                    FailQty = Convert.ToInt32(numQty.Value),
+                    FailCode = cboFailList.SelectedValue.ToString(),
+                    FailName = cboFailList.Text,
+                    OpID = OperID,
+                    CreateUser = EmpID
+                };
+                failList.Add(fail);
+            }
+            cboFailList.SelectedIndex = 0;
+            maxNum -= Convert.ToInt32(numQty.Value);
+            txtFailTOT.Text = maxNum.ToString();
+            numQty.Value = 0;
+            dgvList.DataSource = null;
+            dgvList.DataSource = failList;
+            dgvList.ClearSelection();
+        }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            if (dgvList.SelectedRows.Count < 1)
+            {
+                MessageBox.Show("삭제할 불량코드를 선택해 주세요");
+                return;
+            }
+            if (failList == null)
+            {
+                failList = new List<FailVO>();
+            }
+
+            string ptCode = dgvList.SelectedRows[0].Cells["FailCode"].Value.ToString();
+
+            FailVO fail = failList.Find((p) => p.FailCode.ToString() == ptCode);
+            
+            failList.Remove(fail);
+
+            maxNum += fail.FailQty;
+            txtFailTOT.Text = maxNum.ToString();
+
+            dgvList.DataSource = null;
+            dgvList.DataSource = failList;
+            dgvList.ClearSelection();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            ResMessage<List<FailVO>> opid = service.GetAsync<List<FailVO>>("api/pop/GetOperID");
+            int idx = opid.Data.FindIndex((f) => f.OpID.Contains(OperID));
+            if (txtFailTOT.Text != "0")
+            {
+                MessageBox.Show("불량제품이 남아있습니다. \n 불량을 전부 등록해주세요");
+                return;
+            }
+            
+            if(idx >= 0)
+            {
+                MessageBox.Show("이미 불량등록이 된 작업입니다.");
+                return;
+            }
+            
+            ResMessage<List<FailVO>> putFail = service.PostAsync<List<FailVO>, List<FailVO>>("api/pop/InsertFailLog", failList);
+            if (putFail.ErrCode == 0)
+            {
+                MessageBox.Show("등록이 완료되었습니다.");
+                dgvList.DataSource = null;
+                failList = null;
+            }
+            else
+            {
+                MessageBox.Show("등록 중 오류가 발생하였습니다.");
+                return;
+            }
         }
     }
 }

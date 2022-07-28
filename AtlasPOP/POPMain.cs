@@ -25,7 +25,7 @@ namespace AtlasPOP
         string CustomerID;
         int FailQty = 2;
 
-        ServiceHelper service = null;
+        popServiceHelper service = null;
         ResMessage<List<ItemVO>> itemList;
         ResMessage<List<OperationVO>> operList;
         ResMessage<List<OrderVO>> oderList;
@@ -62,7 +62,7 @@ namespace AtlasPOP
 
         public void LoadData()
         {
-            service = new ServiceHelper("api/pop");
+            service = new popServiceHelper("api/pop");
             itemList = service.GetAsync<List<ItemVO>>("getItem");
             operList = service.GetAsync<List<OperationVO>>("AllOperation");
             oderList = service.GetAsync<List<OrderVO>>("GetCustomer");
@@ -196,7 +196,7 @@ namespace AtlasPOP
 
         private void btnFail_Click(object sender, EventArgs e)
         {
-            frmFail frm = new frmFail(FailQty, OperID);
+            frmFail frm = new frmFail(FailQty, OperID, itemID, EmpID);
             frm.MdiParent = this;
             frm.Show();
         }
