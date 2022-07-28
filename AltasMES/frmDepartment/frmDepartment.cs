@@ -23,6 +23,7 @@ namespace AltasMES
 
         private void frmDepartment_Load(object sender, EventArgs e)
         {
+
             lblTitle.Text = "부서";
             groupBox2.Text = "검색조건";
             groupBox3.Text = "부서현황";
