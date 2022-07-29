@@ -64,7 +64,7 @@ namespace AltasMES
             this.groupBox2.Controls.Add(this.cboCategory);
             this.groupBox2.Controls.Add(this.btnSearch);
             this.groupBox2.Controls.Add(this.txtSearch);
-            this.groupBox2.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.groupBox2.Font = new System.Drawing.Font("맑은 고딕", 10.2F, System.Drawing.FontStyle.Bold);
             this.groupBox2.Text = "검색조건";
             // 
             // btnAdd
@@ -91,13 +91,14 @@ namespace AltasMES
             // 
             // btnModify
             // 
+            this.btnModify.Text = "상세";
             this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
             // 
             // txtSearch
             // 
             this.txtSearch.Location = new System.Drawing.Point(294, 40);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(215, 29);
+            this.txtSearch.Size = new System.Drawing.Size(215, 26);
             this.txtSearch.TabIndex = 0;
             this.txtSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearch_KeyPress);
             // 
@@ -108,10 +109,10 @@ namespace AltasMES
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSearch.ImageIndex = 3;
             this.btnSearch.ImageList = this.imageList1;
-            this.btnSearch.Location = new System.Drawing.Point(524, 35);
+            this.btnSearch.Location = new System.Drawing.Point(524, 39);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.btnSearch.Size = new System.Drawing.Size(78, 37);
+            this.btnSearch.Size = new System.Drawing.Size(78, 29);
             this.btnSearch.TabIndex = 6;
             this.btnSearch.Text = "조회";
             this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -124,7 +125,7 @@ namespace AltasMES
             this.cboCategory.FormattingEnabled = true;
             this.cboCategory.Location = new System.Drawing.Point(96, 40);
             this.cboCategory.Name = "cboCategory";
-            this.cboCategory.Size = new System.Drawing.Size(121, 29);
+            this.cboCategory.Size = new System.Drawing.Size(121, 27);
             this.cboCategory.TabIndex = 7;
             this.cboCategory.SelectedIndexChanged += new System.EventHandler(this.cboCategory_SelectedIndexChanged);
             // 
