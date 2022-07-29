@@ -101,6 +101,7 @@ namespace AtlasPOP
             maxNum -= Convert.ToInt32(numQty.Value);
             txtFailTOT.Text = maxNum.ToString();
             numQty.Value = 0;
+            numQty.Maximum = maxNum;
             dgvList.DataSource = null;
             dgvList.DataSource = failList;
             dgvList.ClearSelection();

@@ -39,8 +39,8 @@ namespace AtlasPOP
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "부모ID", "ParentID", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter,visibility:false);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "제품ID", "ChildID", colwidth: 150);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "제품명", "ItemName", colwidth: 250);
-            popDataGridUtil.AddGridTextBoxColumn(dgvList, "필요갯수", "UnitQty", colwidth: 130, align: DataGridViewContentAlignment.MiddleRight);
-            popDataGridUtil.AddGridTextBoxColumn(dgvList, "계획수량", "PlanQty", colwidth: 130, align: DataGridViewContentAlignment.MiddleRight);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "단위수량", "UnitQty", colwidth: 130, align: DataGridViewContentAlignment.MiddleRight);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "지시수량", "PlanQty", colwidth: 130, align: DataGridViewContentAlignment.MiddleRight);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "총 수량", "Qty", colwidth: 130, align: DataGridViewContentAlignment.MiddleRight);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "재고량", "CurrentQty", colwidth: 130, align: DataGridViewContentAlignment.MiddleRight);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "생성일시", "CreateDate", colwidth: 200, visibility: false);

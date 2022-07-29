@@ -76,9 +76,9 @@
             // btnClose
             // 
             this.btnClose.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnClose.BackColor = System.Drawing.Color.Black;
+            this.btnClose.BackColor = System.Drawing.Color.Gray;
             this.btnClose.Font = new System.Drawing.Font("굴림", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnClose.ForeColor = System.Drawing.Color.White;
+            this.btnClose.ForeColor = System.Drawing.Color.Black;
             this.btnClose.Location = new System.Drawing.Point(253, 205);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnClose.Name = "btnClose";
@@ -91,9 +91,9 @@
             // btnOK
             // 
             this.btnOK.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnOK.BackColor = System.Drawing.Color.Black;
+            this.btnOK.BackColor = System.Drawing.Color.Gray;
             this.btnOK.Font = new System.Drawing.Font("굴림", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnOK.ForeColor = System.Drawing.Color.White;
+            this.btnOK.ForeColor = System.Drawing.Color.Black;
             this.btnOK.Location = new System.Drawing.Point(426, 205);
             this.btnOK.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnOK.Name = "btnOK";
@@ -171,7 +171,7 @@
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(197, 48);
             this.label11.TabIndex = 0;
-            this.label11.Text = "계획수량";
+            this.label11.Text = "지시수량";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel3
@@ -215,7 +215,7 @@
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(199, 48);
             this.label13.TabIndex = 0;
-            this.label13.Text = "불량수량";
+            this.label13.Text = "불량 수량";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel5
@@ -371,7 +371,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(106, 24);
             this.label6.TabIndex = 4;
-            this.label6.Text = "계획수량";
+            this.label6.Text = "지시수량";
             // 
             // txtItemName
             // 
@@ -476,7 +476,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmOperStatus";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmOperStatus";
+            this.Text = "작업 실적";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmOperStatus_Load);
             this.tableLayoutPanel1.ResumeLayout(false);

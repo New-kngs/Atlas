@@ -153,6 +153,7 @@ namespace AltasMES
             // 
             // txtUsingChk
             // 
+            this.txtUsingChk.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUsingChk.Location = new System.Drawing.Point(109, 90);
             this.txtUsingChk.Margin = new System.Windows.Forms.Padding(2);
             this.txtUsingChk.Name = "txtUsingChk";

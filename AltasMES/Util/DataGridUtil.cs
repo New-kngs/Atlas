@@ -16,7 +16,7 @@ namespace AltasMES
             dgv.AllowUserToAddRows = false; //맨 마지막 줄에 *표시된 빈 줄 생성을 방지
             dgv.AutoGenerateColumns = false;//데이터소스의 컬럼으로 자동컬럼 생성을 방지 
             dgv.RowHeadersWidth = 30;
-            dgv.DefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Regular); // 컬럼 헤더
+            dgv.DefaultCellStyle.Font = new Font("Tahoma", 12, FontStyle.Regular); // 컬럼 헤더
             dgv.MultiSelect = false;
 
         }

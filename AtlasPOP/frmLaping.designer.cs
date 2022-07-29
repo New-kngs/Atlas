@@ -53,9 +53,9 @@ namespace AtlasPOP
             // 
             // btnCreateLOT
             // 
-            this.btnCreateLOT.BackColor = System.Drawing.Color.Black;
+            this.btnCreateLOT.BackColor = System.Drawing.Color.Gray;
             this.btnCreateLOT.Font = new System.Drawing.Font("맑은 고딕", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnCreateLOT.ForeColor = System.Drawing.Color.White;
+            this.btnCreateLOT.ForeColor = System.Drawing.Color.Black;
             this.btnCreateLOT.Location = new System.Drawing.Point(109, 463);
             this.btnCreateLOT.Name = "btnCreateLOT";
             this.btnCreateLOT.Size = new System.Drawing.Size(120, 61);
@@ -65,9 +65,9 @@ namespace AtlasPOP
             // 
             // btnLaping
             // 
-            this.btnLaping.BackColor = System.Drawing.Color.Black;
+            this.btnLaping.BackColor = System.Drawing.Color.Gray;
             this.btnLaping.Font = new System.Drawing.Font("맑은 고딕", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnLaping.ForeColor = System.Drawing.Color.White;
+            this.btnLaping.ForeColor = System.Drawing.Color.Black;
             this.btnLaping.Location = new System.Drawing.Point(344, 463);
             this.btnLaping.Name = "btnLaping";
             this.btnLaping.Size = new System.Drawing.Size(120, 61);
@@ -77,9 +77,9 @@ namespace AtlasPOP
             // 
             // btnPutIN
             // 
-            this.btnPutIN.BackColor = System.Drawing.Color.Black;
+            this.btnPutIN.BackColor = System.Drawing.Color.Gray;
             this.btnPutIN.Font = new System.Drawing.Font("맑은 고딕", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnPutIN.ForeColor = System.Drawing.Color.White;
+            this.btnPutIN.ForeColor = System.Drawing.Color.Black;
             this.btnPutIN.Location = new System.Drawing.Point(578, 463);
             this.btnPutIN.Name = "btnPutIN";
             this.btnPutIN.Size = new System.Drawing.Size(120, 61);
@@ -123,7 +123,7 @@ namespace AtlasPOP
             this.Controls.Add(this.dataGridView1);
             this.Name = "frmLaping";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmLaping";
+            this.Text = "포장";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

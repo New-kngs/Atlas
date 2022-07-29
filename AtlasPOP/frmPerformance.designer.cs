@@ -139,9 +139,9 @@ namespace AtlasPOP
             // 
             // btnClose
             // 
-            this.btnClose.BackColor = System.Drawing.Color.Black;
+            this.btnClose.BackColor = System.Drawing.Color.Gray;
             this.btnClose.Font = new System.Drawing.Font("굴림", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnClose.ForeColor = System.Drawing.Color.White;
+            this.btnClose.ForeColor = System.Drawing.Color.Black;
             this.btnClose.Location = new System.Drawing.Point(623, 425);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnClose.Name = "btnClose";
@@ -155,7 +155,7 @@ namespace AtlasPOP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Gray;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(802, 486);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.panel3);
@@ -163,7 +163,7 @@ namespace AtlasPOP
             this.Controls.Add(this.panel1);
             this.Name = "frmPerformance";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmPerformance";
+            this.Text = "모니터링";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
