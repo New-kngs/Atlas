@@ -164,6 +164,7 @@ namespace AltasMES
             // 
             // cboPdt
             // 
+            this.cboPdt.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboPdt.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cboPdt.FormattingEnabled = true;
             this.cboPdt.Location = new System.Drawing.Point(144, 64);
@@ -216,6 +217,7 @@ namespace AltasMES
             this.Name = "frmWareHouse_Add";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "창고등록";
             this.Load += new System.EventHandler(this.frmWareHouse_Add_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

@@ -10,7 +10,7 @@ namespace AtlasDTO
     {
         //BOMID, B.ItemID, ParentID, ChildID, UnitQty, B.CreateDate, B.CreateUser, B.ModifyDate, B.ModifyUser, B.StateYN, ItemName, ItemCategory, ItemSize
         public string BOMID { get; set; }
-       public string ItemID { get; set; }
+        public string ItemID { get; set; }
         public string ParentID { get; set; }
         public string ChildID { get; set; }
         public int UnitQty { get; set; }

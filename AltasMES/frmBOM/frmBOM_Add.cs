@@ -341,12 +341,7 @@ namespace AltasMES
                     {
                         dgvParts.DataSource = listA.FindAll((r) => !r.ItemID.Contains("F"));
                     }
-                    
-                    
-
                 }
-
-
             }
         }
 
@@ -364,6 +359,8 @@ namespace AltasMES
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            List<BOMVO> bomlist = new List<BOMVO>();
+
             int count = 0;
             if (dgvUnreg.SelectedRows.Count < 1)
             {
@@ -375,8 +372,9 @@ namespace AltasMES
                 MessageBox.Show("등록할 BOM구성을 확인하여 주십시오.");
                 return;
             }
+                      
             foreach (DataGridViewRow item in dgvNew.Rows)
-            {
+            {    
                 if (item.Cells[2].Value != null)
                 {
                     bool check = int.TryParse(item.Cells[2].Value.ToString(), out count);
@@ -389,10 +387,44 @@ namespace AltasMES
                 }
                 else if (Convert.ToInt32(item.Cells[2].Value) < 1)
                 {
-                    MessageBox.Show("수량을 확인해 주십시오.");
+                    MessageBox.Show("구성제품의 수량을 확인해 주십시오.");
                     return;
                 }
             }
+
+            string category = cboCategory.Text;
+            string itemId = dgvUnreg.SelectedRows[0].Cells["ItemName"].Value.ToString();
+
+            if (category == "완제품")
+            {
+                foreach (DataRow dr in dgvNew.Rows)
+                {
+                    BOMVO item = new BOMVO
+                    {
+                        ItemID = itemId,
+                        ParentID = "*",
+                        ChildID = dr["ItemID"].ToString(),
+                        UnitQty = Convert.ToInt32(dr["UnitQty"])
+                    };
+                    bomlist.Add(item);
+                }
+            }
+            else
+            {
+                foreach (DataRow dr in dgvNew.Rows)
+                {
+                    BOMVO item = new BOMVO
+                    {
+                        ItemID = itemId,
+                        ParentID = "*",
+                        ChildID = dr["ItemID"].ToString(),
+                        UnitQty = Convert.ToInt32(dr["UnitQty"])
+                    };
+                    bomlist.Add(item);
+                }
+            }
+
+            
 
         }
     }

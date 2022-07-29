@@ -205,7 +205,7 @@ namespace AltasMES
             this.Controls.Add(this.panel1);
             this.Name = "frmWareHouse_Using";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmWareHouse_Using";
+            this.Text = "사용등록";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmWareHouse_Using_FormClosing);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmWareHouse_Using_KeyPress);
             this.panel2.ResumeLayout(false);
