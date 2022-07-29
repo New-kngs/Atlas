@@ -36,7 +36,7 @@ namespace AtlasPOP
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "Monitoring";
-            this.Size = new System.Drawing.Size(322, 251);
+            this.Size = new System.Drawing.Size(559, 429);
             this.ResumeLayout(false);
 
         }

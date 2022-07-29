@@ -77,7 +77,7 @@ namespace AtlasPOP
             ResMessage<List<OperationVO>> result = service.GetAsync<List<OperationVO>>("api/pop/AllOperation");
             string YN = result.Data.Find((n) => n.OpID == OperID).resourceYN;
             if (YN.Equals("Y")){
-                MessageBox.Show("자재가 투입되어 있습니다.");
+                MessageBox.Show("이미 자재가 투입되어 있습니다.");
                 return;
 
             }

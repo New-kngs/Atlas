@@ -21,17 +21,17 @@ namespace AltasMES
 
         private void frmProcess_Load(object sender, EventArgs e)
         {
+            srv = new ServiceHelper("");
+
             DataGridUtil.SetInitGridView(dgvProcess);
             DataGridUtil.AddGridTextBoxColumn(dgvProcess, "공정ID", "ProcessID", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvProcess, "공정명", "ProcessName", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvProcess, "공정명", "ProcessName", colwidth: 200, align: DataGridViewContentAlignment.MiddleLeft);
             DataGridUtil.AddGridTextBoxColumn(dgvProcess, "불량확인여부", "FailCheck", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvProcess, "생성날짜", "CreateDate", colwidth: 200);
-            DataGridUtil.AddGridTextBoxColumn(dgvProcess, "생성사용자", "CreateUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvProcess, "변경날짜", "ModifyDate", colwidth: 200);
-            DataGridUtil.AddGridTextBoxColumn(dgvProcess, "변경사용자", "ModifyUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvProcess, "생성날짜", "CreateDate", colwidth: 200, align: DataGridViewContentAlignment.MiddleLeft);
+            DataGridUtil.AddGridTextBoxColumn(dgvProcess, "생성사용자", "CreateUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleLeft);
+            DataGridUtil.AddGridTextBoxColumn(dgvProcess, "변경날짜", "ModifyDate", colwidth: 200, align: DataGridViewContentAlignment.MiddleLeft);
+            DataGridUtil.AddGridTextBoxColumn(dgvProcess, "변경사용자", "ModifyUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleLeft);
             DataGridUtil.AddGridTextBoxColumn(dgvProcess, "사용여부", "StateYN", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
-
-            srv = new ServiceHelper("");
 
             LoadData();
         }
@@ -135,19 +135,20 @@ namespace AltasMES
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtProcessName.Text.Trim()))
+            {
+                MessageBox.Show("공정명을 입력해주세요.");
+            }
             ResMessage<List<ProcessVO>> result = srv.GetAsync<List<ProcessVO>>("api/Process/AllProcess");
             if (result.Data != null)
             {
                 List<ProcessVO> list = result.Data.FindAll((p) => p.ProcessName.Contains(txtProcessName.Text));
-                if(list.Count <= 0)
+                if(list.Count >= 0)
                 {
-                    MessageBox.Show("검색된 공정이 없습니다. 다시 확인하여 주세요");
                     txtProcessName.Text = string.Empty;
-                    LoadData();
-                    return;
+                    dgvProcess.DataSource = list;
                 }
-                txtProcessName.Text = string.Empty;
-                dgvProcess.DataSource = list;
+                
             }
             else
             {

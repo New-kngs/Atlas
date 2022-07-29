@@ -177,7 +177,7 @@ namespace AltasMES
             this.Margin = new System.Windows.Forms.Padding(5, 10, 5, 10);
             this.Name = "frmEquipment_Using";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "설비 사용";
+            this.Text = "설비 가동";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmProcess_Using_FormClosing);
             this.Load += new System.EventHandler(this.frmEquipment_Using_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmProcess_Using_KeyPress);
