@@ -25,21 +25,23 @@ namespace AtlasMVCAPI.Controllers.WebControllers
         {
             LoginDAC db = new LoginDAC();
             LoginVO user = db.LoginCheck(LoginID, LoginPWD);
-            if (user.CustomerID != null) // 사용자가 거래처라면
+            if (user == null)
+            {
+                // ID와 PWD를 잘못 입력하셨습니다. 재시도 해주세요.
+                // return RedirectToAction("Lock", "Login");
+                return Content("<script language='javascript' type='text/javascript'> alert('ID와 PWD를 잘못 입력하셨습니다. 재시도 해주세요.'); window.location.href='/Login/Lock'</script>");
+            }
+
+            else if (user.CustomerID != null) // 사용자가 거래처라면
             {
                 Session["UserVO"] = user;
                 Session["CustomerName"] = user.CustomerName;
                 return RedirectToAction("Index", "Home");
             }
-            else if (user.EmpID != null) // 사용자가 임원이라면
+            else // if (user.EmpID != null) // 사용자가 임원이라면
             {
                 Session["UserVO"] = user;
 
-                return RedirectToAction("Lock", "Login");
-            }
-            else
-            {
-                // ID와 PWD를 잘못 입력하셨습니다. 재시도 해주세요.
                 return RedirectToAction("Lock", "Login");
             }
         }

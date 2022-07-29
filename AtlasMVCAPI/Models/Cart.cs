@@ -45,7 +45,7 @@ namespace AtlasMVCAPI.Models
                 lines.Remove(line);
             }
         }
-        
+
         public decimal CalcTotalValue()
         {
             return lines.Sum<CartLine>((p) => p.Product.ItemPrice * p.Qty);

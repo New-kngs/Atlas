@@ -2215,6 +2215,7 @@
     <Content Include="Views\Cart\Basket.cshtml" />
     <Content Include="Views\Cart\AddToCart.cshtml" />
     <Content Include="Views\Login\Lock.cshtml" />
+    <Content Include="Views\OrderWeb\History.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
