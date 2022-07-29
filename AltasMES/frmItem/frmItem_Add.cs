@@ -79,11 +79,16 @@ namespace AltasMES
                 MessageBox.Show("제품 단가를 입력해주세요");
                 return;
             }
-            if (string.IsNullOrWhiteSpace(txtSafeQty.Text))
+            if (string.IsNullOrWhiteSpace(nmrSafeQty.Text))
             {
                 MessageBox.Show("제품 안전재고량을 입력해주세요");
                 return;
-            } 
+            }
+            if (string.IsNullOrWhiteSpace(nmrQty.Text))
+            {
+                MessageBox.Show("제품 수량을 입력해주세요");
+                return;
+            }
             ItemVO item = new ItemVO
             {
                 ItemCategory = cboCategory1.Text,
@@ -91,8 +96,8 @@ namespace AltasMES
                 ItemName = txtName.Text,
                 ItemSize = cboSize.Text,
                 ItemPrice = Convert.ToInt32(txtPrice.Text),
-                SafeQty = Convert.ToInt32(txtQty.Text),
-                CurrentQty = Convert.ToInt32(txtQty.Text),
+                SafeQty = Convert.ToInt32(nmrSafeQty.Text),
+                CurrentQty = Convert.ToInt32(nmrQty.Text),
                 CustomerID = cboCusID.SelectedValue.ToString(),
                 WHID = cboWhID.SelectedValue.ToString(),
                 ItemExplain = txtExplain.Text,
@@ -173,6 +178,14 @@ namespace AltasMES
             if (srv != null)
             {
                 srv.Dispose();
+            }
+        }
+
+        private void txtPrice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8 && e.KeyChar != 13)
+            {
+                e.Handled = true;
             }
         }
     }

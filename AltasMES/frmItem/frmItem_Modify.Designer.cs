@@ -47,8 +47,6 @@ namespace AltasMES
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.txtImage = new System.Windows.Forms.TextBox();
             this.txtExplain = new System.Windows.Forms.TextBox();
-            this.txtSafeQty = new System.Windows.Forms.TextBox();
-            this.txtQty = new System.Windows.Forms.TextBox();
             this.txtPrice = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
             this.txtID = new System.Windows.Forms.TextBox();
@@ -62,11 +60,15 @@ namespace AltasMES
             this.label15 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
+            this.nmrQty = new System.Windows.Forms.NumericUpDown();
+            this.nmrSafeQty = new System.Windows.Forms.NumericUpDown();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmrQty)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmrSafeQty)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -106,6 +108,8 @@ namespace AltasMES
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.nmrSafeQty);
+            this.panel3.Controls.Add(this.nmrQty);
             this.panel3.Controls.Add(this.txtWhName);
             this.panel3.Controls.Add(this.txtCusName);
             this.panel3.Controls.Add(this.txtSize);
@@ -114,8 +118,6 @@ namespace AltasMES
             this.panel3.Controls.Add(this.label8);
             this.panel3.Controls.Add(this.groupBox1);
             this.panel3.Controls.Add(this.txtExplain);
-            this.panel3.Controls.Add(this.txtSafeQty);
-            this.panel3.Controls.Add(this.txtQty);
             this.panel3.Controls.Add(this.txtPrice);
             this.panel3.Controls.Add(this.txtName);
             this.panel3.Controls.Add(this.txtID);
@@ -269,22 +271,6 @@ namespace AltasMES
             this.txtExplain.Size = new System.Drawing.Size(606, 80);
             this.txtExplain.TabIndex = 117;
             // 
-            // txtSafeQty
-            // 
-            this.txtSafeQty.Location = new System.Drawing.Point(125, 338);
-            this.txtSafeQty.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtSafeQty.Name = "txtSafeQty";
-            this.txtSafeQty.Size = new System.Drawing.Size(180, 29);
-            this.txtSafeQty.TabIndex = 116;
-            // 
-            // txtQty
-            // 
-            this.txtQty.Location = new System.Drawing.Point(125, 288);
-            this.txtQty.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtQty.Name = "txtQty";
-            this.txtQty.Size = new System.Drawing.Size(180, 29);
-            this.txtQty.TabIndex = 115;
-            // 
             // txtPrice
             // 
             this.txtPrice.Location = new System.Drawing.Point(125, 238);
@@ -292,6 +278,7 @@ namespace AltasMES
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(180, 29);
             this.txtPrice.TabIndex = 114;
+            this.txtPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrice_KeyPress);
             // 
             // txtName
             // 
@@ -429,6 +416,20 @@ namespace AltasMES
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
+            // nmrQty
+            // 
+            this.nmrQty.Location = new System.Drawing.Point(125, 289);
+            this.nmrQty.Name = "nmrQty";
+            this.nmrQty.Size = new System.Drawing.Size(180, 29);
+            this.nmrQty.TabIndex = 131;
+            // 
+            // nmrSafeQty
+            // 
+            this.nmrSafeQty.Location = new System.Drawing.Point(125, 339);
+            this.nmrSafeQty.Name = "nmrSafeQty";
+            this.nmrSafeQty.Size = new System.Drawing.Size(180, 29);
+            this.nmrSafeQty.TabIndex = 132;
+            // 
             // frmItem_Modify
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -452,6 +453,8 @@ namespace AltasMES
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmrQty)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmrSafeQty)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -471,8 +474,6 @@ namespace AltasMES
         protected System.Windows.Forms.Button btnImgFind;
         private System.Windows.Forms.TextBox txtImage;
         private System.Windows.Forms.TextBox txtExplain;
-        private System.Windows.Forms.TextBox txtSafeQty;
-        private System.Windows.Forms.TextBox txtQty;
         private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.TextBox txtID;
@@ -489,5 +490,7 @@ namespace AltasMES
         private System.Windows.Forms.TextBox txtWhName;
         private System.Windows.Forms.TextBox txtCusName;
         protected System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.NumericUpDown nmrQty;
+        private System.Windows.Forms.NumericUpDown nmrSafeQty;
     }
 }
