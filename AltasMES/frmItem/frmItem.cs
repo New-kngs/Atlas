@@ -77,6 +77,7 @@ namespace AltasMES
                 MessageBox.Show("제품 유형을 선택하거나 제품명을 입력해 주세요");
                 return;
             }
+
             if (string.IsNullOrWhiteSpace(txtSearch.Text.Trim())) // 텍스트 조건 없이 콤보박스만
             {
                 cboCategory_SelectedIndexChanged(this, e); 
@@ -92,7 +93,7 @@ namespace AltasMES
                 }
                 else
                 {
-                    List<ItemVO> citemList = itemList.FindAll(p => p.ItemName.ToLower().Contains(txtSearch.Text.ToLower().Trim())); //&& p.ItemCategory.Equals(cboCategory.Text));
+                    List<ItemVO> citemList = itemList.FindAll(p => p.ItemName.ToLower().Contains(txtSearch.Text.ToLower().Trim()) && p.ItemCategory.Equals(cboCategory.Text));
                     dgvItem.DataSource = null;
                     dgvItem.DataSource = new AdvancedList<ItemVO>(citemList);
                 }

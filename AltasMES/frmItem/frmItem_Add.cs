@@ -133,8 +133,8 @@ namespace AltasMES
                 //cboWhID.ValueMember = "WHID";               
                 //cboWhID.DataSource = whcomboList.FindAll(p => p.ItemCategory.Equals(selCategory));
                 CommonUtil.ComboBinding<WareHouseVO>(cboWhID, whcomboList.FindAll(p => p.ItemCategory.Equals(selCategory)), "WHName", "WHID", blankText: "선택");
-            }            
-
+            }               
+            
             //선택된 카테고리가 자재인 경우 거래처 바인딩
             if (selCategory.Equals("자재") && cusList != null) 
             { 
@@ -150,11 +150,7 @@ namespace AltasMES
         private void cboCategory2_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtID.Text = null;          
-            if (cboCategory2.SelectedIndex == 0)
-            {
-                
-            }
-                
+            
             if (cboCategory2.SelectedIndex > 0)
             {
                 ItemCode = comboList.Find((c) => c.CodeName.Equals(cboCategory2.Text)).Code;
