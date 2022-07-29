@@ -21,6 +21,8 @@ namespace AltasMES
 
         private void frmEquipment_Load(object sender, EventArgs e)
         {
+            service = new ServiceHelper("");
+           
             DataGridUtil.SetInitGridView(dgvEquip);
             DataGridUtil.AddGridTextBoxColumn(dgvEquip, "설비ID", "EquipID", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvEquip, "설비명", "EquipName", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
@@ -30,7 +32,6 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvEquip, "변경날짜", "ModifyDate", colwidth: 200);
             DataGridUtil.AddGridTextBoxColumn(dgvEquip, "변경사용자", "ModifyUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvEquip, "사용여부", "StateYN", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
-            service = new ServiceHelper("");
             LoadData();
         }
         public void LoadData()
@@ -70,7 +71,8 @@ namespace AltasMES
 
         private void frmEquipment_FormClosing(object sender, FormClosingEventArgs e)
         {
-            service.Dispose();
+            if(service != null)
+                service.Dispose();
         }
 
         private void btnModify_Click(object sender, EventArgs e)
@@ -83,10 +85,27 @@ namespace AltasMES
                 ModifyUser = ((Main)this.MdiParent).EmpName.ToString()
             };
 
-            frmEquipment_Modify frm = new frmEquipment_Modify(equip);
+            /*frmEquipment_Modify frm = new frmEquipment_Modify(equip);
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
+            }*/
+
+            if ((dgvEquip.SelectedRows[0].Cells["StateYN"].Value).ToString() == "N")
+            {
+                frmEquipment_Using frmusing = new frmEquipment_Using(equip);
+                if (frmusing.ShowDialog() == DialogResult.OK)
+                {
+                    LoadData();
+                }
+            }
+            else
+            {
+                frmEquipment_Modify frm = new frmEquipment_Modify(equip);
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    LoadData();
+                }
             }
         }
 
@@ -108,7 +127,7 @@ namespace AltasMES
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            ResMessage<List<EquipmentVO>> result = service.GetAsync<List<EquipmentVO>>("AllEquipment");
+            ResMessage<List<EquipmentVO>> result = service.GetAsync<List<EquipmentVO>>("api/Equipment/AllEquipment");
             if (result.Data != null)
             {
                 List<EquipmentVO> list = result.Data.FindAll((p) => p.EquipName.Contains(txtEquip.Text));

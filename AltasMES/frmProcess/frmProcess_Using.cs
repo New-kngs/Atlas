@@ -40,7 +40,8 @@ namespace AltasMES
 
                 ProcessVO process = new ProcessVO
                 {
-                    ProcessID = this.process.ProcessID
+                    ProcessID = this.process.ProcessID,
+                    ModifyUser = this.process.ModifyUser
                 };
 
                 ResMessage<List<ProcessVO>> result = service.PostAsync<ProcessVO, List<ProcessVO>>("UsingProcess", process);

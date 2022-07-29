@@ -32,15 +32,15 @@ namespace AtlasPOP
         ResMessage<List<CustomerVO>> customerList;
         public POPMain()
         {
+            this.EmpID = "EMP_0004";
+            this.EmpName = "강지모";
+            this.DeptID = "Product";
+
             InitializeComponent();
         }
 
         private void POPMain_Load(object sender, EventArgs e)
         {
-            this.EmpID = "EMP_0004";
-            this.EmpName = "강지모";
-            this.DeptID = "Product";
-
             statusStrip1.Visible = false;
             toolStripLblUser.Text = "사용자 : " + EmpName;
             toolStripLblDept.Text = "부서 : " + DeptID;
@@ -196,6 +196,17 @@ namespace AtlasPOP
 
         private void btnFail_Click(object sender, EventArgs e)
         {
+            if (btnLogout.Text != "로그아웃")
+            {
+                MessageBox.Show("로그인을 해주세요");
+                return;
+            }
+            if (OperID == null)
+            {
+                MessageBox.Show("작업을 먼저 선택해주세요");
+                return;
+            }
+
             frmFail frm = new frmFail(FailQty, OperID, itemID, EmpID);
             frm.MdiParent = this;
             frm.Show();

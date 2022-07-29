@@ -379,7 +379,6 @@ namespace AtlasPOP
             this.lblOrderQty.Name = "lblOrderQty";
             this.lblOrderQty.Size = new System.Drawing.Size(403, 55);
             this.lblOrderQty.TabIndex = 0;
-            this.lblOrderQty.Text = "ddddd";
             this.lblOrderQty.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label7
@@ -401,7 +400,6 @@ namespace AtlasPOP
             this.lblClient.Name = "lblClient";
             this.lblClient.Size = new System.Drawing.Size(401, 55);
             this.lblClient.TabIndex = 0;
-            this.lblClient.Text = "ddddd";
             this.lblClient.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblItemName
@@ -412,7 +410,6 @@ namespace AtlasPOP
             this.lblItemName.Name = "lblItemName";
             this.lblItemName.Size = new System.Drawing.Size(401, 55);
             this.lblItemName.TabIndex = 0;
-            this.lblItemName.Text = "ddddd";
             this.lblItemName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label3

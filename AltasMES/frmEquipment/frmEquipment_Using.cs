@@ -11,44 +11,47 @@ using System.Windows.Forms;
 
 namespace AltasMES
 {
-    public partial class frmEquipment_Delete : Form
+    public partial class frmEquipment_Using : PopUpBase
     {
-        ServiceHelper service = null;
         public EquipmentVO equip { get; set; }
-        public frmEquipment_Delete(EquipmentVO equip)
+        ServiceHelper service = null;
+        public frmEquipment_Using(EquipmentVO equip)
         {
             InitializeComponent();
             this.equip = equip;
             txtEquip.Text = equip.EquipName;
         }
-        private void frmEquipment_Delete_Load(object sender, EventArgs e)
+        private void frmEquipment_Using_Load(object sender, EventArgs e)
         {
             service = new ServiceHelper("");
+        }
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtDeleteChk.Text.Trim()))
+            if (string.IsNullOrWhiteSpace(txtUsingChk.Text.Trim()))
             {
                 MessageBox.Show("문구를 입력해주세요");
                 return;
             }
 
-            if (txtEquip.Text.Equals(txtDeleteChk.Text))
+            if (txtEquip.Text.Equals(txtUsingChk.Text))
             {
-               
+                
 
-                EquipmentVO equip = new EquipmentVO
+                ProcessVO process = new ProcessVO
                 {
-                    EquipID = this.equip.EquipID,
-                    ModifyUser = this.equip.ModifyUser
+                    ProcessID = this.equip.EquipID
                 };
 
-                ResMessage<List<EquipmentVO>> result = service.PostAsync<EquipmentVO, List<EquipmentVO>>("api/Equipment/DeleteEquip", equip);
+                ResMessage<List<EquipmentVO>> result = service.PostAsync<EquipmentVO, List<EquipmentVO>>("api/Equipment/UsingEquip", equip);
 
                 if (result.ErrCode == 0)
                 {
-                    MessageBox.Show("미가동 처리 되었습니다.");
+                    MessageBox.Show("공정을 다시 사용하실 수 있습니다.");
                     this.DialogResult = DialogResult.OK;
                 }
                 else
@@ -61,7 +64,9 @@ namespace AltasMES
             }
         }
 
-        private void frmEquipment_Delete_KeyPress(object sender, KeyPressEventArgs e)
+
+
+        private void frmProcess_Using_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != '\b' && e.KeyChar != 13)
             {
@@ -69,17 +74,12 @@ namespace AltasMES
             }
         }
 
-        private void frmEquipment_Delete_FormClosing(object sender, FormClosingEventArgs e)
+        private void frmProcess_Using_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (service != null)
-            {
                 service.Dispose();
-            }
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        
     }
 }

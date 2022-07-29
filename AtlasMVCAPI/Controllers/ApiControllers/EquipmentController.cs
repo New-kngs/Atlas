@@ -134,5 +134,35 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
+
+        //POST : https://localhost:44391/api/Equipment/UsingEquip
+        [HttpPost]
+        [Route("UsingEquip")]
+        public IHttpActionResult UsingEquip(EquipmentVO equip)
+        {
+            try
+            {
+                EquipmentDAC db = new EquipmentDAC();
+                bool flag = db.UsingEquip(equip);
+
+                ResMessage result = new ResMessage()
+                {
+                    ErrCode = (!flag) ? -9 : 0,
+                    ErrMsg = (!flag) ? "수정 중 오류발생" : "S"
+                };
+
+                return Ok(result);
+            }
+            catch (Exception err)
+            {
+                System.Diagnostics.Debug.WriteLine(err.Message);
+
+                return Ok(new ResMessage()
+                {
+                    ErrCode = -9,
+                    ErrMsg = err.Message
+                });
+            }
+        }
     }
 }

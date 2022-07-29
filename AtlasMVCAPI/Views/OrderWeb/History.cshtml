@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "History";
+    Layout = "~/Views/Shared/_LayoutPageOrder.cshtml";
+}
+@using AtlasDTO;
+@{ 
+    List<OrderVO> orders = ViewData["Order"] as List<OrderVO>;
+    List<OrderDetailVO> orderDetails = ViewData["Order"] as List<OrderDetailVO>;
+}
+
+<div class="container text-center">
+    <div class="row">
+        <div class="col">
+            <table>
+                <tr>
+                    <td></td>
+                    <td>주문ID</td>
+                    <td>출하여부</td>
+                    <td>주문확정일</td>
+                    <td>주문일</td>
+                    <td>담당자</td>
+                </tr>
+                @for (int i = 0; i < orders.Count; i++)
+                {
+                    <tr>
+                        <td><input type="radio" name="chk_info" value="HTML"></td>
+                        <td>@orders[i].OrderID</td>
+                        <td>@orders[i].OrderShip</td>
+                        <td>@orders[i].OrderEndDate</td>
+                        <td>@orders[i].CreateDate</td>
+                        <td>@orders[i].CreateUser</td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <div class="col">
+            <table>
+                <tr>
+                    <td>r</td>
+                    <td>s</td>
+                    <td>e</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div> 

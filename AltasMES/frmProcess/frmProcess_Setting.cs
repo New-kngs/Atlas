@@ -29,9 +29,9 @@ namespace AltasMES
         private void fmrProcess_Setting_Load(object sender, EventArgs e)
         {
             //설비목록 가져오기
-            service = new ServiceHelper("api/Process");
-            allList = service.GetAsync<List<ProcessVO>>("AllProcess");
-            result = service.GetAsync<List<ComboItemVO>>("GetEquipName");
+            service = new ServiceHelper("");
+            allList = service.GetAsync<List<ProcessVO>>("api/Process/AllProcess");
+            result = service.GetAsync<List<ComboItemVO>>("api/Process/GetEquipName");
             if (result != null)
             {
                 //dgvProcess.DataSource = new AdvancedList<ProcessVO>(result.Data);
@@ -55,7 +55,7 @@ namespace AltasMES
         {
             int processID = this.process.ProcessID;
 
-            ResMessage<List<EquipDetailsVO>> result = service.GetAsync<List<EquipDetailsVO>>("GetProcessEquip");
+            ResMessage<List<EquipDetailsVO>> result = service.GetAsync<List<EquipDetailsVO>>("api/Process/GetProcessEquip");
 
 
             processList = result.Data.FindAll((p) => p.ProcessID == processID).ToList();
@@ -147,7 +147,7 @@ namespace AltasMES
             //리스트에 string으로 만들어서 넘긴다. 
             //[{ "ProcessID" : 14, "EquipID" : 3, "CreateUser" : "강지모" }]
 
-            ResMessage<List<EquipDetailsVO>> result = service.PostAsync<List<EquipDetailsVO>, List<EquipDetailsVO>>("SaveProcessEquip", processList);
+            ResMessage<List<EquipDetailsVO>> result = service.PostAsync<List<EquipDetailsVO>, List<EquipDetailsVO>>("api/Process/SaveProcessEquip", processList);
 
             if (result.ErrCode == 0)
             {

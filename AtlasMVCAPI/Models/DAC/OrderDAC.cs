@@ -103,5 +103,56 @@ namespace AtlasMVCAPI.Models
                 cmd.Connection.Close();
             }
         }
+        // 고객사에게 주문내역을 보여준다 (작성자-지현)
+        public (List<OrderVO>, List<OrderDetailVO>) GetOrderHistory(string customerID)
+        {
+            SqlConnection conn = new SqlConnection(strConn);
+            conn.Open();
+            SqlTransaction trans = conn.BeginTransaction();
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = @"select OrderID, OrderShip, OrderEndDate, CreateDate, CreateUser 
+from TB_Order 
+where CustomerID = @customerID";
+                    cmd.Parameters.AddWithValue("@customerID", customerID);
+                    cmd.Transaction = trans;
+
+                    cmd.Connection.Open();
+                    List<OrderVO> listOrder = Helper.DataReaderMapToList<OrderVO>(cmd.ExecuteReader());
+                    cmd.Connection.Close();
+
+                    cmd.CommandText = @"select ItemName, ItemPrice, ItemSize, Qty, ItemPrice*Qty SumPrice, O.OrderID 
+from TB_Item I 
+inner join TB_OrderDetails OD on I.ItemID = OD.ItemID 
+inner join TB_Order O on  OD.OrderID=O.OrderID 
+where O.CustomerID = @customerID";
+
+                    cmd.Parameters.AddWithValue("@customerID", customerID);
+
+                    cmd.Connection.Open();
+                    List<OrderDetailVO> listOrderDetail = Helper.DataReaderMapToList<OrderDetailVO>(cmd.ExecuteReader());
+                    cmd.Connection.Close();
+
+                    trans.Commit();
+
+                    return (listOrder, listOrderDetail);
+                }
+            }
+            catch (Exception err)
+            {
+                string sss = err.Message;
+                trans.Rollback();
+
+                return (null, null);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }
