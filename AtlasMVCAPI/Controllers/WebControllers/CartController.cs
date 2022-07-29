@@ -40,7 +40,7 @@ namespace AtlasMVCAPI.Controllers.WebControllers
         }
         private Cart GetCart()
         {
-            // Session 정보에 있는 Cart를 가져온다
+            // Session 정보에 있는 Cart를 가져온다 
             Cart cart = (Cart)Session["Cart"];
             if (cart == null)
             {

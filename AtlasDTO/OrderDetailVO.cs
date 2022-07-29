@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace AtlasDTO
 {
-    class OrderDetailVO
+    public class OrderDetailVO
     {
-
+        public string OrderID { get; set; }
+        public string ItemID { get; set; }
+        public int Qty { get; set; }
     }
 }
