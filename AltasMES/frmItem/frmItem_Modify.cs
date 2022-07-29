@@ -30,8 +30,8 @@ namespace AltasMES
             txtName.Text = item.ItemName;
             txtSize.Text = item.ItemSize;
             txtPrice.Text =item.ItemPrice.ToString();
-            nmrQty.Text = item.CurrentQty.ToString();
-            nmrSafeQty.Text = item.SafeQty.ToString();
+            nmrQty.Value = item.CurrentQty;
+            nmrSafeQty.Value = item.SafeQty;
             txtCusName.Text = item.CustomerName;
             txtWhName.Text = item.WHName;
             txtExplain.Text = item.ItemExplain;            
@@ -51,8 +51,8 @@ namespace AltasMES
             ItemVO item = new ItemVO
             {
                 ItemID = txtID.Text,
-                CurrentQty = Convert.ToInt32(nmrQty.Text),
-                SafeQty = Convert.ToInt32(nmrSafeQty.Text),
+                CurrentQty = Convert.ToInt32(nmrQty.Value),
+                SafeQty = Convert.ToInt32(nmrSafeQty.Value),
                 ItemPrice = Convert.ToInt32(txtPrice.Text),                
                 ItemExplain = txtExplain.Text,
                 ModifyUser = this.item.ModifyUser,
@@ -65,16 +65,16 @@ namespace AltasMES
                 MessageBox.Show("제품 단가를 입력해주세요");
                 return;
             }
-            if (string.IsNullOrWhiteSpace(nmrSafeQty.Text))
+            if (nmrSafeQty.Value < 1)
             {
                 MessageBox.Show("제품 안전재고량을 입력해주세요");
                 return;
             }
-            if (string.IsNullOrWhiteSpace(nmrQty.Text))
-            {
-                MessageBox.Show("제품 수량을 입력해주세요");
-                return;
-            }
+            //if (nmrQty.Value < 1)
+            //{
+            //    MessageBox.Show("제품 수량을 입력해주세요");
+            //    return;
+            //}
 
             if (result.ErrCode == 0)
             {

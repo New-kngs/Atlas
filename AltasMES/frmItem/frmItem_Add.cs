@@ -51,6 +51,11 @@ namespace AltasMES
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            if (cboCategory2.SelectedIndex < 1)
+            {
+                MessageBox.Show("제품유형 정확하게 선택을 선택해주세요.");
+                return;
+            }
             if (string.IsNullOrWhiteSpace(txtName.Text.Trim()))
             {
                 MessageBox.Show("제품명을 입력해주세요");
@@ -63,12 +68,7 @@ namespace AltasMES
                 MessageBox.Show("이미 존재하는 제품명 입니다.");
                 txtName.Clear();
                 return;
-            }
-            if (cboCategory2.SelectedIndex < 1)
-            {
-                MessageBox.Show("제품유형 정확하게 선택을 선택해주세요.");
-                return;
-            }
+            }            
             if (cboSize.SelectedIndex < 1)
             {
                 MessageBox.Show("제품 규격을 선택해주세요.");
@@ -79,16 +79,16 @@ namespace AltasMES
                 MessageBox.Show("제품 단가를 입력해주세요");
                 return;
             }
-            if (string.IsNullOrWhiteSpace(nmrSafeQty.Text))
+            if (nmrSafeQty.Value < 1)
             {
                 MessageBox.Show("제품 안전재고량을 입력해주세요");
                 return;
             }
-            if (string.IsNullOrWhiteSpace(nmrQty.Text))
-            {
-                MessageBox.Show("제품 수량을 입력해주세요");
-                return;
-            }
+            //if (nmrQty.Value.) || nmrSafeQty.Value < 1)
+            //{
+            //    MessageBox.Show("제품 재고량을 입력해주세요");
+            //    return;
+            //}
             ItemVO item = new ItemVO
             {
                 ItemCategory = cboCategory1.Text,
@@ -96,8 +96,8 @@ namespace AltasMES
                 ItemName = txtName.Text,
                 ItemSize = cboSize.Text,
                 ItemPrice = Convert.ToInt32(txtPrice.Text),
-                SafeQty = Convert.ToInt32(nmrSafeQty.Text),
-                CurrentQty = Convert.ToInt32(nmrQty.Text),
+                SafeQty = Convert.ToInt32(nmrSafeQty.Value),
+                CurrentQty = Convert.ToInt32(nmrQty.Value),
                 CustomerID = cboCusID.SelectedValue.ToString(),
                 WHID = cboWhID.SelectedValue.ToString(),
                 ItemExplain = txtExplain.Text,

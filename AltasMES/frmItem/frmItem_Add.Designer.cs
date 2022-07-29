@@ -35,6 +35,8 @@ namespace AltasMES
             this.lblTitle = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.nmrSafeQty = new System.Windows.Forms.NumericUpDown();
+            this.nmrQty = new System.Windows.Forms.NumericUpDown();
             this.cboCategory2 = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cboSize = new System.Windows.Forms.ComboBox();
@@ -62,15 +64,13 @@ namespace AltasMES
             this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.nmrQty = new System.Windows.Forms.NumericUpDown();
-            this.nmrSafeQty = new System.Windows.Forms.NumericUpDown();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nmrSafeQty)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmrQty)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nmrQty)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nmrSafeQty)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -142,6 +142,40 @@ namespace AltasMES
             this.panel3.Padding = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.panel3.Size = new System.Drawing.Size(749, 718);
             this.panel3.TabIndex = 0;
+            // 
+            // nmrSafeQty
+            // 
+            this.nmrSafeQty.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nmrSafeQty.Location = new System.Drawing.Point(125, 389);
+            this.nmrSafeQty.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.nmrSafeQty.Name = "nmrSafeQty";
+            this.nmrSafeQty.Size = new System.Drawing.Size(180, 29);
+            this.nmrSafeQty.TabIndex = 92;
+            // 
+            // nmrQty
+            // 
+            this.nmrQty.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nmrQty.Location = new System.Drawing.Point(125, 339);
+            this.nmrQty.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.nmrQty.Name = "nmrQty";
+            this.nmrQty.Size = new System.Drawing.Size(180, 29);
+            this.nmrQty.TabIndex = 91;
             // 
             // cboCategory2
             // 
@@ -444,20 +478,6 @@ namespace AltasMES
             this.label3.TabIndex = 49;
             this.label3.Text = "제품명";
             // 
-            // nmrQty
-            // 
-            this.nmrQty.Location = new System.Drawing.Point(125, 339);
-            this.nmrQty.Name = "nmrQty";
-            this.nmrQty.Size = new System.Drawing.Size(180, 29);
-            this.nmrQty.TabIndex = 91;
-            // 
-            // nmrSafeQty
-            // 
-            this.nmrSafeQty.Location = new System.Drawing.Point(125, 389);
-            this.nmrSafeQty.Name = "nmrSafeQty";
-            this.nmrSafeQty.Size = new System.Drawing.Size(180, 29);
-            this.nmrSafeQty.TabIndex = 92;
-            // 
             // frmItem_Add
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -479,11 +499,11 @@ namespace AltasMES
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nmrSafeQty)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmrQty)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nmrQty)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nmrSafeQty)).EndInit();
             this.ResumeLayout(false);
 
         }
