@@ -207,7 +207,7 @@
             this.MinimizeBox = false;
             this.Name = "frmEquipment_Delete";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "설비삭제";
+            this.Text = "설비 미가동";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmEquipment_Delete_FormClosing);
             this.Load += new System.EventHandler(this.frmEquipment_Delete_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmEquipment_Delete_KeyPress);

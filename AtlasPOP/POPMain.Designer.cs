@@ -389,7 +389,7 @@ namespace AtlasPOP
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(403, 55);
             this.label7.TabIndex = 0;
-            this.label7.Text = "주문 수량";
+            this.label7.Text = "지시 수량";
             this.label7.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // lblClient
@@ -479,7 +479,7 @@ namespace AtlasPOP
             this.IsMdiContainer = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "POPMain";
-            this.Text = "Form1";
+            this.Text = "POP";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.POPMain_Load);
             this.panel2.ResumeLayout(false);

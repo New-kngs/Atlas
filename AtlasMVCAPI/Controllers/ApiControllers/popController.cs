@@ -51,7 +51,7 @@ namespace AtlasMVCAPI.Controllers
         /// <summary>
         /// 등록된 모든 공정를 조회해서 반환
         /// </summary>
-        //https://localhost:44391/api/pop/SearchOper/{dateFrom}/{dateTo}/{HourFrom}/{HourTO}
+        //https://localhost:44391/api/pop/SearchOper/{dateFrom}/{dateTo}
 
         [Route("SearchOper/{dateFrom}/{dateTo}")]
         [HttpGet]

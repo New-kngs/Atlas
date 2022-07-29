@@ -50,7 +50,7 @@ namespace AtlasMVCAPI.Models
                                     PlanQty, OpState, BeginDate,EndDate, EmpID
                                     from TB_Operation op join TB_Process p on op.ProcessID = p.ProcessID
                                     join TB_Item i on op.ItemID = i.ItemID
-                                    where OpDate Between @dateFrom and @dateTo";
+                                    where convert(varchar(20), OpDate, 120) Between @dateFrom and @dateTo";
 
                 cmd.Parameters.AddWithValue("@dateFrom", dateFrom );
                 cmd.Parameters.AddWithValue("@dateTo", dateTo);

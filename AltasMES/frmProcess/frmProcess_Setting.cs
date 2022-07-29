@@ -46,7 +46,7 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvList, "공정ID", "ProcessID", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter, visibility: false);
             DataGridUtil.AddGridTextBoxColumn(dgvList, "설비ID", "EquipID", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter, visibility: false);
             DataGridUtil.AddGridTextBoxColumn(dgvList, "생성사용자", "CreateUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter, visibility: false);
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "설비명", "EquipName", colwidth: 250, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvList, "설비명", "EquipName", colwidth: 250, align: DataGridViewContentAlignment.MiddleLeft);
 
             LoadEquip();
 
@@ -156,6 +156,11 @@ namespace AltasMES
             else
                 MessageBox.Show(result.ErrMsg);
 
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -34,7 +34,7 @@ namespace AtlasPOP
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "제품ID", "ItemID",visibility : false);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "제품명", "ItemName", colwidth: 130, DataGridViewContentAlignment.MiddleCenter);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "주문ID", "OrderID", colwidth: 130, DataGridViewContentAlignment.MiddleCenter);
-            popDataGridUtil.AddGridTextBoxColumn(dgvList, "계획수량", "PlanQty", colwidth: 100,DataGridViewContentAlignment.MiddleCenter);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "지시수량", "PlanQty", colwidth: 100,DataGridViewContentAlignment.MiddleCenter);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "공정상태", "OpState", colwidth: 100, DataGridViewContentAlignment.MiddleCenter);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "자재투입\n 여부", "resourceYN", colwidth: 100, DataGridViewContentAlignment.MiddleCenter);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "창고입고 여부", "PutInYN", colwidth: 100, DataGridViewContentAlignment.MiddleCenter);
@@ -89,7 +89,7 @@ namespace AtlasPOP
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            ResMessage<List<OperationVO>> result = service.GetAsync<List<OperationVO>>("api/pop/SearchOper/"+ dtpFrom.Value.ToShortDateString() + " " +cboTimeFrom.Text+ "/" +dtpTo.Value.ToShortDateString()+" "+cboTimeTo.Text);
+            ResMessage<List<OperationVO>> result = service.GetAsync<List<OperationVO>>("api/pop/SearchOper/"+ dtpFrom.Value.ToShortDateString() + " " +cboTimeFrom.Text+ "/" + dtpTo.Value.ToShortDateString()+" "+cboTimeTo.Text);
             if (result.Data != null)
             {
                 dgvList.DataSource = new AdvancedList<OperationVO>(result.Data);

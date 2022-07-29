@@ -44,6 +44,7 @@
             this.txtProcess = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblProcessName = new System.Windows.Forms.Label();
+            this.btnClose = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -99,6 +100,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.btnClose);
             this.panel3.Controls.Add(this.btnSave);
             this.panel3.Controls.Add(this.button2);
             this.panel3.Controls.Add(this.btnAdd);
@@ -120,7 +122,7 @@
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.ImageIndex = 6;
             this.btnSave.ImageList = this.imageList1;
-            this.btnSave.Location = new System.Drawing.Point(176, 395);
+            this.btnSave.Location = new System.Drawing.Point(128, 395);
             this.btnSave.Name = "btnSave";
             this.btnSave.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnSave.Size = new System.Drawing.Size(78, 37);
@@ -176,6 +178,7 @@
             // 
             // dgvList
             // 
+            this.dgvList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvList.Location = new System.Drawing.Point(3, 25);
@@ -218,6 +221,23 @@
             this.lblProcessName.Size = new System.Drawing.Size(58, 21);
             this.lblProcessName.TabIndex = 4;
             this.lblProcessName.Text = "공정명";
+            // 
+            // btnClose
+            // 
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.ImageIndex = 5;
+            this.btnClose.ImageList = this.imageList1;
+            this.btnClose.Location = new System.Drawing.Point(212, 395);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.btnClose.Size = new System.Drawing.Size(78, 37);
+            this.btnClose.TabIndex = 6;
+            this.btnClose.Text = "취소";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // frmProcess_Setting
             // 
@@ -262,5 +282,6 @@
         protected System.Windows.Forms.Button btnSave;
         protected System.Windows.Forms.Button btnAdd;
         protected System.Windows.Forms.Button button2;
+        protected System.Windows.Forms.Button btnClose;
     }
 }

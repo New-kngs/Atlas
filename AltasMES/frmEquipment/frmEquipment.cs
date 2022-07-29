@@ -25,12 +25,12 @@ namespace AltasMES
            
             DataGridUtil.SetInitGridView(dgvEquip);
             DataGridUtil.AddGridTextBoxColumn(dgvEquip, "설비ID", "EquipID", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvEquip, "설비명", "EquipName", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvEquip, "설비유형", "EquipCategory", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvEquip, "생성날짜", "CreateDate", colwidth: 200);
-            DataGridUtil.AddGridTextBoxColumn(dgvEquip, "생성사용자", "CreateUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvEquip, "변경날짜", "ModifyDate", colwidth: 200);
-            DataGridUtil.AddGridTextBoxColumn(dgvEquip, "변경사용자", "ModifyUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvEquip, "설비명", "EquipName", colwidth: 200, align: DataGridViewContentAlignment.MiddleLeft);    
+            DataGridUtil.AddGridTextBoxColumn(dgvEquip, "생성날짜", "CreateDate", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvEquip, "생성사용자", "CreateUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleLeft);
+            DataGridUtil.AddGridTextBoxColumn(dgvEquip, "변경날짜", "ModifyDate", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvEquip, "변경사용자", "ModifyUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleLeft);
             DataGridUtil.AddGridTextBoxColumn(dgvEquip, "사용여부", "StateYN", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
             LoadData();
         }
@@ -127,19 +127,20 @@ namespace AltasMES
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtEquip.Text.Trim()))
+            {
+                MessageBox.Show("설비명을 입력해주세요");
+            }
             ResMessage<List<EquipmentVO>> result = service.GetAsync<List<EquipmentVO>>("api/Equipment/AllEquipment");
             if (result.Data != null)
             {
                 List<EquipmentVO> list = result.Data.FindAll((p) => p.EquipName.Contains(txtEquip.Text));
-                if (list.Count <= 0)
+                if (list.Count >= 0)
                 {
-                    MessageBox.Show("검색된 설비가 없습니다. 다시 확인하여 주세요");
                     txtEquip.Text = string.Empty;
-                    LoadData();
-                    return;
+                    dgvEquip.DataSource = list;
                 }
-                txtEquip.Text = string.Empty;
-                dgvEquip.DataSource = list;
+                
             }
             else
             {
