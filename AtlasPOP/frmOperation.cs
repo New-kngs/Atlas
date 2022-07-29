@@ -39,8 +39,6 @@ namespace AtlasPOP
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "자재투입\n 여부", "resourceYN", colwidth: 100, DataGridViewContentAlignment.MiddleCenter);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "창고입고 여부", "PutInYN", colwidth: 100, DataGridViewContentAlignment.MiddleCenter);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "담당ID", "EmpID", colwidth: 130, DataGridViewContentAlignment.MiddleCenter);
-            popDataGridUtil.AddGridTextBoxColumn(dgvList, "날짜", "Date", visibility:false);
-            popDataGridUtil.AddGridTextBoxColumn(dgvList, "시간", "Time", visibility: false);
             LoadData();
             TimeComboInit();
         }

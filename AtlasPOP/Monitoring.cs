@@ -10,20 +10,11 @@ using System.Windows.Forms;
 
 namespace AtlasPOP
 {
-    public partial class frmLogin : Form
+    public partial class Monitoring : UserControl
     {
-        public frmLogin()
+        public Monitoring()
         {
             InitializeComponent();
-        }
-
-        private void btnLogin_Click(object sender, EventArgs e)
-        {
-
-
-
-            this.Close();
-            this.DialogResult = DialogResult.OK;
         }
     }
 }

@@ -29,8 +29,5 @@ namespace AtlasDTO
         public string resourceYN { get; set; }
         public int ProcessID { get; set; }
 
-        public string Date { get; set; }
-        public int Time { get; set; }
-
     }
 }

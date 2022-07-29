@@ -25,8 +25,7 @@ namespace AtlasMVCAPI.Models
             {
                 cmd.Connection = new SqlConnection(strConn);
                 cmd.CommandText = @"select OpID, convert(varchar(20), OpDate, 120) OpDate, resourceYN, PutInYN, op.ItemID, ItemName, OrderID, op.ProcessID, ProcessName,    
-                                    PlanQty, OpState, BeginDate,EndDate, EmpID,
-                                    CONVERT(varchar(10),OpDate,120) Date, DatePart(hh,OpDate) Time
+                                    PlanQty, OpState, BeginDate,EndDate, EmpID
                                     from TB_Operation op join TB_Process p on op.ProcessID = p.ProcessID
                                     join TB_Item i on op.ItemID = i.ItemID";
 
@@ -47,10 +46,10 @@ namespace AtlasMVCAPI.Models
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = new SqlConnection(strConn);
-                cmd.CommandText = @"select OpID, convert(varchar(20), OpDate, 120) OpDate, resourceYN, ItemID, OrderID, op.ProcessID, ProcessName,    
-                                    PlanQty, OpState, BeginDate,EndDate, EmpID,
-                                    CONVERT(varchar(10),OpDate,120) Date, DatePart(hh,OpDate) Time
+                cmd.CommandText = @"select OpID, convert(varchar(20), OpDate, 120) OpDate, resourceYN, PutInYN, op.ItemID, ItemName, OrderID, op.ProcessID, ProcessName,    
+                                    PlanQty, OpState, BeginDate,EndDate, EmpID
                                     from TB_Operation op join TB_Process p on op.ProcessID = p.ProcessID
+                                    join TB_Item i on op.ItemID = i.ItemID
                                     where OpDate Between @dateFrom and @dateTo";
 
                 cmd.Parameters.AddWithValue("@dateFrom", dateFrom );
