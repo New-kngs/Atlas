@@ -23,6 +23,7 @@ namespace AltasMES
 
         private void frmWareHouse_Add_Load(object sender, EventArgs e)
         {
+            service = new ServiceHelper("");
             txtDate.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
             cboPdt.Items.AddRange(new string[] { "선택", "완제품", "반제품", "자재" });
@@ -41,8 +42,8 @@ namespace AltasMES
                 MessageBox.Show("창고명을 입력해주세요");
                 return;
             }
-            service = new ServiceHelper("api/WareHouse");
-            ResMessage<List<WareHouseVO>> volist = service.GetAsync<List<WareHouseVO>>("AllWareHouse");
+            
+            ResMessage<List<WareHouseVO>> volist = service.GetAsync<List<WareHouseVO>>("api/WareHouse/AllWareHouse");
 
             string WHName = txtName.Text;
             List<WareHouseVO> resultVO = volist.Data.FindAll((r) => r.WHName == WHName);
@@ -52,6 +53,7 @@ namespace AltasMES
                 txtName.Clear();
                 return;
             }
+            
             if (cboPdt.SelectedIndex == 0)
             {
                 MessageBox.Show("제품유형을 선택하여주시기 바랍니다.");
