@@ -478,6 +478,48 @@ namespace AtlasMVCAPI.Models
             }
         }
 
-        
+        public bool UdateState(OperationVO oper)
+        {
+            using (SqlCommand cmd = new SqlCommand
+            {
+                Connection = new SqlConnection(strConn),
+                CommandText = @"update TB_Operation set OpState = '작업중', ModifyUser = @ModifyUser, ModifyDate = @ModifyDate
+                                where OpID = @OpID"
+
+            })
+            {
+                cmd.Parameters.AddWithValue("@ModifyUser", oper.ModifyUser);
+                cmd.Parameters.AddWithValue("@OpID", oper.OpID);
+                cmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
+                cmd.Connection.Open();
+                int iRowAffect = cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+
+                return (iRowAffect > 0);
+            }
+        }
+
+        public bool UdateFinish(OperationVO oper)
+        {
+            using (SqlCommand cmd = new SqlCommand
+            {
+                Connection = new SqlConnection(strConn),
+                CommandText = @"update TB_Operation set OpState = '작업종료', ModifyUser = @ModifyUser, ModifyDate = @ModifyDate
+                                where OpID = @OpID"
+
+            })
+            {
+                cmd.Parameters.AddWithValue("@ModifyUser", oper.ModifyUser);
+                cmd.Parameters.AddWithValue("@OpID", oper.OpID);
+                cmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
+                cmd.Connection.Open();
+                int iRowAffect = cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+
+                return (iRowAffect > 0);
+            }
+        }
+
+
     }
 }

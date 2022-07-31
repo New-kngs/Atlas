@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32126.315
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32516.85
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtlasMES", "AltasMES\AtlasMES.csproj", "{4A481585-290A-4EB9-AF55-BD4367870CD3}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtlasPOP", "AtlasPOP\AtlasPOP.csproj", "{1AA0E1B6-6B2D-42C0-B4DC-1FDC0274A947}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtlasMVCAPI", "AtlasMVCAPI\AtlasMVCAPI.csproj", "{E4EB442D-273C-486A-ACD6-2884727DC5ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualPLCMachin", "VirtualPLCMachin\VirtualPLCMachin.csproj", "{CFA43358-F44E-4736-9351-DDA0035A870E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{E4EB442D-273C-486A-ACD6-2884727DC5ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4EB442D-273C-486A-ACD6-2884727DC5ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E4EB442D-273C-486A-ACD6-2884727DC5ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFA43358-F44E-4736-9351-DDA0035A870E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFA43358-F44E-4736-9351-DDA0035A870E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFA43358-F44E-4736-9351-DDA0035A870E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFA43358-F44E-4736-9351-DDA0035A870E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

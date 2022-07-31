@@ -17,7 +17,7 @@ namespace AtlasPOP
         public string EmpID { get; set; }
         public string EmpName { get; set; }
         public string DeptID { get; set; }
-        public OperationVO oper { get; set; }
+        public OperationVO opervo { get; set; }
         public string OperID { get; set; }
 
         string itemID;
@@ -41,6 +41,7 @@ namespace AtlasPOP
 
         private void POPMain_Load(object sender, EventArgs e)
         {
+            service = new popServiceHelper("");
             statusStrip1.Visible = false;
             toolStripLblUser.Text = "사용자 : " + EmpName;
             toolStripLblDept.Text = "부서 : " + DeptID;
@@ -62,11 +63,11 @@ namespace AtlasPOP
 
         public void LoadData()
         {
-            service = new popServiceHelper("api/pop");
-            itemList = service.GetAsync<List<ItemVO>>("getItem");
-            operList = service.GetAsync<List<OperationVO>>("AllOperation");
-            oderList = service.GetAsync<List<OrderVO>>("GetCustomer");
-            customerList = service.GetAsync<List<CustomerVO>>("GetCustomerName");
+            
+            itemList = service.GetAsync<List<ItemVO>>("api/pop/getItem");
+            operList = service.GetAsync<List<OperationVO>>("api/pop/AllOperation");
+            oderList = service.GetAsync<List<OrderVO>>("api/pop/GetCustomer");
+            customerList = service.GetAsync<List<CustomerVO>>("api/pop/GetCustomerName");
         }
         private void OpenCreateForm<T>() where T : Form, new()
         {
@@ -96,7 +97,11 @@ namespace AtlasPOP
             frm.MdiParent = this;
             frm.Show();
         }
-
+        /// <summary>
+        /// 작업지시 폼
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnOperation_Click(object sender, EventArgs e)
         {
             if (btnLogout.Text != "로그아웃")
@@ -107,6 +112,9 @@ namespace AtlasPOP
 
             frmOperation frm = new frmOperation();
             frm.MdiParent = this;
+            frm.MaximizeBox = false;
+            frm.MinimizeBox = false;
+            frm.ControlBox = false;
             frm.DataSendEvent += new DataGetEventHandler(this.DataGet);
             frm.Show();
         }
@@ -118,7 +126,6 @@ namespace AtlasPOP
                 itemID = operList.Data.Find((n) => n.OpID == OperID).ItemID;
                 OrderID = operList.Data.Find((n) => n.OpID == OperID).OrderID;
                 CustomerID = oderList.Data.Find((n) => n.OrderID == OrderID).CustomerID;
-
 
                 lblProcessName.Text = operList.Data.Find((n) => n.OpID == OperID).ProcessName;
                 lblItemName.Text = itemList.Data.Find((n) => n.ItemID == itemID).ItemName;
@@ -133,6 +140,12 @@ namespace AtlasPOP
             this.OperID = data;
         }
 
+
+        /// <summary>
+        /// 로그인/로그아웃
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnLogout_Click(object sender, EventArgs e)
         {
             if (btnLogout.Text != "로그아웃")
@@ -152,6 +165,11 @@ namespace AtlasPOP
                 this.Close();
             }
         }
+        /// <summary>
+        /// 자재투입
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 
         private void btnResource_Click(object sender, EventArgs e)
         {
@@ -168,9 +186,16 @@ namespace AtlasPOP
 
             frmResource frm = new frmResource(itemID, OperID);
             frm.MdiParent = this;
+            frm.MaximizeBox = false;
+            frm.MinimizeBox = false;
+            frm.ControlBox = false;
             frm.Show();
         }
-
+        /// <summary>
+        /// 실적고나리
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 
         private void btnPerfomance_Click(object sender, EventArgs e)
         {
@@ -186,6 +211,9 @@ namespace AtlasPOP
             }
             frmOperStatus frm = new frmOperStatus(itemID, OperID);
             frm.MdiParent = this;
+            frm.MaximizeBox = false;
+            frm.MinimizeBox = false;
+            frm.ControlBox = false;
             frm.Show();
         }
 
@@ -209,6 +237,9 @@ namespace AtlasPOP
 
             frmFail frm = new frmFail(FailQty, OperID, itemID, EmpID);
             frm.MdiParent = this;
+            frm.MaximizeBox = false;
+            frm.MinimizeBox = false;
+            frm.ControlBox = false;
             frm.Show();
         }
 
@@ -229,7 +260,30 @@ namespace AtlasPOP
                 MessageBox.Show("작업을 먼저 선택해주세요");
                 return;
             }
-            MessageBox.Show("시작이요");
+
+            string operState = operList.Data.Find((s) => s.OpID == OperID).OpState;
+            switch (operState)
+            {
+                case "작업중": MessageBox.Show("이미 작업중입니다.");  break;
+                case "작업종료": MessageBox.Show("작업이 종료된 작업지시입니다.");  break;
+            }
+
+            OperationVO oper = new OperationVO()
+            {
+                ModifyUser = EmpName,
+                OpID = OperID
+            };
+
+            ResMessage<List<OperationVO>> UdateState = service.PostAsync<OperationVO, List<OperationVO>>("api/pop/UdateState", oper);
+             if(UdateState.ErrCode == 0)
+            {
+                MessageBox.Show("작업이 시작되었습니다.");
+            }
+            else
+            {
+                MessageBox.Show("시작dksehla");
+            }
+            
         }
 
         private void btnEnd_Click(object sender, EventArgs e)
@@ -244,7 +298,28 @@ namespace AtlasPOP
                 MessageBox.Show("작업을 먼저 선택해주세요");
                 return;
             }
-            MessageBox.Show("종료요");
+            string operState = operList.Data.Find((s) => s.OpID == OperID).OpState;
+            switch (operState)
+            {
+                case "작업대기": MessageBox.Show("작업중이 아닙니다."); break;
+                case "작업종료": MessageBox.Show("이미 작업이 종료된 작업지시입니다."); break;
+            }
+
+            OperationVO oper = new OperationVO()
+            {
+                ModifyUser = EmpName,
+                OpID = OperID
+            };
+
+            ResMessage<List<OperationVO>> UdateState = service.PostAsync<OperationVO, List<OperationVO>>("api/pop/UdateFinish", oper);
+            if (UdateState.ErrCode == 0)
+            {
+                MessageBox.Show("작업이 종료되었습니다.");
+            }
+            else
+            {
+                MessageBox.Show("시작dksehla");
+            }
         }
     }
 }
