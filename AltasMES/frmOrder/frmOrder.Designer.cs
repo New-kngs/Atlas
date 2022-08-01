@@ -30,9 +30,7 @@ namespace AltasMES
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmOrder));
-            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.cboCustomer = new System.Windows.Forms.ComboBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.dtpFrom = new System.Windows.Forms.DateTimePicker();
             this.dtpTo = new System.Windows.Forms.DateTimePicker();
@@ -40,6 +38,8 @@ namespace AltasMES
             this.dgvOrder = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
             this.cboStateYN = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.BasePanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.Basepanel4.SuspendLayout();
@@ -62,15 +62,15 @@ namespace AltasMES
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.txtSearch);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.cboStateYN);
             this.groupBox2.Controls.Add(this.dtpTo);
             this.groupBox2.Controls.Add(this.dtpFrom);
-            this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.cboCustomer);
             this.groupBox2.Controls.Add(this.btnSearch);
-            this.groupBox2.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.groupBox2.Font = new System.Drawing.Font("맑은 고딕", 10.2F, System.Drawing.FontStyle.Bold);
             this.groupBox2.Text = "검색조건";
             // 
             // btnAdd
@@ -97,35 +97,15 @@ namespace AltasMES
             // 
             this.btnModify.Visible = false;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.Location = new System.Drawing.Point(257, 43);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 21);
-            this.label2.TabIndex = 19;
-            this.label2.Text = "거래처명";
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.Location = new System.Drawing.Point(604, 43);
+            this.label1.Location = new System.Drawing.Point(675, 43);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(22, 21);
             this.label1.TabIndex = 18;
             this.label1.Text = "~";
-            // 
-            // cboCustomer
-            // 
-            this.cboCustomer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboCustomer.FormattingEnabled = true;
-            this.cboCustomer.Location = new System.Drawing.Point(334, 39);
-            this.cboCustomer.Name = "cboCustomer";
-            this.cboCustomer.Size = new System.Drawing.Size(121, 29);
-            this.cboCustomer.TabIndex = 17;
-            this.cboCustomer.SelectedIndexChanged += new System.EventHandler(this.cboCustomer_SelectedIndexChanged);
             // 
             // btnSearch
             // 
@@ -134,12 +114,11 @@ namespace AltasMES
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSearch.ImageIndex = 3;
             this.btnSearch.ImageList = this.imageList1;
-            this.btnSearch.Location = new System.Drawing.Point(784, 39);
+            this.btnSearch.Location = new System.Drawing.Point(830, 40);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.btnSearch.Size = new System.Drawing.Size(78, 29);
+            this.btnSearch.Size = new System.Drawing.Size(32, 26);
             this.btnSearch.TabIndex = 16;
-            this.btnSearch.Text = "조회";
             this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
@@ -147,17 +126,17 @@ namespace AltasMES
             // dtpFrom
             // 
             this.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFrom.Location = new System.Drawing.Point(478, 39);
+            this.dtpFrom.Location = new System.Drawing.Point(549, 40);
             this.dtpFrom.Name = "dtpFrom";
-            this.dtpFrom.Size = new System.Drawing.Size(123, 29);
+            this.dtpFrom.Size = new System.Drawing.Size(123, 26);
             this.dtpFrom.TabIndex = 20;
             // 
             // dtpTo
             // 
             this.dtpTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpTo.Location = new System.Drawing.Point(629, 39);
+            this.dtpTo.Location = new System.Drawing.Point(700, 40);
             this.dtpTo.Name = "dtpTo";
-            this.dtpTo.Size = new System.Drawing.Size(123, 29);
+            this.dtpTo.Size = new System.Drawing.Size(123, 26);
             this.dtpTo.TabIndex = 21;
             // 
             // groupBox3
@@ -197,11 +176,29 @@ namespace AltasMES
             // 
             this.cboStateYN.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboStateYN.FormattingEnabled = true;
-            this.cboStateYN.Location = new System.Drawing.Point(107, 39);
+            this.cboStateYN.Location = new System.Drawing.Point(96, 40);
             this.cboStateYN.Name = "cboStateYN";
-            this.cboStateYN.Size = new System.Drawing.Size(121, 29);
+            this.cboStateYN.Size = new System.Drawing.Size(121, 27);
             this.cboStateYN.TabIndex = 24;
             this.cboStateYN.SelectedIndexChanged += new System.EventHandler(this.cboStateYN_SelectedIndexChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label2.Location = new System.Drawing.Point(233, 43);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(74, 21);
+            this.label2.TabIndex = 28;
+            this.label2.Text = "거래처명";
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Location = new System.Drawing.Point(310, 40);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(215, 26);
+            this.txtSearch.TabIndex = 26;
+            this.txtSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearch_KeyPress);
             // 
             // frmOrder
             // 
@@ -228,9 +225,7 @@ namespace AltasMES
         }
 
         #endregion
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cboCustomer;
         protected System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.DateTimePicker dtpTo;
         private System.Windows.Forms.DateTimePicker dtpFrom;
@@ -238,5 +233,7 @@ namespace AltasMES
         private System.Windows.Forms.DataGridView dgvOrder;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cboStateYN;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtSearch;
     }
 }
