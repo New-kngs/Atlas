@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace AtlasMVCAPI.Controllers.WebControllers
+namespace AtlasMVCAPI.Controllers
 { 
     public class HomeController : Controller
     {

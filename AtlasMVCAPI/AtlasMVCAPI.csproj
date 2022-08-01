@@ -2023,13 +2023,10 @@
     <Content Include="plugins\uplot\uPlot.iife.js" />
     <Content Include="plugins\uplot\uPlot.iife.min.js" />
     <Content Include="plugins\uplot\uPlot.min.css" />
-    <Content Include="Uploads\20220727162529.png" />
-    <Content Include="Uploads\20220727163243.gif" />
-    <Content Include="Uploads\20220727164743.png" />
-    <Content Include="Uploads\20220727164805.png" />
-    <Content Include="Uploads\20220727180444.png" />
-    <Content Include="Uploads\20220728093109.PNG" />
-    <Content Include="Uploads\20220728093127.PNG" />
+    <Content Include="Uploads\20220801155440.PNG" />
+    <Content Include="Uploads\20220801155452.PNG" />
+    <Content Include="Uploads\20220801155508.PNG" />
+    <Content Include="Uploads\20220801155547.PNG" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -2046,6 +2043,7 @@
     <Compile Include="Controllers\ApiControllers\CustomerController.cs" />
     <Compile Include="Controllers\ApiControllers\OrderController.cs" />
     <Compile Include="Controllers\WebControllers\CartController.cs" />
+    <Compile Include="Controllers\WebControllers\EisController.cs" />
     <Compile Include="Controllers\WebControllers\HomeController.cs" />
     <Compile Include="Controllers\WebControllers\LoginController.cs" />
     <Compile Include="Controllers\WebControllers\OrderWebController.cs" />
@@ -2216,6 +2214,9 @@
     <Content Include="Views\Cart\AddToCart.cshtml" />
     <Content Include="Views\Login\Lock.cshtml" />
     <Content Include="Views\OrderWeb\History.cshtml" />
+    <Content Include="Views\Cart\PopUp.cshtml" />
+    <Content Include="Views\Cart\Summary.cshtml" />
+    <Content Include="Views\Eis\HomePage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

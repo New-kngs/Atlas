@@ -13,7 +13,7 @@ namespace AtlasMVCAPI.Controllers
     [RoutePrefix("api/Department")]
     public class DepartmentController : ApiController
     {
-       /* //https://localhost:44391/api/Department/all
+      //https://localhost:44391/api/Department/all
         [Route("all")]
         public IHttpActionResult GetDepartmentAll()
         {
@@ -41,7 +41,7 @@ namespace AtlasMVCAPI.Controllers
                     ErrMsg = "서비스 관리자에게 문의하시기 바랍니다."
                 });
             }
-        }*/
+        }
 
 
     }

@@ -278,6 +278,7 @@ namespace AltasMES
             this.txtSafeQty.ReadOnly = true;
             this.txtSafeQty.Size = new System.Drawing.Size(180, 29);
             this.txtSafeQty.TabIndex = 116;
+            this.txtSafeQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtQty
             // 
@@ -287,6 +288,7 @@ namespace AltasMES
             this.txtQty.ReadOnly = true;
             this.txtQty.Size = new System.Drawing.Size(180, 29);
             this.txtQty.TabIndex = 115;
+            this.txtQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtPrice
             // 
@@ -296,6 +298,7 @@ namespace AltasMES
             this.txtPrice.ReadOnly = true;
             this.txtPrice.Size = new System.Drawing.Size(180, 29);
             this.txtPrice.TabIndex = 114;
+            this.txtPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtName
             // 

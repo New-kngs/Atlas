@@ -155,6 +155,7 @@ namespace AltasMES
             this.nmrSafeQty.Name = "nmrSafeQty";
             this.nmrSafeQty.Size = new System.Drawing.Size(180, 29);
             this.nmrSafeQty.TabIndex = 132;
+            this.nmrSafeQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // nmrQty
             // 
@@ -172,6 +173,7 @@ namespace AltasMES
             this.nmrQty.Name = "nmrQty";
             this.nmrQty.Size = new System.Drawing.Size(180, 29);
             this.nmrQty.TabIndex = 131;
+            this.nmrQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtWhName
             // 
@@ -263,13 +265,12 @@ namespace AltasMES
             this.btnImgFind.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnImgFind.ImageIndex = 4;
             this.btnImgFind.ImageList = this.imageList1;
-            this.btnImgFind.Location = new System.Drawing.Point(312, 433);
+            this.btnImgFind.Location = new System.Drawing.Point(352, 436);
             this.btnImgFind.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnImgFind.Name = "btnImgFind";
             this.btnImgFind.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.btnImgFind.Size = new System.Drawing.Size(73, 34);
+            this.btnImgFind.Size = new System.Drawing.Size(33, 29);
             this.btnImgFind.TabIndex = 64;
-            this.btnImgFind.Text = "찾기";
             this.btnImgFind.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnImgFind.UseVisualStyleBackColor = true;
             this.btnImgFind.Click += new System.EventHandler(this.btnImgFind_Click);
@@ -293,7 +294,7 @@ namespace AltasMES
             this.txtImage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtImage.Name = "txtImage";
             this.txtImage.ReadOnly = true;
-            this.txtImage.Size = new System.Drawing.Size(300, 29);
+            this.txtImage.Size = new System.Drawing.Size(340, 29);
             this.txtImage.TabIndex = 63;
             // 
             // txtExplain
@@ -312,6 +313,7 @@ namespace AltasMES
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(180, 29);
             this.txtPrice.TabIndex = 114;
+            this.txtPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrice_KeyPress);
             // 
             // txtName

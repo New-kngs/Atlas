@@ -36,7 +36,7 @@ namespace AtlasMVCAPI.Models
             }
         }
 
-        public void RemoveItem(int prdNo)
+        public void RemoveItem(string prdNo)
         {
             CartLine line = lines.Where<CartLine>((p) => p.Product.ItemID.Equals(prdNo)).FirstOrDefault();
 

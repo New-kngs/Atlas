@@ -1,0 +1,12 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    <!-- 로그인한 세션이 없을 경우 로그인 페이지로 강제 이동-->
+    if(Context.Request.Path != "/Login/Lock")
+    {
+        if(Session["LoginInfo"] == null)
+        {
+            Context.Response.Redirect("/Login/Lock");
+        }
+    }
+}

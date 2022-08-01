@@ -15,7 +15,6 @@
             <div class="text-center">
                 <img src="http://1004towel.com/SG/img/cart_img_empty.gif" alt="비어있는 장바구니" />
             </div>
-
         }
         else
         {
@@ -40,16 +39,23 @@
                                         <td class="text-right">@line.Product.ItemPrice.ToString("c")</td>
                                         <td class="text-center">@line.Qty</td>
                                         <td class="text-right">@((line.Product.ItemPrice * line.Qty).ToString("c"))</td>
-                                        <td class="text-center"><i class="fa fa-solid fa-trash"></i></td>
+                                        <td class="text-center">
+                                            @using (Html.BeginForm("RemoveToCart", "Cart", FormMethod.Post))
+                                            {
+                                                @Html.Hidden("productID", line.Product.ItemID)
+                                                <button type="submit">
+                                                    <i class="fa fa-solid fa-trash"></i>
+                                                </button>
+                                            }
+                                        </td>
                                     </tr>
                                 }
                             </tbody>
                             <tfoot>
                                 <tr>
-                                </tr>
-                                <tr>
                                     <td colspan="3" class="text-right">Total :</td>
-                                    <td class="text-right">@Model.CalcTotalValue().ToString("c")</td>
+                                    <td colspan="1" class="text-right">@Model.CalcTotalValue().ToString("c")</td>
+                                    <td colspan="1" class="text-right">&nbsp;</td>
                                 </tr>
                                 <tr>
                                     <td colspan="4" class="text-right">
@@ -59,7 +65,7 @@
                                     </td>
 
                                     <td class="text-center">
-                                        @using (Html.BeginForm("ButtonOrder", "Cart", FormMethod.Post))
+                                        @using (Html.BeginForm("History", "OrderWeb", FormMethod.Post))
                                         {
                                             <button type="submit" class="btn btn-primary" onclick="javascript: MessageBox();">
                                                 주문하기
@@ -70,8 +76,10 @@
                                                 <script language="javaScript">
                                                     function MessageBox() {
                                                         alert("주문을 완료 하였습니다.");
+                                                       // Session["Cart"] = null; // 카트를 초기화
                                                     }
                                                 </script>
+
                                             }
                                         }
                                     </td>

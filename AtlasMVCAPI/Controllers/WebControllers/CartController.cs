@@ -7,7 +7,7 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
-namespace AtlasMVCAPI.Controllers.WebControllers
+namespace AtlasMVCAPI.Controllers
 {
     public class CartController : Controller
     {
@@ -18,6 +18,18 @@ namespace AtlasMVCAPI.Controllers.WebControllers
             Cart cart = GetCart();
             return View(cart);
         }
+        public PartialViewResult Summary()
+        {
+            return PartialView(GetCart());
+        }
+
+        // 상품 상세 팝업창
+        public ActionResult PopUp()
+        {
+            // ViewData[""];
+            return View();
+        }
+
         [HttpPost]
         public ActionResult AddToCart(string productID, string returnUrl)
         {
@@ -34,7 +46,17 @@ namespace AtlasMVCAPI.Controllers.WebControllers
                 // 장바구니 추가
                 Cart cart = GetCart();
                 cart.AddItem(product, 1);
+                Session["Cart"] = cart;
             }
+            // 장바구니 페이지로 이동
+            return RedirectToAction("Basket");
+        }
+        [HttpPost]
+        public ActionResult RemoveToCart(string productID)
+        {
+            Cart cart = GetCart();
+            cart.RemoveItem(productID);
+            Session["Cart"] = cart;
             // 장바구니 페이지로 이동
             return RedirectToAction("Basket");
         }
@@ -58,7 +80,7 @@ namespace AtlasMVCAPI.Controllers.WebControllers
             StringBuilder sbQty = new StringBuilder();
             if (cart != null)
             {
-                LoginVO loginUser = (LoginVO)Session["UserVO"];
+                LoginVO loginUser = (LoginVO)Session["LoginInfo"];
                 Cart CartDetail = (Cart)Session["Cart"];
 
                 foreach (CartLine cartRow in CartDetail.Lines)

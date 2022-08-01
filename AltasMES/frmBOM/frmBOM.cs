@@ -67,49 +67,55 @@ namespace AltasMES
             ResMessage<List<ItemVO>> volist = service.GetAsync<List<ItemVO>>("api/Item/AllItem");
 
             string category = cboPdt.Text;
+            string name = txtPdt.Text;
             List<ItemVO> resultVO = volist.Data.FindAll((r) => r.ItemCategory == category);
+            List<ItemVO> resultVO2 = volist.Data.FindAll((r) => r.ItemName.Contains(name));
+            List<ItemVO> resultVO1 = resultVO.FindAll((r) => r.ItemName.Contains(name));
 
-            if (cboPdt.SelectedIndex == 0)
+            if (string.IsNullOrWhiteSpace(txtPdt.Text))
             {
-                //dgvPdt.DataSource = volist.Data;
-                DataLoad();
+                if (cboPdt.SelectedIndex == 0)
+                {
+                    //dgvPdt.DataSource = volist.Data;
+                    DataLoad();
+                }
+                else
+                {
+                    //dgvPdt.DataSource = resultVO;                
+                    dgvPdt.DataSource = new AdvancedList<ItemVO>(resultVO);
+                }
             }
             else
             {
-                //dgvPdt.DataSource = resultVO;                
-                dgvPdt.DataSource = new AdvancedList<ItemVO>(resultVO);
+                if (cboPdt.SelectedIndex == 0)
+                {
+                    dgvPdt.DataSource = new AdvancedList<ItemVO>(resultVO2);
+                }
+                else
+                {
+                    //dgvPdt.DataSource = resultVO;                
+                    dgvPdt.DataSource = new AdvancedList<ItemVO>(resultVO1);
+                }
             }
-
         }
         private void cboPdt_SelectedIndexChanged(object sender, EventArgs e)
-        {            
+        {
             dgvA.DataSource = null;
             dgvD.DataSource = null;
+            txtPdt.Text = null;
             if (cboPdt.SelectedIndex == 0)
             {
                 dgvPdt.DataSource = null;
-                //dgvPdt.DataSource = volist.Data;
                 DataLoad();
             }
-
             else
             {
                 ResMessage<List<ItemVO>> volist = service.GetAsync<List<ItemVO>>("api/Item/AllItem");
 
                 string category = cboPdt.Text;
-                List<ItemVO> resultVO = volist.Data.FindAll((r) => r.ItemCategory == category);
-                //dgvPdt.DataSource = resultVO;                
-                dgvPdt.DataSource = new AdvancedList<ItemVO>(resultVO);
-                //if (allList != null)
-                //{
-                //    cList = allList.FindAll(n => n.DeptName.Equals(cboCategory.Text));
-                //    dgvEmp.DataSource = null;
-                //    dgvEmp.DataSource = new AdvancedList<EmployeeVO>(cList);
-
-                //}
-
+                List<ItemVO> resultvo = volist.Data.FindAll((r) => r.ItemCategory == category);
+                dgvPdt.DataSource = new AdvancedList<ItemVO>(resultvo);
             }
-
             dgvPdt.ClearSelection();
         }
 
@@ -122,7 +128,7 @@ namespace AltasMES
 
             if (e.RowIndex > -1)
             {
-                string pdtID = dgvPdt[0, e.RowIndex].Value.ToString();
+                string pdtID = dgvPdt["ItemID", e.RowIndex].Value.ToString();
                 string category = dgvPdt["ItemCategory", e.RowIndex].Value.ToString();
 
                 if (category == "완제품")
@@ -141,14 +147,14 @@ namespace AltasMES
                     List<BOMVO> listR = resResult.Data.FindAll((r) => r.ChildID == pdtID);
                     dgvD.DataSource = null;
                     dgvD.DataSource = listR;
-                }      
+                }
             }
             else
             {
                 return;
             }
         }
-        
+
         private void frmBOM_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (service != null)

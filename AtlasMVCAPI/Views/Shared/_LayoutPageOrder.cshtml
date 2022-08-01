@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using AtlasDTO;
+@{ 
+    LoginVO loginInfo = Session["LoginInfo"] as LoginVO;
+}
+<!DOCTYPE html>
 
 <html lang="en">
 <head>
@@ -15,8 +19,9 @@
 </head>
 <body class="hold-transition layout-top-nav">
     <div class="wrapper">
-
         <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
+
+            <!-- Left navbar links -->
             <div class="container">
                 <a href="/Home/Index/" class="navbar-brand">
                     <img src="/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -28,41 +33,65 @@
                 <div class="collapse navbar-collapse order-3" id="navbarCollapse">
 
                     <ul class="navbar-nav">
-                        <li class="nav-link">
-                            <a href="/Cart/Basket/">
-                                <i class="fa fa-shopping-basket">
-                                    <span class="badge badge-danger navbar-badge">3</span>
-                                </i>
-                            </a>
-                        </li>
                         <li class="nav-item">
                             <a href="/Product/List" class="nav-link">제품목록</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <i class="fa fa-thin fa-phone"></i>
                         </li>
                         <li class="nav-item">
                             <a href="/OrderWeb/History/" class="nav-link">주문내역</a>
                         </li>
-                    </ul>
-                </div>
-                <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-
-
-                    @if (Session["UserVO"] != null)
-                    {
+                        <!-- 파셜뷰 -->
                         <li class="nav-item">
+                            <a class="nav-link" href="/Cart/Basket/">
+                                <i class="fa fa-shopping-basket"></i>
+                                @Html.Action("Summary", "Cart")
+                                </i>
+                            </a>
+                        </li>
+                        
+                        <!-- 파셜뷰 -->
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" data-toggle="dropdown" href="#">
+                                <i class="fa fa-thin fa-phone"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-left">
+                                <span class="dropdown-header">담당자 정보</span>
+                                <div class="dropdown-divider"></div>
+                                <a href="#" class="dropdown-item">
+                                    <i class="fa fa-user-tie"></i> 이름
+                                    <!--loginInfo.DeptName.ToString()-->
+                                    <!--Session["EmpName"]-->
+                                    <span class="float-right text-muted text-sm">@loginInfo.DeptName.ToString() @loginInfo.EmpName.ToString()</span>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a href="#" class="dropdown-item">
+                                    <i class="fas fa-phone-volume"></i> 휴대폰 정보
+                                    <span class="float-right text-muted text-sm">@loginInfo.EmpPhone.ToString()</span>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a href="#" class="dropdown-item">
+                                    <i class="fas fa-envelope mr-2"></i> 이메일
+                                    <span class="float-right text-muted text-sm">@loginInfo.EmpEmail.ToString()</span>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item" data-toggle="dropdown">
                             <i class='fa fa-id-badge'></i>
                         </li>
                         <li class="nav-item">
-                            <p>@Session["CustomerName"].ToString()</p>
+                            <p>@loginInfo.CustomerName.ToString()</p>
                         </li>
-                    }
-
-                    <li class="nav-item">
-                        <button type="button" class="btn btn-secondary">LogOut</button>
-                    </li>
-                </ul>
+                        <li class="nav-item">
+                            @using (Html.BeginForm("Logout", "Login"))
+                            {
+                                <input type="submit" class="btn btn-secondary" value="LogOut"></input>
+                            }
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
         <div class="content-wrapper">
@@ -80,33 +109,30 @@
     </div>
 
     <div>
-        <aside class="control-sidebar control-sidebar-dark">
-        </aside>
-
-
         <footer class="main-footer">
 
             <div class="float-right d-none d-sm-inline">
-                Anything you want
+                제휴 문의 : admin@Atlas.co.kr
             </div>
 
             <strong>Copyright &copy; 2014-2021 <a href="#">Atlas Mattress</a>.</strong> All rights reserved.
         </footer>
     </div>
 
-    <!-- ./wrapper -->
-    <!-- REQUIRED SCRIPTS -->
-    <!-- jQuery -->
-    <script src="/plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="/dist/js/adminlte.min.js"></script>
 
-    <!-- error
+    <!-- ./wrapper -->
+          <!-- REQUIRED SCRIPTS -->
+          <!-- jQuery -->
+          <script src="/plugins/jquery/jquery.min.js"></script>
+          <!-- Bootstrap 4 -->
+          <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+          <!-- AdminLTE App -->
+          <script src="/dist/js/adminlte.min.js"></script>
+
+          <!-- error
     <script nonce="1ebd55e0-eb72-43bf-b50a-156b2955bfc8">(function (w, d) { !function (a, e, t, r) { a.zarazData = a.zarazData || {}; a.zarazData.executed = []; a.zaraz = { deferred: [] }; a.zaraz.q = []; a.zaraz._f = function (e) { return function () { var t = Array.prototype.slice.call(arguments); a.zaraz.q.push({ m: e, a: t }) } }; for (const e of ["track", "set", "ecommerce", "debug"]) a.zaraz[e] = a.zaraz._f(e); a.zaraz.init = () => { var t = e.getElementsByTagName(r)[0], z = e.createElement(r), n = e.getElementsByTagName("title")[0]; n && (a.zarazData.t = e.getElementsByTagName("title")[0].text); a.zarazData.x = Math.random(); a.zarazData.w = a.screen.width; a.zarazData.h = a.screen.height; a.zarazData.j = a.innerHeight; a.zarazData.e = a.innerWidth; a.zarazData.l = a.location.href; a.zarazData.r = e.referrer; a.zarazData.k = a.screen.colorDepth; a.zarazData.n = e.characterSet; a.zarazData.o = (new Date).getTimezoneOffset(); a.zarazData.q = []; for (; a.zaraz.q.length;) { const e = a.zaraz.q.shift(); a.zarazData.q.push(e) } z.defer = !0; for (const e of [localStorage, sessionStorage]) Object.keys(e || {}).filter((a => a.startsWith("_zaraz_"))).forEach((t => { try { a.zarazData["z_" + t.slice(7)] = JSON.parse(e.getItem(t)) } catch { a.zarazData["z_" + t.slice(7)] = e.getItem(t) } })); z.referrerPolicy = "origin"; z.src = "/cdn-cgi/zaraz/s.js?z=" + btoa(encodeURIComponent(JSON.stringify(a.zarazData))); t.parentNode.insertBefore(z, t) };["complete", "interactive"].includes(e.readyState) ? zaraz.init() : a.addEventListener("DOMContentLoaded", zaraz.init) }(w, d, 0, "script"); })(window, document);</script>
     <!-- <script src="jquery.min.js"></script> -->
-    <!-- error <script src="owlcarousel/owl.carousel.min.js"></script>-->
+            <!-- error <script src="owlcarousel/owl.carousel.min.js"></script>-->
 
     @RenderSection("Scripts", required: false)
 </body>

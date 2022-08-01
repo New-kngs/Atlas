@@ -1,9 +1,10 @@
-﻿@{
+﻿@*@model IEnumerable<L>*@
+@{
     ViewBag.Title = "History";
     Layout = "~/Views/Shared/_LayoutPageOrder.cshtml";
 }
 @using AtlasDTO;
-@{ 
+@{
     List<OrderVO> orders = ViewData["Order"] as List<OrderVO>;
     List<OrderDetailVO> orderDetails = ViewData["Order"] as List<OrderDetailVO>;
 }
@@ -14,11 +15,10 @@
             <table>
                 <tr>
                     <td></td>
-                    <td>주문ID</td>
-                    <td>출하여부</td>
-                    <td>주문확정일</td>
-                    <td>주문일</td>
-                    <td>담당자</td>
+                    <td>주문번호</td>
+                    <td>결제금액</td>
+                    <td>출하상태</td>
+                    <td>결제일자</td>
                 </tr>
                 @for (int i = 0; i < orders.Count; i++)
                 {
@@ -48,4 +48,4 @@
             </table>
         </div>
     </div>
-</div> 
+</div>

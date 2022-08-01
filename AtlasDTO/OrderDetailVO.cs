@@ -11,5 +11,7 @@ namespace AtlasDTO
         public string OrderID { get; set; }
         public string ItemID { get; set; }
         public int Qty { get; set; }
+
+        public string ItemName { get; set; }
     }
 }

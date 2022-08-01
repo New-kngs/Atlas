@@ -19,5 +19,8 @@ namespace AtlasDTO
 
         // 추가
         public string CustomerName { get; set; }
+
+        // 추가(지현)
+        public int price { get; set; }
     }
 }

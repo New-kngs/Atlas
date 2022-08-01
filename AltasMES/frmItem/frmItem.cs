@@ -32,15 +32,15 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvItem, "유형", "ItemCategory", colwidth: 65, align: DataGridViewContentAlignment.MiddleLeft);
             DataGridUtil.AddGridTextBoxColumn(dgvItem, "제품명", "ItemName", colwidth: 200, align: DataGridViewContentAlignment.MiddleLeft);            
             DataGridUtil.AddGridTextBoxColumn(dgvItem, "규격", "ItemSize", colwidth: 65, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvItem, "거래처명", "CustomerName", colwidth: 190, align: DataGridViewContentAlignment.MiddleLeft);
+            DataGridUtil.AddGridTextBoxColumn(dgvItem, "거래처명", "CustomerName", colwidth: 185, align: DataGridViewContentAlignment.MiddleLeft);
             DataGridUtil.AddGridTextBoxColumn(dgvItem, "창고", "WHName", colwidth: 100, align: DataGridViewContentAlignment.MiddleLeft);
             DataGridUtil.AddGridTextBoxColumn(dgvItem, "단가", "ItemPrice", colwidth: 95, align: DataGridViewContentAlignment.MiddleRight);            
             DataGridUtil.AddGridTextBoxColumn(dgvItem, "재고수량", "CurrentQty", colwidth: 100, align: DataGridViewContentAlignment.MiddleRight);
             DataGridUtil.AddGridTextBoxColumn(dgvItem, "안전재고량", "SafeQty", colwidth: 120, align: DataGridViewContentAlignment.MiddleRight);
             DataGridUtil.AddGridTextBoxColumn(dgvItem, "생성사용자", "CreateUser", colwidth: 120, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvItem, "생성날짜", "CreateDate", colwidth: 160, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvItem, "생성날짜", "CreateDate", colwidth: 165, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvItem, "변경사용자", "ModifyUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvItem, "변경날짜", "ModifyDate", colwidth: 160, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvItem, "변경날짜", "ModifyDate", colwidth: 165, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvItem, "사용여부", "StateYN", colwidth: 100, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvItem, "이미지", "ItmeImage", colwidth: 100, align: DataGridViewContentAlignment.MiddleCenter, visibility: false);
             DataGridUtil.AddGridTextBoxColumn(dgvItem, "설명", "ItemExplain", colwidth: 100, align: DataGridViewContentAlignment.MiddleCenter, visibility:false);
@@ -49,7 +49,7 @@ namespace AltasMES
 
             LoadData();
 
-            cboCategory.Items.AddRange(new string[] { "선택", "완제품", "반제품", "자재" });
+            cboCategory.Items.AddRange(new string[] { "전체", "완제품", "반제품", "자재" });
             cboCategory.SelectedIndex = 0;
         }
 
@@ -74,8 +74,9 @@ namespace AltasMES
         {
             if (string.IsNullOrWhiteSpace(txtSearch.Text) && cboCategory.SelectedIndex == 0)
             {
-                MessageBox.Show("제품 유형을 선택하거나 제품명을 입력해 주세요");
-                return;
+                LoadData();
+                //MessageBox.Show("제품 유형을 선택하거나 제품명을 입력해 주세요");
+                //return;
             }
 
             if (string.IsNullOrWhiteSpace(txtSearch.Text.Trim())) // 텍스트 조건 없이 콤보박스만
@@ -87,6 +88,8 @@ namespace AltasMES
                 if (cboCategory.SelectedIndex == 0) // 텍스트 조건만
                 {
                     List<ItemVO> citemList = itemList.FindAll(p => p.ItemName.ToLower().Contains(txtSearch.Text.ToLower().Trim()));
+
+                    //txtSearch.Clear();
 
                     dgvItem.DataSource = null;
                     dgvItem.DataSource = new AdvancedList<ItemVO>(citemList);

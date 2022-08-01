@@ -28,7 +28,7 @@ namespace AltasMES
             groupBox2.Text = "검색조건";
             groupBox3.Text = "부서현황";
 
-            service = new ServiceHelper("api/Department");
+            service = new ServiceHelper("api/Department/");
 
             allList = service.GetAsync<List<DepartmentVO>>("all").Data;
 
