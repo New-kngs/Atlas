@@ -109,12 +109,11 @@ namespace AltasMES
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSearch.ImageIndex = 3;
             this.btnSearch.ImageList = this.imageList1;
-            this.btnSearch.Location = new System.Drawing.Point(524, 39);
+            this.btnSearch.Location = new System.Drawing.Point(518, 40);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.btnSearch.Size = new System.Drawing.Size(78, 29);
+            this.btnSearch.Size = new System.Drawing.Size(33, 26);
             this.btnSearch.TabIndex = 6;
-            this.btnSearch.Text = "조회";
             this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);

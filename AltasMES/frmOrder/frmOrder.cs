@@ -15,7 +15,7 @@ namespace AltasMES
     {
         ServiceHelper srv = null;
         List<OrderVO> orderList = null;  // 주문
-        List<CustomerVO> cusList = null; // 출고 거래처 바인딩
+        //List<CustomerVO> cusList = null; // 출고 거래처 바인딩
 
         string selId = string.Empty;
 
@@ -29,7 +29,7 @@ namespace AltasMES
             srv = new ServiceHelper("");
 
             orderList = srv.GetAsync<List<OrderVO>>("api/Order/GetAllOrder").Data;
-            cusList = srv.GetAsync<List<CustomerVO>>("api/Customer/AllCustomer").Data;
+            //cusList = srv.GetAsync<List<CustomerVO>>("api/Customer/AllCustomer").Data;
 
             DataGridUtil.SetInitGridView(dgvOrder);
             DataGridUtil.AddGridTextBoxColumn(dgvOrder, "주문ID", "OrderID", colwidth: 100, align: DataGridViewContentAlignment.MiddleCenter);
@@ -37,9 +37,9 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvOrder, "출하여부", "OrderShip", colwidth: 110, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvOrder, "주문완료일", "OrderEndDate", colwidth: 160, align: DataGridViewContentAlignment.MiddleCenter);            
             DataGridUtil.AddGridTextBoxColumn(dgvOrder, "생성사용자", "CreateUser", colwidth: 120, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvOrder, "생성날짜", "CreateDate", colwidth: 160, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvOrder, "주문날짜", "CreateDate", colwidth: 170, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvOrder, "변경사용자", "ModifyUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvOrder, "변경날짜", "ModifyDate", colwidth: 160, align: DataGridViewContentAlignment.MiddleCenter);            
+            DataGridUtil.AddGridTextBoxColumn(dgvOrder, "변경날짜", "ModifyDate", colwidth: 170, align: DataGridViewContentAlignment.MiddleCenter);            
 
             //CommonUtil.ComboBinding<CustomerVO>(cboCustomer, cusList.FindAll(p => p.Category.Equals("출고")), "CustomerName", "CustomerID", blankText: "선택");
 
@@ -112,8 +112,7 @@ namespace AltasMES
             {
                 if (cboStateYN.SelectedIndex == 0)
                 {
-                    List<OrderVO> list = orderList.FindAll(p => p.CustomerName.Contains(txtSearch.Text.Trim()));
-                    
+                    List<OrderVO> list = orderList.FindAll(p => p.CustomerName.Contains(txtSearch.Text.Trim()));                    
 
                     dgvOrder.DataSource = null;
                     dgvOrder.DataSource = new AdvancedList<OrderVO>(list);

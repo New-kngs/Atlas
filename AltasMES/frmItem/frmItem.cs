@@ -49,7 +49,7 @@ namespace AltasMES
 
             LoadData();
 
-            cboCategory.Items.AddRange(new string[] { "선택", "완제품", "반제품", "자재" });
+            cboCategory.Items.AddRange(new string[] { "전체", "완제품", "반제품", "자재" });
             cboCategory.SelectedIndex = 0;
         }
 
@@ -74,7 +74,7 @@ namespace AltasMES
         {
             if (string.IsNullOrWhiteSpace(txtSearch.Text) && cboCategory.SelectedIndex == 0)
             {
-                MessageBox.Show("제품 유형을 선택하거나 제품명을 입력해 주세요");
+                //MessageBox.Show("제품 유형을 선택하거나 제품명을 입력해 주세요");
                 LoadData();
                 return;
             }
