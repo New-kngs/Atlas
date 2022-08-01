@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 using AtlasDTO;
 using AtlasMVCAPI.Models;
 
-namespace AtlasMVCAPI.Controllers.WebControllers
+namespace AtlasMVCAPI.Controllers
 {
     public class ProductController : Controller
     {

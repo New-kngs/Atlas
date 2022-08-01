@@ -40,7 +40,15 @@
                                         <td class="text-right">@line.Product.ItemPrice.ToString("c")</td>
                                         <td class="text-center">@line.Qty</td>
                                         <td class="text-right">@((line.Product.ItemPrice * line.Qty).ToString("c"))</td>
-                                        <td class="text-center"><i class="fa fa-solid fa-trash"></i></td>
+                                        <td class="text-center">
+                                            @using (Html.BeginForm("RemoveToCart", "Cart", FormMethod.Post))
+                                            {
+                                                @Html.Hidden(line.Product.ItemID)
+                                                <button type ="submit">
+                                                    <i class="fa fa-solid fa-trash"></i>
+                                                </button>
+                                            }
+                                        </td>
                                     </tr>
                                 }
                             </tbody>
@@ -59,7 +67,7 @@
                                     </td>
 
                                     <td class="text-center">
-                                        @using (Html.BeginForm("ButtonOrder", "Cart", FormMethod.Post))
+                                        @using (Html.BeginForm("History", "OrderWeb", FormMethod.Post))
                                         {
                                             <button type="submit" class="btn btn-primary" onclick="javascript: MessageBox();">
                                                 주문하기
@@ -67,11 +75,14 @@
                                             </button> <!-- name="ModelCart"-->
                                             if (Model != null)
                                             {
+                                                Session["Cart"] = null; // 카트를 초기화
+
                                                 <script language="javaScript">
                                                     function MessageBox() {
                                                         alert("주문을 완료 하였습니다.");
                                                     }
                                                 </script>
+
                                             }
                                         }
                                     </td>
