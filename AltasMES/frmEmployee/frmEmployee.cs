@@ -30,7 +30,7 @@ namespace AltasMES
         private void frmEmployee_Load(object sender, EventArgs e)
         {
 
-            service = new ServiceHelper("api/Employee");
+            service = new ServiceHelper("api/Employee/");
             ResMessage<List<EmployeeVO>> result = service.GetAsync<List<EmployeeVO>>("AllEmployee");
             if (result != null)
             {
