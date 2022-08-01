@@ -170,24 +170,51 @@ namespace AltasMES
             ResMessage<List<WareHouseVO>> volist = service.GetAsync<List<WareHouseVO>>("api/WareHouse/AllWareHouse");
 
             string category = cboWH.Text;
+            string name = txtWH.Text;
             List<WareHouseVO> resultVO = volist.Data.FindAll((r) => r.ItemCategory == category);
+            List<WareHouseVO> resultVO1 = volist.Data.FindAll((r) => r.WHName == name);
+            List<WareHouseVO> resultVO2 = resultVO.FindAll((r) => r.WHName == name);
 
-            if (cboWH.SelectedIndex == 0)
+
+            //if (cboWH.SelectedIndex == 0)
+            //{
+            //    //dgvWH.DataSource = volist.Data;
+            //    DataLoad();
+            //}
+            //else
+            //{
+            //    //dgvWH.DataSource = resultVO;
+            //    dgvWH.DataSource = new AdvancedList<WareHouseVO>(resultVO);
+            //}
+            if (string.IsNullOrWhiteSpace(txtWH.Text))
             {
-                //dgvWH.DataSource = volist.Data;
-                DataLoad();
+                if (cboWH.SelectedIndex == 0)
+                {
+                    DataLoad();
+                }
+                else
+                {
+                    dgvWH.DataSource = new AdvancedList<WareHouseVO>(resultVO);
+                }
             }
             else
             {
-                //dgvWH.DataSource = resultVO;
-                dgvWH.DataSource = new AdvancedList<WareHouseVO>(resultVO);
+                if (cboWH.SelectedIndex == 0)
+                {
+                    dgvWH.DataSource = new AdvancedList<WareHouseVO>(resultVO1);
+                }
+                else
+                {
+                    dgvWH.DataSource = new AdvancedList<WareHouseVO>(resultVO2);
+                }
             }
-                
+
         }
 
         private void cboWH_SelectedIndexChanged(object sender, EventArgs e)
         {
             dgvPDT.DataSource = null;
+            txtWH.Text = null;
             if (cboWH.SelectedIndex == 0)
             {
                 dgvWH.DataSource = null;

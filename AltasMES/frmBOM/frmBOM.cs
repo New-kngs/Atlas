@@ -97,28 +97,6 @@ namespace AltasMES
                     dgvPdt.DataSource = new AdvancedList<ItemVO>(resultVO1);
                 }
             }
-
-            //if (cboPdt.SelectedIndex == 0)
-            //{
-            //    if (string.IsNullOrWhiteSpace(txtPdt.Text))
-            //    {
-            //        //dgvPdt.DataSource = volist.Data;
-            //        DataLoad();
-            //    }
-            //    else
-            //    {
-            //        //dgvPdt.DataSource = resultVO;                
-            //        dgvPdt.DataSource = new AdvancedList<ItemVO>(resultVO);
-            //    }
-
-            //}
-            //else
-            //{
-            //    //dgvPdt.DataSource = resultVO;                
-            //    dgvPdt.DataSource = new AdvancedList<ItemVO>(resultVO);
-            //}
-
-
         }
         private void cboPdt_SelectedIndexChanged(object sender, EventArgs e)
         {
