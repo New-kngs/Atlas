@@ -124,7 +124,6 @@ namespace AtlasMVCAPI.Models
         {
             SqlConnection conn = new SqlConnection(strConn);
             conn.Open();
-            SqlTransaction trans = conn.BeginTransaction();
 
             try
             {
@@ -135,11 +134,10 @@ namespace AtlasMVCAPI.Models
 from TB_Order 
 where CustomerID = @customerID";
                     cmd.Parameters.AddWithValue("@customerID", customerID);
-                    cmd.Transaction = trans;
 
-                    cmd.Connection.Open();
-                    List<OrderVO> listOrder = Helper.DataReaderMapToList<OrderVO>(cmd.ExecuteReader());
-                    cmd.Connection.Close();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    List<OrderVO> listOrder = Helper.DataReaderMapToList<OrderVO>(reader);
+                    reader.Close();
 
                     cmd.CommandText = @"select ItemName, ItemPrice, ItemSize, Qty, ItemPrice*Qty SumPrice, O.OrderID 
 from TB_Item I 
@@ -147,13 +145,8 @@ inner join TB_OrderDetails OD on I.ItemID = OD.ItemID
 inner join TB_Order O on  OD.OrderID=O.OrderID 
 where O.CustomerID = @customerID";
 
-                    cmd.Parameters.AddWithValue("@customerID", customerID);
-
-                    cmd.Connection.Open();
                     List<OrderDetailVO> listOrderDetail = Helper.DataReaderMapToList<OrderDetailVO>(cmd.ExecuteReader());
-                    cmd.Connection.Close();
 
-                    trans.Commit();
 
                     return (listOrder, listOrderDetail);
                 }
@@ -161,13 +154,38 @@ where O.CustomerID = @customerID";
             catch (Exception err)
             {
                 string sss = err.Message;
-                trans.Rollback();
 
                 return (null, null);
             }
             finally
             {
                 conn.Close();
+            }
+        }
+        // 고객사에게 주문내역(구매내역)을 보여준다
+        public List<OrderVO> OrderView(string CustomerID)
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.CommandText = @"select A.OrderID, convert(date, CreateDate) dates, OrderShip, OrderEndDate, price 
+from TB_Order A 
+left outer join 
+(select OrderID, ISNULL(sum(ItemPrice),0) price 
+from TB_OrderDetails OD 
+inner join TB_Item I on OD.ItemID = I.ItemID 
+group by OrderID) B 
+on A.OrderID = B.OrderID 
+where CustomerID = @CustomerID 
+order by CreateDate desc";
+
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.Parameters.AddWithValue("@CustomerID", CustomerID);
+
+                cmd.Connection.Open();
+                List<OrderVO> list = Helper.DataReaderMapToList<OrderVO>(cmd.ExecuteReader());
+                cmd.Connection.Close();
+
+                return list;
             }
         }
     }

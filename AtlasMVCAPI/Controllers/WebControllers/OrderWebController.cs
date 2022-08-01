@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace AtlasMVCAPI.Controllers.WebControllers
+namespace AtlasMVCAPI.Controllers
 {
     public class OrderWebController : Controller
     {
@@ -14,10 +14,10 @@ namespace AtlasMVCAPI.Controllers.WebControllers
         public ActionResult History()
         {
             //로그인을 했을때만 주문내역을 볼 수 있음
-            if (Session["UserVO"] == null)
+            if (Session["LoginInfo"] == null)
                 return RedirectToAction("Lock", "Login");
 
-            LoginVO login = Session["UserVO"] as LoginVO;
+            LoginVO login = Session["LoginInfo"] as LoginVO;
             OrderDAC db = new OrderDAC();
             var listHistory = db.GetOrderHistory(login.CustomerID);
             ViewData["Order"] = listHistory.Item1;
@@ -30,11 +30,19 @@ namespace AtlasMVCAPI.Controllers.WebControllers
             }
             else
             {
-                //Cart를 초기화하고 싶다 ㅜㅜ
-                // Session["Cart"] == null;
-
+                Session["Cart"] = null;
+                LoginVO loginInfo = Session["LoginInfo"] as LoginVO;
+                db.OrderView(loginInfo.CustomerID);
                 return View();
             }
         }
+        //[HttpPost]
+        //public ActionResult OrderView()
+        //{
+        //    LoginVO loginInfo = Session["LoginInfo"] as LoginVO;
+        //    OrderDAC db = new OrderDAC();
+        //    db.OrderView(loginInfo.CustomerID);
+        //    return View();
+        //}
     }
 }

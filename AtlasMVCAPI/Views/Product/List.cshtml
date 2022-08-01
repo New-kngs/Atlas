@@ -18,7 +18,7 @@
                             <h5 class="m-0">@Model.Products.ToList()[i].ItemName</h5>
                         </div>
                         <div class="card-body">
-                            <img src="@Model.Products.ToList()[i].ItemImage" class="card-img-top" alt="">
+                            <img src="~/Uploads/@Model.Products.ToList()[i].ItemImage" class="card-img-top" alt="@Model.Products.ToList()[i].ItemImage">
                             <h6 class="card-title">@Model.Products.ToList()[i].ItemExplain</h6>
                             <p class="card-text text-primary">@Model.Products.ToList()[i].ItemPrice.ToString("c")</p>
                             
@@ -27,6 +27,7 @@
                                     <div class="text-right">
                                         @Html.Hidden("productID", Model.Products.ToList()[i].ItemID)
                                         @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                                        <input type="submit" value="상세보기" class="btn btn-outline-primary" />
                                         <input type="submit" value="장바구니" class="btn btn-primary" />
                                     </div>
                                 }
@@ -49,15 +50,17 @@
                             <h5 class="m-0">@Model.Products.ToList()[i + 1].ItemName</h5>
                         </div>
                         <div class="card-body">
+
+                            <img src="@Model.Products.ToList()[i + 1].ItemImage" class="card-img-top" alt="">
+                            <h6 class="card-title">@Model.Products.ToList()[i + 1].ItemExplain</h6>
+                            <p class="card-text text-primary">@Model.Products.ToList()[i + 1].ItemPrice.ToString("c") </p>
+
                             @using (Html.BeginForm("AddToCart", "Cart"))
                             {
-                                <img src="@Model.Products.ToList()[i + 1].ItemImage" class="card-img-top" alt="">
-                                <h6 class="card-title">@Model.Products.ToList()[i + 1].ItemExplain</h6>
-                                <p class="card-text text-primary">@Model.Products.ToList()[i + 1].ItemPrice.ToString("c") </p>
-
                                 <div class="text-right">
                                     @Html.Hidden("productID", Model.Products.ToList()[i + 1].ItemID)
                                     @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                                    <input type="submit" value="상세보기" class="btn btn-outline-primary" onclick="window.open('PopUp.cshtml')" />
                                     <input type="submit" value="장바구니" class="btn btn-primary" />
                                 </div>
                             }
@@ -71,8 +74,8 @@
 
         }*@
                         </div>
-                        }
-                    </div>
+                            }
+                        </div>
                 </div>
             }
             <!-- /.col-md-6 -->

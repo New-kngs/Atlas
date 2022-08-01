@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace AtlasMVCAPI.Controllers.WebControllers
+namespace AtlasMVCAPI.Controllers
 {
     public class LoginController : Controller
     {
@@ -34,25 +34,25 @@ namespace AtlasMVCAPI.Controllers.WebControllers
 
             else if (user.CustomerID != null) // 사용자가 거래처라면
             {
-                Session["UserVO"] = user;
-                Session["CustomerName"] = user.CustomerName;
+                Session["LoginInfo"] = user;
+
                 return RedirectToAction("Index", "Home");
             }
             else // if (user.EmpID != null) // 사용자가 임원이라면
             {
-                Session["UserVO"] = user;
+                Session["LoginInfo"] = user;
 
-                return RedirectToAction("Lock", "Login");
+                return RedirectToAction("HomePage", "Eis");
             }
         }
 
-
+        [HttpPost]
         public ActionResult Logout()
         {
-            Session["UserInfo"] = null;
+            Session["LoginInfo"] = null;
             Session.Clear();
 
-            return RedirectToAction("Lock", "Login");
+            return RedirectToAction("Lock");
         }
     }
 }
