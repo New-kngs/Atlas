@@ -75,6 +75,7 @@ namespace AltasMES
             if (string.IsNullOrWhiteSpace(txtSearch.Text) && cboCategory.SelectedIndex == 0)
             {
                 MessageBox.Show("제품 유형을 선택하거나 제품명을 입력해 주세요");
+                LoadData();
                 return;
             }
 
@@ -87,6 +88,8 @@ namespace AltasMES
                 if (cboCategory.SelectedIndex == 0) // 텍스트 조건만
                 {
                     List<ItemVO> citemList = itemList.FindAll(p => p.ItemName.ToLower().Contains(txtSearch.Text.ToLower().Trim()));
+
+                    txtSearch.Clear();
 
                     dgvItem.DataSource = null;
                     dgvItem.DataSource = new AdvancedList<ItemVO>(citemList);

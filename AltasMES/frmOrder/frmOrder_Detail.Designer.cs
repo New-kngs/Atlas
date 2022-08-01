@@ -122,7 +122,7 @@ namespace AltasMES
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button1.ImageIndex = 6;
             this.button1.ImageList = this.imageList1;
-            this.button1.Location = new System.Drawing.Point(298, 455);
+            this.button1.Location = new System.Drawing.Point(112, 455);
             this.button1.Name = "button1";
             this.button1.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.button1.Size = new System.Drawing.Size(121, 37);
@@ -160,7 +160,7 @@ namespace AltasMES
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(74, 21);
             this.label4.TabIndex = 16;
-            this.label4.Text = "생성날짜";
+            this.label4.Text = "주문날짜";
             // 
             // label3
             // 
@@ -268,7 +268,7 @@ namespace AltasMES
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAdd.ImageIndex = 5;
             this.btnAdd.ImageList = this.imageList1;
-            this.btnAdd.Location = new System.Drawing.Point(111, 455);
+            this.btnAdd.Location = new System.Drawing.Point(240, 455);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnAdd.Size = new System.Drawing.Size(78, 37);
