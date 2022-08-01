@@ -115,7 +115,7 @@ namespace AtlasPOP
             frm.MaximizeBox = false;
             frm.MinimizeBox = false;
             frm.ControlBox = false;
-            frm.DataSendEvent += new DataGetEventHandler(this.DataGet);
+            //frm.DataSendEvent += new DataGetEventHandler(this.DataGet);
             frm.Show();
         }
 
@@ -135,10 +135,10 @@ namespace AtlasPOP
                 
         }
 
-        private void DataGet(string data)
+       /* private void DataGet(OperationVO data)
         {
             this.OperID = data;
-        }
+        }*/
 
 
         /// <summary>

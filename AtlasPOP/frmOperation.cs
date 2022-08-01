@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace AtlasPOP
 {
-    public delegate void DataGetEventHandler(String data);
+    public delegate void DataGetEventHandler(OperationVO data);
     public partial class frmOperation : Form
     {
 
@@ -32,6 +32,8 @@ namespace AtlasPOP
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "공정ID", "ProcessID",visibility : false);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "공정명", "ProcessName", colwidth: 120);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "제품ID", "ItemID",visibility : false);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "시작", "BeginDate", visibility: false);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "종료", "EndDate", visibility: false);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "제품명", "ItemName", colwidth: 130, DataGridViewContentAlignment.MiddleCenter);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "주문ID", "OrderID", colwidth: 130, DataGridViewContentAlignment.MiddleCenter);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "지시수량", "PlanQty", colwidth: 100,DataGridViewContentAlignment.MiddleCenter);
@@ -73,17 +75,6 @@ namespace AtlasPOP
         }
 
 
-        private void btnOK_Click(object sender, EventArgs e)
-        {
-            
-
-        }
-
-        private void frmOperation_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            
-        }
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
             ResMessage<List<OperationVO>> result = service.GetAsync<List<OperationVO>>("api/pop/SearchOper/"+ dtpFrom.Value.ToShortDateString() + " " +cboTimeFrom.Text+ "/" + dtpTo.Value.ToShortDateString()+" "+cboTimeTo.Text);
@@ -110,15 +101,26 @@ namespace AtlasPOP
             this.Close();
         }
 
-        private void dgvList_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            
-        }
-
         private void dgvList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            string OpID = dgvList.SelectedRows[0].Cells["OpID"].Value.ToString();
-            DataSendEvent(OpID);
+            OperationVO oper = new OperationVO()
+            {
+                OpID = dgvList.SelectedRows[0].Cells["OpID"].Value.ToString(),
+                /*OpDate = dgvList.SelectedRows[0].Cells["OpDate"].Value.ToString(),*/
+                OrderID = dgvList.SelectedRows[0].Cells["OrderID"].Value.ToString(),
+                ItemID = dgvList.SelectedRows[0].Cells["ItemID"].Value.ToString(),
+                ItemName = dgvList.SelectedRows[0].Cells["ItemName"].Value.ToString(),
+/*                BeginDate = dgvList.SelectedRows[0].Cells["BeginDate"].Value.ToString(),
+                EndDate = dgvList.SelectedRows[0].Cells["EndDate"].Value.ToString(),*/
+                EmpID = dgvList.SelectedRows[0].Cells["EmpID"].Value.ToString(),
+                ProcessID = Convert.ToInt32(dgvList.SelectedRows[0].Cells["ProcessID"].Value),
+                ProcessName = dgvList.SelectedRows[0].Cells["ProcessName"].Value.ToString(),
+                PlanQty = Convert.ToInt32(dgvList.SelectedRows[0].Cells["PlanQty"].Value),
+                OpState = dgvList.SelectedRows[0].Cells["OpState"].Value.ToString(),
+                resourceYN = dgvList.SelectedRows[0].Cells["resourceYN"].Value.ToString(),
+            };
+
+            DataSendEvent(oper);
 
             AtlasPOP main = (AtlasPOP)this.MdiParent;
             main.ChangeValue();

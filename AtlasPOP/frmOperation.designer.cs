@@ -61,9 +61,10 @@ namespace AtlasPOP
             this.panel1.Controls.Add(this.dtpTo);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.dtpFrom);
-            this.panel1.Location = new System.Drawing.Point(14, 17);
+            this.panel1.Location = new System.Drawing.Point(16, 21);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1003, 67);
+            this.panel1.Size = new System.Drawing.Size(1146, 83);
             this.panel1.TabIndex = 0;
             // 
             // btnReset
@@ -71,10 +72,10 @@ namespace AtlasPOP
             this.btnReset.BackColor = System.Drawing.Color.Gray;
             this.btnReset.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnReset.ForeColor = System.Drawing.Color.Black;
-            this.btnReset.Location = new System.Drawing.Point(588, 19);
+            this.btnReset.Location = new System.Drawing.Point(672, 24);
             this.btnReset.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(86, 33);
+            this.btnReset.Size = new System.Drawing.Size(98, 41);
             this.btnReset.TabIndex = 6;
             this.btnReset.Text = "초기화";
             this.btnReset.UseVisualStyleBackColor = false;
@@ -85,10 +86,10 @@ namespace AtlasPOP
             this.btnSearch.BackColor = System.Drawing.Color.Gray;
             this.btnSearch.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSearch.ForeColor = System.Drawing.Color.Black;
-            this.btnSearch.Location = new System.Drawing.Point(517, 19);
+            this.btnSearch.Location = new System.Drawing.Point(591, 24);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(74, 33);
+            this.btnSearch.Size = new System.Drawing.Size(85, 41);
             this.btnSearch.TabIndex = 6;
             this.btnSearch.Text = "조회";
             this.btnSearch.UseVisualStyleBackColor = false;
@@ -98,9 +99,9 @@ namespace AtlasPOP
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.Location = new System.Drawing.Point(15, 26);
+            this.label2.Location = new System.Drawing.Point(17, 32);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 21);
+            this.label2.Size = new System.Drawing.Size(92, 28);
             this.label2.TabIndex = 5;
             this.label2.Text = "작업일시";
             // 
@@ -109,9 +110,10 @@ namespace AtlasPOP
             this.cboTimeTo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTimeTo.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cboTimeTo.FormattingEnabled = true;
-            this.cboTimeTo.Location = new System.Drawing.Point(447, 22);
+            this.cboTimeTo.Location = new System.Drawing.Point(511, 28);
+            this.cboTimeTo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cboTimeTo.Name = "cboTimeTo";
-            this.cboTimeTo.Size = new System.Drawing.Size(67, 29);
+            this.cboTimeTo.Size = new System.Drawing.Size(76, 36);
             this.cboTimeTo.TabIndex = 2;
             // 
             // cboTimeFrom
@@ -119,27 +121,29 @@ namespace AtlasPOP
             this.cboTimeFrom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTimeFrom.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cboTimeFrom.FormattingEnabled = true;
-            this.cboTimeFrom.Location = new System.Drawing.Point(222, 22);
+            this.cboTimeFrom.Location = new System.Drawing.Point(254, 28);
+            this.cboTimeFrom.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cboTimeFrom.Name = "cboTimeFrom";
-            this.cboTimeFrom.Size = new System.Drawing.Size(67, 29);
+            this.cboTimeFrom.Size = new System.Drawing.Size(76, 36);
             this.cboTimeFrom.TabIndex = 2;
             // 
             // dtpTo
             // 
             this.dtpTo.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtpTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpTo.Location = new System.Drawing.Point(320, 22);
+            this.dtpTo.Location = new System.Drawing.Point(366, 28);
+            this.dtpTo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dtpTo.Name = "dtpTo";
-            this.dtpTo.Size = new System.Drawing.Size(126, 29);
+            this.dtpTo.Size = new System.Drawing.Size(143, 34);
             this.dtpTo.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("맑은 고딕", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.Location = new System.Drawing.Point(295, 21);
+            this.label1.Location = new System.Drawing.Point(337, 26);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(28, 30);
+            this.label1.Size = new System.Drawing.Size(36, 37);
             this.label1.TabIndex = 1;
             this.label1.Text = "~";
             // 
@@ -147,9 +151,10 @@ namespace AtlasPOP
             // 
             this.dtpFrom.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFrom.Location = new System.Drawing.Point(95, 22);
+            this.dtpFrom.Location = new System.Drawing.Point(109, 28);
+            this.dtpFrom.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dtpFrom.Name = "dtpFrom";
-            this.dtpFrom.Size = new System.Drawing.Size(126, 29);
+            this.dtpFrom.Size = new System.Drawing.Size(143, 34);
             this.dtpFrom.TabIndex = 0;
             // 
             // dgvList
@@ -158,13 +163,13 @@ namespace AtlasPOP
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvList.Location = new System.Drawing.Point(6, 32);
+            this.dgvList.Location = new System.Drawing.Point(7, 40);
+            this.dgvList.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvList.Name = "dgvList";
             this.dgvList.RowHeadersWidth = 51;
             this.dgvList.RowTemplate.Height = 30;
-            this.dgvList.Size = new System.Drawing.Size(994, 391);
+            this.dgvList.Size = new System.Drawing.Size(1136, 489);
             this.dgvList.TabIndex = 1;
-            this.dgvList.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvList_CellContentDoubleClick);
             this.dgvList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvList_CellDoubleClick);
             // 
             // groupBox1
@@ -174,9 +179,11 @@ namespace AtlasPOP
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.dgvList);
             this.groupBox1.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 90);
+            this.groupBox1.Location = new System.Drawing.Point(14, 112);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1005, 432);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox1.Size = new System.Drawing.Size(1149, 540);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "작업지시 목록";
@@ -190,17 +197,22 @@ namespace AtlasPOP
             // 
             // frmOperation
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1027, 534);
+            this.ClientSize = new System.Drawing.Size(1174, 668);
+            this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmOperation";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "작업지시";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmOperation_FormClosing);
             this.Load += new System.EventHandler(this.frmOperation_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
