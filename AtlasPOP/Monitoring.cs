@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AtlasDTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,18 @@ namespace AtlasPOP
 {
     public partial class Monitoring : UserControl
     {
-        public Monitoring()
+        public Monitoring(OperationVO oper)
         {
             InitializeComponent();
+            lblOper.Text = oper.OpID.ToString();
+            lblItem.Text = oper.ItemID;
+            lblProc.Text = oper.ProcessName;
+            lblProcType.Text = oper.ProcessID.ToString();
+        }
+
+        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

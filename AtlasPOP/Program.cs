@@ -16,7 +16,7 @@ namespace AtlasPOP
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new POPMain());
+            Application.Run(new AtlasPOP());
         }
     }
 }

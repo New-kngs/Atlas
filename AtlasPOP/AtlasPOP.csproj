@@ -96,6 +96,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AtlasPOP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AtlasPOP.Designer.cs">
+      <DependentUpon>AtlasPOP.cs</DependentUpon>
+    </Compile>
     <Compile Include="Monitoring.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -155,6 +161,9 @@
     <Compile Include="Util\popCommonUtil.cs" />
     <Compile Include="Util\popDataGridUtil.cs" />
     <Compile Include="Util\popServiceHelper.cs" />
+    <EmbeddedResource Include="AtlasPOP.resx">
+      <DependentUpon>AtlasPOP.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Monitoring.resx">
       <DependentUpon>Monitoring.cs</DependentUpon>
     </EmbeddedResource>

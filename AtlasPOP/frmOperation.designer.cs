@@ -41,10 +41,8 @@ namespace AtlasPOP
             this.label1 = new System.Windows.Forms.Label();
             this.dtpFrom = new System.Windows.Forms.DateTimePicker();
             this.dgvList = new System.Windows.Forms.DataGridView();
-            this.btnOK = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.btnClose = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -164,23 +162,10 @@ namespace AtlasPOP
             this.dgvList.Name = "dgvList";
             this.dgvList.RowHeadersWidth = 51;
             this.dgvList.RowTemplate.Height = 30;
-            this.dgvList.Size = new System.Drawing.Size(994, 318);
+            this.dgvList.Size = new System.Drawing.Size(994, 391);
             this.dgvList.TabIndex = 1;
-            // 
-            // btnOK
-            // 
-            this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.BackColor = System.Drawing.Color.Gray;
-            this.btnOK.Font = new System.Drawing.Font("굴림", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnOK.ForeColor = System.Drawing.Color.Black;
-            this.btnOK.Location = new System.Drawing.Point(677, 454);
-            this.btnOK.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(167, 69);
-            this.btnOK.TabIndex = 4;
-            this.btnOK.Text = "확인";
-            this.btnOK.UseVisualStyleBackColor = false;
-            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            this.dgvList.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvList_CellContentDoubleClick);
+            this.dgvList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvList_CellDoubleClick);
             // 
             // groupBox1
             // 
@@ -191,7 +176,7 @@ namespace AtlasPOP
             this.groupBox1.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.groupBox1.Location = new System.Drawing.Point(12, 90);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1005, 359);
+            this.groupBox1.Size = new System.Drawing.Size(1005, 432);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "작업지시 목록";
@@ -203,29 +188,12 @@ namespace AtlasPOP
             this.imageList1.Images.SetKeyName(0, "arrow-down-sign-to-navigate.png");
             this.imageList1.Images.SetKeyName(1, "upload.png");
             // 
-            // btnClose
-            // 
-            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.BackColor = System.Drawing.Color.Gray;
-            this.btnClose.Font = new System.Drawing.Font("굴림", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnClose.ForeColor = System.Drawing.Color.Black;
-            this.btnClose.Location = new System.Drawing.Point(850, 454);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(167, 69);
-            this.btnClose.TabIndex = 4;
-            this.btnClose.Text = "닫기";
-            this.btnClose.UseVisualStyleBackColor = false;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
             // frmOperation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1027, 534);
-            this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.btnOK);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmOperation";
@@ -248,7 +216,6 @@ namespace AtlasPOP
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dtpFrom;
         private System.Windows.Forms.DataGridView dgvList;
-        private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ComboBox cboTimeTo;
@@ -256,7 +223,6 @@ namespace AtlasPOP
         private System.Windows.Forms.DateTimePicker dtpTo;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnReset;
-        private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnSearch;
     }
 }

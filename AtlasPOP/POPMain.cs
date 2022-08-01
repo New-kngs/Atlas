@@ -219,7 +219,9 @@ namespace AtlasPOP
 
         private void btnOperSatus_Click(object sender, EventArgs e)
         {
-            OpenCreateForm<frmPerformance>();
+            frmPerformance frm = new frmPerformance();
+            frm.MdiParent = this;
+            frm.Show();
         }
 
         private void btnFail_Click(object sender, EventArgs e)
@@ -260,29 +262,32 @@ namespace AtlasPOP
                 MessageBox.Show("작업을 먼저 선택해주세요");
                 return;
             }
-
-            string operState = operList.Data.Find((s) => s.OpID == OperID).OpState;
-            switch (operState)
-            {
-                case "작업중": MessageBox.Show("이미 작업중입니다.");  break;
-                case "작업종료": MessageBox.Show("작업이 종료된 작업지시입니다.");  break;
-            }
-
             OperationVO oper = new OperationVO()
             {
                 ModifyUser = EmpName,
                 OpID = OperID
             };
+            string operState = operList.Data.Find((s) => s.OpID == OperID).OpState;
+            switch (operState)
+            {
+                case "작업중": MessageBox.Show("이미 작업중입니다.");  break;
+                case "작업종료": MessageBox.Show("작업이 종료된 작업지시입니다.");  break;
+                case "작업대기":
+                    ResMessage<List<OperationVO>> UdateState = service.PostAsync<OperationVO, List<OperationVO>>("api/pop/UdateState", oper);
+                    if (UdateState.ErrCode == 0)
+                    {
+                        MessageBox.Show("작업이 시작되었습니다.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("시작dksehla");
+                    }
+                    break;
+            }
 
-            ResMessage<List<OperationVO>> UdateState = service.PostAsync<OperationVO, List<OperationVO>>("api/pop/UdateState", oper);
-             if(UdateState.ErrCode == 0)
-            {
-                MessageBox.Show("작업이 시작되었습니다.");
-            }
-            else
-            {
-                MessageBox.Show("시작dksehla");
-            }
+            
+
+           
             
         }
 
@@ -298,28 +303,31 @@ namespace AtlasPOP
                 MessageBox.Show("작업을 먼저 선택해주세요");
                 return;
             }
-            string operState = operList.Data.Find((s) => s.OpID == OperID).OpState;
-            switch (operState)
-            {
-                case "작업대기": MessageBox.Show("작업중이 아닙니다."); break;
-                case "작업종료": MessageBox.Show("이미 작업이 종료된 작업지시입니다."); break;
-            }
-
             OperationVO oper = new OperationVO()
             {
                 ModifyUser = EmpName,
                 OpID = OperID
             };
+            string operState = operList.Data.Find((s) => s.OpID == OperID).OpState;
+            switch (operState)
+            {
+                case "작업대기": MessageBox.Show("작업중이 아닙니다."); break;
+                case "작업종료": MessageBox.Show("이미 작업이 종료된 작업지시입니다."); break;
+                case "작업중":
+                    ResMessage<List<OperationVO>> UdateState = service.PostAsync<OperationVO, List<OperationVO>>("api/pop/UdateFinish", oper);
+                    if (UdateState.ErrCode == 0)
+                    {
+                        MessageBox.Show("작업이 종료되었습니다.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("시작dksehla");
+                    } break;
+            }
 
-            ResMessage<List<OperationVO>> UdateState = service.PostAsync<OperationVO, List<OperationVO>>("api/pop/UdateFinish", oper);
-            if (UdateState.ErrCode == 0)
-            {
-                MessageBox.Show("작업이 종료되었습니다.");
-            }
-            else
-            {
-                MessageBox.Show("시작dksehla");
-            }
+            
+
+            
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using AtlasDTO;
+﻿
+using AtlasDTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -44,7 +45,7 @@ namespace AtlasPOP
                     {
                         if (idx >= operList.Count) break;
 
-                        Monitoring item = new Monitoring();
+                        Monitoring item = new Monitoring(operList[c]);
                         item.Name = $"process";
                         item.Location = new Point(344 * c + 5, 217 * r + 5);
                         item.Size = new Size(344, 217);

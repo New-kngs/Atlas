@@ -75,16 +75,13 @@ namespace AtlasPOP
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            string OpID = dgvList.SelectedRows[0].Cells["OpID"].Value.ToString();
-            DataSendEvent(OpID);
-            this.Close();
+            
 
         }
 
         private void frmOperation_FormClosing(object sender, FormClosingEventArgs e)
         {
-            POPMain main = (POPMain)this.MdiParent;
-            main.ChangeValue();
+            
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -98,9 +95,6 @@ namespace AtlasPOP
             {
                 MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
             }
-
-
-
         }
 
         private void btnReset_Click(object sender, EventArgs e)
@@ -114,6 +108,20 @@ namespace AtlasPOP
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void dgvList_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
+        private void dgvList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string OpID = dgvList.SelectedRows[0].Cells["OpID"].Value.ToString();
+            DataSendEvent(OpID);
+
+            AtlasPOP main = (AtlasPOP)this.MdiParent;
+            main.ChangeValue();
         }
     }
 }
