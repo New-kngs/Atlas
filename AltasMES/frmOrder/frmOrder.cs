@@ -39,17 +39,15 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvOrder, "생성사용자", "CreateUser", colwidth: 120, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvOrder, "생성날짜", "CreateDate", colwidth: 160, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvOrder, "변경사용자", "ModifyUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvOrder, "변경날짜", "ModifyDate", colwidth: 160, align: DataGridViewContentAlignment.MiddleCenter);
-
-
-            //DataGridUtil.SetInitGridView(dgvOrderState);
-            //DataGridUtil.AddGridTextBoxColumn(dgvOrderState, "")
+            DataGridUtil.AddGridTextBoxColumn(dgvOrder, "변경날짜", "ModifyDate", colwidth: 160, align: DataGridViewContentAlignment.MiddleCenter);            
 
             CommonUtil.ComboBinding<CustomerVO>(cboCustomer, cusList.FindAll(p => p.Category.Equals("출고")), "CustomerName", "CustomerID", blankText: "선택");
 
-            LoadData();                     
+            LoadData();
 
-            
+            cboStateYN.Items.AddRange(new string[] { "선택", "Y", "N" });
+            cboStateYN.SelectedIndex = 0;
+
         }
 
         public void LoadData()
@@ -63,59 +61,14 @@ namespace AltasMES
 
             dgvOrder.DataSource = null;
             dgvOrder.DataSource = new AdvancedList<OrderVO>(orderList);
-        }
-
-        
+        }                
 
         private void dgvOrder_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
 
             selId = (dgvOrder[0, e.RowIndex].Value).ToString();
-        }
-
-        private void cboCustomer_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            dgvOrder.DataSource = null;
-
-            if (cboCustomer.SelectedIndex == 0)
-            {
-                dgvOrder.DataSource = new AdvancedList<OrderVO>(orderList);
-            }
-            else
-            {
-                List<OrderVO> cOrderList = orderList.FindAll(p => p.CustomerName.Equals(cboCustomer.Text));
-                dgvOrder.DataSource = new AdvancedList<OrderVO>(cOrderList);
-            }
-            dgvOrder.ClearSelection();
-        }
-
-        private void frmOrder_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (srv != null)
-            {
-                srv.Dispose();
-            }
-        }
-
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(txtSearch.Text.Trim()))
-            {
-                cboCustomer_SelectedIndexChanged(this, e);
-            }
-            else
-            {
-                if (cboCustomer.SelectedIndex == 0)
-                {
-                    List<OrderVO> list = srv.GetAsync<List<OrderVO>>("api/Order/GetSearchOrder/" + dtpFrom.Value.ToShortDateString() + "/" + dtpTo.Value.AddDays(1).ToShortDateString()).Data;
-
-                    dgvOrder.DataSource = null;
-                    dgvOrder.DataSource = new AdvancedList<OrderVO>(list);
-                }
-
-            }
-        }
+        }        
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -134,9 +87,63 @@ namespace AltasMES
             }
         }
 
+        private void btnSearch_Click(object sender, EventArgs e)
+        {  
+            if (cboCustomer.SelectedIndex == 0)
+            {
+                List<OrderVO> list = srv.GetAsync<List<OrderVO>>("api/Order/GetSearchOrder/" + dtpFrom.Value.ToString("yyyy-MM-dd HH:mm:ss") + "/" + dtpTo.Value.AddDays(1).ToString("yyyy-MM-dd HH:mm:ss")).Data;
+
+                dgvOrder.DataSource = null;
+                dgvOrder.DataSource = new AdvancedList<OrderVO>(list);
+            }
+
+          
+        }
+
+        private void cboStateYN_SelectedIndexChanged(object sender, EventArgs e)
+        {            
+            dgvOrder.DataSource = null;
+
+            if (cboStateYN.SelectedIndex == 0)
+            {
+                dgvOrder.DataSource = new AdvancedList<OrderVO>(orderList);
+            }
+            else
+            {
+                List<OrderVO> stateList = orderList.FindAll(p => p.OrderShip.Equals(cboStateYN.Text));
+                dgvOrder.DataSource = new AdvancedList<OrderVO>(stateList);
+            }
+            dgvOrder.ClearSelection();
+        }
+
+        private void cboCustomer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dgvOrder.DataSource = null;
+
+            if (cboCustomer.SelectedIndex == 0)
+            {
+                dgvOrder.DataSource = new AdvancedList<OrderVO>(orderList);
+            }
+            else
+            {
+                List<OrderVO> cOrderList = orderList.FindAll(p => p.CustomerName.Equals(cboCustomer.Text));
+                dgvOrder.DataSource = new AdvancedList<OrderVO>(cOrderList);
+            }
+            dgvOrder.ClearSelection();
+        }
+
         private void frmOrder_Shown(object sender, EventArgs e)
         {
             dgvOrder.ClearSelection();
+        }
+
+
+        private void frmOrder_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (srv != null)
+            {
+                srv.Dispose();
+            }
         }
     }
 }

@@ -80,6 +80,22 @@ namespace AtlasMVCAPI.Models
             }
         }
 
+        public List<OrderDetailVO> GetAllOrderDetail()
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.CommandText = @"select OrderID, OD.ItemID, ItemName, Qty
+                                    from TB_OrderDetails  OD inner join TB_Item I on OD.ItemID = I.ItemID";
+
+                cmd.Connection.Open();
+                List<OrderDetailVO> list = Helper.DataReaderMapToList<OrderDetailVO>(cmd.ExecuteReader());
+                cmd.Connection.Close();
+
+                return list;
+            }
+        }
+
 
         /// <summary>
         /// 주문명세를 생성한다 (작성자-지현)
