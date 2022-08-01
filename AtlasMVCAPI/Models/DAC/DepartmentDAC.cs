@@ -16,7 +16,7 @@ namespace AtlasMVCAPI.Models
             strConn = WebConfigurationManager.ConnectionStrings["DB"].ConnectionString;
         }
 
-        /*public List<DepartmentVO> GetDepartmentAll()
+        public List<DepartmentVO> GetDepartmentAll()
         {
             using (SqlCommand cmd = new SqlCommand())
             {
@@ -30,7 +30,7 @@ namespace AtlasMVCAPI.Models
 
                 return list;
             }
-        }*/
+        }
 
     }
 }
