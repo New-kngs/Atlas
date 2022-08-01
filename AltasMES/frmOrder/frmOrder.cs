@@ -89,20 +89,22 @@ namespace AltasMES
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            //if (cboCustomer.SelectedIndex == 0)
-            //{
-            //    List<OrderVO> list = srv.GetAsync<List<OrderVO>>("api/Order/GetSearchOrder/" + dtpFrom.Value.ToString("yyyy-MM-dd HH:mm:ss") + "/" + dtpTo.Value.AddDays(1).ToString("yyyy-MM-dd HH:mm:ss")).Data;
-
-            //    dgvOrder.DataSource = null;
-            //    dgvOrder.DataSource = new AdvancedList<OrderVO>(list);
-            //}
-
             if (string.IsNullOrWhiteSpace(txtSearch.Text) && cboStateYN.SelectedIndex == 0)
             {
                 MessageBox.Show("출하여부를 선택하거나 거래처명을 입력해 주세요");
                 LoadData();
                 return;
             }
+
+            //if (string.IsNullOrWhiteSpace(txtSearch.Text) && cboStateYN.SelectedIndex == 0)
+            //{
+            //    List<OrderVO> list = srv.GetAsync<List<OrderVO>>("api/Order/GetSearchOrder/" + dtpFrom.Value.ToShortDateString() + "/" + dtpTo.Value.AddDays(1).ToShortDateString()).Data; //"yyyy-MM-dd HH:mm:ss"
+
+            //    dgvOrder.DataSource = null;
+            //    dgvOrder.DataSource = new AdvancedList<OrderVO>(list);                
+            //}
+
+            
 
             if (string.IsNullOrWhiteSpace(txtSearch.Text.Trim()))
             {

@@ -74,9 +74,9 @@ namespace AltasMES
         {
             if (string.IsNullOrWhiteSpace(txtSearch.Text) && cboCategory.SelectedIndex == 0)
             {
-                //MessageBox.Show("제품 유형을 선택하거나 제품명을 입력해 주세요");
                 LoadData();
-                return;
+                //MessageBox.Show("제품 유형을 선택하거나 제품명을 입력해 주세요");
+                //return;
             }
 
             if (string.IsNullOrWhiteSpace(txtSearch.Text.Trim())) // 텍스트 조건 없이 콤보박스만
