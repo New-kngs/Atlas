@@ -24,7 +24,6 @@ namespace AtlasMVCAPI.Controllers
         }
 
         // 상품 상세 팝업창
-        [HttpPost]
         public ActionResult PopUp()
         {
             // ViewData[""];
@@ -47,6 +46,7 @@ namespace AtlasMVCAPI.Controllers
                 // 장바구니 추가
                 Cart cart = GetCart();
                 cart.AddItem(product, 1);
+                Session["Cart"] = cart;
             }
             // 장바구니 페이지로 이동
             return RedirectToAction("Basket");
@@ -56,6 +56,7 @@ namespace AtlasMVCAPI.Controllers
         {
             Cart cart = GetCart();
             cart.RemoveItem(productID);
+            Session["Cart"] = cart;
             // 장바구니 페이지로 이동
             return RedirectToAction("Basket");
         }

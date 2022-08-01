@@ -50,8 +50,8 @@ namespace AtlasMVCAPI.Controllers
         public ActionResult Logout()
         {
             Session["LoginInfo"] = null;
-            Session.Clear();
 
+            Session.Clear();
             return RedirectToAction("Lock");
         }
     }

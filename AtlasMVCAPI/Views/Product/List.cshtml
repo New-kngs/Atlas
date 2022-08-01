@@ -5,8 +5,7 @@
     ViewBag.Title = "List";
     Layout = "~/Views/Shared/_LayoutPageOrder.cshtml";
 }
-<h2>List</h2>
-<!-- Main content -->
+<h2>List</h2><!-- Main content -->
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -18,64 +17,42 @@
                             <h5 class="m-0">@Model.Products.ToList()[i].ItemName</h5>
                         </div>
                         <div class="card-body">
-                            <img src="~/Uploads/@Model.Products.ToList()[i].ItemImage" class="card-img-top" alt="@Model.Products.ToList()[i].ItemImage">
+                            <img src="~/Uploads/@Model.Products.ToList()[i].ItemImage" class="card-img-top" style="width:300px;height:300px" alt="@Model.Products.ToList()[i].ItemImage">
                             <h6 class="card-title">@Model.Products.ToList()[i].ItemExplain</h6>
                             <p class="card-text text-primary">@Model.Products.ToList()[i].ItemPrice.ToString("c")</p>
                             
-                                @using (Html.BeginForm("AddToCart", "Cart")) 
-                                {
-                                    <div class="text-right">
-                                        @Html.Hidden("productID", Model.Products.ToList()[i].ItemID)
-                                        @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
-                                        <input type="submit" value="상세보기" class="btn btn-outline-primary" />
-                                        <input type="submit" value="장바구니" class="btn btn-primary" />
-                                    </div>
-                                }
-                            @*@using (Html.BeginForm("AddToCart", "Cart"))
-                            {
-                                <div>
+                            <form action="/Cart/AddToCart" method="post">
+                                <div class="text-right">
                                     @Html.Hidden("productID", Model.Products.ToList()[i].ItemID)
                                     @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
-                                    <input type="submit" value="장바구니" class="btn btn-primary float-right" />
+                                    <input type="button" value="상세보기" class="btn btn-outline-primary" onclick='javascript:window.open("/Cart/Popup?productID=@Model.Products.ToList()[i].ItemID", "PopupWin", "width=500,height=600")'/>
+                                    <input type="submit" value="장바구니" class="btn btn-primary" />
                                 </div>
-
-                            }*@
-                            <!--<a href="#" class="btn btn-primary">장바구니</a>-->
+                            </form>
                         </div>
                     </div>
                     <div class="card card-primary card-outline">
                         @if (i + 1 < Model.Products.ToList().Count)
                         {
-                        <div class="card-header">
-                            <h5 class="m-0">@Model.Products.ToList()[i + 1].ItemName</h5>
-                        </div>
-                        <div class="card-body">
+                            <div class="card-header">
+                                <h5 class="m-0">@Model.Products.ToList()[i+1].ItemName</h5>
+                            </div>
+                            <div class="card-body">
+                                <img src="~/Uploads/@Model.Products.ToList()[i+1].ItemImage" class="card-img-top" style="width:300px;height:300px" alt="@Model.Products.ToList()[i+1].ItemImage">
+                                <h6 class="card-title">@Model.Products.ToList()[i+1].ItemExplain</h6>
+                                <p class="card-text text-primary">@Model.Products.ToList()[i+1].ItemPrice.ToString("c")</p>
 
-                            <img src="@Model.Products.ToList()[i + 1].ItemImage" class="card-img-top" alt="">
-                            <h6 class="card-title">@Model.Products.ToList()[i + 1].ItemExplain</h6>
-                            <p class="card-text text-primary">@Model.Products.ToList()[i + 1].ItemPrice.ToString("c") </p>
-
-                            @using (Html.BeginForm("AddToCart", "Cart"))
-                            {
-                                <div class="text-right">
-                                    @Html.Hidden("productID", Model.Products.ToList()[i + 1].ItemID)
-                                    @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
-                                    <input type="submit" value="상세보기" class="btn btn-outline-primary" onclick="window.open('PopUp.cshtml')" />
-                                    <input type="submit" value="장바구니" class="btn btn-primary" />
-                                </div>
-                            }
-                            @*@using (Html.BeginForm("AddToCart", "Cart"))
-        {
-            <div>
-                @Html.Hidden("productID", Model.Products.ToList()[i + 1].ItemID)
-                @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
-                <input type="submit" value="장바구니" class="btn btn-primary float-right" />
-            </div>
-
-        }*@
-                        </div>
-                            }
-                        </div>
+                                <form action="/Cart/AddToCart" method="post">
+                                    <div class="text-right">
+                                        @Html.Hidden("productID", Model.Products.ToList()[i+1].ItemID)
+                                        @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                                        <input type="button" value="상세보기" class="btn btn-outline-primary" onclick='javascript:window.open("/Cart/Popup?productID=@Model.Products.ToList()[i+1].ItemID", "PopupWin", "width=500,height=600")' />
+                                        <input type="submit" value="장바구니" class="btn btn-primary" />
+                                    </div>
+                                </form>
+                            </div>
+                        }
+                    </div>
                 </div>
             }
             <!-- /.col-md-6 -->
