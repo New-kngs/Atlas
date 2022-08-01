@@ -1,12 +1,7 @@
 ﻿using AtlasDTO;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AltasMES
@@ -44,13 +39,13 @@ namespace AltasMES
             service = new ServiceHelper("");
             cboWH.Items.AddRange(new string[] { "전체", "완제품", "반제품", "자재" });
             cboWH.SelectedIndex = 0;
-                        
+
             DataLoad();
         }
         private void DataLoad()
         {
             cboWH.SelectedIndex = 0;
-            
+
             ResMessage<List<WareHouseVO>> result = service.GetAsync<List<WareHouseVO>>("api/WareHouse/AllWareHouse");
             if (result != null)
             {
@@ -185,9 +180,20 @@ namespace AltasMES
             string category = cboWH.Text;
             string name = txtWH.Text;
             List<WareHouseVO> resultVO = volist.Data.FindAll((r) => r.ItemCategory == category);
-            List<WareHouseVO> resultVO1 = volist.Data.FindAll((r) => r.WHName.Contains(name));
-            List<WareHouseVO> resultVO2 = resultVO.FindAll((r) => r.WHName.Contains(name));
-                        
+            List<WareHouseVO> resultVO1 = volist.Data.FindAll((r) => r.WHName == name);
+            List<WareHouseVO> resultVO2 = resultVO.FindAll((r) => r.WHName == name);
+
+
+            //if (cboWH.SelectedIndex == 0)
+            //{
+            //    //dgvWH.DataSource = volist.Data;
+            //    DataLoad();
+            //}
+            //else
+            //{
+            //    //dgvWH.DataSource = resultVO;
+            //    dgvWH.DataSource = new AdvancedList<WareHouseVO>(resultVO);
+            //}
             if (string.IsNullOrWhiteSpace(txtWH.Text))
             {
                 if (cboWH.SelectedIndex == 0)
@@ -229,7 +235,7 @@ namespace AltasMES
 
                 string category = cboWH.Text;
                 List<WareHouseVO> resultVO = volist.Data.FindAll((r) => r.ItemCategory == category);
-                dgvWH.DataSource = new AdvancedList<WareHouseVO>(resultVO);  
+                dgvWH.DataSource = new AdvancedList<WareHouseVO>(resultVO);
             }
 
             dgvWH.ClearSelection();
