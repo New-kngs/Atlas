@@ -19,30 +19,17 @@ namespace AtlasMVCAPI.Controllers
 
             LoginVO login = Session["LoginInfo"] as LoginVO;
             OrderDAC db = new OrderDAC();
-            var listHistory = db.GetOrderHistory(login.CustomerID);
-            ViewData["Order"] = listHistory.Item1;
-            ViewData["OrderDetail"] = listHistory.Item2;
+            List<OrderVO> model = db.OrderListView(login.CustomerID);
 
             // 주문기록이 없을 경우
-            if (listHistory == (null, null))
+            if (model == null)
             {
                 return Content("<script language='javascript' type='text/javascript'> alert('주문 내역이 없습니다.'); window.location.href='/Home/Index'</script>");
             }
             else
             {
-                Session["Cart"] = null;
-                LoginVO loginInfo = Session["LoginInfo"] as LoginVO;
-                db.OrderView(loginInfo.CustomerID);
-                return View();
+                return View(model);
             }
         }
-        //[HttpPost]
-        //public ActionResult OrderView()
-        //{
-        //    LoginVO loginInfo = Session["LoginInfo"] as LoginVO;
-        //    OrderDAC db = new OrderDAC();
-        //    db.OrderView(loginInfo.CustomerID);
-        //    return View();
-        //}
     }
 }

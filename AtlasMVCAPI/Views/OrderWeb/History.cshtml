@@ -1,51 +1,40 @@
-﻿@*@model IEnumerable<L>*@
+﻿@model IEnumerable<OrderVO>
 @{
     ViewBag.Title = "History";
     Layout = "~/Views/Shared/_LayoutPageOrder.cshtml";
 }
 @using AtlasDTO;
-@{
-    List<OrderVO> orders = ViewData["Order"] as List<OrderVO>;
-    List<OrderDetailVO> orderDetails = ViewData["Order"] as List<OrderDetailVO>;
-}
 
 <div class="container text-center">
     <div class="row">
         <div class="col">
-            <table>
+            <input type="button" value="주문상세조회" onclick="javascript: ChkOrder();"/>
+            <table class="table">
                 <tr>
                     <td></td>
                     <td>주문번호</td>
+                    <td>주문일자</td>
+                    <td>출하여부</td>
+                    <td>출하일자</td>
                     <td>결제금액</td>
-                    <td>출하상태</td>
-                    <td>결제일자</td>
                 </tr>
-                @for (int i = 0; i < orders.Count; i++)
+                @foreach(OrderVO row in Model)
                 {
                     <tr>
-                        <td><input type="radio" name="chk_info" value="HTML"></td>
-                        <td>@orders[i].OrderID</td>
-                        <td>@orders[i].OrderShip</td>
-                        <td>@orders[i].OrderEndDate</td>
-                        <td>@orders[i].CreateDate</td>
-                        <td>@orders[i].CreateUser</td>
+                        <td><input type="radio" name="orderNo" value="@row.OrderID"></td>
+                        <td>@row.OrderID</td>
+                        <td>@row.CreateDate</td>
+                        <td>@row.OrderShip</td>
+                        <td>@row.OrderEndDate</td>
+                        <td>@row.price</td>
                     </tr>
                 }
             </table>
         </div>
-        <div class="col">
-            <table>
-                <tr>
-                    <td>r</td>
-                    <td>s</td>
-                    <td>e</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                </tr>
-            </table>
-        </div>
     </div>
 </div>
+<script>
+    function ChkOrder() {
+        alert(document.querySelector('input[name="orderNo"]:checked').value);
+    }
+</script>
