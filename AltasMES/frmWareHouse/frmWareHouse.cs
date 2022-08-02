@@ -172,20 +172,9 @@ namespace AltasMES
             string category = cboWH.Text;
             string name = txtWH.Text;
             List<WareHouseVO> resultVO = volist.Data.FindAll((r) => r.ItemCategory == category);
-            List<WareHouseVO> resultVO1 = volist.Data.FindAll((r) => r.WHName == name);
-            List<WareHouseVO> resultVO2 = resultVO.FindAll((r) => r.WHName == name);
-
-
-            //if (cboWH.SelectedIndex == 0)
-            //{
-            //    //dgvWH.DataSource = volist.Data;
-            //    DataLoad();
-            //}
-            //else
-            //{
-            //    //dgvWH.DataSource = resultVO;
-            //    dgvWH.DataSource = new AdvancedList<WareHouseVO>(resultVO);
-            //}
+            List<WareHouseVO> resultVO1 = volist.Data.FindAll((r) => r.WHName.Contains(name));
+            List<WareHouseVO> resultVO2 = resultVO.FindAll((r) => r.WHName.Contains(name));
+                        
             if (string.IsNullOrWhiteSpace(txtWH.Text))
             {
                 if (cboWH.SelectedIndex == 0)
@@ -230,6 +219,14 @@ namespace AltasMES
             }
 
             dgvWH.ClearSelection();
+        }
+
+        private void txtWH_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                btnSearch_Click(this, e);
+            }
         }
     }
 }

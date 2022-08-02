@@ -214,6 +214,7 @@ namespace AltasMES
             this.txtWH.Name = "txtWH";
             this.txtWH.Size = new System.Drawing.Size(151, 29);
             this.txtWH.TabIndex = 16;
+            this.txtWH.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtWH_KeyPress);
             // 
             // frmWarehouse
             // 

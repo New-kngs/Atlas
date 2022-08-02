@@ -282,6 +282,7 @@ namespace AltasMES
             this.txtPdt.Name = "txtPdt";
             this.txtPdt.Size = new System.Drawing.Size(151, 29);
             this.txtPdt.TabIndex = 13;
+            this.txtPdt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPdt_KeyPress);
             // 
             // label2
             // 

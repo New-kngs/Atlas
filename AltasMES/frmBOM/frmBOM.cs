@@ -76,25 +76,22 @@ namespace AltasMES
             {
                 if (cboPdt.SelectedIndex == 0)
                 {
-                    //dgvPdt.DataSource = volist.Data;
                     DataLoad();
                 }
                 else
                 {
-                    //dgvPdt.DataSource = resultVO;                
-                    dgvPdt.DataSource = new AdvancedList<ItemVO>(resultVO);
+                    dgvPdt.DataSource = new List<ItemVO>(resultVO);
                 }
             }
             else
             {
                 if (cboPdt.SelectedIndex == 0)
                 {
-                    dgvPdt.DataSource = new AdvancedList<ItemVO>(resultVO2);
+                    dgvPdt.DataSource = new List<ItemVO>(resultVO2);
                 }
                 else
                 {
-                    //dgvPdt.DataSource = resultVO;                
-                    dgvPdt.DataSource = new AdvancedList<ItemVO>(resultVO1);
+                    dgvPdt.DataSource = new List<ItemVO>(resultVO1);
                 }
             }
         }
@@ -114,7 +111,7 @@ namespace AltasMES
 
                 string category = cboPdt.Text;
                 List<ItemVO> resultvo = volist.Data.FindAll((r) => r.ItemCategory == category);
-                dgvPdt.DataSource = new AdvancedList<ItemVO>(resultvo);
+                dgvPdt.DataSource = new List<ItemVO>(resultvo);
             }
             dgvPdt.ClearSelection();
         }
@@ -174,6 +171,14 @@ namespace AltasMES
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 DataLoad();
+            }
+        }
+
+        private void txtPdt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                btnSearch_Click(this, e);
             }
         }
     }
