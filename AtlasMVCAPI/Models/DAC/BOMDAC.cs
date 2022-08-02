@@ -126,7 +126,7 @@ namespace AtlasMVCAPI.Models
             @"with BOM_CTE as
                 (
                 select ItemID, ParentID, UnitQty, 0 levels, cast(ItemID as varchar(30)) sortOrder
-                from TB_BOM where ItemID = 'FP005'
+                from TB_BOM where ItemID = @ItemID
                 UNION ALL
                 select C.ItemID, C.ParentID, C.UnitQty, (P.levels +1) levels, cast(P.sortOrder + '>' + C.ItemID as varchar(30)) sortOrder
                 from TB_BOM C inner join BOM_CTE P on C.ItemID = P.ParentID
