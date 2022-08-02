@@ -257,5 +257,35 @@ from (
                     return null;
             }
         }
+
+        // 해당 제품의 반제품, 부품을 가져온다
+        public List<ItemVO> bomCTE(string itemID)
+        {
+            using(SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.Parameters.AddWithValue("@itemID", itemID);
+                cmd.CommandText = @"with bomCTE as 
+( 
+	select ItemID, ParentID, UnitQty from TB_BOM 
+	where ParentID = '*' and itemID = @itemID  
+	UNION ALL 
+	select A.ItemID, A.ParentID, A.UnitQty from TB_BOM A 
+	inner join bomCTE B on A.ParentID = B.ItemID 
+)  
+select distinct ItemName, UnitQty, ItemCategory  from bomCTE BC 
+inner join TB_Item I on I.ItemID=BC.ItemID 
+where ParentID != '*'";
+
+                cmd.Connection.Open();
+                List<ItemVO> list = Helper.DataReaderMapToList<ItemVO>(cmd.ExecuteReader());
+                cmd.Connection.Close();
+
+                if (list != null && list.Count > 0)
+                    return list;
+                else
+                    return null;
+            }
+        }
     }
 }

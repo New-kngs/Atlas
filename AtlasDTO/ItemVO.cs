@@ -32,5 +32,8 @@ namespace AtlasDTO
 
         public int CompleteQty { get; set; }
 
+
+        // 추가 (김지현)
+        public int UnitQty { get; set; }
     }
 }

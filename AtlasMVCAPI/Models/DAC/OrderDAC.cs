@@ -120,7 +120,7 @@ namespace AtlasMVCAPI.Models
             }
         }
         // 고객사에게 주문내역을 보여준다 (작성자-지현)
-        public (List<OrderVO>, List<OrderDetailVO>) GetOrderHistory(string customerID)
+        public (List<OrderVO>, List<OrderDetailVO>) GetOrderDetails(string customerID)
         {
             SqlConnection conn = new SqlConnection(strConn);
             conn.Open();

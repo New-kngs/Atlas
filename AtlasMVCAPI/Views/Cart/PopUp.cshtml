@@ -1,26 +1,57 @@
-﻿<!DOCTYPE html>
+﻿@model AtlasMVCAPI.Models.ProductPopUpModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 </head>
-<body >
-    <!-- Site wrapper -->
-    <div class="wrapper">
+<body>
+    <!-- Main content -->
 
-        <!-- Main content -->
-        <section class="content">
-            <div class="col-12 col-sm-6">
-                <h3 class="d-inline-block d-sm-none">아이템명</h3>
-                <div class="col-12">
-                    <img src="../../dist/img/prod-1.jpg" class="product-image" alt="Product Image">
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <img src="~/Uploads/@Model.Product.ItemImage" style="width:300px; height:300px">
+            </div>
+            <div class="col-6 col-sm-6">
+                <h1>@Model.Product.ItemName</h1>
+                <hr />
+                <h4>@Model.Product.ItemExplain</h4>
+                <hr />
+                <h5>Size </h5>
+                <button type="button" class="btn btn-light"><h5>S</h5><h6>Small</h6> </button>
+                <button type="button" class="btn btn-light"><h5>D</h5><h6>Double</h6></button>
+                <button type="button" class="btn btn-light"><h5>Q</h5><h6>Queen</h6></button>
+                <button type="button" class="btn btn-light"><h5>K</h5><h6>King</h6></button>
+                <hr />
+                <div class="col">
+                    <div class="p-3 border bg-light"><h5>@Model.Product.ItemPrice</h5> </div>
                 </div>
             </div>
-
-
-        </section>
-        <!-- /.content -->
+        </div>
+        <br /><br />
+        <div class="row">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#qwe">부품</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#asd">반제품</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="qwe">
+                    <p>Lorem ipsum dolor sit amet,</p>
+                </div>
+                <div class="tab-pane fade" id="asd">
+                    <p>Nunc vitae turpis id nibh sodales com tristique.</p>
+                </div>
+            </div>
+        </div>
     </div>
-    <!-- /.content-wrapper -->
-    <!-- jQuery -->
- 
 </body>
 </html>
