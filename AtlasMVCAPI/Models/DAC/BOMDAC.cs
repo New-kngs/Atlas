@@ -149,19 +149,29 @@ namespace AtlasMVCAPI.Models
 
         public bool SaveBOM(List<BOMVO> list)
         {
+           // @ItemID1, @ParentID1, @ChildID1, @UnitQty1, @CreateDate1, @CreateUser1,
+           // @ItemID2, @ParentID2, @ChildID2, @UnitQty2, @CreateDate2, @CreateUser2
             foreach (BOMVO item in list)
             {
                 using (SqlCommand cmd = new SqlCommand
                 {
                     Connection = new SqlConnection(strConn),
-                    CommandText = "SP_CreateWareHouse",
+                    CommandText = "SP_CreateBOM",
                     CommandType = CommandType.StoredProcedure
                 })
                 {
-                    cmd.Parameters.AddWithValue("@WHName", item.);
-                    cmd.Parameters.AddWithValue("@ItemCategory", wareHouse.ItemCategory);
-                    cmd.Parameters.AddWithValue("@CreateUser", wareHouse.CreateUser);
-                    cmd.Parameters.AddWithValue("@CreateDate", DateTime.Now);
+                    cmd.Parameters.AddWithValue("@ItemID1", item.ItemID);
+                    cmd.Parameters.AddWithValue("@ParentID1", item.ParentID);
+                    cmd.Parameters.AddWithValue("@ChildID1", item.ChildID);
+                    cmd.Parameters.AddWithValue("@UnitQty1", item.UnitQty);
+                    cmd.Parameters.AddWithValue("@CreateDate1", DateTime.Now);
+                    cmd.Parameters.AddWithValue("@CreateUser1", item.CreateUser);
+                    cmd.Parameters.AddWithValue("@ItemID2", item.ItemID);
+                    cmd.Parameters.AddWithValue("@ParentID2", item.ParentID);
+                    cmd.Parameters.AddWithValue("@ChildID2", item.ChildID);
+                    cmd.Parameters.AddWithValue("@UnitQty2", item.UnitQty);
+                    cmd.Parameters.AddWithValue("@CreateDate2", DateTime.Now);
+                    cmd.Parameters.AddWithValue("@CreateUser2", item.CreateUser);
                     cmd.Connection.Open();
                     int iRowAffect = cmd.ExecuteNonQuery();
                     cmd.Connection.Close();
