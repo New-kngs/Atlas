@@ -29,5 +29,12 @@ namespace AtlasDTO
         public string ItemSize { get; set; }
         public string OpID { get; set; }
 
+        public string INFO { get; set; }
+        public int LEVELS { get; set; }
+        public string sortOrder { get; set; }
+
+
+        //INFO, B.ItemID, T.ItemName, B.UnitQty, LEVELS, sortOrder
+
     }
 }

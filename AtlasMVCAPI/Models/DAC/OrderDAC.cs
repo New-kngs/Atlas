@@ -163,11 +163,11 @@ where O.CustomerID = @customerID";
             }
         }
         // 고객사에게 주문내역(구매내역)을 보여준다
-        public List<OrderVO> OrderView(string CustomerID)
+        public List<OrderVO> OrderListView(string CustomerID)
         {
             using (SqlCommand cmd = new SqlCommand())
             {
-                cmd.CommandText = @"select A.OrderID, convert(date, CreateDate) dates, OrderShip, OrderEndDate, price 
+                cmd.CommandText = @"select A.OrderID, convert(nvarchar(10), convert(date, CreateDate)) CreateDate, OrderShip, OrderEndDate, price 
 from TB_Order A 
 left outer join 
 (select OrderID, ISNULL(sum(ItemPrice),0) price 
@@ -176,7 +176,7 @@ inner join TB_Item I on OD.ItemID = I.ItemID
 group by OrderID) B 
 on A.OrderID = B.OrderID 
 where CustomerID = @CustomerID 
-order by CreateDate desc";
+order by A.CreateDate desc";
 
                 cmd.Connection = new SqlConnection(strConn);
                 cmd.Parameters.AddWithValue("@CustomerID", CustomerID);

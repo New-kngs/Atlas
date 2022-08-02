@@ -1,0 +1,68 @@
+﻿@model ProductListViewModel
+@using AtlasMVCAPI.Models
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_LayoutPageOrder.cshtml";
+}
+<h2>List</h2><!-- Main content -->
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            @for (int i = 0; i < Model.Products.ToList().Count; i += 2)
+            {
+                <div class="col-lg-6">
+                    <div class="card card-primary card-outline">
+                        <div class="card-header">
+                            <h5 class="m-0">@Model.Products.ToList()[i].ItemName</h5>
+                        </div>
+                        <div class="card-body">
+                            <img src="~/Uploads/@Model.Products.ToList()[i].ItemImage" class="card-img-top" style="width:300px;height:300px" alt="@Model.Products.ToList()[i].ItemImage">
+                            <h6 class="card-title">@Model.Products.ToList()[i].ItemExplain</h6>
+                            <p class="card-text text-primary">@Model.Products.ToList()[i].ItemPrice.ToString("c")</p>
+                            
+                            <form action="/Cart/AddToCart" method="post">
+                                <div class="text-right">
+                                    @Html.Hidden("productID", Model.Products.ToList()[i].ItemID)
+                                    @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                                    <input type="button" value="상세보기" class="btn btn-outline-primary" onclick='javascript:window.open("/Cart/Popup?productID=@Model.Products.ToList()[i].ItemID", "PopupWin", "width=500,height=600")'/>
+                                    <input type="submit" value="장바구니" class="btn btn-primary" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="card card-primary card-outline">
+                        @if (i + 1 < Model.Products.ToList().Count)
+                        {
+                            <div class="card-header">
+                                <h5 class="m-0">@Model.Products.ToList()[i+1].ItemName</h5>
+                            </div>
+                            <div class="card-body">
+                                <img src="~/Uploads/@Model.Products.ToList()[i+1].ItemImage" class="card-img-top" style="width:300px;height:300px" alt="@Model.Products.ToList()[i+1].ItemImage">
+                                <h6 class="card-title">@Model.Products.ToList()[i+1].ItemExplain</h6>
+                                <p class="card-text text-primary">@Model.Products.ToList()[i+1].ItemPrice.ToString("c")</p>
+
+                                <form action="/Cart/AddToCart" method="post">
+                                    <div class="text-right">
+                                        @Html.Hidden("productID", Model.Products.ToList()[i+1].ItemID)
+                                        @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                                        <input type="button" value="상세보기" class="btn btn-outline-primary" onclick='javascript:window.open("/Cart/Popup?productID=@Model.Products.ToList()[i+1].ItemID", "PopupWin", "width=500,height=600")' />
+                                        <input type="submit" value="장바구니" class="btn btn-primary" />
+                                    </div>
+                                </form>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+            <!-- /.col-md-6 -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            @Html.PageLinks((PagingInfo)Model.Page, (x) => Url.Action("List", new { page = x }))
+        </ul>
+    </nav>
+</div>
+<!-- /.content -->
