@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -94,6 +95,51 @@ namespace AltasMES
             cbo.ValueMember = val;
 
             cbo.DataSource = list;
+        }
+
+        // List<VO> => DataTable 
+        public static DataTable LinqQueryToDataTable(IEnumerable<dynamic> v)
+        {
+            //We really want to know if there is any data at all
+            var firstRecord = v.FirstOrDefault();
+            if (firstRecord == null)
+                return null;
+
+            //So dear record, what do you have?
+            PropertyInfo[] infos = firstRecord.GetType().GetProperties();
+            //Our table should have the columns to support the properties
+            DataTable table = new DataTable();
+            //Add, add, add the columns
+            foreach (var info in infos)
+            {
+                Type propType = info.PropertyType;
+                //Nullable types should be handled too
+                if (propType.IsGenericType
+                    && propType.GetGenericTypeDefinition() == typeof(Nullable<>))
+                {
+                    table.Columns.Add(info.Name, Nullable.GetUnderlyingType(propType));
+                }
+                else
+                {
+                    table.Columns.Add(info.Name, info.PropertyType);
+                }
+            }
+
+            DataRow row;
+            foreach (var record in v)
+            {
+                row = table.NewRow();
+                for (int i = 0; i < table.Columns.Count; i++)
+                {
+                    row[i] = infos[i].GetValue(record) != null ?
+                    infos[i].GetValue(record) : DBNull.Value;
+                }
+                table.Rows.Add(row);
+            }
+
+            //Table is ready to serve.
+            table.AcceptChanges();
+            return table;
         }
 
     }

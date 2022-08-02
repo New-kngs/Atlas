@@ -29,12 +29,22 @@ namespace AltasMES
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDepartment));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvdept = new System.Windows.Forms.DataGridView();
+            this.DeptID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DeptName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreateDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreateUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ModifyDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ModifyUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtSerach = new System.Windows.Forms.TextBox();
             this.lblSearch = new System.Windows.Forms.Label();
+            this.imageList2 = new System.Windows.Forms.ImageList(this.components);
+            this.btnSave = new System.Windows.Forms.Button();
             this.BasePanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.Basepanel4.SuspendLayout();
@@ -55,6 +65,16 @@ namespace AltasMES
             this.groupBox2.Controls.Add(this.btnSearch);
             this.groupBox2.Controls.Add(this.txtSerach);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnSave);
+            this.groupBox1.Controls.SetChildIndex(this.btnModify, 0);
+            this.groupBox1.Controls.SetChildIndex(this.lblTitle, 0);
+            this.groupBox1.Controls.SetChildIndex(this.btnDelete, 0);
+            this.groupBox1.Controls.SetChildIndex(this.btnExecl, 0);
+            this.groupBox1.Controls.SetChildIndex(this.btnAdd, 0);
+            this.groupBox1.Controls.SetChildIndex(this.btnSave, 0);
+            // 
             // btnAdd
             // 
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -67,6 +87,14 @@ namespace AltasMES
             this.imageList1.Images.SetKeyName(2, "Delete.png");
             this.imageList1.Images.SetKeyName(3, "Serach.png");
             this.imageList1.Images.SetKeyName(4, "Execl.png");
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnModify
+            // 
+            this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
             // 
             // groupBox3
             // 
@@ -81,13 +109,72 @@ namespace AltasMES
             // 
             // dgvdept
             // 
+            this.dgvdept.AllowUserToAddRows = false;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvdept.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvdept.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvdept.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.DeptID,
+            this.DeptName,
+            this.CreateDate,
+            this.CreateUser,
+            this.ModifyDate,
+            this.ModifyUser});
             this.dgvdept.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvdept.Location = new System.Drawing.Point(3, 17);
             this.dgvdept.Name = "dgvdept";
             this.dgvdept.RowTemplate.Height = 23;
             this.dgvdept.Size = new System.Drawing.Size(1028, 471);
             this.dgvdept.TabIndex = 0;
+            this.dgvdept.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvdept_EditingControlShowing);
+            // 
+            // DeptID
+            // 
+            this.DeptID.DataPropertyName = "DeptID";
+            this.DeptID.HeaderText = "부서ID";
+            this.DeptID.Name = "DeptID";
+            this.DeptID.ReadOnly = true;
+            // 
+            // DeptName
+            // 
+            this.DeptName.DataPropertyName = "DeptName";
+            this.DeptName.HeaderText = "부서명";
+            this.DeptName.Name = "DeptName";
+            this.DeptName.ReadOnly = true;
+            // 
+            // CreateDate
+            // 
+            this.CreateDate.DataPropertyName = "CreateDate";
+            this.CreateDate.HeaderText = "생성날짜";
+            this.CreateDate.Name = "CreateDate";
+            this.CreateDate.ReadOnly = true;
+            // 
+            // CreateUser
+            // 
+            this.CreateUser.DataPropertyName = "CreateUser";
+            this.CreateUser.HeaderText = "생성사용자";
+            this.CreateUser.Name = "CreateUser";
+            this.CreateUser.ReadOnly = true;
+            // 
+            // ModifyDate
+            // 
+            this.ModifyDate.DataPropertyName = "ModifyDate";
+            this.ModifyDate.HeaderText = "수정날짜";
+            this.ModifyDate.Name = "ModifyDate";
+            this.ModifyDate.ReadOnly = true;
+            // 
+            // ModifyUser
+            // 
+            this.ModifyUser.DataPropertyName = "ModifyUser";
+            this.ModifyUser.HeaderText = "수정사용자";
+            this.ModifyUser.Name = "ModifyUser";
+            this.ModifyUser.ReadOnly = true;
             // 
             // btnSearch
             // 
@@ -99,11 +186,11 @@ namespace AltasMES
             this.btnSearch.Location = new System.Drawing.Point(299, 40);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.btnSearch.Size = new System.Drawing.Size(78, 29);
+            this.btnSearch.Size = new System.Drawing.Size(37, 29);
             this.btnSearch.TabIndex = 14;
-            this.btnSearch.Text = "조회";
             this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // txtSerach
             // 
@@ -123,6 +210,38 @@ namespace AltasMES
             this.lblSearch.TabIndex = 15;
             this.lblSearch.Text = "부서명";
             // 
+            // imageList2
+            // 
+            this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
+            this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList2.Images.SetKeyName(0, "excel.png");
+            this.imageList2.Images.SetKeyName(1, "plus.png");
+            this.imageList2.Images.SetKeyName(2, "trash.png");
+            this.imageList2.Images.SetKeyName(3, "pencil.png");
+            this.imageList2.Images.SetKeyName(4, "search.png");
+            this.imageList2.Images.SetKeyName(5, "arrow-left.png");
+            this.imageList2.Images.SetKeyName(6, "check.png");
+            this.imageList2.Images.SetKeyName(7, "close.png");
+            // 
+            // btnSave
+            // 
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.ImageIndex = 6;
+            this.btnSave.ImageList = this.imageList2;
+            this.btnSave.Location = new System.Drawing.Point(618, 20);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.btnSave.Size = new System.Drawing.Size(78, 37);
+            this.btnSave.TabIndex = 6;
+            this.btnSave.Text = "저장";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
             // frmDepartment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -132,6 +251,7 @@ namespace AltasMES
             this.Text = "부서";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmDepartment_FormClosing);
             this.Load += new System.EventHandler(this.frmDepartment_Load);
+            this.Shown += new System.EventHandler(this.frmDepartment_Shown);
             this.BasePanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.Basepanel4.ResumeLayout(false);
@@ -153,5 +273,13 @@ namespace AltasMES
         protected System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TextBox txtSerach;
         private System.Windows.Forms.Label lblSearch;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DeptID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DeptName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CreateDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CreateUser;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ModifyDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ModifyUser;
+        protected System.Windows.Forms.ImageList imageList2;
+        protected System.Windows.Forms.Button btnSave;
     }
 }
