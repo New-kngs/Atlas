@@ -81,7 +81,7 @@ namespace AtlasPOP
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "모니터링";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.frmPerformance_Load);
+            //this.Load += new System.EventHandler(this.frmPerformance_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);

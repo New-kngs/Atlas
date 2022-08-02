@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace AtlasPOP
 {
-    public partial class AtlasPOP : Form
+    public partial class btnPerformance : Form
     {
         public string EmpID { get; set; }
         public string EmpName { get; set; }
@@ -19,17 +19,14 @@ namespace AtlasPOP
         public OperationVO Oper { get; set; }
         public string OperID { get; set; }
 
-        string itemID;
-        string OrderID;
         string CustomerID;
-        int FailQty = 2;
 
         popServiceHelper service = null;
         ResMessage<List<ItemVO>> itemList;
         ResMessage<List<OperationVO>> operList;
         ResMessage<List<OrderVO>> oderList;
         ResMessage<List<CustomerVO>> customerList;
-        public AtlasPOP()
+        public btnPerformance()
         {
             InitializeComponent();
         }
@@ -41,8 +38,10 @@ namespace AtlasPOP
 
         private void AtlasPOP_Load(object sender, EventArgs e)
         {
+            //panel1.Visible = false;
             frmOperation frm = new frmOperation();
             frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
             frm.DataSendEvent += new DataGetEventHandler(this.DataGet);
             frm.Show();
 
@@ -84,6 +83,74 @@ namespace AtlasPOP
             frm.MdiParent = this;
             frm.DataSendEvent += new DataGetEventHandler(this.DataGet);
             frm.Show();
+        }
+
+        private void btnOperStatus_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            if(Oper == null)
+            {
+                MessageBox.Show("작업을 선택해주세요");
+                return;
+            }
+            if (Oper.resourceYN.Equals("N"))
+            {
+                MessageBox.Show("자재가 투입되지 않았습니다.");
+                return;
+            }
+        }
+
+        private void btnEnd_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnResource_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnFail_Click(object sender, EventArgs e)
+        {
+            if(Oper == null)
+            {
+                MessageBox.Show("작업을 선택해주세요");
+                return;
+            }
+
+            frmFail frm = new frmFail(Oper);
+            frm.Show();
+        }
+
+        private void btnLaping_Click(object sender, EventArgs e)
+        {
+            if (Oper == null)
+            {
+                MessageBox.Show("작업을 선택해주세요");
+                return;
+            }
+            frmLaping frm = new frmLaping(Oper);
+            frm.Show();
+        }
+
+        private void btnResource_Click_1(object sender, EventArgs e)
+        {
+            if (Oper == null)
+            {
+                MessageBox.Show("작업을 선택해주세요");
+                return;
+            }
+            frmResource frm = new frmResource(Oper);
+            frm.Show();
+        }      
+        
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -13,28 +13,26 @@ namespace AtlasPOP
 {
     public partial class frmFail : Form
     {
-        public string OperID { get; set; }
-        public string ItemID { get; set; }
-        public string EmpID { get; set; }
+
         int maxNum = 0;
         popServiceHelper service;
+
+        OperationVO oper;
 
         ResMessage<List<ItemVO>> itemList;
         List<FailVO> failList;
 
-        public frmFail(int FailQty, string OperID, string ItemID, string EmpID)
+        public frmFail(OperationVO oper)
         {
             InitializeComponent();
-            txtFailTOT.Text = FailQty.ToString();
-            numQty.Maximum = maxNum = FailQty;
-            this.OperID = OperID;
-            this.ItemID = ItemID;
-            this.EmpID = EmpID;
-
+            
+            this.oper = oper;
+            txtFailTOT.Text = oper.FailQty.ToString();
         }
 
         private void frmResource_Load(object sender, EventArgs e)
         {
+            
             popDataGridUtil.SetInitGridView(dgvList);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "불량ID", "FailID", visibility: false);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "제품ID", "ItemID", visibility: false);
@@ -88,12 +86,12 @@ namespace AtlasPOP
             {
                 FailVO fail = new FailVO()
                 {
-                    ItemID = ItemID,
+                    ItemID = oper.ItemID,
                     FailQty = Convert.ToInt32(numQty.Value),
                     FailCode = cboFailList.SelectedValue.ToString(),
                     FailName = cboFailList.Text,
-                    OpID = OperID,
-                    CreateUser = EmpID
+                    OpID = oper.OpID,
+                    CreateUser = oper.EmpID
                 };
                 failList.Add(fail);
             }
@@ -141,7 +139,7 @@ namespace AtlasPOP
         private void btnOK_Click(object sender, EventArgs e)
         {
             ResMessage<List<FailVO>> opid = service.GetAsync<List<FailVO>>("api/pop/GetOperID");
-            int idx = opid.Data.FindIndex((f) => f.OpID.Contains(OperID));
+            int idx = opid.Data.FindIndex((f) => f.OpID.Contains(oper.OpID));
             if (txtFailTOT.Text != "0")
             {
                 MessageBox.Show("불량제품이 남아있습니다. \n 불량을 전부 등록해주세요");

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AtlasDTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,11 @@ namespace AtlasPOP
 {
     public partial class frmLaping : Form
     {
-        public frmLaping()
+        public OperationVO oper { get; set; }
+        public frmLaping(OperationVO oper)
         {
             InitializeComponent();
+            this.oper = oper;
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

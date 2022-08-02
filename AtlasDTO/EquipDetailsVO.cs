@@ -13,6 +13,7 @@ namespace AtlasDTO
         public string CreateUser { get; set; }
 
         public string EquipName { get; set; }
+        public string EquipCategory { get; set; }
 
     }
 }

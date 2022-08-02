@@ -15,20 +15,16 @@ namespace AtlasPOP
     public partial class frmResource : Form
     {
         popServiceHelper service = null;
-        public string itemID { get; set; }
-        
-        public string OperID { get; set; }
+
+        public OperationVO oper { get; set; }
 
         ResMessage<List<BOMVO>> resource;
-        public frmResource()
+
+        public frmResource(OperationVO oper)
         {
             InitializeComponent();
-        }
-        public frmResource(string itemID, string oper)
-        {
-            InitializeComponent();
-            this.itemID = itemID;
-            this.OperID = oper;
+            this.oper = oper;
+            
         }
 
         private void frmResource_Load(object sender, EventArgs e)
@@ -59,7 +55,7 @@ namespace AtlasPOP
             resource = service.GetAsync<List<BOMVO>>("api/pop/GetResourceBOM");
             if (resource.Data != null)
             {
-                resource.Data = resource.Data.FindAll((r) => r.ItemID == itemID && r.OpID == OperID );
+                resource.Data = resource.Data.FindAll((r) => r.ItemID == oper.ItemID && r.OpID == oper.OpID);
                 dgvList.DataSource = resource.Data;
             }
             else
@@ -72,11 +68,12 @@ namespace AtlasPOP
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            int CurrentQty = resource.Data.Find((r) => r.ItemID == itemID).CurrentQty;
-            int totQty = resource.Data.Find((r) => r.ItemID == itemID).Qty;
+            int CurrentQty = resource.Data.Find((r) => r.ItemID == oper.ItemID).CurrentQty;
+            int totQty = resource.Data.Find((r) => r.ItemID == oper.ItemID).Qty;
             ResMessage<List<OperationVO>> result = service.GetAsync<List<OperationVO>>("api/pop/AllOperation");
-            string YN = result.Data.Find((n) => n.OpID == OperID).resourceYN;
-            if (YN.Equals("Y")){
+            string YN = result.Data.Find((n) => n.OpID == oper.OpID).resourceYN;
+
+            if (oper.resourceYN.Equals("Y")){
                 MessageBox.Show("이미 자재가 투입되어 있습니다.");
                 return;
 
@@ -88,7 +85,7 @@ namespace AtlasPOP
                 return;
             }
             //1. 자재투입 여부 업데이트
-            ResMessage<List<OperationVO>> operList = service.PostAsync<string, List<OperationVO>>("api/pop/UpdateResourceYN/"+OperID, OperID);
+            ResMessage<List<OperationVO>> operList = service.PostAsync<string, List<OperationVO>>("api/pop/UpdateResourceYN/"+ oper.OpID, oper.OpID);
 
             if (result.ErrCode == 0)
             {

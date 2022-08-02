@@ -53,7 +53,7 @@ namespace AtlasPOP
             // 
             // btnCreateLOT
             // 
-            this.btnCreateLOT.BackColor = System.Drawing.Color.Gray;
+            this.btnCreateLOT.BackColor = System.Drawing.Color.White;
             this.btnCreateLOT.Font = new System.Drawing.Font("맑은 고딕", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnCreateLOT.ForeColor = System.Drawing.Color.Black;
             this.btnCreateLOT.Location = new System.Drawing.Point(109, 463);
@@ -65,7 +65,7 @@ namespace AtlasPOP
             // 
             // btnLaping
             // 
-            this.btnLaping.BackColor = System.Drawing.Color.Gray;
+            this.btnLaping.BackColor = System.Drawing.Color.White;
             this.btnLaping.Font = new System.Drawing.Font("맑은 고딕", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnLaping.ForeColor = System.Drawing.Color.Black;
             this.btnLaping.Location = new System.Drawing.Point(344, 463);
@@ -77,7 +77,7 @@ namespace AtlasPOP
             // 
             // btnPutIN
             // 
-            this.btnPutIN.BackColor = System.Drawing.Color.Gray;
+            this.btnPutIN.BackColor = System.Drawing.Color.White;
             this.btnPutIN.Font = new System.Drawing.Font("맑은 고딕", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnPutIN.ForeColor = System.Drawing.Color.Black;
             this.btnPutIN.Location = new System.Drawing.Point(578, 463);

@@ -102,6 +102,12 @@
     <Compile Include="AtlasPOP.Designer.cs">
       <DependentUpon>AtlasPOP.cs</DependentUpon>
     </Compile>
+    <Compile Include="EquipList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EquipList.Designer.cs">
+      <DependentUpon>EquipList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Monitoring.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -138,12 +144,6 @@
     <Compile Include="frmOperation.designer.cs">
       <DependentUpon>frmOperation.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmOperStatus.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmOperStatus.designer.cs">
-      <DependentUpon>frmOperStatus.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmPerformance.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -164,6 +164,9 @@
     <EmbeddedResource Include="AtlasPOP.resx">
       <DependentUpon>AtlasPOP.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EquipList.resx">
+      <DependentUpon>EquipList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Monitoring.resx">
       <DependentUpon>Monitoring.cs</DependentUpon>
     </EmbeddedResource>
@@ -181,9 +184,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmOperation.resx">
       <DependentUpon>frmOperation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmOperStatus.resx">
-      <DependentUpon>frmOperStatus.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPerformance.resx">
       <DependentUpon>frmPerformance.cs</DependentUpon>
@@ -221,6 +221,7 @@
     <Content Include="Resources\AtlasLogo_Black.png" />
     <None Include="Resources\fast-forward-double-right-arrows-symbol.png" />
     <None Include="Resources\AtlasLogo_Black1.png" />
+    <None Include="Resources\logout.png" />
     <Content Include="Resources\아틀라스매트리스 로고.png" />
   </ItemGroup>
   <ItemGroup>

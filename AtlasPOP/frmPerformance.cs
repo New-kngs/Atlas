@@ -26,7 +26,7 @@ namespace AtlasPOP
         }
         
 
-        private void frmPerformance_Load(object sender, EventArgs e)
+        /*private void frmPerformance_Load(object sender, EventArgs e)
         {
             service = new popServiceHelper("");
             ResMessage<List<OperationVO>> result = service.GetAsync<List<OperationVO>>("api/pop/AllOperation");
@@ -62,6 +62,6 @@ namespace AtlasPOP
             {
                 MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
             }
-        }
+        }*/
     }
 }

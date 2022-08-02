@@ -24,13 +24,32 @@ namespace AtlasMVCAPI.Models
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = new SqlConnection(strConn);
-                cmd.CommandText = @"select OpID, convert(varchar(20), OpDate, 120) OpDate, resourceYN, PutInYN, op.ItemID, ItemName, OrderID, op.ProcessID, ProcessName,    
+                cmd.CommandText = @"select OpID, convert(varchar(10), OpDate, 120) OpDate, resourceYN, PutInYN, op.ItemID, ItemName, OrderID, op.ProcessID, ProcessName,    
                                     PlanQty, OpState, BeginDate, EndDate, EmpID
                                     from TB_Operation op join TB_Process p on op.ProcessID = p.ProcessID
                                     join TB_Item i on op.ItemID = i.ItemID";
 
                 cmd.Connection.Open();
                 List<OperationVO> list = Helper.DataReaderMapToList<OperationVO>(cmd.ExecuteReader());
+                cmd.Connection.Close();
+
+                return list;
+            }
+        }
+        /// <summary>
+        /// 설비정보 가져오기
+        /// </summary>
+        /// <returns></returns>
+        public List<EquipDetailsVO> GetEquip()
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.CommandText = @"  select ProcessID, d.EquipID, d.EquipName, EquipCategory
+                                    from TB_EquipmentDetails d join TB_Equipment e on d.EquipID = e.EquipID";
+
+                cmd.Connection.Open();
+                List<EquipDetailsVO> list = Helper.DataReaderMapToList<EquipDetailsVO>(cmd.ExecuteReader());
                 cmd.Connection.Close();
 
                 return list;

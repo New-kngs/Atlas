@@ -184,7 +184,7 @@ namespace AtlasPOP
                 return;
             }
 
-            frmResource frm = new frmResource(itemID, OperID);
+            frmResource frm = new frmResource(opervo);
             frm.MdiParent = this;
             frm.MaximizeBox = false;
             frm.MinimizeBox = false;
@@ -209,12 +209,12 @@ namespace AtlasPOP
                 MessageBox.Show("작업을 먼저 선택해주세요");
                 return;
             }
-            frmOperStatus frm = new frmOperStatus(itemID, OperID);
+            /*frmOperStatus frm = new frmOperStatus(itemID, OperID);
             frm.MdiParent = this;
             frm.MaximizeBox = false;
             frm.MinimizeBox = false;
             frm.ControlBox = false;
-            frm.Show();
+            frm.Show();*/
         }
 
         private void btnOperSatus_Click(object sender, EventArgs e)
@@ -237,17 +237,17 @@ namespace AtlasPOP
                 return;
             }
 
-            frmFail frm = new frmFail(FailQty, OperID, itemID, EmpID);
+            /*frmFail frm = new frmFail(FailQty, OperID, itemID, EmpID);
             frm.MdiParent = this;
             frm.MaximizeBox = false;
             frm.MinimizeBox = false;
             frm.ControlBox = false;
-            frm.Show();
+            frm.Show();*/
         }
 
         private void btnLaping_Click(object sender, EventArgs e)
         {
-            OpenCreateForm<frmLaping>();
+            
         }
 
         private void btnStart_Click(object sender, EventArgs e)

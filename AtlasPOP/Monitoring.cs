@@ -13,17 +13,18 @@ namespace AtlasPOP
 {
     public partial class Monitoring : UserControl
     {
-        public Monitoring(OperationVO oper)
+        public Monitoring(EquipDetailsVO equip)
         {
             InitializeComponent();
-            lblOper.Text = oper.OpID.ToString();
-            lblItem.Text = oper.ItemID;
-            lblProc.Text = oper.ProcessName;
-            lblProcType.Text = oper.ProcessID.ToString();
+            
         }
 
-        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        private void Monitoring_Load(object sender, EventArgs e)
         {
+
+            this.BackColor = Color.Black;
+            this.Location = new Point(10, 10);
+            this.Size = new Size(100, 100);
 
         }
     }
