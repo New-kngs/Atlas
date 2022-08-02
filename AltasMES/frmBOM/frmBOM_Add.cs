@@ -359,7 +359,7 @@ namespace AltasMES
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            List<BOMVO> bomlist = new List<BOMVO>();
+            List<BOMVO> bomList = new List<BOMVO>();
 
             int count = 0;
             if (dgvUnreg.SelectedRows.Count < 1)
@@ -384,12 +384,13 @@ namespace AltasMES
                         item.Cells[2].Value = 0;
                         return;
                     }
+                    else if (count < 1)
+                    {
+                        MessageBox.Show("구성제품의 수량을 확인해 주십시오.");
+                        return;
+                    }
                 }
-                else if (Convert.ToInt32(item.Cells[2].Value) < 1)
-                {
-                    MessageBox.Show("구성제품의 수량을 확인해 주십시오.");
-                    return;
-                }
+                
             }
 
             string category = cboCategory.Text;
@@ -397,30 +398,49 @@ namespace AltasMES
 
             if (category == "완제품")
             {
-                foreach (DataRow dr in dgvNew.Rows)
+                foreach (DataGridViewRow dr in dgvNew.Rows)
                 {
-                    BOMVO item = new BOMVO
+                    BOMVO itemsF = new BOMVO
                     {
                         ItemID = itemId,
                         ParentID = "*",
-                        ChildID = dr["ItemID"].ToString(),
-                        UnitQty = Convert.ToInt32(dr["UnitQty"])
+                        ChildID = dr.Cells["ItemID"].Value.ToString(),
+                        UnitQty = 1
                     };
-                    bomlist.Add(item);
+                    bomList.Add(itemsF);
+
+                    BOMVO itemsR = new BOMVO
+                    {
+                        ItemID = dr.Cells["ItemID"].Value.ToString(),
+                        ParentID = itemId,
+                        ChildID = "*",
+                        UnitQty = 1
+                    };
+                    bomList.Add(itemsR);
                 }
+
             }
             else
             {
-                foreach (DataRow dr in dgvNew.Rows)
+                foreach (DataGridViewRow dr in dgvNew.Rows)
                 {
-                    BOMVO item = new BOMVO
+                    BOMVO itemsF = new BOMVO
                     {
                         ItemID = itemId,
                         ParentID = "*",
-                        ChildID = dr["ItemID"].ToString(),
-                        UnitQty = Convert.ToInt32(dr["UnitQty"])
+                        ChildID = dr.Cells["ItemID"].Value.ToString(),
+                        UnitQty = 1
                     };
-                    bomlist.Add(item);
+                    bomList.Add(itemsF);
+
+                    BOMVO itemsR = new BOMVO
+                    {
+                        ItemID = dr.Cells["ItemID"].Value.ToString(),
+                        ParentID = itemId,
+                        ChildID = "*",
+                        UnitQty = Convert.ToInt32(dr.Cells["UnitQty"].Value)
+                    };
+                    bomList.Add(itemsR);
                 }
             }
 

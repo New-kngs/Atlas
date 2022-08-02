@@ -146,5 +146,29 @@ namespace AtlasMVCAPI.Models
                 return list;
             }
         }
+
+        public bool SaveBOM(List<BOMVO> list)
+        {
+            foreach (BOMVO item in list)
+            {
+                using (SqlCommand cmd = new SqlCommand
+                {
+                    Connection = new SqlConnection(strConn),
+                    CommandText = "SP_CreateWareHouse",
+                    CommandType = CommandType.StoredProcedure
+                })
+                {
+                    cmd.Parameters.AddWithValue("@WHName", item.);
+                    cmd.Parameters.AddWithValue("@ItemCategory", wareHouse.ItemCategory);
+                    cmd.Parameters.AddWithValue("@CreateUser", wareHouse.CreateUser);
+                    cmd.Parameters.AddWithValue("@CreateDate", DateTime.Now);
+                    cmd.Connection.Open();
+                    int iRowAffect = cmd.ExecuteNonQuery();
+                    cmd.Connection.Close();
+
+                    return (iRowAffect > 0);
+                }
+            }
+        }
     }
 }
