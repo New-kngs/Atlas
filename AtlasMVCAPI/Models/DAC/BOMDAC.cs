@@ -1,7 +1,7 @@
 ﻿using AtlasDTO;
 using System;
-using System.Data;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -147,18 +147,21 @@ namespace AtlasMVCAPI.Models
             }
         }
 
-        public bool SaveBOM(List<BOMVO> list)
+        public bool SaveBOM(List<BOMVO> list1, List<BOMVO> list2)
         {
-           // @ItemID1, @ParentID1, @ChildID1, @UnitQty1, @CreateDate1, @CreateUser1,
-           // @ItemID2, @ParentID2, @ChildID2, @UnitQty2, @CreateDate2, @CreateUser2
-            foreach (BOMVO item in list)
+            // @ItemID1, @ParentID1, @ChildID1, @UnitQty1, @CreateDate1, @CreateUser1,
+            // @ItemID2, @ParentID2, @ChildID2, @UnitQty2, @CreateDate2, @CreateUser2
+
+            using (SqlCommand cmd = new SqlCommand
             {
-                using (SqlCommand cmd = new SqlCommand
-                {
-                    Connection = new SqlConnection(strConn),
-                    CommandText = "SP_CreateBOM",
-                    CommandType = CommandType.StoredProcedure
-                })
+                Connection = new SqlConnection(strConn),
+                CommandText = "SP_CreateBOM",
+                CommandType = CommandType.StoredProcedure
+            })
+            {
+                cmd.Connection.Open();
+                int iRowAffect = 0;
+                foreach (BOMVO item in list1)
                 {
                     cmd.Parameters.AddWithValue("@ItemID1", item.ItemID);
                     cmd.Parameters.AddWithValue("@ParentID1", item.ParentID);
@@ -166,19 +169,25 @@ namespace AtlasMVCAPI.Models
                     cmd.Parameters.AddWithValue("@UnitQty1", item.UnitQty);
                     cmd.Parameters.AddWithValue("@CreateDate1", DateTime.Now);
                     cmd.Parameters.AddWithValue("@CreateUser1", item.CreateUser);
+
+                    iRowAffect += cmd.ExecuteNonQuery();
+                }
+                foreach (BOMVO item in list2)
+                {
                     cmd.Parameters.AddWithValue("@ItemID2", item.ItemID);
                     cmd.Parameters.AddWithValue("@ParentID2", item.ParentID);
                     cmd.Parameters.AddWithValue("@ChildID2", item.ChildID);
                     cmd.Parameters.AddWithValue("@UnitQty2", item.UnitQty);
                     cmd.Parameters.AddWithValue("@CreateDate2", DateTime.Now);
                     cmd.Parameters.AddWithValue("@CreateUser2", item.CreateUser);
-                    cmd.Connection.Open();
-                    int iRowAffect = cmd.ExecuteNonQuery();
-                    cmd.Connection.Close();
 
-                    return (iRowAffect > 0);
+                    iRowAffect += cmd.ExecuteNonQuery();
                 }
+                cmd.Connection.Close();
+
+                return (iRowAffect > 1);
             }
         }
     }
+}
 }
