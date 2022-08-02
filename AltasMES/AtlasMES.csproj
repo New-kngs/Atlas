@@ -242,6 +242,18 @@
     <Compile Include="frmProcess\frmProcess_Setting.Designer.cs">
       <DependentUpon>frmProcess_Setting.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPurchase\frmPurchase_Add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPurchase\frmPurchase_Add.Designer.cs">
+      <DependentUpon>frmPurchase_Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPurchase\frmPurchase_Detail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPurchase\frmPurchase_Detail.Designer.cs">
+      <DependentUpon>frmPurchase_Detail.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmWareHouse\frmWareHouse.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -271,6 +283,12 @@
     </Compile>
     <Compile Include="frmWareHouse\frmWareHouse_Using.Designer.cs">
       <DependentUpon>frmWareHouse_Using.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPurchase\frmPurchase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPurchase\frmPurchase.Designer.cs">
+      <DependentUpon>frmPurchase.cs</DependentUpon>
     </Compile>
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
@@ -368,6 +386,12 @@
     <EmbeddedResource Include="frmProcess\frmProcess_Setting.resx">
       <DependentUpon>frmProcess_Setting.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmPurchase\frmPurchase_Add.resx">
+      <DependentUpon>frmPurchase_Add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPurchase\frmPurchase_Detail.resx">
+      <DependentUpon>frmPurchase_Detail.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmWareHouse\frmWareHouse.resx">
       <DependentUpon>frmWareHouse.cs</DependentUpon>
     </EmbeddedResource>
@@ -382,6 +406,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmWareHouse\frmWareHouse_Using.resx">
       <DependentUpon>frmWareHouse_Using.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPurchase\frmPurchase.resx">
+      <DependentUpon>frmPurchase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>

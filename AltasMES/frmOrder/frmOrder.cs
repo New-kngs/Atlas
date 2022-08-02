@@ -14,8 +14,7 @@ namespace AltasMES
     public partial class frmOrder : BaseForm
     {
         ServiceHelper srv = null;
-        List<OrderVO> orderList = null;  // 주문
-        //List<CustomerVO> cusList = null; // 출고 거래처 바인딩
+        List<OrderVO> orderList = null;  // 기간내의 주문목록       
 
         string selId = string.Empty;
 
@@ -28,9 +27,6 @@ namespace AltasMES
         {
             srv = new ServiceHelper("");
 
-            orderList = srv.GetAsync<List<OrderVO>>("api/Order/GetAllOrder").Data;
-            //cusList = srv.GetAsync<List<CustomerVO>>("api/Customer/AllCustomer").Data;
-
             DataGridUtil.SetInitGridView(dgvOrder);
             DataGridUtil.AddGridTextBoxColumn(dgvOrder, "주문ID", "OrderID", colwidth: 100, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvOrder, "거래처명", "CustomerName", colwidth: 200, align: DataGridViewContentAlignment.MiddleLeft);
@@ -39,28 +35,56 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvOrder, "생성사용자", "CreateUser", colwidth: 120, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvOrder, "주문날짜", "CreateDate", colwidth: 170, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvOrder, "변경사용자", "ModifyUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvOrder, "변경날짜", "ModifyDate", colwidth: 170, align: DataGridViewContentAlignment.MiddleCenter);            
+            DataGridUtil.AddGridTextBoxColumn(dgvOrder, "변경날짜", "ModifyDate", colwidth: 170, align: DataGridViewContentAlignment.MiddleCenter);
 
-            //CommonUtil.ComboBinding<CustomerVO>(cboCustomer, cusList.FindAll(p => p.Category.Equals("출고")), "CustomerName", "CustomerID", blankText: "선택");
-
-            LoadData();
-
-            cboStateYN.Items.AddRange(new string[] { "선택", "Y", "N" });
+            dtpTo.Value = DateTime.Now;
+            dtpFrom.Value = DateTime.Now.AddDays(-7);
+            
+            cboStateYN.Items.AddRange(new string[] { "전체", "Y", "N" });
             cboStateYN.SelectedIndex = 0;
 
+            LoadData();
         }
 
         public void LoadData()
-        {
-            orderList = srv.GetAsync<List<OrderVO>>("api/Order/GetAllOrder").Data;
+        {            
+            orderList = srv.GetAsync<List<OrderVO>>("api/Order/GetSearchOrder/" + dtpFrom.Value.ToShortDateString() + "/" + dtpTo.Value.AddDays(1).ToShortDateString()).Data; //"yyyy-MM-dd HH:mm:ss"
 
-            if (orderList == null)
+            if (orderList != null)
             {
-                MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
-            }
+                List<OrderVO> list = null;
 
-            dgvOrder.DataSource = null;
-            dgvOrder.DataSource = new AdvancedList<OrderVO>(orderList);
+                if (cboStateYN.SelectedIndex > 0)
+                {
+                    if (!string.IsNullOrWhiteSpace(txtSearch.Text))
+                    {
+                        list = orderList.FindAll(p => p.CustomerName.Contains(txtSearch.Text.Trim()) && p.OrderShip.Equals(cboStateYN.Text));
+                    }
+                    else
+                    {
+                        list = orderList.FindAll(p => p.OrderShip.Equals(cboStateYN.Text));
+                    }
+                }
+                else 
+                {
+                    if (!string.IsNullOrWhiteSpace(txtSearch.Text))
+                    {
+                        list = orderList.FindAll(p => p.CustomerName.Contains(txtSearch.Text.Trim()));
+                    }
+                    else
+                    {                        
+                        list = orderList;
+                    }
+                }
+
+                dgvOrder.DataSource = null;
+                dgvOrder.DataSource = new AdvancedList<OrderVO>(list);
+            }
+            else
+            {
+                MessageBox.Show("검색 내용이 없습니다.");                
+                return;
+            }
         }                
 
         private void dgvOrder_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -89,98 +113,32 @@ namespace AltasMES
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtSearch.Text) && cboStateYN.SelectedIndex == 0)
-            {
-                MessageBox.Show("출하여부를 선택하거나 거래처명을 입력해 주세요");
-                LoadData();
-                return;
-            }
-
-            //if (string.IsNullOrWhiteSpace(txtSearch.Text) && cboStateYN.SelectedIndex == 0)
-            //{
-            //    List<OrderVO> list = srv.GetAsync<List<OrderVO>>("api/Order/GetSearchOrder/" + dtpFrom.Value.ToShortDateString() + "/" + dtpTo.Value.AddDays(1).ToShortDateString()).Data; //"yyyy-MM-dd HH:mm:ss"
-
-            //    dgvOrder.DataSource = null;
-            //    dgvOrder.DataSource = new AdvancedList<OrderVO>(list);                
-            //}
-
-            
-
-            if (string.IsNullOrWhiteSpace(txtSearch.Text.Trim()))
-            {
-                cboStateYN_SelectedIndexChanged(this, e);
-            }
-            else
-            {
-                if (cboStateYN.SelectedIndex == 0)
-                {
-                    List<OrderVO> list = orderList.FindAll(p => p.CustomerName.Contains(txtSearch.Text.Trim()));                    
-
-                    dgvOrder.DataSource = null;
-                    dgvOrder.DataSource = new AdvancedList<OrderVO>(list);
-                }
-                else
-                {                    
-                    List<OrderVO> searchList = orderList.FindAll(p => p.CustomerName.Contains(txtSearch.Text.Trim()) && p.OrderShip.Equals(cboStateYN.Text));
-                    dgvOrder.DataSource = null;
-                    dgvOrder.DataSource = new AdvancedList<OrderVO>(searchList);
-                }
-            }
-
-
+            LoadData();
         }
 
         private void cboStateYN_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtSearch.Clear();
-            dgvOrder.DataSource = null;
-            if (cboStateYN.SelectedIndex == 0)
-            {
-                dgvOrder.DataSource = new AdvancedList<OrderVO>(orderList);
-            }
-            else
-            {
-                List<OrderVO> stateList = orderList.FindAll(p => p.OrderShip.Equals(cboStateYN.Text));
-                dgvOrder.DataSource = new AdvancedList<OrderVO>(stateList);
-            }
-            dgvOrder.ClearSelection();
-        }
-
-        //private void cboCustomer_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    //dgvOrder.DataSource = null;
-
-        //    //if (cboCustomer.SelectedIndex == 0)
-        //    //{
-        //    //    dgvOrder.DataSource = new AdvancedList<OrderVO>(orderList);
-        //    //}
-        //    //else
-        //    //{
-        //    //    List<OrderVO> cOrderList = orderList.FindAll(p => p.CustomerName.Equals(cboCustomer.Text));
-        //    //    dgvOrder.DataSource = new AdvancedList<OrderVO>(cOrderList);
-        //    //}
-        //    //dgvOrder.ClearSelection();
-        //}
+            LoadData();
+        }        
 
         private void frmOrder_Shown(object sender, EventArgs e)
         {
             dgvOrder.ClearSelection();
-        }
-
-
-        private void frmOrder_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (srv != null)
-            {
-                srv.Dispose();
-            }
-        }
+        }      
 
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 13)
             {
                 btnSearch_Click(this, e);
+            }
+        }
+
+        private void frmOrder_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (srv != null)
+            {
+                srv.Dispose();
             }
         }
     }
