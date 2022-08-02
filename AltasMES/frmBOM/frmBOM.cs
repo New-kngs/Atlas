@@ -30,16 +30,18 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvPdt, "제품사이즈", "ItemSize", colwidth: 165, align: DataGridViewContentAlignment.MiddleCenter);
 
             DataGridUtil.SetInitGridView(dgvA);
-            DataGridUtil.AddGridTextBoxColumn(dgvA, "제품ID", "ItemID", colwidth: 205, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvA, "제품유형", "ItemCategory", colwidth: 200, align: DataGridViewContentAlignment.MiddleLeft);
-            DataGridUtil.AddGridTextBoxColumn(dgvA, "제품이름", "ItemName", colwidth: 265, align: DataGridViewContentAlignment.MiddleLeft);
-            DataGridUtil.AddGridTextBoxColumn(dgvA, "제품사이즈", "ItemSize", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvA, "제품ID", "ItemID", colwidth: 175, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvA, "제품유형", "ItemCategory", colwidth: 170, align: DataGridViewContentAlignment.MiddleLeft);
+            DataGridUtil.AddGridTextBoxColumn(dgvA, "제품이름", "ItemName", colwidth: 255, align: DataGridViewContentAlignment.MiddleLeft);
+            DataGridUtil.AddGridTextBoxColumn(dgvA, "수량", "UnitQty", colwidth: 100, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvA, "제품사이즈", "ItemSize", colwidth: 120, align: DataGridViewContentAlignment.MiddleCenter);
 
             DataGridUtil.SetInitGridView(dgvD);
-            DataGridUtil.AddGridTextBoxColumn(dgvD, "제품ID", "ItemID", colwidth: 205, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvD, "제품유형", "ItemCategory", colwidth: 200, align: DataGridViewContentAlignment.MiddleLeft);
-            DataGridUtil.AddGridTextBoxColumn(dgvD, "제품이름", "ItemName", colwidth: 265, align: DataGridViewContentAlignment.MiddleLeft);
-            DataGridUtil.AddGridTextBoxColumn(dgvD, "제품사이즈", "ItemSize", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvD, "제품ID", "ItemID", colwidth: 175, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvD, "제품유형", "ItemCategory", colwidth: 170, align: DataGridViewContentAlignment.MiddleLeft);
+            DataGridUtil.AddGridTextBoxColumn(dgvD, "제품이름", "ItemName", colwidth: 255, align: DataGridViewContentAlignment.MiddleLeft);
+            DataGridUtil.AddGridTextBoxColumn(dgvD, "수량", "UnitQty", colwidth: 100, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvD, "제품사이즈", "ItemSize", colwidth: 120, align: DataGridViewContentAlignment.MiddleCenter);
 
             service = new ServiceHelper("");
 
@@ -118,38 +120,36 @@ namespace AltasMES
 
         private void dgvPdt_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //api/pop/GetResourceBOM
-            ResMessage<List<BOMVO>> resource = service.GetAsync<List<BOMVO>>("api/BOM/BOMFoward");
+            dgvA.DataSource = null;
+            dgvD.DataSource = null;
 
+            string itemID = dgvPdt["ItemID", e.RowIndex].Value.ToString();
+            string category = dgvPdt["ItemCategory", e.RowIndex].Value.ToString();
+
+            ResMessage<List<BOMVO>> resource = service.GetAsync<List<BOMVO>>($"api/BOM/BOMFoward/{itemID}");
+            ResMessage<List<BOMVO>> resource1 = service.GetAsync<List<BOMVO>>($"api/BOM/BOMReward/{itemID}");
             ResMessage<List<BOMVO>> resResult = service.GetAsync<List<BOMVO>>("api/BOM/AllBOMItem");
 
-            if (e.RowIndex > -1)
+            if (e.RowIndex < 0) return;
+
+            if (category == "완제품")
             {
-                string pdtID = dgvPdt["ItemID", e.RowIndex].Value.ToString();
-                string category = dgvPdt["ItemCategory", e.RowIndex].Value.ToString();
+               
+                dgvA.DataSource = resource.Data;
+            }
+            else if(category =="반제품")
+            {
+                List<BOMVO> listF = resResult.Data.FindAll((r) => r.ParentID == itemID);
+                dgvA.DataSource = listF;
 
-                if (category == "완제품")
-                {
-                    List<BOMVO> listF = resource.Data.FindAll((r) => r.ItemID == pdtID);
-                    dgvA.DataSource = null;
-                    dgvD.DataSource = null;
-                    dgvA.DataSource = listF;
-                }
-                else
-                {
-                    List<BOMVO> listF = resResult.Data.FindAll((r) => r.ParentID == pdtID);
-                    dgvA.DataSource = null;
-                    dgvA.DataSource = listF;
-
-                    List<BOMVO> listR = resResult.Data.FindAll((r) => r.ChildID == pdtID);
-                    dgvD.DataSource = null;
-                    dgvD.DataSource = listR;
-                }
+                List<BOMVO> listR = resResult.Data.FindAll((r) => r.ChildID == itemID);
+                dgvD.DataSource = listR;
             }
             else
             {
-                return;
+                dgvD.DataSource = resource1.Data;
             }
+
         }
 
         private void frmBOM_FormClosing(object sender, FormClosingEventArgs e)

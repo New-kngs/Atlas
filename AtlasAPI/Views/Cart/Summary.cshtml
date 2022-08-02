@@ -1,0 +1,7 @@
+﻿@model AtlasMVCAPI.Models.Cart
+@{
+    if (Model.Lines.Count != 0)
+    {
+        <span class="badge badge-danger navbar-badge">@Model.Lines.Sum(x => x.Qty)</span>
+    }
+}

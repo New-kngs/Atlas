@@ -1,0 +1,40 @@
+﻿@model IEnumerable<OrderVO>
+@{
+    ViewBag.Title = "History";
+    Layout = "~/Views/Shared/_LayoutPageOrder.cshtml";
+}
+@using AtlasDTO;
+
+<div class="container text-center">
+    <div class="row">
+        <div class="col">
+            <input type="button" value="주문상세조회" onclick="javascript: ChkOrder();"/>
+            <table class="table">
+                <tr>
+                    <td></td>
+                    <td>주문번호</td>
+                    <td>주문일자</td>
+                    <td>출하여부</td>
+                    <td>출하일자</td>
+                    <td>결제금액</td>
+                </tr>
+                @foreach(OrderVO row in Model)
+                {
+                    <tr>
+                        <td><input type="radio" name="orderNo" value="@row.OrderID"></td>
+                        <td>@row.OrderID</td>
+                        <td>@row.CreateDate</td>
+                        <td>@row.OrderShip</td>
+                        <td>@row.OrderEndDate</td>
+                        <td>@row.price</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    function ChkOrder() {
+        alert(document.querySelector('input[name="orderNo"]:checked').value);
+    }
+</script>
