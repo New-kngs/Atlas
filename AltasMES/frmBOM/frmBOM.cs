@@ -24,10 +24,10 @@ namespace AltasMES
         {
             //ItemID, ItemName, CurrentQty, WHID, ItemCategory, ItemSize
             DataGridUtil.SetInitGridView(dgvPdt);
-            DataGridUtil.AddGridTextBoxColumn(dgvPdt, "제품ID", "ItemID", colwidth: 205, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvPdt, "제품유형", "ItemCategory", colwidth: 205, align: DataGridViewContentAlignment.MiddleLeft);
+            DataGridUtil.AddGridTextBoxColumn(dgvPdt, "제품ID", "ItemID", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvPdt, "제품유형", "ItemCategory", colwidth: 200, align: DataGridViewContentAlignment.MiddleLeft);
             DataGridUtil.AddGridTextBoxColumn(dgvPdt, "제품이름", "ItemName", colwidth: 265, align: DataGridViewContentAlignment.MiddleLeft);
-            DataGridUtil.AddGridTextBoxColumn(dgvPdt, "제품사이즈", "ItemSize", colwidth: 165, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvPdt, "제품사이즈", "ItemSize", colwidth: 160, align: DataGridViewContentAlignment.MiddleCenter);
 
             DataGridUtil.SetInitGridView(dgvA);
             DataGridUtil.AddGridTextBoxColumn(dgvA, "제품ID", "ItemID", colwidth: 175, align: DataGridViewContentAlignment.MiddleCenter);
@@ -133,8 +133,7 @@ namespace AltasMES
             if (e.RowIndex < 0) return;
 
             if (category == "완제품")
-            {
-               
+            {               
                 dgvA.DataSource = resource.Data;
             }
             else if(category =="반제품")
@@ -180,6 +179,34 @@ namespace AltasMES
             {
                 btnSearch_Click(this, e);
             }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            ResMessage<List<BOMVO>> resResult = service.GetAsync<List<BOMVO>>("api/BOM/AllBOMItem");
+
+            string id = dgvPdt["ItemID", dgvPdt.CurrentRow.Index].Value.ToString();
+            int list = resResult.Data.FindIndex((r) => r.ItemID == id);
+            if (list < 0)
+            {
+                MessageBox.Show("삭제할 BOM대상이 없습니다.");
+                return;
+            }
+            else
+            {
+                ResMessage<List<BOMVO>> del = service.GetAsync<List<BOMVO>>($"api/BOM/DeleteBOM/"+id);
+                if(del.ErrCode == 0)
+                {
+                    MessageBox.Show("삭제요");
+                }
+                else
+                {
+                    MessageBox.Show("실패요");
+                }
+                /*ResMessage<List<ProcessVO>> result = service.PostAsync<ProcessVO, List<ProcessVO>>("DeleteProcess", process);*/
+            }
+
+
         }
     }
 }

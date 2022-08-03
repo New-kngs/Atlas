@@ -76,6 +76,7 @@ namespace AltasMES
             // 
             // btnAdd
             // 
+            this.btnAdd.Location = new System.Drawing.Point(687, 20);
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // imageList1
@@ -89,6 +90,9 @@ namespace AltasMES
             // 
             // btnDelete
             // 
+            this.btnDelete.Location = new System.Drawing.Point(854, 20);
+            this.btnDelete.Size = new System.Drawing.Size(91, 37);
+            this.btnDelete.Text = "미사용";
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // lblTitle
@@ -98,6 +102,7 @@ namespace AltasMES
             // 
             // btnModify
             // 
+            this.btnModify.Location = new System.Drawing.Point(770, 20);
             this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
             // 
             // cboWH

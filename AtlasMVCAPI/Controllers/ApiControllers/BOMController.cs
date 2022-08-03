@@ -216,5 +216,78 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
+
+        /// <summary>
+        /// Author : 정희록
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns>새로운 BOM 생성</returns>
+        //https://localhost:44391/api/BOM/SaveBOM
+        [HttpPost]
+        [Route("SaveBOM")]
+        public IHttpActionResult SaveBOM(List<List<BOMVO>> list)
+        {
+            try
+            {
+                if (list.Count < 2)
+                    throw new Exception("등록 값 전달 오류");
+
+                BOMDAC db = new BOMDAC();
+                bool flag = db.SaveBOM(list[0], list[1]);
+
+                ResMessage result = new ResMessage()
+                {
+                    ErrCode = (!flag) ? -9 : 0,
+                    ErrMsg = (!flag) ? "저장중 오류발생" : "S"
+                };
+
+                return Ok(result);
+            }
+            catch (Exception err)
+            {
+                System.Diagnostics.Debug.WriteLine(err.Message);
+
+                return Ok(new ResMessage()
+                {
+                    ErrCode = -9,
+                    ErrMsg = err.Message
+                });
+            }
+        }
+
+        /// <summary>
+        /// Author : 정희록
+        /// </summary>
+        /// <param name="itemid"></param>
+        /// <returns>BOM삭제</returns>
+        //https://localhost:44391/api/BOM/DeleteBOM
+        [HttpGet]
+        [Route("DeleteBOM/{itemid}")]
+        public IHttpActionResult DeleteBOM(string itemid)
+        {
+            try
+            {
+                BOMDAC db = new BOMDAC();
+                bool flag = db.DeleteBOM(itemid);
+
+                ResMessage result = new ResMessage()
+                {
+                    ErrCode = (!flag) ? -9 : 0,
+                    ErrMsg = (!flag) ? "삭제 중 오류발생" : "S"
+                };
+
+                return Ok(result);
+            }
+            catch (Exception err)
+            {
+                System.Diagnostics.Debug.WriteLine(err.Message);
+
+                return Ok(new ResMessage()
+                {
+                    ErrCode = -9,
+                    ErrMsg = err.Message
+                });
+            }
+        }
     }
 }

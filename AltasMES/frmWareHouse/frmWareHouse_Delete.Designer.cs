@@ -110,11 +110,11 @@ namespace AltasMES
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label3.Location = new System.Drawing.Point(89, 112);
+            this.label3.Location = new System.Drawing.Point(49, 112);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(223, 15);
+            this.label3.Size = new System.Drawing.Size(263, 15);
             this.label3.TabIndex = 29;
-            this.label3.Text = "삭제를 하시려면 창고명을 입력해주세요";
+            this.label3.Text = "창고를 미사용 하시려면 창고명을 입력해주세요";
             // 
             // btnCancel
             // 
@@ -205,7 +205,7 @@ namespace AltasMES
             this.Controls.Add(this.panel1);
             this.Name = "frmWareHouse_Delete";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "미사용등록";
+            this.Text = "창고미사용";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmWareHouse_Delete_FormClosing);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmWareHouse_Delete_KeyPress_1);
             this.panel1.ResumeLayout(false);

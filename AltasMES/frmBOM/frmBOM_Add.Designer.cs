@@ -163,7 +163,7 @@ namespace AltasMES
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(106, 21);
             this.label2.TabIndex = 28;
-            this.label2.Text = "복사대상제품";
+            this.label2.Text = "복사원본제품";
             // 
             // groupBox2
             // 

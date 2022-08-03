@@ -53,7 +53,8 @@ namespace AltasMES
                     ModifyUser = this.item.ModifyUser
                 };
                 ResMessage<List<ItemVO>> result = srv.PostAsync<ItemVO, List<ItemVO>>("api/Item/DeleteItem", item);
-                if (result.ErrCode == 0)                {
+                if (result.ErrCode == 0)               
+                {
                     
                     MessageBox.Show("성공적으로 삭제되었습니다.");
                     this.DialogResult = DialogResult.OK;

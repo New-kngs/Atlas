@@ -113,8 +113,10 @@ namespace AltasMES
                 }
             }
             else
-            {
-                return;
+            {                
+                dgvParts.DataSource = null;
+                dgvNew.DataSource = null;
+                cboPdtListLoad();
             }
         }
 
@@ -232,8 +234,7 @@ namespace AltasMES
             }
             else
             {
-                cboPdtListLoad();
-
+                cboPdt.Items.Clear();
                 if (cboCategory.SelectedIndex == 0)
                 {
                     DataLoad();
@@ -273,31 +274,37 @@ namespace AltasMES
 
         private void btnCopy_Click(object sender, EventArgs e)
         {
-
-            if (cboCategory.SelectedIndex == 0)
+            if (cboCategory.SelectedIndex == 0 )
             {
-                MessageBox.Show("우선 제품유형을 완제품/반제품 중 선택하십시오.");
+                MessageBox.Show("복사할 제품유형을 선택하십시오.");
                 return;
-            } 
+            }
+            //else if (dgvUnreg.SelectedRows.Count < 1)
+            //{
+            //    MessageBox.Show("복사대상 미등록제품을 선택하십시오.");
+            //    return;
+            //}
             else
             {
-                cboPdtListLoad();                
-            }
+                dgvParts.DataSource = dgvNew.DataSource = null;
+                label2.Visible = cboPdt.Visible = true;
+            }            
         }
         private void cboPdtListLoad()
-        {
-            dgvParts.DataSource = dgvNew.DataSource = null;
-            label2.Visible = cboPdt.Visible = true;
-            string choice = cboCategory.SelectedItem.ToString();
+        {            
+            string category = cboCategory.SelectedItem.ToString();
+            string id = dgvUnreg["ItemID", dgvUnreg.CurrentRow.Index].Value.ToString();
 
-            ResMessage<List<BOMVO>> volist = service.GetAsync<List<BOMVO>>($"api/BOM/RegiItem/{choice}");
+            ResMessage<List<ItemVO>> result = service.GetAsync<List<ItemVO>>("api/Item/AllItem");
+            ResMessage<List<BOMVO>> volist = service.GetAsync<List<BOMVO>>($"api/BOM/RegiItem/{category}");
 
-            List<BOMVO> list = volist.Data.FindAll((f) => f.ItemCategory == choice);
+            string size = result.Data.Find((f) => f.ItemID.Equals(id)).ItemSize;
+            List<BOMVO> list = volist.Data.FindAll((f) => f.ItemSize == size);
 
             cboPdt.Items.Clear();
             cboPdt.Items.Add("선택");
             cboPdt.SelectedIndex = 0;
-            foreach (var lst in list)
+            foreach (var lst in volist.Data)
             {
                 cboPdt.Items.Add(lst.ItemName);
             }
@@ -359,7 +366,8 @@ namespace AltasMES
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            List<BOMVO> bomList = new List<BOMVO>();
+            List<BOMVO> bomList1 = new List<BOMVO>();
+            List<BOMVO> bomList2 = new List<BOMVO>();
 
             int count = 0;
             if (dgvUnreg.SelectedRows.Count < 1)
@@ -394,7 +402,7 @@ namespace AltasMES
             }
 
             string category = cboCategory.Text;
-            string itemId = dgvUnreg.SelectedRows[0].Cells["ItemName"].Value.ToString();
+            string itemId = dgvUnreg.SelectedRows[0].Cells["ItemID"].Value.ToString();
 
             if (category == "완제품")
             {
@@ -405,18 +413,20 @@ namespace AltasMES
                         ItemID = itemId,
                         ParentID = "*",
                         ChildID = dr.Cells["ItemID"].Value.ToString(),
-                        UnitQty = 1
+                        UnitQty = 1,
+                        CreateUser = this.bom.CreateUser
                     };
-                    bomList.Add(itemsF);
+                    bomList1.Add(itemsF);
 
                     BOMVO itemsR = new BOMVO
                     {
                         ItemID = dr.Cells["ItemID"].Value.ToString(),
                         ParentID = itemId,
                         ChildID = "*",
-                        UnitQty = 1
+                        UnitQty = 1,
+                        CreateUser = this.bom.CreateUser
                     };
-                    bomList.Add(itemsR);
+                    bomList2.Add(itemsR);
                 }
 
             }
@@ -429,22 +439,36 @@ namespace AltasMES
                         ItemID = itemId,
                         ParentID = "*",
                         ChildID = dr.Cells["ItemID"].Value.ToString(),
-                        UnitQty = 1
+                        UnitQty = 1,
+                        CreateUser = this.bom.CreateUser
                     };
-                    bomList.Add(itemsF);
+                    bomList1.Add(itemsF);
 
                     BOMVO itemsR = new BOMVO
                     {
                         ItemID = dr.Cells["ItemID"].Value.ToString(),
                         ParentID = itemId,
                         ChildID = "*",
-                        UnitQty = Convert.ToInt32(dr.Cells["UnitQty"].Value)
+                        UnitQty = Convert.ToInt32(dr.Cells["UnitQty"].Value),
+                        CreateUser = this.bom.CreateUser
                     };
-                    bomList.Add(itemsR);
+                    bomList2.Add(itemsR);
                 }
             }
 
-            
+            List<List<BOMVO>> list = new List<List<BOMVO>>();
+            list.Add(bomList1);
+            list.Add(bomList2);
+
+            ResMessage result = service.PostAsyncNone<List<List<BOMVO>>>("api/BOM/SaveBOM", list);
+
+            if (result.ErrCode == 0)
+            {
+                MessageBox.Show("성공적으로 등록되었습니다.");
+                this.DialogResult = DialogResult.OK;
+            }
+            else
+                MessageBox.Show(result.ErrMsg);
 
         }
     }

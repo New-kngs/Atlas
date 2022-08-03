@@ -100,7 +100,7 @@ namespace AltasMES
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(692, 20);
+            this.btnAdd.Location = new System.Drawing.Point(774, 20);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAdd.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -125,6 +125,7 @@ namespace AltasMES
             this.btnDelete.Location = new System.Drawing.Point(858, 20);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDelete.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // lblTitle
             // 
@@ -133,9 +134,10 @@ namespace AltasMES
             // 
             // btnModify
             // 
-            this.btnModify.Location = new System.Drawing.Point(775, 20);
+            this.btnModify.Location = new System.Drawing.Point(690, 20);
             this.btnModify.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnModify.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.btnModify.Visible = false;
             // 
             // groupBox5
             // 
