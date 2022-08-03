@@ -49,28 +49,28 @@ namespace AtlasPOP
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(934, 504);
+            this.panel1.Size = new System.Drawing.Size(434, 313);
             this.panel1.TabIndex = 0;
             // 
             // lblState
             // 
-            this.lblState.Location = new System.Drawing.Point(712, 185);
+            this.lblState.Location = new System.Drawing.Point(12, 164);
             this.lblState.Name = "lblState";
-            this.lblState.Size = new System.Drawing.Size(117, 116);
+            this.lblState.Size = new System.Drawing.Size(91, 60);
             this.lblState.TabIndex = 2;
             // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 12;
-            this.listBox1.Location = new System.Drawing.Point(183, 143);
+            this.listBox1.Location = new System.Drawing.Point(12, 49);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(405, 304);
+            this.listBox1.Size = new System.Drawing.Size(405, 112);
             this.listBox1.TabIndex = 1;
             // 
             // txtTotQty
             // 
-            this.txtTotQty.Location = new System.Drawing.Point(401, 66);
+            this.txtTotQty.Location = new System.Drawing.Point(118, 12);
             this.txtTotQty.Name = "txtTotQty";
             this.txtTotQty.Size = new System.Drawing.Size(100, 21);
             this.txtTotQty.TabIndex = 0;
@@ -78,7 +78,7 @@ namespace AtlasPOP
             // 
             // txtReadPLC
             // 
-            this.txtReadPLC.Location = new System.Drawing.Point(183, 66);
+            this.txtReadPLC.Location = new System.Drawing.Point(12, 12);
             this.txtReadPLC.Name = "txtReadPLC";
             this.txtReadPLC.Size = new System.Drawing.Size(100, 21);
             this.txtReadPLC.TabIndex = 0;
@@ -88,7 +88,7 @@ namespace AtlasPOP
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(934, 504);
+            this.ClientSize = new System.Drawing.Size(434, 313);
             this.Controls.Add(this.panel1);
             this.Name = "frmPerformance";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

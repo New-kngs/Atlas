@@ -45,7 +45,6 @@ namespace AtlasPOP
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.dataProgress1 = new AtlasPOP.dataProgress();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -195,7 +194,6 @@ namespace AtlasPOP
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this.panel2, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.dataProgress1, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 25);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -233,15 +231,6 @@ namespace AtlasPOP
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 58.66388F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1208, 601);
             this.tableLayoutPanel1.TabIndex = 7;
-            // 
-            // dataProgress1
-            // 
-            this.dataProgress1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataProgress1.Location = new System.Drawing.Point(4, 237);
-            this.dataProgress1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dataProgress1.Name = "dataProgress1";
-            this.dataProgress1.Size = new System.Drawing.Size(1188, 77);
-            this.dataProgress1.TabIndex = 1;
             // 
             // frmOperation
             // 
@@ -286,6 +275,5 @@ namespace AtlasPOP
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private dataProgress dataProgress1;
     }
 }

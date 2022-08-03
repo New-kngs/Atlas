@@ -29,7 +29,7 @@ namespace VirtualPLCMachin
         TcpClient tc;
         Timer timer1;
         string taskID, ip, port, qty;
-
+        int tot=0;
         public Service(string taskID, string ip, string port, string qty)
         {
             this.qty = qty;
@@ -66,9 +66,15 @@ namespace VirtualPLCMachin
         {
             //string msg = $"{qty}|1|1";
             string msg = $"5|1|1";
+            tot++;
 
+            /*if(6 <= tot)
+            {
+                OnStop();
+            }*/
 
             byte[] buff = Encoding.Default.GetBytes(msg);
+            
 
 
             ns.Write(buff, 0, buff.Length);

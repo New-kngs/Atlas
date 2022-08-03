@@ -90,6 +90,13 @@ namespace AtlasPOP
 
             totQty += int.Parse(datas[1]);
             this.Invoke((MethodInvoker)(() => txtTotQty.Text = totQty.ToString("#,##0")));
+
+
+            if (Convert.ToInt32(datas[0]) <= Convert.ToInt32(txtTotQty.Text))
+            {
+                bExit = true;
+                this.DialogResult = DialogResult.OK;
+            }
         }
 
         private void frmPerformance_FormClosing(object sender, FormClosingEventArgs e)
@@ -123,14 +130,7 @@ namespace AtlasPOP
 
         private void txtTotQty_TextChanged(object sender, EventArgs e)
         {
-            string[] datas = txtReadPLC.Text.Split('|');
-            if (Convert.ToInt32(datas[0]) == Convert.ToInt32(txtTotQty.Text))
-            {
-                m_log.RemoveRepository(taskID);
-                m_thread.ThreadStop();
-
-                
-            }
+            
         }
     }
 }

@@ -62,18 +62,18 @@ namespace AtlasPOP
 
             CustomerID = oderList.Data.Find((n) => n.OrderID == Oper.OrderID).CustomerID;
 
-                lblOper.Text = Oper.OpID;
-                lblOder.Text = Oper.OrderID;
-                lblOperDate.Text = Oper.OpDate;
-                lblProcess.Text = Oper.ProcessName;
-                lblItem.Text = Oper.ItemName;
-                lblCustomer.Text = customerList.Data.Find((n) => n.CustomerID == CustomerID).CustomerName;
-                lblQty.Text = Oper.PlanQty.ToString();
-                lblStatus.Text = Oper.OpState;
-                lblResource.Text = Oper.resourceYN;
-                lblBegin.Text = Oper.BeginDate;
-                lblEnd.Text = Oper.EndDate;
-                lblEmp.Text = Oper.EmpID;
+            lblOper.Text = Oper.OpID;
+            lblOder.Text = Oper.OrderID;
+            lblOperDate.Text = Oper.OpDate;
+            lblProcess.Text = Oper.ProcessName;
+            lblItem.Text = Oper.ItemName;
+            lblCustomer.Text = customerList.Data.Find((n) => n.CustomerID == CustomerID).CustomerName;
+            lblQty.Text = Oper.PlanQty.ToString();
+            lblStatus.Text = Oper.OpState;
+            lblResource.Text = Oper.resourceYN;
+            lblBegin.Text = Oper.BeginDate;
+            lblEnd.Text = Oper.EndDate;
+            lblEmp.Text = Oper.EmpID;
         }
 
         private void DataGet(OperationVO data)
@@ -96,7 +96,7 @@ namespace AtlasPOP
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            if(Oper == null)
+            if (Oper == null)
             {
                 MessageBox.Show("작업을 선택해주세요");
                 return;
@@ -122,16 +122,20 @@ namespace AtlasPOP
             string ip = "127.0.0.1";
             string port = Oper.port;
             string name = Oper.ProcessName;
-            
+
 
             Process pro = Process.Start(server, $"{name} {ip} {port} {Oper.PlanQty.ToString()}");
             process_id = pro.Id;
 
-            
-
-
             frm = new frmPerformance(name, ip, port);
-            frm.Show();
+            if (frm.ShowDialog() == DialogResult.OK)
+            {   
+                pro.Kill();
+                MessageBox.Show("종료되었다");
+       
+                frm.TaskExit = true;
+                frm.Close();
+            }
             //frm.Hide();
 
             //IsTaskEnabled = true;
@@ -142,26 +146,16 @@ namespace AtlasPOP
         {
             foreach (Process proc in Process.GetProcesses())
             {
-                if(Oper != null)
+                if (proc.Id.Equals(process_id))
                 {
-                    if (proc.Id.Equals(process_id))
-                    {
-                        proc.Kill();
-                    }
-                    
+                    proc.Kill();
                 }
-                else
-                {
-                    
-                }
-                frm.TaskExit = true;
-                    frm.Close();
-                
             }
 
+            frm.TaskExit = true;
+            frm.Close();
             
-
-           // IsTaskEnabled = false;
+            // IsTaskEnabled = false;
         }
 
         private void btnResource_Click(object sender, EventArgs e)
@@ -171,7 +165,7 @@ namespace AtlasPOP
 
         private void btnFail_Click(object sender, EventArgs e)
         {
-            if(Oper == null)
+            if (Oper == null)
             {
                 MessageBox.Show("작업을 선택해주세요");
                 return;
@@ -200,13 +194,13 @@ namespace AtlasPOP
                 return;
             }
             frmResource frm = new frmResource(Oper);
-            if(frm.ShowDialog() == DialogResult.OK)
+            if (frm.ShowDialog() == DialogResult.OK)
             {
                 frmOperation frmop = new frmOperation();
                 frmop.DialogResult = DialogResult.OK;
             }
-        }      
-        
+        }
+
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             //frm.TaskExit = true;
