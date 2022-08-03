@@ -248,12 +248,6 @@
     <Compile Include="frmPurchase\frmPurchase_Add.Designer.cs">
       <DependentUpon>frmPurchase_Add.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmPurchase\frmPurchase_Detail.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmPurchase\frmPurchase_Detail.Designer.cs">
-      <DependentUpon>frmPurchase_Detail.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmWareHouse\frmWareHouse.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -388,9 +382,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmPurchase\frmPurchase_Add.resx">
       <DependentUpon>frmPurchase_Add.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmPurchase\frmPurchase_Detail.resx">
-      <DependentUpon>frmPurchase_Detail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmWareHouse\frmWareHouse.resx">
       <DependentUpon>frmWareHouse.cs</DependentUpon>
