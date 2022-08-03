@@ -193,22 +193,7 @@ namespace AltasMES
             }
         }
 
-        private void btnModify_Click(object sender, EventArgs e)
-        {
-            if (selId == string.Empty)
-            {
-                MessageBox.Show("발주 항목을 선택해 주세요");
-                return;
-            }
-
-            PurchaseVO pur = srv.GetAsync<PurchaseVO>($"/api/Purchase/{selId}").Data;
-            pur.ModifyUser = ((Main)this.MdiParent).EmpName.ToString();
-            frmPurchase_Detail pop = new frmPurchase_Detail(pur);
-            if (pop.ShowDialog() == DialogResult.OK)
-            {
-                LoadData();
-            }
-        }
+       
 
         private void dgvPurchase_CellClick(object sender, DataGridViewCellEventArgs e)
         {

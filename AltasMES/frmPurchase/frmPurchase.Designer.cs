@@ -84,10 +84,6 @@ namespace AltasMES
             this.lblTitle.Size = new System.Drawing.Size(98, 51);
             this.lblTitle.Text = "발주";
             // 
-            // btnModify
-            // 
-            this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
