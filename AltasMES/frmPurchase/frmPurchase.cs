@@ -25,9 +25,7 @@ namespace AltasMES
 
         private void frm_Purchase_Load(object sender, EventArgs e)
         {
-            srv = new ServiceHelper("");
-
-            //purchaseList = srv.GetAsync<List<PurchaseVO>>("api/Purchase/GetAllPurchase").Data;
+            srv = new ServiceHelper("");            
 
             DataGridUtil.SetInitGridView(dgvPurchase);
             DataGridUtil.AddGridTextBoxColumn(dgvPurchase, "발주ID", "PurchaseID", colwidth: 100, align: DataGridViewContentAlignment.MiddleCenter);
@@ -51,18 +49,7 @@ namespace AltasMES
         }
 
         public void LoadData()
-        {
-            //purchaseList = srv.GetAsync<List<PurchaseVO>>("api/Purchase/GetAllPurchase").Data;
-
-            //if (purchaseList == null)
-            //{
-            //    MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
-            //}
-
-            //dgvPurchase.DataSource = null;
-            //dgvPurchase.DataSource = new AdvancedList<PurchaseVO>(purchaseList);
-
-
+        {         
             purchaseList = srv.GetAsync<List<PurchaseVO>>("api/Purchase/GetSearchPurchase/" + dtpFrom.Value.ToShortDateString() + "/" + dtpTo.Value.AddDays(1).ToShortDateString()).Data; //"yyyy-MM-dd HH:mm:ss"
 
             if (purchaseList != null)
@@ -107,46 +94,12 @@ namespace AltasMES
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            LoadData();
-
-            //if (string.IsNullOrWhiteSpace(txtSearch.Text.Trim()))
-            //{
-            //    cboStateYN_SelectedIndexChanged(this, e);
-            //}
-            //else
-            //{
-            //    if (cboStateYN.SelectedIndex == 0)
-            //    {
-            //        List<PurchaseVO> list = purchaseList.FindAll(p => p.CustomerName.Contains(txtSearch.Text.Trim()));
-
-            //        dgvPurchase.DataSource = null;
-            //        dgvPurchase.DataSource = new AdvancedList<PurchaseVO>(list);
-            //    }
-            //    else
-            //    {
-            //        List<PurchaseVO> searchList = purchaseList.FindAll(p => p.CustomerName.Contains(txtSearch.Text.Trim()) && p.InState.Equals(cboStateYN.Text));
-            //        dgvPurchase.DataSource = null;
-            //        dgvPurchase.DataSource = new AdvancedList<PurchaseVO>(searchList);
-            //    }
-            //}
+            LoadData();           
         }
 
         private void cboStateYN_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadData();
-
-            //txtSearch.Clear();
-            //dgvPurchase.DataSource = null;
-            //if (cboStateYN.SelectedIndex == 0)
-            //{
-            //    dgvPurchase.DataSource = new AdvancedList<PurchaseVO>(purchaseList);
-            //}
-            //else
-            //{
-            //    List<PurchaseVO> stateList = purchaseList.FindAll(p => p.InState.Equals(cboStateYN.Text));
-            //    dgvPurchase.DataSource = new AdvancedList<PurchaseVO>(stateList);
-            //}
-            //dgvPurchase.ClearSelection();
         }
 
         private void frm_Purchase_KeyPress(object sender, KeyPressEventArgs e)
@@ -168,9 +121,7 @@ namespace AltasMES
             {
                 srv.Dispose();
             }
-        }
-
-       
+        }       
 
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
         {

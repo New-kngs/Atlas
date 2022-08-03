@@ -37,6 +37,28 @@ namespace AtlasMVCAPI.Models
             }
         }
 
+        public List<ItemVO> GetPurChaseItem()
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.CommandText = @"select ItemID, ItemName, C.CustomerName, CurrentQty, SafeQty, W.WHName, ItemPrice, I.ItemCategory, ItemSize, ItemExplain, CONVERT(varchar(30), I.CreateDate, 120) CreateDate, I.CreateUser, CONVERT(varchar(30), I.ModifyDate, 120) ModifyDate, I.ModifyUser, I.StateYN 
+                                    from TB_Item I left outer join TB_Customer C on I.CustomerID = C.CustomerID
+				                                   inner join TB_Warehouse W on I.WHID = W.WHID
+									where I.ItemCategory like '%자재%'";
+
+                cmd.Connection.Open();
+                List<ItemVO> list = Helper.DataReaderMapToList<ItemVO>(cmd.ExecuteReader());
+                cmd.Connection.Close();
+
+                if (list != null && list.Count > 0)
+                    return list;
+                else
+                    return null;
+            }
+        }
+
+
         public List<ComboItemVO> GetAllItemCategory()
         {           
             using (SqlCommand cmd = new SqlCommand())
