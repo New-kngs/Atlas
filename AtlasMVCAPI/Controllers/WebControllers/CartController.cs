@@ -24,10 +24,20 @@ namespace AtlasMVCAPI.Controllers
         }
 
         // 상품 상세 팝업창
-        public ActionResult PopUp()
+        public PartialViewResult PopUp(string productID)
         {
-            // ViewData[""];
-            return View();
+            ItemDAC db = new ItemDAC();
+            BOMDAC bomDB = new BOMDAC();
+
+            ProductPopUpModel model = new ProductPopUpModel
+            {
+                Product = db.GetProductInfo(productID),
+                BOM = bomDB.GetBOMForwardList(productID)
+                // GetBOMForwardList
+            };
+
+            // (List<OrderVO>, List<OrderDetailVO>) model = db.GetOrderDetails("쿼리문 잘못 짯다");
+            return PartialView(model);
         }
 
         [HttpPost]

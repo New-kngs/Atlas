@@ -2213,7 +2213,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Product\List.cshtml" />
     <Content Include="Views\Cart\Basket.cshtml" />
-    <Content Include="Views\Cart\AddToCart.cshtml" />
     <Content Include="Views\Login\Lock.cshtml" />
     <Content Include="Views\OrderWeb\History.cshtml" />
     <Content Include="Views\Cart\PopUp.cshtml" />

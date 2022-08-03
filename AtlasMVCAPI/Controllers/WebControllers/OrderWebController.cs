@@ -31,19 +31,5 @@ namespace AtlasMVCAPI.Controllers
                 return View(model);
             }
         }
-        [HttpPost]
-        public PartialViewResult PopOrderSheet(string prdNo)
-        {
-            ItemDAC db = new ItemDAC();
-
-            ProductPopUpModel model = new ProductPopUpModel
-            {
-                Product = db.GetProductInfo(prdNo),
-                BOM = db.bomCTE(prdNo)
-            };
-
-            // (List<OrderVO>, List<OrderDetailVO>) model = db.GetOrderDetails("쿼리문 잘못 짯다");
-            return PartialView(model);
-        }
     }
 }

@@ -9,6 +9,6 @@ namespace AtlasMVCAPI.Models
     public class ProductPopUpModel
     {
         public ItemVO Product { get; set; }
-        public IEnumerable<ItemVO> BOM { get; set; }
+        public IEnumerable<BOMVO> BOM { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿@model AtlasMVCAPI.Models.ProductPopUpModel
+@using AtlasDTO;
 @{
     Layout = null;
 }
@@ -13,7 +14,9 @@
     <!-- Main content -->
 
     <div class="container">
-        <div class="row">
+        <br /><br />
+        <!-- style="border: 3px solid dodgerblue; " -->
+        <div class="row" style="background-color: #EFEFEF; padding-top: 10px; padding-bottom: 10px ">
             <div class="col-6">
                 <img src="~/Uploads/@Model.Product.ItemImage" style="width:300px; height:300px">
             </div>
@@ -23,35 +26,64 @@
                 <h4>@Model.Product.ItemExplain</h4>
                 <hr />
                 <h5>Size </h5>
-                <button type="button" class="btn btn-light"><h5>S</h5><h6>Small</h6> </button>
-                <button type="button" class="btn btn-light"><h5>D</h5><h6>Double</h6></button>
-                <button type="button" class="btn btn-light"><h5>Q</h5><h6>Queen</h6></button>
-                <button type="button" class="btn btn-light"><h5>K</h5><h6>King</h6></button>
+                @{ string[] disable = { "disabled", "disabled", "disabled", "disabled" };}
+                @switch (Model.Product.ItemSize)
+                {
+                    case "S":
+                        disable[0] = "";
+                        break;
+                    case "D":
+                        disable[1] = "";
+                        break;
+                    case "Q":
+                        disable[2] = "";
+                        break;
+                    default:
+                        disable[3] = "";
+                        break;
+                }
+                <button type="button" class="btn btn-light" @disable[0]><h5>S</h5><h6>Small</h6> </button>
+                <button type="button" class="btn btn-light" @disable[1]><h5>D</h5><h6>Double</h6></button>
+                <button type="button" class="btn btn-light" @disable[2]><h5>Q</h5><h6>Queen</h6></button>
+                <button type="button" class="btn btn-light" @disable[3]><h5>K</h5><h6>King</h6></button>
                 <hr />
                 <div class="col">
-                    <div class="p-3 border bg-light"><h5>@Model.Product.ItemPrice</h5> </div>
+                    <div class="p-3 border bg-light"><h5 style="text-align: right;">@Model.Product.ItemPrice.ToString("c")</h5> </div>
                 </div>
             </div>
         </div>
-        <br /><br />
-        <div class="row">
-            <ul class="nav nav-tabs">
-                <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#qwe">부품</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#asd">반제품</a>
-                </li>
-            </ul>
-            <div class="tab-content">
-                <div class="tab-pane fade show active" id="qwe">
-                    <p>Lorem ipsum dolor sit amet,</p>
-                </div>
-                <div class="tab-pane fade" id="asd">
-                    <p>Nunc vitae turpis id nibh sodales com tristique.</p>
+        <br /><br /> @*style="border-top-width: 3px; border-top-color: dodgerblue; "*@
+        <div class="row" style="border: 2px solid #EFEFEF; padding-top:1em;">
+            <div class="col-3">
+                    <button class="btn btn-outline-secondary" style="margin: auto; display: block;" disabled>자재 상세정보</button>
+            </div>
+            <div class="col-9" data-spy="scroll">
+                        <table class="table">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col">자재명</th>
+                                    <th scope="col">수량</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (BOMVO bom in Model.BOM.ToList().Where((x) => x.ItemCategory == "자재"))
+                                {
+                                    <tr>
+                                        <th scope="row"></th>
+                                        <td>@bom.ItemName</td>
+                                        <td>@bom.UnitQty</td>
+                                    </tr>
+                                }
+                            </tbody>
+
+                        </table>
+                    </div>
+                   
                 </div>
             </div>
         </div>
     </div>
+    <br /><br />
 </body>
 </html>
