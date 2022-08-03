@@ -49,7 +49,7 @@ namespace AtlasPOP
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(434, 313);
+            this.panel1.Size = new System.Drawing.Size(434, 174);
             this.panel1.TabIndex = 0;
             // 
             // lblState
@@ -88,12 +88,12 @@ namespace AtlasPOP
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(434, 313);
+            this.ClientSize = new System.Drawing.Size(434, 174);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmPerformance";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "모니터링";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Text = "현황";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPerformance_FormClosing);
             this.Load += new System.EventHandler(this.frmPerformance_Load);
             this.panel1.ResumeLayout(false);

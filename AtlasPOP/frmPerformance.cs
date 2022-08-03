@@ -41,7 +41,7 @@ namespace AtlasPOP
         public frmPerformance(string task, string IP, string Port)
         {
             InitializeComponent();
-
+            
             hostIP = IP;
             hostPort = int.Parse(Port);
             taskID = task;
@@ -57,6 +57,9 @@ namespace AtlasPOP
 
         private void frmPerformance_Load(object sender, EventArgs e)
         {
+            //this.WindowState = FormWindowState.Minimized;
+
+            
             m_log.WriteInfo("PLC프로그램 시작");
 
             m_thread = new ThreadPLCTask( m_log, workID, hostIP, hostPort, timer_CONNECT, timer_KeepAlive, timer_Read);
@@ -95,7 +98,10 @@ namespace AtlasPOP
             if (Convert.ToInt32(datas[0]) <= Convert.ToInt32(txtTotQty.Text))
             {
                 bExit = true;
-                this.DialogResult = DialogResult.OK;
+
+                AtlasPOP main = (AtlasPOP)this.MdiParent;
+                main.Finish();
+                this.Close();
             }
         }
 

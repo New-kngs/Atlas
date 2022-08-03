@@ -1,7 +1,7 @@
 ﻿
 namespace AtlasPOP
 {
-    partial class btnPerformance
+    partial class AtlasPOP
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace AtlasPOP
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(btnPerformance));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AtlasPOP));
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -341,7 +341,7 @@ namespace AtlasPOP
             this.btnResource.UseVisualStyleBackColor = false;
             this.btnResource.Click += new System.EventHandler(this.btnResource_Click_1);
             // 
-            // btnPerformance
+            // AtlasPOP
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -353,7 +353,7 @@ namespace AtlasPOP
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "btnPerformance";
+            this.Name = "AtlasPOP";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.AtlasPOP_Load);
             this.panel1.ResumeLayout(false);

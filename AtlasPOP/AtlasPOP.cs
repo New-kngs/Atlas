@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace AtlasPOP
 {
-    public partial class btnPerformance : Form
+    public partial class AtlasPOP : Form
     {
 
 
@@ -32,7 +32,10 @@ namespace AtlasPOP
         ResMessage<List<CustomerVO>> customerList;
 
         frmPerformance frm;
-        public btnPerformance()
+        frmOperation frmoper = null;
+
+
+        public AtlasPOP()
         {
             InitializeComponent();
         }
@@ -40,11 +43,11 @@ namespace AtlasPOP
         private void AtlasPOP_Load(object sender, EventArgs e)
         {
             //panel1.Visible = false;
-            frmOperation frm = new frmOperation();
-            frm.MdiParent = this;
-            frm.WindowState = FormWindowState.Maximized;
-            frm.DataSendEvent += new DataGetEventHandler(this.DataGet);
-            frm.Show();
+            frmoper = new frmOperation();
+            frmoper.MdiParent = this;
+            frmoper.WindowState = FormWindowState.Maximized;
+            frmoper.DataSendEvent += new DataGetEventHandler(this.DataGet);
+            frmoper.Show();
 
             service = new popServiceHelper("");
             itemList = service.GetAsync<List<ItemVO>>("api/pop/getItem");
@@ -128,18 +131,28 @@ namespace AtlasPOP
             process_id = pro.Id;
 
             frm = new frmPerformance(name, ip, port);
-            if (frm.ShowDialog() == DialogResult.OK)
-            {   
-                pro.Kill();
-                MessageBox.Show("종료되었다");
-       
-                frm.TaskExit = true;
-                frm.Close();
-            }
-            //frm.Hide();
+            frm.MdiParent = this;
+            frm.Show();
+            frm.Hide();
+            frmoper.MdiParent = this;
+            frmoper.WindowState = FormWindowState.Maximized;
 
             //IsTaskEnabled = true;
+        }
 
+        public void Finish()
+        {
+            foreach (Process proc in Process.GetProcesses())
+            {
+                if (proc.Id.Equals(process_id))
+                {
+                    proc.Kill();
+                    MessageBox.Show("종료되었다");
+                }
+            }
+            
+            frm.TaskExit = true;
+            frm.Close();
         }
 
         private void btnEnd_Click(object sender, EventArgs e)

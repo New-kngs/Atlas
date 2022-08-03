@@ -122,7 +122,7 @@ namespace AtlasPOP
             };
             DataSendEvent(oper);
 
-            btnPerformance main = (btnPerformance)this.MdiParent;
+            AtlasPOP main = (AtlasPOP)this.MdiParent;
             main.ChangeValue();
         }
 
