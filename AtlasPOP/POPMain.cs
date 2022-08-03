@@ -219,9 +219,9 @@ namespace AtlasPOP
 
         private void btnOperSatus_Click(object sender, EventArgs e)
         {
-            frmPerformance frm = new frmPerformance();
+            /*frmPerformance frm = new frmPerformance();
             frm.MdiParent = this;
-            frm.Show();
+            frm.Show();*/
         }
 
         private void btnFail_Click(object sender, EventArgs e)

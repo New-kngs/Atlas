@@ -70,6 +70,9 @@
     <Reference Include="DevExpress.XtraPrinting.v22.1, Version=22.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraReports.v22.1, Version=22.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraReports.v22.1.Extensions, Version=22.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="log4net, Version=2.0.14.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.14\lib\net45\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -82,6 +85,7 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.9\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -102,17 +106,17 @@
     <Compile Include="AtlasPOP.Designer.cs">
       <DependentUpon>AtlasPOP.cs</DependentUpon>
     </Compile>
+    <Compile Include="dataProgress.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="dataProgress.Designer.cs">
+      <DependentUpon>dataProgress.cs</DependentUpon>
+    </Compile>
     <Compile Include="EquipList.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="EquipList.Designer.cs">
       <DependentUpon>EquipList.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Monitoring.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Monitoring.Designer.cs">
-      <DependentUpon>Monitoring.cs</DependentUpon>
     </Compile>
     <Compile Include="POPMain.cs">
       <SubType>Form</SubType>
@@ -158,17 +162,20 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TcpIP\LoggingUtility.cs" />
+    <Compile Include="TcpIP\TcpControl.cs" />
+    <Compile Include="TcpIP\ThreadPLCTask.cs" />
     <Compile Include="Util\popCommonUtil.cs" />
     <Compile Include="Util\popDataGridUtil.cs" />
     <Compile Include="Util\popServiceHelper.cs" />
     <EmbeddedResource Include="AtlasPOP.resx">
       <DependentUpon>AtlasPOP.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="dataProgress.resx">
+      <DependentUpon>dataProgress.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EquipList.resx">
       <DependentUpon>EquipList.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Monitoring.resx">
-      <DependentUpon>Monitoring.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="POPMain.resx">
       <DependentUpon>POPMain.cs</DependentUpon>
@@ -246,5 +253,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

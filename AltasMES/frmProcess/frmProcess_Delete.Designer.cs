@@ -170,9 +170,9 @@ namespace AltasMES
             this.label3.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label3.Location = new System.Drawing.Point(105, 121);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(223, 15);
+            this.label3.Size = new System.Drawing.Size(259, 15);
             this.label3.TabIndex = 22;
-            this.label3.Text = "삭제를 하시려면 공정명을 입력해주세요";
+            this.label3.Text = "미사용처리를 하시려면 공정명을 입력해주세요";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // frmProcess_Delete

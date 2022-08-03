@@ -25,7 +25,7 @@ namespace AtlasMVCAPI.Models
             {
                 cmd.Connection = new SqlConnection(strConn);
                 cmd.CommandText = @"select OpID, convert(varchar(10), OpDate, 120) OpDate, resourceYN, PutInYN, op.ItemID, ItemName, OrderID, op.ProcessID, ProcessName,    
-                                    PlanQty, OpState, BeginDate, EndDate, EmpID
+                                    PlanQty, OpState, BeginDate, EndDate, EmpID, port
                                     from TB_Operation op join TB_Process p on op.ProcessID = p.ProcessID
                                     join TB_Item i on op.ItemID = i.ItemID";
 
@@ -65,8 +65,8 @@ namespace AtlasMVCAPI.Models
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = new SqlConnection(strConn);
-                cmd.CommandText = @"select OpID, convert(varchar(20), OpDate, 120) OpDate, resourceYN, PutInYN, op.ItemID, ItemName, OrderID, op.ProcessID, ProcessName,    
-                                    PlanQty, OpState, BeginDate,EndDate, EmpID
+                cmd.CommandText = @"select OpID, convert(varchar(10), OpDate, 120) OpDate, resourceYN, PutInYN, op.ItemID, ItemName, OrderID, op.ProcessID, ProcessName,    
+                                    PlanQty, OpState, BeginDate, EndDate, EmpID, port
                                     from TB_Operation op join TB_Process p on op.ProcessID = p.ProcessID
                                     join TB_Item i on op.ItemID = i.ItemID
                                     where convert(varchar(20), OpDate, 120) Between @dateFrom and @dateTo";
@@ -147,7 +147,7 @@ namespace AtlasMVCAPI.Models
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = new SqlConnection(strConn);
-                cmd.CommandText = @" select OpID, b.ItemID,ItemName, ParentID,ChildID,UnitQty, PlanQty, (UnitQty * PlanQty) Qty, CurrentQty
+                cmd.CommandText = @" select OpID, b.ItemID,ItemName, ParentID, ChildID,UnitQty, PlanQty, (UnitQty * PlanQty) Qty, CurrentQty
                                     from TB_BOM b join TB_Item i on b.ChildID = i.ItemID
                                     join TB_Operation o on b.ItemID = o.ItemID";
 

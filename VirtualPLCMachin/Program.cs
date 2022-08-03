@@ -13,9 +13,9 @@ namespace VirtualPLCMachin
     {
         static void Main(string[] args)
         {
-            if (args.Length != 3) return;
+            if (args.Length != 4) return;
 
-            Service srv = new Service(args[0], args[1], args[2]);
+           Service srv = new Service(args[0], args[1], args[2], args[3]);
             srv.OnStart();
 
             Console.ReadLine();
@@ -28,16 +28,18 @@ namespace VirtualPLCMachin
         NetworkStream ns;
         TcpClient tc;
         Timer timer1;
-        string taskID, ip, port;
-        public Service(string taskID, string ip, string port)
+        string taskID, ip, port, qty;
+
+        public Service(string taskID, string ip, string port, string qty)
         {
+            this.qty = qty;
             this.taskID = taskID;
             this.ip = ip;
             this.port = port;
         }
         public void OnStart()
         {
-            Console.WriteLine($"{taskID} => 서비스 시작");
+            Console.WriteLine($"{taskID} 서비스 시작");
             if (listener == null)
             {
                 listener = new TcpListener(IPAddress.Parse(ip), int.Parse(port));
@@ -62,10 +64,13 @@ namespace VirtualPLCMachin
 
         private void Timer1_Elapsed(object sender, ElapsedEventArgs e)
         {
-            Random rnd = new Random();
+            //string msg = $"{qty}|1|1";
+            string msg = $"5|1|1";
 
-            string msg = $"{rnd.Next(1, 77)}|{rnd.Next(10, 15)}|{rnd.Next(0, 2)}";
+
             byte[] buff = Encoding.Default.GetBytes(msg);
+
+
             ns.Write(buff, 0, buff.Length);
             Console.WriteLine("데이터 전송 : " + msg);
         }

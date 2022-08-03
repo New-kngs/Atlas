@@ -28,6 +28,7 @@ namespace AtlasDTO
         public string PutInYN { get; set; }
         public string resourceYN { get; set; }
         public int ProcessID { get; set; }
+        public string port { get; set; }
 
     }
 }

@@ -1,9 +1,12 @@
 ﻿
 using AtlasDTO;
+using log4net.Core;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,54 +17,120 @@ namespace AtlasPOP
 {
     public partial class frmPerformance : Form
     {
+        bool bExit = false;
+
+        bool logVisible = false;
+        string hostIP;
+        int hostPort;
+        TcpControl client;
+        string connStr;
+        int workID;
+        int timer_CONNECT;
+        int timer_KeepAlive;
+        int timer_Read;
+        string taskID;
+
+        int totQty = 0;
+
+        ThreadPLCTask m_thread;
+        LoggingUtility m_log;
         popServiceHelper service = null;
-        public frmPerformance()
+        
+        public bool TaskExit { get { return bExit; } set { bExit = value; } }
+
+        public frmPerformance(string task, string IP, string Port)
         {
             InitializeComponent();
+
+            hostIP = IP;
+            hostPort = int.Parse(Port);
+            taskID = task;
+            //workID = int.Parse(taskID.Replace("PLC_", ""));
+
+            timer_CONNECT = timer_Connec.Interval = int.Parse(ConfigurationManager.AppSettings["timer_Connect"]);
+            timer_KeepAlive = int.Parse(ConfigurationManager.AppSettings["timer_KeepAlive"]);
+            timer_Read = int.Parse(ConfigurationManager.AppSettings["timer_Read"]);
+
+            m_log = new LoggingUtility(taskID, Level.Debug, 30);
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
+
+        private void frmPerformance_Load(object sender, EventArgs e)
         {
-            this.Close();
+            m_log.WriteInfo("PLC프로그램 시작");
+
+            m_thread = new ThreadPLCTask( m_log, workID, hostIP, hostPort, timer_CONNECT, timer_KeepAlive, timer_Read);
+
+            m_thread.ReadDataReceive += M_thread_ReadDataReceive;
+            m_thread.ThreadStart();
+
+            timer_Connec.Start();
         }
-        
 
-        /*private void frmPerformance_Load(object sender, EventArgs e)
+        private void M_thread_ReadDataReceive(object sender, ReadDataEventArgs e)
         {
-            service = new popServiceHelper("");
-            ResMessage<List<OperationVO>> result = service.GetAsync<List<OperationVO>>("api/pop/AllOperation");
+            txtReadPLC.Invoke(new Action<string>((str) => txtReadPLC.Text = str), e.ReadData);
 
-            List<OperationVO> operList = result.Data.FindAll((p) => p.OpState.Equals("작업중"));
-
-            if (result.Data != null)
+            if (logVisible)
             {
-                
-                int iRow = (int)Math.Ceiling(operList.Count / 3.0);
-
-                int idx = 0;
-                for (int r = 0; r < iRow; r++)
+                if (listBox1.Items.Count > 50)
                 {
-                    for (int c = 0; c < 3; c++)
-                    {
-                        if (idx >= operList.Count) break;
-
-                        Monitoring item = new Monitoring(operList[c]);
-                        item.Name = $"process";
-                        item.Location = new Point(344 * c + 5, 217 * r + 5);
-                        item.Size = new Size(344, 217);
-                        //item.MovieInfo = currentList[idx];
-
-                        panel1.Controls.Add(item);
-                        idx++;
-                    }
+                    listBox1.Items.Clear();
                 }
 
+                listBox1.Invoke(new Action<string>((str) => listBox1.Items.Add($"[{DateTime.Now.ToString("HH:mm:ss,fff")}]:{str}")), e.ReadData);
 
+                this.Invoke((MethodInvoker)(() =>
+                listBox1.SelectedIndex = listBox1.Items.Count - 1));
+
+            }
+
+            string[] datas = e.ReadData.Split('|');
+            if (datas.Length != 3) return;
+
+            totQty += int.Parse(datas[1]);
+            this.Invoke((MethodInvoker)(() => txtTotQty.Text = totQty.ToString("#,##0")));
+        }
+
+        private void frmPerformance_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!bExit)
+            {
+                this.Hide();
+                e.Cancel = true;
             }
             else
             {
-                MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
+                m_log.RemoveRepository(taskID);
+                m_thread.ThreadStop();
             }
-        }*/
+        }
+
+        private void timer_Connect_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                if (m_thread.ConnectStatus)
+                    lblState.BackColor = Color.Green;
+                else
+                    lblState.BackColor = Color.Red;
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+            }
+        }
+
+        private void txtTotQty_TextChanged(object sender, EventArgs e)
+        {
+            string[] datas = txtReadPLC.Text.Split('|');
+            if (Convert.ToInt32(datas[0]) == Convert.ToInt32(txtTotQty.Text))
+            {
+                m_log.RemoveRepository(taskID);
+                m_thread.ThreadStop();
+
+                
+            }
+        }
     }
 }

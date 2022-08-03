@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,8 @@ namespace AtlasPOP
 {
     public partial class btnPerformance : Form
     {
+
+
         public string EmpID { get; set; }
         public string EmpName { get; set; }
         public string DeptID { get; set; }
@@ -20,20 +23,18 @@ namespace AtlasPOP
         public string OperID { get; set; }
 
         string CustomerID;
+        int process_id;
 
         popServiceHelper service = null;
         ResMessage<List<ItemVO>> itemList;
         ResMessage<List<OperationVO>> operList;
         ResMessage<List<OrderVO>> oderList;
         ResMessage<List<CustomerVO>> customerList;
+
+        frmPerformance frm;
         public btnPerformance()
         {
             InitializeComponent();
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void AtlasPOP_Load(object sender, EventArgs e)
@@ -51,12 +52,15 @@ namespace AtlasPOP
             oderList = service.GetAsync<List<OrderVO>>("api/pop/GetCustomer");
             customerList = service.GetAsync<List<CustomerVO>>("api/pop/GetCustomerName");
 
+            tableLayoutPanel1.Visible = false;
 
         }
 
         public void ChangeValue()
         {
-                CustomerID = oderList.Data.Find((n) => n.OrderID == Oper.OrderID).CustomerID;
+            tableLayoutPanel1.Visible = true;
+
+            CustomerID = oderList.Data.Find((n) => n.OrderID == Oper.OrderID).CustomerID;
 
                 lblOper.Text = Oper.OpID;
                 lblOder.Text = Oper.OrderID;
@@ -97,16 +101,67 @@ namespace AtlasPOP
                 MessageBox.Show("작업을 선택해주세요");
                 return;
             }
+            if (Oper.OpState.Equals("작업중"))
+            {
+                MessageBox.Show("이미 작업중입니다.");
+                return;
+            }
+            if (Oper.OpState.Equals("작업종료"))
+            {
+                MessageBox.Show("이미 종료된 작업입니다.");
+                return;
+            }
             if (Oper.resourceYN.Equals("N"))
             {
                 MessageBox.Show("자재가 투입되지 않았습니다.");
                 return;
             }
+
+            string server = Application.StartupPath + "\\VirtualPLCMachin.exe";
+
+            string ip = "127.0.0.1";
+            string port = Oper.port;
+            string name = Oper.ProcessName;
+            
+
+            Process pro = Process.Start(server, $"{name} {ip} {port} {Oper.PlanQty.ToString()}");
+            process_id = pro.Id;
+
+            
+
+
+            frm = new frmPerformance(name, ip, port);
+            frm.Show();
+            //frm.Hide();
+
+            //IsTaskEnabled = true;
+
         }
 
         private void btnEnd_Click(object sender, EventArgs e)
         {
+            foreach (Process proc in Process.GetProcesses())
+            {
+                if(Oper != null)
+                {
+                    if (proc.Id.Equals(process_id))
+                    {
+                        proc.Kill();
+                    }
+                    
+                }
+                else
+                {
+                    
+                }
+                frm.TaskExit = true;
+                    frm.Close();
+                
+            }
 
+            
+
+           // IsTaskEnabled = false;
         }
 
         private void btnResource_Click(object sender, EventArgs e)
@@ -121,7 +176,7 @@ namespace AtlasPOP
                 MessageBox.Show("작업을 선택해주세요");
                 return;
             }
-
+            Oper.FailQty = 4;
             frmFail frm = new frmFail(Oper);
             frm.Show();
         }
@@ -145,11 +200,17 @@ namespace AtlasPOP
                 return;
             }
             frmResource frm = new frmResource(Oper);
-            frm.Show();
+            if(frm.ShowDialog() == DialogResult.OK)
+            {
+                frmOperation frmop = new frmOperation();
+                frmop.DialogResult = DialogResult.OK;
+            }
         }      
         
         private void pictureBox2_Click(object sender, EventArgs e)
         {
+            //frm.TaskExit = true;
+            // frm.Close();
             this.Close();
         }
     }

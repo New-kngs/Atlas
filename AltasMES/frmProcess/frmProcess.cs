@@ -145,7 +145,7 @@ namespace AltasMES
                 List<ProcessVO> list = result.Data.FindAll((p) => p.ProcessName.Contains(txtProcessName.Text));
                 if(list.Count >= 0)
                 {
-                    txtProcessName.Text = string.Empty;
+                    
                     dgvProcess.DataSource = list;
                 }
                 

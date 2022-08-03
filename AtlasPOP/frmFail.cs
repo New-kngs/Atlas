@@ -28,6 +28,7 @@ namespace AtlasPOP
             
             this.oper = oper;
             txtFailTOT.Text = oper.FailQty.ToString();
+            maxNum = Convert.ToInt32(txtFailTOT.Text);
         }
 
         private void frmResource_Load(object sender, EventArgs e)

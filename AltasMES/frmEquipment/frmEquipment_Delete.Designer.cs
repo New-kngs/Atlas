@@ -55,8 +55,9 @@
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(376, 63);
             this.lblTitle.TabIndex = 1;
-            this.lblTitle.Text = "설비 미가동";
+            this.lblTitle.Text = "설비 미사용";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTitle.Click += new System.EventHandler(this.lblTitle_Click);
             // 
             // panel1
             // 
@@ -116,7 +117,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(259, 15);
             this.label3.TabIndex = 29;
-            this.label3.Text = "미가동처리를 하시려면 설비명을 입력해주세요";
+            this.label3.Text = "미사용처리를 하시려면 설비명을 입력해주세요";
             // 
             // btnCancel
             // 
@@ -207,7 +208,7 @@
             this.MinimizeBox = false;
             this.Name = "frmEquipment_Delete";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "설비 미가동";
+            this.Text = "설비 미사용";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmEquipment_Delete_FormClosing);
             this.Load += new System.EventHandler(this.frmEquipment_Delete_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmEquipment_Delete_KeyPress);

@@ -48,12 +48,12 @@ namespace AltasMES
             // 
             // BasePanel1
             // 
-            this.BasePanel1.Size = new System.Drawing.Size(1182, 852);
+            this.BasePanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.groupBox3);
-            this.panel2.Size = new System.Drawing.Size(1182, 613);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             // 
             // groupBox2
             // 
@@ -74,6 +74,7 @@ namespace AltasMES
             // 
             // btnAdd
             // 
+            this.btnAdd.Location = new System.Drawing.Point(682, 20);
             this.btnAdd.TabIndex = 1;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -87,17 +88,25 @@ namespace AltasMES
             this.imageList1.Images.SetKeyName(4, "Execl.png");
             this.imageList1.Images.SetKeyName(5, "setting (1).png");
             // 
+            // btnExecl
+            // 
+            this.btnExecl.Location = new System.Drawing.Point(949, 20);
+            // 
             // btnDelete
             // 
+            this.btnDelete.Location = new System.Drawing.Point(852, 20);
+            this.btnDelete.Size = new System.Drawing.Size(90, 37);
+            this.btnDelete.Text = "미사용";
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // lblTitle
             // 
-            this.lblTitle.Size = new System.Drawing.Size(121, 62);
+            this.lblTitle.Size = new System.Drawing.Size(98, 51);
             this.lblTitle.Text = "공정";
             // 
             // btnModify
             // 
+            this.btnModify.Location = new System.Drawing.Point(767, 20);
             this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
             // 
             // groupBox3
@@ -106,10 +115,8 @@ namespace AltasMES
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox3.Size = new System.Drawing.Size(1182, 613);
+            this.groupBox3.Size = new System.Drawing.Size(1034, 491);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "공정목록";
@@ -118,12 +125,11 @@ namespace AltasMES
             // 
             this.dgvProcess.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProcess.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvProcess.Location = new System.Drawing.Point(3, 31);
-            this.dgvProcess.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dgvProcess.Location = new System.Drawing.Point(3, 25);
             this.dgvProcess.Name = "dgvProcess";
             this.dgvProcess.RowHeadersWidth = 51;
             this.dgvProcess.RowTemplate.Height = 23;
-            this.dgvProcess.Size = new System.Drawing.Size(1176, 578);
+            this.dgvProcess.Size = new System.Drawing.Size(1028, 463);
             this.dgvProcess.TabIndex = 0;
             // 
             // btnSetting
@@ -134,11 +140,10 @@ namespace AltasMES
             this.btnSetting.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSetting.ImageIndex = 5;
             this.btnSetting.ImageList = this.imageList1;
-            this.btnSetting.Location = new System.Drawing.Point(584, 25);
-            this.btnSetting.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSetting.Location = new System.Drawing.Point(491, 20);
             this.btnSetting.Name = "btnSetting";
-            this.btnSetting.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.btnSetting.Size = new System.Drawing.Size(210, 46);
+            this.btnSetting.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.btnSetting.Size = new System.Drawing.Size(184, 37);
             this.btnSetting.TabIndex = 0;
             this.btnSetting.Text = "공정-설비 관계설정";
             this.btnSetting.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -149,19 +154,18 @@ namespace AltasMES
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(27, 60);
+            this.label1.Location = new System.Drawing.Point(24, 48);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 28);
+            this.label1.Size = new System.Drawing.Size(58, 21);
             this.label1.TabIndex = 0;
             this.label1.Text = "공정명";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // txtProcessName
             // 
-            this.txtProcessName.Location = new System.Drawing.Point(93, 56);
-            this.txtProcessName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtProcessName.Location = new System.Drawing.Point(81, 45);
             this.txtProcessName.Name = "txtProcessName";
-            this.txtProcessName.Size = new System.Drawing.Size(245, 30);
+            this.txtProcessName.Size = new System.Drawing.Size(215, 26);
             this.txtProcessName.TabIndex = 5;
             this.txtProcessName.TextChanged += new System.EventHandler(this.txtProcessName_TextChanged);
             this.txtProcessName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtProcessName_KeyPress);
@@ -173,11 +177,10 @@ namespace AltasMES
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSearch.ImageIndex = 3;
             this.btnSearch.ImageList = this.imageList1;
-            this.btnSearch.Location = new System.Drawing.Point(355, 55);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSearch.Location = new System.Drawing.Point(311, 44);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.btnSearch.Size = new System.Drawing.Size(38, 32);
+            this.btnSearch.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.btnSearch.Size = new System.Drawing.Size(33, 26);
             this.btnSearch.TabIndex = 6;
             this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -185,10 +188,10 @@ namespace AltasMES
             // 
             // frmProcess
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1182, 852);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ClientSize = new System.Drawing.Size(1034, 682);
+            this.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.Name = "frmProcess";
             this.Text = "공정";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmProcess_FormClosing);

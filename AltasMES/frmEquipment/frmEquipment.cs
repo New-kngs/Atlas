@@ -137,7 +137,7 @@ namespace AltasMES
                 List<EquipmentVO> list = result.Data.FindAll((p) => p.EquipName.Contains(txtEquip.Text));
                 if (list.Count >= 0)
                 {
-                    txtEquip.Text = string.Empty;
+                    
                     dgvEquip.DataSource = list;
                 }
                 

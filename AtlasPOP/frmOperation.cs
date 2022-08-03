@@ -16,6 +16,8 @@ namespace AtlasPOP
     public partial class frmOperation : Form
     {
 
+
+
         public DataGetEventHandler DataSendEvent;
         popServiceHelper service = null;
         ResMessage<List<OperationVO>> operList;
@@ -42,8 +44,11 @@ namespace AtlasPOP
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "자재투입여부", "resourceYN", colwidth: 140, DataGridViewContentAlignment.MiddleCenter);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "창고입고여부", "PutInYN", colwidth: 140, DataGridViewContentAlignment.MiddleCenter);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "담당ID", "EmpID", colwidth: 130, DataGridViewContentAlignment.MiddleCenter);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "포트", "port",visibility: false);
             LoadData();
-            TimeComboInit();
+
+            dtpTo.Value = DateTime.Now;
+            dtpFrom.Value = DateTime.Now.AddDays(-7);
         }
         public void LoadData()
         {
@@ -61,23 +66,12 @@ namespace AtlasPOP
             }
             
         }
-        public void TimeComboInit()
-        {
-            dtpTo.Value = DateTime.Now;
-            dtpFrom.Value = DateTime.Now.AddDays(-7);
 
-            for (int i = 1; i <= 24; i++)
-            {
-                cboTimeFrom.Items.Add(i);
-                cboTimeTo.Items.Add(i);
-            }
-            cboTimeFrom.SelectedIndex = cboTimeTo.SelectedIndex = DateTime.Now.Hour -1;
-        }
 
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            ResMessage<List<OperationVO>> result = service.GetAsync<List<OperationVO>>("api/pop/SearchOper/"+ dtpFrom.Value.ToShortDateString() + " " +cboTimeFrom.Text+ "/" + dtpTo.Value.ToShortDateString()+" "+cboTimeTo.Text);
+           ResMessage<List<OperationVO>> result = service.GetAsync<List<OperationVO>>("api/pop/SearchOper/"+ dtpFrom.Value.ToShortDateString() +  "/" + dtpTo.Value.ToShortDateString());
             if (result.Data != null)
             {
                 dgvList.DataSource = new AdvancedList<OperationVO>(result.Data);
@@ -90,9 +84,9 @@ namespace AtlasPOP
 
         private void btnReset_Click(object sender, EventArgs e)
         {
+            panel2.Controls.Clear();
             dtpTo.Value = DateTime.Now;
             dtpFrom.Value = DateTime.Now.AddDays(-7);
-            cboTimeFrom.SelectedIndex = cboTimeTo.SelectedIndex = DateTime.Now.Hour - 1;
             LoadData();
         }
 
@@ -124,6 +118,7 @@ namespace AtlasPOP
                 PlanQty = Convert.ToInt32(dgvList.SelectedRows[0].Cells["PlanQty"].Value),
                 OpState = dgvList.SelectedRows[0].Cells["OpState"].Value.ToString(),
                 resourceYN = dgvList.SelectedRows[0].Cells["resourceYN"].Value.ToString(),
+                port = dgvList.SelectedRows[0].Cells["port"].Value.ToString(),
             };
             DataSendEvent(oper);
 
@@ -163,11 +158,6 @@ namespace AtlasPOP
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
         {
 
         }

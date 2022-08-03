@@ -16,8 +16,8 @@ namespace AtlasDTO
         public string ModifyDate { get; set; }
         public string ModifyUser { get; set; }
         public string StateYN { get; set; }
-
         public int EquipID { get; set; }
+        public string port { get; set; }
 
     }
 }
