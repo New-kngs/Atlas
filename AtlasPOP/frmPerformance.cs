@@ -31,6 +31,7 @@ namespace AtlasPOP
         string taskID;
 
         int totQty = 0;
+        int totfail = 0;
 
         ThreadPLCTask m_thread;
         LoggingUtility m_log;
@@ -90,17 +91,28 @@ namespace AtlasPOP
 
             string[] datas = e.ReadData.Split('|');
             if (datas.Length != 3) return;
-
+            int qty = int.Parse(datas[0]);
             totQty += int.Parse(datas[1]);
             this.Invoke((MethodInvoker)(() => txtTotQty.Text = totQty.ToString("#,##0")));
 
 
-            if (Convert.ToInt32(datas[0]) <= Convert.ToInt32(txtTotQty.Text))
+            if (qty >= 0 && qty <= 10)
+                totfail = 0;
+            else if (qty >= 11 && qty <= 20)
+                totfail = 1;      
+            else if (qty >= 21 && qty <= 30)
+                totfail = 2;     
+            else if (qty >= 31 && qty <= 50)
+                totfail = 3;
+            else
+                totfail = 4;
+
+            if (Convert.ToInt32(datas[0]) <= (Convert.ToInt32(txtTotQty.Text)+totfail))
             {
                 bExit = true;
 
                 AtlasPOP main = (AtlasPOP)this.MdiParent;
-                main.Finish();
+                main.Finish(totQty,totfail);
                 this.Close();
             }
         }

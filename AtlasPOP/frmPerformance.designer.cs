@@ -36,11 +36,13 @@ namespace AtlasPOP
             this.txtTotQty = new System.Windows.Forms.TextBox();
             this.txtReadPLC = new System.Windows.Forms.TextBox();
             this.timer_Connec = new System.Windows.Forms.Timer(this.components);
+            this.txtFail = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.txtFail);
             this.panel1.Controls.Add(this.lblState);
             this.panel1.Controls.Add(this.listBox1);
             this.panel1.Controls.Add(this.txtTotQty);
@@ -83,6 +85,13 @@ namespace AtlasPOP
             this.txtReadPLC.Size = new System.Drawing.Size(100, 21);
             this.txtReadPLC.TabIndex = 0;
             // 
+            // txtFail
+            // 
+            this.txtFail.Location = new System.Drawing.Point(225, 11);
+            this.txtFail.Name = "txtFail";
+            this.txtFail.Size = new System.Drawing.Size(100, 21);
+            this.txtFail.TabIndex = 3;
+            // 
             // frmPerformance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -111,5 +120,6 @@ namespace AtlasPOP
         private System.Windows.Forms.TextBox txtReadPLC;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Label lblState;
+        private System.Windows.Forms.TextBox txtFail;
     }
 }

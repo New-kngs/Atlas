@@ -64,14 +64,10 @@ namespace VirtualPLCMachin
 
         private void Timer1_Elapsed(object sender, ElapsedEventArgs e)
         {
-            //string msg = $"{qty}|1|1";
-            string msg = $"5|1|1";
-            tot++;
+            
 
-            /*if(6 <= tot)
-            {
-                OnStop();
-            }*/
+            string msg = $"{qty}|1|0";
+            tot++;
 
             byte[] buff = Encoding.Default.GetBytes(msg);
             

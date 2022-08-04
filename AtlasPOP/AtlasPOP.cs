@@ -25,6 +25,9 @@ namespace AtlasPOP
         string CustomerID;
         int process_id;
 
+        int qty = 0;
+        int failqty = 0;
+
         popServiceHelper service = null;
         ResMessage<List<ItemVO>> itemList;
         ResMessage<List<OperationVO>> operList;
@@ -140,7 +143,7 @@ namespace AtlasPOP
             //IsTaskEnabled = true;
         }
 
-        public void Finish()
+        public void Finish(int qty, int failqty)
         {
             foreach (Process proc in Process.GetProcesses())
             {
@@ -150,9 +153,12 @@ namespace AtlasPOP
                     MessageBox.Show("종료되었다");
                 }
             }
-            
+            Oper.CompleteQty = qty;
+            Oper.FailQty = failqty;
+            MessageBox.Show(qty.ToString() + " | " + failqty.ToString());
             frm.TaskExit = true;
             frm.Close();
+
         }
 
         private void btnEnd_Click(object sender, EventArgs e)
@@ -183,7 +189,7 @@ namespace AtlasPOP
                 MessageBox.Show("작업을 선택해주세요");
                 return;
             }
-            Oper.FailQty = 4;
+            //Oper.FailQty = 4;
             frmFail frm = new frmFail(Oper);
             frm.Show();
         }

@@ -40,11 +40,13 @@ namespace AltasMES
             if (result.Data != null)
             {
                 dgvEquip.DataSource = new AdvancedList<EquipmentVO>(result.Data);
+                
             }
             else
             {
                 MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
             }
+            dgvEquip.ClearSelection();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -137,10 +139,8 @@ namespace AltasMES
                 List<EquipmentVO> list = result.Data.FindAll((p) => p.EquipName.Contains(txtEquip.Text));
                 if (list.Count >= 0)
                 {
-                    
                     dgvEquip.DataSource = list;
                 }
-                
             }
             else
             {

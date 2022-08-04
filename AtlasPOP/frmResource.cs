@@ -17,7 +17,6 @@ namespace AtlasPOP
         popServiceHelper service = null;
 
         public OperationVO oper { get; set; }
-
         ResMessage<List<BOMVO>> resource;
 
         public frmResource(OperationVO oper)

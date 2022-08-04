@@ -45,6 +45,7 @@ namespace AtlasPOP
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "창고입고여부", "PutInYN", colwidth: 140, DataGridViewContentAlignment.MiddleCenter);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "담당ID", "EmpID", colwidth: 130, DataGridViewContentAlignment.MiddleCenter);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "포트", "port",visibility: false);
+            dgvList.ClearSelection();
             LoadData();
 
             dtpTo.Value = DateTime.Now;
@@ -75,6 +76,7 @@ namespace AtlasPOP
             if (result.Data != null)
             {
                 dgvList.DataSource = new AdvancedList<OperationVO>(result.Data);
+                dgvList.ClearSelection();
             }
             else
             {

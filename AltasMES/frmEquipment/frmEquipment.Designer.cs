@@ -86,7 +86,7 @@ namespace AltasMES
             this.btnDelete.Location = new System.Drawing.Point(852, 20);
             this.btnDelete.Size = new System.Drawing.Size(93, 37);
             this.btnDelete.TabIndex = 2;
-            this.btnDelete.Text = "미사동";
+            this.btnDelete.Text = "미사용";
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // lblTitle
@@ -161,7 +161,7 @@ namespace AltasMES
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1034, 682);
-            this.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.Margin = new System.Windows.Forms.Padding(3);
             this.Name = "frmEquipment";
             this.Text = "설비";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmEquipment_FormClosing);
