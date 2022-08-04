@@ -136,6 +136,12 @@ namespace AltasMES
 
         private void btnSetting_Click(object sender, EventArgs e)
         {
+            if (!dgvProcess.CurrentCell.Selected)
+            {
+                MessageBox.Show("설비를 설정할 공정을 선택해주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             ProcessVO process = new ProcessVO()
             {
                 ProcessID = Convert.ToInt32(dgvProcess.SelectedRows[0].Cells["ProcessID"].Value),
