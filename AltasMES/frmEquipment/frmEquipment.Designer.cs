@@ -122,6 +122,7 @@ namespace AltasMES
             this.dgvEquip.RowTemplate.Height = 23;
             this.dgvEquip.Size = new System.Drawing.Size(1028, 463);
             this.dgvEquip.TabIndex = 0;
+            this.dgvEquip.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvEquip_ColumnHeaderMouseClick);
             // 
             // btnSearch
             // 
@@ -166,6 +167,7 @@ namespace AltasMES
             this.Text = "설비";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmEquipment_FormClosing);
             this.Load += new System.EventHandler(this.frmEquipment_Load);
+            this.Shown += new System.EventHandler(this.frmEquipment_Shown);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmEquipment_KeyPress);
             this.BasePanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

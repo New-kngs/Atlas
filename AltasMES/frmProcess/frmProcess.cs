@@ -46,6 +46,7 @@ namespace AltasMES
             {
                 MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
             }
+            
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -63,6 +64,14 @@ namespace AltasMES
 
         private void btnModify_Click(object sender, EventArgs e)
         {
+
+            if(!dgvProcess.CurrentCell.Selected)
+            {
+                //MessageBox.Show("수정하실 사용자를 선택해주세요.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("수정할 공정을 선택해주세요","정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             ProcessVO process = new ProcessVO()
             {
                 ProcessID = Convert.ToInt32(dgvProcess.SelectedRows[0].Cells["ProcessID"].Value),
@@ -91,6 +100,12 @@ namespace AltasMES
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            if (!dgvProcess.CurrentCell.Selected)
+            {
+                MessageBox.Show("미사용할 공정을 선택해주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if ((dgvProcess.SelectedRows[0].Cells["StateYN"].Value).ToString() == "N")
             {
                 MessageBox.Show("이미 삭제된 공정입니다.");
@@ -153,6 +168,7 @@ namespace AltasMES
             {
                 MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
             }
+            dgvProcess.ClearSelection();
         }
 
         private void frmProcess_KeyPress(object sender, KeyPressEventArgs e)
@@ -163,22 +179,22 @@ namespace AltasMES
             }
         }
 
-        private void txtProcessName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void txtProcessName_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 13)
             {
                 btnSearch_Click(sender, e);
             }
+        }
+
+        private void frmProcess_Shown(object sender, EventArgs e)
+        {
+            dgvProcess.ClearSelection();
+        }
+
+        private void dgvProcess_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            dgvProcess.ClearSelection();
         }
     }
 }

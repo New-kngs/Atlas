@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using AtlasDTO;
+﻿using AtlasDTO;
 using AtlasMVCAPI.Models;
+using System;
+using System.Collections.Generic;
+using System.Web.Http;
 
 namespace AtlasMVCAPI.Controllers
 {
@@ -13,7 +10,7 @@ namespace AtlasMVCAPI.Controllers
     [RoutePrefix("api/Department")]
     public class DepartmentController : ApiController
     {
-      //https://localhost:44391/api/Depamen/all
+      //https://localhost:44391/api/Depament/all
         [Route("all")]
         public IHttpActionResult GetDepartmentAll()
         {

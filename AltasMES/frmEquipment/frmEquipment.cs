@@ -79,6 +79,11 @@ namespace AltasMES
 
         private void btnModify_Click(object sender, EventArgs e)
         {
+            if (!dgvEquip.CurrentCell.Selected)
+            {
+                MessageBox.Show("수정할 설비을 선택해주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             EquipmentVO equip = new EquipmentVO()
             {
                 EquipID = Convert.ToInt32(dgvEquip.SelectedRows[0].Cells["EquipID"].Value),
@@ -113,6 +118,12 @@ namespace AltasMES
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            if (!dgvEquip.CurrentCell.Selected)
+            {
+                MessageBox.Show("미사용할 설비을 선택해주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             EquipmentVO equip = new EquipmentVO()
             {
                 EquipID = Convert.ToInt32(dgvEquip.SelectedRows[0].Cells["EquipID"].Value),
@@ -146,6 +157,7 @@ namespace AltasMES
             {
                 MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
             }
+            dgvEquip.ClearSelection();
         }
 
         private void txtEquip_KeyPress(object sender, KeyPressEventArgs e)
@@ -154,6 +166,16 @@ namespace AltasMES
             {
                 btnSearch_Click(sender, e);
             }
+        }
+
+        private void frmEquipment_Shown(object sender, EventArgs e)
+        {
+            dgvEquip.ClearSelection();
+        }
+
+        private void dgvEquip_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            dgvEquip.ClearSelection();
         }
     }
 }

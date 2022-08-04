@@ -131,6 +131,7 @@ namespace AltasMES
             this.dgvProcess.RowTemplate.Height = 23;
             this.dgvProcess.Size = new System.Drawing.Size(1028, 463);
             this.dgvProcess.TabIndex = 0;
+            this.dgvProcess.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvProcess_ColumnHeaderMouseClick);
             // 
             // btnSetting
             // 
@@ -159,7 +160,7 @@ namespace AltasMES
             this.label1.Size = new System.Drawing.Size(58, 21);
             this.label1.TabIndex = 0;
             this.label1.Text = "공정명";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+
             // 
             // txtProcessName
             // 
@@ -167,7 +168,6 @@ namespace AltasMES
             this.txtProcessName.Name = "txtProcessName";
             this.txtProcessName.Size = new System.Drawing.Size(215, 26);
             this.txtProcessName.TabIndex = 5;
-            this.txtProcessName.TextChanged += new System.EventHandler(this.txtProcessName_TextChanged);
             this.txtProcessName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtProcessName_KeyPress);
             // 
             // btnSearch
@@ -191,11 +191,12 @@ namespace AltasMES
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1034, 682);
-            this.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.Margin = new System.Windows.Forms.Padding(3);
             this.Name = "frmProcess";
             this.Text = "공정";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmProcess_FormClosing);
             this.Load += new System.EventHandler(this.frmProcess_Load);
+            this.Shown += new System.EventHandler(this.frmProcess_Shown);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmProcess_KeyPress);
             this.BasePanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

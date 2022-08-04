@@ -150,7 +150,7 @@ namespace AtlasPOP
                 if (proc.Id.Equals(process_id))
                 {
                     proc.Kill();
-                    MessageBox.Show("종료되었다");
+                    //MessageBox.Show("종료되었다");
                 }
             }
             Oper.CompleteQty = qty;
@@ -159,10 +159,23 @@ namespace AtlasPOP
             frm.TaskExit = true;
             frm.Close();
 
+            ResMessage<List<OperationVO>> finish = service.PostAsync<OperationVO, List<OperationVO>>("api/pop/UdateFinish", Oper);
+            if (finish.ErrCode == 0)
+            {
+                MessageBox.Show("작업종료, 창고에 입고되었습니다.");
+            }
+            else
+            {
+                MessageBox.Show("문제발생");
+            }
+
         }
 
         private void btnEnd_Click(object sender, EventArgs e)
         {
+            //작업이 완료되었는지?
+            //생산제품과 불량제품이 잘 넘어왔는지?
+            //
             foreach (Process proc in Process.GetProcesses())
             {
                 if (proc.Id.Equals(process_id))
@@ -174,6 +187,7 @@ namespace AtlasPOP
             frm.TaskExit = true;
             frm.Close();
             
+
             // IsTaskEnabled = false;
         }
 

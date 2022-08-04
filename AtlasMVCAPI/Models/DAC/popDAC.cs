@@ -523,14 +523,20 @@ namespace AtlasMVCAPI.Models
             using (SqlCommand cmd = new SqlCommand
             {
                 Connection = new SqlConnection(strConn),
-                CommandText = @"update TB_Operation set OpState = '작업종료', ModifyUser = @ModifyUser, ModifyDate = @ModifyDate
-                                where OpID = @OpID"
+                CommandText = @"update TB_Operation set OpState = '작업종료', CompleteQty = @CompleteQty, FailQty = @FailQty, ModifyUser = @ModifyUser, ModifyDate = @ModifyDate, EndDate = @EndDate
+                                where OpID = @OpID
+
+                                update TB_Item set CurrentQty += @CompleteQty, ModifyUser = @ModifyUser, ModifyDate = @ModifyDate where ItemID = @ItemID"
 
             })
             {
-                cmd.Parameters.AddWithValue("@ModifyUser", oper.ModifyUser);
+                cmd.Parameters.AddWithValue("@CompleteQty", oper.CompleteQty);
+                cmd.Parameters.AddWithValue("@FailQty", oper.FailQty);
+                cmd.Parameters.AddWithValue("@ModifyUser", oper.EmpID);
                 cmd.Parameters.AddWithValue("@OpID", oper.OpID);
+                cmd.Parameters.AddWithValue("@OpID", oper.ItemID);
                 cmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
+                cmd.Parameters.AddWithValue("@EndDate", DateTime.Now);
                 cmd.Connection.Open();
                 int iRowAffect = cmd.ExecuteNonQuery();
                 cmd.Connection.Close();
