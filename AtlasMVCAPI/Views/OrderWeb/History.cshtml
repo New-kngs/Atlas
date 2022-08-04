@@ -15,7 +15,7 @@
             @using (Html.BeginForm("PurchaseOrder", "OrderWeb"))
             {
                 <input type="hidden" id="rdoCheck" name="rdoCheck" value="" />
-                <input type="submit" class="btn btn-primary" value="주문상세조회" style="float: right;" onclick="javascript: ChkOrder();">
+                <input type="submit" class="btn btn-primary" value="주문서 출력" style="float: right;" onclick="javascript: ChkOrder();">
             }
         </div>
     </div>
@@ -51,6 +51,7 @@
     function ChkOrder() {
         var rdoString = document.querySelector('input[name="orderNo"]:checked').value;
         document.getElementById('rdoCheck').value = rdoString;
+        window.open("/OrderWeb/PurchaseOrder?rdoCheck=" + rdoString, "PopupWin", "width=900,height=600");
     }
     function newWindow() {
         window.open("/OrderWeb/PurchaseOrder", "PopupWin", "width=900,height=600");

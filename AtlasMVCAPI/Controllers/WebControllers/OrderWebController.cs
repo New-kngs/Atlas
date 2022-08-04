@@ -31,7 +31,7 @@ namespace AtlasMVCAPI.Controllers
                 return View(model);
             }
         }
-        [HttpPost]
+       
         public ActionResult PurchaseOrder(string rdoCheck)
         {
             OrderDAC db = new OrderDAC();

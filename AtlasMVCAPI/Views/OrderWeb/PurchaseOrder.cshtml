@@ -71,7 +71,7 @@
             <!-- /.row -->
             <!-- Table row -->
             <div class="row">
-                <div class="col-12 table-responsive">
+                <div class="table-responsive">  <!--col-12 -->
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -83,26 +83,23 @@
                                 <th>합계</th>
                             </tr>
                         </thead>
-                        @{ long totalPrice = 0;}
                         <tbody>
                             @for (int i = 0; i < Model.ToList().Count; i++)
                             {
                                 <tr>
-                                    <td></td>
+                                    <td>@Model.ToList()[i].Num</td>
                                     <td>@Model.ToList()[i].ItemName</td>
                                     <td>@Model.ToList()[i].ItemSize</td>
                                     <td>@Model.ToList()[i].ItemPrice.ToString("c")</td>
                                     <td>@Model.ToList()[i].Qty</td>
                                     <td>@Model.ToList()[i].SumQty.ToString("c")</td>
                                 </tr>
-                                @*@totalPrice = totalPrice + Model.ToList()[i].SumQty;*@
                             }
-
                         </tbody>
                         <tfoot>
                             <tr>
                                 <td>
-                                    <h2>@*총 결제금액 :*@ @*@totalPrice.ToString("c")*@</h2>
+                                    <h2 align="right">총 결제금액 : @Model.Sum((p) => p.SumQty).ToString("c")</h2>
                                 </td>
                             </tr>
                         </tfoot>
