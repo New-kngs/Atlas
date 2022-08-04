@@ -22,5 +22,10 @@ namespace AtlasDTO
 
         // 거래처? 임원? 비회원
         public string State { get; set; }
+
+        // 주문서 출력 시 더 필요한 거래처 정보
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public string Address { get; set; }
     }
 }

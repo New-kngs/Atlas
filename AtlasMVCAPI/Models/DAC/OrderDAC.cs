@@ -120,46 +120,36 @@ namespace AtlasMVCAPI.Models
             }
         }
         // 고객사에게 주문내역을 보여준다 (작성자-지현)
-        public (List<OrderVO>, List<OrderDetailVO>) GetOrderDetails(string customerID)
+        public List<OrderDetailLong> GetOrderDetails(string OrderID)
         {
-            SqlConnection conn = new SqlConnection(strConn);
-            conn.Open();
+            // SqlConnection conn = new SqlConnection(strConn);
+            // conn.Open();
 
-            try
+            using (SqlCommand cmd = new SqlCommand())
             {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.Connection = conn;
-                    cmd.CommandText = @"select OrderID, OrderShip, OrderEndDate, CreateDate, CreateUser 
-from TB_Order 
-where CustomerID = @customerID";
-                    cmd.Parameters.AddWithValue("@customerID", customerID);
+                cmd.Connection = new SqlConnection(strConn);
+                //                cmd.Connection = conn;
+                //                cmd.CommandText = @"select OrderID, OrderShip, OrderEndDate, CreateDate, CreateUser 
+                //from TB_Order 
+                //where CustomerID = @customerID";
+                //                cmd.Parameters.AddWithValue("@customerID", customerID);
 
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    List<OrderVO> listOrder = Helper.DataReaderMapToList<OrderVO>(reader);
-                    reader.Close();
+                //                SqlDataReader reader = cmd.ExecuteReader();
+                //                List<OrderVO> listOrder = Helper.DataReaderMapToList<OrderVO>(reader);
+                //                reader.Close();
 
-                    cmd.CommandText = @"select ItemName, ItemPrice, ItemSize, Qty, ItemPrice*Qty SumPrice, O.OrderID 
-from TB_Item I 
-inner join TB_OrderDetails OD on I.ItemID = OD.ItemID 
-inner join TB_Order O on  OD.OrderID=O.OrderID 
-where O.CustomerID = @customerID";
+                cmd.CommandText = @"select ROW_NUMBER() OVER(ORDER BY GETDATE()) Num, ItemName, ItemSize, ItemPrice, OD.Qty, ItemPrice*OD.Qty SumQty 
+from TB_Item I  
+inner join TB_OrderDetails OD on I.ItemID = OD.ItemID  
+inner join TB_Order O on  OD.OrderID=O.OrderID  
+where OD.OrderID = @OrderID";
 
-                    List<OrderDetailVO> listOrderDetail = Helper.DataReaderMapToList<OrderDetailVO>(cmd.ExecuteReader());
+                cmd.Parameters.AddWithValue("@OrderID", OrderID);
+                cmd.Connection.Open();
+                List<OrderDetailLong> listOrderDetail = Helper.DataReaderMapToList<OrderDetailLong>(cmd.ExecuteReader());
+                cmd.Connection.Close();
 
-
-                    return (listOrder, listOrderDetail);
-                }
-            }
-            catch (Exception err)
-            {
-                string sss = err.Message;
-
-                return (null, null);
-            }
-            finally
-            {
-                conn.Close();
+                return listOrderDetail;
             }
         }
         // 고객사에게 주문내역(구매내역)을 보여준다

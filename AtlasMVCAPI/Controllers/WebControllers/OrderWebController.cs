@@ -34,9 +34,10 @@ namespace AtlasMVCAPI.Controllers
         [HttpPost]
         public ActionResult PurchaseOrder(string rdoCheck)
         {
-            LoginVO user = Session["LoginInfo"] as LoginVO;
-            // user.CustomerID;
-            return View();
+            OrderDAC db = new OrderDAC();
+            List<OrderDetailLong> model = db.GetOrderDetails(rdoCheck);
+
+            return View(model);
         }
     }
 }

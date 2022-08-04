@@ -2218,6 +2218,7 @@
     <Content Include="Views\Cart\PopUp.cshtml" />
     <Content Include="Views\Cart\Summary.cshtml" />
     <Content Include="Views\Eis\HomePage.cshtml" />
+    <Content Include="Views\OrderWeb\PurchaseOrder.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

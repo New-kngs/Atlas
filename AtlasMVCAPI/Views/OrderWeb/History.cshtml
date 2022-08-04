@@ -11,6 +11,7 @@
         <div class="col-11">
         </div>-->
         <div class="col">
+            <!--  -->
             @using (Html.BeginForm("PurchaseOrder", "OrderWeb"))
             {
                 <input type="hidden" id="rdoCheck" name="rdoCheck" value="" />
@@ -51,4 +52,11 @@
         var rdoString = document.querySelector('input[name="orderNo"]:checked').value;
         document.getElementById('rdoCheck').value = rdoString;
     }
+    function newWindow() {
+        window.open("/OrderWeb/PurchaseOrder", "PopupWin", "width=900,height=600");
+    }
 </script>
+<!--
+
+
+-->
