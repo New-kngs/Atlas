@@ -308,6 +308,7 @@ namespace AltasMES
             this.Text = "BOM";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmBOM_FormClosing);
             this.Load += new System.EventHandler(this.frmBOM_Load);
+            this.Shown += new System.EventHandler(this.frmBOM_Shown);
             this.BasePanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.Basepanel4.ResumeLayout(false);

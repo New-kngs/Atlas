@@ -84,11 +84,10 @@ namespace AltasMES
                     string id = dgvUnreg["ItemID", e.RowIndex].Value.ToString();
 
                     ResMessage<List<ItemVO>> result = service.GetAsync<List<ItemVO>>("api/Item/AllItem");
-                    ResMessage<List<BOMVO>> resResult = service.GetAsync<List<BOMVO>>("api/BOM/AllBOMItem");
 
-                    List<BOMVO> listA = resResult.Data.FindAll((r) => r.ItemSize == size);
-                    List<BOMVO> listB;
-                    List<BOMVO> listC;
+                    List<ItemVO> listA = result.Data.FindAll((r) => r.ItemSize == size);
+                    List<ItemVO> listB;
+                    List<ItemVO> listC;
 
                     if (category == "완제품")
                     {
@@ -206,6 +205,7 @@ namespace AltasMES
 
         private void frmBOM_Add_FormClosing(object sender, FormClosingEventArgs e)
         {
+
             if (service != null)
             {
                 service.Dispose();
@@ -474,6 +474,7 @@ namespace AltasMES
                 MessageBox.Show("성공적으로 등록되었습니다.");
                 //this.DialogResult = DialogResult.OK;
                 AllClear();
+                cboCategory.SelectedIndex = 0;
             }
             else
                 MessageBox.Show(result.ErrMsg);

@@ -48,6 +48,7 @@ namespace AltasMES
             cboPdt.Items.AddRange(new string[] { "전체", "완제품", "반제품", "자재" });
             cboPdt.SelectedIndex = 0;
             //DataLoad();
+            
         }
         private void DataLoad()
         {
@@ -69,6 +70,7 @@ namespace AltasMES
             cboPdt.SelectedIndex = 0;
             dgvA.DataSource = null;
             dgvD.DataSource = null;
+            dgvPdt.ClearSelection();
         }
         private void btnSearch_Click(object sender, EventArgs e)
         {
@@ -159,6 +161,7 @@ namespace AltasMES
 
         private void frmBOM_FormClosing(object sender, FormClosingEventArgs e)
         {
+
             if (service != null)
             {
                 service.Dispose();
@@ -191,31 +194,44 @@ namespace AltasMES
         {
             ResMessage<List<BOMVO>> resResult = service.GetAsync<List<BOMVO>>("api/BOM/AllBOMItem");
 
-            string id = dgvPdt["ItemID", dgvPdt.CurrentRow.Index].Value.ToString();
-            int list = resResult.Data.FindIndex((r) => r.ItemID == id);
-            if (list < 0)
+            if (dgvPdt.SelectedRows.Count < 1)
             {
                 MessageBox.Show("삭제할 BOM대상이 없습니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             else
             {
-                if (MessageBox.Show("선택하신 BOM구성이 삭제됩니다.", "삭제확인", MessageBoxButtons.YesNo, MessageBoxIcon.Question)==DialogResult.Yes)
+                string id = dgvPdt["ItemID", dgvPdt.CurrentRow.Index].Value.ToString();
+                int list = resResult.Data.FindIndex((r) => r.ItemID == id);
+                if (list < 0)
                 {
-                    ResMessage<List<BOMVO>> del = service.GetAsync<List<BOMVO>>($"api/BOM/DeleteBOM/" + id);
-                    if (del.ErrCode == 0)
+                    MessageBox.Show("삭제할 BOM구성이 없습니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else
+                {
+                    if (MessageBox.Show("선택하신 BOM구성이 삭제됩니다.", "삭제확인", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        AllClear();
-                        MessageBox.Show("삭제되었습니다.");                        
-                    }
-                    else
-                    {
-                        MessageBox.Show("삭제가 실패하였습니다. 다시 시도하여 주십시오.");
+                        ResMessage<List<BOMVO>> del = service.GetAsync<List<BOMVO>>($"api/BOM/DeleteBOM/" + id);
+                        if (del.ErrCode == 0)
+                        {
+                            AllClear();
+                            MessageBox.Show("삭제되었습니다.");
+                        }
+                        else
+                        {
+                            MessageBox.Show("삭제가 실패하였습니다. 다시 시도하여 주십시오.");
+                        }
                     }
                 }
             }
 
 
+        }
+
+        private void frmBOM_Shown(object sender, EventArgs e)
+        {
+            dgvPdt.ClearSelection();
         }
     }
 }
