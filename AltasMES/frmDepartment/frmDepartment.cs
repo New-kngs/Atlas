@@ -138,7 +138,7 @@ namespace AltasMES
         private void btnSave_Click(object sender, EventArgs e)
         {
             dgvdept.EndEdit();
-
+             
             for (int i = 0; i < dgvdept.Rows.Count; i++)
             {
 
