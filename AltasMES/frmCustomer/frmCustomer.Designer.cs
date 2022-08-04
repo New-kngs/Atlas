@@ -150,7 +150,9 @@ namespace AltasMES
             this.ClientSize = new System.Drawing.Size(1034, 682);
             this.Name = "frmCustomer";
             this.Text = "거래처";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmCustomer_FormClosing);
             this.Load += new System.EventHandler(this.frmCustomer_Load);
+            this.Shown += new System.EventHandler(this.frmCustomer_Shown);
             this.BasePanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.Basepanel4.ResumeLayout(false);

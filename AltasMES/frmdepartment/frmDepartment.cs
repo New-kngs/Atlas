@@ -29,7 +29,7 @@ namespace AltasMES
             groupBox2.Text = "검색조건";
             groupBox3.Text = "부서현황";
 
-
+            dgvdept.MultiSelect = false;
             dgvdept.DefaultCellStyle.Font = new Font("Tahoma", 12, FontStyle.Regular);
 
             DataLoad();
@@ -39,7 +39,10 @@ namespace AltasMES
 
         private void frmDepartment_FormClosing(object sender, FormClosingEventArgs e)
         {
-            service.Dispose();
+            if (service != null)
+            {
+                service.Dispose();
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -87,6 +90,7 @@ namespace AltasMES
             dt = CommonUtil.LinqQueryToDataTable(allList); //DataTable
             dgvdept.DataSource = dt;
 
+            dgvdept.ClearSelection();
 
         }
 
@@ -234,6 +238,11 @@ namespace AltasMES
             }
             else
                 MessageBox.Show("오류가 발생하였습니다. 다시 시도 하여 주십시오");
+        }
+
+        private void dgvdept_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            dgvdept.ClearSelection();
         }
     }
 }

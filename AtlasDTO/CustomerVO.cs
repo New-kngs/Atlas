@@ -16,6 +16,9 @@ namespace AtlasDTO
         public string Address { get; set; }
         public string Phone { get; set; }
         public string EmpID { get; set; }
+        
+        public string EmpName { get; set; }
+
         public string CreateDate { get; set; }
         public string CreateUser { get; set; }
         public string ModifyDate { get; set; }

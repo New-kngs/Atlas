@@ -35,11 +35,6 @@ namespace AltasMES
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvdept = new System.Windows.Forms.DataGridView();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.txtSerach = new System.Windows.Forms.TextBox();
-            this.lblSearch = new System.Windows.Forms.Label();
-            this.imageList2 = new System.Windows.Forms.ImageList(this.components);
-            this.btnSave = new System.Windows.Forms.Button();
             this.DeptID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DeptName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DeptN = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,6 +43,11 @@ namespace AltasMES
             this.ModifyDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ModifyUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DBType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.txtSerach = new System.Windows.Forms.TextBox();
+            this.lblSearch = new System.Windows.Forms.Label();
+            this.imageList2 = new System.Windows.Forms.ImageList(this.components);
+            this.btnSave = new System.Windows.Forms.Button();
             this.BasePanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.Basepanel4.SuspendLayout();
@@ -138,7 +138,72 @@ namespace AltasMES
             this.dgvdept.RowTemplate.Height = 23;
             this.dgvdept.Size = new System.Drawing.Size(1028, 463);
             this.dgvdept.TabIndex = 0;
+            this.dgvdept.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvdept_ColumnHeaderMouseClick);
             this.dgvdept.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvdept_EditingControlShowing);
+            // 
+            // DeptID
+            // 
+            this.DeptID.DataPropertyName = "DeptID";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.DeptID.DefaultCellStyle = dataGridViewCellStyle2;
+            this.DeptID.HeaderText = "부서ID";
+            this.DeptID.Name = "DeptID";
+            this.DeptID.ReadOnly = true;
+            this.DeptID.Visible = false;
+            // 
+            // DeptName
+            // 
+            this.DeptName.DataPropertyName = "DeptName";
+            this.DeptName.HeaderText = "부서명";
+            this.DeptName.Name = "DeptName";
+            this.DeptName.ReadOnly = true;
+            this.DeptName.Width = 130;
+            // 
+            // DeptN
+            // 
+            this.DeptN.DataPropertyName = "DeptN";
+            this.DeptN.HeaderText = "부서영문명";
+            this.DeptN.Name = "DeptN";
+            this.DeptN.Width = 150;
+            // 
+            // CreateDate
+            // 
+            this.CreateDate.DataPropertyName = "CreateDate";
+            this.CreateDate.HeaderText = "생성날짜";
+            this.CreateDate.Name = "CreateDate";
+            this.CreateDate.ReadOnly = true;
+            this.CreateDate.Width = 180;
+            // 
+            // CreateUser
+            // 
+            this.CreateUser.DataPropertyName = "CreateUser";
+            this.CreateUser.HeaderText = "생성사용자";
+            this.CreateUser.Name = "CreateUser";
+            this.CreateUser.ReadOnly = true;
+            this.CreateUser.Width = 130;
+            // 
+            // ModifyDate
+            // 
+            this.ModifyDate.DataPropertyName = "ModifyDate";
+            this.ModifyDate.HeaderText = "수정날짜";
+            this.ModifyDate.Name = "ModifyDate";
+            this.ModifyDate.ReadOnly = true;
+            this.ModifyDate.Width = 180;
+            // 
+            // ModifyUser
+            // 
+            this.ModifyUser.DataPropertyName = "ModifyUser";
+            this.ModifyUser.HeaderText = "수정사용자";
+            this.ModifyUser.Name = "ModifyUser";
+            this.ModifyUser.ReadOnly = true;
+            this.ModifyUser.Width = 130;
+            // 
+            // DBType
+            // 
+            this.DBType.DataPropertyName = "DBType";
+            this.DBType.HeaderText = "DBType";
+            this.DBType.Name = "DBType";
+            this.DBType.Visible = false;
             // 
             // btnSearch
             // 
@@ -205,70 +270,6 @@ namespace AltasMES
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // DeptID
-            // 
-            this.DeptID.DataPropertyName = "DeptID";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.DeptID.DefaultCellStyle = dataGridViewCellStyle2;
-            this.DeptID.HeaderText = "부서ID";
-            this.DeptID.Name = "DeptID";
-            this.DeptID.ReadOnly = true;
-            this.DeptID.Visible = false;
-            // 
-            // DeptName
-            // 
-            this.DeptName.DataPropertyName = "DeptName";
-            this.DeptName.HeaderText = "부서명";
-            this.DeptName.Name = "DeptName";
-            this.DeptName.ReadOnly = true;
-            this.DeptName.Width = 130;
-            // 
-            // DeptN
-            // 
-            this.DeptN.DataPropertyName = "DeptN";
-            this.DeptN.HeaderText = "부서영문명";
-            this.DeptN.Name = "DeptN";
-            this.DeptN.Width = 150;
-            // 
-            // CreateDate
-            // 
-            this.CreateDate.DataPropertyName = "CreateDate";
-            this.CreateDate.HeaderText = "생성날짜";
-            this.CreateDate.Name = "CreateDate";
-            this.CreateDate.ReadOnly = true;
-            this.CreateDate.Width = 180;
-            // 
-            // CreateUser
-            // 
-            this.CreateUser.DataPropertyName = "CreateUser";
-            this.CreateUser.HeaderText = "생성사용자";
-            this.CreateUser.Name = "CreateUser";
-            this.CreateUser.ReadOnly = true;
-            this.CreateUser.Width = 130;
-            // 
-            // ModifyDate
-            // 
-            this.ModifyDate.DataPropertyName = "ModifyDate";
-            this.ModifyDate.HeaderText = "수정날짜";
-            this.ModifyDate.Name = "ModifyDate";
-            this.ModifyDate.ReadOnly = true;
-            this.ModifyDate.Width = 180;
-            // 
-            // ModifyUser
-            // 
-            this.ModifyUser.DataPropertyName = "ModifyUser";
-            this.ModifyUser.HeaderText = "수정사용자";
-            this.ModifyUser.Name = "ModifyUser";
-            this.ModifyUser.ReadOnly = true;
-            this.ModifyUser.Width = 130;
-            // 
-            // DBType
-            // 
-            this.DBType.DataPropertyName = "DBType";
-            this.DBType.HeaderText = "DBType";
-            this.DBType.Name = "DBType";
-            this.DBType.Visible = false;
             // 
             // frmDepartment
             // 

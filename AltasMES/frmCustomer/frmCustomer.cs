@@ -31,7 +31,7 @@ namespace AltasMES
             groupBox3.Text = "거래처 현황";
 
             service = new ServiceHelper("");
-            allList = service.GetAsync<List<CustomerVO>>("api/Customer/AllCustomer").Data;
+            allList = service.GetAsync<List<CustomerVO>>("api/Customer/GetCustomerlist").Data;
 
 
             DataGridUtil.SetInitGridView(dgvCus);
@@ -44,16 +44,30 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvCus, "연락처", "Phone", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvCus, "이메일", "Email", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvCus, "주소", "Address", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvCus, "거래처담당자", "EmpID", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvCus, "거래처담당자", "EmpName", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvCus, "거래처담당자ID", "EmpID",visibility: false);
             DataGridUtil.AddGridTextBoxColumn(dgvCus, "생성날짜", "CreateDate", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvCus, "생성사용자", "CreateUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleLeft);
             DataGridUtil.AddGridTextBoxColumn(dgvCus, "수정날짜", "ModifyDate", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvCus, "수정사용자", "ModifyUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleLeft);
             DataGridUtil.AddGridTextBoxColumn(dgvCus, "사용여부", "StateYN", visibility: false);
 
-            dgvCus.DataSource = allList;
+            dgvCus.DataSource = new AdvancedList<CustomerVO>(allList);
 
 
+        }
+
+        private void frmCustomer_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (service != null)
+            {
+                service.Dispose();
+            }
+        }
+
+        private void frmCustomer_Shown(object sender, EventArgs e)
+        {
+            dgvCus.ClearSelection();
         }
     }
 }

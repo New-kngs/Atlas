@@ -26,8 +26,8 @@ namespace AltasMES
         private void Main_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
-            this.EmpID = "EMP_0004";
-            this.EmpName = "강지모";
+            this.EmpID = "MA1234";
+            this.EmpName = "홍길동";
             this.DeptID = "생산";
 
             toolStripLblUser.Text = "사용자 : " +EmpName;
