@@ -84,11 +84,17 @@ namespace AltasMES
                 MessageBox.Show("제품 안전재고량을 입력해주세요");
                 return;
             }
-            //if (nmrQty.Value.) || nmrSafeQty.Value < 1)
-            //{
-            //    MessageBox.Show("제품 재고량을 입력해주세요");
-            //    return;
-            //}
+            if (cboCusID.Enabled == true && cboCusID.SelectedIndex == 0)
+            {
+                MessageBox.Show("거래처를 선택해주세요");
+                return;
+            }
+            if (cboWhID.Enabled == true && cboWhID.SelectedIndex == 0)
+            {
+                MessageBox.Show("창고를 선택해주세요");
+                return;
+            }
+
             ItemVO item = new ItemVO
             {
                 ItemCategory = cboCategory1.Text,

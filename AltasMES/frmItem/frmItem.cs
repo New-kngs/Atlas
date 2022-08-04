@@ -72,10 +72,10 @@ namespace AltasMES
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtSearch.Text) && cboCategory.SelectedIndex == 0)
-            {                
-                MessageBox.Show("제품 유형을 선택하거나 제품명을 입력해 주세요");               
-            }           
+            //if (string.IsNullOrWhiteSpace(txtSearch.Text) && cboCategory.SelectedIndex == 0)
+            //{                
+            //    MessageBox.Show("제품 유형을 선택하거나 제품명을 입력해 주세요");               
+            //}           
             if (string.IsNullOrWhiteSpace(txtSearch.Text.Trim())) // 텍스트 조건 없이 콤보박스만
             {
                 cboCategory_SelectedIndexChanged(this, e); 
@@ -94,7 +94,8 @@ namespace AltasMES
                     dgvItem.DataSource = null;
                     dgvItem.DataSource = new AdvancedList<ItemVO>(citemList);                    
                 }
-            } 
+            }
+            dgvItem.ClearSelection();
         }             
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -193,6 +194,9 @@ namespace AltasMES
 
             dgvItem.DataSource = null;
             dgvItem.DataSource = new AdvancedList<ItemVO>(itemList);
+            dgvItem.ClearSelection();
+            cboCategory.Text = "전체";
+            txtSearch.Clear();
         }
 
         private void frmItem_Shown(object sender, EventArgs e)
@@ -217,6 +221,11 @@ namespace AltasMES
             {
                 e.CellStyle.ForeColor = Color.Red;
             }            
+        }
+
+        private void dgvItem_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            dgvItem.ClearSelection();
         }
     }
 }

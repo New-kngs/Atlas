@@ -171,6 +171,7 @@ namespace AltasMES
             this.dgvItem.TabIndex = 2;
             this.dgvItem.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItem_CellClick);
             this.dgvItem.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvItem_CellFormatting);
+            this.dgvItem.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvItem_ColumnHeaderMouseClick);
             // 
             // frmItem
             // 

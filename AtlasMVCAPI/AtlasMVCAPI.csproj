@@ -2023,6 +2023,7 @@
     <Content Include="plugins\uplot\uPlot.iife.js" />
     <Content Include="plugins\uplot\uPlot.iife.min.js" />
     <Content Include="plugins\uplot\uPlot.min.css" />
+    <Content Include="Uploads\20220801155440.PNG" />
     <Content Include="Uploads\20220801155452.PNG" />
     <Content Include="Uploads\20220801155508.PNG" />
     <Content Include="Uploads\20220801155547.PNG" />
