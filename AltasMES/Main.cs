@@ -28,7 +28,7 @@ namespace AltasMES
             this.WindowState = FormWindowState.Maximized;
             this.EmpID = "EMP_0004";
             this.EmpName = "강지모";
-            this.DeptID = "Product";
+            this.DeptID = "생산";
 
             toolStripLblUser.Text = "사용자 : " +EmpName;
             toolStripLblDept.Text = "부서 : " +DeptID;
@@ -109,7 +109,7 @@ namespace AltasMES
 
 
             string[] btnName = { "주문", "발주", "출하", "거래처" };
-            string[] btnTag = { "frmOrder", "frmPurchase", "frmShip", "frmAccount"};
+            string[] btnTag = { "frmOrder", "frmPurchase", "frmShip", "frmCustomer"};
 
             for (int i = 0; i < btnName.Length; i++)
             {
