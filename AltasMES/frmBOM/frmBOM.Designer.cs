@@ -61,20 +61,12 @@ namespace AltasMES
             // 
             // BasePanel1
             // 
-            this.BasePanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.BasePanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.tableLayoutPanel1);
-            this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            // 
-            // panel1
-            // 
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            // 
-            // Basepanel4
-            // 
-            this.Basepanel4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             // 
             // groupBox2
             // 
@@ -83,24 +75,12 @@ namespace AltasMES
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.cboPdt);
             this.groupBox2.Controls.Add(this.btnSearch);
+            this.groupBox2.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.groupBox2.Text = "검색조건";
-            // 
-            // Basepanel3
-            // 
-            this.Basepanel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            // 
-            // Basepanel2
-            // 
-            this.Basepanel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(774, 20);
+            this.btnAdd.Location = new System.Drawing.Point(860, 20);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAdd.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -116,13 +96,14 @@ namespace AltasMES
             // 
             // btnExecl
             // 
-            this.btnExecl.Location = new System.Drawing.Point(940, 20);
+            this.btnExecl.Location = new System.Drawing.Point(692, 20);
             this.btnExecl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnExecl.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.btnExecl.Visible = false;
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(858, 20);
+            this.btnDelete.Location = new System.Drawing.Point(944, 20);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDelete.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -134,7 +115,7 @@ namespace AltasMES
             // 
             // btnModify
             // 
-            this.btnModify.Location = new System.Drawing.Point(690, 20);
+            this.btnModify.Location = new System.Drawing.Point(776, 20);
             this.btnModify.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnModify.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.btnModify.Visible = false;
@@ -181,7 +162,7 @@ namespace AltasMES
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSearch.ImageIndex = 3;
             this.btnSearch.ImageList = this.imageList1;
-            this.btnSearch.Location = new System.Drawing.Point(510, 39);
+            this.btnSearch.Location = new System.Drawing.Point(494, 39);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnSearch.Size = new System.Drawing.Size(29, 29);
@@ -280,7 +261,7 @@ namespace AltasMES
             // txtPdt
             // 
             this.txtPdt.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.txtPdt.Location = new System.Drawing.Point(353, 39);
+            this.txtPdt.Location = new System.Drawing.Point(337, 39);
             this.txtPdt.Name = "txtPdt";
             this.txtPdt.Size = new System.Drawing.Size(151, 29);
             this.txtPdt.TabIndex = 13;
@@ -292,16 +273,16 @@ namespace AltasMES
             this.label2.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label2.Location = new System.Drawing.Point(273, 43);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 21);
+            this.label2.Size = new System.Drawing.Size(58, 21);
             this.label2.TabIndex = 14;
-            this.label2.Text = "제품이름";
+            this.label2.Text = "제품명";
             // 
             // frmBOM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1034, 682);
-            this.Margin = new System.Windows.Forms.Padding(3);
+            this.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmBOM";

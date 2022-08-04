@@ -76,7 +76,7 @@ namespace AltasMES
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(687, 20);
+            this.btnAdd.Location = new System.Drawing.Point(764, 20);
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // imageList1
@@ -88,9 +88,14 @@ namespace AltasMES
             this.imageList1.Images.SetKeyName(3, "Serach.png");
             this.imageList1.Images.SetKeyName(4, "Execl.png");
             // 
+            // btnExecl
+            // 
+            this.btnExecl.Location = new System.Drawing.Point(680, 20);
+            this.btnExecl.Visible = false;
+            // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(854, 20);
+            this.btnDelete.Location = new System.Drawing.Point(931, 20);
             this.btnDelete.Size = new System.Drawing.Size(91, 37);
             this.btnDelete.Text = "미사용";
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -102,7 +107,8 @@ namespace AltasMES
             // 
             // btnModify
             // 
-            this.btnModify.Location = new System.Drawing.Point(770, 20);
+            this.btnModify.Location = new System.Drawing.Point(847, 20);
+            this.btnModify.Text = "사용";
             this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
             // 
             // cboWH
@@ -123,7 +129,7 @@ namespace AltasMES
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSearch.ImageIndex = 3;
             this.btnSearch.ImageList = this.imageList1;
-            this.btnSearch.Location = new System.Drawing.Point(510, 39);
+            this.btnSearch.Location = new System.Drawing.Point(494, 39);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnSearch.Size = new System.Drawing.Size(29, 29);
@@ -208,14 +214,14 @@ namespace AltasMES
             this.label2.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label2.Location = new System.Drawing.Point(273, 43);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 21);
+            this.label2.Size = new System.Drawing.Size(58, 21);
             this.label2.TabIndex = 17;
-            this.label2.Text = "창고이름";
+            this.label2.Text = "창고명";
             // 
             // txtWH
             // 
             this.txtWH.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.txtWH.Location = new System.Drawing.Point(353, 39);
+            this.txtWH.Location = new System.Drawing.Point(337, 39);
             this.txtWH.Name = "txtWH";
             this.txtWH.Size = new System.Drawing.Size(151, 29);
             this.txtWH.TabIndex = 16;
@@ -230,6 +236,7 @@ namespace AltasMES
             this.Text = "창고";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmWarehouse_FormClosing);
             this.Load += new System.EventHandler(this.frmWarehouse_Load);
+            this.Shown += new System.EventHandler(this.frmWarehouse_Shown);
             this.BasePanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.Basepanel4.ResumeLayout(false);

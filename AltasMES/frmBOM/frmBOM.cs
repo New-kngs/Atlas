@@ -74,6 +74,8 @@ namespace AltasMES
         }
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            dgvA.DataSource = null;
+            dgvD.DataSource = null;
             ResMessage<List<ItemVO>> volist = service.GetAsync<List<ItemVO>>("api/Item/AllItem");
 
             string category = cboPdt.Text;
@@ -104,6 +106,7 @@ namespace AltasMES
                     dgvPdt.DataSource = new List<ItemVO>(resultVO1);
                 }
             }
+            dgvPdt.ClearSelection();
         }
         private void cboPdt_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -156,7 +159,8 @@ namespace AltasMES
             {
                 dgvD.DataSource = resource1.Data;
             }
-
+            dgvA.ClearSelection();
+            dgvD.ClearSelection();
         }
 
         private void frmBOM_FormClosing(object sender, FormClosingEventArgs e)

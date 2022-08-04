@@ -33,7 +33,7 @@ namespace AltasMES
 
             //ItemID, ItemName, CurrentQty, WHID, ItemCategory, ItemSize
             DataGridUtil.SetInitGridView(dgvPDT);
-            DataGridUtil.AddGridTextBoxColumn(dgvPDT, "창고ID", "WHID", colwidth: 300, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvPDT, "창고ID", "WHID", colwidth: 300, align: DataGridViewContentAlignment.MiddleCenter, visibility: false);
             DataGridUtil.AddGridTextBoxColumn(dgvPDT, "제품ID", "ItemID", colwidth: 250, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvPDT, "제품유형", "ItemCategory", colwidth: 250, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvPDT, "제품이름", "ItemName", colwidth: 300, align: DataGridViewContentAlignment.MiddleLeft);
@@ -197,6 +197,7 @@ namespace AltasMES
                     dgvWH.DataSource = new AdvancedList<WareHouseVO>(resultVO2);
                 }
             }
+            dgvWH.ClearSelection();
 
         }
 
@@ -227,6 +228,11 @@ namespace AltasMES
             {
                 btnSearch_Click(this, e);
             }
+        }
+
+        private void frmWarehouse_Shown(object sender, EventArgs e)
+        {
+            dgvWH.ClearSelection();
         }
     }
 }

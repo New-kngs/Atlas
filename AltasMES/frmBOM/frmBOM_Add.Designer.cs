@@ -315,6 +315,7 @@ namespace AltasMES
             this.Controls.Add(this.lblTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmBOM_Add";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BOM등록";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmBOM_Add_FormClosing);
