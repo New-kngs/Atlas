@@ -31,5 +31,12 @@ namespace AtlasMVCAPI.Controllers
                 return View(model);
             }
         }
+        [HttpPost]
+        public ActionResult PurchaseOrder(string rdoCheck)
+        {
+            LoginVO user = Session["LoginInfo"] as LoginVO;
+            // user.CustomerID;
+            return View();
+        }
     }
 }

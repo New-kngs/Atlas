@@ -11,8 +11,9 @@
         <div class="col-11">
         </div>-->
         <div class="col">
-            @using (Html.BeginForm("action", "OrderWeb"))
+            @using (Html.BeginForm("PurchaseOrder", "OrderWeb"))
             {
+                <input type="hidden" id="rdoCheck" name="rdoCheck" value="" />
                 <input type="submit" class="btn btn-primary" value="주문상세조회" style="float: right;" onclick="javascript: ChkOrder();">
             }
         </div>
@@ -47,7 +48,7 @@
 <!--javascript radio checked value-->
 <script>
     function ChkOrder() {
-
-        alert(document.querySelector('input[name="orderNo"]:checked').value);
+        var rdoString = document.querySelector('input[name="orderNo"]:checked').value;
+        document.getElementById('rdoCheck').value = rdoString;
     }
 </script>
