@@ -104,7 +104,8 @@ namespace AtlasMVCAPI.Controllers
                 OrderDAC db = new OrderDAC();
                 db.CreateOrder(loginUser.CustomerID, loginUser.EmpName, sbItemId.ToString().TrimEnd(','), sbQty.ToString().TrimEnd(','));
             }
-            return null;
+            Session["Cart"] = null; // 주문이 완료되었으므로, 카트에 담긴 상품을 비웁니다.
+            return RedirectToAction("History","OrderWeb");
         }
     }
 }
