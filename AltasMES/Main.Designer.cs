@@ -259,7 +259,6 @@ namespace AltasMES
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.MaximizeBox = false;
             this.Name = "Main";
             this.Text = "AltasMES";
             this.Load += new System.EventHandler(this.Main_Load);

@@ -31,20 +31,23 @@ namespace AltasMES
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDepartment));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvdept = new System.Windows.Forms.DataGridView();
-            this.DeptID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DeptName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CreateDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CreateUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ModifyDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ModifyUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtSerach = new System.Windows.Forms.TextBox();
             this.lblSearch = new System.Windows.Forms.Label();
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.btnSave = new System.Windows.Forms.Button();
+            this.DeptID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DeptName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DeptN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreateDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreateUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ModifyDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ModifyUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DBType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BasePanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.Basepanel4.SuspendLayout();
@@ -100,6 +103,7 @@ namespace AltasMES
             // 
             this.groupBox3.Controls.Add(this.dgvdept);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox3.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold);
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(1034, 491);
@@ -110,71 +114,31 @@ namespace AltasMES
             // dgvdept
             // 
             this.dgvdept.AllowUserToAddRows = false;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvdept.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvdept.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvdept.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvdept.ColumnHeadersHeight = 30;
             this.dgvdept.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.DeptID,
             this.DeptName,
+            this.DeptN,
             this.CreateDate,
             this.CreateUser,
             this.ModifyDate,
-            this.ModifyUser});
+            this.ModifyUser,
+            this.DBType});
             this.dgvdept.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvdept.Location = new System.Drawing.Point(3, 17);
+            this.dgvdept.Location = new System.Drawing.Point(3, 25);
             this.dgvdept.Name = "dgvdept";
             this.dgvdept.RowTemplate.Height = 23;
-            this.dgvdept.Size = new System.Drawing.Size(1028, 471);
+            this.dgvdept.Size = new System.Drawing.Size(1028, 463);
             this.dgvdept.TabIndex = 0;
             this.dgvdept.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvdept_EditingControlShowing);
-            // 
-            // DeptID
-            // 
-            this.DeptID.DataPropertyName = "DeptID";
-            this.DeptID.HeaderText = "부서ID";
-            this.DeptID.Name = "DeptID";
-            this.DeptID.ReadOnly = true;
-            // 
-            // DeptName
-            // 
-            this.DeptName.DataPropertyName = "DeptName";
-            this.DeptName.HeaderText = "부서명";
-            this.DeptName.Name = "DeptName";
-            this.DeptName.ReadOnly = true;
-            // 
-            // CreateDate
-            // 
-            this.CreateDate.DataPropertyName = "CreateDate";
-            this.CreateDate.HeaderText = "생성날짜";
-            this.CreateDate.Name = "CreateDate";
-            this.CreateDate.ReadOnly = true;
-            // 
-            // CreateUser
-            // 
-            this.CreateUser.DataPropertyName = "CreateUser";
-            this.CreateUser.HeaderText = "생성사용자";
-            this.CreateUser.Name = "CreateUser";
-            this.CreateUser.ReadOnly = true;
-            // 
-            // ModifyDate
-            // 
-            this.ModifyDate.DataPropertyName = "ModifyDate";
-            this.ModifyDate.HeaderText = "수정날짜";
-            this.ModifyDate.Name = "ModifyDate";
-            this.ModifyDate.ReadOnly = true;
-            // 
-            // ModifyUser
-            // 
-            this.ModifyUser.DataPropertyName = "ModifyUser";
-            this.ModifyUser.HeaderText = "수정사용자";
-            this.ModifyUser.Name = "ModifyUser";
-            this.ModifyUser.ReadOnly = true;
             // 
             // btnSearch
             // 
@@ -242,6 +206,70 @@ namespace AltasMES
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // DeptID
+            // 
+            this.DeptID.DataPropertyName = "DeptID";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.DeptID.DefaultCellStyle = dataGridViewCellStyle2;
+            this.DeptID.HeaderText = "부서ID";
+            this.DeptID.Name = "DeptID";
+            this.DeptID.ReadOnly = true;
+            this.DeptID.Visible = false;
+            // 
+            // DeptName
+            // 
+            this.DeptName.DataPropertyName = "DeptName";
+            this.DeptName.HeaderText = "부서명";
+            this.DeptName.Name = "DeptName";
+            this.DeptName.ReadOnly = true;
+            this.DeptName.Width = 130;
+            // 
+            // DeptN
+            // 
+            this.DeptN.DataPropertyName = "DeptN";
+            this.DeptN.HeaderText = "부서영문명";
+            this.DeptN.Name = "DeptN";
+            this.DeptN.Width = 150;
+            // 
+            // CreateDate
+            // 
+            this.CreateDate.DataPropertyName = "CreateDate";
+            this.CreateDate.HeaderText = "생성날짜";
+            this.CreateDate.Name = "CreateDate";
+            this.CreateDate.ReadOnly = true;
+            this.CreateDate.Width = 180;
+            // 
+            // CreateUser
+            // 
+            this.CreateUser.DataPropertyName = "CreateUser";
+            this.CreateUser.HeaderText = "생성사용자";
+            this.CreateUser.Name = "CreateUser";
+            this.CreateUser.ReadOnly = true;
+            this.CreateUser.Width = 130;
+            // 
+            // ModifyDate
+            // 
+            this.ModifyDate.DataPropertyName = "ModifyDate";
+            this.ModifyDate.HeaderText = "수정날짜";
+            this.ModifyDate.Name = "ModifyDate";
+            this.ModifyDate.ReadOnly = true;
+            this.ModifyDate.Width = 180;
+            // 
+            // ModifyUser
+            // 
+            this.ModifyUser.DataPropertyName = "ModifyUser";
+            this.ModifyUser.HeaderText = "수정사용자";
+            this.ModifyUser.Name = "ModifyUser";
+            this.ModifyUser.ReadOnly = true;
+            this.ModifyUser.Width = 130;
+            // 
+            // DBType
+            // 
+            this.DBType.DataPropertyName = "DBType";
+            this.DBType.HeaderText = "DBType";
+            this.DBType.Name = "DBType";
+            this.DBType.Visible = false;
+            // 
             // frmDepartment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -273,13 +301,15 @@ namespace AltasMES
         protected System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TextBox txtSerach;
         private System.Windows.Forms.Label lblSearch;
+        protected System.Windows.Forms.ImageList imageList2;
+        protected System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.DataGridViewTextBoxColumn DeptID;
         private System.Windows.Forms.DataGridViewTextBoxColumn DeptName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DeptN;
         private System.Windows.Forms.DataGridViewTextBoxColumn CreateDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn CreateUser;
         private System.Windows.Forms.DataGridViewTextBoxColumn ModifyDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn ModifyUser;
-        protected System.Windows.Forms.ImageList imageList2;
-        protected System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DBType;
     }
 }

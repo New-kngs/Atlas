@@ -59,6 +59,10 @@ namespace AltasMES
             this.groupBox2.Controls.Add(this.txtSerach);
             this.groupBox2.Controls.Add(this.lblSearch);
             // 
+            // btnAdd
+            // 
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
             // imageList1
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
@@ -68,11 +72,19 @@ namespace AltasMES
             this.imageList1.Images.SetKeyName(3, "Serach.png");
             this.imageList1.Images.SetKeyName(4, "Execl.png");
             // 
+            // btnDelete
+            // 
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnModify
+            // 
+            this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.dgvEmp);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.groupBox3.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(1034, 491);
@@ -84,11 +96,12 @@ namespace AltasMES
             // 
             this.dgvEmp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEmp.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvEmp.Location = new System.Drawing.Point(3, 21);
+            this.dgvEmp.Location = new System.Drawing.Point(3, 25);
             this.dgvEmp.Name = "dgvEmp";
             this.dgvEmp.RowTemplate.Height = 23;
-            this.dgvEmp.Size = new System.Drawing.Size(1028, 467);
+            this.dgvEmp.Size = new System.Drawing.Size(1028, 463);
             this.dgvEmp.TabIndex = 0;
+            this.dgvEmp.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvEmp_ColumnHeaderMouseClick);
             // 
             // btnSearch
             // 
@@ -97,12 +110,11 @@ namespace AltasMES
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSearch.ImageIndex = 3;
             this.btnSearch.ImageList = this.imageList1;
-            this.btnSearch.Location = new System.Drawing.Point(517, 40);
+            this.btnSearch.Location = new System.Drawing.Point(508, 40);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.btnSearch.Size = new System.Drawing.Size(78, 29);
+            this.btnSearch.Size = new System.Drawing.Size(35, 29);
             this.btnSearch.TabIndex = 12;
-            this.btnSearch.Text = "조회";
             this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);

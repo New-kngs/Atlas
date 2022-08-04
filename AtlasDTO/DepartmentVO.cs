@@ -8,9 +8,11 @@ namespace AtlasDTO
 {
     public class DepartmentVO
     {
-        public string DeptID { get; set; }
+        public int DeptID { get; set; }
 
         public string DeptName { get; set; }
+
+        public string DeptN { get; set; }
 
         public string CreateDate { get; set; }
 
@@ -19,6 +21,8 @@ namespace AtlasDTO
         public string ModifyDate { get; set; }
 
         public string ModifyUser { get; set; }
+
+        public string DBType { get; set; } // "UPD", "INS", "DEL"
 
 
     }

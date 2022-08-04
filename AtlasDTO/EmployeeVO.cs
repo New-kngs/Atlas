@@ -8,6 +8,8 @@ namespace AtlasDTO
 {
     public class EmployeeVO
     {
+
+        public int Eid { get; set; }
         public string EmpID { get; set; }
 
         public string EmpName { get; set; }

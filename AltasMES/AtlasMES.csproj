@@ -116,17 +116,23 @@
     <Compile Include="frmDepartment\frmDepartment.Designer.cs">
       <DependentUpon>frmDepartment.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDepartment\frmDepartment_Add.cs">
+    <Compile Include="frmEmployee\frmEmployee_Add.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDepartment\frmDepartment_Add.Designer.cs">
-      <DependentUpon>frmDepartment_Add.cs</DependentUpon>
+    <Compile Include="frmEmployee\frmEmployee_Add.Designer.cs">
+      <DependentUpon>frmEmployee_Add.cs</DependentUpon>
     </Compile>
     <Compile Include="frmEmployee\frmEmployee.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmEmployee\frmEmployee.Designer.cs">
       <DependentUpon>frmEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmEmployee\frmEmployee_Modify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEmployee\frmEmployee_Modify.Designer.cs">
+      <DependentUpon>frmEmployee_Modify.cs</DependentUpon>
     </Compile>
     <Compile Include="frmEquipment\frmEquipment.cs">
       <SubType>Form</SubType>
@@ -317,11 +323,14 @@
     <EmbeddedResource Include="frmDepartment\frmDepartment.resx">
       <DependentUpon>frmDepartment.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDepartment\frmDepartment_Add.resx">
-      <DependentUpon>frmDepartment_Add.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmEmployee\frmEmployee.resx">
       <DependentUpon>frmEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEmployee\frmEmployee_Add.resx">
+      <DependentUpon>frmEmployee_Add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEmployee\frmEmployee_Modify.resx">
+      <DependentUpon>frmEmployee_Modify.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmEquipment\frmEquipment.resx">
       <DependentUpon>frmEquipment.cs</DependentUpon>
