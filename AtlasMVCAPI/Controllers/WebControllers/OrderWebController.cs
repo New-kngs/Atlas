@@ -35,8 +35,8 @@ namespace AtlasMVCAPI.Controllers
         public ActionResult PurchaseOrder(string rdoCheck)
         {
             OrderDAC db = new OrderDAC();
-            List<OrderDetailLong> model = db.GetOrderDetails(rdoCheck);
-
+            List<OrderDetailLongVO> model = db.GetOrderDetails(rdoCheck);
+            ViewData["OrderID"] = rdoCheck;
             return View(model);
         }
     }

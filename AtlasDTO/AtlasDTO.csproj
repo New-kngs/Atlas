@@ -52,7 +52,7 @@
     <Compile Include="ItemVO.cs" />
     <Compile Include="LoginVO.cs" />
     <Compile Include="OperationVO.cs" />
-    <Compile Include="OrderDetailLong.cs" />
+    <Compile Include="OrderDetailLongVO.cs" />
     <Compile Include="OrderDetailVO.cs" />
     <Compile Include="OrderVO.cs" />
     <Compile Include="ProcessVO.cs" />

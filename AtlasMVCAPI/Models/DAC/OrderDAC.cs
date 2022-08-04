@@ -120,7 +120,7 @@ namespace AtlasMVCAPI.Models
             }
         }
         // 고객사에게 주문내역을 보여준다 (작성자-지현)
-        public List<OrderDetailLong> GetOrderDetails(string OrderID)
+        public List<OrderDetailLongVO> GetOrderDetails(string OrderID)
         {
             // SqlConnection conn = new SqlConnection(strConn);
             // conn.Open();
@@ -146,7 +146,7 @@ where OD.OrderID = @OrderID";
 
                 cmd.Parameters.AddWithValue("@OrderID", OrderID);
                 cmd.Connection.Open();
-                List<OrderDetailLong> listOrderDetail = Helper.DataReaderMapToList<OrderDetailLong>(cmd.ExecuteReader());
+                List<OrderDetailLongVO> listOrderDetail = Helper.DataReaderMapToList<OrderDetailLongVO>(cmd.ExecuteReader());
                 cmd.Connection.Close();
 
                 return listOrderDetail;
