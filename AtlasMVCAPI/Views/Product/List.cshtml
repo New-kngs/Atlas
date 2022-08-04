@@ -34,7 +34,7 @@
                                         @Html.Hidden("productID", Model.Products.ToList()[i].ItemID)
                                         @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
                                         <div class="text-right">
-                                            <input type="submit" value="장바구니" class="btn btn-primary" />
+                                            <input type="submit" value="카트담기" class="btn btn-primary" />
                                         </div>
                                     }
 
@@ -60,14 +60,14 @@
                                         <hr />
 
                                         <div class="text-right">
-                                            <input type="button" value="상세보기" class="btn btn-outline-primary" onclick='javascript:window.open("/Cart/Popup?productID=@Model.Products.ToList()[i+1].ItemID", "PopupWin", "width=500,height=600")' />
+                                            <input type="button" value="상세보기" class="btn btn-outline-primary" onclick='javascript:window.open("/Cart/Popup?productID=@Model.Products.ToList()[i+1].ItemID", "PopupWin", "width=900,height=600")' />
                                         </div>
                                         <br />
                                         <form action="/Cart/AddToCart" method="post">
                                             @Html.Hidden("productID", Model.Products.ToList()[i + 1].ItemID)
                                             @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
                                             <div class="text-right">
-                                                <input type="submit" value="장바구니" class="btn btn-primary" />
+                                                <input type="submit" value="카트담기" class="btn btn-primary" />
                                             </div>
                                         </form>
                                     </div>
