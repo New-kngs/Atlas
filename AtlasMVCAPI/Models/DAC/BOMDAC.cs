@@ -243,7 +243,8 @@ namespace AtlasMVCAPI.Models
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = new SqlConnection(strConn);
-                cmd.CommandText = @"delete from TB_BOM where ItemID in (@ItemID)";
+                cmd.CommandText = @"delete from TB_BOM where ItemID in (@ItemID);
+                                    delete from TB_BOM where ParentID in (@ItemID)";
                 cmd.Parameters.AddWithValue("@ItemID", itemid);
 
                 cmd.Connection.Open();

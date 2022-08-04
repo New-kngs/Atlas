@@ -64,6 +64,12 @@ namespace AltasMES
             }
         }
 
+        private void AllClear()
+        {
+            cboPdt.SelectedIndex = 0;
+            dgvA.DataSource = null;
+            dgvD.DataSource = null;
+        }
         private void btnSearch_Click(object sender, EventArgs e)
         {
             ResMessage<List<ItemVO>> volist = service.GetAsync<List<ItemVO>>("api/Item/AllItem");
@@ -189,21 +195,24 @@ namespace AltasMES
             int list = resResult.Data.FindIndex((r) => r.ItemID == id);
             if (list < 0)
             {
-                MessageBox.Show("삭제할 BOM대상이 없습니다.");
+                MessageBox.Show("삭제할 BOM대상이 없습니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             else
             {
-                ResMessage<List<BOMVO>> del = service.GetAsync<List<BOMVO>>($"api/BOM/DeleteBOM/"+id);
-                if(del.ErrCode == 0)
+                if (MessageBox.Show("선택하신 BOM구성이 삭제됩니다.", "삭제확인", MessageBoxButtons.YesNo, MessageBoxIcon.Question)==DialogResult.Yes)
                 {
-                    MessageBox.Show("삭제요");
+                    ResMessage<List<BOMVO>> del = service.GetAsync<List<BOMVO>>($"api/BOM/DeleteBOM/" + id);
+                    if (del.ErrCode == 0)
+                    {
+                        AllClear();
+                        MessageBox.Show("삭제되었습니다.");                        
+                    }
+                    else
+                    {
+                        MessageBox.Show("삭제가 실패하였습니다. 다시 시도하여 주십시오.");
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("실패요");
-                }
-                /*ResMessage<List<ProcessVO>> result = service.PostAsync<ProcessVO, List<ProcessVO>>("DeleteProcess", process);*/
             }
 
 
