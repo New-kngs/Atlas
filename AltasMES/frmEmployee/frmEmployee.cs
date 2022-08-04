@@ -35,7 +35,7 @@ namespace AltasMES
             allList = service.GetAsync<List<EmployeeVO>>("api/Employee/AllEmployee").Data;
             DeptList = service.GetAsync<List<DepartmentVO>>("api/Department/all").Data;
 
-
+             
             DataGridUtil.SetInitGridView(dgvEmp);
 
             DataGridUtil.AddGridTextBoxColumn(dgvEmp, "Eid", "Eid",visibility: false);
