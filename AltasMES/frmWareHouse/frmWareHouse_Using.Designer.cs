@@ -53,9 +53,10 @@ namespace AltasMES
             this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 69);
+            this.panel2.Location = new System.Drawing.Point(0, 86);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(380, 241);
+            this.panel2.Size = new System.Drawing.Size(434, 302);
             this.panel2.TabIndex = 3;
             // 
             // panel3
@@ -73,25 +74,27 @@ namespace AltasMES
             this.panel3.Controls.Add(this.txtWH);
             this.panel3.Controls.Add(this.label1);
             this.panel3.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.panel3.Location = new System.Drawing.Point(12, 6);
+            this.panel3.Location = new System.Drawing.Point(14, 8);
+            this.panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(356, 223);
+            this.panel3.Size = new System.Drawing.Size(407, 279);
             this.panel3.TabIndex = 0;
             // 
             // txtUsingChk
             // 
-            this.txtUsingChk.Location = new System.Drawing.Point(95, 80);
+            this.txtUsingChk.Location = new System.Drawing.Point(109, 100);
+            this.txtUsingChk.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtUsingChk.Name = "txtUsingChk";
-            this.txtUsingChk.Size = new System.Drawing.Size(213, 29);
+            this.txtUsingChk.Size = new System.Drawing.Size(243, 34);
             this.txtUsingChk.TabIndex = 30;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label3.Location = new System.Drawing.Point(89, 112);
+            this.label3.Location = new System.Drawing.Point(102, 140);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(223, 15);
+            this.label3.Size = new System.Drawing.Size(279, 20);
             this.label3.TabIndex = 29;
             this.label3.Text = "사용을 하시려면 창고명을 입력해주세요";
             // 
@@ -103,11 +106,11 @@ namespace AltasMES
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancel.ImageIndex = 5;
             this.btnCancel.ImageList = this.imageList1;
-            this.btnCancel.Location = new System.Drawing.Point(198, 158);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnCancel.Location = new System.Drawing.Point(226, 199);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.btnCancel.Size = new System.Drawing.Size(73, 34);
+            this.btnCancel.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.btnCancel.Size = new System.Drawing.Size(83, 42);
             this.btnCancel.TabIndex = 25;
             this.btnCancel.Text = "취소";
             this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -135,11 +138,11 @@ namespace AltasMES
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAdd.ImageIndex = 6;
             this.btnAdd.ImageList = this.imageList1;
-            this.btnAdd.Location = new System.Drawing.Point(84, 158);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnAdd.Location = new System.Drawing.Point(96, 199);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.btnAdd.Size = new System.Drawing.Size(73, 34);
+            this.btnAdd.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.btnAdd.Size = new System.Drawing.Size(83, 42);
             this.btnAdd.TabIndex = 24;
             this.btnAdd.Text = "확인";
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -149,29 +152,29 @@ namespace AltasMES
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(49, 84);
+            this.label2.Location = new System.Drawing.Point(56, 105);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(42, 21);
+            this.label2.Size = new System.Drawing.Size(52, 28);
             this.label2.TabIndex = 26;
             this.label2.Text = "확인";
             // 
             // txtWH
             // 
-            this.txtWH.Location = new System.Drawing.Point(95, 26);
+            this.txtWH.Location = new System.Drawing.Point(109, 32);
             this.txtWH.Margin = new System.Windows.Forms.Padding(2);
             this.txtWH.Name = "txtWH";
             this.txtWH.ReadOnly = true;
-            this.txtWH.Size = new System.Drawing.Size(213, 29);
+            this.txtWH.Size = new System.Drawing.Size(243, 34);
             this.txtWH.TabIndex = 28;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(33, 29);
+            this.label1.Location = new System.Drawing.Point(38, 36);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 21);
+            this.label1.Size = new System.Drawing.Size(72, 28);
             this.label1.TabIndex = 27;
             this.label1.Text = "창고명";
             // 
@@ -180,8 +183,9 @@ namespace AltasMES
             this.panel1.Controls.Add(this.lblTitle);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(380, 69);
+            this.panel1.Size = new System.Drawing.Size(434, 86);
             this.panel1.TabIndex = 2;
             // 
             // lblTitle
@@ -191,18 +195,20 @@ namespace AltasMES
             this.lblTitle.Font = new System.Drawing.Font("맑은 고딕", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.Location = new System.Drawing.Point(0, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(380, 63);
+            this.lblTitle.Size = new System.Drawing.Size(434, 79);
             this.lblTitle.TabIndex = 3;
             this.lblTitle.Text = "창고 사용";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmWareHouse_Using
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(380, 310);
+            this.ClientSize = new System.Drawing.Size(434, 388);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "frmWareHouse_Using";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "사용등록";
