@@ -109,6 +109,7 @@ namespace AltasMES
             {
                 LoadData();                
             }
+            SearchRebinding();
         }
 
         private void btnModify_Click(object sender, EventArgs e)
@@ -140,7 +141,7 @@ namespace AltasMES
                     LoadData();
                 }
             }
-            dgvItem.ClearSelection();
+            SearchRebinding();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -170,6 +171,14 @@ namespace AltasMES
                     LoadData();
                 }
             }
+            SearchRebinding();
+        }
+
+        private void SearchRebinding()
+        {            
+            //cboCategory.Text = "전체";
+            txtSearch.Clear();
+            dgvItem.ClearSelection();
         }
 
         private void dgvItem_CellClick(object sender, DataGridViewCellEventArgs e)

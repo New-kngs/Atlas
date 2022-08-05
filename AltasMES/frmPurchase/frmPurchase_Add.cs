@@ -51,10 +51,9 @@ namespace AltasMES
             DataGridUtil.SetInitGridView(dgvPurItem);
             DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "자재ID", "ItemID", colwidth: 90, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "자재명", "ItemName", colwidth: 160, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "규격", "ItemSize", colwidth: 70, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "수량", "Qty", colwidth: 100, Readonly: false, align: DataGridViewContentAlignment.MiddleRight);
-            DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "총 가격", "PurTotPrice", visibility: false);
             
-
             DataGridViewButtonColumn btn2 = new DataGridViewButtonColumn();
             btn2.HeaderText = "자재삭제";
             btn2.Text = "삭제";
@@ -138,6 +137,9 @@ namespace AltasMES
             {
                 string itemId = dgvItem["ItemID", e.RowIndex].Value.ToString();
                 string itemName = dgvItem["ItemName", e.RowIndex].Value.ToString();
+                string itemSize = dgvItem["ItemSize", e.RowIndex].Value.ToString();
+                int price = Convert.ToInt32(dgvItem["ItemPrice", e.RowIndex].Value);
+                //int purQty = Convert.ToInt32(dgvPurItem["Qty", e.RowIndex].Value);
 
                 foreach (DataGridViewRow item in dgvPurItem.Rows)
                 {
@@ -149,7 +151,16 @@ namespace AltasMES
                         return;
                     }
                 }
-                dgvPurItem.Rows.Add(itemId, itemName, 0);
+                dgvPurItem.Rows.Add(itemId, itemName, itemSize, 0);
+                dgvItem.ClearSelection();
+
+
+                //int sum = 0;
+                //for (int i = 0; i < dgvPurItem.Rows.Count; i++)
+                //{
+                //    sum += Convert.ToInt32(dgvPurItem.Rows[i].Cells[3].Value);
+                //}
+                //txtPrice.Text = dgvPurItem.Rows.Count.ToString();
             }  
         }
 
@@ -184,6 +195,16 @@ namespace AltasMES
         private void frmPurchase_Add_Shown(object sender, EventArgs e)
         {
             dgvItem.ClearSelection();
+            dgvPurItem.ClearSelection();
+        }
+
+        private void dgvItem_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            dgvItem.ClearSelection();
+        }
+
+        private void dgvPurItem_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
             dgvPurItem.ClearSelection();
         }
     }
