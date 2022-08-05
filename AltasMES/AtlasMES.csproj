@@ -117,6 +117,18 @@
     <Compile Include="frmCustomer\frmCustomer.Designer.cs">
       <DependentUpon>frmCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmCustomer\frmCustomer_Add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCustomer\frmCustomer_Add.Designer.cs">
+      <DependentUpon>frmCustomer_Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCustomer\ZipcodePopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCustomer\ZipcodePopup.Designer.cs">
+      <DependentUpon>ZipcodePopup.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmDepartment\frmDepartment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -329,6 +341,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmCustomer\frmCustomer.resx">
       <DependentUpon>frmCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCustomer\frmCustomer_Add.resx">
+      <DependentUpon>frmCustomer_Add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCustomer\ZipcodePopup.resx">
+      <DependentUpon>ZipcodePopup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDepartment\frmDepartment.resx">
       <DependentUpon>frmDepartment.cs</DependentUpon>

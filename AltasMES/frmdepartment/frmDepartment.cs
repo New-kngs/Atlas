@@ -244,5 +244,13 @@ namespace AltasMES
         {
             dgvdept.ClearSelection();
         }
+
+        private void txtSerach_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                btnSearch_Click(this, e);
+            }
+        }
     }
 }

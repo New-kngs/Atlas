@@ -56,6 +56,27 @@ namespace AtlasMVCAPI.Models
             }
         }
 
+        public List<EmployeeVO> GetSalesEmplist()
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.CommandText = @" select EmpID,EmpName from TB_Employees
+                                     where DeptId = 9";
+
+                cmd.Connection.Open();
+                List<EmployeeVO> list = Helper.DataReaderMapToList<EmployeeVO>(cmd.ExecuteReader());
+                cmd.Connection.Close();
+
+                if (list != null && list.Count > 0)
+                    return list;
+                else
+                    return null;
+            }
+
+
+        }
+
         public bool SaveEmployee(EmployeeVO emp)
         {
             using (SqlCommand cmd = new SqlCommand

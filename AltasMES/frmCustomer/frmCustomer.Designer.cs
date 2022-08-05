@@ -58,6 +58,11 @@ namespace AltasMES
             this.groupBox2.Controls.Add(this.lblSearch);
             this.groupBox2.Controls.Add(this.btnSearch);
             this.groupBox2.Controls.Add(this.txtSerach);
+            this.groupBox2.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // imageList1
             // 
@@ -74,19 +79,24 @@ namespace AltasMES
             this.label1.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label1.Location = new System.Drawing.Point(17, 46);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 21);
+            this.label1.Size = new System.Drawing.Size(96, 21);
             this.label1.TabIndex = 19;
-            this.label1.Text = "구분";
+            this.label1.Text = "거래처 구분";
             // 
             // cboCategory
             // 
             this.cboCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCategory.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cboCategory.FormattingEnabled = true;
-            this.cboCategory.Location = new System.Drawing.Point(70, 43);
+            this.cboCategory.Items.AddRange(new object[] {
+            "전체",
+            "입고",
+            "출고"});
+            this.cboCategory.Location = new System.Drawing.Point(118, 43);
             this.cboCategory.Name = "cboCategory";
             this.cboCategory.Size = new System.Drawing.Size(110, 29);
             this.cboCategory.TabIndex = 18;
+            this.cboCategory.SelectedIndexChanged += new System.EventHandler(this.cboCategory_SelectedIndexChanged);
             // 
             // btnSearch
             // 
@@ -95,27 +105,29 @@ namespace AltasMES
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSearch.ImageIndex = 3;
             this.btnSearch.ImageList = this.imageList1;
-            this.btnSearch.Location = new System.Drawing.Point(499, 43);
+            this.btnSearch.Location = new System.Drawing.Point(547, 43);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnSearch.Size = new System.Drawing.Size(35, 29);
             this.btnSearch.TabIndex = 17;
             this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // txtSerach
             // 
             this.txtSerach.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.txtSerach.Location = new System.Drawing.Point(274, 43);
+            this.txtSerach.Location = new System.Drawing.Point(322, 43);
             this.txtSerach.Name = "txtSerach";
             this.txtSerach.Size = new System.Drawing.Size(215, 29);
             this.txtSerach.TabIndex = 16;
+            this.txtSerach.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSerach_KeyPress);
             // 
             // lblSearch
             // 
             this.lblSearch.AutoSize = true;
             this.lblSearch.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblSearch.Location = new System.Drawing.Point(192, 46);
+            this.lblSearch.Location = new System.Drawing.Point(240, 46);
             this.lblSearch.Name = "lblSearch";
             this.lblSearch.Size = new System.Drawing.Size(74, 21);
             this.lblSearch.TabIndex = 15;
@@ -142,6 +154,7 @@ namespace AltasMES
             this.dgvCus.RowTemplate.Height = 23;
             this.dgvCus.Size = new System.Drawing.Size(1028, 463);
             this.dgvCus.TabIndex = 0;
+            this.dgvCus.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvCus_ColumnHeaderMouseClick);
             // 
             // frmCustomer
             // 

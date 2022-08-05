@@ -143,7 +143,7 @@ namespace AltasMES
         private void btnModify_Click(object sender, EventArgs e)
         {
 
-            if (!dgvEmp.CurrentCell.Selected)
+            if (dgvEmp.CurrentCell == null)
             {
                 MessageBox.Show("수정하실 사용자를 선택해주세요.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -172,7 +172,7 @@ namespace AltasMES
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-           if(!dgvEmp.CurrentCell.Selected)
+           if(dgvEmp.CurrentCell == null)
            {
                 MessageBox.Show("삭제하실 사용자를 선택해주세요.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -227,6 +227,14 @@ namespace AltasMES
         private void dgvEmp_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             dgvEmp.ClearSelection();
+        }
+
+        private void txtSerach_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                btnSearch_Click(this, e);
+            }
         }
     }
 }

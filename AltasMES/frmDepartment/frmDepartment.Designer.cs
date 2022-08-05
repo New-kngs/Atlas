@@ -67,6 +67,7 @@ namespace AltasMES
             this.groupBox2.Controls.Add(this.lblSearch);
             this.groupBox2.Controls.Add(this.btnSearch);
             this.groupBox2.Controls.Add(this.txtSerach);
+            this.groupBox2.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold);
             // 
             // groupBox1
             // 
@@ -228,6 +229,7 @@ namespace AltasMES
             this.txtSerach.Name = "txtSerach";
             this.txtSerach.Size = new System.Drawing.Size(215, 29);
             this.txtSerach.TabIndex = 13;
+            this.txtSerach.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSerach_KeyPress);
             // 
             // lblSearch
             // 

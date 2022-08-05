@@ -46,6 +46,9 @@ namespace AltasMES
             txtDomain.Text = emp.EmpEmail.Substring(emp.EmpEmail.IndexOf("@") + 1);
             txtEmail.Text = emp.EmpEmail.Substring(0, emp.EmpEmail.IndexOf("@"));
 
+            txtID.Enabled = false;
+            txtName.Enabled = false;
+
         }
 
         private void cboDomain_SelectedIndexChanged(object sender, EventArgs e)
@@ -69,16 +72,7 @@ namespace AltasMES
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtName.Text))
-            {
-                MessageBox.Show("이름을 입력해주세요.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(txtID.Text))
-            {
-                MessageBox.Show("ID를 입력해주세요.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            
             if (string.IsNullOrWhiteSpace(txtPwd.Text))
             {
                 MessageBox.Show("비밀번호를 입력해주세요.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);

@@ -18,6 +18,7 @@ namespace AltasMES
         ServiceHelper service = null;
         List<DepartmentVO> DeptList = null;
         List<ComboItemVO> CboList = null;
+        List<EmployeeVO> EmpList = null;
         string createUser = string.Empty;
 
         public frmEmployee_Add(string CreateUser)
@@ -35,6 +36,7 @@ namespace AltasMES
 
             DeptList = service.GetAsync<List<DepartmentVO>>("api/Department/all").Data;
             CboList = service.GetAsync<List<ComboItemVO>>("api/Employee/DomainCategory").Data;
+            EmpList = service.GetAsync<List<EmployeeVO>>("api/Employee/AllEmployee").Data;
 
             CommonUtil.ComboBinding(cboCategory, DeptList, "DeptName", "DeptN", blankText: "선택");
             CommonUtil.ComboBinding(cboDomain, CboList, "Domain", blankText: "선택");
@@ -98,6 +100,14 @@ namespace AltasMES
             if (string.IsNullOrWhiteSpace(txtDomain.Text))
             {
                 MessageBox.Show("도메인을 확인해주세요.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            List<EmployeeVO> resultName = EmpList.FindAll(p => p.EmpID == txtID.Text.Trim());
+
+            if (resultName.Count > 0)
+            {
+                MessageBox.Show("이미 존재하는 ID 입니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 

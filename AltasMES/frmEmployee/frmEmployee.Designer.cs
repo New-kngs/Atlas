@@ -58,6 +58,7 @@ namespace AltasMES
             this.groupBox2.Controls.Add(this.btnSearch);
             this.groupBox2.Controls.Add(this.txtSerach);
             this.groupBox2.Controls.Add(this.lblSearch);
+            this.groupBox2.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold);
             // 
             // btnAdd
             // 
@@ -110,7 +111,7 @@ namespace AltasMES
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSearch.ImageIndex = 3;
             this.btnSearch.ImageList = this.imageList1;
-            this.btnSearch.Location = new System.Drawing.Point(508, 40);
+            this.btnSearch.Location = new System.Drawing.Point(518, 40);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnSearch.Size = new System.Drawing.Size(35, 29);
@@ -122,27 +123,28 @@ namespace AltasMES
             // txtSerach
             // 
             this.txtSerach.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.txtSerach.Location = new System.Drawing.Point(287, 40);
+            this.txtSerach.Location = new System.Drawing.Point(295, 40);
             this.txtSerach.Name = "txtSerach";
             this.txtSerach.Size = new System.Drawing.Size(215, 29);
             this.txtSerach.TabIndex = 11;
+            this.txtSerach.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSerach_KeyPress);
             // 
             // lblSearch
             // 
             this.lblSearch.AutoSize = true;
             this.lblSearch.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblSearch.Location = new System.Drawing.Point(184, 43);
+            this.lblSearch.Location = new System.Drawing.Point(214, 43);
             this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(96, 21);
+            this.lblSearch.Size = new System.Drawing.Size(74, 21);
             this.lblSearch.TabIndex = 10;
-            this.lblSearch.Text = "사용자 이름";
+            this.lblSearch.Text = "사용자명";
             // 
             // cboCategory
             // 
             this.cboCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCategory.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cboCategory.FormattingEnabled = true;
-            this.cboCategory.Location = new System.Drawing.Point(62, 40);
+            this.cboCategory.Location = new System.Drawing.Point(92, 40);
             this.cboCategory.Name = "cboCategory";
             this.cboCategory.Size = new System.Drawing.Size(110, 29);
             this.cboCategory.TabIndex = 13;
@@ -154,9 +156,9 @@ namespace AltasMES
             this.label1.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label1.Location = new System.Drawing.Point(9, 43);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 21);
+            this.label1.Size = new System.Drawing.Size(80, 21);
             this.label1.TabIndex = 14;
-            this.label1.Text = "구분";
+            this.label1.Text = "부서 구분";
             // 
             // frmEmployee
             // 
