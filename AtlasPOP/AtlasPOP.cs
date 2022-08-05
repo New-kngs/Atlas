@@ -133,6 +133,8 @@ namespace AtlasPOP
             string ip = "127.0.0.1";
             string port = Oper.port;
             string name = Oper.ProcessID.ToString();
+            
+
 
             Process pro = Process.Start(server, $"{name} {ip} {port} {Oper.PlanQty.ToString()}");
             process_id = pro.Id;
@@ -166,15 +168,16 @@ namespace AtlasPOP
             frm.TaskExit = true;
             frm.Close();
 
-            /*ResMessage<List<OperationVO>> finish = service.PostAsync<OperationVO, List<OperationVO>>("api/pop/UdateFinish", Oper);
+            ResMessage<List<OperationVO>> finish = service.PostAsync<OperationVO, List<OperationVO>>("api/pop/UdateFinish", Oper);
             if (finish.ErrCode == 0)
             {
-                MessageBox.Show("작업종료, 창고에 입고되었습니다.");
+                MessageBox.Show("작업종료되었습니다.");
+                frmoper.LoadData();
             }
             else
             {
                 MessageBox.Show("문제발생");
-            }*/
+            }
 
         }
 
@@ -207,6 +210,17 @@ namespace AtlasPOP
 
         private void btnFail_Click(object sender, EventArgs e)
         {
+            ResMessage<List<OperationVO>> fail = service.GetAsync<List<OperationVO>>("api/pop/AllOperation");
+            if (fail.Data != null)
+            {
+                Oper.FailQty = fail.Data.Find((n) => n.OpID.Equals(Oper.OpID)).FailQty;
+            }
+            else
+            {
+                MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
+            }
+
+
             if (Oper == null)
             {
                 MessageBox.Show("작업을 선택해주세요");

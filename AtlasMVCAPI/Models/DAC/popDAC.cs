@@ -25,7 +25,7 @@ namespace AtlasMVCAPI.Models
             {
                 cmd.Connection = new SqlConnection(strConn);
                 cmd.CommandText = @"select OpID, convert(varchar(10), OpDate, 120) OpDate, resourceYN, PutInYN, op.ItemID, ItemName, OrderID, op.ProcessID, ProcessName,    
-                    PlanQty, OpState, convert(varchar(20), BeginDate,120) BeginDate,convert(varchar(20), EndDate,120) EndDate, op.EmpID, EmpName, port
+                    PlanQty, OpState, convert(varchar(20), BeginDate,120) BeginDate,convert(varchar(20), EndDate,120) EndDate, op.EmpID, EmpName, port, CompleteQty, FailQty
                     from TB_Operation op join TB_Process p on op.ProcessID = p.ProcessID
                     join TB_Item i on op.ItemID = i.ItemID
                     join TB_Employees e on e.EmpID = op.EmpID";
@@ -67,7 +67,7 @@ namespace AtlasMVCAPI.Models
             {
                 cmd.Connection = new SqlConnection(strConn);
                 cmd.CommandText = @"select OpID, convert(varchar(10), OpDate, 120) OpDate, resourceYN, PutInYN, op.ItemID, ItemName, OrderID, op.ProcessID, ProcessName,    
-                    PlanQty, OpState,convert(varchar(20), BeginDate, 120) BeginDate,convert(varchar(20), EndDate,120) EndDate, op.EmpID,EmpName, port
+                    PlanQty, OpState, convert(varchar(20), BeginDate,120) BeginDate,convert(varchar(20), EndDate,120) EndDate, op.EmpID, EmpName, port, CompleteQty, FailQty
                     from TB_Operation op join TB_Process p on op.ProcessID = p.ProcessID
                     join TB_Item i on op.ItemID = i.ItemID
                     join TB_Employees e on e.EmpID = op.EmpID
@@ -527,9 +527,7 @@ namespace AtlasMVCAPI.Models
             {
                 Connection = new SqlConnection(strConn),
                 CommandText = @"update TB_Operation set OpState = '작업종료', CompleteQty = @CompleteQty, FailQty = @FailQty, ModifyUser = @ModifyUser, ModifyDate = @ModifyDate, EndDate = @EndDate
-                                where OpID = @OpID
-
-                                update TB_Item set CurrentQty += @CompleteQty, ModifyUser = @ModifyUser, ModifyDate = @ModifyDate where ItemID = @ItemID"
+                                where OpID = @OpID"
 
             })
             {
@@ -537,7 +535,6 @@ namespace AtlasMVCAPI.Models
                 cmd.Parameters.AddWithValue("@FailQty", oper.FailQty);
                 cmd.Parameters.AddWithValue("@ModifyUser", oper.EmpID);
                 cmd.Parameters.AddWithValue("@OpID", oper.OpID);
-                cmd.Parameters.AddWithValue("@OpID", oper.ItemID);
                 cmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
                 cmd.Parameters.AddWithValue("@EndDate", DateTime.Now);
                 cmd.Connection.Open();
