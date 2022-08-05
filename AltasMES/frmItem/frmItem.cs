@@ -113,11 +113,11 @@ namespace AltasMES
 
         private void btnModify_Click(object sender, EventArgs e)
         {
-            if (selId == string.Empty)
+            if (!dgvItem.CurrentCell.Selected || selId == string.Empty)
             {
-                MessageBox.Show("수정할 제품을 선택해 주세요");
+                MessageBox.Show("수정할 제품을 선택해 주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
-            }
+            }           
 
             ItemVO item = srv.GetAsync<ItemVO>($"api/Item/{selId}").Data;
             item.ModifyUser = ((Main)this.MdiParent).EmpName.ToString();
@@ -138,6 +138,7 @@ namespace AltasMES
                     LoadData();
                 }
             }
+            dgvItem.ClearSelection();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)

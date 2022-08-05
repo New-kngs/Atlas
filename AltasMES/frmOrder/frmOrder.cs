@@ -53,7 +53,6 @@ namespace AltasMES
             if (orderList != null)
             {
                 List<OrderVO> list = null;
-
                 if (cboStateYN.SelectedIndex > 0)
                 {
                     if (!string.IsNullOrWhiteSpace(txtSearch.Text))
@@ -76,15 +75,18 @@ namespace AltasMES
                         list = orderList;
                     }
                 }
-
                 dgvOrder.DataSource = null;
                 dgvOrder.DataSource = new AdvancedList<OrderVO>(list);
             }
             else
             {
-                MessageBox.Show("검색 내용이 없습니다.");                
+                //MessageBox.Show("검색 내용이 없습니다.");
+                //dtpFrom.Value = DateTime.Now.AddDays(-7);
+                dgvOrder.DataSource = null;
+                dgvOrder.ClearSelection();
                 return;
             }
+            dgvOrder.ClearSelection();
         }                
 
         private void dgvOrder_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -94,21 +96,23 @@ namespace AltasMES
             selId = (dgvOrder[0, e.RowIndex].Value).ToString();
         }        
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e) // 상세보기 버튼
         {
-            if (selId == string.Empty)
+            if (!dgvOrder.CurrentCell.Selected || selId == string.Empty)
             {
-                MessageBox.Show("주문 항목을 선택해 주세요");
+                MessageBox.Show("주문 항목을 선택해 주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
-            }
+            }            
 
             OrderVO order = srv.GetAsync<OrderVO>($"/api/Order/{selId}").Data;            
             order.ModifyUser = ((Main)this.MdiParent).EmpName.ToString();
             frmOrder_Detail pop = new frmOrder_Detail(order);
             if (pop.ShowDialog() == DialogResult.OK)
-            {
+            {                
                 LoadData();
             }
+            selId = string.Empty;
+            dgvOrder.ClearSelection();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -140,6 +144,11 @@ namespace AltasMES
             {
                 srv.Dispose();
             }
+        }
+
+        private void dgvOrder_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            dgvOrder.ClearSelection();
         }
     }
 }

@@ -161,6 +161,7 @@ namespace AltasMES
             this.dgvOrder.Size = new System.Drawing.Size(1028, 464);
             this.dgvOrder.TabIndex = 1;
             this.dgvOrder.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOrder_CellClick);
+            this.dgvOrder.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvOrder_ColumnHeaderMouseClick);
             // 
             // label3
             // 

@@ -152,5 +152,14 @@ namespace AltasMES
 
             selId = (dgvPurchase[0, e.RowIndex].Value).ToString();
         }
+
+        private void btnModify_Click(object sender, EventArgs e)
+        {
+            if (!dgvPurchase.CurrentCell.Selected || selId == string.Empty)
+            {
+                MessageBox.Show("발주 항목을 선택해 주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+        }
     }
 }

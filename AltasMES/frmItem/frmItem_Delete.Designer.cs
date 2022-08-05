@@ -456,7 +456,11 @@ namespace AltasMES
             this.ClientSize = new System.Drawing.Size(773, 870);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmItem_Delete";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "제품 삭제";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmItem_Delete_FormClosing);
