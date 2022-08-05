@@ -107,7 +107,7 @@ namespace AltasMES
         private void btnModify_Click(object sender, EventArgs e)
         {
 
-            if (dgvdept.CurrentCell == null) return;
+
             if (!dgvdept.CurrentCell.Selected)
             {
                 MessageBox.Show("수정하실 부서를 선택해주세요.", "수정", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -125,11 +125,12 @@ namespace AltasMES
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (dgvdept.CurrentCell == null) return;
+
             if (!dgvdept.CurrentCell.Selected)
             {
                 MessageBox.Show("삭제하실 행을 선택해주세요.", "삭제", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
+
             }
             if (MessageBox.Show("선택한 행을 삭제하시겠습니까?", "삭제", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
