@@ -64,7 +64,7 @@ namespace AltasMES
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(685, 20);
+            this.btnAdd.Location = new System.Drawing.Point(768, 20);
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -79,11 +79,13 @@ namespace AltasMES
             // 
             // btnExecl
             // 
+            this.btnExecl.Location = new System.Drawing.Point(684, 20);
             this.btnExecl.TabIndex = 3;
+            this.btnExecl.Visible = false;
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(852, 20);
+            this.btnDelete.Location = new System.Drawing.Point(935, 20);
             this.btnDelete.Size = new System.Drawing.Size(93, 37);
             this.btnDelete.TabIndex = 2;
             this.btnDelete.Text = "미사용";
@@ -96,7 +98,7 @@ namespace AltasMES
             // 
             // btnModify
             // 
-            this.btnModify.Location = new System.Drawing.Point(768, 20);
+            this.btnModify.Location = new System.Drawing.Point(851, 20);
             this.btnModify.TabIndex = 1;
             this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
             // 
@@ -131,7 +133,7 @@ namespace AltasMES
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSearch.ImageIndex = 3;
             this.btnSearch.ImageList = this.imageList1;
-            this.btnSearch.Location = new System.Drawing.Point(304, 41);
+            this.btnSearch.Location = new System.Drawing.Point(301, 41);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnSearch.Size = new System.Drawing.Size(33, 26);
@@ -142,7 +144,7 @@ namespace AltasMES
             // 
             // txtEquip
             // 
-            this.txtEquip.Location = new System.Drawing.Point(83, 42);
+            this.txtEquip.Location = new System.Drawing.Point(83, 40);
             this.txtEquip.Name = "txtEquip";
             this.txtEquip.Size = new System.Drawing.Size(215, 29);
             this.txtEquip.TabIndex = 8;
@@ -151,7 +153,7 @@ namespace AltasMES
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(26, 45);
+            this.label1.Location = new System.Drawing.Point(26, 44);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 21);
             this.label1.TabIndex = 7;

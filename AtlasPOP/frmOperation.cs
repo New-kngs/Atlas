@@ -46,18 +46,18 @@ namespace AtlasPOP
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "담당ID", "EmpID", colwidth: 130, DataGridViewContentAlignment.MiddleCenter);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "포트", "port",visibility: false);
             dgvList.ClearSelection();
-            LoadData();
 
+            
+            LoadData();
             dtpTo.Value = DateTime.Now;
             dtpFrom.Value = DateTime.Now.AddDays(-7);
         }
         public void LoadData()
         {
-
             operList = service.GetAsync<List<OperationVO>>("api/pop/AllOperation");
+
             if (operList.Data != null)
             {
-                
                 dgvList.DataSource = new AdvancedList<OperationVO>(operList.Data);
                 dgvList.ClearSelection();
             }
@@ -65,7 +65,6 @@ namespace AtlasPOP
             {
                 MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
             }
-            
         }
 
 

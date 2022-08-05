@@ -34,7 +34,7 @@ namespace AtlasPOP
         private void frmResource_Load(object sender, EventArgs e)
         {
             
-            popDataGridUtil.SetInitGridView(dgvList);
+            popDataGridUtil.clickSetInitGridView(dgvList);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "불량ID", "FailID", visibility: false);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "제품ID", "ItemID", visibility: false);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "불량코드", "FailCode", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
@@ -165,6 +165,11 @@ namespace AtlasPOP
                 MessageBox.Show("등록 중 오류가 발생하였습니다.");
                 return;
             }
+        }
+
+        private void frmFail_Shown(object sender, EventArgs e)
+        {
+            dgvList.ClearSelection();
         }
     }
 }

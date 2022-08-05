@@ -63,7 +63,7 @@ namespace AtlasPOP
             
             m_log.WriteInfo("PLC프로그램 시작");
 
-            m_thread = new ThreadPLCTask( m_log, workID, hostIP, hostPort, timer_CONNECT, timer_KeepAlive, timer_Read);
+            m_thread = new ThreadPLCTask( m_log, hostIP, hostPort, timer_CONNECT, timer_KeepAlive, timer_Read);
 
             m_thread.ReadDataReceive += M_thread_ReadDataReceive;
             m_thread.ThreadStart();

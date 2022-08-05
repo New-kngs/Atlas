@@ -55,7 +55,7 @@ namespace VirtualPLCMachin
                 tc = await listener.AcceptTcpClientAsync().ConfigureAwait(false);
                 ns = tc.GetStream();
 
-                timer1 = new Timer(3000);
+                timer1 = new Timer(800);
                 timer1.Elapsed += Timer1_Elapsed;
                 timer1.AutoReset = true;
                 timer1.Enabled = true;
@@ -64,14 +64,9 @@ namespace VirtualPLCMachin
 
         private void Timer1_Elapsed(object sender, ElapsedEventArgs e)
         {
-            
-
             string msg = $"{qty}|1|0";
-            tot++;
 
             byte[] buff = Encoding.Default.GetBytes(msg);
-            
-
 
             ns.Write(buff, 0, buff.Length);
             Console.WriteLine("데이터 전송 : " + msg);

@@ -68,6 +68,7 @@ namespace AltasMES
             {
                 MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
             }
+            dgvList.ClearSelection();
         }
 
         private void frmProcess_Setting_FormClosing(object sender, FormClosingEventArgs e)
@@ -112,6 +113,7 @@ namespace AltasMES
             }
             dgvList.DataSource = null;
             dgvList.DataSource = processList;
+            dgvList.ClearSelection();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -161,6 +163,11 @@ namespace AltasMES
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void frmProcess_Setting_Shown(object sender, EventArgs e)
+        {
+            dgvList.ClearSelection();
         }
     }
 }

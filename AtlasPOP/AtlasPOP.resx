@@ -703,7 +703,7 @@
     <value>10</value>
   </data>
   <data name="label11.Text" xml:space="preserve">
-    <value>지시수량</value>
+    <value>지시수량(EA)</value>
   </data>
   <data name="label11.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>

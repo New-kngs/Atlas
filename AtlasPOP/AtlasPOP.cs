@@ -23,7 +23,7 @@ namespace AtlasPOP
         public string OperID { get; set; }
 
         string CustomerID;
-        int process_id;
+        int process_id=0;
 
         int qty = 0;
         int failqty = 0;
@@ -123,12 +123,23 @@ namespace AtlasPOP
                 return;
             }
 
+            ResMessage<List<OperationVO>> start = service.PostAsync<OperationVO, List<OperationVO>>("api/pop/UdateState", Oper);
+            if (start.ErrCode == 0)
+            {
+                MessageBox.Show($"{Oper.OpID} - 작업시작");
+               
+            }
+            else
+            {
+                MessageBox.Show("시스템에 오류가 발생하였습니다.");
+            }
+
+
             string server = Application.StartupPath + "\\VirtualPLCMachin.exe";
 
             string ip = "127.0.0.1";
             string port = Oper.port;
-            string name = Oper.ProcessName;
-
+            string name = Oper.ProcessID.ToString();
 
             Process pro = Process.Start(server, $"{name} {ip} {port} {Oper.PlanQty.ToString()}");
             process_id = pro.Id;
@@ -137,8 +148,11 @@ namespace AtlasPOP
             frm.MdiParent = this;
             frm.Show();
             frm.Hide();
+            frmoper.LoadData();
             frmoper.MdiParent = this;
             frmoper.WindowState = FormWindowState.Maximized;
+
+            
 
             //IsTaskEnabled = true;
         }
@@ -159,7 +173,7 @@ namespace AtlasPOP
             frm.TaskExit = true;
             frm.Close();
 
-            ResMessage<List<OperationVO>> finish = service.PostAsync<OperationVO, List<OperationVO>>("api/pop/UdateFinish", Oper);
+            /*ResMessage<List<OperationVO>> finish = service.PostAsync<OperationVO, List<OperationVO>>("api/pop/UdateFinish", Oper);
             if (finish.ErrCode == 0)
             {
                 MessageBox.Show("작업종료, 창고에 입고되었습니다.");
@@ -167,7 +181,7 @@ namespace AtlasPOP
             else
             {
                 MessageBox.Show("문제발생");
-            }
+            }*/
 
         }
 
@@ -176,8 +190,15 @@ namespace AtlasPOP
             //작업이 완료되었는지?
             //생산제품과 불량제품이 잘 넘어왔는지?
             //
+            
             foreach (Process proc in Process.GetProcesses())
             {
+                if(process_id == 0)
+                {
+                    MessageBox.Show("작업이 시작되지않았습니다.");
+                    return;
+                }
+                
                 if (proc.Id.Equals(process_id))
                 {
                     proc.Kill();
@@ -188,12 +209,7 @@ namespace AtlasPOP
             frm.Close();
             
 
-            // IsTaskEnabled = false;
-        }
-
-        private void btnResource_Click(object sender, EventArgs e)
-        {
-
+            //  IsTaskEnabled = false;
         }
 
         private void btnFail_Click(object sender, EventArgs e)
@@ -226,18 +242,30 @@ namespace AtlasPOP
                 MessageBox.Show("작업을 선택해주세요");
                 return;
             }
+
             frmResource frm = new frmResource(Oper);
             if (frm.ShowDialog() == DialogResult.OK)
             {
-                frmOperation frmop = new frmOperation();
-                frmop.DialogResult = DialogResult.OK;
+                frmoper.LoadData();
+                
             }
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            //frm.TaskExit = true;
-            // frm.Close();
+            foreach (Process proc in Process.GetProcesses())
+            {
+                if (process_id != 0)
+                {
+                    if (proc.Id.Equals(process_id))
+                    {
+                        proc.Kill();
+                        
+                    }
+                }
+            }
+            
+
             this.Close();
         }
     }

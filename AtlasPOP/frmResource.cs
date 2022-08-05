@@ -28,7 +28,7 @@ namespace AtlasPOP
 
         private void frmResource_Load(object sender, EventArgs e)
         {
-            popDataGridUtil.SetInitGridView(dgvList);
+            popDataGridUtil.clickSetInitGridView(dgvList);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "BOMID", "BOMID", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter, visibility: false);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "제품ID", "ItemID", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter, visibility: false);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "부모ID", "ParentID", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter,visibility:false);

@@ -28,6 +28,8 @@ namespace AltasMES
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+            frmEquipment frm = new frmEquipment();
+            frm.reset();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

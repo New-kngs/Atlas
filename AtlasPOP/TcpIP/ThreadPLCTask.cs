@@ -28,10 +28,9 @@ namespace AtlasPOP
 
         public bool ConnectStatus { get; set; }
 
-        public ThreadPLCTask(LoggingUtility m_log, int workID, string hostIP, int hostPort, int timer_CONNECT, int timer_KeepAlive, int timer_Read)
+        public ThreadPLCTask(LoggingUtility m_log, string hostIP, int hostPort, int timer_CONNECT, int timer_KeepAlive, int timer_Read)
         {
             this.m_log = m_log;
-            this.workID = workID;
             this.hostIP = hostIP;
             this.hostPort = hostPort;
             this.timer_CONNECT = timer_CONNECT;

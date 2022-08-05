@@ -60,6 +60,7 @@ namespace AltasMES
             this.groupBox2.Controls.Add(this.btnSearch);
             this.groupBox2.Controls.Add(this.txtProcessName);
             this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold);
             this.groupBox2.Text = "검색조건";
             // 
             // groupBox1
@@ -74,7 +75,7 @@ namespace AltasMES
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(682, 20);
+            this.btnAdd.Location = new System.Drawing.Point(768, 20);
             this.btnAdd.TabIndex = 1;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -90,11 +91,12 @@ namespace AltasMES
             // 
             // btnExecl
             // 
-            this.btnExecl.Location = new System.Drawing.Point(949, 20);
+            this.btnExecl.Location = new System.Drawing.Point(493, 20);
+            this.btnExecl.Visible = false;
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(852, 20);
+            this.btnDelete.Location = new System.Drawing.Point(938, 20);
             this.btnDelete.Size = new System.Drawing.Size(90, 37);
             this.btnDelete.Text = "미사용";
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -106,7 +108,7 @@ namespace AltasMES
             // 
             // btnModify
             // 
-            this.btnModify.Location = new System.Drawing.Point(767, 20);
+            this.btnModify.Location = new System.Drawing.Point(853, 20);
             this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
             // 
             // groupBox3
@@ -141,7 +143,7 @@ namespace AltasMES
             this.btnSetting.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSetting.ImageIndex = 5;
             this.btnSetting.ImageList = this.imageList1;
-            this.btnSetting.Location = new System.Drawing.Point(491, 20);
+            this.btnSetting.Location = new System.Drawing.Point(577, 20);
             this.btnSetting.Name = "btnSetting";
             this.btnSetting.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnSetting.Size = new System.Drawing.Size(184, 37);
@@ -155,18 +157,17 @@ namespace AltasMES
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(24, 48);
+            this.label1.Location = new System.Drawing.Point(24, 47);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 21);
             this.label1.TabIndex = 0;
             this.label1.Text = "공정명";
-
             // 
             // txtProcessName
             // 
-            this.txtProcessName.Location = new System.Drawing.Point(81, 45);
+            this.txtProcessName.Location = new System.Drawing.Point(81, 43);
             this.txtProcessName.Name = "txtProcessName";
-            this.txtProcessName.Size = new System.Drawing.Size(215, 26);
+            this.txtProcessName.Size = new System.Drawing.Size(215, 29);
             this.txtProcessName.TabIndex = 5;
             this.txtProcessName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtProcessName_KeyPress);
             // 
@@ -177,7 +178,7 @@ namespace AltasMES
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSearch.ImageIndex = 3;
             this.btnSearch.ImageList = this.imageList1;
-            this.btnSearch.Location = new System.Drawing.Point(311, 44);
+            this.btnSearch.Location = new System.Drawing.Point(301, 45);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnSearch.Size = new System.Drawing.Size(33, 26);

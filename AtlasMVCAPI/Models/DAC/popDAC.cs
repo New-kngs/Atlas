@@ -25,9 +25,10 @@ namespace AtlasMVCAPI.Models
             {
                 cmd.Connection = new SqlConnection(strConn);
                 cmd.CommandText = @"select OpID, convert(varchar(10), OpDate, 120) OpDate, resourceYN, PutInYN, op.ItemID, ItemName, OrderID, op.ProcessID, ProcessName,    
-                                    PlanQty, OpState, BeginDate, EndDate, EmpID, port
-                                    from TB_Operation op join TB_Process p on op.ProcessID = p.ProcessID
-                                    join TB_Item i on op.ItemID = i.ItemID";
+                    PlanQty, OpState, convert(varchar(20), BeginDate,120) BeginDate,convert(varchar(20), EndDate,120) EndDate, op.EmpID, EmpName, port
+                    from TB_Operation op join TB_Process p on op.ProcessID = p.ProcessID
+                    join TB_Item i on op.ItemID = i.ItemID
+                    join TB_Employees e on e.EmpID = op.EmpID";
 
                 cmd.Connection.Open();
                 List<OperationVO> list = Helper.DataReaderMapToList<OperationVO>(cmd.ExecuteReader());
@@ -66,9 +67,10 @@ namespace AtlasMVCAPI.Models
             {
                 cmd.Connection = new SqlConnection(strConn);
                 cmd.CommandText = @"select OpID, convert(varchar(10), OpDate, 120) OpDate, resourceYN, PutInYN, op.ItemID, ItemName, OrderID, op.ProcessID, ProcessName,    
-                                    PlanQty, OpState, BeginDate, EndDate, EmpID, port
-                                    from TB_Operation op join TB_Process p on op.ProcessID = p.ProcessID
-                                    join TB_Item i on op.ItemID = i.ItemID
+                    PlanQty, OpState,convert(varchar(20), BeginDate, 120) BeginDate,convert(varchar(20), EndDate,120) EndDate, op.EmpID,EmpName, port
+                    from TB_Operation op join TB_Process p on op.ProcessID = p.ProcessID
+                    join TB_Item i on op.ItemID = i.ItemID
+                    join TB_Employees e on e.EmpID = op.EmpID
                                     where convert(varchar(20), OpDate, 120) Between @dateFrom and @dateTo";
 
                 cmd.Parameters.AddWithValue("@dateFrom", dateFrom );
@@ -502,14 +504,15 @@ namespace AtlasMVCAPI.Models
             using (SqlCommand cmd = new SqlCommand
             {
                 Connection = new SqlConnection(strConn),
-                CommandText = @"update TB_Operation set OpState = '작업중', ModifyUser = @ModifyUser, ModifyDate = @ModifyDate
-                                where OpID = @OpID"
+                CommandText = @"update TB_Operation set OpState = '작업중', BeginDate = @BeginDate, ModifyUser = @ModifyUser, ModifyDate = @ModifyDate
+                    where OpID = @OpID"
 
             })
             {
-                cmd.Parameters.AddWithValue("@ModifyUser", oper.ModifyUser);
+                cmd.Parameters.AddWithValue("@ModifyUser", oper.EmpID);
                 cmd.Parameters.AddWithValue("@OpID", oper.OpID);
                 cmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
+                cmd.Parameters.AddWithValue("@BeginDate", DateTime.Now);
                 cmd.Connection.Open();
                 int iRowAffect = cmd.ExecuteNonQuery();
                 cmd.Connection.Close();

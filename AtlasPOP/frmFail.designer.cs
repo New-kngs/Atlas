@@ -40,9 +40,11 @@ namespace AtlasPOP
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numQty)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -51,7 +53,7 @@ namespace AtlasPOP
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("맑은 고딕", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(332, 32);
+            this.label1.Location = new System.Drawing.Point(261, 17);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(119, 32);
             this.label1.TabIndex = 0;
@@ -63,7 +65,7 @@ namespace AtlasPOP
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("맑은 고딕", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(89, 26);
+            this.label2.Location = new System.Drawing.Point(18, 14);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(119, 32);
             this.label2.TabIndex = 1;
@@ -87,7 +89,7 @@ namespace AtlasPOP
             this.cboFailList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboFailList.Font = new System.Drawing.Font("맑은 고딕", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cboFailList.FormattingEnabled = true;
-            this.cboFailList.Location = new System.Drawing.Point(338, 67);
+            this.cboFailList.Location = new System.Drawing.Point(267, 52);
             this.cboFailList.Name = "cboFailList";
             this.cboFailList.Size = new System.Drawing.Size(231, 45);
             this.cboFailList.TabIndex = 3;
@@ -96,7 +98,7 @@ namespace AtlasPOP
             // 
             this.txtFailTOT.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtFailTOT.Font = new System.Drawing.Font("맑은 고딕", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.txtFailTOT.Location = new System.Drawing.Point(95, 61);
+            this.txtFailTOT.Location = new System.Drawing.Point(24, 49);
             this.txtFailTOT.Name = "txtFailTOT";
             this.txtFailTOT.ReadOnly = true;
             this.txtFailTOT.Size = new System.Drawing.Size(231, 50);
@@ -108,7 +110,7 @@ namespace AtlasPOP
             this.btnOK.BackColor = System.Drawing.Color.White;
             this.btnOK.Font = new System.Drawing.Font("맑은 고딕", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnOK.ForeColor = System.Drawing.Color.Black;
-            this.btnOK.Location = new System.Drawing.Point(524, 451);
+            this.btnOK.Location = new System.Drawing.Point(453, 433);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(149, 61);
             this.btnOK.TabIndex = 5;
@@ -120,7 +122,7 @@ namespace AtlasPOP
             // 
             this.numQty.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.numQty.Font = new System.Drawing.Font("맑은 고딕", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.numQty.Location = new System.Drawing.Point(575, 67);
+            this.numQty.Location = new System.Drawing.Point(504, 49);
             this.numQty.Name = "numQty";
             this.numQty.Size = new System.Drawing.Size(65, 50);
             this.numQty.TabIndex = 6;
@@ -131,7 +133,7 @@ namespace AtlasPOP
             this.btnClose.BackColor = System.Drawing.Color.White;
             this.btnClose.Font = new System.Drawing.Font("맑은 고딕", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnClose.ForeColor = System.Drawing.Color.Black;
-            this.btnClose.Location = new System.Drawing.Point(679, 451);
+            this.btnClose.Location = new System.Drawing.Point(608, 433);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(149, 61);
             this.btnClose.TabIndex = 5;
@@ -145,7 +147,7 @@ namespace AtlasPOP
             this.btnAdd.BackColor = System.Drawing.Color.White;
             this.btnAdd.Font = new System.Drawing.Font("맑은 고딕", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnAdd.ForeColor = System.Drawing.Color.Black;
-            this.btnAdd.Location = new System.Drawing.Point(646, 67);
+            this.btnAdd.Location = new System.Drawing.Point(575, 49);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(88, 50);
             this.btnAdd.TabIndex = 5;
@@ -159,7 +161,7 @@ namespace AtlasPOP
             this.btnRemove.BackColor = System.Drawing.Color.White;
             this.btnRemove.Font = new System.Drawing.Font("맑은 고딕", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnRemove.ForeColor = System.Drawing.Color.Black;
-            this.btnRemove.Location = new System.Drawing.Point(740, 66);
+            this.btnRemove.Location = new System.Drawing.Point(669, 49);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(88, 51);
             this.btnRemove.TabIndex = 5;
@@ -172,38 +174,53 @@ namespace AtlasPOP
             this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.groupBox1.Controls.Add(this.dgvList);
             this.groupBox1.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(95, 118);
+            this.groupBox1.Location = new System.Drawing.Point(24, 100);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(733, 330);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "불량 등록 목록";
             // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.numQty);
+            this.panel1.Controls.Add(this.groupBox1);
+            this.panel1.Controls.Add(this.btnRemove);
+            this.panel1.Controls.Add(this.btnClose);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.btnOK);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.btnAdd);
+            this.panel1.Controls.Add(this.txtFailTOT);
+            this.panel1.Controls.Add(this.cboFailList);
+            this.panel1.Location = new System.Drawing.Point(25, 16);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(783, 514);
+            this.panel1.TabIndex = 8;
+            // 
             // frmFail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1013, 546);
-            this.Controls.Add(this.numQty);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.btnRemove);
-            this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnOK);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.txtFailTOT);
-            this.Controls.Add(this.cboFailList);
+            this.ClientSize = new System.Drawing.Size(832, 546);
+            this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmFail";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "불량등록";
             this.Load += new System.EventHandler(this.frmResource_Load);
+            this.Shown += new System.EventHandler(this.frmFail_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numQty)).EndInit();
             this.groupBox1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -220,5 +237,6 @@ namespace AtlasPOP
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Panel panel1;
     }
 }

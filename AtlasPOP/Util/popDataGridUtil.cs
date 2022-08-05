@@ -17,7 +17,24 @@ namespace AtlasPOP
             dgv.AutoGenerateColumns = false;//데이터소스의 컬럼으로 자동컬럼 생성을 방지 
             dgv.RowHeadersWidth = 50;
             dgv.RowTemplate.Height = 34;
+            
             dgv.DefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Regular);
+            dgv.ClearSelection();
+
+        }
+
+        public static void clickSetInitGridView(DataGridView dgv)
+        {
+            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect; //셀을 선택해도 행전체가 선택
+            
+            dgv.AllowUserToAddRows = false; //맨 마지막 줄에 *표시된 빈 줄 생성을 방지
+            dgv.AutoGenerateColumns = false;//데이터소스의 컬럼으로 자동컬럼 생성을 방지 
+            dgv.RowHeadersWidth = 50;
+            dgv.RowTemplate.Height = 34;
+            dgv.DefaultCellStyle.Font = new Font("Arial", 12, FontStyle.Regular);
+            dgv.DefaultCellStyle.SelectionBackColor = Color.White;
+            dgv.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dgv.ClearSelection();
         }
 
         public static void AddGridTextBoxColumn(DataGridView dgv,

@@ -80,6 +80,8 @@ namespace AltasMES
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+            frmEquipment frm = new frmEquipment();
+            frm.reset();
         }
 
         private void lblTitle_Click(object sender, EventArgs e)

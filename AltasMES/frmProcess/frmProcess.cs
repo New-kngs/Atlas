@@ -27,7 +27,7 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvProcess, "공정ID", "ProcessID", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvProcess, "공정명", "ProcessName", colwidth: 200, align: DataGridViewContentAlignment.MiddleLeft);
             DataGridUtil.AddGridTextBoxColumn(dgvProcess, "불량확인여부", "FailCheck", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvProcess, "생성날짜", "CreateDate", colwidth: 200, align: DataGridViewContentAlignment.MiddleLeft);
+            DataGridUtil.AddGridTextBoxColumn(dgvProcess, "생성날짜", "CreateDate", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvProcess, "생성사용자", "CreateUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleLeft);
             DataGridUtil.AddGridTextBoxColumn(dgvProcess, "변경날짜", "ModifyDate", colwidth: 200, align: DataGridViewContentAlignment.MiddleLeft);
             DataGridUtil.AddGridTextBoxColumn(dgvProcess, "변경사용자", "ModifyUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleLeft);
@@ -163,7 +163,7 @@ namespace AltasMES
         {
             if (string.IsNullOrWhiteSpace(txtProcessName.Text.Trim()))
             {
-                MessageBox.Show("공정명을 입력해주세요.");
+                //MessageBox.Show("공정명을 입력해주세요.");
             }
             ResMessage<List<ProcessVO>> result = srv.GetAsync<List<ProcessVO>>("api/Process/AllProcess");
             if (result.Data != null)

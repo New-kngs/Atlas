@@ -60,7 +60,9 @@ namespace AltasMES
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
+                reset();
             }
+            
         }
 
         private void frmEquipment_KeyPress(object sender, KeyPressEventArgs e)
@@ -106,6 +108,7 @@ namespace AltasMES
                 if (frmusing.ShowDialog() == DialogResult.OK)
                 {
                     LoadData();
+                    reset();
                 }
             }
             else
@@ -114,6 +117,7 @@ namespace AltasMES
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     LoadData();
+                    reset();
                 }
             }
         }
@@ -146,7 +150,7 @@ namespace AltasMES
         {
             if (string.IsNullOrWhiteSpace(txtEquip.Text.Trim()))
             {
-                MessageBox.Show("설비명을 입력해주세요");
+                //MessageBox.Show("설비명을 입력해주세요");
             }
             ResMessage<List<EquipmentVO>> result = service.GetAsync<List<EquipmentVO>>("api/Equipment/AllEquipment");
             if (result.Data != null)
@@ -180,6 +184,11 @@ namespace AltasMES
         private void dgvEquip_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             dgvEquip.ClearSelection();
+        }
+
+        public void reset()
+        {
+            txtEquip.Text = string.Empty;
         }
     }
 }
