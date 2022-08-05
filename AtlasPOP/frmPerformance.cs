@@ -22,9 +22,6 @@ namespace AtlasPOP
         bool logVisible = false;
         string hostIP;
         int hostPort;
-        TcpControl client;
-        string connStr;
-        int workID;
         int timer_CONNECT;
         int timer_KeepAlive;
         int timer_Read;
@@ -35,8 +32,7 @@ namespace AtlasPOP
 
         ThreadPLCTask m_thread;
         LoggingUtility m_log;
-        popServiceHelper service = null;
-        
+
         public bool TaskExit { get { return bExit; } set { bExit = value; } }
 
         public frmPerformance(string task, string IP, string Port)
@@ -113,6 +109,9 @@ namespace AtlasPOP
 
                 AtlasPOP main = (AtlasPOP)this.MdiParent;
                 main.Finish(totQty,totfail);
+
+                
+
                 this.Close();
             }
         }

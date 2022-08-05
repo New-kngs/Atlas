@@ -21,7 +21,6 @@ namespace AtlasPOP
         Thread m_thread;
         TcpControl client;
         LoggingUtility m_log;
-        int workID;
         string hostIP;
         int hostPort;
         int timer_CONNECT, timer_KeepAlive, timer_Read;

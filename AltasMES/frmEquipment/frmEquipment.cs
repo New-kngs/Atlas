@@ -60,9 +60,8 @@ namespace AltasMES
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
-                reset();
             }
-            
+            txtEquip.Clear();
         }
 
         private void frmEquipment_KeyPress(object sender, KeyPressEventArgs e)
@@ -108,7 +107,6 @@ namespace AltasMES
                 if (frmusing.ShowDialog() == DialogResult.OK)
                 {
                     LoadData();
-                    reset();
                 }
             }
             else
@@ -117,9 +115,9 @@ namespace AltasMES
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     LoadData();
-                    reset();
                 }
             }
+            txtEquip.Clear();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -144,6 +142,7 @@ namespace AltasMES
             {
                 LoadData();
             }
+            txtEquip.Clear();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)

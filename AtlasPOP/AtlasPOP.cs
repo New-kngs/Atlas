@@ -25,12 +25,8 @@ namespace AtlasPOP
         string CustomerID;
         int process_id=0;
 
-        int qty = 0;
-        int failqty = 0;
 
         popServiceHelper service = null;
-        ResMessage<List<ItemVO>> itemList;
-        ResMessage<List<OperationVO>> operList;
         ResMessage<List<OrderVO>> oderList;
         ResMessage<List<CustomerVO>> customerList;
 
@@ -45,7 +41,6 @@ namespace AtlasPOP
 
         private void AtlasPOP_Load(object sender, EventArgs e)
         {
-            //panel1.Visible = false;
             frmoper = new frmOperation();
             frmoper.MdiParent = this;
             frmoper.WindowState = FormWindowState.Maximized;
@@ -53,8 +48,6 @@ namespace AtlasPOP
             frmoper.Show();
 
             service = new popServiceHelper("");
-            itemList = service.GetAsync<List<ItemVO>>("api/pop/getItem");
-            operList = service.GetAsync<List<OperationVO>>("api/pop/AllOperation");
             oderList = service.GetAsync<List<OrderVO>>("api/pop/GetCustomer");
             customerList = service.GetAsync<List<CustomerVO>>("api/pop/GetCustomerName");
 

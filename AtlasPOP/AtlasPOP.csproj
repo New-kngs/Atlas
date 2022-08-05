@@ -118,12 +118,6 @@
     <Compile Include="EquipList.Designer.cs">
       <DependentUpon>EquipList.cs</DependentUpon>
     </Compile>
-    <Compile Include="POPMain.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="POPMain.Designer.cs">
-      <DependentUpon>POPMain.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmFail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -176,9 +170,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EquipList.resx">
       <DependentUpon>EquipList.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="POPMain.resx">
-      <DependentUpon>POPMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmFail.resx">
       <DependentUpon>frmFail.cs</DependentUpon>

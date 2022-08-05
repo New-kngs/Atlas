@@ -67,51 +67,54 @@ namespace AtlasPOP
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            int CurrentQty = resource.Data.Find((r) => r.ItemID == oper.ItemID).CurrentQty;
-            int totQty = resource.Data.Find((r) => r.ItemID == oper.ItemID).Qty;
-            ResMessage<List<OperationVO>> result = service.GetAsync<List<OperationVO>>("api/pop/AllOperation");
-            string YN = result.Data.Find((n) => n.OpID == oper.OpID).resourceYN;
-
-            if (oper.resourceYN.Equals("Y")){
-                MessageBox.Show("이미 자재가 투입되어 있습니다.");
-                return;
-
-            }
-
-            if (totQty > CurrentQty)
+            if (resource.Data.Count < 1)
             {
-                MessageBox.Show("투입할 재고가 부족합니다.");
+                MessageBox.Show("BOM 등록이 되어 있지 않은 제품입니다.");
                 return;
-            }
-            //1. 자재투입 여부 업데이트
-            ResMessage<List<OperationVO>> operList = service.PostAsync<string, List<OperationVO>>("api/pop/UpdateResourceYN/"+ oper.OpID, oper.OpID);
-
-            if (result.ErrCode == 0)
-            {
-                ResMessage<List<BOMVO>> resultQty = service.PostAsync<List<BOMVO>, List<BOMVO>>("api/pop/UpdateResourceQty", resource.Data);
-                if (resultQty.ErrCode == 0)
-                {
-                   
-                }
-                else
-                {
-                    MessageBox.Show(resultQty.ErrMsg);
-                }
-
-                MessageBox.Show("재고 투입이 완료되었습니다.");
-                this.DialogResult = DialogResult.OK;
             }
             else
-                MessageBox.Show(result.ErrMsg);
+            {
+                int CurrentQty = resource.Data.Find((r) => r.ItemID == oper.ItemID).CurrentQty;
+                int totQty = resource.Data.Find((r) => r.ItemID == oper.ItemID).Qty;
+                ResMessage<List<OperationVO>> result = service.GetAsync<List<OperationVO>>("api/pop/AllOperation");
+                string YN = result.Data.Find((n) => n.OpID == oper.OpID).resourceYN;
 
-            //2. 자재 재고 업데이트
+
+
+                if (oper.resourceYN.Equals("Y"))
+                {
+                    MessageBox.Show("이미 자재가 투입되어 있습니다.");
+                    return;
+
+                }
+
+                if (totQty > CurrentQty)
+                {
+                    MessageBox.Show("투입할 재고가 부족합니다.");
+                    return;
+                }
+                //1. 자재투입 여부 업데이트
+                ResMessage<List<OperationVO>> operList = service.PostAsync<string, List<OperationVO>>("api/pop/UpdateResourceYN/" + oper.OpID, oper.OpID);
+
+                if (result.ErrCode == 0)
+                {
+                    ResMessage<List<BOMVO>> resultQty = service.PostAsync<List<BOMVO>, List<BOMVO>>("api/pop/UpdateResourceQty", resource.Data);
+                    if (resultQty.ErrCode == 0)
+                    {
+
+                    }
+                    else
+                    {
+                        MessageBox.Show(resultQty.ErrMsg);
+                    }
+
+                    MessageBox.Show("재고 투입이 완료되었습니다.");
+                    this.DialogResult = DialogResult.OK;
+                }
+                else
+                    MessageBox.Show(result.ErrMsg);
+            }
             
-            
-
-
-
-
-            //   만약 재고가 부족하다면? 근데 재고 업데이트는....생산계획에서 해야하지 않을까...?그게 맞는거같은데 
 
         }
 

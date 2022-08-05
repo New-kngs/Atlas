@@ -60,6 +60,7 @@ namespace AltasMES
             {
                 LoadData();
             }
+            txtProcessName.Clear();
         }
 
         private void btnModify_Click(object sender, EventArgs e)
@@ -97,6 +98,7 @@ namespace AltasMES
                     LoadData();
                 }
             }
+            txtProcessName.Clear();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -127,6 +129,7 @@ namespace AltasMES
             {
                 LoadData();
             }
+            txtProcessName.Clear();
         }
         private void frmProcess_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -157,6 +160,8 @@ namespace AltasMES
 
             frmProcess_Setting frm = new frmProcess_Setting(process);
             frm.ShowDialog();
+
+            txtProcessName.Clear();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
