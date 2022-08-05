@@ -16,9 +16,7 @@ namespace AtlasPOP
 
         int maxNum = 0;
         popServiceHelper service;
-
         OperationVO oper;
-
         ResMessage<List<ItemVO>> itemList;
         List<FailVO> failList;
 
@@ -28,7 +26,7 @@ namespace AtlasPOP
             
             this.oper = oper;
             txtFailTOT.Text = oper.FailQty.ToString();
-            maxNum = Convert.ToInt32(txtFailTOT.Text);
+            numQty.Maximum = maxNum = Convert.ToInt32(txtFailTOT.Text);
         }
 
         private void frmResource_Load(object sender, EventArgs e)

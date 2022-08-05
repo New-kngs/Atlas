@@ -210,6 +210,11 @@ namespace AtlasPOP
 
         private void btnFail_Click(object sender, EventArgs e)
         {
+            if(Oper == null)
+            {
+                MessageBox.Show("작업을 선택해주세요");
+                return;
+            }
             ResMessage<List<OperationVO>> fail = service.GetAsync<List<OperationVO>>("api/pop/AllOperation");
             if (fail.Data != null)
             {
