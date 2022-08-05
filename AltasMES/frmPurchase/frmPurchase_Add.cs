@@ -144,7 +144,7 @@ namespace AltasMES
 
                     if (itemId.Equals(purItemId))
                     {
-                        MessageBox.Show($"이미 추가된 제품입니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show($"이미 추가된 자재입니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
                 }
