@@ -40,6 +40,15 @@ namespace AltasMES
             this.mtxtphone = new System.Windows.Forms.MaskedTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtAddr = new System.Windows.Forms.TextBox();
+            this.btnAddr = new System.Windows.Forms.Button();
+            this.txtZipcode = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cboEmpName = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.txtName = new System.Windows.Forms.TextBox();
             this.cboCategory = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -50,15 +59,6 @@ namespace AltasMES
             this.label8 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cboEmpName = new System.Windows.Forms.ComboBox();
-            this.txtZipcode = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtAddr = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.btnAddr = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -96,6 +96,7 @@ namespace AltasMES
             this.cboDomain.Name = "cboDomain";
             this.cboDomain.Size = new System.Drawing.Size(141, 29);
             this.cboDomain.TabIndex = 6;
+            this.cboDomain.SelectedIndexChanged += new System.EventHandler(this.cboDomain_SelectedIndexChanged);
             // 
             // txtDomain
             // 
@@ -180,6 +181,119 @@ namespace AltasMES
             this.panel3.Padding = new System.Windows.Forms.Padding(5);
             this.panel3.Size = new System.Drawing.Size(659, 490);
             this.panel3.TabIndex = 0;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label9.Location = new System.Drawing.Point(53, 371);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(42, 21);
+            this.label9.TabIndex = 119;
+            this.label9.Text = "주소";
+            // 
+            // txtAddr
+            // 
+            this.txtAddr.Font = new System.Drawing.Font("맑은 고딕", 12F);
+            this.txtAddr.Location = new System.Drawing.Point(152, 370);
+            this.txtAddr.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtAddr.Name = "txtAddr";
+            this.txtAddr.Size = new System.Drawing.Size(477, 29);
+            this.txtAddr.TabIndex = 118;
+            // 
+            // btnAddr
+            // 
+            this.btnAddr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddr.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnAddr.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAddr.ImageIndex = 4;
+            this.btnAddr.ImageList = this.imageList1;
+            this.btnAddr.Location = new System.Drawing.Point(299, 324);
+            this.btnAddr.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnAddr.Name = "btnAddr";
+            this.btnAddr.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.btnAddr.Size = new System.Drawing.Size(34, 29);
+            this.btnAddr.TabIndex = 117;
+            this.btnAddr.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddr.UseVisualStyleBackColor = true;
+            this.btnAddr.Click += new System.EventHandler(this.btnAddr_Click);
+            // 
+            // txtZipcode
+            // 
+            this.txtZipcode.Font = new System.Drawing.Font("맑은 고딕", 12F);
+            this.txtZipcode.Location = new System.Drawing.Point(152, 324);
+            this.txtZipcode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtZipcode.Name = "txtZipcode";
+            this.txtZipcode.Size = new System.Drawing.Size(141, 29);
+            this.txtZipcode.TabIndex = 115;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label6.Location = new System.Drawing.Point(53, 327);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(74, 21);
+            this.label6.TabIndex = 116;
+            this.label6.Text = "우편번호";
+            // 
+            // cboEmpName
+            // 
+            this.cboEmpName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboEmpName.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cboEmpName.FormattingEnabled = true;
+            this.cboEmpName.Location = new System.Drawing.Point(152, 241);
+            this.cboEmpName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cboEmpName.Name = "cboEmpName";
+            this.cboEmpName.Size = new System.Drawing.Size(141, 29);
+            this.cboEmpName.TabIndex = 114;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label2.Location = new System.Drawing.Point(53, 244);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(90, 21);
+            this.label2.TabIndex = 113;
+            this.label2.Text = "영업담당자";
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCancel.ImageIndex = 5;
+            this.btnCancel.ImageList = this.imageList1;
+            this.btnCancel.Location = new System.Drawing.Point(337, 425);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.btnCancel.Size = new System.Drawing.Size(73, 34);
+            this.btnCancel.TabIndex = 9;
+            this.btnCancel.Text = "취소";
+            this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancel.UseVisualStyleBackColor = true;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAdd.ImageIndex = 6;
+            this.btnAdd.ImageList = this.imageList1;
+            this.btnAdd.Location = new System.Drawing.Point(230, 425);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.btnAdd.Size = new System.Drawing.Size(73, 34);
+            this.btnAdd.TabIndex = 8;
+            this.btnAdd.Text = "등록";
+            this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdd.UseVisualStyleBackColor = true;
             // 
             // txtName
             // 
@@ -279,119 +393,6 @@ namespace AltasMES
             this.lblTitle.TabIndex = 5;
             this.lblTitle.Text = "거래처 등록";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.Location = new System.Drawing.Point(53, 244);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(90, 21);
-            this.label2.TabIndex = 113;
-            this.label2.Text = "영업담당자";
-            // 
-            // cboEmpName
-            // 
-            this.cboEmpName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboEmpName.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cboEmpName.FormattingEnabled = true;
-            this.cboEmpName.Location = new System.Drawing.Point(152, 241);
-            this.cboEmpName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cboEmpName.Name = "cboEmpName";
-            this.cboEmpName.Size = new System.Drawing.Size(141, 29);
-            this.cboEmpName.TabIndex = 114;
-            // 
-            // txtZipcode
-            // 
-            this.txtZipcode.Font = new System.Drawing.Font("맑은 고딕", 12F);
-            this.txtZipcode.Location = new System.Drawing.Point(152, 324);
-            this.txtZipcode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtZipcode.Name = "txtZipcode";
-            this.txtZipcode.Size = new System.Drawing.Size(141, 29);
-            this.txtZipcode.TabIndex = 115;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label6.Location = new System.Drawing.Point(53, 327);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(74, 21);
-            this.label6.TabIndex = 116;
-            this.label6.Text = "우편번호";
-            // 
-            // txtAddr
-            // 
-            this.txtAddr.Font = new System.Drawing.Font("맑은 고딕", 12F);
-            this.txtAddr.Location = new System.Drawing.Point(152, 370);
-            this.txtAddr.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtAddr.Name = "txtAddr";
-            this.txtAddr.Size = new System.Drawing.Size(477, 29);
-            this.txtAddr.TabIndex = 118;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label9.Location = new System.Drawing.Point(53, 371);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(42, 21);
-            this.label9.TabIndex = 119;
-            this.label9.Text = "주소";
-            // 
-            // btnAddr
-            // 
-            this.btnAddr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddr.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnAddr.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAddr.ImageIndex = 4;
-            this.btnAddr.ImageList = this.imageList1;
-            this.btnAddr.Location = new System.Drawing.Point(299, 324);
-            this.btnAddr.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnAddr.Name = "btnAddr";
-            this.btnAddr.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.btnAddr.Size = new System.Drawing.Size(34, 29);
-            this.btnAddr.TabIndex = 117;
-            this.btnAddr.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddr.UseVisualStyleBackColor = true;
-            this.btnAddr.Click += new System.EventHandler(this.btnAddr_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCancel.ImageIndex = 5;
-            this.btnCancel.ImageList = this.imageList1;
-            this.btnCancel.Location = new System.Drawing.Point(337, 425);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.btnCancel.Size = new System.Drawing.Size(73, 34);
-            this.btnCancel.TabIndex = 9;
-            this.btnCancel.Text = "취소";
-            this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.UseVisualStyleBackColor = true;
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdd.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAdd.ImageIndex = 6;
-            this.btnAdd.ImageList = this.imageList1;
-            this.btnAdd.Location = new System.Drawing.Point(230, 425);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.btnAdd.Size = new System.Drawing.Size(73, 34);
-            this.btnAdd.TabIndex = 8;
-            this.btnAdd.Text = "등록";
-            this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.UseVisualStyleBackColor = true;
             // 
             // frmCustomer_Add
             // 

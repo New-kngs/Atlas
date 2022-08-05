@@ -41,6 +41,8 @@ namespace AltasMES
             cboCategory.Items.AddRange(new string[] { "선택", "입고", "출고"});
             cboCategory.SelectedIndex = 0;
 
+            txtZipcode.Enabled = false;
+
         }
 
         private void btnAddr_Click(object sender, EventArgs e)
@@ -48,7 +50,27 @@ namespace AltasMES
             ZipcodePopup popup = new ZipcodePopup();
             if (popup.ShowDialog() == DialogResult.OK)
             {
+                txtZipcode.Text = popup.Address1;
                 txtAddr.Text = popup.Address2;
+            }
+        }
+
+        private void cboDomain_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboDomain.Text == "직접입력")
+            {
+                txtDomain.Text = "";
+                txtDomain.Enabled = true;
+            }
+
+            else
+            {
+                if (cboDomain.Text == "선택")
+                    txtDomain.Text = "";
+                else
+                    txtDomain.Text = cboDomain.Text;
+
+                txtDomain.Enabled = false;
             }
         }
     }
