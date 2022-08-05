@@ -142,7 +142,7 @@ namespace AltasMES
 
         private void btnModify_Click(object sender, EventArgs e)
         {
-
+            if (dgvEmp.CurrentCell == null) return;
             if (dgvEmp.CurrentCell == null)
             {
                 MessageBox.Show("수정하실 사용자를 선택해주세요.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -172,7 +172,8 @@ namespace AltasMES
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-           if(dgvEmp.CurrentCell == null)
+
+            if (dgvEmp.CurrentCell == null)
            {
                 MessageBox.Show("삭제하실 사용자를 선택해주세요.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
