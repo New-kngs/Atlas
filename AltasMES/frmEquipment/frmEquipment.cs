@@ -84,7 +84,7 @@ namespace AltasMES
 
             if (!dgvEquip.CurrentCell.Selected)
             {
-                MessageBox.Show("수정할 설비을 선택해주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("수정할 설비를 선택해주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             EquipmentVO equip = new EquipmentVO()
@@ -126,7 +126,7 @@ namespace AltasMES
 
             if (!dgvEquip.CurrentCell.Selected)
             {
-                MessageBox.Show("미사용할 설비을 선택해주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("미사용할 설비를 선택해주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
