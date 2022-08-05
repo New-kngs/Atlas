@@ -2027,6 +2027,12 @@
     <Content Include="Uploads\20220801155452.PNG" />
     <Content Include="Uploads\20220801155508.PNG" />
     <Content Include="Uploads\20220801155547.PNG" />
+    <Content Include="Uploads\20220805100030.PNG" />
+    <Content Include="Uploads\20220805100105.PNG" />
+    <Content Include="Uploads\20220805100112.PNG" />
+    <Content Include="Uploads\20220805100140.PNG" />
+    <Content Include="Uploads\20220805100220.PNG" />
+    <Content Include="Uploads\20220805100355.PNG" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
