@@ -64,6 +64,7 @@ namespace AltasMES
             this.groupBox2.Controls.Add(this.dtpFrom);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.btnSearch);
+            this.groupBox2.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold);
             this.groupBox2.Text = "검색조건";
             // 
             // btnAdd
@@ -100,9 +101,9 @@ namespace AltasMES
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(310, 40);
+            this.txtSearch.Location = new System.Drawing.Point(310, 39);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(215, 26);
+            this.txtSearch.Size = new System.Drawing.Size(215, 29);
             this.txtSearch.TabIndex = 35;
             this.txtSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearch_KeyPress);
             // 
@@ -120,26 +121,26 @@ namespace AltasMES
             // 
             this.cboStateYN.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboStateYN.FormattingEnabled = true;
-            this.cboStateYN.Location = new System.Drawing.Point(96, 40);
+            this.cboStateYN.Location = new System.Drawing.Point(96, 39);
             this.cboStateYN.Name = "cboStateYN";
-            this.cboStateYN.Size = new System.Drawing.Size(121, 27);
+            this.cboStateYN.Size = new System.Drawing.Size(121, 29);
             this.cboStateYN.TabIndex = 33;
             this.cboStateYN.SelectedIndexChanged += new System.EventHandler(this.cboStateYN_SelectedIndexChanged);
             // 
             // dtpTo
             // 
             this.dtpTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpTo.Location = new System.Drawing.Point(699, 40);
+            this.dtpTo.Location = new System.Drawing.Point(699, 39);
             this.dtpTo.Name = "dtpTo";
-            this.dtpTo.Size = new System.Drawing.Size(123, 26);
+            this.dtpTo.Size = new System.Drawing.Size(123, 29);
             this.dtpTo.TabIndex = 32;
             // 
             // dtpFrom
             // 
             this.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFrom.Location = new System.Drawing.Point(549, 40);
+            this.dtpFrom.Location = new System.Drawing.Point(549, 39);
             this.dtpFrom.Name = "dtpFrom";
-            this.dtpFrom.Size = new System.Drawing.Size(123, 26);
+            this.dtpFrom.Size = new System.Drawing.Size(123, 29);
             this.dtpFrom.TabIndex = 31;
             // 
             // label1
@@ -159,10 +160,10 @@ namespace AltasMES
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSearch.ImageIndex = 3;
             this.btnSearch.ImageList = this.imageList1;
-            this.btnSearch.Location = new System.Drawing.Point(829, 40);
+            this.btnSearch.Location = new System.Drawing.Point(829, 39);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.btnSearch.Size = new System.Drawing.Size(32, 26);
+            this.btnSearch.Size = new System.Drawing.Size(32, 29);
             this.btnSearch.TabIndex = 29;
             this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSearch.UseVisualStyleBackColor = true;

@@ -64,8 +64,9 @@ namespace AltasMES
 
         private void btnModify_Click(object sender, EventArgs e)
         {
+            if (dgvProcess.CurrentCell == null) return;
 
-            if(!dgvProcess.CurrentCell.Selected)
+            if (!dgvProcess.CurrentCell.Selected)
             {
                 //MessageBox.Show("수정하실 사용자를 선택해주세요.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 MessageBox.Show("수정할 공정을 선택해주세요","정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -100,6 +101,8 @@ namespace AltasMES
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            if (dgvProcess.CurrentCell == null) return;
+
             if (!dgvProcess.CurrentCell.Selected)
             {
                 MessageBox.Show("미사용할 공정을 선택해주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -136,6 +139,8 @@ namespace AltasMES
 
         private void btnSetting_Click(object sender, EventArgs e)
         {
+            if (dgvProcess.CurrentCell == null) return;
+
             if (!dgvProcess.CurrentCell.Selected)
             {
                 MessageBox.Show("설비를 설정할 공정을 선택해주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);

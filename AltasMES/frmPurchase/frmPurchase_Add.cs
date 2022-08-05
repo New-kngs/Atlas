@@ -103,10 +103,10 @@ namespace AltasMES
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtSearch.Text.Trim()) && cboCustomer.SelectedIndex == 0)
-            {
-                MessageBox.Show("거래처를 선택하거나 자재명을 입력해 주세요");
-            }
+            //if (string.IsNullOrWhiteSpace(txtSearch.Text.Trim()) && cboCustomer.SelectedIndex == 0)
+            //{
+            //    MessageBox.Show("거래처를 선택하거나 자재명을 입력해 주세요");
+            //}
             if (string.IsNullOrWhiteSpace(txtSearch.Text.Trim()))
             {
                 cboCustomer_SelectedIndexChanged(this, e);
@@ -126,6 +126,7 @@ namespace AltasMES
                     dgvItem.DataSource = new AdvancedList<ItemVO>(citemList);
                 }
             }
+            dgvItem.ClearSelection();
 
         }
 
@@ -148,7 +149,7 @@ namespace AltasMES
                         return;
                     }
                 }
-                dgvPurItem.Rows.Add(itemId, itemName, 0, 0);
+                dgvPurItem.Rows.Add(itemId, itemName, 0);
             }  
         }
 
@@ -180,6 +181,10 @@ namespace AltasMES
             }
         }
 
-       
+        private void frmPurchase_Add_Shown(object sender, EventArgs e)
+        {
+            dgvItem.ClearSelection();
+            dgvPurItem.ClearSelection();
+        }
     }
 }

@@ -79,6 +79,8 @@ namespace AltasMES
 
         private void btnModify_Click(object sender, EventArgs e)
         {
+            if (dgvEquip.CurrentCell == null) return;
+
             if (!dgvEquip.CurrentCell.Selected)
             {
                 MessageBox.Show("수정할 설비을 선택해주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -118,6 +120,8 @@ namespace AltasMES
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            if (dgvEquip.CurrentCell == null) return;
+
             if (!dgvEquip.CurrentCell.Selected)
             {
                 MessageBox.Show("미사용할 설비을 선택해주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);

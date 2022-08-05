@@ -113,6 +113,8 @@ namespace AltasMES
 
         private void btnModify_Click(object sender, EventArgs e)
         {
+            if (dgvItem.CurrentCell == null) return;
+
             if (!dgvItem.CurrentCell.Selected || selId == string.Empty)
             {
                 MessageBox.Show("수정할 제품을 선택해 주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -143,9 +145,11 @@ namespace AltasMES
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (selId == string.Empty)
+            if (dgvItem.CurrentCell == null) return;
+
+            if (!dgvItem.CurrentCell.Selected || selId == string.Empty)
             {
-                MessageBox.Show("삭제할 제품을 선택해 주세요");
+                MessageBox.Show("미사용할 제품을 선택해 주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 

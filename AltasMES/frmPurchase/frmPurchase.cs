@@ -87,6 +87,7 @@ namespace AltasMES
                 MessageBox.Show("검색 내용이 없습니다.");
                 return;
             }
+            dgvPurchase.ClearSelection();
         }
 
 
@@ -155,6 +156,8 @@ namespace AltasMES
 
         private void btnModify_Click(object sender, EventArgs e)
         {
+            if (dgvPurchase.CurrentCell == null) return;
+
             if (!dgvPurchase.CurrentCell.Selected || selId == string.Empty)
             {
                 MessageBox.Show("발주 항목을 선택해 주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);

@@ -98,6 +98,8 @@ namespace AltasMES
 
         private void btnAdd_Click(object sender, EventArgs e) // 상세보기 버튼
         {
+            if (dgvOrder.CurrentCell == null) return;
+
             if (!dgvOrder.CurrentCell.Selected || selId == string.Empty)
             {
                 MessageBox.Show("주문 항목을 선택해 주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
