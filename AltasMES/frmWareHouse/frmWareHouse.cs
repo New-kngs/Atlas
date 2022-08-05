@@ -75,6 +75,7 @@ namespace AltasMES
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 DataLoad();
+                dgvWH.ClearSelection();
             }
         }
 
@@ -98,12 +99,17 @@ namespace AltasMES
             {
                 return;
             }
-
+            dgvPDT.ClearSelection();
         }
 
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            if (dgvWH.SelectedRows.Count < 1)
+            {
+                MessageBox.Show("대상 창고를 선택하십시오.");
+                return;
+            }
             WareHouseVO wareHouse = new WareHouseVO()
             {
                 WHID = dgvWH.SelectedRows[0].Cells["WHID"].Value.ToString(),
@@ -123,6 +129,7 @@ namespace AltasMES
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     DataLoad();
+                    dgvWH.ClearSelection();
                 }
             }
             else
@@ -138,6 +145,11 @@ namespace AltasMES
 
         private void btnModify_Click(object sender, EventArgs e)
         {
+            if (dgvWH.SelectedRows.Count < 1)
+            {
+                MessageBox.Show("대상 창고를 선택하십시오.");
+                return;
+            }
             WareHouseVO wareHouse = new WareHouseVO()
             {
                 WHID = dgvWH.SelectedRows[0].Cells["WHID"].Value.ToString(),
@@ -152,6 +164,7 @@ namespace AltasMES
                 if (frmusing.ShowDialog() == DialogResult.OK)
                 {
                     DataLoad();
+                    dgvWH.ClearSelection();
                 }
             }
             else
