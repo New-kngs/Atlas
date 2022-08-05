@@ -30,7 +30,6 @@
                 <div class="col-12">
                     <h2 class="page-header">
                         <i class="fa fa-bed"></i> Atlas 주문서
-                        <small class="float-right">출력일자: @DateTime.Now</small>
                     </h2>
                 </div>
                 <!-- /.col -->
@@ -61,24 +60,25 @@
                 <!-- /.col -->
                 <div class="col-sm-4 invoice-col">
                     <!--<b>Invoice #007612</b><br>
-    <br>-->
-                    <h3>Order ID: @ViewData["OrderID"]</h3><br>
-                    <!-- <b>Payment Due:</b> 2/22/2014<br> -->
+            <br>-->
+                    <b>Order ID: @ViewData["OrderID"]</b><br>
+                    <b> 출력일자:</b> @DateTime.Now.Date<br>
                     <!-- <b>Account:</b> 968-34567 -->
                 </div>
-    <!-- /.col -->
-                </div>
+                <!-- /.col -->
+            </div>
             <!-- /.row -->
             <!-- Table row -->
             <div class="row">
-                <div class="table-responsive">  <!--col-12 -->
+                <div class="table">
+                    <!--  -responsive  col-12 -->
                     <table class="table table-striped">
                         <thead>
                             <tr>
+                                <!-- 제품명, 설명, 규격, 단가, 수량, 합계  -->
                                 <th></th>
-                                <th>제품명</th>
                                 <th>규격</th>
-                                <th>단가</th>
+                                <th>제품명</th>
                                 <th>수량</th>
                                 <th>합계</th>
                             </tr>
@@ -86,70 +86,30 @@
                         <tbody>
                             @for (int i = 0; i < Model.ToList().Count; i++)
                             {
-                                <tr>
-                                    <td>@Model.ToList()[i].Num</td>
-                                    <td>@Model.ToList()[i].ItemName</td>
-                                    <td>@Model.ToList()[i].ItemSize</td>
-                                    <td>@Model.ToList()[i].ItemPrice.ToString("c")</td>
-                                    <td>@Model.ToList()[i].Qty</td>
-                                    <td>@Model.ToList()[i].SumQty.ToString("c")</td>
-                                </tr>
+                            <tr>
+                                <td>@Model.ToList()[i].Num</td>
+                                <td>@Model.ToList()[i].ItemSize</td>
+                                <td>@Model.ToList()[i].ItemName</td>
+                                <td>@Model.ToList()[i].Qty</td>
+                                <td>@Model.ToList()[i].SumQty.ToString("c")</td>
+                            </tr>
                             }
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <td>
-                                    <h2 align="right">총 결제금액 : @Model.Sum((p) => p.SumQty).ToString("c")</h2>
-                                </td>
-                            </tr>
-                        </tfoot>
                     </table>
                 </div>
                 <!-- /.col -->
             </div>
             <!-- /.row -->
 
-            <!--<div class="row">-->
-                <!-- accepted payments column -->
-                <!--<div class="col-6">
-                    <p class="lead">Payment Methods:</p>
-                    <img src="../../dist/img/credit/visa.png" alt="Visa">
-                    <img src="../../dist/img/credit/mastercard.png" alt="Mastercard">
-                    <img src="../../dist/img/credit/american-express.png" alt="American Express">
-                    <img src="../../dist/img/credit/paypal2.png" alt="Paypal">
-
-                    <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
-                        Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem plugg dopplr
-                        jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
-                    </p>
-                </div>-->
+            <div class="row">
+                <div class="col-8">
+                </div>
                 <!-- /.col -->
-                <!--<div class="col-6">
-                    <p class="lead">Amount Due 2/22/2014</p>
-
-                    <div class="table-responsive">
-                        <table class="table">
-                            <tr>
-                                <th style="width:50%">Subtotal:</th>
-                                <td>$250.30</td>
-                            </tr>
-                            <tr>
-                                <th>Tax (9.3%)</th>
-                                <td>$10.34</td>
-                            </tr>
-                            <tr>
-                                <th>Shipping:</th>
-                                <td>$5.80</td>
-                            </tr>
-                            <tr>
-                                <th>Total:</th>
-                                <td>$265.24</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>-->
+                <div class="col-4">
+                    <h3>총 결제금액 : @Model.Sum((p) => p.SumQty).ToString("c")</h3>
+                </div>
                 <!-- /.col -->
-            <!--</div>-->
+            </div>
             <!-- /.row -->
         </section>
         <!-- /.content -->

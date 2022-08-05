@@ -138,7 +138,7 @@ namespace AtlasMVCAPI.Models
                 //                List<OrderVO> listOrder = Helper.DataReaderMapToList<OrderVO>(reader);
                 //                reader.Close();
 
-                cmd.CommandText = @"select ROW_NUMBER() OVER(ORDER BY GETDATE()) Num, ItemName, ItemSize, ItemPrice, OD.Qty, ItemPrice*OD.Qty SumQty 
+                cmd.CommandText = @"select ROW_NUMBER() OVER(ORDER BY GETDATE()) Num, ItemName, ItemSize, ItemPrice, ItemExplain, OD.Qty, ItemPrice*OD.Qty SumQty 
 from TB_Item I  
 inner join TB_OrderDetails OD on I.ItemID = OD.ItemID  
 inner join TB_Order O on  OD.OrderID=O.OrderID  
