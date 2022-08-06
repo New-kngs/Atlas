@@ -53,7 +53,9 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "자재명", "ItemName", colwidth: 160, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "규격", "ItemSize", colwidth: 70, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "수량", "Qty", colwidth: 100, Readonly: false, align: DataGridViewContentAlignment.MiddleRight);
-            
+            DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "단가", "ItemPrice", visibility: false);
+            DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "거래처명", "CustomerName", visibility: false);
+
             DataGridViewButtonColumn btn2 = new DataGridViewButtonColumn();
             btn2.HeaderText = "자재삭제";
             btn2.Text = "삭제";
@@ -138,43 +140,99 @@ namespace AltasMES
                 string itemId = dgvItem["ItemID", e.RowIndex].Value.ToString();
                 string itemName = dgvItem["ItemName", e.RowIndex].Value.ToString();
                 string itemSize = dgvItem["ItemSize", e.RowIndex].Value.ToString();
+                string cusName = dgvItem["CustomerName", e.RowIndex].Value.ToString();
                 int price = Convert.ToInt32(dgvItem["ItemPrice", e.RowIndex].Value);
                 //int purQty = Convert.ToInt32(dgvPurItem["Qty", e.RowIndex].Value);
 
                 foreach (DataGridViewRow item in dgvPurItem.Rows)
                 {
                     string purItemId = item.Cells[0].Value.ToString();
+                    //string purCusName = item.Cells[5].Value.ToString();
 
                     if (itemId.Equals(purItemId))
                     {
                         MessageBox.Show($"이미 추가된 자재입니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
+
+                    //if (cusName != purCusName)
+                    //{
+                    //    MessageBox.Show($"{cusName} 자재만 발주 가능합니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //    return;
+                    //}
                 }
-                dgvPurItem.Rows.Add(itemId, itemName, itemSize, 0);
+                dgvPurItem.Rows.Add(itemId, itemName, itemSize, 0, price);
                 dgvItem.ClearSelection();
+                txtCusName.Text = cusName;
+                txtPrice.Text = "0";
 
 
-                //int sum = 0;
-                //for (int i = 0; i < dgvPurItem.Rows.Count; i++)
-                //{
-                //    sum += Convert.ToInt32(dgvPurItem.Rows[i].Cells[3].Value);
-                //}
-                //txtPrice.Text = dgvPurItem.Rows.Count.ToString();
+                int sum = 0;
+                for (int i = 0; i < dgvPurItem.Rows.Count; i++)
+                {
+                    sum += Convert.ToInt32(dgvPurItem.Rows[i].Cells[3].Value);
+                }
+                txtCount.Text = dgvPurItem.Rows.Count.ToString();
             }  
         }
-
 
         private void dgvPurItem_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
 
-            if (e.ColumnIndex == 4)
+            if (e.ColumnIndex == 6)
             {
                 DataGridViewRow dgvRow = dgvPurItem.Rows[e.RowIndex];
                 dgvPurItem.Rows.Remove(dgvRow);
+                dgvPurItem.ClearSelection();
+
+                int sum = 0;
+                int price = 0;
+                int qty = 0;
+                for (int i = 0; i < dgvPurItem.Rows.Count; i++)
+                {
+                    sum += qty = Convert.ToInt32(dgvPurItem.Rows[i].Cells[3].Value); // 수량
+                    price += qty * Convert.ToInt32(dgvPurItem.Rows[i].Cells[4].Value); // 단가
+                }
+                txtCount.Text = dgvPurItem.Rows.Count.ToString();
+                txtPrice.Text = price.ToString("#,##0");           
+                
+                if (dgvPurItem.Rows.Count < 1)
+                {
+                    txtCusName.Text = string.Empty;
+                }
             }
         }
+
+
+        private void dgvPurItem_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            int sum = 0;
+            int price = 0;
+            int qty = 0;           
+
+            for (int i = 0; i < dgvPurItem.Rows.Count; i++)
+            {
+                if (int.TryParse(dgvPurItem.Rows[i].Cells[3].Value.ToString(), out qty))
+                {
+                    sum += qty;
+                    price += qty * Convert.ToInt32(dgvPurItem.Rows[i].Cells[4].Value);
+                }
+                else
+                {
+                    MessageBox.Show("수량은 숫자를 입력해 주세요");
+                    dgvPurItem.Rows[i].Cells[3].Value = 0;
+                    return;
+                }
+
+            }
+            txtCount.Text = dgvPurItem.Rows.Count.ToString();
+            txtPrice.Text = price.ToString("#,##0");
+
+        }
+
+
+        
 
         private void frmPurchase_Add_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -206,6 +264,39 @@ namespace AltasMES
         private void dgvPurItem_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             dgvPurItem.ClearSelection();
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            if (dgvPurItem.Rows.Count < 1)
+            {
+                MessageBox.Show("등록된 발주 목록이 없습니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            List<OrderDetailVO> purDetailList = new List<OrderDetailVO>();
+            for (int i = 0; i < dgvPurItem.Rows.Count; i++)
+            {
+                if (Convert.ToInt32(dgvPurItem.Rows[i].Cells[3].Value) == 0)
+                {
+                    MessageBox.Show("발주 수량을 확인해 주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                else if (Convert.ToInt32(dgvPurItem.Rows[i].Cells[3].Value) > 300)
+                {
+                    MessageBox.Show("한번에 발주가 가능한 자재 수량은 300개 입니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    dgvPurItem.CurrentCell = dgvPurItem.Rows[i].Cells[3];
+                    return;
+                }
+                //PurchaseVO item = new PurchaseVO();
+
+                //item.
+                //purDetailList.Add(item);
+
+
+
+            }
+
         }
     }
 }

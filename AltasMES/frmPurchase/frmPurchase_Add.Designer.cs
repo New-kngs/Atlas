@@ -39,22 +39,22 @@ namespace AltasMES
             this.dgvPurItem = new System.Windows.Forms.DataGridView();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cboCustomer = new System.Windows.Forms.ComboBox();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.txtPrice = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtCount = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtCusName = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnModify = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvItem = new System.Windows.Forms.DataGridView();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -136,6 +136,7 @@ namespace AltasMES
             this.dgvPurItem.Size = new System.Drawing.Size(779, 241);
             this.dgvPurItem.TabIndex = 1;
             this.dgvPurItem.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPurItem_CellClick);
+            this.dgvPurItem.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPurItem_CellValueChanged);
             this.dgvPurItem.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvPurItem_ColumnHeaderMouseClick);
             // 
             // groupBox4
@@ -169,6 +170,19 @@ namespace AltasMES
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "excel.png");
+            this.imageList1.Images.SetKeyName(1, "plus.png");
+            this.imageList1.Images.SetKeyName(2, "trash.png");
+            this.imageList1.Images.SetKeyName(3, "pencil.png");
+            this.imageList1.Images.SetKeyName(4, "search.png");
+            this.imageList1.Images.SetKeyName(5, "arrow-left.png");
+            this.imageList1.Images.SetKeyName(6, "check.png");
+            this.imageList1.Images.SetKeyName(7, "close.png");
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -194,7 +208,7 @@ namespace AltasMES
             this.cboCustomer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCustomer.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold);
             this.cboCustomer.FormattingEnabled = true;
-            this.cboCustomer.Location = new System.Drawing.Point(101, 33);
+            this.cboCustomer.Location = new System.Drawing.Point(93, 33);
             this.cboCustomer.Name = "cboCustomer";
             this.cboCustomer.Size = new System.Drawing.Size(121, 29);
             this.cboCustomer.TabIndex = 12;
@@ -211,12 +225,12 @@ namespace AltasMES
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.label5);
+            this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Controls.Add(this.txtPrice);
+            this.groupBox3.Controls.Add(this.label5);
+            this.groupBox3.Controls.Add(this.txtCount);
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.txtCusName);
-            this.groupBox3.Controls.Add(this.label3);
-            this.groupBox3.Controls.Add(this.textBox2);
             this.groupBox3.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold);
             this.groupBox3.Location = new System.Drawing.Point(5, 83);
             this.groupBox3.Name = "groupBox3";
@@ -225,26 +239,42 @@ namespace AltasMES
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "발주";
             // 
-            // label5
+            // label6
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(464, 36);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(42, 21);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "금액";
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(440, 36);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(90, 21);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "총발주금액";
             // 
             // txtPrice
             // 
-            this.txtPrice.Location = new System.Drawing.Point(515, 32);
+            this.txtPrice.Location = new System.Drawing.Point(561, 32);
             this.txtPrice.Name = "txtPrice";
-            this.txtPrice.Size = new System.Drawing.Size(121, 29);
-            this.txtPrice.TabIndex = 4;
+            this.txtPrice.Size = new System.Drawing.Size(151, 29);
+            this.txtPrice.TabIndex = 6;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(238, 36);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(118, 21);
+            this.label5.TabIndex = 5;
+            this.label5.Text = " 발주 등록건수";
+            // 
+            // txtCount
+            // 
+            this.txtCount.Location = new System.Drawing.Point(359, 32);
+            this.txtCount.Name = "txtCount";
+            this.txtCount.Size = new System.Drawing.Size(36, 29);
+            this.txtCount.TabIndex = 4;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(234, 36);
+            this.label4.Location = new System.Drawing.Point(8, 36);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(74, 21);
             this.label4.TabIndex = 3;
@@ -252,26 +282,10 @@ namespace AltasMES
             // 
             // txtCusName
             // 
-            this.txtCusName.Location = new System.Drawing.Point(319, 32);
+            this.txtCusName.Location = new System.Drawing.Point(93, 32);
             this.txtCusName.Name = "txtCusName";
             this.txtCusName.Size = new System.Drawing.Size(121, 29);
             this.txtCusName.TabIndex = 2;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 36);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 21);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "발주ID";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(101, 32);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(121, 29);
-            this.textBox2.TabIndex = 0;
             // 
             // btnAdd
             // 
@@ -289,6 +303,7 @@ namespace AltasMES
             this.btnAdd.Text = "등록";
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnModify
             // 
@@ -329,19 +344,6 @@ namespace AltasMES
             this.dgvItem.TabIndex = 0;
             this.dgvItem.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItem_CellClick);
             this.dgvItem.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvItem_ColumnHeaderMouseClick);
-            // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "excel.png");
-            this.imageList1.Images.SetKeyName(1, "plus.png");
-            this.imageList1.Images.SetKeyName(2, "trash.png");
-            this.imageList1.Images.SetKeyName(3, "pencil.png");
-            this.imageList1.Images.SetKeyName(4, "search.png");
-            this.imageList1.Images.SetKeyName(5, "arrow-left.png");
-            this.imageList1.Images.SetKeyName(6, "check.png");
-            this.imageList1.Images.SetKeyName(7, "close.png");
             // 
             // frmPurchase_Add
             // 
@@ -392,15 +394,15 @@ namespace AltasMES
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtPrice;
+        private System.Windows.Forms.TextBox txtCount;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtCusName;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
         protected System.Windows.Forms.Button btnAdd;
         protected System.Windows.Forms.Button btnModify;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dgvItem;
         protected System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtPrice;
     }
 }
