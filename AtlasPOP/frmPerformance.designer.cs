@@ -31,17 +31,19 @@ namespace AtlasPOP
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtFail = new System.Windows.Forms.TextBox();
             this.lblState = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.txtTotQty = new System.Windows.Forms.TextBox();
             this.txtReadPLC = new System.Windows.Forms.TextBox();
             this.timer_Connec = new System.Windows.Forms.Timer(this.components);
-            this.txtFail = new System.Windows.Forms.TextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.txtFail);
             this.panel1.Controls.Add(this.lblState);
             this.panel1.Controls.Add(this.listBox1);
@@ -51,55 +53,68 @@ namespace AtlasPOP
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(434, 174);
+            this.panel1.Size = new System.Drawing.Size(886, 526);
             this.panel1.TabIndex = 0;
+            // 
+            // txtFail
+            // 
+            this.txtFail.Location = new System.Drawing.Point(257, 14);
+            this.txtFail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtFail.Name = "txtFail";
+            this.txtFail.Size = new System.Drawing.Size(114, 25);
+            this.txtFail.TabIndex = 3;
             // 
             // lblState
             // 
-            this.lblState.Location = new System.Drawing.Point(12, 164);
+            this.lblState.Location = new System.Drawing.Point(14, 205);
             this.lblState.Name = "lblState";
-            this.lblState.Size = new System.Drawing.Size(91, 60);
+            this.lblState.Size = new System.Drawing.Size(104, 75);
             this.lblState.TabIndex = 2;
             // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 12;
-            this.listBox1.Location = new System.Drawing.Point(12, 49);
+            this.listBox1.ItemHeight = 15;
+            this.listBox1.Location = new System.Drawing.Point(392, 13);
+            this.listBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(405, 112);
+            this.listBox1.Size = new System.Drawing.Size(462, 139);
             this.listBox1.TabIndex = 1;
             // 
             // txtTotQty
             // 
-            this.txtTotQty.Location = new System.Drawing.Point(118, 12);
+            this.txtTotQty.Location = new System.Drawing.Point(135, 15);
+            this.txtTotQty.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtTotQty.Name = "txtTotQty";
-            this.txtTotQty.Size = new System.Drawing.Size(100, 21);
+            this.txtTotQty.Size = new System.Drawing.Size(114, 25);
             this.txtTotQty.TabIndex = 0;
-            this.txtTotQty.TextChanged += new System.EventHandler(this.txtTotQty_TextChanged);
             // 
             // txtReadPLC
             // 
-            this.txtReadPLC.Location = new System.Drawing.Point(12, 12);
+            this.txtReadPLC.Location = new System.Drawing.Point(14, 15);
+            this.txtReadPLC.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtReadPLC.Name = "txtReadPLC";
-            this.txtReadPLC.Size = new System.Drawing.Size(100, 21);
+            this.txtReadPLC.Size = new System.Drawing.Size(114, 25);
             this.txtReadPLC.TabIndex = 0;
             // 
-            // txtFail
+            // panel2
             // 
-            this.txtFail.Location = new System.Drawing.Point(225, 11);
-            this.txtFail.Name = "txtFail";
-            this.txtFail.Size = new System.Drawing.Size(100, 21);
-            this.txtFail.TabIndex = 3;
+            this.panel2.Location = new System.Drawing.Point(31, 173);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(823, 276);
+            this.panel2.TabIndex = 4;
             // 
             // frmPerformance
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(434, 174);
+            this.ClientSize = new System.Drawing.Size(886, 526);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmPerformance";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "현황";
@@ -121,5 +136,6 @@ namespace AtlasPOP
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Label lblState;
         private System.Windows.Forms.TextBox txtFail;
+        private System.Windows.Forms.Panel panel2;
     }
 }

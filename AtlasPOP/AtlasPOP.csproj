@@ -159,6 +159,7 @@
     <Compile Include="TcpIP\LoggingUtility.cs" />
     <Compile Include="TcpIP\TcpControl.cs" />
     <Compile Include="TcpIP\ThreadPLCTask.cs" />
+    <Compile Include="Util\popAdvancedList.cs" />
     <Compile Include="Util\popCommonUtil.cs" />
     <Compile Include="Util\popDataGridUtil.cs" />
     <Compile Include="Util\popServiceHelper.cs" />
@@ -223,10 +224,6 @@
     <Content Include="Resources\아틀라스매트리스 로고.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AltasMES\AtlasMES.csproj">
-      <Project>{4A481585-290A-4EB9-AF55-BD4367870CD3}</Project>
-      <Name>AtlasMES</Name>
-    </ProjectReference>
     <ProjectReference Include="..\AtlasDTO\AtlasDTO.csproj">
       <Project>{B4C8C339-791A-4219-9070-118F960A9490}</Project>
       <Name>AtlasDTO</Name>

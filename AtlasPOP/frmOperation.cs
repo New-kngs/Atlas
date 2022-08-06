@@ -1,5 +1,4 @@
-﻿using AltasMES;
-using AtlasDTO;
+﻿using AtlasDTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,9 +14,6 @@ namespace AtlasPOP
     public delegate void DataGetEventHandler(OperationVO data);
     public partial class frmOperation : Form
     {
-
-
-
         public DataGetEventHandler DataSendEvent;
         popServiceHelper service = null;
         ResMessage<List<OperationVO>> operList;
@@ -25,7 +21,6 @@ namespace AtlasPOP
         {
             InitializeComponent();
         }
-
         private void frmOperation_Load(object sender, EventArgs e)
         {
             service = new popServiceHelper("");
@@ -47,7 +42,6 @@ namespace AtlasPOP
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "포트", "port",visibility: false);
             dgvList.ClearSelection();
 
-            
             LoadData();
             dtpTo.Value = DateTime.Now;
             dtpFrom.Value = DateTime.Now.AddDays(-7);
@@ -58,34 +52,30 @@ namespace AtlasPOP
 
             if (operList.Data != null)
             {
-                dgvList.DataSource = new AdvancedList<OperationVO>(operList.Data);
-                dgvList.ClearSelection();
+                dgvList.DataSource = new popAdvancedList<OperationVO>(operList.Data);
             }
             else
             {
                 MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
             }
+            dgvList.ClearSelection();
         }
-
-
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
            ResMessage<List<OperationVO>> result = service.GetAsync<List<OperationVO>>("api/pop/SearchOper/"+ dtpFrom.Value.ToShortDateString() +  "/" + dtpTo.Value.ToShortDateString());
             if (result.Data != null)
             {
-                dgvList.DataSource = new AdvancedList<OperationVO>(result.Data);
-                dgvList.ClearSelection();
+                dgvList.DataSource = new popAdvancedList<OperationVO>(result.Data);
             }
             else
             {
                 MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
             }
+            dgvList.ClearSelection();
         }
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-            panel2.Controls.Clear();
             dtpTo.Value = DateTime.Now;
             dtpFrom.Value = DateTime.Now.AddDays(-7);
             LoadData();
@@ -99,7 +89,7 @@ namespace AtlasPOP
         private void dgvList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             loadDetails();      
-            drawEquip();
+            //.drawEquip();
         }
 
         public void loadDetails()
@@ -125,42 +115,6 @@ namespace AtlasPOP
 
             AtlasPOP main = (AtlasPOP)this.MdiParent;
             main.ChangeValue();
-        }
-
-        public void drawEquip()
-        {
-            panel2.Controls.Clear();
-            int procID = Convert.ToInt32(dgvList.SelectedRows[0].Cells["ProcessID"].Value.ToString());
-            string OperID = dgvList.SelectedRows[0].Cells["OpID"].Value.ToString();
-            ResMessage<List<EquipDetailsVO>> equip = service.GetAsync<List<EquipDetailsVO>>("api/pop/GetEquip");
-            List<EquipDetailsVO> EquipList = equip.Data.FindAll((p) => p.ProcessID == procID);
-
-            if (equip.Data != null)
-            {
-                int iRow = (int)Math.Ceiling(EquipList.Count / 1.0);
-
-                int idx = 0;
-                for (int c = 0; c < iRow; c++)
-                {
-                    if (idx >= EquipList.Count) break;
-                    EquipList item = new EquipList(EquipList[c], OperID);
-                    item.Name = $"process";
-                    item.Location = new Point(224 * c + 5, 3);
-                    item.Size = new Size(214, 154);
-
-                    panel2.Controls.Add(item);
-                    idx++;
-                }
-            }
-            else
-            {
-                MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
-            }
-        }
-
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

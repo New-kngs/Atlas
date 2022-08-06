@@ -26,23 +26,23 @@ namespace AtlasPOP
         int timer_KeepAlive;
         int timer_Read;
         string taskID;
-
         int totQty = 0;
         int totfail = 0;
 
         ThreadPLCTask m_thread;
         LoggingUtility m_log;
+        popServiceHelper service;
 
         public bool TaskExit { get { return bExit; } set { bExit = value; } }
-
-        public frmPerformance(string task, string IP, string Port)
+        public OperationVO oper { get; set; }
+        public frmPerformance(string task, string IP, string Port, OperationVO oper)
         {
             InitializeComponent();
-            
+            this.oper = oper;
             hostIP = IP;
             hostPort = int.Parse(Port);
             taskID = task;
-            //workID = int.Parse(taskID.Replace("PLC_", ""));
+            service = new popServiceHelper("");
 
             timer_CONNECT = timer_Connec.Interval = int.Parse(ConfigurationManager.AppSettings["timer_Connect"]);
             timer_KeepAlive = int.Parse(ConfigurationManager.AppSettings["timer_KeepAlive"]);
@@ -65,6 +65,8 @@ namespace AtlasPOP
             m_thread.ThreadStart();
 
             timer_Connec.Start();
+
+            drawEquip();
         }
 
         private void M_thread_ReadDataReceive(object sender, ReadDataEventArgs e)
@@ -80,9 +82,7 @@ namespace AtlasPOP
 
                 listBox1.Invoke(new Action<string>((str) => listBox1.Items.Add($"[{DateTime.Now.ToString("HH:mm:ss,fff")}]:{str}")), e.ReadData);
 
-                this.Invoke((MethodInvoker)(() =>
-                listBox1.SelectedIndex = listBox1.Items.Count - 1));
-
+                this.Invoke((MethodInvoker)(() => listBox1.SelectedIndex = listBox1.Items.Count - 1));
             }
 
             string[] datas = e.ReadData.Split('|');
@@ -109,9 +109,6 @@ namespace AtlasPOP
 
                 AtlasPOP main = (AtlasPOP)this.MdiParent;
                 main.Finish(totQty,totfail);
-
-                
-
                 this.Close();
             }
         }
@@ -127,6 +124,7 @@ namespace AtlasPOP
             {
                 m_log.RemoveRepository(taskID);
                 m_thread.ThreadStop();
+                
             }
         }
 
@@ -145,9 +143,35 @@ namespace AtlasPOP
             }
         }
 
-        private void txtTotQty_TextChanged(object sender, EventArgs e)
+        public void drawEquip()
         {
-            
+            panel2.Controls.Clear();
+            int procID = oper.ProcessID;
+            string OperID = oper.OpID;
+            ResMessage<List<EquipDetailsVO>> equip = service.GetAsync<List<EquipDetailsVO>>("api/pop/GetEquip");
+            List<EquipDetailsVO> EquipList = equip.Data.FindAll((p) => p.ProcessID == procID);
+
+            if (equip.Data != null)
+            {
+                int iRow = (int)Math.Ceiling(EquipList.Count / 1.0);
+
+                int idx = 0;
+                for (int c = 0; c < iRow; c++)
+                {
+                    if (idx >= EquipList.Count) break;
+                    EquipList item = new EquipList(EquipList[c], OperID);
+                    item.Name = $"process";
+                    item.Location = new Point(224 * c + 5, 3);
+                    item.Size = new Size(214, 154);
+
+                    panel2.Controls.Add(item);
+                    idx++;
+                }
+            }
+            else
+            {
+                MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
+            }
         }
     }
 }

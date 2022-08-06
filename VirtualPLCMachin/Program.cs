@@ -29,7 +29,7 @@ namespace VirtualPLCMachin
         TcpClient tc;
         Timer timer1;
         string taskID, ip, port, qty;
-        int tot=0;
+
         public Service(string taskID, string ip, string port, string qty)
         {
             this.qty = qty;

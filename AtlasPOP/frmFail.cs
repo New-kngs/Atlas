@@ -13,7 +13,6 @@ namespace AtlasPOP
 {
     public partial class frmFail : Form
     {
-
         int maxNum = 0;
         popServiceHelper service;
         OperationVO oper;
@@ -31,7 +30,7 @@ namespace AtlasPOP
 
         private void frmResource_Load(object sender, EventArgs e)
         {
-            
+            service = new popServiceHelper("");
             popDataGridUtil.clickSetInitGridView(dgvList);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "불량ID", "FailID", visibility: false);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "제품ID", "ItemID", visibility: false);
@@ -40,19 +39,24 @@ namespace AtlasPOP
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "불량갯수", "FailQty", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "생성사용자", "CreateUser", visibility: false);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "작업지시ID", "OpID", visibility: false);
-            popDataGridUtil.AddGridTextBoxColumn(dgvList, "설비명", "CreateDate", visibility: false);
-            popDataGridUtil.AddGridTextBoxColumn(dgvList, "설비명", "CreateUser", visibility: false);
-            popDataGridUtil.AddGridTextBoxColumn(dgvList, "설비명", "ModifyDate", visibility: false);
-            popDataGridUtil.AddGridTextBoxColumn(dgvList, "설비명", "ModifyUser", visibility: false);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "생성일자", "CreateDate", visibility: false);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "생성사용자", "CreateUser", visibility: false);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "수정날짜", "ModifyDate", visibility: false);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "수정사용자", "ModifyUser", visibility: false);
 
-
-            service = new popServiceHelper("");
             ResMessage<List<ComboItemVO>> comboList = service.GetAsync<List<ComboItemVO>>("api/pop/GetFailCode");
             itemList = service.GetAsync<List<ItemVO>>("api/Item/AllItem");
-
+            if(itemList.ErrCode != 0)
+            {
+                MessageBox.Show("에러코드를 받아오지 못하였습니다.");
+            }
             popCommonUtil.ComboBinding(cboFailList, comboList.Data, "불량코드", blankText: "선택");
         }
-
+        /// <summary>
+        /// 추기버튼 클릭
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
             if(failList == null)
@@ -74,7 +78,6 @@ namespace AtlasPOP
                 MessageBox.Show("등록할 불량 제품이 없습니다");
                 return;
             }
-
 
             int idx = failList.FindIndex((i) => i.FailCode.Equals(cboFailList.SelectedValue));
             if(idx >= 0)
@@ -103,7 +106,11 @@ namespace AtlasPOP
             dgvList.DataSource = failList;
             dgvList.ClearSelection();
         }
-
+        /// <summary>
+        /// 삭제버튼 클릭
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnRemove_Click(object sender, EventArgs e)
         {
             if (dgvList.SelectedRows.Count < 1)
@@ -129,12 +136,20 @@ namespace AtlasPOP
             dgvList.DataSource = failList;
             dgvList.ClearSelection();
         }
-
+        /// <summary>
+        /// 닫기버튼 클릭
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
+        /// <summary>
+        /// 저장버튼 클릭
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnOK_Click(object sender, EventArgs e)
         {
             ResMessage<List<FailVO>> opid = service.GetAsync<List<FailVO>>("api/pop/GetOperID");

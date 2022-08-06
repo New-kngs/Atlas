@@ -61,6 +61,7 @@ namespace AtlasPOP
             this.lblOper = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnState = new System.Windows.Forms.Button();
             this.btnLaping = new System.Windows.Forms.Button();
             this.btnFail = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
@@ -100,6 +101,7 @@ namespace AtlasPOP
             // 
             // menuStrip1
             // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Name = "menuStrip1";
             // 
@@ -288,6 +290,7 @@ namespace AtlasPOP
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(87)))), ((int)(((byte)(117)))), ((int)(((byte)(204)))));
+            this.panel2.Controls.Add(this.btnState);
             this.panel2.Controls.Add(this.btnLaping);
             this.panel2.Controls.Add(this.btnFail);
             this.panel2.Controls.Add(this.btnStart);
@@ -295,6 +298,15 @@ namespace AtlasPOP
             this.panel2.Controls.Add(this.btnResource);
             resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
+            // 
+            // btnState
+            // 
+            resources.ApplyResources(this.btnState, "btnState");
+            this.btnState.BackColor = System.Drawing.Color.White;
+            this.btnState.ForeColor = System.Drawing.Color.Black;
+            this.btnState.Name = "btnState";
+            this.btnState.UseVisualStyleBackColor = false;
+            this.btnState.Click += new System.EventHandler(this.btnState_Click);
             // 
             // btnLaping
             // 
@@ -405,5 +417,6 @@ namespace AtlasPOP
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.Button btnState;
     }
 }

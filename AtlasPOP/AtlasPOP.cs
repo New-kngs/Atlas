@@ -14,26 +14,14 @@ namespace AtlasPOP
 {
     public partial class AtlasPOP : Form
     {
-
-
-        public string EmpID { get; set; }
-        public string EmpName { get; set; }
-        public string DeptID { get; set; }
         public OperationVO Oper { get; set; }
-        public string OperID { get; set; }
-
-        string CustomerID;
         int process_id=0;
-
 
         popServiceHelper service = null;
         ResMessage<List<OrderVO>> oderList;
         ResMessage<List<CustomerVO>> customerList;
-
-        frmPerformance frm;
+        frmPerformance frmPerf = null;
         frmOperation frmoper = null;
-
-
         public AtlasPOP()
         {
             InitializeComponent();
@@ -41,25 +29,28 @@ namespace AtlasPOP
 
         private void AtlasPOP_Load(object sender, EventArgs e)
         {
-            frmoper = new frmOperation();
-            frmoper.MdiParent = this;
-            frmoper.WindowState = FormWindowState.Maximized;
-            frmoper.DataSendEvent += new DataGetEventHandler(this.DataGet);
-            frmoper.Show();
-
             service = new popServiceHelper("");
             oderList = service.GetAsync<List<OrderVO>>("api/pop/GetCustomer");
             customerList = service.GetAsync<List<CustomerVO>>("api/pop/GetCustomerName");
 
             tableLayoutPanel1.Visible = false;
 
+            frmOper();
+        }
+        public void frmOper()
+        {
+            frmoper = new frmOperation();
+            frmoper.MdiParent = this;
+            frmoper.WindowState = FormWindowState.Maximized;
+            frmoper.DataSendEvent += new DataGetEventHandler(this.DataGet);
+            frmoper.Show();
         }
 
         public void ChangeValue()
         {
             tableLayoutPanel1.Visible = true;
 
-            CustomerID = oderList.Data.Find((n) => n.OrderID == Oper.OrderID).CustomerID;
+            string CustomerID = oderList.Data.Find((n) => n.OrderID == Oper.OrderID).CustomerID;
 
             lblOper.Text = Oper.OpID;
             lblOder.Text = Oper.OrderID;
@@ -74,25 +65,20 @@ namespace AtlasPOP
             lblEnd.Text = Oper.EndDate;
             lblEmp.Text = Oper.EmpID;
         }
-
+        /// <summary>
+        /// 작업지시폼에서 데이터 받아오기
+        /// </summary>
+        /// <param name="data"></param>
         private void DataGet(OperationVO data)
         {
             this.Oper = data;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            frmOperation frm = new frmOperation();
-            frm.MdiParent = this;
-            frm.DataSendEvent += new DataGetEventHandler(this.DataGet);
-            frm.Show();
-        }
-
-        private void btnOperStatus_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        /// <summary>
+        /// 시작버튼 클릭 -> 작업시작
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnStart_Click(object sender, EventArgs e)
         {
             if (Oper == null)
@@ -120,14 +106,11 @@ namespace AtlasPOP
             if (start.ErrCode == 0)
             {
                 MessageBox.Show($"{Oper.OpID} - 작업시작");
-               
             }
             else
             {
                 MessageBox.Show("시스템에 오류가 발생하였습니다.");
             }
-
-
             string server = Application.StartupPath + "\\VirtualPLCMachin.exe";
 
             string ip = "127.0.0.1";
@@ -137,21 +120,19 @@ namespace AtlasPOP
 
 
             Process pro = Process.Start(server, $"{name} {ip} {port} {Oper.PlanQty.ToString()}");
-            process_id = pro.Id;
-
-            frm = new frmPerformance(name, ip, port);
-            frm.MdiParent = this;
-            frm.Show();
-            frm.Hide();
+            process_id = pro.Id;   
             frmoper.LoadData();
-            frmoper.MdiParent = this;
-            frmoper.WindowState = FormWindowState.Maximized;
-
             
 
+            frmPerf = new frmPerformance(name, ip, port, Oper);
+            frmPerf.MdiParent = this;
+            frmPerf.WindowState = FormWindowState.Normal;
+            frmPerf.Show();
+            frmPerf.Hide();
+            frmoper.WindowState = FormWindowState.Maximized;
             //IsTaskEnabled = true;
         }
-
+        
         public void Finish(int qty, int failqty)
         {
             foreach (Process proc in Process.GetProcesses())
@@ -159,53 +140,36 @@ namespace AtlasPOP
                 if (proc.Id.Equals(process_id))
                 {
                     proc.Kill();
-                    //MessageBox.Show("종료되었다");
                 }
             }
             Oper.CompleteQty = qty;
             Oper.FailQty = failqty;
-            MessageBox.Show(qty.ToString() + " | " + failqty.ToString());
-            frm.TaskExit = true;
-            frm.Close();
-
-            ResMessage<List<OperationVO>> finish = service.PostAsync<OperationVO, List<OperationVO>>("api/pop/UdateFinish", Oper);
-            if (finish.ErrCode == 0)
-            {
-                MessageBox.Show("작업종료되었습니다.");
-                frmoper.LoadData();
-            }
-            else
-            {
-                MessageBox.Show("문제발생");
-            }
-
+            MessageBox.Show($"총{qty} 개의 제품이 생산되었고 {failqty}개의 불량이 발생하였습니다.\n 종료버튼을 눌러 작업을 종료해주세요.");
+            frmPerf.TaskExit = true;
+            frmPerf.Close();
         }
 
+        /// <summary>
+        /// 종료버튼 클릭 -> 작업종료
+        /// </summary>
+        /// <param name="qty"></param>
+        /// <param name="failqty"></param>
         private void btnEnd_Click(object sender, EventArgs e)
         {
-            //작업이 완료되었는지?
-            //생산제품과 불량제품이 잘 넘어왔는지?
-            //
-            
-            foreach (Process proc in Process.GetProcesses())
+            //창고 입고 시켜야함.내일 해야지...잠와
+            if (Oper.OpState.Equals("작업중"))
             {
-                if(process_id == 0)
+                ResMessage<List<OperationVO>> finish = service.PostAsync<OperationVO, List<OperationVO>>("api/pop/UdateFinish", Oper);
+                if (finish.ErrCode == 0)
                 {
-                    MessageBox.Show("작업이 시작되지않았습니다.");
-                    return;
+                    MessageBox.Show("작업종료되었습니다.");
+                    frmoper.LoadData();
                 }
-                
-                if (proc.Id.Equals(process_id))
+                else
                 {
-                    proc.Kill();
+                    MessageBox.Show("문제발생");
                 }
             }
-
-            frm.TaskExit = true;
-            frm.Close();
-            
-
-            //  IsTaskEnabled = false;
         }
 
         private void btnFail_Click(object sender, EventArgs e)
@@ -215,6 +179,7 @@ namespace AtlasPOP
                 MessageBox.Show("작업을 선택해주세요");
                 return;
             }
+
             ResMessage<List<OperationVO>> fail = service.GetAsync<List<OperationVO>>("api/pop/AllOperation");
             if (fail.Data != null)
             {
@@ -225,15 +190,11 @@ namespace AtlasPOP
                 MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
             }
 
-
-            if (Oper == null)
-            {
-                MessageBox.Show("작업을 선택해주세요");
-                return;
-            }
-            //Oper.FailQty = 4;
             frmFail frm = new frmFail(Oper);
-            frm.Show();
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                frmoper.LoadData();
+            }
         }
 
         private void btnLaping_Click(object sender, EventArgs e)
@@ -259,7 +220,6 @@ namespace AtlasPOP
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 frmoper.LoadData();
-                
             }
         }
 
@@ -276,9 +236,14 @@ namespace AtlasPOP
                     }
                 }
             }
-            
-
             this.Close();
+        }
+
+        private void btnState_Click(object sender, EventArgs e)
+        {
+            frmPerf.Show();
+            frmPerf.WindowState = FormWindowState.Normal;
+            //frmoper.WindowState = FormWindowState.Maximized;
         }
     }
 }
