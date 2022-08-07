@@ -131,6 +131,8 @@ namespace AltasMES
 
         private void dgvPdt_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0) return;
+
             dgvA.DataSource = null;
             dgvD.DataSource = null;
 
@@ -139,9 +141,7 @@ namespace AltasMES
 
             ResMessage<List<BOMVO>> resource = service.GetAsync<List<BOMVO>>($"api/BOM/BOMFoward/{itemID}");
             ResMessage<List<BOMVO>> resource1 = service.GetAsync<List<BOMVO>>($"api/BOM/BOMReward/{itemID}");
-            ResMessage<List<BOMVO>> resResult = service.GetAsync<List<BOMVO>>("api/BOM/AllBOMItem");
-
-            if (e.RowIndex < 0) return;
+            ResMessage<List<BOMVO>> resResult = service.GetAsync<List<BOMVO>>("api/BOM/AllBOMItem");                       
 
             if (category == "완제품")
             {               
@@ -181,8 +181,11 @@ namespace AltasMES
 
             frmBOM_Add frm = new frmBOM_Add(bom);
             if (frm.ShowDialog() == DialogResult.OK)
-            {
+            {               
                 DataLoad();
+                dgvPdt.ClearSelection();
+                dgvA.DataSource = null;
+                dgvD.DataSource = null;
             }
         }
 
