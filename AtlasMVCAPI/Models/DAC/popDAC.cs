@@ -73,7 +73,7 @@ namespace AtlasMVCAPI.Models
                     join TB_Employees e on e.EmpID = op.EmpID
                                     where convert(varchar(20), OpDate, 120) Between @dateFrom and @dateTo";
 
-                cmd.Parameters.AddWithValue("@dateFrom", dateFrom );
+                cmd.Parameters.AddWithValue("@dateFrom", dateFrom);
                 cmd.Parameters.AddWithValue("@dateTo", dateTo);
 
                 cmd.Connection.Open();
@@ -212,7 +212,7 @@ namespace AtlasMVCAPI.Models
                 conn.Close();
                 return (iRowAffect > 0);
             }
-            
+
         }
 
         /// <summary>
@@ -245,12 +245,13 @@ namespace AtlasMVCAPI.Models
             using (SqlCommand cmd = new SqlCommand
             {
                 Connection = new SqlConnection(strConn),
-                CommandText = "update TB_Item set CurrentQty = @CurrentQty where ItemID = @ItemID"
-
+                CommandText = @"update TB_Item set CurrentQty = @CurrentQty, ModifyDate = @ModifyDate, ModifyUser = @ModifyUser where ItemID = @ItemID"
             })
             {
-                cmd.Parameters.AddWithValue("@CurrentQty", item.CurrentQty + item.CompleteQty);
+                cmd.Parameters.AddWithValue("@CurrentQty", item.CurrentQty);
                 cmd.Parameters.AddWithValue("@ItemID", item.ItemID);
+                cmd.Parameters.AddWithValue("@ModifyUser", item.ModifyUser);
+                cmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
                 cmd.Connection.Open();
                 int iRowAffect = cmd.ExecuteNonQuery();
                 cmd.Connection.Close();
@@ -279,7 +280,7 @@ namespace AtlasMVCAPI.Models
                 cmd.Parameters.Add("@FailCode", System.Data.SqlDbType.NVarChar, 50);
 
                 int iRowAffect = 0;
-                foreach(FailVO fail in failList)
+                foreach (FailVO fail in failList)
                 {
                     cmd.Parameters["@FailQty"].Value = fail.FailQty;
                     cmd.Parameters["@FailCode"].Value = fail.FailCode;
@@ -431,7 +432,7 @@ namespace AtlasMVCAPI.Models
         }
 
         public bool SaveProcessEquip(List<EquipDetailsVO> equip)
-        {           
+        {
             SqlConnection conn = new SqlConnection(strConn);
             conn.Open();
 
@@ -443,14 +444,14 @@ namespace AtlasMVCAPI.Models
                 {
                     cmd.Connection = conn;
                     cmd.CommandText = @"delete from TB_EquipmentDetails where ProcessID=@ProcessID";
-                    cmd.Transaction = trans;                
+                    cmd.Transaction = trans;
                     cmd.Parameters.AddWithValue("@ProcessID", equip[0].ProcessID);
 
                     cmd.ExecuteNonQuery();
 
                     cmd.CommandText = @"insert into TB_EquipmentDetails(ProcessID, EquipID, EquipName, CreateDate, CreateUser)
                                      values(@ProcessID, @EquipID, @EquipName, @CreateDate, @CreateUser)";
-                
+
                     cmd.Parameters.Add("@EquipID", System.Data.SqlDbType.Int);
                     cmd.Parameters.Add("@EquipName", System.Data.SqlDbType.NVarChar, 50);
                     cmd.Parameters.Add("@CreateUser", System.Data.SqlDbType.NVarChar, 50);
@@ -463,24 +464,24 @@ namespace AtlasMVCAPI.Models
                         cmd.Parameters["@EquipName"].Value = item.EquipName;
                         cmd.Parameters["@CreateDate"].Value = DateTime.Now;
                         cmd.Parameters["@CreateUser"].Value = item.CreateUser;
-                    
+
                         iRowAffect += cmd.ExecuteNonQuery();
-                    }                    
-                    trans.Commit();                    
+                    }
+                    trans.Commit();
                     return (iRowAffect > 0);
                 }
             }
-            catch(Exception err)
+            catch (Exception err)
             {
                 string sss = err.Message;
-                trans.Rollback();                
+                trans.Rollback();
                 return false;
             }
             finally
             {
                 conn.Close();
             }
-            
+
         }
 
         public List<EquipDetailsVO> GetProcessEquip()
@@ -498,7 +499,11 @@ namespace AtlasMVCAPI.Models
                 return list;
             }
         }
-
+        /// <summary>
+        /// 작업시작
+        /// </summary>
+        /// <param name="oper"></param>
+        /// <returns></returns>
         public bool UdateState(OperationVO oper)
         {
             using (SqlCommand cmd = new SqlCommand
@@ -520,7 +525,11 @@ namespace AtlasMVCAPI.Models
                 return (iRowAffect > 0);
             }
         }
-
+        /// <summary>
+        /// 작업종료
+        /// </summary>
+        /// <param name="oper"></param>
+        /// <returns></returns>
         public bool UdateFinish(OperationVO oper)
         {
             using (SqlCommand cmd = new SqlCommand
@@ -528,7 +537,6 @@ namespace AtlasMVCAPI.Models
                 Connection = new SqlConnection(strConn),
                 CommandText = @"update TB_Operation set OpState = '작업종료', CompleteQty = @CompleteQty, FailQty = @FailQty, ModifyUser = @ModifyUser, ModifyDate = @ModifyDate, EndDate = @EndDate
                                 where OpID = @OpID"
-
             })
             {
                 cmd.Parameters.AddWithValue("@CompleteQty", oper.CompleteQty);
@@ -544,7 +552,5 @@ namespace AtlasMVCAPI.Models
                 return (iRowAffect > 0);
             }
         }
-
-
     }
 }

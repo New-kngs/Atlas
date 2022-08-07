@@ -15,13 +15,15 @@ namespace AtlasPOP
     public partial class AtlasPOP : Form
     {
         public OperationVO Oper { get; set; }
-        int process_id=0;
+        int process_id = 0;
 
         popServiceHelper service = null;
         ResMessage<List<OrderVO>> oderList;
         ResMessage<List<CustomerVO>> customerList;
         frmPerformance frmPerf = null;
         frmOperation frmoper = null;
+
+        bool state;
         public AtlasPOP()
         {
             InitializeComponent();
@@ -116,13 +118,13 @@ namespace AtlasPOP
             string ip = "127.0.0.1";
             string port = Oper.port;
             string name = Oper.ProcessID.ToString();
-            
+
 
 
             Process pro = Process.Start(server, $"{name} {ip} {port} {Oper.PlanQty.ToString()}");
-            process_id = pro.Id;   
+            process_id = pro.Id;
             frmoper.LoadData();
-            
+
 
             frmPerf = new frmPerformance(name, ip, port, Oper);
             frmPerf.MdiParent = this;
@@ -132,7 +134,7 @@ namespace AtlasPOP
             frmoper.WindowState = FormWindowState.Maximized;
             //IsTaskEnabled = true;
         }
-        
+
         public void Finish(int qty, int failqty)
         {
             foreach (Process proc in Process.GetProcesses())
@@ -145,6 +147,7 @@ namespace AtlasPOP
             Oper.CompleteQty = qty;
             Oper.FailQty = failqty;
             MessageBox.Show($"총{qty} 개의 제품이 생산되었고 {failqty}개의 불량이 발생하였습니다.\n 종료버튼을 눌러 작업을 종료해주세요.");
+            ResMessage<List<OperationVO>> finish = service.PostAsync<OperationVO, List<OperationVO>>("api/pop/UdateFinish", Oper);
             frmPerf.TaskExit = true;
             frmPerf.Close();
         }
@@ -156,25 +159,25 @@ namespace AtlasPOP
         /// <param name="failqty"></param>
         private void btnEnd_Click(object sender, EventArgs e)
         {
-            //창고 입고 시켜야함.내일 해야지...잠와
-            if (Oper.OpState.Equals("작업중"))
+            ResMessage<List<ItemVO>> itemList = service.GetAsync<List<ItemVO>>("api/Item/AllItem");
+            ItemVO Item = new ItemVO()
             {
-                ResMessage<List<OperationVO>> finish = service.PostAsync<OperationVO, List<OperationVO>>("api/pop/UdateFinish", Oper);
-                if (finish.ErrCode == 0)
-                {
-                    MessageBox.Show("작업종료되었습니다.");
-                    frmoper.LoadData();
-                }
-                else
-                {
-                    MessageBox.Show("문제발생");
-                }
+                CurrentQty = itemList.Data.Find((f) => f.ItemID == Oper.ItemID).CurrentQty + Oper.CompleteQty,
+                //CompleteQty = Oper.CompleteQty,
+                ModifyUser = "강지모",
+                ItemID = Oper.ItemID
+            };
+            ResMessage<List<OperationVO>> State = service.PostAsync<string, List<OperationVO>>($"api/pop/UpdatePutInYN/{Oper.OpID}", Oper.OpID);
+            ResMessage<List<ItemVO>> putIn = service.PostAsync<ItemVO, List<ItemVO>>("api/pop/PutInItem", Item);
+            if (putIn.ErrCode == 0)
+            {
+                MessageBox.Show("창고에 입고가 완료 되었습니다.");
             }
         }
 
         private void btnFail_Click(object sender, EventArgs e)
         {
-            if(Oper == null)
+            if (Oper == null)
             {
                 MessageBox.Show("작업을 선택해주세요");
                 return;
@@ -222,7 +225,11 @@ namespace AtlasPOP
                 frmoper.LoadData();
             }
         }
-
+        /// <summary>
+        /// 종료 버튼
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             foreach (Process proc in Process.GetProcesses())
@@ -232,7 +239,7 @@ namespace AtlasPOP
                     if (proc.Id.Equals(process_id))
                     {
                         proc.Kill();
-                        
+
                     }
                 }
             }
@@ -241,6 +248,10 @@ namespace AtlasPOP
 
         private void btnState_Click(object sender, EventArgs e)
         {
+            if (Oper == null)
+            {
+                MessageBox.Show("작업을 선택해주세요");
+            }
             frmPerf.Show();
             frmPerf.WindowState = FormWindowState.Normal;
             //frmoper.WindowState = FormWindowState.Maximized;

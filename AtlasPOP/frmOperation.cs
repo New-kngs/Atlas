@@ -17,6 +17,8 @@ namespace AtlasPOP
         public DataGetEventHandler DataSendEvent;
         popServiceHelper service = null;
         ResMessage<List<OperationVO>> operList;
+        public bool IsState { get; set; }
+
         public frmOperation()
         {
             InitializeComponent();
@@ -88,8 +90,8 @@ namespace AtlasPOP
 
         private void dgvList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            loadDetails();      
-            //.drawEquip();
+            loadDetails();
+
         }
 
         public void loadDetails()

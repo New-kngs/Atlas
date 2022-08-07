@@ -106,6 +106,7 @@ namespace AtlasPOP
             if (Convert.ToInt32(datas[0]) <= (Convert.ToInt32(txtTotQty.Text)+totfail))
             {
                 bExit = true;
+                m_thread.ThreadStop();
 
                 AtlasPOP main = (AtlasPOP)this.MdiParent;
                 main.Finish(totQty,totfail);
