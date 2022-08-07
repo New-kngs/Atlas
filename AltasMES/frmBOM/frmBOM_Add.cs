@@ -71,56 +71,8 @@ namespace AltasMES
 
         private void dgvUnreg_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //if (cboPdt.Visible == false)
-            //{
-            //    dgvParts.DataSource = null;
-            //    dgvNew.DataSource = null;
-
-
-            //    if (e.RowIndex > -1)
-            //    {
-            //        string size = dgvUnreg["ItemSize", e.RowIndex].Value.ToString();
-            //        string category = dgvUnreg["ItemCategory", e.RowIndex].Value.ToString();
-            //        string id = dgvUnreg["ItemID", e.RowIndex].Value.ToString();
-
-            //        ResMessage<List<ItemVO>> result = service.GetAsync<List<ItemVO>>("api/Item/AllItem");
-
-            //        List<ItemVO> listA = result.Data.FindAll((r) => r.ItemSize == size);
-            //        List<ItemVO> listB;
-            //        List<ItemVO> listC;
-
-            //        if (category == "완제품")
-            //        {
-            //            listC = listA.FindAll((r) => r.ItemCategory == "반제품");
-            //        }
-            //        else
-            //        {
-            //            listB = listA.FindAll((r) => r.ItemCategory == "자재");
-            //            if (id.Contains("FR"))
-            //            {
-            //                listC = listB.FindAll((r) => r.ItemID.Contains("F"));
-            //            }
-            //            else
-            //            {
-            //                listC = listB.FindAll((r) => !r.ItemID.Contains("F"));
-            //            }
-            //        }
-            //        dgvParts.DataSource = listC;
-            //    }
-            //    else
-            //    {
-            //        return;
-            //    }
-            //}
-            //else
-            //{                
-            //    dgvParts.DataSource = null;
-            //    dgvNew.DataSource = null;
-            //    cboPdtListLoad();
-            //}
             dgvParts.DataSource = null;
-            //dgvNew.DataSource = null;
-
+            dgvNew.DataSource = null;
 
             if (e.RowIndex > -1)
             {
@@ -151,6 +103,8 @@ namespace AltasMES
                     }
                 }
                 dgvParts.DataSource = listC;
+                cboPdtListLoad();
+
             }
             else
             {
