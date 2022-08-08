@@ -41,12 +41,12 @@ namespace AtlasMVCAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddToCart(string productID, string returnUrl)
+        public ActionResult AddToCart(string productID) // , string returnUrl
         {
-            if (!string.IsNullOrEmpty(returnUrl))
-            {
-                Session["returnUrl"] = returnUrl;
-            }
+            //if (!string.IsNullOrEmpty(returnUrl))
+            //{
+            //    Session["returnUrl"] = returnUrl;
+            //}
 
             ItemDAC db = new ItemDAC();
             ItemVO product = db.GetProductInfo(productID);
@@ -55,11 +55,15 @@ namespace AtlasMVCAPI.Controllers
             {
                 // 장바구니 추가
                 Cart cart = GetCart();
-                cart.AddItem(product, 1);
+                cart.AddOnceItem(product, 1);
                 Session["Cart"] = cart;
             }
-            // 장바구니 페이지로 이동
-            return RedirectToAction("Basket");
+            else
+            {
+                // 장바구니에는 제품 1개만 담을 수 있다.
+            }
+            // 장바구니 페이지로 이동 return RedirectToAction("Basket");
+            return RedirectToAction("Product", "List");
         }
         [HttpPost]
         public ActionResult RemoveToCart(string productID)
@@ -106,6 +110,21 @@ namespace AtlasMVCAPI.Controllers
             }
             Session["Cart"] = null; // 주문이 완료되었으므로, 카트에 담긴 상품을 비웁니다.
             return RedirectToAction("History","OrderWeb");
+        }
+
+        public ActionResult UpdateQty(string UP_Prod, string UP_Qty)
+        {
+            Cart cart = Session["Cart"] as Cart;
+            string prod_id = UP_Prod;
+            int qty = Convert.ToInt32(UP_Qty);
+
+            CartLine line = cart.Lines.Where<CartLine>((p) => p.Product.ItemID.Equals(prod_id)).FirstOrDefault();
+            if (line != null)
+            {
+                line.Qty = qty;
+                Session["Cart"] = cart;
+            }
+            return RedirectToAction("Basket");
         }
     }
 }

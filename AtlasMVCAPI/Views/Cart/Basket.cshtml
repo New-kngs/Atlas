@@ -8,7 +8,7 @@
 
 <h2>장바구니 </h2>
 
-<div class="content">
+<div>
     <div class="container-fluid">
         @if (Model.Lines.Count == 0)
         {
@@ -28,29 +28,41 @@
                                     <th class="text-center">가격</th>
                                     <th class="text-center">수량</th>
                                     <th class="text-center">금액</th>
+                                    <th class="text-center">금액</th>
                                     <th class="text-center"></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var line in Model.Lines)
+                                @using (Html.BeginForm("UpdateQty", "Cart", FormMethod.Get, new { id = "updateQty" }))
                                 {
-                                    <tr>
-                                        <td>@line.Product.ItemName</td>
-                                        <td class="text-right">@line.Product.ItemPrice.ToString("c")</td>
-                                        <td class="text-center">@line.Qty</td>
-                                        <td class="text-right">@((line.Product.ItemPrice * line.Qty).ToString("c"))</td>
-                                        <td class="text-center">
-                                            @using (Html.BeginForm("RemoveToCart", "Cart", FormMethod.Post))
-                                            {
-                                                @Html.Hidden("productID", line.Product.ItemID)
-                                                <button type="submit">
-                                                    <i class="fa fa-solid fa-trash"></i>
-                                                </button>
-                                            }
-                                        </td>
-                                    </tr>
+                                    foreach (var line in Model.Lines)
+                                    {
+                                        <tr>
+                                            <td>@line.Product.ItemName</td>
+                                            <td class="text-right">
+                                                <span id="linePrice">@line.Product.ItemPrice.ToString("C")</span>
+                                            </td>
+                                            <td class="text-right">
+                                                @Html.Hidden("UP_Prod", line.Product.ItemID)
+                                                @Html.Hidden("UP_Qty", line.Qty)
+                                                <input type="number" min="1" step="5" max="30" id="lineQty" name="lineQty" value="@line.Qty" style="text-align: center; width:60px" onchange="javascript:GetValueNumeric('@line.Product.ItemID');" />
+                                            </td>
+                                            <td class="text-right">
+                                                <span id="lineAmt">@((line.Product.ItemPrice * line.Qty).ToString("C"))</span>
+                                            </td>
+                                            <td class="text-center">
+                                                @using (Html.BeginForm("RemoveToCart", "Cart", FormMethod.Post))
+                                                {
+                                                    @Html.Hidden("productID", line.Product.ItemID)
+                                                    <button type="submit">
+                                                        <i class="fa fa-solid fa-trash"></i>
+                                                    </button>
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
                                 }
-                            </tbody>
+                                </tbody>
                             <tfoot>
                                 <tr>
                                     <td colspan="3" class="text-right">Total :</td>
@@ -91,3 +103,19 @@
         }
     </div>
 </div>
+<script>
+    //jQuery(function ($) {
+    //    $('#mirror').text($('#alice').val());
+
+    //    $('#alice').on('input', function () {
+    //        $('#mirror').text($('#alice').val());
+    //    });
+    // });
+    function GetValueNumeric(prodId) {        
+        var qty = Number(document.getElementById("lineQty").value);
+        document.getElementById("UP_Prod").value = prodId;
+        document.getElementById("UP_Qty").value = qty;
+        var form = document.getElementById("updateQty");
+        form.submit();
+    }
+</script>
