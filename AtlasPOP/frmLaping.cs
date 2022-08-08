@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,7 +16,7 @@ namespace AtlasPOP
     {
         popServiceHelper service = null;
         public OperationVO oper { get; set; }
-
+        LOTVO lot;
         public frmLaping(OperationVO oper)
         {
             InitializeComponent();
@@ -59,11 +60,14 @@ namespace AtlasPOP
 
         private void btnCreateLOT_Click(object sender, EventArgs e)
         {
-            LOTVO lot = new LOTVO()
+            //등록된 로트인지 확인하는 예외처리 넣기
+
+
+            lot = new LOTVO()
             {
                 ItemID = dgvList.SelectedRows[0].Cells["ItemID"].Value.ToString(),
                 OrderID = dgvList.SelectedRows[0].Cells["OrderID"].Value.ToString(),
-                CreateUser = dgvList.SelectedRows[0].Cells["CreateUser"].Value.ToString(),
+                CreateUser = "강지모",
                 LOTIQty = Convert.ToInt32(dgvList.SelectedRows[0].Cells["PlanQty"].Value),
             };
             ResMessage<List<LOTVO>> createLOTID = service.PostAsync<LOTVO, List<LOTVO>>("api/pop/CreateLOT", lot);
@@ -75,9 +79,34 @@ namespace AtlasPOP
             {
                 MessageBox.Show("생성 중 오류가 발생하였습니다.");
             }
-            
         }
 
-        
+        private void btnPutIN_Click(object sender, EventArgs e)
+        {
+            ResMessage<List<ItemVO>> itemList = service.GetAsync<List<ItemVO>>("api/Item/AllItem");
+            ItemVO Item = new ItemVO()
+            {
+                CurrentQty = itemList.Data.Find((f) => f.ItemID == lot.ItemID).CurrentQty - lot.LOTIQty,
+                ModifyUser = "강지모",
+                ItemID = lot.ItemID
+            };
+            ResMessage<List<ItemVO>> putIn = service.PostAsync<ItemVO, List<ItemVO>>("api/pop/PutInItem", Item);
+            if (putIn.ErrCode == 0)
+            {
+                MessageBox.Show("출하 창고에 입고되었습니다.");
+            }
+            else
+            {
+                MessageBox.Show("입고 중 문제가 발생하였습니다.");
+                return;
+            }
+        }
+
+        private void btnLaping_Click(object sender, EventArgs e)
+        {
+            //그 로딩창 
+            Thread.Sleep(3000);
+            MessageBox.Show("포장이 완료 되었습니다. 창고에 입고시켜주세요");
+        }
     }
 }

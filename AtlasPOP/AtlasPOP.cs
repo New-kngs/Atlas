@@ -14,6 +14,7 @@ namespace AtlasPOP
 {
     public partial class AtlasPOP : Form
     {
+        public string User { get; set; }
         public OperationVO Oper { get; set; }
         int process_id = 0;
         int qty;
@@ -25,6 +26,7 @@ namespace AtlasPOP
         frmPerformance frmPerf = null;
         frmOperation frmoper = null;
 
+
         public AtlasPOP()
         {
             InitializeComponent();
@@ -32,10 +34,10 @@ namespace AtlasPOP
 
         private void AtlasPOP_Load(object sender, EventArgs e)
         {
+            this.User = "강지모";
             service = new popServiceHelper("");
             oderList = service.GetAsync<List<OrderVO>>("api/pop/GetCustomer");
             customerList = service.GetAsync<List<CustomerVO>>("api/pop/GetCustomerName");
-
             tableLayoutPanel1.Visible = false;
 
             frmOper();
@@ -225,11 +227,7 @@ namespace AtlasPOP
 
         private void btnLaping_Click(object sender, EventArgs e)
         {
-            if (Oper == null)
-            {
-                MessageBox.Show("작업을 선택해주세요");
-                return;
-            }
+
             frmLaping frm = new frmLaping(Oper);
             frm.Show();
         }
