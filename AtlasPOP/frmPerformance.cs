@@ -28,17 +28,18 @@ namespace AtlasPOP
         string taskID;
         int totQty = 0;
         int totfail = 0;
-
+        int procID;
         ThreadPLCTask m_thread;
         LoggingUtility m_log;
         popServiceHelper service;
 
-        public bool TaskExit { get { return bExit; } set { bExit = value; } }
+
         public OperationVO oper { get; set; }
-        public frmPerformance(string task, string IP, string Port, OperationVO oper)
+        public frmPerformance(string task, string IP, string Port, OperationVO oper,int processid)
         {
             InitializeComponent();
             this.oper = oper;
+            this.procID = processid;
             hostIP = IP;
             hostPort = int.Parse(Port);
             taskID = task;
@@ -54,16 +55,11 @@ namespace AtlasPOP
 
         private void frmPerformance_Load(object sender, EventArgs e)
         {
-            //this.WindowState = FormWindowState.Minimized;
-
-            
             m_log.WriteInfo("PLC프로그램 시작");
 
             m_thread = new ThreadPLCTask( m_log, hostIP, hostPort, timer_CONNECT, timer_KeepAlive, timer_Read);
-
             m_thread.ReadDataReceive += M_thread_ReadDataReceive;
             m_thread.ThreadStart();
-
             timer_Connec.Start();
 
             drawEquip();
@@ -73,24 +69,14 @@ namespace AtlasPOP
         {
             txtReadPLC.Invoke(new Action<string>((str) => txtReadPLC.Text = str), e.ReadData);
 
-            if (logVisible)
-            {
-                if (listBox1.Items.Count > 50)
-                {
-                    listBox1.Items.Clear();
-                }
-
-                listBox1.Invoke(new Action<string>((str) => listBox1.Items.Add($"[{DateTime.Now.ToString("HH:mm:ss,fff")}]:{str}")), e.ReadData);
-
-                this.Invoke((MethodInvoker)(() => listBox1.SelectedIndex = listBox1.Items.Count - 1));
-            }
 
             string[] datas = e.ReadData.Split('|');
             if (datas.Length != 3) return;
             int qty = int.Parse(datas[0]);
             totQty += int.Parse(datas[1]);
+            
             this.Invoke((MethodInvoker)(() => txtTotQty.Text = totQty.ToString("#,##0")));
-
+            
 
             if (qty >= 0 && qty <= 10)
                 totfail = 0;
@@ -102,15 +88,17 @@ namespace AtlasPOP
                 totfail = 3;
             else
                 totfail = 4;
+            
+            txtFail.Text = totfail.ToString();
 
             if (Convert.ToInt32(datas[0]) <= (Convert.ToInt32(txtTotQty.Text)+totfail))
             {
-                bExit = true;
-                m_thread.ThreadStop();
-
+                //m_thread.ThreadStop();
+                
                 AtlasPOP main = (AtlasPOP)this.MdiParent;
-                main.Finish(totQty,totfail);
+                main.Finish(totQty, totfail, procID);
                 this.Close();
+
             }
         }
 

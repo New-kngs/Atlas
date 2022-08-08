@@ -32,6 +32,7 @@ namespace AtlasPOP
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmOperation));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cboState = new System.Windows.Forms.ComboBox();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -51,6 +52,7 @@ namespace AtlasPOP
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.cboState);
             this.panel1.Controls.Add(this.btnReset);
             this.panel1.Controls.Add(this.btnSearch);
             this.panel1.Controls.Add(this.label2);
@@ -58,11 +60,20 @@ namespace AtlasPOP
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.dtpFrom);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 4);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1375, 67);
+            this.panel1.Size = new System.Drawing.Size(1202, 54);
             this.panel1.TabIndex = 0;
+            // 
+            // cboState
+            // 
+            this.cboState.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cboState.Font = new System.Drawing.Font("맑은 고딕", 12F);
+            this.cboState.FormattingEnabled = true;
+            this.cboState.Location = new System.Drawing.Point(399, 14);
+            this.cboState.Name = "cboState";
+            this.cboState.Size = new System.Drawing.Size(112, 29);
+            this.cboState.TabIndex = 7;
             // 
             // btnReset
             // 
@@ -70,10 +81,10 @@ namespace AtlasPOP
             this.btnReset.BackColor = System.Drawing.Color.White;
             this.btnReset.Font = new System.Drawing.Font("맑은 고딕", 12F);
             this.btnReset.ForeColor = System.Drawing.Color.Black;
-            this.btnReset.Location = new System.Drawing.Point(541, 15);
+            this.btnReset.Location = new System.Drawing.Point(607, 14);
             this.btnReset.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(98, 41);
+            this.btnReset.Size = new System.Drawing.Size(86, 33);
             this.btnReset.TabIndex = 6;
             this.btnReset.Text = "재설정";
             this.btnReset.UseVisualStyleBackColor = false;
@@ -85,10 +96,10 @@ namespace AtlasPOP
             this.btnSearch.BackColor = System.Drawing.Color.White;
             this.btnSearch.Font = new System.Drawing.Font("맑은 고딕", 12F);
             this.btnSearch.ForeColor = System.Drawing.Color.Black;
-            this.btnSearch.Location = new System.Drawing.Point(449, 15);
+            this.btnSearch.Location = new System.Drawing.Point(527, 14);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(85, 41);
+            this.btnSearch.Size = new System.Drawing.Size(74, 33);
             this.btnSearch.TabIndex = 6;
             this.btnSearch.Text = "조회";
             this.btnSearch.UseVisualStyleBackColor = false;
@@ -99,9 +110,9 @@ namespace AtlasPOP
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.Location = new System.Drawing.Point(21, 22);
+            this.label2.Location = new System.Drawing.Point(18, 18);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(92, 28);
+            this.label2.Size = new System.Drawing.Size(74, 21);
             this.label2.TabIndex = 5;
             this.label2.Text = "작업일시";
             // 
@@ -110,10 +121,9 @@ namespace AtlasPOP
             this.dtpTo.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.dtpTo.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtpTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpTo.Location = new System.Drawing.Point(294, 18);
-            this.dtpTo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dtpTo.Location = new System.Drawing.Point(257, 14);
             this.dtpTo.Name = "dtpTo";
-            this.dtpTo.Size = new System.Drawing.Size(143, 34);
+            this.dtpTo.Size = new System.Drawing.Size(126, 29);
             this.dtpTo.TabIndex = 0;
             // 
             // label1
@@ -121,9 +131,9 @@ namespace AtlasPOP
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("맑은 고딕", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.Location = new System.Drawing.Point(259, 14);
+            this.label1.Location = new System.Drawing.Point(227, 11);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(36, 37);
+            this.label1.Size = new System.Drawing.Size(28, 30);
             this.label1.TabIndex = 1;
             this.label1.Text = "~";
             // 
@@ -132,10 +142,9 @@ namespace AtlasPOP
             this.dtpFrom.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.dtpFrom.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFrom.Location = new System.Drawing.Point(112, 18);
-            this.dtpFrom.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dtpFrom.Location = new System.Drawing.Point(98, 14);
             this.dtpFrom.Name = "dtpFrom";
-            this.dtpFrom.Size = new System.Drawing.Size(143, 34);
+            this.dtpFrom.Size = new System.Drawing.Size(126, 29);
             this.dtpFrom.TabIndex = 0;
             // 
             // dgvList
@@ -144,12 +153,11 @@ namespace AtlasPOP
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvList.Location = new System.Drawing.Point(7, 40);
-            this.dgvList.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dgvList.Location = new System.Drawing.Point(6, 32);
             this.dgvList.Name = "dgvList";
             this.dgvList.RowHeadersWidth = 51;
             this.dgvList.RowTemplate.Height = 30;
-            this.dgvList.Size = new System.Drawing.Size(1362, 628);
+            this.dgvList.Size = new System.Drawing.Size(1191, 503);
             this.dgvList.TabIndex = 1;
             this.dgvList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvList_CellDoubleClick);
             // 
@@ -160,11 +168,9 @@ namespace AtlasPOP
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.dgvList);
             this.groupBox1.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.groupBox1.Location = new System.Drawing.Point(3, 79);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox1.Location = new System.Drawing.Point(3, 63);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox1.Size = new System.Drawing.Size(1375, 668);
+            this.groupBox1.Size = new System.Drawing.Size(1202, 535);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "작업지시 목록";
@@ -184,24 +190,22 @@ namespace AtlasPOP
             this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1381, 751);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1208, 601);
             this.tableLayoutPanel1.TabIndex = 7;
             // 
             // frmOperation
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1381, 751);
+            this.ClientSize = new System.Drawing.Size(1208, 601);
             this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmOperation";
@@ -209,6 +213,7 @@ namespace AtlasPOP
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " ";
             this.Load += new System.EventHandler(this.frmOperation_Load);
+            this.Shown += new System.EventHandler(this.frmOperation_Shown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).EndInit();
@@ -231,5 +236,6 @@ namespace AtlasPOP
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.ComboBox cboState;
     }
 }

@@ -17,6 +17,7 @@ namespace AtlasPOP
         public DataGetEventHandler DataSendEvent;
         popServiceHelper service = null;
         ResMessage<List<OperationVO>> operList;
+        ResMessage<List<OperationVO>> searchList;
         public bool IsState { get; set; }
 
         public frmOperation()
@@ -44,17 +45,22 @@ namespace AtlasPOP
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "포트", "port",visibility: false);
             dgvList.ClearSelection();
 
-            LoadData();
+
+            string[] combo = {"전체", "작업대기", "작업중", "작업종료" };
+            cboState.Items.AddRange(combo);
+            cboState.SelectedIndex = 0;
             dtpTo.Value = DateTime.Now;
             dtpFrom.Value = DateTime.Now.AddDays(-7);
+
+            LoadData();
+            
         }
         public void LoadData()
         {
-            operList = service.GetAsync<List<OperationVO>>("api/pop/AllOperation");
-
-            if (operList.Data != null)
+            searchList = service.GetAsync<List<OperationVO>>("api/pop/SearchOper/" + dtpFrom.Value.ToShortDateString() + "/" + dtpTo.Value.ToShortDateString());
+            if (searchList.Data != null)
             {
-                dgvList.DataSource = new popAdvancedList<OperationVO>(operList.Data);
+                dgvList.DataSource = new popAdvancedList<OperationVO>(searchList.Data);
             }
             else
             {
@@ -64,16 +70,27 @@ namespace AtlasPOP
         }
         private void btnSearch_Click(object sender, EventArgs e)
         {
-           ResMessage<List<OperationVO>> result = service.GetAsync<List<OperationVO>>("api/pop/SearchOper/"+ dtpFrom.Value.ToShortDateString() +  "/" + dtpTo.Value.ToShortDateString());
-            if (result.Data != null)
+/*            searchList = service.GetAsync<List<OperationVO>>("api/pop/SearchOper/"+ dtpFrom.Value.ToShortDateString() +  "/" + dtpTo.Value.ToShortDateString());
+            if (searchList.Data != null)
             {
-                dgvList.DataSource = new popAdvancedList<OperationVO>(result.Data);
+                dgvList.DataSource = new popAdvancedList<OperationVO>(searchList.Data);
             }
             else
             {
                 MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
             }
-            dgvList.ClearSelection();
+            dgvList.ClearSelection();*/
+
+
+
+            switch (cboState.Text)
+            {
+                case "전체":
+                    LoadData(); break;
+                default:
+                    dgvList.DataSource = null;
+                    dgvList.DataSource = searchList.Data.FindAll((f) => f.OpState.Equals(cboState.Text)); break;
+            }
         }
 
         private void btnReset_Click(object sender, EventArgs e)
@@ -81,6 +98,8 @@ namespace AtlasPOP
             dtpTo.Value = DateTime.Now;
             dtpFrom.Value = DateTime.Now.AddDays(-7);
             LoadData();
+            cboState.SelectedIndex = 0;
+            this.WindowState = FormWindowState.Maximized;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -91,7 +110,6 @@ namespace AtlasPOP
         private void dgvList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             loadDetails();
-
         }
 
         public void loadDetails()
@@ -111,12 +129,18 @@ namespace AtlasPOP
                 PlanQty = Convert.ToInt32(dgvList.SelectedRows[0].Cells["PlanQty"].Value),
                 OpState = dgvList.SelectedRows[0].Cells["OpState"].Value.ToString(),
                 resourceYN = dgvList.SelectedRows[0].Cells["resourceYN"].Value.ToString(),
+                PutInYN = dgvList.SelectedRows[0].Cells["PutInYN"].Value.ToString(),
                 port = dgvList.SelectedRows[0].Cells["port"].Value.ToString(),
             };
             DataSendEvent(oper);
 
             AtlasPOP main = (AtlasPOP)this.MdiParent;
             main.ChangeValue();
+        }
+
+        private void frmOperation_Shown(object sender, EventArgs e)
+        {
+            dgvList.ClearSelection();
         }
     }
 }

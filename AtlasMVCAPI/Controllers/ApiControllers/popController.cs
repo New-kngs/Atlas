@@ -531,6 +531,72 @@ namespace AtlasMVCAPI.Controllers
             }
         }
 
+        //POST : https://localhost:44391/api/pop/CreateLOT
+        [HttpPost]
+        [Route("CreateLOT")]
+        public IHttpActionResult CreateLOT(LOTVO lot)
+        {
+            try
+            {
+                popDAC db = new popDAC();
+                bool flag = db.CreateLOT(lot);
+
+                ResMessage result = new ResMessage()
+                {
+                    ErrCode = (!flag) ? -9 : 0,
+                    ErrMsg = (!flag) ? "수정 중 오류발생" : "S"
+                };
+
+                return Ok(result);
+            }
+            catch (Exception err)
+            {
+                System.Diagnostics.Debug.WriteLine(err.Message);
+
+                return Ok(new ResMessage()
+                {
+                    ErrCode = -9,
+                    ErrMsg = err.Message
+                });
+            }
+        }
+
+        /// <summary>
+        /// 제품생산에 필요한 자재수량
+        /// </summary>
+        //https://localhost:44391/api/pop/GetLapingList
+        [Route("GetLapingList")]
+        public IHttpActionResult GetLapingList()
+        {
+            try
+            {
+                popDAC db = new popDAC();
+                List<OperationVO> list = db.GetLapingList();
+
+                ResMessage<List<OperationVO>> result = new ResMessage<List<OperationVO>>()
+                {
+                    ErrCode = (list == null) ? -9 : 0,
+                    ErrMsg = (list == null) ? "조회중 오류발생" : "S",
+                    Data = list
+                };
+
+                return Ok(result);
+            }
+            catch (Exception err)
+            {
+                System.Diagnostics.Debug.WriteLine(err.Message);
+
+                return Ok(new ResMessage()
+                {
+                    ErrCode = -9,
+                    //ErrMsg = err.Message
+                    ErrMsg = "서비스 관리자에게 문의하시기 바랍니다."
+                });
+            }
+        }
+
+
+
     }
     }
 

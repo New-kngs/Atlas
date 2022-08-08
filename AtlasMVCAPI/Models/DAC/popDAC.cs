@@ -552,5 +552,53 @@ namespace AtlasMVCAPI.Models
                 return (iRowAffect > 0);
             }
         }
+
+        /// <summary>
+        /// LOT, 바코드ID생성
+        /// </summary>
+        /// <param name="oper"></param>
+        /// <returns></returns>
+        public bool CreateLOT(LOTVO lot)
+        {
+            using (SqlCommand cmd = new SqlCommand
+            {
+                Connection = new SqlConnection(strConn),
+                CommandText = @"SP_CreateLOT_BarCodeID",
+                CommandType = System.Data.CommandType.StoredProcedure
+            })
+            {
+                cmd.Parameters.AddWithValue("@ItemID", lot.ItemID);
+                cmd.Parameters.AddWithValue("@LOTIQty", lot.LOTIQty);
+                cmd.Parameters.AddWithValue("@CreateUser", lot.CreateUser);
+                cmd.Parameters.AddWithValue("@OrderID", lot.OrderID);
+
+                cmd.Connection.Open();
+                int iRowAffect = cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+
+                return (iRowAffect > 0);
+            }
+        }
+        /// <summary>
+        /// 포장 리스트 가져오기
+        /// </summary>
+        /// <returns></returns>
+        public List<OperationVO> GetLapingList()
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.CommandText = @" select op.OrderID, op.ItemID, ItemName, PlanQty, PutInYN
+                                     from TB_Operation op join TB_Item i on op.ItemID = i.ItemID
+                                     join TB_Order d on op.OrderID = d.OrderID
+                                      where PutInYN = 'Y'";
+
+                cmd.Connection.Open();
+                List<OperationVO> list = Helper.DataReaderMapToList<OperationVO>(cmd.ExecuteReader());
+                cmd.Connection.Close();
+
+                return list;
+            }
+        }
     }
 }

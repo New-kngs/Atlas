@@ -29,27 +29,26 @@ namespace AtlasPOP
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvList = new System.Windows.Forms.DataGridView();
             this.btnCreateLOT = new System.Windows.Forms.Button();
             this.btnLaping = new System.Windows.Forms.Button();
             this.btnPutIN = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dgvList
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 12);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(761, 412);
-            this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dgvList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvList.Location = new System.Drawing.Point(12, 12);
+            this.dgvList.Name = "dgvList";
+            this.dgvList.RowHeadersWidth = 51;
+            this.dgvList.RowTemplate.Height = 23;
+            this.dgvList.Size = new System.Drawing.Size(761, 412);
+            this.dgvList.TabIndex = 0;
             // 
             // btnCreateLOT
             // 
@@ -62,6 +61,7 @@ namespace AtlasPOP
             this.btnCreateLOT.TabIndex = 1;
             this.btnCreateLOT.Text = "LOT생성";
             this.btnCreateLOT.UseVisualStyleBackColor = false;
+            this.btnCreateLOT.Click += new System.EventHandler(this.btnCreateLOT_Click);
             // 
             // btnLaping
             // 
@@ -120,11 +120,12 @@ namespace AtlasPOP
             this.Controls.Add(this.btnPutIN);
             this.Controls.Add(this.btnLaping);
             this.Controls.Add(this.btnCreateLOT);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvList);
             this.Name = "frmLaping";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "포장";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.frmLaping_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
@@ -133,7 +134,7 @@ namespace AtlasPOP
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvList;
         private System.Windows.Forms.Button btnCreateLOT;
         private System.Windows.Forms.Button btnLaping;
         private System.Windows.Forms.Button btnPutIN;

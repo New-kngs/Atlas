@@ -51,6 +51,7 @@
     <Compile Include="FailVO.cs" />
     <Compile Include="ItemVO.cs" />
     <Compile Include="LoginVO.cs" />
+    <Compile Include="LOTVO.cs" />
     <Compile Include="OperationVO.cs" />
     <Compile Include="OrderDetailLongVO.cs" />
     <Compile Include="OrderDetailVO.cs" />
