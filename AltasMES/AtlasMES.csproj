@@ -423,6 +423,9 @@
     <EmbeddedResource Include="frmProcess\frmProcess_Setting.resx">
       <DependentUpon>frmProcess_Setting.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmProdPlan\frmProdPlan.resx">
+      <DependentUpon>frmProdPlan.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmPurchase\frmPurchase_Add.resx">
       <DependentUpon>frmPurchase_Add.cs</DependentUpon>
     </EmbeddedResource>
