@@ -61,48 +61,48 @@
                                 </script>*@
                                 }
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                @if (i + 1 < Model.Products.ToList().Count)
-                {
-                    <!-- style="max-width: 50%;"-->
-                    <div class="card mb-3">
-                        <div class="row no-gutters">
-                            <div class="col-md-7">
-                                <img src="~/Uploads/@Model.Products.ToList()[i+1].ItemImage" alt="@Model.Products.ToList()[i+1].ItemImage" style="width:300px;height:300px">
-                            </div>
-                            <div class="col-md-5">
-                                <div class="card-body">
-                                    <h2 class="card-title" style="font-weight: bold">@Model.Products.ToList()[i + 1].ItemName</h2>
-                                    <br /><br />
-                                    <p class="card-text" style="color:dodgerblue;">@Model.Products.ToList()[i + 1].ItemPrice.ToString("c")</p>
-                                    <hr />
-
-                                    <div class="text-right">
-                                        <input type="button" value="상세보기" class="btn btn-outline-primary" onclick='javascript:window.open("/Cart/Popup?productID=@Model.Products.ToList()[i+1].ItemID", "PopupWin", "width=900,height=600")' />
-                                    </div>
-                                    <br />
-                                    @using (Html.BeginForm("AddToCart", "Product"))
-                                    {
-                                        @Html.Hidden("productID", Model.Products.ToList()[i + 1].ItemID)
-                                        <!-- Html.Hidden("returnUrl", Request.Url.PathAndQuery) -->
-                                        <div class="text-right">
-                                            <input type="submit" value="카트담기" class="btn btn-primary" /> <!-- onclick="MessageBox(); -->
-                                        </div>
-                                    }
                                 </div>
                             </div>
                         </div>
                     </div>
-                }
-            </div>
+                </div>
+                <div class="col-lg-6">
+                    @if (i + 1 < Model.Products.ToList().Count)
+                    {
+                        <!-- style="max-width: 50%;"-->
+                        <div class="card mb-3">
+                            <div class="row no-gutters">
+                                <div class="col-md-7">
+                                    <img src="~/Uploads/@Model.Products.ToList()[i+1].ItemImage" alt="@Model.Products.ToList()[i+1].ItemImage" style="width:300px;height:300px">
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="card-body">
+                                        <h2 class="card-title" style="font-weight: bold">@Model.Products.ToList()[i + 1].ItemName</h2>
+                                        <br /><br />
+                                        <p class="card-text" style="color:dodgerblue;">@Model.Products.ToList()[i + 1].ItemPrice.ToString("c")</p>
+                                        <hr />
+
+                                        <div class="text-right">
+                                            <input type="button" value="상세보기" class="btn btn-outline-primary" onclick='javascript:window.open("/Cart/Popup?productID=@Model.Products.ToList()[i+1].ItemID", "PopupWin", "width=900,height=600")' />
+                                        </div>
+                                        <br />
+                                        <form action="/Cart/AddToCart" method="post">
+                                            @Html.Hidden("productID", Model.Products.ToList()[i + 1].ItemID)
+                                            @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                                            <div class="text-right">
+                                                <input type="submit" value="카트담기" class="btn btn-primary" />
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+            }
         </div>
-        }            
-        </div>
+    </div>
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
             @Html.PageLinks((PagingInfo)Model.Page, (x) => Url.Action("List", new { page = x }))

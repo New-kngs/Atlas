@@ -26,7 +26,7 @@ namespace AtlasMVCAPI.Controllers
                 // ItemsPerPage 한 페이지당 목록 건수
                 // CurrentPage  현재 페이지 번호
                 Page = new PagingInfo { TotalItems = total, CurrentPage = page, ItemsPerPage = 4 }
-            };            
+            };
             return View(model);
         }
         [HttpPost]

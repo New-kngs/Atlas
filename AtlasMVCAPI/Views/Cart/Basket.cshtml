@@ -8,7 +8,7 @@
 
 <h2>장바구니 </h2>
 
-<div>
+<div class="content">
     <div class="container-fluid">
         @if (Model.Lines.Count == 0)
         {
@@ -27,7 +27,6 @@
                                     <th class="text-center">제품명</th>
                                     <th class="text-center">가격</th>
                                     <th class="text-center">수량</th>
-                                    <th class="text-center">금액</th>
                                     <th class="text-center">금액</th>
                                     <th class="text-center"></th>
                                 </tr>
@@ -103,19 +102,3 @@
         }
     </div>
 </div>
-<script>
-    //jQuery(function ($) {
-    //    $('#mirror').text($('#alice').val());
-
-    //    $('#alice').on('input', function () {
-    //        $('#mirror').text($('#alice').val());
-    //    });
-    // });
-    function GetValueNumeric(prodId) {        
-        var qty = Number(document.getElementById("lineQty").value);
-        document.getElementById("UP_Prod").value = prodId;
-        document.getElementById("UP_Qty").value = qty;
-        var form = document.getElementById("updateQty");
-        form.submit();
-    }
-</script>
