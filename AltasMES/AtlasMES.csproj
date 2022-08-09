@@ -267,6 +267,12 @@
     <Compile Include="frmProcess\frmProcess_Setting.Designer.cs">
       <DependentUpon>frmProcess_Setting.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmProdPlan\frmProdPlan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProdPlan\frmProdPlan.Designer.cs">
+      <DependentUpon>frmProdPlan.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPurchase\frmPurchase_Add.cs">
       <SubType>Form</SubType>
     </Compile>
