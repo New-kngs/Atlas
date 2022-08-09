@@ -163,8 +163,16 @@ namespace AltasMES
                 MessageBox.Show("발주 항목을 선택해 주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-           
+            
+            PurchaseVO pur = srv.GetAsync<PurchaseVO>($"/api/Purchase/{selId}").Data;
+            pur.ModifyUser = ((Main)this.MdiParent).EmpName.ToString();
+            frmPurchase_Modify pop = new frmPurchase_Modify(pur);
+            if (pop.ShowDialog() == DialogResult.OK)
+            {
+                LoadData();
+            }
+            selId = string.Empty;
+            dgvPurchase.ClearSelection();
         }
     }
 }

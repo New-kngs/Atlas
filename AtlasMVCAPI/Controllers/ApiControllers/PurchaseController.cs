@@ -46,7 +46,7 @@ namespace AtlasMVCAPI.Controllers
 
         // Get : https://localhost:44391/api/Purchase/GetAllPurchase
         [Route("GetAllPurchase")]
-        public IHttpActionResult GetAllOrder()
+        public IHttpActionResult GetAllPurchase()
         {
             try
             {
@@ -81,13 +81,13 @@ namespace AtlasMVCAPI.Controllers
             try
             {
                 PurchaseDAC db = new PurchaseDAC();
-                PurchaseVO order = db.GeTPurchaseById(id);
+                PurchaseVO pur = db.GeTPurchaseById(id);
 
                 ResMessage<PurchaseVO> result = new ResMessage<PurchaseVO>()
                 {
-                    ErrCode = (order == null) ? -9 : 0,
-                    ErrMsg = (order == null) ? "조회중 오류발생" : "S",
-                    Data = order
+                    ErrCode = (pur == null) ? -9 : 0,
+                    ErrMsg = (pur == null) ? "조회중 오류발생" : "S",
+                    Data = pur
                 };
                 return Ok(result);
             }
@@ -133,21 +133,20 @@ namespace AtlasMVCAPI.Controllers
             }
         }
 
-
-        [HttpGet]
-        [Route("GetPurchaseName/{id}")]
-        public IHttpActionResult GetPurchaseName(string id)
+        // Get : https://localhost:44391/api/Purchase/GetAllPurchaseDetail
+        [Route("GetAllPurchaseDetail")]
+        public IHttpActionResult GetAllPurchaseDetail()
         {
             try
             {
                 PurchaseDAC db = new PurchaseDAC();
-                PurchaseVO order = db.GetPurchaseName(id);
+                List<PurchaseDetailsVO> list = db.GetAllPurchaseDetail();
 
-                ResMessage<PurchaseVO> result = new ResMessage<PurchaseVO>()
+                ResMessage<List<PurchaseDetailsVO>> result = new ResMessage<List<PurchaseDetailsVO>>()
                 {
-                    ErrCode = (order == null) ? -9 : 0,
-                    ErrMsg = (order == null) ? "조회중 오류발생" : "S",
-                    Data = order
+                    ErrCode = (list == null) ? -9 : 0,
+                    ErrMsg = (list == null) ? "조회중 오류발생" : "S",
+                    Data = list
                 };
                 return Ok(result);
             }
@@ -162,5 +161,6 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
+
     }
 }

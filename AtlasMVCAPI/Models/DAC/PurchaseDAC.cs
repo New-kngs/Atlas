@@ -37,7 +37,6 @@ namespace AtlasMVCAPI.Models
             }
         }
 
-
         public List<PurchaseVO> GetSearchPurchase(string from, string to)
         {
             using (SqlCommand cmd = new SqlCommand())
@@ -62,7 +61,7 @@ namespace AtlasMVCAPI.Models
             }
         }
 
-
+        // 발주ID
         public PurchaseVO GeTPurchaseById(string id)
         {
             using (SqlCommand cmd = new SqlCommand())
@@ -139,41 +138,23 @@ namespace AtlasMVCAPI.Models
             }
         }
 
-        public PurchaseVO GetPurchaseName(string itemId)
+
+        public List<PurchaseDetailsVO> GetAllPurchaseDetail()
         {
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = new SqlConnection(strConn);
-                cmd.CommandText = @"select CustomerID from TB_Item
-                                    where ItemID = @ItemID";
-
-                cmd.Parameters.AddWithValue("@ItemID", itemId);
+                cmd.CommandText = @"select PurchaseID, PD.ItemID, ItemName, ItemSize, Qty
+                                    from TB_PurchaseDetails PD inner join TB_Item I on PD.ItemID = I.ItemID";
 
                 cmd.Connection.Open();
-                List<PurchaseVO> list = Helper.DataReaderMapToList<PurchaseVO>(cmd.ExecuteReader());
+                List<PurchaseDetailsVO> list = Helper.DataReaderMapToList<PurchaseDetailsVO>(cmd.ExecuteReader());
                 cmd.Connection.Close();
 
-                if (list != null && list.Count > 0)
-                    return list[0];
-                else
-                    return null;
+                return list;
             }
         }
 
-        //public List<OrderDetailVO> GetAllOrderDetail()
-        //{
-        //    using (SqlCommand cmd = new SqlCommand())
-        //    {
-        //        cmd.Connection = new SqlConnection(strConn);
-        //        cmd.CommandText = @"select OrderID, OD.ItemID, ItemName, Qty
-        //                            from TB_OrderDetails  OD inner join TB_Item I on OD.ItemID = I.ItemID";
 
-        //        cmd.Connection.Open();
-        //        List<OrderDetailVO> list = Helper.DataReaderMapToList<OrderDetailVO>(cmd.ExecuteReader());
-        //        cmd.Connection.Close();
-
-        //        return list;
-        //    }
-        //}
     }
 }
