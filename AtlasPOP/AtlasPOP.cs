@@ -34,15 +34,24 @@ namespace AtlasPOP
 
         private void AtlasPOP_Load(object sender, EventArgs e)
         {
-            this.User = "강지모";
+            this.Visible = false;
+            frmLogin login = new frmLogin();
+            if(login.ShowDialog() == DialogResult.OK)
+            {
+                MessageBox.Show("환영합니다.");
+                this.Visible = true;
+            }
+
+            
+            lblDept.Text = $"[{login.DeptName}]{login.UserName}님 ";
             service = new popServiceHelper("");
             oderList = service.GetAsync<List<OrderVO>>("api/pop/GetCustomer");
             customerList = service.GetAsync<List<CustomerVO>>("api/pop/GetCustomerName");
             tableLayoutPanel1.Visible = false;
 
-            frmOper();
+            ShowfrmOper();
         }
-        public void frmOper()
+        public void ShowfrmOper()
         {
             frmoper = new frmOperation();
             frmoper.MdiParent = this;
@@ -128,11 +137,8 @@ namespace AtlasPOP
             
 
             frmPerf = new frmPerformance(name, ip, port, Oper, process_id);
-            frmPerf.MdiParent = this;
-            
             frmPerf.Show();
             frmPerf.Hide();
-            frmoper.WindowState = FormWindowState.Maximized;
             frmoper.LoadData();
         }
 
@@ -150,6 +156,23 @@ namespace AtlasPOP
             this.qty = qty;
             this.failqty = failqty;
 
+            ResMessage<List<OperationVO>> finish = service.PostAsync<OperationVO, List<OperationVO>>("api/pop/UdateFinish", Oper);
+            if (finish.ErrCode == 0)
+            {
+                MessageBox.Show($"총{qty} 개의 제품이 생산되었고 {failqty}개의 불량이 발생하였습니다.");
+                ResMessage<List<OperationVO>> State = service.PostAsync<string, List<OperationVO>>($"api/pop/UpdatePutInYN/{Oper.OpID}", Oper.OpID);
+                if (State.ErrCode == 0)
+                    MessageBox.Show("창고에 입고가 완료 되었습니다.");
+                else
+                {
+                    MessageBox.Show("입고 중 문제가 발생하였습니다.");
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("종료 중 문제 발생");
+            }
         }
 
         /// <summary>
@@ -172,31 +195,11 @@ namespace AtlasPOP
                 ModifyUser = "강지모",
                 ItemID = Oper.ItemID
             };
-
-            ResMessage<List<OperationVO>> finish = service.PostAsync<OperationVO, List<OperationVO>>("api/pop/UdateFinish", Oper);
-            if (finish.ErrCode == 0)
-            {
-                MessageBox.Show($"총{qty} 개의 제품이 생산되었고 {failqty}개의 불량이 발생하였습니다.");
-            }
-            else
-            {
-                MessageBox.Show("종료 중 문제 발생");
-            }
-
-
             ResMessage<List<ItemVO>> putIn = service.PostAsync<ItemVO, List<ItemVO>>("api/pop/PutInItem", Item);
             if (putIn.ErrCode == 0)
             {
-                ResMessage<List<OperationVO>> State = service.PostAsync<string, List<OperationVO>>($"api/pop/UpdatePutInYN/{Oper.OpID}", Oper.OpID);
-                if(State.ErrCode == 0)
-                    MessageBox.Show("창고에 입고가 완료 되었습니다.");
-                else
-                {
-                    MessageBox.Show("입고 중 문제가 발생하였습니다.");
-                    return;
-                }
+                
             }
-
             frmoper.LoadData();
         }
 
@@ -227,7 +230,6 @@ namespace AtlasPOP
 
         private void btnLaping_Click(object sender, EventArgs e)
         {
-
             frmLaping frm = new frmLaping(Oper);
             frm.Show();
         }
@@ -255,28 +257,27 @@ namespace AtlasPOP
         {
             foreach (Process proc in Process.GetProcesses())
             {
-                if (process_id != 0)
-                {
-                    if (proc.Id.Equals(process_id))
-                    {
-                        proc.Kill();
-
-                    }
-                }
+                proc.Close();
             }
             this.Close();
+            Application.Exit();
         }
 
         private void btnState_Click(object sender, EventArgs e)
         {
-            if (Oper == null)
+            if(Oper == null)
             {
-                MessageBox.Show("작업을 선택해주세요");
+                MessageBox.Show("작업을 선택해주세요.");
+                return;
             }
-            frmPerf.Show();
+            if (frmPerf == null)
+            {
+                MessageBox.Show("작업중이지 않습니다.");
+                return;
+            }
 
-            frmPerf.WindowState = FormWindowState.Normal;
-            frmoper.WindowState = FormWindowState.Maximized;
+            frmPerf.TopMost = true;
+            frmPerf.Show();           
             frmPerf.BringToFront();
         }
     }

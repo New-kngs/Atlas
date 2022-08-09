@@ -591,7 +591,7 @@ namespace AtlasMVCAPI.Models
                 cmd.CommandText = @" select op.OrderID, op.ItemID, ItemName, PlanQty, PutInYN
                                      from TB_Operation op join TB_Item i on op.ItemID = i.ItemID
                                      join TB_Order d on op.OrderID = d.OrderID
-                                      where PutInYN = 'Y'";
+                                      where PutInYN = 'Y' and LapingYN = 'N'";
 
                 cmd.Connection.Open();
                 List<OperationVO> list = Helper.DataReaderMapToList<OperationVO>(cmd.ExecuteReader());
@@ -600,5 +600,7 @@ namespace AtlasMVCAPI.Models
                 return list;
             }
         }
+
+
     }
 }

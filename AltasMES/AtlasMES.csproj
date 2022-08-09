@@ -183,6 +183,12 @@
     <Compile Include="frmEquipment\frmEquipment_Using.Designer.cs">
       <DependentUpon>frmEquipment_Using.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmFail\frmFail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFail\frmFail.Designer.cs">
+      <DependentUpon>frmFail.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmItem\frmItem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -380,6 +386,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmEquipment\frmEquipment_Using.resx">
       <DependentUpon>frmEquipment_Using.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFail\frmFail.resx">
+      <DependentUpon>frmFail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmItem\frmItem.resx">
       <DependentUpon>frmItem.cs</DependentUpon>

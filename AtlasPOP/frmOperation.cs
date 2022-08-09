@@ -44,6 +44,7 @@ namespace AtlasPOP
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "담당ID", "EmpID", visibility: false);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "포트", "port",visibility: false);
             dgvList.ClearSelection();
+            dgvList.MultiSelect = false;
 
 
             string[] combo = {"전체", "작업대기", "작업중", "작업종료" };
@@ -99,7 +100,7 @@ namespace AtlasPOP
             dtpFrom.Value = DateTime.Now.AddDays(-7);
             LoadData();
             cboState.SelectedIndex = 0;
-            this.WindowState = FormWindowState.Maximized;
+            this.WindowState = FormWindowState.Minimized;
         }
 
         private void btnClose_Click(object sender, EventArgs e)

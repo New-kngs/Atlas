@@ -106,7 +106,6 @@ namespace AtlasPOP
             this.Name = "frmPerformance";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "현황";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPerformance_FormClosing);
             this.Load += new System.EventHandler(this.frmPerformance_Load);
             this.panel1.ResumeLayout(false);

@@ -93,12 +93,14 @@ namespace AtlasPOP
 
             if (Convert.ToInt32(datas[0]) <= (Convert.ToInt32(txtTotQty.Text)+totfail))
             {
-                //m_thread.ThreadStop();
-                
-                AtlasPOP main = (AtlasPOP)this.MdiParent;
-                main.Finish(totQty, totfail, procID);
-                this.Close();
-
+                DialogResult result = MessageBox.Show("작업이 끝났습니다", "작업 종료", MessageBoxButtons.OK);
+                if(result == DialogResult.OK)
+                {
+                    AtlasPOP main = new AtlasPOP();
+                    main.Finish(totQty, totfail, procID);
+                    this.Close();
+                    timer_Connec.Stop();
+                }
             }
         }
 

@@ -148,6 +148,7 @@ namespace AltasMES
             panel2.Controls.Add(mainlbl);
 
 
+
             string[] btnName = { "생산계획", "작업지시", "불량현황" };
             string[] btnTag = { "frmPlan", "frmOperation", "frmFail"};
 
@@ -169,7 +170,6 @@ namespace AltasMES
                 btn.Padding = new Padding(5, 0, 5, 0);
                 btn.Click += Btn_Click;
                 panel2.Controls.Add(btn);
-
             }
 
         }

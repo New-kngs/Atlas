@@ -17,6 +17,8 @@ namespace AtlasPOP
         popServiceHelper service = null;
         public OperationVO oper { get; set; }
         LOTVO lot;
+        
+
         public frmLaping(OperationVO oper)
         {
             InitializeComponent();
@@ -28,7 +30,6 @@ namespace AtlasPOP
 
             popDataGridUtil.SetInitGridView(dgvList);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "작업지시ID", "OpID", visibility: false);
-            //popDataGridUtil.AddGridTextBoxColumn(dgvList, "작업지시일시", visibility: false);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "공정ID", "ProcessID", visibility: false);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "공정명", "ProcessName", visibility: false);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "제품ID", "ItemID");
@@ -44,9 +45,17 @@ namespace AtlasPOP
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "포트", "port", visibility: false);
 
 
+            btnCreateLOT.Enabled = true;
+            btnLaping.Enabled = false;
+            btnPutIN.Enabled = false;
 
+
+            LoadData();
+        }
+        public void LoadData()
+        {
             ResMessage<List<OperationVO>> lapingList = service.GetAsync<List<OperationVO>>("api/pop/GetLapingList");
-            if(lapingList.ErrCode != 0)
+            if (lapingList.ErrCode != 0)
             {
                 MessageBox.Show("데이터 로드 중 오류가 발생하였습니다.");
             }
@@ -54,26 +63,24 @@ namespace AtlasPOP
             {
                 dgvList.DataSource = lapingList.Data;
             }
-
         }
-
 
         private void btnCreateLOT_Click(object sender, EventArgs e)
         {
             //등록된 로트인지 확인하는 예외처리 넣기
-
-
-            lot = new LOTVO()
+            if(lot == null)
             {
-                ItemID = dgvList.SelectedRows[0].Cells["ItemID"].Value.ToString(),
-                OrderID = dgvList.SelectedRows[0].Cells["OrderID"].Value.ToString(),
-                CreateUser = "강지모",
-                LOTIQty = Convert.ToInt32(dgvList.SelectedRows[0].Cells["PlanQty"].Value),
-            };
+                MessageBox.Show("선택된 지시서가 없습니다.");
+                return;
+            }
+            
             ResMessage<List<LOTVO>> createLOTID = service.PostAsync<LOTVO, List<LOTVO>>("api/pop/CreateLOT", lot);
             if(createLOTID.ErrCode == 0)
             {
                 MessageBox.Show("LOT가 생성되었습니다.");
+                btnCreateLOT.Enabled = false;
+                btnLaping.Enabled = true;
+                btnPutIN.Enabled = false;
             }
             else
             {
@@ -94,6 +101,10 @@ namespace AtlasPOP
             if (putIn.ErrCode == 0)
             {
                 MessageBox.Show("출하 창고에 입고되었습니다.");
+                LoadData();
+                btnCreateLOT.Enabled = true;
+                btnLaping.Enabled = false;
+                btnPutIN.Enabled = false;
             }
             else
             {
@@ -107,6 +118,20 @@ namespace AtlasPOP
             //그 로딩창 
             Thread.Sleep(3000);
             MessageBox.Show("포장이 완료 되었습니다. 창고에 입고시켜주세요");
+            btnCreateLOT.Enabled = false;
+            btnLaping.Enabled = false;
+            btnPutIN.Enabled = true;
+        }
+
+        private void dgvList_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            lot = new LOTVO()
+            {
+                ItemID = dgvList.SelectedRows[0].Cells["ItemID"].Value.ToString(),
+                OrderID = dgvList.SelectedRows[0].Cells["OrderID"].Value.ToString(),
+                CreateUser = "강지모",
+                LOTIQty = Convert.ToInt32(dgvList.SelectedRows[0].Cells["PlanQty"].Value),
+            };
         }
     }
 }

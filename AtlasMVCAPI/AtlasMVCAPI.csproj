@@ -2043,6 +2043,7 @@
     <Compile Include="Controllers\ApiControllers\EmployeeController.cs" />
     <Compile Include="Controllers\ApiControllers\EquipmentController.cs" />
     <Compile Include="Controllers\ApiControllers\ItemController.cs" />
+    <Compile Include="Controllers\ApiControllers\FailController.cs" />
     <Compile Include="Controllers\ApiControllers\popController.cs" />
     <Compile Include="Controllers\ApiControllers\ProcessController.cs" />
     <Compile Include="Controllers\ApiControllers\PurchaseController.cs" />
@@ -2064,6 +2065,7 @@
     <Compile Include="Models\DAC\DepartmentDAC.cs" />
     <Compile Include="Models\DAC\EmployeeDAC.cs" />
     <Compile Include="Models\DAC\EquipmentDAC.cs" />
+    <Compile Include="Models\DAC\FailDAC.cs" />
     <Compile Include="Models\DAC\ItemDAC.cs" />
     <Compile Include="Models\DAC\LoginDAC.cs" />
     <Compile Include="Models\DAC\OrderDAC.cs" />
