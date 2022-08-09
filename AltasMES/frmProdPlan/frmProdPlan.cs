@@ -11,13 +11,22 @@ using System.Windows.Forms;
 
 namespace AltasMES
 {
-    public partial class frmProdPlan : BaseForm
+    public partial class frmPlan : BaseForm
     {
         ServiceHelper service = null;
 
-        public frmProdPlan()
+        public frmPlan()
         {
             InitializeComponent();
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+            //OrderID, CustomerID, OrderShip, OrderEndDate, CreateDate, CreateUser, ModifyDate, ModifyUser
+
+            //OrderID, ItemID, Qty, ItemName
+
+            //
         }
     }
 }
