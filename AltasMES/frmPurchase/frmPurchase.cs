@@ -163,6 +163,8 @@ namespace AltasMES
                 MessageBox.Show("발주 항목을 선택해 주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+           
         }
     }
 }

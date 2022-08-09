@@ -21,5 +21,6 @@ namespace AtlasDTO
         //
         public string CustomerName { get; set; }
         public string WHName { get; set; }
+        public string ItemID { get; set; }
     }
 }

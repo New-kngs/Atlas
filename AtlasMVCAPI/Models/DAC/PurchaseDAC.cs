@@ -1,6 +1,7 @@
 ﻿using AtlasDTO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -35,7 +36,6 @@ namespace AtlasMVCAPI.Models
                     return null;
             }
         }
-
 
 
         public List<PurchaseVO> GetSearchPurchase(string from, string to)
@@ -74,6 +74,80 @@ namespace AtlasMVCAPI.Models
                                     where PurchaseID = @id";
 
                 cmd.Parameters.AddWithValue("@id", id);
+
+                cmd.Connection.Open();
+                List<PurchaseVO> list = Helper.DataReaderMapToList<PurchaseVO>(cmd.ExecuteReader());
+                cmd.Connection.Close();
+
+                if (list != null && list.Count > 0)
+                    return list[0];
+                else
+                    return null;
+            }
+        }
+       
+        public bool SavePurchase(PurchaseVO pur, List<PurchaseDetailsVO> purDetail)
+        {
+            SqlConnection conn = new SqlConnection(strConn);
+            conn.Open();
+
+            SqlTransaction trans = conn.BeginTransaction();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+
+                    cmd.Connection = conn;
+                    cmd.CommandText = "SP_CreatePurchase1";
+                    cmd.Transaction = trans;
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@CustomerID", pur.CustomerID);
+                    cmd.Parameters.AddWithValue("@CreateUser", pur.CreateUser);
+                    //cmd.Parameters.AddWithValue("@CreateDate", DateTime.Now);
+
+                    string PurchaseId = cmd.ExecuteScalar().ToString();
+
+                    cmd.Parameters.Clear();
+                    cmd.CommandText = @"insert into TB_PurchaseDetails(PurchaseID, ItemID, Qty) values(@PurchaseID, @ItemID, @Qty)";
+
+                    cmd.Parameters.AddWithValue("@PurchaseID", PurchaseId);
+                    cmd.Parameters.Add("@ItemID", SqlDbType.NVarChar, 10);
+                    cmd.Parameters.Add("@Qty", SqlDbType.Int);
+
+                    int iRowAffect = 0;
+                    foreach (PurchaseDetailsVO item in purDetail)
+                    {
+                        cmd.Parameters[@"ItemID"].Value = item.ItemID;
+                        cmd.Parameters[@"Qty"].Value = item.Qty;
+
+                        iRowAffect += cmd.ExecuteNonQuery();
+                    }
+                    trans.Commit();
+                    return (iRowAffect > 0);
+                }
+            }
+            catch (Exception err)
+            {
+                string sss = err.Message;
+                trans.Rollback();
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public PurchaseVO GetPurchaseName(string itemId)
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.CommandText = @"select CustomerID from TB_Item
+                                    where ItemID = @ItemID";
+
+                cmd.Parameters.AddWithValue("@ItemID", itemId);
 
                 cmd.Connection.Open();
                 List<PurchaseVO> list = Helper.DataReaderMapToList<PurchaseVO>(cmd.ExecuteReader());

@@ -15,6 +15,7 @@ namespace AltasMES
     {
         ServiceHelper srv = null;
         List<CustomerVO> cusList = null;
+        //List<ItemVO> purCusList = null;
         List<ItemVO> purItemList = null;
 
         public PurchaseVO item { get; set; }
@@ -229,10 +230,49 @@ namespace AltasMES
             txtCount.Text = dgvPurItem.Rows.Count.ToString();
             txtPrice.Text = price.ToString("#,##0");
 
-        }
-
+        }        
 
         
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            //purCusList = srv.GetAsync<List<ItemVO>>("api/Item/AllItem").Data;
+
+            if (dgvPurItem.Rows.Count < 1)
+            {
+                MessageBox.Show("등록된 발주 목록이 없습니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            List<OrderDetailVO> purDetailList = new List<OrderDetailVO>();
+            for (int i = 0; i < dgvPurItem.Rows.Count; i++)
+            {
+                if (Convert.ToInt32(dgvPurItem.Rows[i].Cells[3].Value) == 0)
+                {
+                    MessageBox.Show("발주 수량을 확인해 주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                else if (Convert.ToInt32(dgvPurItem.Rows[i].Cells[3].Value) > 300)
+                {
+                    MessageBox.Show("한번에 발주가 가능한 자재 수량은 300개 입니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    dgvPurItem.CurrentCell = dgvPurItem.Rows[i].Cells[3];
+                    return;
+                }
+                OrderDetailVO item = new OrderDetailVO();
+                item.ItemID = dgvPurItem.Rows[i].Cells[0].Value.ToString();
+                item.Qty = Convert.ToInt32(dgvPurItem.Rows[i].Cells[3].Value.ToString()); 
+                
+                purDetailList.Add(item);
+            }
+
+            //purCusList.FindIndex(p=>p.CustomerID == purDetailList.Find(c=>c.ItemID == ))
+
+            //PurchaseVO purList = new PurchaseVO()
+            //{
+            //    CreateUser = this.item.CreateUser,
+            //    CustomerID = 
+            //};
+        }
 
         private void frmPurchase_Add_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -264,39 +304,6 @@ namespace AltasMES
         private void dgvPurItem_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             dgvPurItem.ClearSelection();
-        }
-
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            if (dgvPurItem.Rows.Count < 1)
-            {
-                MessageBox.Show("등록된 발주 목록이 없습니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            List<OrderDetailVO> purDetailList = new List<OrderDetailVO>();
-            for (int i = 0; i < dgvPurItem.Rows.Count; i++)
-            {
-                if (Convert.ToInt32(dgvPurItem.Rows[i].Cells[3].Value) == 0)
-                {
-                    MessageBox.Show("발주 수량을 확인해 주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-                else if (Convert.ToInt32(dgvPurItem.Rows[i].Cells[3].Value) > 300)
-                {
-                    MessageBox.Show("한번에 발주가 가능한 자재 수량은 300개 입니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    dgvPurItem.CurrentCell = dgvPurItem.Rows[i].Cells[3];
-                    return;
-                }
-                //PurchaseVO item = new PurchaseVO();
-
-                //item.
-                //purDetailList.Add(item);
-
-
-
-            }
-
         }
     }
 }
