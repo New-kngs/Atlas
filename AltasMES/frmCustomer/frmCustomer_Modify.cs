@@ -1,5 +1,4 @@
-﻿using AtlasDTO;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,51 +7,48 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AtlasDTO;
 
 namespace AltasMES
 {
-    public partial class frmCustomer_Add : Form
+    public partial class frmCustomer_Modify : Form
     {
-
         List<ComboItemVO> domainlist = null;
         List<EmployeeVO> saleslist = null;
         ServiceHelper service = null;
-        string createUser = string.Empty;
-
-
-        public frmCustomer_Add(string CreateUser)
+        public CustomerVO VO { get; set; }
+        public frmCustomer_Modify(CustomerVO vo)
         {
-
-            createUser = CreateUser;
             InitializeComponent();
+            this.VO = vo;
         }
 
-        private void frmCustomer_Add_Load(object sender, EventArgs e)
+        private void frmCustomer_Modify_Load(object sender, EventArgs e)
         {
 
             service = new ServiceHelper("");
-            domainlist =  service.GetAsync<List<ComboItemVO>>("api/Employee/DomainCategory").Data;
+            domainlist = service.GetAsync<List<ComboItemVO>>("api/Employee/DomainCategory").Data;
             saleslist = service.GetAsync<List<EmployeeVO>>("/api/Employee/GetSalesEmplist").Data;
 
 
             CommonUtil.ComboBinding(cboEmpName, saleslist, "EmpName", "EmpID", blankText: "선택");
             CommonUtil.ComboBinding(cboDomain, domainlist, "Domain", blankText: "선택");
 
-            cboCategory.Items.AddRange(new string[] { "선택", "입고", "출고"});
+            cboCategory.Items.AddRange(new string[] { "선택", "입고", "출고" });
             cboCategory.SelectedIndex = 0;
 
             txtZipcode.Enabled = false;
 
-        }
+            txtName.Text = VO.CustomerName;
+            txtID.Text = VO.CustomerID;
+            txtPwd.Text = VO.CustomerPwd;
+            txtAddr.Text = VO.Address;
+            cboCategory.Text = VO.Category;
+            txtDomain.Text = VO.Email.Substring(VO.Email.IndexOf("@") + 1);
+            txtEmail.Text = VO.Email.Substring(0, VO.Email.IndexOf("@"));
+            cboEmpName.Text = VO.EmpName;
+            mtxtphone.Text = VO.Phone;
 
-        private void btnAddr_Click(object sender, EventArgs e)
-        {
-            ZipcodePopup popup = new ZipcodePopup();
-            if (popup.ShowDialog() == DialogResult.OK)
-            {
-                txtZipcode.Text = popup.Address1;
-                txtAddr.Text = popup.Address2;
-            }
         }
 
         private void cboDomain_SelectedIndexChanged(object sender, EventArgs e)
@@ -74,18 +70,18 @@ namespace AltasMES
             }
         }
 
+        private void btnAddr_Click(object sender, EventArgs e)
+        {
+            ZipcodePopup popup = new ZipcodePopup();
+            if (popup.ShowDialog() == DialogResult.OK)
+            {
+                txtZipcode.Text = popup.Address1;
+                txtAddr.Text = popup.Address2;
+            }
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtName.Text))
-            {
-                MessageBox.Show("거래처명을 입력해주세요.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(txtID.Text))
-            {
-                MessageBox.Show("ID를 입력해주세요.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
             if (string.IsNullOrWhiteSpace(txtPwd.Text))
             {
                 MessageBox.Show("비밀번호를 입력해주세요.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -121,39 +117,29 @@ namespace AltasMES
                 return;
             }
 
-            CustomerVO VO = new CustomerVO()
+            CustomerVO cus = new CustomerVO()
             {
                 CustomerID = txtID.Text,
                 CustomerName = txtName.Text,
                 CustomerPwd = txtPwd.Text,
                 Category = cboCategory.Text,
-                CreateUser = createUser,
+                ModifyUser = VO.ModifyUser,
                 Address = txtAddr.Text,
                 Phone = mtxtphone.Text,
                 Email = txtEmail.Text + "@" + txtDomain.Text,
-                EmpID = saleslist.Find(n=> n.EmpName.Equals(cboEmpName.Text)).EmpID.ToString(),
+                EmpID = saleslist.Find(n => n.EmpName.Equals(cboEmpName.Text)).EmpID.ToString(),
 
-                        
             };
 
-            ResMessage<List<CustomerVO>> result = service.PostAsync<CustomerVO, List<CustomerVO>>("api/Customer/SaveCustomer", VO);
-
+            ResMessage<List<CustomerVO>> result = service.PostAsync<CustomerVO, List<CustomerVO>>("api/Customer/UpdateCustomer", cus);
 
             if (result.ErrCode == 0)
             {
-                MessageBox.Show("등록이 완료되었습니다.", "거래처 등록", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("수정이 완료되었습니다.", "거래처 수정", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;
             }
             else
-                MessageBox.Show("오류가 발생하였습니다. 다시 시도 하여 주십시오.");
-        }
-
-        private void frmCustomer_Add_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (service != null)
-            {
-                service.Dispose();
-            }
+                MessageBox.Show(result.ErrMsg);
         }
     }
 }

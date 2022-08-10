@@ -73,8 +73,96 @@ namespace AtlasMVCAPI.Controllers
             }
         }
 
+        //POST : https://localhost:44391/api/Customer/SaveCustomer
+        [HttpPost]
+        [Route("SaveCustomer")]
+        public IHttpActionResult SaveCustomer(CustomerVO vo)
+        {
+            try
+            {
+                CustomerDAC db = new CustomerDAC();
+                bool flag = db.SaveCustomer(vo);
 
-       
+                ResMessage result = new ResMessage()
+                {
+                    ErrCode = (!flag) ? -9 : 0,
+                    ErrMsg = (!flag) ? "저장중 오류발생" : "S"
+                };
+
+                return Ok(result);
+            }
+            catch (Exception err)
+            {
+                System.Diagnostics.Debug.WriteLine(err.Message);
+
+                return Ok(new ResMessage()
+                {
+                    ErrCode = -9,
+                    ErrMsg = err.Message
+                });
+            }
+        }
+
+        //POST : https://localhost:44391/api/Customer/UpdateCustomer
+        [HttpPost]
+        [Route("UpdateCustomer")]
+        public IHttpActionResult UpdateCustomer(CustomerVO vo)
+        {
+            try
+            {
+                CustomerDAC db = new CustomerDAC();
+                bool flag = db.UpdateCustomer(vo);
+
+                ResMessage result = new ResMessage()
+                {
+                    ErrCode = (!flag) ? -9 : 0,
+                    ErrMsg = (!flag) ? "저장중 오류발생" : "S"
+                };
+
+                return Ok(result);
+            }
+            catch (Exception err)
+            {
+                System.Diagnostics.Debug.WriteLine(err.Message);
+
+                return Ok(new ResMessage()
+                {
+                    ErrCode = -9,
+                    ErrMsg = err.Message
+                });
+            }
+        }
+
+        //POST : https://localhost:44391/api/Customer/DeleteCustomer
+        [HttpPost]
+        [Route("DeleteCustomer")]
+        public IHttpActionResult DeleteCustomer(CustomerVO vo)
+        {
+            try
+            {
+                CustomerDAC db = new CustomerDAC();
+                bool flag = db.DeleteCustomer(vo);
+
+                ResMessage result = new ResMessage()
+                {
+                    ErrCode = (!flag) ? -9 : 0,
+                    ErrMsg = (!flag) ? "저장중 오류발생" : "S"
+                };
+
+                return Ok(result);
+            }
+            catch (Exception err)
+            {
+                System.Diagnostics.Debug.WriteLine(err.Message);
+
+                return Ok(new ResMessage()
+                {
+                    ErrCode = -9,
+                    ErrMsg = err.Message
+                });
+            }
+        }
+
 
 
     }

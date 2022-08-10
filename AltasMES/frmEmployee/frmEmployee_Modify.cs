@@ -113,7 +113,7 @@ namespace AltasMES
 
             if (result.ErrCode == 0)
             {
-                MessageBox.Show("수정이 완료되었습니다.","사용자 수정", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("수정이 완료되었습니다.","사용자 수정", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;
             }
             else

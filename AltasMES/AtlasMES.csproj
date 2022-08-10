@@ -123,6 +123,12 @@
     <Compile Include="frmCustomer\frmCustomer_Add.Designer.cs">
       <DependentUpon>frmCustomer_Add.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmCustomer\frmCustomer_Modify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCustomer\frmCustomer_Modify.Designer.cs">
+      <DependentUpon>frmCustomer_Modify.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmCustomer\ZipcodePopup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -362,6 +368,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmCustomer\frmCustomer_Add.resx">
       <DependentUpon>frmCustomer_Add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCustomer\frmCustomer_Modify.resx">
+      <DependentUpon>frmCustomer_Modify.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCustomer\ZipcodePopup.resx">
       <DependentUpon>ZipcodePopup.cs</DependentUpon>
