@@ -89,6 +89,7 @@ namespace AltasMES
             // 
             this.MaintoolStrip.BackColor = System.Drawing.Color.White;
             this.MaintoolStrip.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.MaintoolStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.MaintoolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StandardStrip,
             this.SalesStrip,
@@ -155,6 +156,7 @@ namespace AltasMES
             this.LogOutStrip.Size = new System.Drawing.Size(73, 64);
             this.LogOutStrip.Text = "로그아웃";
             this.LogOutStrip.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.LogOutStrip.Click += new System.EventHandler(this.LogOutStrip_Click);
             // 
             // SystemStripButton1
             // 
@@ -193,6 +195,7 @@ namespace AltasMES
             // menuStrip1
             // 
             this.menuStrip1.Enabled = false;
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Location = new System.Drawing.Point(136, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1121, 24);
@@ -203,6 +206,7 @@ namespace AltasMES
             // toolStrip1
             // 
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLblTime,
             this.toolStripLblDept,
@@ -217,21 +221,21 @@ namespace AltasMES
             // 
             this.toolStripLblTime.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripLblTime.Name = "toolStripLblTime";
-            this.toolStripLblTime.Size = new System.Drawing.Size(95, 22);
+            this.toolStripLblTime.Size = new System.Drawing.Size(120, 22);
             this.toolStripLblTime.Text = "toolStripLblTime";
             // 
             // toolStripLblDept
             // 
             this.toolStripLblDept.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripLblDept.Name = "toolStripLblDept";
-            this.toolStripLblDept.Size = new System.Drawing.Size(95, 22);
+            this.toolStripLblDept.Size = new System.Drawing.Size(120, 22);
             this.toolStripLblDept.Text = "toolStripLblDept";
             // 
             // toolStripLblUser
             // 
             this.toolStripLblUser.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripLblUser.Name = "toolStripLblUser";
-            this.toolStripLblUser.Size = new System.Drawing.Size(92, 22);
+            this.toolStripLblUser.Size = new System.Drawing.Size(117, 22);
             this.toolStripLblUser.Text = "toolStripLblUser";
             // 
             // TabControl1

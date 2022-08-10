@@ -33,9 +33,9 @@ namespace AltasMES
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnLogin = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.txtID = new System.Windows.Forms.TextBox();
             this.txtPwd = new System.Windows.Forms.TextBox();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.btnExit = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -46,9 +46,10 @@ namespace AltasMES
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(71, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(81, 15);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(336, 139);
+            this.pictureBox1.Size = new System.Drawing.Size(384, 174);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -61,31 +62,16 @@ namespace AltasMES
             this.btnLogin.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnLogin.ImageIndex = 6;
             this.btnLogin.ImageList = this.imageList1;
-            this.btnLogin.Location = new System.Drawing.Point(129, 278);
+            this.btnLogin.Location = new System.Drawing.Point(147, 348);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.btnLogin.Size = new System.Drawing.Size(92, 37);
-            this.btnLogin.TabIndex = 8;
+            this.btnLogin.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.btnLogin.Size = new System.Drawing.Size(105, 46);
+            this.btnLogin.TabIndex = 2;
             this.btnLogin.Text = "로그인";
             this.btnLogin.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
-            // 
-            // txtID
-            // 
-            this.txtID.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.txtID.Location = new System.Drawing.Point(219, 168);
-            this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(160, 29);
-            this.txtID.TabIndex = 7;
-            // 
-            // txtPwd
-            // 
-            this.txtPwd.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.txtPwd.Location = new System.Drawing.Point(219, 212);
-            this.txtPwd.Name = "txtPwd";
-            this.txtPwd.Size = new System.Drawing.Size(160, 29);
-            this.txtPwd.TabIndex = 9;
             // 
             // imageList1
             // 
@@ -100,6 +86,27 @@ namespace AltasMES
             this.imageList1.Images.SetKeyName(6, "check.png");
             this.imageList1.Images.SetKeyName(7, "close.png");
             // 
+            // txtID
+            // 
+            this.txtID.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtID.Location = new System.Drawing.Point(250, 210);
+            this.txtID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtID.Name = "txtID";
+            this.txtID.Size = new System.Drawing.Size(182, 34);
+            this.txtID.TabIndex = 0;
+            this.txtID.Text = "Master";
+            // 
+            // txtPwd
+            // 
+            this.txtPwd.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.txtPwd.Location = new System.Drawing.Point(250, 265);
+            this.txtPwd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtPwd.Name = "txtPwd";
+            this.txtPwd.PasswordChar = '*';
+            this.txtPwd.Size = new System.Drawing.Size(182, 34);
+            this.txtPwd.TabIndex = 1;
+            this.txtPwd.Text = "1234";
+            // 
             // btnExit
             // 
             this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -108,22 +115,24 @@ namespace AltasMES
             this.btnExit.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnExit.ImageIndex = 7;
             this.btnExit.ImageList = this.imageList1;
-            this.btnExit.Location = new System.Drawing.Point(262, 278);
+            this.btnExit.Location = new System.Drawing.Point(299, 348);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.btnExit.Size = new System.Drawing.Size(92, 37);
-            this.btnExit.TabIndex = 10;
+            this.btnExit.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.btnExit.Size = new System.Drawing.Size(105, 46);
+            this.btnExit.TabIndex = 3;
             this.btnExit.Text = "종료";
             this.btnExit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.Location = new System.Drawing.Point(132, 172);
+            this.label1.Location = new System.Drawing.Point(151, 215);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 25);
+            this.label1.Size = new System.Drawing.Size(87, 32);
             this.label1.TabIndex = 11;
             this.label1.Text = "아이디";
             // 
@@ -131,9 +140,9 @@ namespace AltasMES
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.Location = new System.Drawing.Point(125, 212);
+            this.label2.Location = new System.Drawing.Point(127, 265);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(88, 25);
+            this.label2.Size = new System.Drawing.Size(111, 32);
             this.label2.TabIndex = 12;
             this.label2.Text = "비밀번호";
             // 
@@ -141,16 +150,17 @@ namespace AltasMES
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Location = new System.Drawing.Point(3, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(472, 337);
+            this.panel1.Size = new System.Drawing.Size(539, 421);
             this.panel1.TabIndex = 13;
             // 
             // frmLogin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(478, 342);
+            this.ClientSize = new System.Drawing.Size(546, 428);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnExit);
@@ -160,8 +170,10 @@ namespace AltasMES
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "frmLogin";
-            this.Text = "frmLogin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "로그인";
             this.Load += new System.EventHandler(this.frmLogin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
