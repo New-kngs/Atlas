@@ -25,17 +25,9 @@ namespace AltasMES
         private void frmLogin_Load(object sender, EventArgs e)
         {
 
-            service = new ServiceHelper("api/Employee");
-            ResMessage<List<EmployeeVO>> result = service.GetAsync<List<EmployeeVO>>("AllEmployee");
-            if (result != null)
-            {
-                list = result.Data;
-            }
-            else
-            {
-                MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
-            }
-
+            service = new ServiceHelper("");
+            list = service.GetAsync<List<EmployeeVO>>("api/Employee/AllEmployee").Data;
+           
 
         }
 
@@ -43,13 +35,50 @@ namespace AltasMES
         {
             if(string.IsNullOrWhiteSpace(txtID.Text))
             {
-
                 MessageBox.Show("ID를 입력해주세요");
                 return;
             }
 
-            //if(string.IsNullOrWhiteSpace)
+            if(string.IsNullOrWhiteSpace(txtPwd.Text))
+            {
+                MessageBox.Show("비밀번호를 입력해주세요");
+                return;
+
+            }
+
+
+            if(list.Find(n => n.EmpID.Equals(txtID.Text)) == null )
+            {
+                MessageBox.Show("ID를 확인하여 주세요");
+                return;
+            }
+
+            if (list.Find(n => n.EmpID.Equals(txtID.Text)) != null)
+            {
+                if (list.Find(n => n.EmpID.Equals(txtID.Text)).EmpPwd.Equals(txtPwd.Text))
+                {
+
+                    ((Main)this.Owner).EmpName = list.Find(m => m.EmpID.Equals(txtID.Text)).EmpName;
+                    ((Main)this.Owner).EmpID = txtID.Text;
+                    ((Main)this.Owner).DeptName = list.Find(m => m.EmpID.Equals(txtID.Text)).DeptName;
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+
+                }
+                else
+                {
+                    MessageBox.Show("비밀번호를 확인하여 주세요");
+                    return;
+                }
+
+            }
+
+
         }
 
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

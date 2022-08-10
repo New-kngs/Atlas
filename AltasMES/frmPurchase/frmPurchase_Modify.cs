@@ -29,6 +29,7 @@ namespace AltasMES
             textBox1.Text = purchase.PurchaseID;
             
             
+            
         }
 
         private void frmPurchase_Modify_Load(object sender, EventArgs e)
@@ -72,6 +73,8 @@ namespace AltasMES
             dgvPurItem.Columns.Add(btn2);
 
             LoadData();
+
+            txtCount.Text = dgvPurItem.Rows.Count.ToString();
         }
 
         private void LoadData()
@@ -90,6 +93,44 @@ namespace AltasMES
             dgvPurItem.DataSource = dgvItem.DataSource = null;
             dgvItem.DataSource = new AdvancedList<ItemVO>(purItemList);
             dgvPurItem.DataSource = new AdvancedList<PurchaseDetailsVO>(resultPurList);
+        }
+
+        private void dgvItem_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            if (e.ColumnIndex == 6)
+            {
+                string itemId = dgvItem["ItemID", e.RowIndex].Value.ToString();
+                string itemName = dgvItem["ItemName", e.RowIndex].Value.ToString();
+                string itemSize = dgvItem["ItemSize", e.RowIndex].Value.ToString();
+                string cusName = dgvItem["CustomerName", e.RowIndex].Value.ToString();
+                int price = Convert.ToInt32(dgvItem["ItemPrice", e.RowIndex].Value);                
+
+                foreach (DataGridViewRow item in dgvPurItem.Rows)
+                {
+                    string purItemId = item.Cells[0].Value.ToString();
+                    
+
+                    if (itemId.Equals(purItemId))
+                    {
+                        MessageBox.Show($"이미 추가된 자재입니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }                    
+                }
+                dgvPurItem.Rows.Add(itemId, itemName, itemSize, 0); // price);
+                dgvItem.ClearSelection();
+                //txtCusName.Text = cusName;
+                //txtPrice.Text = "0";
+
+
+                int sum = 0;
+                for (int i = 0; i < dgvPurItem.Rows.Count; i++)
+                {
+                    sum += Convert.ToInt32(dgvPurItem.Rows[i].Cells[3].Value);
+                }
+                txtCount.Text = dgvPurItem.Rows.Count.ToString();
+            }
         }
     }
 }

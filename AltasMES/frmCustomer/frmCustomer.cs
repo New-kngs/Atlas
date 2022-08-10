@@ -154,7 +154,74 @@ namespace AltasMES
             frmCustomer_Add frm = new frmCustomer_Add(((Main)this.MdiParent).EmpName.ToString());
             if (frm.ShowDialog() == DialogResult.OK)
             {
-                //DataRebinding();
+                DataRebinding();
+            }
+        }
+
+        private void DataRebinding()
+        {
+            allList = service.GetAsync<List<CustomerVO>>("api/Customer/GetCustomerlist").Data;
+            dgvCus.DataSource = null;
+            dgvCus.DataSource = new AdvancedList<CustomerVO>(allList);
+            dgvCus.ClearSelection();
+            cboCategory.Text = "전체";
+        }
+
+        private void btnModify_Click(object sender, EventArgs e)
+        {
+            if (dgvCus.CurrentCell == null)
+            {
+                MessageBox.Show("수정하실 거래처를 선택해주세요.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            CustomerVO VO = new CustomerVO()
+            {
+                CustomerID = dgvCus.SelectedRows[0].Cells["CustomerID"].Value.ToString(),
+                CustomerName = dgvCus.SelectedRows[0].Cells["CustomerName"].Value.ToString(),
+                CustomerPwd = dgvCus.SelectedRows[0].Cells["CustomerPwd"].Value.ToString(),
+                Category = dgvCus.SelectedRows[0].Cells["Category"].Value.ToString(),
+                Phone = dgvCus.SelectedRows[0].Cells["Phone"].Value.ToString(),
+                Email = dgvCus.SelectedRows[0].Cells["Email"].Value.ToString(),
+                Address = dgvCus.SelectedRows[0].Cells["Address"].Value.ToString(),
+                EmpName = dgvCus.SelectedRows[0].Cells["EmpName"].Value.ToString(),
+                ModifyUser = ((Main)this.MdiParent).EmpName.ToString(),
+            };
+
+            frmCustomer_Modify frm = new frmCustomer_Modify(VO);
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                DataRebinding();
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (dgvCus.CurrentCell == null)
+            {
+                MessageBox.Show("삭제하실 거래처를 선택해주세요.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (MessageBox.Show($"거래처 : {dgvCus.SelectedRows[0].Cells["CustomerName"].Value} 대해 삭제 하시겠습니까?", "거래처 삭제", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+
+                CustomerVO VO = new CustomerVO()
+                {
+                    CustomerID = dgvCus.SelectedRows[0].Cells["CustomerID"].Value.ToString(),
+                };
+               
+
+                ResMessage<List<CustomerVO>> result = service.PostAsync<CustomerVO, List<CustomerVO>>("api/Customer/DeleteCustomer", VO);
+
+                if (result.ErrCode == 0)
+                {
+                    MessageBox.Show("삭제가 완료되었습니다.", "거래처 삭제", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DataRebinding();
+
+                }
+                else
+                    MessageBox.Show(result.ErrMsg);
             }
         }
     }

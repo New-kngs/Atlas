@@ -175,6 +175,7 @@ namespace AltasMES
             this.btnSearch.TabIndex = 15;
             this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // frmItem
             // 

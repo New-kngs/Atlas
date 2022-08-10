@@ -128,7 +128,7 @@ namespace AltasMES
 
             if (result.ErrCode == 0)
             {
-                MessageBox.Show("등록이 완료되었습니다.", "사용자 등록", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("등록이 완료되었습니다.", "사용자 등록", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;
             }
             else

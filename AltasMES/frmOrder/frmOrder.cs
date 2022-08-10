@@ -115,6 +115,8 @@ namespace AltasMES
             }
             selId = string.Empty;
             dgvOrder.ClearSelection();
+            txtSearch.Clear();
+            cboStateYN.SelectedIndex = 0;
         }
 
         private void btnSearch_Click(object sender, EventArgs e)

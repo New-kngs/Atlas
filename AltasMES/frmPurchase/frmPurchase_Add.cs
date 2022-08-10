@@ -54,8 +54,9 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "자재명", "ItemName", colwidth: 160, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "규격", "ItemSize", colwidth: 70, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "수량", "Qty", colwidth: 100, Readonly: false, align: DataGridViewContentAlignment.MiddleRight);
+            DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "거래처명", "CustomerName", visibility: false); //colwidth: 120, align: DataGridViewContentAlignment.MiddleLeft); //visibility: false);
             DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "단가", "ItemPrice", visibility: false);
-            DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "거래처명", "CustomerName", visibility: false);
+            
 
             DataGridViewButtonColumn btn2 = new DataGridViewButtonColumn();
             btn2.HeaderText = "자재삭제";
@@ -147,22 +148,24 @@ namespace AltasMES
 
                 foreach (DataGridViewRow item in dgvPurItem.Rows)
                 {
-                    string purItemId = item.Cells[0].Value.ToString();
-                    //string purCusName = item.Cells[5].Value.ToString();
+                    string purItemId = item.Cells[0].Value.ToString();                    
 
                     if (itemId.Equals(purItemId))
                     {
                         MessageBox.Show($"이미 추가된 자재입니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
+                    }         
+                    else
+                    {
+                        string purCusName = item.Cells[4].Value.ToString();
+                        if (cusName != purCusName)
+                        {
+                            MessageBox.Show($"{purCusName} 자재만 발주 가능합니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
                     }
-
-                    //if (cusName != purCusName)
-                    //{
-                    //    MessageBox.Show($"{cusName} 자재만 발주 가능합니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    //    return;
-                    //}
                 }
-                dgvPurItem.Rows.Add(itemId, itemName, itemSize, 0, price);
+                dgvPurItem.Rows.Add(itemId, itemName, itemSize, 0, cusName, price);
                 dgvItem.ClearSelection();
                 txtCusName.Text = cusName;
                 txtPrice.Text = "0";
@@ -193,7 +196,7 @@ namespace AltasMES
                 for (int i = 0; i < dgvPurItem.Rows.Count; i++)
                 {
                     sum += qty = Convert.ToInt32(dgvPurItem.Rows[i].Cells[3].Value); // 수량
-                    price += qty * Convert.ToInt32(dgvPurItem.Rows[i].Cells[4].Value); // 단가
+                    price += qty * Convert.ToInt32(dgvPurItem.Rows[i].Cells[5].Value); // 단가
                 }
                 txtCount.Text = dgvPurItem.Rows.Count.ToString();
                 txtPrice.Text = price.ToString("#,##0");           
@@ -217,7 +220,7 @@ namespace AltasMES
                 if (int.TryParse(dgvPurItem.Rows[i].Cells[3].Value.ToString(), out qty))
                 {
                     sum += qty;
-                    price += qty * Convert.ToInt32(dgvPurItem.Rows[i].Cells[4].Value);
+                    price += qty * Convert.ToInt32(dgvPurItem.Rows[i].Cells[5].Value);
                 }
                 else
                 {
@@ -304,6 +307,11 @@ namespace AltasMES
         private void dgvPurItem_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             dgvPurItem.ClearSelection();
+        }
+
+        private void btnModify_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -20,24 +20,56 @@ namespace AltasMES
 
         public  string EmpID { get; set; }
         public  string EmpName { get; set; }
-        public  string DeptID  {get; set;}
+        public  string DeptName  {get; set;}
 
 
         private void Main_Load(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Maximized;
-            this.EmpID = "MA1234";
-            this.EmpName = "홍길동";
-            this.DeptID = "생산";
 
-            toolStripLblUser.Text = "사용자 : " +EmpName;
-            toolStripLblDept.Text = "부서 : " +DeptID;
 
-            timer1.Interval = 1000;
-            toolStripLblTime.Text = "현재 시간 : " +DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            timer1.Start();
-            timer1.Tick += Timer1_Tick;
-               
+            frmLogin login = new frmLogin();
+            if(login.ShowDialog(this) != DialogResult.OK)
+            {
+                this.Close();
+                Application.Exit();
+
+            }
+
+            else
+            {
+                this.WindowState = FormWindowState.Maximized;
+              
+
+                toolStripLblUser.Text = "사용자 : " + EmpName;
+                toolStripLblDept.Text = "부서 : " + DeptName;
+
+                timer1.Interval = 1000;
+                toolStripLblTime.Text = "현재 시간 : " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                timer1.Start();
+                timer1.Tick += Timer1_Tick;
+
+                if (DeptName == "생산부서")
+                {
+                    SalesStrip.Visible = false;
+                    SystemStripButton1.Visible = false;
+                }
+
+                if (DeptName == "영업부서")
+                {
+                    ProductionStrip.Visible = false;
+                    SystemStripButton1.Visible = false;
+                }
+
+                if(DeptName == "관리부서" || DeptName == "임원")
+                {
+                    SalesStrip.Visible = true;
+                    ProductionStrip.Visible = true;
+                    SystemStripButton1.Visible = true;
+                }
+
+            }
+
+
         }
 
         private void Timer1_Tick(object sender, EventArgs e)
@@ -307,6 +339,70 @@ namespace AltasMES
                 btn.Padding = new Padding(5, 0, 5, 0);
                 btn.Click += Btn_Click;
                 panel2.Controls.Add(btn);
+
+            }
+        }
+
+        private void LogOutStrip_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("로그아웃 하시겠습니까?", "로그아웃", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                this.Hide();
+                
+                if (TabControl1.Controls.Count > 0)
+                {
+                    foreach (var item in this.MdiChildren)
+                    {
+                        item.Close();
+                    }
+                }
+                TabControl1.Controls.Clear();
+                panel2.Controls.Clear();
+                timer1.Stop();
+
+
+                frmLogin login = new frmLogin();
+                if (login.ShowDialog(this) != DialogResult.OK)
+                {
+                    this.Close();
+                    Application.Exit();
+
+                }
+                else
+                {
+                    this.Show();
+                   
+
+
+                    toolStripLblUser.Text = "사용자 : " + EmpName;
+                    toolStripLblDept.Text = "부서 : " + DeptName;
+
+                    timer1.Interval = 1000;
+                    toolStripLblTime.Text = "현재 시간 : " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                    timer1.Start();
+                    timer1.Tick += Timer1_Tick;
+
+                    if (DeptName == "생산부서")
+                    {
+                        SalesStrip.Visible = false;
+                        SystemStripButton1.Visible = false;
+                    }
+
+                    if (DeptName == "영업부서")
+                    {
+                        ProductionStrip.Visible = false;
+                        SystemStripButton1.Visible = false;
+                    }
+
+                    if (DeptName == "관리부서" || DeptName == "임원")
+                    {
+                        SalesStrip.Visible = true;
+                        ProductionStrip.Visible = true;
+                        SystemStripButton1.Visible = true;
+                    }
+
+                }
+
 
             }
         }

@@ -53,5 +53,90 @@ namespace AtlasMVCAPI.Models
                     return null;
             }
         }
+
+        public bool SaveCustomer(CustomerVO vo)
+        {
+            using (SqlCommand cmd = new SqlCommand
+            {
+                Connection = new SqlConnection(strConn),
+                CommandText = @"insert into TB_Customer (CustomerID, CustomerPwd, CustomerName , Category , Email ,Address , Phone , EmpID , CreateDate ,CreateUser)
+                                values (@CustomerID, @CustomerPwd ,@CustomerName, @Category, @Email, @Address, @Phone, @EmpID, @CreateDate, @CreateUser)"
+
+            })
+            {
+                cmd.Parameters.AddWithValue("@CustomerID", vo.CustomerID);
+                cmd.Parameters.AddWithValue("@CustomerPwd", vo.CustomerPwd);
+                cmd.Parameters.AddWithValue("@CustomerName", vo.CustomerName);
+                cmd.Parameters.AddWithValue("@Category", vo.Category);
+                cmd.Parameters.AddWithValue("@Email", vo.Email);
+                cmd.Parameters.AddWithValue("@Address", vo.Address);
+                cmd.Parameters.AddWithValue("@Phone", vo.Phone);
+                cmd.Parameters.AddWithValue("@EmpID", vo.EmpID);
+                cmd.Parameters.AddWithValue("@CreateDate", DateTime.Now);
+                cmd.Parameters.AddWithValue("@CreateUser", vo.CreateUser);
+
+
+                cmd.Connection.Open();
+                int iRowAffect = cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+
+                return (iRowAffect > 0);
+            }
+        }
+
+        public bool UpdateCustomer(CustomerVO vo)
+        {
+            using (SqlCommand cmd = new SqlCommand
+            {
+                Connection = new SqlConnection(strConn),
+                CommandText = @"Update TB_Customer
+                                   set CustomerName =@CustomerName, CustomerPwd = @CustomerPwd, Category = @Category, Email = @Email, Address = @Address, EmpID = @EmpID,
+	                                   ModifyDate = @ModifyDate, ModifyUser = @ModifyUser
+                                 where CustomerID = @CustomerID"
+
+            })
+            {
+                cmd.Parameters.AddWithValue("@CustomerID", vo.CustomerID);
+                cmd.Parameters.AddWithValue("@CustomerPwd", vo.CustomerPwd);
+                cmd.Parameters.AddWithValue("@CustomerName", vo.CustomerName);
+                cmd.Parameters.AddWithValue("@Category", vo.Category);
+                cmd.Parameters.AddWithValue("@Email", vo.Email);
+                cmd.Parameters.AddWithValue("@Address", vo.Address);
+                cmd.Parameters.AddWithValue("@Phone", vo.Phone);
+                cmd.Parameters.AddWithValue("@EmpID", vo.EmpID);
+                cmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
+                cmd.Parameters.AddWithValue("@ModifyUser", vo.ModifyUser);
+
+                cmd.Connection.Open();
+                int iRowAffect = cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+
+                return (iRowAffect > 0);
+            }
+
+        }
+
+        public bool DeleteCustomer(CustomerVO vo)
+        {
+            using (SqlCommand cmd = new SqlCommand
+            {
+                Connection = new SqlConnection(strConn),
+                CommandText = @"Delete from TB_Customer
+                                where CustomerID = @CustomerID"
+
+            })
+            {
+                cmd.Parameters.AddWithValue("@CustomerID", vo.CustomerID);
+
+
+                cmd.Connection.Open();
+                int iRowAffect = cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+
+                return (iRowAffect > 0);
+            }
+
+        }
+
     }
 }
