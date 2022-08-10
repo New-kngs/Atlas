@@ -84,7 +84,9 @@ namespace AltasMES
             }
             else
             {
-                MessageBox.Show("검색 내용이 없습니다.");
+                //MessageBox.Show("검색 내용이 없습니다.");
+                dgvPurchase.DataSource = null;
+                dgvPurchase.ClearSelection();
                 return;
             }
             dgvPurchase.ClearSelection();

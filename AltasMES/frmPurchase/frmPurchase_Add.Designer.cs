@@ -321,6 +321,7 @@ namespace AltasMES
             this.btnModify.Text = "취소";
             this.btnModify.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnModify.UseVisualStyleBackColor = true;
+            this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
             // 
             // groupBox1
             // 

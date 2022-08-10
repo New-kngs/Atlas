@@ -36,18 +36,18 @@ namespace AltasMES
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvPurItem = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtPrice = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtCount = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtCusName = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnModify = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvItem = new System.Windows.Forms.DataGridView();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.txtCusName = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -129,6 +129,7 @@ namespace AltasMES
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.txtCusName);
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Controls.Add(this.textBox1);
             this.groupBox3.Controls.Add(this.label6);
@@ -136,7 +137,6 @@ namespace AltasMES
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Controls.Add(this.txtCount);
             this.groupBox3.Controls.Add(this.label4);
-            this.groupBox3.Controls.Add(this.txtCusName);
             this.groupBox3.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold);
             this.groupBox3.Location = new System.Drawing.Point(5, 8);
             this.groupBox3.Name = "groupBox3";
@@ -144,6 +144,23 @@ namespace AltasMES
             this.groupBox3.TabIndex = 12;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "발주";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(193, 36);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(74, 21);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "거래처명";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(70, 32);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(111, 29);
+            this.textBox1.TabIndex = 8;
             // 
             // label6
             // 
@@ -158,6 +175,7 @@ namespace AltasMES
             // 
             this.txtPrice.Location = new System.Drawing.Point(624, 32);
             this.txtPrice.Name = "txtPrice";
+            this.txtPrice.ReadOnly = true;
             this.txtPrice.Size = new System.Drawing.Size(151, 29);
             this.txtPrice.TabIndex = 6;
             this.txtPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -165,7 +183,7 @@ namespace AltasMES
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(414, 36);
+            this.label5.Location = new System.Drawing.Point(405, 36);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(74, 21);
             this.label5.TabIndex = 5;
@@ -173,8 +191,9 @@ namespace AltasMES
             // 
             // txtCount
             // 
-            this.txtCount.Location = new System.Drawing.Point(491, 32);
+            this.txtCount.Location = new System.Drawing.Point(482, 32);
             this.txtCount.Name = "txtCount";
+            this.txtCount.ReadOnly = true;
             this.txtCount.Size = new System.Drawing.Size(36, 29);
             this.txtCount.TabIndex = 4;
             // 
@@ -183,17 +202,9 @@ namespace AltasMES
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(8, 36);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(74, 21);
+            this.label4.Size = new System.Drawing.Size(59, 21);
             this.label4.TabIndex = 3;
-            this.label4.Text = "거래처명";
-            // 
-            // txtCusName
-            // 
-            this.txtCusName.Location = new System.Drawing.Point(85, 32);
-            this.txtCusName.Name = "txtCusName";
-            this.txtCusName.ReadOnly = true;
-            this.txtCusName.Size = new System.Drawing.Size(121, 29);
-            this.txtCusName.TabIndex = 2;
+            this.label4.Text = "발주ID";
             // 
             // btnAdd
             // 
@@ -247,22 +258,15 @@ namespace AltasMES
             this.dgvItem.RowTemplate.Height = 23;
             this.dgvItem.Size = new System.Drawing.Size(779, 241);
             this.dgvItem.TabIndex = 0;
+            this.dgvItem.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItem_CellClick);
             // 
-            // textBox1
+            // txtCusName
             // 
-            this.textBox1.Location = new System.Drawing.Point(284, 32);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(111, 29);
-            this.textBox1.TabIndex = 8;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(221, 36);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 21);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "발주ID";
+            this.txtCusName.Location = new System.Drawing.Point(270, 32);
+            this.txtCusName.Name = "txtCusName";
+            this.txtCusName.ReadOnly = true;
+            this.txtCusName.Size = new System.Drawing.Size(121, 29);
+            this.txtCusName.TabIndex = 10;
             // 
             // frmPurchase_Modify
             // 
@@ -307,12 +311,12 @@ namespace AltasMES
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtCount;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtCusName;
         protected System.Windows.Forms.Button btnAdd;
         protected System.Windows.Forms.Button btnModify;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dgvItem;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtCusName;
     }
 }
