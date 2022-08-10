@@ -100,7 +100,7 @@ namespace AtlasPOP
             dtpFrom.Value = DateTime.Now.AddDays(-7);
             LoadData();
             cboState.SelectedIndex = 0;
-            this.WindowState = FormWindowState.Minimized;
+            
         }
 
         private void btnClose_Click(object sender, EventArgs e)

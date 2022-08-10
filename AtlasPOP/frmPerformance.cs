@@ -32,10 +32,10 @@ namespace AtlasPOP
         ThreadPLCTask m_thread;
         LoggingUtility m_log;
         popServiceHelper service;
-
+        AtlasPOP main;
 
         public OperationVO oper { get; set; }
-        public frmPerformance(string task, string IP, string Port, OperationVO oper,int processid)
+        public frmPerformance(string task, string IP, string Port, OperationVO oper,int processid, AtlasPOP main)
         {
             InitializeComponent();
             this.oper = oper;
@@ -44,6 +44,7 @@ namespace AtlasPOP
             hostPort = int.Parse(Port);
             taskID = task;
             service = new popServiceHelper("");
+            this.main = main;
 
             timer_CONNECT = timer_Connec.Interval = int.Parse(ConfigurationManager.AppSettings["timer_Connect"]);
             timer_KeepAlive = int.Parse(ConfigurationManager.AppSettings["timer_KeepAlive"]);
@@ -89,17 +90,16 @@ namespace AtlasPOP
             else
                 totfail = 4;
             
-            txtFail.Text = totfail.ToString();
+            this.Invoke((MethodInvoker)(()=> txtFail.Text = totfail.ToString()));
 
             if (Convert.ToInt32(datas[0]) <= (Convert.ToInt32(txtTotQty.Text)+totfail))
             {
                 DialogResult result = MessageBox.Show("작업이 끝났습니다", "작업 종료", MessageBoxButtons.OK);
-                if(result == DialogResult.OK)
-                {
-                    AtlasPOP main = new AtlasPOP();
-                    main.Finish(totQty, totfail, procID);
-                    this.Close();
+                if (result == DialogResult.OK)
+                {                     
+                    main.Finish(totQty, totfail, hostPort.ToString());
                     timer_Connec.Stop();
+                    this.Close();
                 }
             }
         }

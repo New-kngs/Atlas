@@ -57,7 +57,7 @@ namespace AtlasPOP
                 {
                     string IsDept = empList.Data.Find((d) => d.EmpID.Equals(txtID.Text)).DeptName;
 
-                    if (!IsDept.Equals("생산"))
+                    if (!IsDept.Equals("생산부서"))
                     {
                         MessageBox.Show("생산부서만 로그인 가능합니다.");
                         return;

@@ -535,7 +535,7 @@ namespace AtlasMVCAPI.Models
             using (SqlCommand cmd = new SqlCommand
             {
                 Connection = new SqlConnection(strConn),
-                CommandText = @"update TB_Operation set OpState = '작업종료', CompleteQty = @CompleteQty, FailQty = @FailQty, ModifyUser = @ModifyUser, ModifyDate = @ModifyDate, EndDate = @EndDate
+                CommandText = @"update TB_Operation set OpState = '작업종료', CompleteQty = @CompleteQty, FailQty = @FailQty,PutInYN = 'Y', ModifyUser = @ModifyUser, ModifyDate = @ModifyDate, EndDate = @EndDate
                                 where OpID = @OpID"
             })
             {

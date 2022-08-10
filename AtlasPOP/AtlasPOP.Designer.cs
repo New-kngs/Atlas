@@ -31,6 +31,7 @@ namespace AtlasPOP
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AtlasPOP));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblDept = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -67,7 +68,6 @@ namespace AtlasPOP
             this.btnStart = new System.Windows.Forms.Button();
             this.btnEnd = new System.Windows.Forms.Button();
             this.btnResource = new System.Windows.Forms.Button();
-            this.lblDept = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -85,6 +85,11 @@ namespace AtlasPOP
             this.panel1.Controls.Add(this.menuStrip1);
             resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
+            // 
+            // lblDept
+            // 
+            resources.ApplyResources(this.lblDept, "lblDept");
+            this.lblDept.Name = "lblDept";
             // 
             // pictureBox2
             // 
@@ -354,11 +359,6 @@ namespace AtlasPOP
             this.btnResource.Name = "btnResource";
             this.btnResource.UseVisualStyleBackColor = false;
             this.btnResource.Click += new System.EventHandler(this.btnResource_Click_1);
-            // 
-            // lblDept
-            // 
-            resources.ApplyResources(this.lblDept, "lblDept");
-            this.lblDept.Name = "lblDept";
             // 
             // AtlasPOP
             // 

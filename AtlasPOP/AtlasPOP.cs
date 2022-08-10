@@ -14,18 +14,18 @@ namespace AtlasPOP
 {
     public partial class AtlasPOP : Form
     {
-        public string User { get; set; }
         public OperationVO Oper { get; set; }
-        int process_id = 0;
-        int qty;
-        int failqty;
+        public string User { get; set; }
+        public string Dept { get; set; }
 
         popServiceHelper service = null;
         ResMessage<List<OrderVO>> oderList;
         ResMessage<List<CustomerVO>> customerList;
-        frmPerformance frmPerf = null;
+        ResMessage<List<ItemVO>> itemList;
+        List<frmPerformance> frmPerfLST = null;
+        Dictionary<string, int> pocess_idLst = null;
         frmOperation frmoper = null;
-
+        
 
         public AtlasPOP()
         {
@@ -35,20 +35,24 @@ namespace AtlasPOP
         private void AtlasPOP_Load(object sender, EventArgs e)
         {
             this.Visible = false;
+            tableLayoutPanel1.Visible = false;
+            frmPerfLST = new List<frmPerformance>();
+            pocess_idLst = new Dictionary<string, int>();  
+
             frmLogin login = new frmLogin();
             if(login.ShowDialog() == DialogResult.OK)
             {
-                MessageBox.Show("환영합니다.");
                 this.Visible = true;
+                User = login.UserName;
+                Dept = login.DeptName;
+                lblDept.Text = $"[{User}]{Dept}님 ";
             }
 
-            
-            lblDept.Text = $"[{login.DeptName}]{login.UserName}님 ";
             service = new popServiceHelper("");
             oderList = service.GetAsync<List<OrderVO>>("api/pop/GetCustomer");
             customerList = service.GetAsync<List<CustomerVO>>("api/pop/GetCustomerName");
-            tableLayoutPanel1.Visible = false;
-
+            itemList = service.GetAsync<List<ItemVO>>("api/Item/AllItem");
+          
             ShowfrmOper();
         }
         public void ShowfrmOper()
@@ -79,6 +83,7 @@ namespace AtlasPOP
             lblEnd.Text = Oper.EndDate;
             lblEmp.Text = Oper.EmpID;
         }
+
         /// <summary>
         /// 작업지시폼에서 데이터 받아오기
         /// </summary>
@@ -125,25 +130,29 @@ namespace AtlasPOP
             {
                 MessageBox.Show("시스템에 오류가 발생하였습니다.");
             }
+
             string server = Application.StartupPath + "\\VirtualPLCMachin.exe";
 
             string ip = "127.0.0.1";
             string port = Oper.port;
             string name = Oper.ProcessID.ToString();
 
-
             Process pro = Process.Start(server, $"{name} {ip} {port} {Oper.PlanQty.ToString()}");
-            process_id = pro.Id;
-            
+            int process_id = pro.Id;
+            pocess_idLst[port]= process_id;
 
-            frmPerf = new frmPerformance(name, ip, port, Oper, process_id);
+            frmPerformance frmPerf = new frmPerformance(name, ip, port, Oper, process_id, this);
+            frmPerf.Tag = port;
+            frmPerfLST.Add(frmPerf);
+
             frmPerf.Show();
             frmPerf.Hide();
             frmoper.LoadData();
         }
 
-        public void Finish(int qty, int failqty, int processID)
+        public void Finish(int qty, int failqty, string port)
         {
+            int processID = pocess_idLst[port];
             foreach (Process proc in Process.GetProcesses())
             {
                 if (proc.Id.Equals(processID))
@@ -153,52 +162,66 @@ namespace AtlasPOP
             }
             Oper.CompleteQty = qty;
             Oper.FailQty = failqty;
-            this.qty = qty;
-            this.failqty = failqty;
 
             ResMessage<List<OperationVO>> finish = service.PostAsync<OperationVO, List<OperationVO>>("api/pop/UdateFinish", Oper);
             if (finish.ErrCode == 0)
             {
-                MessageBox.Show($"총{qty} 개의 제품이 생산되었고 {failqty}개의 불량이 발생하였습니다.");
-                ResMessage<List<OperationVO>> State = service.PostAsync<string, List<OperationVO>>($"api/pop/UpdatePutInYN/{Oper.OpID}", Oper.OpID);
-                if (State.ErrCode == 0)
-                    MessageBox.Show("창고에 입고가 완료 되었습니다.");
-                else
+                for (int i = 0; i <= frmPerfLST.Count; i++)
                 {
-                    MessageBox.Show("입고 중 문제가 발생하였습니다.");
-                    return;
+                    if (frmPerfLST[i].Tag.ToString() == Oper.port)
+                    {
+                        frmPerfLST[i].Close();
+                        frmPerfLST.RemoveAt(i);
+                    }
                 }
             }
             else
             {
-                MessageBox.Show("종료 중 문제 발생");
+                MessageBox.Show("종료 중 문제가 발생하였습니다.");
             }
+            
         }
 
-        /// <summary>
-        /// 종료버튼 클릭 -> 작업종료
-        /// </summary>
-        /// <param name="qty"></param>
-        /// <param name="failqty"></param>
         private void btnEnd_Click(object sender, EventArgs e)
         {
+            if(Oper == null)
+            {
+                MessageBox.Show("작업을 선택해주세요.");
+                return;
+            }
+            if (!Oper.OpState.Equals("작업중"))
+            {
+                MessageBox.Show("작업중이지 않습니다. ");
+                return;
+            }
             if (Oper.PutInYN.Equals("Y"))
             {
                 MessageBox.Show("이미 종료된 작업입니다.");
                 return;
             }
 
-            ResMessage<List<ItemVO>> itemList = service.GetAsync<List<ItemVO>>("api/Item/AllItem");
             ItemVO Item = new ItemVO()
             {
                 CurrentQty = itemList.Data.Find((f) => f.ItemID == Oper.ItemID).CurrentQty + Oper.CompleteQty,
-                ModifyUser = "강지모",
+                ModifyUser = User,
                 ItemID = Oper.ItemID
             };
             ResMessage<List<ItemVO>> putIn = service.PostAsync<ItemVO, List<ItemVO>>("api/pop/PutInItem", Item);
+
             if (putIn.ErrCode == 0)
+                MessageBox.Show($"총{Oper.CompleteQty} 개의 제품이 생산되었고 {Oper.FailQty}개의 불량이 발생하였습니다.");
+
+            else
             {
-                
+                MessageBox.Show("종료 중 문제 발생");
+            }
+            for (int i = 0; i <= frmPerfLST.Count; i++)
+            {
+                if (frmPerfLST[i].Tag.ToString() == Oper.port)
+                {
+                    frmPerfLST[i].Close();
+                    frmPerfLST.RemoveAt(i);
+                }
             }
             frmoper.LoadData();
         }
@@ -270,15 +293,15 @@ namespace AtlasPOP
                 MessageBox.Show("작업을 선택해주세요.");
                 return;
             }
-            if (frmPerf == null)
+            if (frmPerfLST == null)
             {
                 MessageBox.Show("작업중이지 않습니다.");
                 return;
             }
 
-            frmPerf.TopMost = true;
-            frmPerf.Show();           
-            frmPerf.BringToFront();
+            frmPerfLST[0].TopMost = true;
+            frmPerfLST[0].Show();
+            frmPerfLST[0].BringToFront();
         }
     }
 }
