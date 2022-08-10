@@ -348,6 +348,14 @@ namespace AltasMES
             if (MessageBox.Show("로그아웃 하시겠습니까?", "로그아웃", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 this.Hide();
+                
+                if (TabControl1.Controls.Count > 0)
+                {
+                    foreach (var item in this.MdiChildren)
+                    {
+                        item.Close();
+                    }
+                }
                 TabControl1.Controls.Clear();
                 panel2.Controls.Clear();
                 timer1.Stop();
@@ -363,7 +371,7 @@ namespace AltasMES
                 else
                 {
                     this.Show();
-                    this.WindowState = FormWindowState.Maximized;
+                   
 
 
                     toolStripLblUser.Text = "사용자 : " + EmpName;
