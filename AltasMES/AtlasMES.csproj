@@ -195,6 +195,12 @@
     <Compile Include="frmFail\frmFail.Designer.cs">
       <DependentUpon>frmFail.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmFail\frmFail11.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFail\frmFail11.Designer.cs">
+      <DependentUpon>frmFail11.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmItem\frmItem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -410,6 +416,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmFail\frmFail.resx">
       <DependentUpon>frmFail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFail\frmFail11.resx">
+      <DependentUpon>frmFail11.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmItem\frmItem.resx">
       <DependentUpon>frmItem.cs</DependentUpon>
