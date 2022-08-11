@@ -60,9 +60,15 @@
                 <!-- /.col -->
                 <div class="col-sm-4 invoice-col">
                     <!--<b>Invoice #007612</b><br>
-                    <br>-->
+    <br>-->
                     <b>Order ID: @ViewData["OrderID"]</b><br>
-                    <b> 출력일자:</b> @DateTime.Now.Date<br>
+                    <b> 출력일자:</b> @DateTime.Now.ToString("yyyy-MM-dd")<br>
+                    @if (ViewData["EndDate"] != null)
+                    {
+                        <b>배송일자:</b>@ViewData["EndDate"].ToString()
+                        <br />
+                        <button type="button" class="btn btn-danger" >주문완료</button>
+                    }
                     <!-- <b>Account:</b> 968-34567 -->
                 </div>
                 <!-- /.col -->

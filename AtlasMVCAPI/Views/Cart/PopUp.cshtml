@@ -28,25 +28,30 @@
                 <hr />
                 <h5>Size </h5>
                 @{ string[] disable = { "disabled", "disabled", "disabled", "disabled" };}
+                @{ string[] color = { "light", "light", "light", "light" };}
                 @switch (Model.Product.ItemSize)
                 {
                     case "S":
                         disable[0] = "";
+                        color[0] = "primary";
                         break;
                     case "D":
-                        disable[1] = "";
+                        disable[1] = "primary";
+                        color[1] = "primary";
                         break;
                     case "Q":
-                        disable[2] = "";
+                        disable[2] = "primary";
+                        color[2] = "primary";
                         break;
                     default:
                         disable[3] = "";
+                        color[3] = "primary";
                         break;
                 }
-                <button type="button" class="btn btn-light" @disable[0]><h5>S</h5><h6>Small</h6> </button>
-                <button type="button" class="btn btn-light" @disable[1]><h5>D</h5><h6>Double</h6></button>
-                <button type="button" class="btn btn-light" @disable[2]><h5>Q</h5><h6>Queen</h6></button>
-                <button type="button" class="btn btn-light" @disable[3]><h5>K</h5><h6>King</h6></button>
+                <button type="button" class="btn btn-@color[0]" @disable[0]><h5>S</h5><h6>Small</h6> </button>
+                <button type="button" class="btn btn-@color[1]" @disable[1]><h5>D</h5><h6>Double</h6></button>
+                <button type="button" class="btn btn-@color[2]" @disable[2]><h5>Q</h5><h6>Queen</h6></button>
+                <button type="button" class="btn btn-@color[3]" @disable[3]><h5>K</h5><h6>King</h6></button>
                 <hr />
                 <div class="col">
                     <div class="p-3 border bg-light"><h5 style="text-align: right;">@Model.Product.ItemPrice.ToString("c")</h5> </div>
@@ -56,14 +61,14 @@
         <br /><br /> @*style="border-top-width: 3px; border-top-color: dodgerblue; "*@
         <div class="row" style="border: 2px solid #EFEFEF; padding-top:1em;">
             <div class="col-3">
-                    <button class="btn btn-outline-secondary" style="margin: auto; display: block;" disabled>구성품</button>
+                    <button class="btn btn-outline-secondary" style="margin: auto; display: block;" disabled>상세보기</button>
             </div>
             <div class="col-9" data-spy="scroll">
                         <table class="table">
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col"></th>
-                                    <th scope="col">이름
+                                    <th scope="col">구성품
                                     </th>
                                     <th scope="col">수량</th>
                                 </tr>
