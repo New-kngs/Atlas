@@ -172,12 +172,8 @@ namespace AtlasPOP
             ResMessage<List<OperationVO>> finish = service.PostAsync<OperationVO, List<OperationVO>>("api/pop/UdateFinish", Oper);
             if (finish.ErrCode == 0)
             {
-                for (int i = 0; i <= frmPerfLST.Count; i++)
-                {
-                    frmPerfLST[Oper.port].Close();
-                    frmPerfLST.Remove(Oper.port);
-                }
-                
+                frmPerfLST.Remove(Oper.port);
+                frmPerfLST[Oper.port].Close();
             }
             else
             {
@@ -211,15 +207,22 @@ namespace AtlasPOP
                 ItemID = Oper.ItemID
             };
             ResMessage<List<ItemVO>> putIn = service.PostAsync<ItemVO, List<ItemVO>>("api/pop/PutInItem", Item);
-            
-            for (int i = 0; i <= frmPerfLST.Count; i++)
+            if (putIn.ErrCode == 0)
             {
-
-                frmPerfLST[Oper.port].Close();
-                frmPerfLST.Remove(Oper.port);
-
+                MessageBox.Show("작업을 종료합니다");
+                frmoper.LoadData();
             }
-            frmoper.LoadData();
+            else
+            {
+                MessageBox.Show("종료 중 문제가 발생하였습니다.");
+            }
+
+
+            frmPerfLST[Oper.port].Close();
+            frmPerfLST.Remove(Oper.port);
+
+
+
         }
 
         private void btnFail_Click(object sender, EventArgs e)

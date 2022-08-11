@@ -71,16 +71,6 @@ namespace AtlasPOP
         }
         private void btnSearch_Click(object sender, EventArgs e)
         {
-/*            searchList = service.GetAsync<List<OperationVO>>("api/pop/SearchOper/"+ dtpFrom.Value.ToShortDateString() +  "/" + dtpTo.Value.ToShortDateString());
-            if (searchList.Data != null)
-            {
-                dgvList.DataSource = new popAdvancedList<OperationVO>(searchList.Data);
-            }
-            else
-            {
-                MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
-            }
-            dgvList.ClearSelection();*/
 
 
 
