@@ -152,7 +152,7 @@ where OD.OrderID = @OrderID";
                 return listOrderDetail;
             }
         }
-        // 고객사에게 주문내역(구매내역)을 보여준다
+        // 고객사에게 주문내역(구매내역)을 보여준다 (작성자-지현)
         public List<OrderVO> OrderListView(string CustomerID)
         {
             using (SqlCommand cmd = new SqlCommand())
@@ -176,6 +176,21 @@ order by A.CreateDate desc";
                 cmd.Connection.Close();
 
                 return list;
+            }
+        }
+        // 주문번호에 해당되는 배송일자를 가져온다 (작성자-지현)
+        public string GetOrderEndDate(string OrderID)
+        {
+            using(SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.CommandText = @"select cast(OrderEndDate as Date) OrderEndDate 
+                                    from TB_Order 
+                                    where OrderID = @OrderID ";
+                
+                cmd.Parameters.AddWithValue("@OrderID", OrderID);
+                cmd.Connection.Open();
+                return cmd.ExecuteScalar().ToString();
             }
         }
     }

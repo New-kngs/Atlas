@@ -37,6 +37,10 @@ namespace AtlasMVCAPI.Controllers
             OrderDAC db = new OrderDAC();
             List<OrderDetailLongVO> model = db.GetOrderDetails(rdoCheck);
             ViewData["OrderID"] = rdoCheck;
+
+            string endDate = db.GetOrderEndDate(rdoCheck);
+            ViewData["EndDate"] = endDate.Substring(0, 10);
+
             return View(model);
         }
     }

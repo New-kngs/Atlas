@@ -54,11 +54,6 @@
                                     <div class="text-right">
                                         <input type="submit" value="카트담기" class="btn btn-primary" /> <!-- onclick="MessageBox(); -->
                                     </div>
-                                    @*<script>
-                                    function MessageBox() {
-                                        alert("@Model.Products.ToList()[i].ItemName 제품이 카트에 담겼습니다.");
-                                    }
-                                </script>*@
                                 }
 
                                 </div>
@@ -86,7 +81,7 @@
                                             <input type="button" value="상세보기" class="btn btn-outline-primary" onclick='javascript:window.open("/Cart/Popup?productID=@Model.Products.ToList()[i + 1].ItemID", "PopupWin", "width=900,height=600")' />
                                         </div>
                                         <br />
-                                        <form action="/Cart/AddToCart" method="post">
+                                        <form action="/Product/AddToCart" method="post">
                                             @Html.Hidden("productID", Model.Products.ToList()[i + 1].ItemID)
                                             @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
                                             <div class="text-right">
@@ -99,8 +94,6 @@
                         </div>
                     }
                 </div>
-            
-            }
         </div>
         }
     </div>

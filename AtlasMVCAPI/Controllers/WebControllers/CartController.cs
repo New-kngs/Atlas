@@ -40,27 +40,27 @@ namespace AtlasMVCAPI.Controllers
             return PartialView(model);
         }
 
-        [HttpPost]
-        public ActionResult AddToCart(string productID, string returnUrl)
-        {
-            if (!string.IsNullOrEmpty(returnUrl))
-            {
-                Session["returnUrl"] = returnUrl;
-            }
+        //[HttpPost]
+        //public ActionResult AddToCart(string productID, string returnUrl)
+        //{
+        //    if (!string.IsNullOrEmpty(returnUrl))
+        //    {
+        //        Session["returnUrl"] = returnUrl;
+        //    }
 
-            ItemDAC db = new ItemDAC();
-            ItemVO product = db.GetProductInfo(productID);
+        //    ItemDAC db = new ItemDAC();
+        //    ItemVO product = db.GetProductInfo(productID);
 
-            if (product != null) // 조회된 제품이 없다면
-            {
-                // 장바구니 추가
-                Cart cart = GetCart();
-                cart.AddOnceItem(product, 1);
-                Session["Cart"] = cart;
-            }
-            // 장바구니 페이지로 이동
-            return RedirectToAction("Basket");
-        }
+        //    if (product != null) // 조회된 제품이 없다면
+        //    {
+        //        // 장바구니 추가
+        //        Cart cart = GetCart();
+        //        cart.AddOnceItem(product, 1);
+        //        Session["Cart"] = cart;
+        //    }
+        //    // 장바구니 페이지로 이동
+        //    return RedirectToAction("Basket");
+        //}
         [HttpPost]
         public ActionResult RemoveToCart(string productID)
         {
