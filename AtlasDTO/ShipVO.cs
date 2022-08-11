@@ -12,7 +12,7 @@ namespace AtlasDTO
 
         public string CustomerName { get; set; }
 
-        public string BarCodeID { get; set; }
+        public int BarCodeID { get; set; }
 
         public string OrderShip { get; set; }
 

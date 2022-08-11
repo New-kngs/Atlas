@@ -1,7 +1,7 @@
 ﻿
 namespace AltasMES
 {
-    partial class frmFail
+    partial class frmFail11
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace AltasMES
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmFail));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmFail11));
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvList = new System.Windows.Forms.DataGridView();
             this.BasePanel1.SuspendLayout();

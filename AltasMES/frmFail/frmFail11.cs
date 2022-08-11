@@ -11,10 +11,10 @@ using System.Windows.Forms;
 
 namespace AltasMES
 {
-    public partial class frmFail : BaseForm
+    public partial class frmFail11 : BaseForm
     {
         ServiceHelper service = null;
-        public frmFail()
+        public frmFail11()
         {
             InitializeComponent();
         }
