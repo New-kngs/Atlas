@@ -1,5 +1,5 @@
 ﻿@model ProductListViewModel
-@using AtlasMVCAPI.Models
+@using AtlasMVCAPI.Models;
 
 @{
     ViewBag.Title = "List";
@@ -73,7 +73,7 @@
                         <div class="card mb-3">
                             <div class="row no-gutters">
                                 <div class="col-md-7">
-                                    <img src="~/Uploads/@Model.Products.ToList()[i+1].ItemImage" alt="@Model.Products.ToList()[i+1].ItemImage" style="width:300px;height:300px">
+                                    <img src="~/Uploads/@Model.Products.ToList()[i + 1].ItemImage" alt="@Model.Products.ToList()[i + 1].ItemImage" style="width:300px;height:300px">
                                 </div>
                                 <div class="col-md-5">
                                     <div class="card-body">
@@ -83,7 +83,7 @@
                                         <hr />
 
                                         <div class="text-right">
-                                            <input type="button" value="상세보기" class="btn btn-outline-primary" onclick='javascript:window.open("/Cart/Popup?productID=@Model.Products.ToList()[i+1].ItemID", "PopupWin", "width=900,height=600")' />
+                                            <input type="button" value="상세보기" class="btn btn-outline-primary" onclick='javascript:window.open("/Cart/Popup?productID=@Model.Products.ToList()[i + 1].ItemID", "PopupWin", "width=900,height=600")' />
                                         </div>
                                         <br />
                                         <form action="/Cart/AddToCart" method="post">
@@ -99,9 +99,10 @@
                         </div>
                     }
                 </div>
-
+            
             }
         </div>
+        }
     </div>
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">

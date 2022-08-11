@@ -107,5 +107,20 @@ namespace AtlasMVCAPI.Controllers
             Session["Cart"] = null; // 주문이 완료되었으므로, 카트에 담긴 상품을 비웁니다.
             return RedirectToAction("History","OrderWeb");
         }
+
+        public ActionResult UpdateQty(string UP_Prod, string UP_Qty)
+        {
+            Cart cart = Session["Cart"] as Cart;
+            string prod_id = UP_Prod;
+            int qty = Convert.ToInt32(UP_Qty);
+
+            CartLine line = cart.Lines.Where<CartLine>((p) => p.Product.ItemID.Equals(prod_id)).FirstOrDefault();
+            if (line != null)
+            {
+                line.Qty = qty;
+                Session["Cart"] = cart;
+            }
+            return RedirectToAction("Basket");
+        }
     }
 }
