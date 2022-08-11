@@ -17,6 +17,6 @@ namespace AtlasMVCAPI.Models
             strConn = WebConfigurationManager.ConnectionStrings["DB"].ConnectionString;
         }
 
-        public List<PlanVO> 
+        //public List<PlanVO> 
     }
 }

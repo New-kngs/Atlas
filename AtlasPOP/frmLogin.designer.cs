@@ -46,9 +46,10 @@ namespace AtlasPOP
             // txtID
             // 
             this.txtID.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.txtID.Location = new System.Drawing.Point(107, 170);
+            this.txtID.Location = new System.Drawing.Point(122, 212);
+            this.txtID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(200, 32);
+            this.txtID.Size = new System.Drawing.Size(228, 38);
             this.txtID.TabIndex = 0;
             // 
             // contextMenuStrip1
@@ -60,17 +61,20 @@ namespace AtlasPOP
             // txtPWD
             // 
             this.txtPWD.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.txtPWD.Location = new System.Drawing.Point(107, 233);
+            this.txtPWD.Location = new System.Drawing.Point(122, 291);
+            this.txtPWD.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPWD.Name = "txtPWD";
-            this.txtPWD.Size = new System.Drawing.Size(200, 32);
+            this.txtPWD.PasswordChar = '*';
+            this.txtPWD.Size = new System.Drawing.Size(228, 38);
             this.txtPWD.TabIndex = 1;
             // 
             // btnLogin
             // 
             this.btnLogin.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnLogin.Location = new System.Drawing.Point(107, 290);
+            this.btnLogin.Location = new System.Drawing.Point(122, 362);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(85, 50);
+            this.btnLogin.Size = new System.Drawing.Size(97, 62);
             this.btnLogin.TabIndex = 2;
             this.btnLogin.Text = "로그인";
             this.btnLogin.UseVisualStyleBackColor = true;
@@ -79,9 +83,10 @@ namespace AtlasPOP
             // panel1
             // 
             this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Location = new System.Drawing.Point(108, 26);
+            this.panel1.Location = new System.Drawing.Point(123, 32);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(198, 101);
+            this.panel1.Size = new System.Drawing.Size(226, 126);
             this.panel1.TabIndex = 4;
             // 
             // pictureBox1
@@ -90,8 +95,9 @@ namespace AtlasPOP
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Image = global::AtlasPOP.Properties.Resources.AtlasLogo_Black;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(198, 101);
+            this.pictureBox1.Size = new System.Drawing.Size(226, 126);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -100,9 +106,9 @@ namespace AtlasPOP
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.Location = new System.Drawing.Point(43, 175);
+            this.label1.Location = new System.Drawing.Point(49, 219);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 21);
+            this.label1.Size = new System.Drawing.Size(72, 28);
             this.label1.TabIndex = 5;
             this.label1.Text = "아이디";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -111,9 +117,9 @@ namespace AtlasPOP
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.Location = new System.Drawing.Point(27, 240);
+            this.label2.Location = new System.Drawing.Point(31, 300);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 21);
+            this.label2.Size = new System.Drawing.Size(92, 28);
             this.label2.TabIndex = 5;
             this.label2.Text = "비밀번호";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -121,9 +127,10 @@ namespace AtlasPOP
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnClose.Location = new System.Drawing.Point(221, 290);
+            this.btnClose.Location = new System.Drawing.Point(253, 362);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(85, 50);
+            this.btnClose.Size = new System.Drawing.Size(97, 62);
             this.btnClose.TabIndex = 3;
             this.btnClose.Text = "종료";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -131,10 +138,10 @@ namespace AtlasPOP
             // 
             // frmLogin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
-            this.ClientSize = new System.Drawing.Size(413, 385);
+            this.ClientSize = new System.Drawing.Size(472, 481);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
@@ -143,6 +150,7 @@ namespace AtlasPOP
             this.Controls.Add(this.txtPWD);
             this.Controls.Add(this.txtID);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmLogin";

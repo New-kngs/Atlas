@@ -16,8 +16,7 @@ namespace AtlasPOP
     {
         public DataGetEventHandler DataSendEvent;
         popServiceHelper service = null;
-        ResMessage<List<OperationVO>> operList;
-        ResMessage<List<OperationVO>> searchList;
+        ResMessage<List<OperationVO>> searchList = null;
         public bool IsState { get; set; }
 
         public frmOperation()
@@ -46,15 +45,13 @@ namespace AtlasPOP
             dgvList.ClearSelection();
             dgvList.MultiSelect = false;
 
-
             string[] combo = {"전체", "작업대기", "작업중", "작업종료" };
             cboState.Items.AddRange(combo);
             cboState.SelectedIndex = 0;
             dtpTo.Value = DateTime.Now;
             dtpFrom.Value = DateTime.Now.AddDays(-7);
 
-            LoadData();
-            
+            LoadData();   
         }
         public void LoadData()
         {
@@ -71,9 +68,6 @@ namespace AtlasPOP
         }
         private void btnSearch_Click(object sender, EventArgs e)
         {
-
-
-
             switch (cboState.Text)
             {
                 case "전체":
@@ -89,20 +83,12 @@ namespace AtlasPOP
             dtpTo.Value = DateTime.Now;
             dtpFrom.Value = DateTime.Now.AddDays(-7);
             LoadData();
-            cboState.SelectedIndex = 0;
-            
+            cboState.SelectedIndex = 0;   
         }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void dgvList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             loadDetails();
         }
-
         public void loadDetails()
         {
             OperationVO oper = new OperationVO()

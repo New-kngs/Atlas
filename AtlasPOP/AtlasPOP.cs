@@ -172,8 +172,8 @@ namespace AtlasPOP
             ResMessage<List<OperationVO>> finish = service.PostAsync<OperationVO, List<OperationVO>>("api/pop/UdateFinish", Oper);
             if (finish.ErrCode == 0)
             {
-                frmPerfLST.Remove(Oper.port);
                 frmPerfLST[Oper.port].Close();
+                frmPerfLST.Remove(Oper.port);
             }
             else
             {
@@ -217,12 +217,9 @@ namespace AtlasPOP
                 MessageBox.Show("종료 중 문제가 발생하였습니다.");
             }
 
-
             frmPerfLST[Oper.port].Close();
             frmPerfLST.Remove(Oper.port);
-
-
-
+            
         }
 
         private void btnFail_Click(object sender, EventArgs e)
