@@ -39,8 +39,10 @@ namespace AtlasMVCAPI.Controllers
             ViewData["OrderID"] = rdoCheck;
 
             string endDate = db.GetOrderEndDate(rdoCheck);
-            ViewData["EndDate"] = endDate.Substring(0, 10);
-
+            if(endDate.Length > 0)
+            {
+                ViewData["EndDate"] = endDate.Substring(0, 10);
+            }
             return View(model);
         }
     }

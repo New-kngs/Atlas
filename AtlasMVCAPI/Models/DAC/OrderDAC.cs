@@ -190,7 +190,10 @@ order by A.CreateDate desc";
                 
                 cmd.Parameters.AddWithValue("@OrderID", OrderID);
                 cmd.Connection.Open();
-                return cmd.ExecuteScalar().ToString();
+                string strReturn = cmd.ExecuteScalar().ToString();
+                cmd.Connection.Close();
+
+                return strReturn;
             }
         }
     }
