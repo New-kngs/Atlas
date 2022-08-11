@@ -32,7 +32,6 @@ namespace AltasMES
             {
                 this.Close();
                 Application.Exit();
-
             }
 
             else

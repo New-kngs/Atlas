@@ -22,10 +22,11 @@ namespace AtlasPOP
         ResMessage<List<OrderVO>> oderList;
         ResMessage<List<CustomerVO>> customerList;
         ResMessage<List<ItemVO>> itemList;
-        List<frmPerformance> frmPerfLST = null;
+
+        Dictionary<string, frmPerformance> frmPerfLST = null;
         Dictionary<string, int> pocess_idLst = null;
         frmOperation frmoper = null;
-        
+
 
         public AtlasPOP()
         {
@@ -36,23 +37,26 @@ namespace AtlasPOP
         {
             this.Visible = false;
             tableLayoutPanel1.Visible = false;
-            frmPerfLST = new List<frmPerformance>();
-            pocess_idLst = new Dictionary<string, int>();  
+            frmPerfLST = new Dictionary<string, frmPerformance>();
+            pocess_idLst = new Dictionary<string, int>();
 
             frmLogin login = new frmLogin();
-            if(login.ShowDialog() == DialogResult.OK)
+            if (login.ShowDialog(this) == DialogResult.OK)
             {
                 this.Visible = true;
-                User = login.UserName;
-                Dept = login.DeptName;
-                lblDept.Text = $"[{User}]{Dept}님 ";
+                lblDept.Text = $"[{Dept}]{User}님 ";
             }
+            else
+            {
+                Application.Exit();
+            }
+
 
             service = new popServiceHelper("");
             oderList = service.GetAsync<List<OrderVO>>("api/pop/GetCustomer");
             customerList = service.GetAsync<List<CustomerVO>>("api/pop/GetCustomerName");
             itemList = service.GetAsync<List<ItemVO>>("api/Item/AllItem");
-          
+
             ShowfrmOper();
         }
         public void ShowfrmOper()
@@ -138,12 +142,14 @@ namespace AtlasPOP
             string name = Oper.ProcessID.ToString();
 
             Process pro = Process.Start(server, $"{name} {ip} {port} {Oper.PlanQty.ToString()}");
+
             int process_id = pro.Id;
-            pocess_idLst[port]= process_id;
+            pocess_idLst[port] = process_id;
+
 
             frmPerformance frmPerf = new frmPerformance(name, ip, port, Oper, process_id, this);
             frmPerf.Tag = port;
-            frmPerfLST.Add(frmPerf);
+            frmPerfLST[port] = frmPerf;
 
             frmPerf.Show();
             frmPerf.Hide();
@@ -168,23 +174,21 @@ namespace AtlasPOP
             {
                 for (int i = 0; i <= frmPerfLST.Count; i++)
                 {
-                    if (frmPerfLST[i].Tag.ToString() == Oper.port)
-                    {
-                        frmPerfLST[i].Close();
-                        frmPerfLST.RemoveAt(i);
-                    }
+                    frmPerfLST[Oper.port].Close();
+                    frmPerfLST.Remove(Oper.port);
                 }
+                
             }
             else
             {
                 MessageBox.Show("종료 중 문제가 발생하였습니다.");
             }
-            
+
         }
 
         private void btnEnd_Click(object sender, EventArgs e)
         {
-            if(Oper == null)
+            if (Oper == null)
             {
                 MessageBox.Show("작업을 선택해주세요.");
                 return;
@@ -207,21 +211,13 @@ namespace AtlasPOP
                 ItemID = Oper.ItemID
             };
             ResMessage<List<ItemVO>> putIn = service.PostAsync<ItemVO, List<ItemVO>>("api/pop/PutInItem", Item);
-
-            if (putIn.ErrCode == 0)
-                MessageBox.Show($"총{Oper.CompleteQty} 개의 제품이 생산되었고 {Oper.FailQty}개의 불량이 발생하였습니다.");
-
-            else
-            {
-                MessageBox.Show("종료 중 문제 발생");
-            }
+            
             for (int i = 0; i <= frmPerfLST.Count; i++)
             {
-                if (frmPerfLST[i].Tag.ToString() == Oper.port)
-                {
-                    frmPerfLST[i].Close();
-                    frmPerfLST.RemoveAt(i);
-                }
+
+                frmPerfLST[Oper.port].Close();
+                frmPerfLST.Remove(Oper.port);
+
             }
             frmoper.LoadData();
         }
@@ -288,7 +284,7 @@ namespace AtlasPOP
 
         private void btnState_Click(object sender, EventArgs e)
         {
-            if(Oper == null)
+            if (Oper == null)
             {
                 MessageBox.Show("작업을 선택해주세요.");
                 return;
@@ -299,9 +295,9 @@ namespace AtlasPOP
                 return;
             }
 
-            frmPerfLST[0].TopMost = true;
-            frmPerfLST[0].Show();
-            frmPerfLST[0].BringToFront();
+            //frmPerfLST[Oper.port].TopMost = true;
+            frmPerfLST[Oper.port].Show();
+            frmPerfLST[Oper.port].BringToFront();
         }
     }
 }

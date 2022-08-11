@@ -38,6 +38,7 @@ namespace AtlasPOP
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnClose = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -62,15 +63,15 @@ namespace AtlasPOP
             this.txtPWD.Location = new System.Drawing.Point(107, 233);
             this.txtPWD.Name = "txtPWD";
             this.txtPWD.Size = new System.Drawing.Size(200, 32);
-            this.txtPWD.TabIndex = 2;
+            this.txtPWD.TabIndex = 1;
             // 
             // btnLogin
             // 
             this.btnLogin.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnLogin.Location = new System.Drawing.Point(163, 289);
+            this.btnLogin.Location = new System.Drawing.Point(107, 290);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(85, 50);
-            this.btnLogin.TabIndex = 3;
+            this.btnLogin.TabIndex = 2;
             this.btnLogin.Text = "로그인";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -117,6 +118,17 @@ namespace AtlasPOP
             this.label2.Text = "비밀번호";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // btnClose
+            // 
+            this.btnClose.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnClose.Location = new System.Drawing.Point(221, 290);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(85, 50);
+            this.btnClose.TabIndex = 3;
+            this.btnClose.Text = "종료";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -126,6 +138,7 @@ namespace AtlasPOP
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtPWD);
             this.Controls.Add(this.txtID);
@@ -154,6 +167,7 @@ namespace AtlasPOP
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnClose;
     }
 }
 

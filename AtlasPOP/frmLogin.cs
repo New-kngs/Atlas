@@ -23,6 +23,12 @@ namespace AtlasPOP
         }
         private void frmLogin_Load(object sender, EventArgs e)
         {
+#if DEBUG
+            txtID.Text = "MA1234";
+            txtPWD.Text = "1111";
+#endif
+
+
             service = new popServiceHelper("");
         }
 
@@ -53,6 +59,7 @@ namespace AtlasPOP
                     MessageBox.Show("비밀번호를 확인해주세요");
                     return;
                 }
+
                 if (IsID > 0 && IsPWD > 0)
                 {
                     string IsDept = empList.Data.Find((d) => d.EmpID.Equals(txtID.Text)).DeptName;
@@ -64,8 +71,9 @@ namespace AtlasPOP
                     }
                     else
                     {
-                        this.UserName = empList.Data.Find((f) => f.EmpID.Equals(txtID.Text)).EmpName;
-                        this.DeptName = empList.Data.Find((f) => f.EmpID.Equals(txtID.Text)).DeptName;
+                        ((AtlasPOP)this.Owner).User = empList.Data.Find((f) => f.EmpID.Equals(txtID.Text)).EmpName;
+                        ((AtlasPOP)this.Owner).Dept = empList.Data.Find((f) => f.EmpID.Equals(txtID.Text)).DeptName;
+
                         this.Close();
                         this.DialogResult = DialogResult.OK;
                     }
@@ -80,6 +88,11 @@ namespace AtlasPOP
                 MessageBox.Show(err.Message);
             }
             
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

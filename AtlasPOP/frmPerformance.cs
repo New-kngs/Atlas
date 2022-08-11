@@ -78,6 +78,8 @@ namespace AtlasPOP
             
             this.Invoke((MethodInvoker)(() => txtTotQty.Text = totQty.ToString("#,##0")));
             
+            
+
 
             if (qty >= 0 && qty <= 10)
                 totfail = 0;
@@ -99,8 +101,9 @@ namespace AtlasPOP
                 {                     
                     main.Finish(totQty, totfail, hostPort.ToString());
                     timer_Connec.Stop();
-                    this.Close();
+                    
                 }
+                this.Close();
             }
         }
 
@@ -154,6 +157,7 @@ namespace AtlasPOP
                     item.Name = $"process";
                     item.Location = new Point(224 * c + 5, 3);
                     item.Size = new Size(214, 154);
+                    
 
                     panel2.Controls.Add(item);
                     idx++;
