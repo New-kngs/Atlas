@@ -32,8 +32,6 @@
             this.dtpFrom = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.dtpTo = new System.Windows.Forms.DateTimePicker();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtOrder = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -86,8 +84,6 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.txtOrder);
             this.groupBox2.Controls.Add(this.btnSearch);
             this.groupBox2.Controls.Add(this.dtpTo);
             this.groupBox2.Controls.Add(this.label1);
@@ -107,14 +103,15 @@
             // 
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // btnAdd
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.Location = new System.Drawing.Point(692, 20);
+            this.btnAdd.Location = new System.Drawing.Point(886, 20);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAdd.Padding = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.btnAdd.Size = new System.Drawing.Size(136, 37);
+            this.btnAdd.Text = "작업지시생성";
             // 
             // imageList1
             // 
@@ -128,16 +125,18 @@
             // btnExecl
             // 
             this.btnExecl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExecl.Location = new System.Drawing.Point(942, 20);
+            this.btnExecl.Location = new System.Drawing.Point(628, 20);
             this.btnExecl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnExecl.Padding = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.btnExecl.Visible = false;
             // 
             // btnDelete
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelete.Location = new System.Drawing.Point(859, 20);
+            this.btnDelete.Location = new System.Drawing.Point(545, 20);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDelete.Padding = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.btnDelete.Visible = false;
             // 
             // lblTitle
             // 
@@ -147,14 +146,16 @@
             // btnModify
             // 
             this.btnModify.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnModify.Location = new System.Drawing.Point(776, 20);
+            this.btnModify.Location = new System.Drawing.Point(712, 20);
             this.btnModify.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnModify.Padding = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.btnModify.Size = new System.Drawing.Size(168, 37);
+            this.btnModify.Text = "추가작업지시생성";
             // 
             // dtpFrom
             // 
             this.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFrom.Location = new System.Drawing.Point(19, 43);
+            this.dtpFrom.Location = new System.Drawing.Point(19, 39);
             this.dtpFrom.Name = "dtpFrom";
             this.dtpFrom.Size = new System.Drawing.Size(123, 29);
             this.dtpFrom.TabIndex = 0;
@@ -162,7 +163,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(148, 47);
+            this.label1.Location = new System.Drawing.Point(148, 43);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(22, 21);
             this.label1.TabIndex = 2;
@@ -171,28 +172,10 @@
             // dtpTo
             // 
             this.dtpTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpTo.Location = new System.Drawing.Point(176, 43);
+            this.dtpTo.Location = new System.Drawing.Point(176, 39);
             this.dtpTo.Name = "dtpTo";
             this.dtpTo.Size = new System.Drawing.Size(123, 29);
             this.dtpTo.TabIndex = 3;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.Location = new System.Drawing.Point(305, 47);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 21);
-            this.label2.TabIndex = 17;
-            this.label2.Text = "주문서명";
-            // 
-            // txtOrder
-            // 
-            this.txtOrder.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.txtOrder.Location = new System.Drawing.Point(385, 43);
-            this.txtOrder.Name = "txtOrder";
-            this.txtOrder.Size = new System.Drawing.Size(151, 29);
-            this.txtOrder.TabIndex = 16;
             // 
             // btnSearch
             // 
@@ -201,7 +184,7 @@
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSearch.ImageIndex = 3;
             this.btnSearch.ImageList = this.imageList1;
-            this.btnSearch.Location = new System.Drawing.Point(542, 43);
+            this.btnSearch.Location = new System.Drawing.Point(305, 39);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnSearch.Size = new System.Drawing.Size(29, 29);
@@ -359,7 +342,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1034, 682);
             this.Name = "frmPlan";
-            this.Text = "frmProdPlan";
+            this.ShowIcon = false;
+            this.Text = "생산계획";
+            this.Load += new System.EventHandler(this.frmPlan_Load);
             this.BasePanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.Basepanel4.ResumeLayout(false);
@@ -392,8 +377,6 @@
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtOrder;
         protected System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.DataGridView dgvMaterial;
         private System.Windows.Forms.DataGridView dgvSemi;

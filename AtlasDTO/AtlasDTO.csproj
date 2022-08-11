@@ -56,6 +56,7 @@
     <Compile Include="OrderDetailLongVO.cs" />
     <Compile Include="OrderDetailVO.cs" />
     <Compile Include="OrderVO.cs" />
+    <Compile Include="PlanVO.cs" />
     <Compile Include="ProcessVO.cs" />
     <Compile Include="PurchaseDetailsVO.cs" />
     <Compile Include="PurchaseVO.cs" />

@@ -2070,6 +2070,7 @@
     <Compile Include="Models\DAC\ItemDAC.cs" />
     <Compile Include="Models\DAC\LoginDAC.cs" />
     <Compile Include="Models\DAC\OrderDAC.cs" />
+    <Compile Include="Models\DAC\PlanDAC.cs" />
     <Compile Include="Models\DAC\popDAC.cs" />
     <Compile Include="Models\DAC\ProcessDAC.cs" />
     <Compile Include="Models\DAC\PurchaseDAC.cs" />
