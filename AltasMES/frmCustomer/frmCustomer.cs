@@ -169,6 +169,7 @@ namespace AltasMES
 
         private void btnModify_Click(object sender, EventArgs e)
         {
+      
             if (dgvCus.CurrentCell == null)
             {
                 MessageBox.Show("수정하실 거래처를 선택해주세요.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);

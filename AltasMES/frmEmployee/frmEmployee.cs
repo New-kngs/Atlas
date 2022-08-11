@@ -143,11 +143,15 @@ namespace AltasMES
         private void btnModify_Click(object sender, EventArgs e)
         {
           
-            if (dgvEmp.CurrentCell == null)
+            
+
+            if (!dgvEmp.CurrentCell.Selected)
             {
                 MessageBox.Show("수정하실 사용자를 선택해주세요.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+
 
 
             EmployeeVO emp = new EmployeeVO()
