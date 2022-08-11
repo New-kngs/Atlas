@@ -309,5 +309,32 @@ where ParentID != '*'";
                     return null;
             }
         }
+        /// <summary>
+        /// 기간 검색을 통해 매출을 Pivot으로 가져온다
+        /// </summary>
+        /// <param name="from"></param>
+        /// <param name="to"></param>
+        /// <returns></returns>
+        public DataSet GetPivotMoney(string from, string to)
+        {
+            DataSet ds = new DataSet();
+            SqlDataAdapter da;
+
+            using(SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(strConn);
+                
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "SP_PivotItemSales";
+
+                cmd.Parameters.AddWithValue("@from", from);
+                cmd.Parameters.AddWithValue("@to", to);
+
+                da = new SqlDataAdapter(cmd);
+
+                da.Fill(ds);
+                return ds;
+            }
+        }
     }
 }

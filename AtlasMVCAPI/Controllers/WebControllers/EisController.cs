@@ -1,5 +1,8 @@
-﻿using System;
+﻿using AtlasDTO;
+using AtlasMVCAPI.Models;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -11,31 +14,39 @@ namespace AtlasMVCAPI.Controllers
         // GET: Eis
         public ActionResult HomePage()
         {
-//            select ROW_NUMBER() OVER(order by getdate()) SEQ, convert(date, O.CreateDate) DT, ItemName, SUM(Qty) Qty
-//from TB_Order O
-//inner join TB_OrderDetails OD on O.OrderID = OD.OrderID
-//inner join TB_Item I on I.ItemID = OD.ItemID
-//group by convert(date, O.CreateDate), ItemName, Qty
+            return View();
+        }
+        public ActionResult MoneyPage(string startDate, string endDate)
+        {
+            if(startDate == null)
+            {
+                startDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.AddDays(-7).Day).ToString("yyyy-MM-dd");
+            }
+            ViewBag.startDate = startDate;
+            if (endDate == null)
+            {
+                endDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day).ToString("yyyy-MM-dd");
+            }
+            ViewBag.endDate = endDate;
 
-//select ItemName, [2022 - 07 - 19], [2022 - 07 - 27], [2022 - 07 - 28]
-//from(
-//    select  ROW_NUMBER() OVER(order by getdate()) SEQ, convert(date, O.CreateDate) DT, ItemName, Qty
+            ItemDAC db = new ItemDAC();
+            DataSet dsPivotMoney = db.GetPivotMoney(startDate, endDate);
+            
+            // Session["DS_PivotMoney"] = dsPivotMoney;
 
-//    from TB_Order O
+            return View(dsPivotMoney);
+        }
+        public ActionResult FailPage()
+        {
+            FailDAC db = new FailDAC();
+            List<FailVO> listFail = db.GetFailList();
+            var name = from f in listFail
+                       select f.FailName;
+            var qty = from f in listFail
+                       select f.FailQty;
 
-//    inner
-//    join TB_OrderDetails OD on O.OrderID = OD.OrderID
-
-//inner
-//    join TB_Item I on I.ItemID = OD.ItemID
-//) as src
-//pivot(
-//    SUM(Qty)
-
-//    for DT in ([2022 - 07 - 19], [2022 - 07 - 27], [2022 - 07 - 28])
-//) p
-
-
+            ViewBag.LabelTop4 = "[" + string.Join(",", name) + "]";
+            ViewBag.DataTop4 = "[" + string.Join(",", qty) + "]";
             return View();
         }
     }

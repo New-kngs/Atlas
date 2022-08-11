@@ -35,5 +35,6 @@ namespace AtlasMVCAPI.Models
                 return list;
             }
         }
+
     }
 }

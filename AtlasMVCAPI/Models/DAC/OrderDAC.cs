@@ -157,7 +157,7 @@ where OD.OrderID = @OrderID";
         {
             using (SqlCommand cmd = new SqlCommand())
             {
-                cmd.CommandText = @"select A.OrderID, convert(nvarchar(10), convert(date, CreateDate)) CreateDate, OrderEndDate, price, case when OrderShip = 'N' THEN '배송준비' ELSE '배송완료' END AS OrderShip 
+                cmd.CommandText = @"select A.OrderID, convert(nvarchar(10), convert(date, CreateDate)) CreateDate,convert(nvarchar(10), convert(date, OrderEndDate)) OrderEndDate, price, case when OrderShip = 'N' THEN '배송준비' ELSE '배송완료' END AS OrderShip 
 from TB_Order A 
 left outer join 
 (select OrderID, ISNULL(sum(ItemPrice),0) price 

@@ -2228,6 +2228,8 @@
     <Content Include="Views\Cart\Summary.cshtml" />
     <Content Include="Views\Eis\HomePage.cshtml" />
     <Content Include="Views\OrderWeb\PurchaseOrder.cshtml" />
+    <Content Include="Views\Eis\MoneyPage.cshtml" />
+    <Content Include="Views\Eis\FailPage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2237,6 +2239,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Fail\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AtlasDTO\AtlasDTO.csproj">
