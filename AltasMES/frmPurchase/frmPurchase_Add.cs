@@ -36,7 +36,8 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvItem, "규격", "ItemSize", colwidth: 70, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvItem, "재고수량", "CurrentQty", colwidth: 100, align: DataGridViewContentAlignment.MiddleRight);            
             DataGridUtil.AddGridTextBoxColumn(dgvItem, "단가", "ItemPrice", colwidth: 100, align: DataGridViewContentAlignment.MiddleRight);
-            DataGridUtil.AddGridTextBoxColumn(dgvItem, "거래처명", "CustomerName", colwidth: 120, align: DataGridViewContentAlignment.MiddleLeft);            
+            DataGridUtil.AddGridTextBoxColumn(dgvItem, "거래처명", "CustomerName", colwidth: 120, align: DataGridViewContentAlignment.MiddleLeft);
+            DataGridUtil.AddGridTextBoxColumn(dgvItem, "거래처ID", "CustomerID", visibility: false);
             dgvItem.Columns["ItemPrice"].DefaultCellStyle.Format = "###,##0";
             dgvItem.ClearSelection();
 
@@ -51,9 +52,9 @@ namespace AltasMES
             // 발주 리스트
             DataGridUtil.SetInitGridView(dgvPurItem);
             DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "자재ID", "ItemID", colwidth: 90, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "자재명", "ItemName", colwidth: 160, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "자재명", "ItemName", colwidth: 330, align: DataGridViewContentAlignment.MiddleLeft);
             DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "규격", "ItemSize", colwidth: 70, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "수량", "Qty", colwidth: 100, Readonly: false, align: DataGridViewContentAlignment.MiddleRight);
+            DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "수량", "Qty", colwidth: 70, Readonly: false, align: DataGridViewContentAlignment.MiddleRight);
             DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "거래처명", "CustomerName", visibility: false); //colwidth: 120, align: DataGridViewContentAlignment.MiddleLeft); //visibility: false);
             DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "단가", "ItemPrice", visibility: false);
             
@@ -137,7 +138,7 @@ namespace AltasMES
         {
             if (e.RowIndex < 0) return;
 
-            if (e.ColumnIndex == 6)
+            if (e.ColumnIndex == 7)
             {
                 string itemId = dgvItem["ItemID", e.RowIndex].Value.ToString();
                 string itemName = dgvItem["ItemName", e.RowIndex].Value.ToString();
@@ -161,6 +162,7 @@ namespace AltasMES
                         if (cusName != purCusName)
                         {
                             MessageBox.Show($"{purCusName} 자재만 발주 가능합니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            cboCustomer.SelectedIndex = 0;
                             return;
                         }
                     }
@@ -266,15 +268,23 @@ namespace AltasMES
                 item.Qty = Convert.ToInt32(dgvPurItem.Rows[i].Cells[3].Value.ToString()); 
                 
                 purDetailList.Add(item);
-            }
+            }           
+            PurchaseVO purList = new PurchaseVO()
+            {
+                CreateUser = this.item.CreateUser,
+                CustomerID = dgvItem["CustomerID", 6].Value.ToString(),                
+            };
 
-            //purCusList.FindIndex(p=>p.CustomerID == purDetailList.Find(c=>c.ItemID == ))
+            //ResMessage<List<PurchaseVO>> result = srv.PostAsync<PurchaseVO, List<PurchaseVO>>("api/Purchase/SavePurchase", purList, purDetailList);
 
-            //PurchaseVO purList = new PurchaseVO()
+
+            //if (result.ErrCode == 0)
             //{
-            //    CreateUser = this.item.CreateUser,
-            //    CustomerID = 
-            //};
+            //    MessageBox.Show("등록이 완료되었습니다.", "발주 등록", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    this.DialogResult = DialogResult.OK;
+            //}
+            //else
+            //    MessageBox.Show("오류가 발생하였습니다. 다시 시도 하여 주십시오.");
         }
 
         private void frmPurchase_Add_FormClosing(object sender, FormClosingEventArgs e)

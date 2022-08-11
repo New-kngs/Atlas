@@ -17,7 +17,8 @@ namespace AltasMES
         ServiceHelper srv = null;
         List<ItemVO> purList = null;
         List<PurchaseDetailsVO> purchaseList = null;
-        
+        List<PurchaseDetailsVO> lastPurList = null;
+
 
         public frmPurchase_Modify(PurchaseVO purchase)
         {
@@ -58,9 +59,9 @@ namespace AltasMES
             // 발주 리스트
             DataGridUtil.SetInitGridView(dgvPurItem);
             DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "자재ID", "ItemID", colwidth: 90, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "자재명", "ItemName", colwidth: 160, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "자재명", "ItemName", colwidth: 330, align: DataGridViewContentAlignment.MiddleLeft);
             DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "규격", "ItemSize", colwidth: 70, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "수량", "Qty", colwidth: 100, Readonly: false, align: DataGridViewContentAlignment.MiddleRight);
+            DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "수량", "Qty", colwidth: 70, Readonly: false, align: DataGridViewContentAlignment.MiddleRight);
             DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "단가", "ItemPrice", visibility: false);
             DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "거래처명", "CustomerName", visibility: false);
 
@@ -80,8 +81,8 @@ namespace AltasMES
         private void LoadData()
         {
             purList = srv.GetAsync<List<ItemVO>>("api/Item/PurChaseItem").Data;
-            List<ItemVO> purItemList = purList.FindAll(p => p.CustomerName.Equals(txtCusName.Text));     
-            
+            List<ItemVO> purItemList = purList.FindAll(p => p.CustomerName.Equals(txtCusName.Text));
+
             purchaseList = srv.GetAsync<List<PurchaseDetailsVO>>("api/Purchase/GetAllPurchaseDetail").Data;
             List<PurchaseDetailsVO> resultPurList = purchaseList.FindAll(p => p.PurchaseID.Equals(textBox1.Text));
 
@@ -109,8 +110,7 @@ namespace AltasMES
 
                 foreach (DataGridViewRow item in dgvPurItem.Rows)
                 {
-                    string purItemId = item.Cells[0].Value.ToString();
-                    
+                    string purItemId = item.Cells[0].Value.ToString();                    
 
                     if (itemId.Equals(purItemId))
                     {
@@ -118,8 +118,11 @@ namespace AltasMES
                         return;
                     }                    
                 }
-                dgvPurItem.Rows.Add(itemId, itemName, itemSize, 0); // price);
+                // null
+                lastPurList.Add( new PurchaseDetailsVO { ItemID = itemId, ItemName = itemName, ItemSize = itemSize, CustomerName = cusName, PurTotPrice = price, Qty = 0, }); // price);
                 dgvItem.ClearSelection();
+                dgvPurItem.DataSource = null;
+                dgvPurItem.DataSource = lastPurList;
                 //txtCusName.Text = cusName;
                 //txtPrice.Text = "0";
 

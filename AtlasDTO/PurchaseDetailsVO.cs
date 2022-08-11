@@ -15,8 +15,8 @@ namespace AtlasDTO
 
         public string ItemName { get; set; }
         public int PurTotPrice { get; set; }
-        public string ItemSize { get; set; }               
+        public string ItemSize { get; set; }
+        public string CustomerName { get; set; }
 
- 
     }
 }

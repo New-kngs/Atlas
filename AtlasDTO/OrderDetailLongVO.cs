@@ -12,7 +12,7 @@ namespace AtlasDTO
         public string ItemID { get; set; }
         public long Qty { get; set; }
 
-        public string ItemName { get; set; }
+        public string ItemName { get; set; }       
 
 
         // 추가(web)

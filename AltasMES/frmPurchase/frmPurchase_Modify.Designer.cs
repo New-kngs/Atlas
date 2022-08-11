@@ -36,6 +36,7 @@ namespace AltasMES
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvPurItem = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.txtCusName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -47,7 +48,6 @@ namespace AltasMES
             this.btnModify = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvItem = new System.Windows.Forms.DataGridView();
-            this.txtCusName = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -145,6 +145,14 @@ namespace AltasMES
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "발주";
             // 
+            // txtCusName
+            // 
+            this.txtCusName.Location = new System.Drawing.Point(270, 32);
+            this.txtCusName.Name = "txtCusName";
+            this.txtCusName.ReadOnly = true;
+            this.txtCusName.Size = new System.Drawing.Size(121, 29);
+            this.txtCusName.TabIndex = 10;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -196,6 +204,7 @@ namespace AltasMES
             this.txtCount.ReadOnly = true;
             this.txtCount.Size = new System.Drawing.Size(36, 29);
             this.txtCount.TabIndex = 4;
+            this.txtCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label4
             // 
@@ -259,14 +268,6 @@ namespace AltasMES
             this.dgvItem.Size = new System.Drawing.Size(779, 241);
             this.dgvItem.TabIndex = 0;
             this.dgvItem.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItem_CellClick);
-            // 
-            // txtCusName
-            // 
-            this.txtCusName.Location = new System.Drawing.Point(270, 32);
-            this.txtCusName.Name = "txtCusName";
-            this.txtCusName.ReadOnly = true;
-            this.txtCusName.Size = new System.Drawing.Size(121, 29);
-            this.txtCusName.TabIndex = 10;
             // 
             // frmPurchase_Modify
             // 
