@@ -4,7 +4,7 @@
     ViewBag.Title = "ItemPricePivotSearch";
     Layout = "~/Views/Shared/_LayoutPageEIS.cshtml";
 }
-@{ 
+@{
     string start = ViewBag.startDate;
     string end = ViewBag.endDate;
 }
@@ -12,7 +12,7 @@
 <!-- Main content -->
 <div class="invoice p-3 mb-3">
     <!-- from, to 값을 넘겨야한다 "MoneyPage", "EIS", FormMethod.Post -->
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("MoneyPage", "Eis", FormMethod.Post, new { @id = "formMoney", @name = "formMoney" }))
     {
         <div class="row">
             <div class="col-4">
@@ -27,9 +27,11 @@
                     <input type="text" class="form-control float-right" id="reservation">
                     <input type="hidden" name="startDate" id="startDate" />
                     <input type="hidden" name="endDate" id="endDate" />
-                    <button type="submit" class="btn btn-primary" onclick="search_fn()">조회</button>
 
                 </div>
+            </div>
+            <div class="col-4">
+                <button type="submit" id="saveBtn" class="btn btn-primary" onclick="search_fn()">조회</button>
             </div>
         </div>
     }
@@ -85,9 +87,6 @@
     </div>
 </div>
 @{
-    
-
-
 
     string labels = ViewBag.Labels;
 
@@ -310,9 +309,6 @@
 
 
     <!-- 달력 -->
-    <script src="/plugins/select2/js/select2.full.min.js"></script>
-
-    <script src="/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
 
     <script src="/plugins/moment/moment.min.js"></script>
     <script src="/plugins/inputmask/jquery.inputmask.min.js"></script>
@@ -323,13 +319,137 @@
 
     <script src="/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 
-    <script src="/plugins/bs-stepper/js/bs-stepper.min.js"></script>
-
-    <script src="/plugins/dropzone/min/dropzone.min.js"></script>
-
     <script src="/dist/js/adminlte.min.js?v=3.2.0"></script>
 
-    <script src="/dist/js/demo.js"></script>
+    @*<script src="/dist/js/demo.js"></script>*@
+
+    <script type="text/javascript">
+        jQuery.noConflict();
+          var startDate;
+          var endDate;
+        $(document).ready(function () {
+            $('#reservation').daterangepicker(
+                {
+                    locale: {
+                        format: 'YYYY-MM-DD'
+                    },
+
+
+                    @*setStartDate:@ViewBag.startDate,
+                    setEndDate:@ViewBag.endDaendDate,*@
+                    //startDate: moment().subtract('days', 29),
+                    //endDate: moment(),
+                    //startDate: a,
+                    //endDate: b,
+                    startDate: '@start',
+                    endDate: '@end',
+                    showDropdowns: true,
+                    showWeekNumbers: true,
+                    timePicker: false,
+                    timePickerIncrement: 1,
+                    timePicker12Hour: true,
+                    opens: 'left',
+                    format: 'YYYY-MM-DD',
+                    separator: ' to ',
+                    //timePicker: true,
+                    //timePicker24Hour: true,
+                })
+
+                //function (start, end) {
+                //    console.log("Callback has been called!");
+                //    $('#reservation span').html(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD'));
+                //    startDate = start;
+                //    endDate = end;
+
+                //}
+                $('#reservation').on('apply.daterangepicker', function (ev, picker) {
+                    //Model.startDate = picker.startDate.format('YYYY-MM-DD HH:mm');
+                    //   Model.endDate = picker.endDate.format('YYYY-MM-DD HH:mm');
+                    // PASS VALUE TO CONTROLLER HERE
+                    console.log(picker.startDate.format('YYYY-MM-DD HH:mm'));
+                    console.log(picker.endDate.format('YYYY-MM-DD HH:mm'));
+                    document.getElementById("startDate").value = picker.startDate.format('YYYY-MM-DD');
+                    document.getElementById("endDate").value = picker.endDate.format('YYYY-MM-DD');
+                })
+            }
+        );
+
+            //$('#saveBtn').click(function () {
+            //    console.log(startDate.format('YYYY-MM-DD') + ' - ' + endDate.format('YYYY-MM-DD'));
+            //    $('#startDate').val(startDate.format('YYYY-MM-DD'));
+            //    $('#endDate').val(endDate.format('YYYY-MM-DD'));
+            //    $('#form1')[0].submit();
+            //});
+
+       // });
+
+
+
+        function search_fn() {
+            window.location.href = 'Index?startDate=' + document.getElementById("startDate").value + '&endDate=' + document.getElementById("endDate").value + '&productCode=' + document.getElementById("productCode").value + '&op_code=' + document.getElementById("op_code").value + '&childCode=' + document.getElementById("childCode").value;
+        }
+
+        //function Search_Fn() {
+        //       // console.log(startDate.format('YYYY-MM-DD') + ' - ' + endDate.format('YYYY-MM-DD'));
+        //    //startDate = start;
+        //    //endDate = end;
+        //        document.form1.submit();
+        //    }
+
+    </script>
+
+
+    <script type="text/javascript">
+        jQuery.noConflict();
+          var startDate;
+          var endDate;
+        $(document).ready(function () {
+            $('#reservation').daterangepicker(
+                {
+                    locale: {
+                        format: 'YYYY-MM-DD'
+                    },
+
+
+                    @*setStartDate:@ViewBag.startDate,
+                    setEndDate:@ViewBag.endDaendDate,*@
+                    //startDate: moment().subtract('days', 29),
+                    //endDate: moment(),
+                    //startDate: a,
+                    //endDate: b,
+                    startDate: '@start',
+                    endDate: '@end',
+                    showDropdowns: true,
+                    showWeekNumbers: true,
+                    timePicker: false,
+                    timePickerIncrement: 1,
+                    timePicker12Hour: true,
+                    opens: 'left',
+                    format: 'YYYY-MM-DD',
+                    separator: ' to ',
+                    //timePicker: true,
+                    //timePicker24Hour: true,
+                })
+
+                //function (start, end) {
+                //    console.log("Callback has been called!");
+                //    $('#reservation span').html(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD'));
+                //    startDate = start;
+                //    endDate = end;
+
+                //}
+                $('#reservation').on('apply.daterangepicker', function (ev, picker) {
+                    //Model.startDate = picker.startDate.format('YYYY-MM-DD HH:mm');
+                    //   Model.endDate = picker.endDate.format('YYYY-MM-DD HH:mm');
+                    // PASS VALUE TO CONTROLLER HERE
+                    console.log(picker.startDate.format('YYYY-MM-DD HH:mm'));
+                    console.log(picker.endDate.format('YYYY-MM-DD HH:mm'));
+                    document.getElementById("startDate").value = picker.startDate.format('YYYY-MM-DD');
+                    document.getElementById("endDate").value = picker.endDate.format('YYYY-MM-DD');
+                })
+            }
+        );
+    </script>
     <script>
         $(function () {
             //Initialize Select2 Elements
@@ -389,69 +509,18 @@
                 format: 'LT'
             })
 
-            //Bootstrap Duallistbox
-            $('.duallistbox').bootstrapDualListbox()
-
-            //Colorpicker
-            $('.my-colorpicker1').colorpicker()
-            //color picker with addon
-            $('.my-colorpicker2').colorpicker()
-
-            $('.my-colorpicker2').on('colorpickerChange', function (event) {
-                $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
-            })
 
             $("input[data-bootstrap-switch]").each(function () {
                 $(this).bootstrapSwitch('state', $(this).prop('checked'));
             })
 
         })
-        // BS-Stepper Init
-        document.addEventListener('DOMContentLoaded', function () {
-            window.stepper = new Stepper(document.querySelector('.bs-stepper'))
-        })
-
-        // DropzoneJS Demo Code Start
-        Dropzone.autoDiscover = false
 
         // Get the template HTML and remove it from the doumenthe template HTML and remove it from the doument
         var previewNode = document.querySelector("#template")
         previewNode.id = ""
         var previewTemplate = previewNode.parentNode.innerHTML
         previewNode.parentNode.removeChild(previewNode)
-
-        var myDropzone = new Dropzone(document.body, { // Make the whole body a dropzone
-            url: "/target-url", // Set the url
-            thumbnailWidth: 80,
-            thumbnailHeight: 80,
-            parallelUploads: 20,
-            previewTemplate: previewTemplate,
-            autoQueue: false, // Make sure the files aren't queued until manually added
-            previewsContainer: "#previews", // Define the container to display the previews
-            clickable: ".fileinput-button" // Define the element that should be used as click trigger to select files.
-        })
-
-        myDropzone.on("addedfile", function (file) {
-            // Hookup the start button
-            file.previewElement.querySelector(".start").onclick = function () { myDropzone.enqueueFile(file) }
-        })
-
-        // Update the total progress bar
-        myDropzone.on("totaluploadprogress", function (progress) {
-            document.querySelector("#total-progress .progress-bar").style.width = progress + "%"
-        })
-
-        myDropzone.on("sending", function (file) {
-            // Show the total progress bar when upload starts
-            document.querySelector("#total-progress").style.opacity = "1"
-            // And disable the start button
-            file.previewElement.querySelector(".start").setAttribute("disabled", "disabled")
-        })
-
-        // Hide the total progress bar when nothing's uploading anymore
-        myDropzone.on("queuecomplete", function (progress) {
-            document.querySelector("#total-progress").style.opacity = "0"
-        })
 
         // Setup the buttons for all transfers
         // The "add files" button doesn't need to be setup because the config
@@ -464,93 +533,4 @@
         }
         // DropzoneJS Demo Code End
     </script>
-
-
-    <!-- 전 기수 분 코드 -->
-    @*<script>
-            // How to change the date range picker's date format?
-            $(function () {
-                $("#reservation").daterangepicker({
-                    locale: {
-                        format: 'YYYY-MM-DD'
-                    }
-                });
-            });
-            var anText_sub1 = document.getElementById('reservation').value;
-        </script>*@
-
-    <!--<script type="text/javascript">
-        jQuery.noConflict();
-          var startDate;
-          var endDate;
-        $(document).ready(function () {
-            $('#reservation').daterangepicker(
-                {
-                    locale: {
-                        format: 'YYYY-MM-DD'
-                    },-->
-
-
-                    @*setStartDate:@ViewBag.startDate,
-                    setEndDate:@ViewBag.endDaendDate,*@
-                    <!--//startDate: moment().subtract('days', 29),
-                    //endDate: moment(),
-                    //startDate: a,
-                    //endDate: b,
-                    startDate: '@start',
-                    endDate: '@end',
-                    showDropdowns: true,
-                    showWeekNumbers: true,
-                    timePicker: false,
-                    timePickerIncrement: 1,
-                    timePicker12Hour: true,
-                    opens: 'left',
-                    format: 'YYYY-MM-DD',
-                    separator: ' to ',
-                    //timePicker: true,
-                    //timePicker24Hour: true,
-                })
-
-                //function (start, end) {
-                //    console.log("Callback has been called!");
-                //    $('#reservation span').html(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD'));
-                //    startDate = start;
-                //    endDate = end;
-
-                //}
-                $('#reservation').on('apply.daterangepicker', function (ev, picker) {
-                    //Model.startDate = picker.startDate.format('YYYY-MM-DD HH:mm');
-                    //   Model.endDate = picker.endDate.format('YYYY-MM-DD HH:mm');
-                    // PASS VALUE TO CONTROLLER HERE
-                    console.log(picker.startDate.format('YYYY-MM-DD HH:mm'));
-                    console.log(picker.endDate.format('YYYY-MM-DD HH:mm'));
-                    document.getElementById("startDate").value = picker.startDate.format('YYYY-MM-DD');
-                    document.getElementById("endDate").value = picker.endDate.format('YYYY-MM-DD');
-                })
-            }
-        );
-
-            //$('#saveBtn').click(function () {
-            //    console.log(startDate.format('YYYY-MM-DD') + ' - ' + endDate.format('YYYY-MM-DD'));
-            //    $('#startDate').val(startDate.format('YYYY-MM-DD'));
-            //    $('#endDate').val(endDate.format('YYYY-MM-DD'));
-            //    $('#form1')[0].submit();
-            //});
-
-       // });
-
-
-
-        function search_fn() {
-            window.location.href = 'MoneyPage?startDate=' + document.getElementById("startDate").value + '&endDate=' + document.getElementById("endDate").value;
-        }
-
-        //function Search_Fn() {
-        //       // console.log(startDate.format('YYYY-MM-DD') + ' - ' + endDate.format('YYYY-MM-DD'));
-        //    //startDate = start;
-        //    //endDate = end;
-        //        document.form1.submit();
-        //    }
-
-    </script>-->
 }
