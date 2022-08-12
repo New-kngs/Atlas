@@ -53,6 +53,12 @@ namespace AltasMES
             // panel2
             // 
             this.panel2.Controls.Add(this.groupBox3);
+            this.panel2.Location = new System.Drawing.Point(0, 190);
+            this.panel2.Size = new System.Drawing.Size(1034, 492);
+            // 
+            // panel1
+            // 
+            this.panel1.Size = new System.Drawing.Size(1034, 10);
             // 
             // groupBox2
             // 
@@ -115,7 +121,7 @@ namespace AltasMES
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(74, 21);
             this.label3.TabIndex = 34;
-            this.label3.Text = "입고여부";
+            this.label3.Text = "완료여부";
             // 
             // cboStateYN
             // 
@@ -176,7 +182,7 @@ namespace AltasMES
             this.groupBox3.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1034, 491);
+            this.groupBox3.Size = new System.Drawing.Size(1034, 492);
             this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "발주 목록";
@@ -188,7 +194,7 @@ namespace AltasMES
             this.dgvPurchase.Location = new System.Drawing.Point(3, 25);
             this.dgvPurchase.Name = "dgvPurchase";
             this.dgvPurchase.RowTemplate.Height = 23;
-            this.dgvPurchase.Size = new System.Drawing.Size(1028, 463);
+            this.dgvPurchase.Size = new System.Drawing.Size(1028, 464);
             this.dgvPurchase.TabIndex = 1;
             this.dgvPurchase.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPurchase_CellClick);
             // 

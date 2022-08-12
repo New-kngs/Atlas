@@ -205,6 +205,7 @@ namespace AltasMES
             // 
             // cboCustomer
             // 
+            this.cboCustomer.BackColor = System.Drawing.Color.White;
             this.cboCustomer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCustomer.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold);
             this.cboCustomer.FormattingEnabled = true;
@@ -250,6 +251,7 @@ namespace AltasMES
             // 
             // txtPrice
             // 
+            this.txtPrice.BackColor = System.Drawing.Color.White;
             this.txtPrice.Location = new System.Drawing.Point(547, 32);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.ReadOnly = true;
@@ -268,6 +270,7 @@ namespace AltasMES
             // 
             // txtCount
             // 
+            this.txtCount.BackColor = System.Drawing.Color.White;
             this.txtCount.Location = new System.Drawing.Point(400, 32);
             this.txtCount.Name = "txtCount";
             this.txtCount.ReadOnly = true;
@@ -286,6 +289,7 @@ namespace AltasMES
             // 
             // txtCusName
             // 
+            this.txtCusName.BackColor = System.Drawing.Color.White;
             this.txtCusName.Location = new System.Drawing.Point(93, 32);
             this.txtCusName.Name = "txtCusName";
             this.txtCusName.ReadOnly = true;

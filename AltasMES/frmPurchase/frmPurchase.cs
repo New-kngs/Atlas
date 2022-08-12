@@ -36,7 +36,7 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvPurchase, "생성사용자", "CreateUser", colwidth: 120, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvPurchase, "발주요청일", "CreateDate", colwidth: 170, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvPurchase, "변경사용자", "ModifyUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvPurchase, "변경날짜", "ModifyDate", colwidth: 170, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvPurchase, "발주수정일", "ModifyDate", colwidth: 170, align: DataGridViewContentAlignment.MiddleCenter);
 
 
             dtpTo.Value = DateTime.Now;
@@ -97,7 +97,18 @@ namespace AltasMES
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            LoadData();           
+            if (dtpFrom.Value > dtpTo.Value)
+            {
+                MessageBox.Show("검색 기간을 확인해 주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                dtpFrom.Value = dtpTo.Value.AddDays(-7);
+                //btnSearch_Click(this, e);
+                return;
+            }
+            else
+            {
+                LoadData();
+            }
+
         }
 
         private void cboStateYN_SelectedIndexChanged(object sender, EventArgs e)

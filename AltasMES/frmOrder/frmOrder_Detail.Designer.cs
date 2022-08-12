@@ -159,6 +159,7 @@ namespace AltasMES
             // 
             // txtEndDate
             // 
+            this.txtEndDate.BackColor = System.Drawing.Color.White;
             this.txtEndDate.Location = new System.Drawing.Point(110, 188);
             this.txtEndDate.Name = "txtEndDate";
             this.txtEndDate.ReadOnly = true;
@@ -167,6 +168,7 @@ namespace AltasMES
             // 
             // txtCreateDate
             // 
+            this.txtCreateDate.BackColor = System.Drawing.Color.White;
             this.txtCreateDate.Location = new System.Drawing.Point(110, 133);
             this.txtCreateDate.Name = "txtCreateDate";
             this.txtCreateDate.ReadOnly = true;
@@ -175,6 +177,7 @@ namespace AltasMES
             // 
             // txtName
             // 
+            this.txtName.BackColor = System.Drawing.Color.White;
             this.txtName.Location = new System.Drawing.Point(110, 77);
             this.txtName.Name = "txtName";
             this.txtName.ReadOnly = true;
@@ -183,6 +186,7 @@ namespace AltasMES
             // 
             // txtState
             // 
+            this.txtState.BackColor = System.Drawing.Color.White;
             this.txtState.Location = new System.Drawing.Point(393, 22);
             this.txtState.Name = "txtState";
             this.txtState.ReadOnly = true;
@@ -191,6 +195,7 @@ namespace AltasMES
             // 
             // txtOrderID
             // 
+            this.txtOrderID.BackColor = System.Drawing.Color.White;
             this.txtOrderID.Location = new System.Drawing.Point(110, 23);
             this.txtOrderID.Name = "txtOrderID";
             this.txtOrderID.ReadOnly = true;

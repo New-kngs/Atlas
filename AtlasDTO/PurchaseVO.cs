@@ -23,5 +23,14 @@ namespace AtlasDTO
         public string WHName { get; set; }
         public string ItemID { get; set; }
         public int ItemPrice { get; set; }
+
+        //       
+        public int Qty { get; set; }
+    }
+
+    public class PurchaseMDVO
+    {
+        public PurchaseVO Master { get; set; }
+        public List<PurchaseDetailsVO> Detail { get; set; }
     }
 }

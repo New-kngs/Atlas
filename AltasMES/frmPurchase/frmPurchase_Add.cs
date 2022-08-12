@@ -245,7 +245,7 @@ namespace AltasMES
                 return;
             }
 
-            List<OrderDetailVO> purDetailList = new List<OrderDetailVO>();
+            List<PurchaseDetailsVO> purDetailList = new List<PurchaseDetailsVO>();
             for (int i = 0; i < dgvPurItem.Rows.Count; i++)
             {
                 if (Convert.ToInt32(dgvPurItem.Rows[i].Cells[3].Value) == 0)
@@ -259,7 +259,7 @@ namespace AltasMES
                     dgvPurItem.CurrentCell = dgvPurItem.Rows[i].Cells[3];
                     return;
                 }
-                OrderDetailVO item = new OrderDetailVO();
+                PurchaseDetailsVO item = new PurchaseDetailsVO();
                 item.ItemID = dgvPurItem.Rows[i].Cells[0].Value.ToString();
                 item.Qty = Convert.ToInt32(dgvPurItem.Rows[i].Cells[3].Value.ToString()); 
                 
@@ -270,17 +270,16 @@ namespace AltasMES
                 CreateUser = this.item.CreateUser,
                 CustomerID = dgvItem["CustomerID", 6].Value.ToString(),                
             };
+            ResMessage result = srv.SavePurchase("api/Purchase/SavePurchase", purList, purDetailList);
 
-            //ResMessage<List<PurchaseVO>> result = srv.PostAsync<PurchaseVO, List<PurchaseVO>>("api/Purchase/SavePurchase", purList, purDetailList);
 
-
-            //if (result.ErrCode == 0)
-            //{
-            //    MessageBox.Show("등록이 완료되었습니다.", "발주 등록", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //    this.DialogResult = DialogResult.OK;
-            //}
-            //else
-            //    MessageBox.Show("오류가 발생하였습니다. 다시 시도 하여 주십시오.");
+            if (result.ErrCode == 0)
+            {
+                MessageBox.Show("등록이 완료되었습니다.", "발주 등록", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = DialogResult.OK;
+            }
+            else
+                MessageBox.Show("오류가 발생하였습니다. 다시 시도 하여 주십시오.");
         }
 
         private void frmPurchase_Add_FormClosing(object sender, FormClosingEventArgs e)

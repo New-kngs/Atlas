@@ -171,7 +171,7 @@ namespace AltasMES
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(74, 21);
             this.label3.TabIndex = 25;
-            this.label3.Text = "출하여부";
+            this.label3.Text = "완료여부";
             // 
             // cboStateYN
             // 

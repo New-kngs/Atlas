@@ -29,6 +29,8 @@ namespace AltasMES
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPurchase_Modify));
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -48,6 +50,7 @@ namespace AltasMES
             this.btnModify = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvItem = new System.Windows.Forms.DataGridView();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -149,6 +152,7 @@ namespace AltasMES
             // 
             // txtCusName
             // 
+            this.txtCusName.BackColor = System.Drawing.Color.White;
             this.txtCusName.Location = new System.Drawing.Point(270, 32);
             this.txtCusName.Name = "txtCusName";
             this.txtCusName.ReadOnly = true;
@@ -166,6 +170,7 @@ namespace AltasMES
             // 
             // textBox1
             // 
+            this.textBox1.BackColor = System.Drawing.Color.White;
             this.textBox1.Location = new System.Drawing.Point(70, 32);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
@@ -183,6 +188,7 @@ namespace AltasMES
             // 
             // txtPrice
             // 
+            this.txtPrice.BackColor = System.Drawing.Color.White;
             this.txtPrice.Location = new System.Drawing.Point(624, 32);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.ReadOnly = true;
@@ -201,6 +207,7 @@ namespace AltasMES
             // 
             // txtCount
             // 
+            this.txtCount.BackColor = System.Drawing.Color.White;
             this.txtCount.Location = new System.Drawing.Point(482, 32);
             this.txtCount.Name = "txtCount";
             this.txtCount.ReadOnly = true;
@@ -224,6 +231,7 @@ namespace AltasMES
             this.btnAdd.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAdd.ImageIndex = 1;
+            this.btnAdd.ImageList = this.imageList1;
             this.btnAdd.Location = new System.Drawing.Point(322, 663);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -241,6 +249,7 @@ namespace AltasMES
             this.btnModify.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnModify.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnModify.ImageIndex = 5;
+            this.btnModify.ImageList = this.imageList1;
             this.btnModify.Location = new System.Drawing.Point(406, 663);
             this.btnModify.Name = "btnModify";
             this.btnModify.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -271,6 +280,19 @@ namespace AltasMES
             this.dgvItem.Size = new System.Drawing.Size(779, 241);
             this.dgvItem.TabIndex = 0;
             this.dgvItem.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItem_CellClick);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "excel.png");
+            this.imageList1.Images.SetKeyName(1, "plus.png");
+            this.imageList1.Images.SetKeyName(2, "trash.png");
+            this.imageList1.Images.SetKeyName(3, "pencil.png");
+            this.imageList1.Images.SetKeyName(4, "search.png");
+            this.imageList1.Images.SetKeyName(5, "arrow-left.png");
+            this.imageList1.Images.SetKeyName(6, "check.png");
+            this.imageList1.Images.SetKeyName(7, "close.png");
             // 
             // frmPurchase_Modify
             // 
@@ -323,5 +345,6 @@ namespace AltasMES
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtCusName;
+        protected System.Windows.Forms.ImageList imageList1;
     }
 }
