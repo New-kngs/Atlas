@@ -22,15 +22,13 @@ namespace AtlasPOP
             ResMessage<List<OperationVO>> list = service.GetAsync<List<OperationVO>>("api/pop/AllOperation");
 
             lblName.Text = equip.EquipName;
-            lblType.Text = equip.EquipCategory;
+            lblType.Text = $"{equip.EquipCategory}({equip.EquipID})";
             lblState.Text = list.Data.Find((n) => n.OpID.Equals(OpID)).OpState;
 
             if (lblState.Text == "작업중")
                 lblState.ForeColor = Color.Green;
             else if (lblState.Text == "작업종료")
                 lblState.ForeColor = Color.Red;
-
-            
         }
 
         private void EquipList_MouseClick(object sender, MouseEventArgs e)
@@ -45,6 +43,11 @@ namespace AtlasPOP
         }
 
         private void lblName_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblType_Click(object sender, EventArgs e)
         {
 
         }

@@ -22,6 +22,7 @@ namespace AtlasPOP
         ResMessage<List<OrderVO>> oderList;
         ResMessage<List<CustomerVO>> customerList;
         ResMessage<List<ItemVO>> itemList;
+        ResMessage<List<OperationVO>> operList;
 
         Dictionary<string, frmPerformance> frmPerfLST = null;
         Dictionary<string, int> pocess_idLst = null;
@@ -56,6 +57,7 @@ namespace AtlasPOP
             oderList = service.GetAsync<List<OrderVO>>("api/pop/GetCustomer");
             customerList = service.GetAsync<List<CustomerVO>>("api/pop/GetCustomerName");
             itemList = service.GetAsync<List<ItemVO>>("api/Item/AllItem");
+            
 
             ShowfrmOper();
         }
@@ -85,7 +87,7 @@ namespace AtlasPOP
             lblResource.Text = Oper.resourceYN;
             lblBegin.Text = Oper.BeginDate;
             lblEnd.Text = Oper.EndDate;
-            lblEmp.Text = Oper.EmpID;
+            
         }
 
         /// <summary>
@@ -174,12 +176,13 @@ namespace AtlasPOP
             {
                 frmPerfLST[Oper.port].Close();
                 frmPerfLST.Remove(Oper.port);
+                MessageBox.Show("작업종료");
             }
             else
             {
                 MessageBox.Show("종료 중 문제가 발생하였습니다.");
             }
-
+            frmoper.LoadData();
         }
 
         private void btnEnd_Click(object sender, EventArgs e)
@@ -189,37 +192,33 @@ namespace AtlasPOP
                 MessageBox.Show("작업을 선택해주세요.");
                 return;
             }
-            if (!Oper.OpState.Equals("작업중"))
+            if (!Oper.OpState.Equals("입고대기"))
             {
                 MessageBox.Show("작업중이지 않습니다. ");
                 return;
             }
-            if (Oper.PutInYN.Equals("Y"))
-            {
-                MessageBox.Show("이미 종료된 작업입니다.");
-                return;
-            }
+
+            operList = service.GetAsync<List<OperationVO>>("api/pop/AllOperation");
+
 
             ItemVO Item = new ItemVO()
             {
-                CurrentQty = itemList.Data.Find((f) => f.ItemID == Oper.ItemID).CurrentQty + Oper.CompleteQty,
+                OpID = Oper.OpID,
+                CurrentQty = itemList.Data.Find((f) => f.ItemID == Oper.ItemID).CurrentQty + operList.Data.Find((o) => o.OpID == Oper.OpID).CompleteQty,
                 ModifyUser = User,
                 ItemID = Oper.ItemID
             };
+
             ResMessage<List<ItemVO>> putIn = service.PostAsync<ItemVO, List<ItemVO>>("api/pop/PutInItem", Item);
             if (putIn.ErrCode == 0)
             {
-                MessageBox.Show("작업을 종료합니다");
+                MessageBox.Show("생산된 제품이 창고에 입고되었습니다.");
                 frmoper.LoadData();
             }
             else
             {
                 MessageBox.Show("종료 중 문제가 발생하였습니다.");
             }
-
-            frmPerfLST[Oper.port].Close();
-            frmPerfLST.Remove(Oper.port);
-            
         }
 
         private void btnFail_Click(object sender, EventArgs e)
@@ -298,6 +297,11 @@ namespace AtlasPOP
             //frmPerfLST[Oper.port].TopMost = true;
             frmPerfLST[Oper.port].Show();
             frmPerfLST[Oper.port].BringToFront();
+        }
+
+        private void lblCustomer_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

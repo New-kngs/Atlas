@@ -58,6 +58,7 @@ namespace AtlasPOP
             searchList = service.GetAsync<List<OperationVO>>("api/pop/SearchOper/" + dtpFrom.Value.ToShortDateString() + "/" + dtpTo.Value.ToShortDateString());
             if (searchList.Data != null)
             {
+                dgvList.DataSource = null;
                 dgvList.DataSource = new popAdvancedList<OperationVO>(searchList.Data);
             }
             else

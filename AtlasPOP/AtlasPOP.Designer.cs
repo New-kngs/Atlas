@@ -38,9 +38,6 @@ namespace AtlasPOP
             this.panel3 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lblCustomer = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.lblEmp = new System.Windows.Forms.Label();
             this.lblEnd = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.lblBegin = new System.Windows.Forms.Label();
@@ -68,6 +65,7 @@ namespace AtlasPOP
             this.btnStart = new System.Windows.Forms.Button();
             this.btnEnd = new System.Windows.Forms.Button();
             this.btnResource = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -124,10 +122,6 @@ namespace AtlasPOP
             // 
             this.tableLayoutPanel1.BackColor = System.Drawing.Color.LightGray;
             resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
-            this.tableLayoutPanel1.Controls.Add(this.lblCustomer, 1, 11);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 11);
-            this.tableLayoutPanel1.Controls.Add(this.label22, 0, 10);
-            this.tableLayoutPanel1.Controls.Add(this.lblEmp, 0, 10);
             this.tableLayoutPanel1.Controls.Add(this.lblEnd, 1, 9);
             this.tableLayoutPanel1.Controls.Add(this.label19, 0, 9);
             this.tableLayoutPanel1.Controls.Add(this.lblBegin, 1, 8);
@@ -148,6 +142,8 @@ namespace AtlasPOP
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.lblOper, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 10);
+            this.tableLayoutPanel1.Controls.Add(this.lblCustomer, 1, 10);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             // 
             // lblCustomer
@@ -156,23 +152,7 @@ namespace AtlasPOP
             this.lblCustomer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             resources.ApplyResources(this.lblCustomer, "lblCustomer");
             this.lblCustomer.Name = "lblCustomer";
-            // 
-            // label2
-            // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.Name = "label2";
-            // 
-            // label22
-            // 
-            resources.ApplyResources(this.label22, "label22");
-            this.label22.Name = "label22";
-            // 
-            // lblEmp
-            // 
-            this.lblEmp.BackColor = System.Drawing.Color.White;
-            this.lblEmp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            resources.ApplyResources(this.lblEmp, "lblEmp");
-            this.lblEmp.Name = "lblEmp";
+            this.lblCustomer.Click += new System.EventHandler(this.lblCustomer_Click);
             // 
             // lblEnd
             // 
@@ -360,6 +340,11 @@ namespace AtlasPOP
             this.btnResource.UseVisualStyleBackColor = false;
             this.btnResource.Click += new System.EventHandler(this.btnResource_Click_1);
             // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
+            // 
             // AtlasPOP
             // 
             resources.ApplyResources(this, "$this");
@@ -398,7 +383,6 @@ namespace AtlasPOP
         private System.Windows.Forms.Button btnFail;
         private System.Windows.Forms.Button btnLaping;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label15;
@@ -409,7 +393,6 @@ namespace AtlasPOP
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lblEmp;
         private System.Windows.Forms.Label lblEnd;
         private System.Windows.Forms.Label lblBegin;
         private System.Windows.Forms.Label lblResource;
@@ -421,10 +404,10 @@ namespace AtlasPOP
         private System.Windows.Forms.Label lblOperDate;
         private System.Windows.Forms.Label lblOper;
         private System.Windows.Forms.Label lblCustomer;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.Button btnState;
         private System.Windows.Forms.Label lblDept;
+        private System.Windows.Forms.Label label2;
     }
 }
