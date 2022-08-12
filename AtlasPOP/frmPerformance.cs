@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -26,18 +27,23 @@ namespace AtlasPOP
         int timer_KeepAlive;
         int timer_Read;
         string taskID;
+        int time;
         int totQty = 0;
         int totfail = 0;
         int procID;
         ThreadPLCTask m_thread;
+        Thread thread;
         LoggingUtility m_log;
         popServiceHelper service;
         AtlasPOP main;
 
         public OperationVO oper { get; set; }
+        List<EquipDetailsVO> EquipList = null;
         public frmPerformance(string task, string IP, string Port, OperationVO oper,int processid, AtlasPOP main)
         {
             InitializeComponent();
+            
+
             this.oper = oper;
             this.procID = processid;
             hostIP = IP;
@@ -56,11 +62,19 @@ namespace AtlasPOP
 
         private void frmPerformance_Load(object sender, EventArgs e)
         {
-            m_log.WriteInfo("PLC프로그램 시작");
+            txtOp.Text = oper.OpID;
+            txtItem.Text = oper.ItemName;
+            txtOrder.Text = oper.OrderID;
+            txtProc.Text = oper.ProcessName;
+            txtQty.Text = oper.PlanQty.ToString();
 
+            m_log.WriteInfo("PLC프로그램 시작");
+            thread = new Thread(new ThreadStart(startPorc));
+            thread.Start();
             m_thread = new ThreadPLCTask( m_log, hostIP, hostPort, timer_CONNECT, timer_KeepAlive, timer_Read);
             m_thread.ReadDataReceive += M_thread_ReadDataReceive;
             m_thread.ThreadStart();
+            
             timer_Connec.Start();
 
             drawEquip();
@@ -75,11 +89,13 @@ namespace AtlasPOP
             if (datas.Length != 3) return;
             int qty = int.Parse(datas[0]);
             totQty += int.Parse(datas[1]);
-            
-            this.Invoke((MethodInvoker)(() => txtTotQty.Text = totQty.ToString("#,##0")));
-            
-            
 
+
+            this.Invoke((MethodInvoker)(() => txtTotQty.Text = totQty.ToString("#,##0")));
+
+
+
+            time = qty / EquipList.Count;
 
             if (qty >= 0 && qty <= 10)
                 totfail = 0;
@@ -91,20 +107,36 @@ namespace AtlasPOP
                 totfail = 3;
             else
                 totfail = 4;
-            
+
             this.Invoke((MethodInvoker)(()=> txtFail.Text = totfail.ToString()));
 
             if (Convert.ToInt32(datas[0]) <= (Convert.ToInt32(txtTotQty.Text)+totfail))
             {
                 DialogResult result = MessageBox.Show("작업이 끝났습니다", "작업 종료", MessageBoxButtons.OK);
                 if (result == DialogResult.OK)
-                {                     
-                    main.Finish(totQty, totfail, hostPort.ToString());
+                {
                     timer_Connec.Stop();
-                    
+                    main.Finish(totQty, totfail, hostPort.ToString());
                 }
                 this.Close();
             }
+        }
+
+        delegate void ProgvarCall(int var);
+        private void startPorc()
+        {
+            for (int i = 0; i < oper.PlanQty; i++)
+            {
+                pgState.Invoke(new ProgvarCall(ProgValueSetting), new object[] { i });
+            }
+        }
+
+        private void ProgValueSetting(int var)
+        {
+            pgState.Minimum = 0;
+            pgState.Maximum = time;
+            pgState.Value = 0;
+            pgState.Step = 1;
         }
 
         private void frmPerformance_FormClosing(object sender, FormClosingEventArgs e)
@@ -122,28 +154,13 @@ namespace AtlasPOP
             }
         }
 
-        private void timer_Connect_Tick(object sender, EventArgs e)
-        {
-            try
-            {
-                if (m_thread.ConnectStatus)
-                    lblState.BackColor = Color.Green;
-                else
-                    lblState.BackColor = Color.Red;
-            }
-            catch (Exception err)
-            {
-                Debug.WriteLine(err.Message);
-            }
-        }
-
         public void drawEquip()
         {
-            panel2.Controls.Clear();
             int procID = oper.ProcessID;
             string OperID = oper.OpID;
             ResMessage<List<EquipDetailsVO>> equip = service.GetAsync<List<EquipDetailsVO>>("api/pop/GetEquip");
-            List<EquipDetailsVO> EquipList = equip.Data.FindAll((p) => p.ProcessID == procID);
+            EquipList = equip.Data.FindAll((p) => p.ProcessID == procID);
+
 
             if (equip.Data != null)
             {
@@ -167,6 +184,11 @@ namespace AtlasPOP
             {
                 MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
             }
+        }
+
+        private void timer_Connec_Tick(object sender, EventArgs e)
+        {
+            pgState.PerformStep();
         }
     }
 }

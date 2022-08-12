@@ -151,6 +151,7 @@
             this.btnModify.Padding = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.btnModify.Size = new System.Drawing.Size(168, 37);
             this.btnModify.Text = "추가작업지시생성";
+            this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
             // 
             // dtpFrom
             // 
@@ -191,6 +192,7 @@
             this.btnSearch.TabIndex = 15;
             this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // groupBox5
             // 
@@ -313,6 +315,7 @@
             this.dgvList.RowTemplate.Height = 23;
             this.dgvList.Size = new System.Drawing.Size(499, 208);
             this.dgvList.TabIndex = 0;
+            this.dgvList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvList_CellClick);
             // 
             // groupBox4
             // 
@@ -335,6 +338,8 @@
             this.dgvDetail.RowTemplate.Height = 23;
             this.dgvDetail.Size = new System.Drawing.Size(499, 209);
             this.dgvDetail.TabIndex = 0;
+            this.dgvDetail.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetail_CellClick);
+            this.dgvDetail.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetail_CellContentClick);
             // 
             // frmPlan
             // 

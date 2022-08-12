@@ -119,6 +119,32 @@ namespace AltasMES
             }
         }
 
+        public ResMessage SavePurchase(string path, PurchaseVO pur, List<PurchaseDetailsVO> purDetail)
+        {
+            PurchaseMDVO purMD = new PurchaseMDVO
+            {
+                Master = pur,
+                Detail = purDetail
+            };
+
+            string url = $"{BaseServiceURL}{path}";
+
+            HttpResponseMessage res = client.PostAsJsonAsync(url, purMD).Result;
+            if (res.IsSuccessStatusCode)
+            {
+                ResMessage result = JsonConvert.DeserializeObject<ResMessage>(res.Content.ReadAsStringAsync().Result);
+
+                return result;
+            }
+            else
+            {
+                return null;
+            }
+
+
+        }
+
+
         public ResMessage ServerFileUpload(string path, string localFileName, ItemVO item)
         {
             // 이미지 등록

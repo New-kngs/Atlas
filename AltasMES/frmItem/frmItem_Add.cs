@@ -159,39 +159,7 @@ namespace AltasMES
                 cboCusID.Enabled = false;
                 cboCusID.SelectedIndex = 0;
             }
-        }
-
-        //private void cboCategory1_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    if (cboCategory1.SelectedIndex < 1) return;
-
-        //    //선택된 카테고리에 적합한 제품유형 및 창고 바인딩
-        //    string selCategory = cboCategory1.Text.Trim();
-
-        //    if (comboList != null && whcomboList != null)
-        //    {
-        //        //제품유형
-        //        cboCategory2.DataSource = null;
-        //        CommonUtil.ComboBinding(cboCategory2, comboList, selCategory, blankText: "선택");
-
-        //        //창고                
-        //        //cboWhID.DisplayMember = "WHName";
-        //        //cboWhID.ValueMember = "WHID";               
-        //        //cboWhID.DataSource = whcomboList.FindAll(p => p.ItemCategory.Equals(selCategory));
-        //        CommonUtil.ComboBinding<WareHouseVO>(cboWhID, whcomboList.FindAll(p => p.ItemCategory.Equals(selCategory)), "WHName", "WHID", blankText: "선택");
-        //    }
-
-        //    //선택된 카테고리가 자재인 경우 거래처 바인딩
-        //    if (selCategory.Equals("자재") && cusList != null)
-        //    {
-        //        cboCusID.Enabled = true;
-        //    }
-        //    else
-        //    {
-        //        cboCusID.Enabled = false;
-        //        cboCusID.SelectedIndex = 0;
-        //    }
-        //}
+        }      
 
         private void cboCategory2_SelectedIndexChanged(object sender, EventArgs e)
         {

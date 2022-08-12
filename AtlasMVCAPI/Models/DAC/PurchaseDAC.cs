@@ -144,7 +144,7 @@ namespace AtlasMVCAPI.Models
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = new SqlConnection(strConn);
-                cmd.CommandText = @"select PurchaseID, PD.ItemID, ItemName, ItemSize, Qty
+                cmd.CommandText = @"select PurchaseID, PD.ItemID, ItemName, ItemSize, Qty, ItemPrice
                                     from TB_PurchaseDetails PD inner join TB_Item I on PD.ItemID = I.ItemID";
 
                 cmd.Connection.Open();

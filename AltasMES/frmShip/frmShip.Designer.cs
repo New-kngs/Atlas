@@ -45,6 +45,16 @@ namespace AltasMES
             // 
             this.panel2.Controls.Add(this.groupBox3);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Location = new System.Drawing.Point(866, 20);
+            this.btnAdd.Text = "상세";
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
             // imageList1
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
@@ -53,6 +63,18 @@ namespace AltasMES
             this.imageList1.Images.SetKeyName(2, "Delete.png");
             this.imageList1.Images.SetKeyName(3, "Serach.png");
             this.imageList1.Images.SetKeyName(4, "Execl.png");
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(663, 20);
+            this.btnDelete.Visible = false;
+            // 
+            // btnModify
+            // 
+            this.btnModify.Location = new System.Drawing.Point(751, 20);
+            this.btnModify.Size = new System.Drawing.Size(109, 37);
+            this.btnModify.Text = "출하처리";
+            this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
             // 
             // groupBox3
             // 
@@ -64,7 +86,7 @@ namespace AltasMES
             this.groupBox3.Size = new System.Drawing.Size(1034, 491);
             this.groupBox3.TabIndex = 6;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "출하가능목록";
+            this.groupBox3.Text = "출하대기목록";
             // 
             // dgvShip
             // 
@@ -82,8 +104,10 @@ namespace AltasMES
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1034, 682);
             this.Name = "frmShip";
-            this.Text = "frmShip";
+            this.Text = "출하";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmShip_FormClosing);
             this.Load += new System.EventHandler(this.frmShip_Load);
+            this.Shown += new System.EventHandler(this.frmShip_Shown);
             this.BasePanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.Basepanel4.ResumeLayout(false);

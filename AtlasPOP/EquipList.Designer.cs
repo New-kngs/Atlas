@@ -36,30 +36,34 @@ namespace AtlasPOP
             // 
             // lblName
             // 
-            this.lblName.AutoSize = true;
-            this.lblName.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblName.Location = new System.Drawing.Point(21, 13);
+            this.lblName.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblName.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblName.Location = new System.Drawing.Point(0, 0);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(69, 19);
+            this.lblName.Size = new System.Drawing.Size(212, 24);
             this.lblName.TabIndex = 0;
             this.lblName.Text = "설비명";
+            this.lblName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblName.Click += new System.EventHandler(this.lblName_Click);
             // 
             // lblType
             // 
-            this.lblType.AutoSize = true;
-            this.lblType.Location = new System.Drawing.Point(156, 3);
+            this.lblType.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblType.Location = new System.Drawing.Point(-1, 33);
             this.lblType.Name = "lblType";
-            this.lblType.Size = new System.Drawing.Size(53, 12);
+            this.lblType.Size = new System.Drawing.Size(214, 26);
             this.lblType.TabIndex = 0;
             this.lblType.Text = "설비유형";
+            this.lblType.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblType.Click += new System.EventHandler(this.lblType_Click);
             // 
             // lblState
             // 
-            this.lblState.Font = new System.Drawing.Font("굴림", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblState.Location = new System.Drawing.Point(6, 61);
+            this.lblState.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lblState.Font = new System.Drawing.Font("굴림", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblState.Location = new System.Drawing.Point(0, 115);
             this.lblState.Name = "lblState";
-            this.lblState.Size = new System.Drawing.Size(203, 49);
+            this.lblState.Size = new System.Drawing.Size(212, 37);
             this.lblState.TabIndex = 0;
             this.lblState.Text = "상태";
             this.lblState.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -77,7 +81,6 @@ namespace AtlasPOP
             this.Load += new System.EventHandler(this.EquipList_Load);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.EquipList_MouseClick);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

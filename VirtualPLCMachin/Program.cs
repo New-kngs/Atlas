@@ -56,7 +56,7 @@ namespace VirtualPLCMachin
                 tc = await listener.AcceptTcpClientAsync().ConfigureAwait(false);
                 ns = tc.GetStream();
 
-                timer1 = new Timer(800);
+                timer1 = new Timer(3000);
                 timer1.Elapsed += Timer1_Elapsed;
                 timer1.AutoReset = true;
                 timer1.Enabled = true;

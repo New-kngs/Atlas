@@ -31,6 +31,8 @@ namespace AtlasDTO
         public string p_ItemCode { get; set; }
 
         public int CompleteQty { get; set; }
+        
+        public string OpID { get; set; }
 
 
         // 추가 (김지현)

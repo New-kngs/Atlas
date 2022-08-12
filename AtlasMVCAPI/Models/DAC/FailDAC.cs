@@ -49,7 +49,7 @@ namespace AtlasMVCAPI.Models
                                     CONVERT(varchar(30), f.CreateDate, 120) CreateDate, f.CreateUser, CONVERT(varchar(30), f.ModifyDate, 120) ModifyDate, f.ModifyUser
                                     from TB_Fail f join TB_Item i on f.ItemID = i.ItemID
                                     join TB_CommonCode c on f.FailCode = c.Code
-                                    where f.CreateDate Between @From and @To";
+                                    where CONVERT(varchar(10), f.CreateDate, 120) Between @From and @To";
 
                 cmd.Parameters.AddWithValue("@From", from);
                 cmd.Parameters.AddWithValue("@To", to);

@@ -106,11 +106,7 @@ namespace AltasMES
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
-        {
-            //if (string.IsNullOrWhiteSpace(txtSearch.Text.Trim()) && cboCustomer.SelectedIndex == 0)
-            //{
-            //    MessageBox.Show("거래처를 선택하거나 자재명을 입력해 주세요");
-            //}
+        {            
             if (string.IsNullOrWhiteSpace(txtSearch.Text.Trim()))
             {
                 cboCustomer_SelectedIndexChanged(this, e);
@@ -139,7 +135,7 @@ namespace AltasMES
             if (e.RowIndex < 0) return;
 
             if (e.ColumnIndex == 7)
-            {
+            {             
                 string itemId = dgvItem["ItemID", e.RowIndex].Value.ToString();
                 string itemName = dgvItem["ItemName", e.RowIndex].Value.ToString();
                 string itemSize = dgvItem["ItemSize", e.RowIndex].Value.ToString();
@@ -169,16 +165,16 @@ namespace AltasMES
                 }
                 dgvPurItem.Rows.Add(itemId, itemName, itemSize, 0, cusName, price);
                 dgvItem.ClearSelection();
+                dgvPurItem.ClearSelection();
                 txtCusName.Text = cusName;
-                txtPrice.Text = "0";
-
+                txtPrice.Text = "0 원";
 
                 int sum = 0;
                 for (int i = 0; i < dgvPurItem.Rows.Count; i++)
                 {
                     sum += Convert.ToInt32(dgvPurItem.Rows[i].Cells[3].Value);
                 }
-                txtCount.Text = dgvPurItem.Rows.Count.ToString();
+                txtCount.Text = dgvPurItem.Rows.Count.ToString();                
             }  
         }
 
@@ -201,8 +197,8 @@ namespace AltasMES
                     price += qty * Convert.ToInt32(dgvPurItem.Rows[i].Cells[5].Value); // 단가
                 }
                 txtCount.Text = dgvPurItem.Rows.Count.ToString();
-                txtPrice.Text = price.ToString("#,##0");           
-                
+                txtPrice.Text = price.ToString("#,##0") + " 원";
+
                 if (dgvPurItem.Rows.Count < 1)
                 {
                     txtCusName.Text = string.Empty;
@@ -233,7 +229,7 @@ namespace AltasMES
 
             }
             txtCount.Text = dgvPurItem.Rows.Count.ToString();
-            txtPrice.Text = price.ToString("#,##0");
+            txtPrice.Text = price.ToString("#,##0") + " 원";
 
         }        
 
@@ -249,7 +245,7 @@ namespace AltasMES
                 return;
             }
 
-            List<OrderDetailVO> purDetailList = new List<OrderDetailVO>();
+            List<PurchaseDetailsVO> purDetailList = new List<PurchaseDetailsVO>();
             for (int i = 0; i < dgvPurItem.Rows.Count; i++)
             {
                 if (Convert.ToInt32(dgvPurItem.Rows[i].Cells[3].Value) == 0)
@@ -263,7 +259,7 @@ namespace AltasMES
                     dgvPurItem.CurrentCell = dgvPurItem.Rows[i].Cells[3];
                     return;
                 }
-                OrderDetailVO item = new OrderDetailVO();
+                PurchaseDetailsVO item = new PurchaseDetailsVO();
                 item.ItemID = dgvPurItem.Rows[i].Cells[0].Value.ToString();
                 item.Qty = Convert.ToInt32(dgvPurItem.Rows[i].Cells[3].Value.ToString()); 
                 
@@ -274,17 +270,16 @@ namespace AltasMES
                 CreateUser = this.item.CreateUser,
                 CustomerID = dgvItem["CustomerID", 6].Value.ToString(),                
             };
+            ResMessage result = srv.SavePurchase("api/Purchase/SavePurchase", purList, purDetailList);
 
-            //ResMessage<List<PurchaseVO>> result = srv.PostAsync<PurchaseVO, List<PurchaseVO>>("api/Purchase/SavePurchase", purList, purDetailList);
 
-
-            //if (result.ErrCode == 0)
-            //{
-            //    MessageBox.Show("등록이 완료되었습니다.", "발주 등록", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //    this.DialogResult = DialogResult.OK;
-            //}
-            //else
-            //    MessageBox.Show("오류가 발생하였습니다. 다시 시도 하여 주십시오.");
+            if (result.ErrCode == 0)
+            {
+                MessageBox.Show("등록이 완료되었습니다.", "발주 등록", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = DialogResult.OK;
+            }
+            else
+                MessageBox.Show("오류가 발생하였습니다. 다시 시도 하여 주십시오.");
         }
 
         private void frmPurchase_Add_FormClosing(object sender, FormClosingEventArgs e)

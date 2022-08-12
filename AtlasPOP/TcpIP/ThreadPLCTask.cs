@@ -19,6 +19,7 @@ namespace AtlasPOP
 
         const string STR_ALIVE = "HeartBeat";
         Thread m_thread;
+        Thread pg_thread;
         TcpControl client;
         LoggingUtility m_log;
         string hostIP;
@@ -58,6 +59,9 @@ namespace AtlasPOP
                 manualEvent.Set();
             }
         }
+
+        
+
         private void ExecuteThreadJob()
         {
             while (!manualEvent.WaitOne(timer_Read))

@@ -12,6 +12,8 @@ namespace AtlasDTO
         public int PlanID { get; set; }
         public string ItemID { get; set; }
         public int PlanQty { get; set; }
+        public int Qty { get; set; }
+        public int NeedQty { get; set; }
         public string OrderID { get; set; }
         public string ItemCategory { get; set; }
         public int SafeQty { get; set; }

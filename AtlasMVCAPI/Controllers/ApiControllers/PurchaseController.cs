@@ -17,10 +17,13 @@ namespace AtlasMVCAPI.Controllers
         //POST : https://localhost:44391/api/Purchase/SavePurchase
         [HttpPost]
         [Route("SavePurchase")]
-        public IHttpActionResult SavePurchase(PurchaseVO pur, List<PurchaseDetailsVO> purDetail)
+        public IHttpActionResult SavePurchase(PurchaseMDVO purList)
         {
             try
             {
+                List<PurchaseDetailsVO> purDetail = purList.Detail;
+                PurchaseVO pur = purList.Master;
+
                 PurchaseDAC db = new PurchaseDAC();
                 bool flag = db.SavePurchase(pur, purDetail);
 
