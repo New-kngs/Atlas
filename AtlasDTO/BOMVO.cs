@@ -25,6 +25,8 @@ namespace AtlasDTO
         public int PlanQty { get; set; }
         public int Qty { get; set; }
         public int CurrentQty { get; set; }
+        public int SafeQty { get; set; }
+
         public string ItemCategory { get; set; }
         public string ItemSize { get; set; }
         public string OpID { get; set; }
