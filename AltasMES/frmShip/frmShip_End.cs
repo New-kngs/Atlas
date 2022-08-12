@@ -30,11 +30,14 @@ namespace AltasMES
         private void frmShip_End_Load(object sender, EventArgs e)
         {
             
-            
             SerialPortConnect();
+            ReadCompleted += FrmShip_End_ReadCompleted;
         }
 
-     
+        private void FrmShip_End_ReadCompleted(object sender, ReadEventArgs e)
+        {
+            textBox1.Text = e.ReadMessage;
+        }
 
         private void SerialPortConnect()
         {
