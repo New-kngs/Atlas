@@ -20,7 +20,9 @@ namespace AtlasDTO
 
         public string CreateDate { get; set; }
 
+        public string EndDate { get; set; }
 
+        public string Address { get; set; }
 
 
     }
