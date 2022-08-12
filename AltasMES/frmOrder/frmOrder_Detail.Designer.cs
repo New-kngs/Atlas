@@ -35,7 +35,6 @@ namespace AltasMES
             this.lblTitle = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -50,6 +49,7 @@ namespace AltasMES
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvOrderDetail = new System.Windows.Forms.DataGridView();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -84,7 +84,7 @@ namespace AltasMES
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 63);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(483, 535);
+            this.panel2.Size = new System.Drawing.Size(483, 510);
             this.panel2.TabIndex = 4;
             // 
             // panel3
@@ -109,21 +109,8 @@ namespace AltasMES
             this.panel3.Location = new System.Drawing.Point(12, 6);
             this.panel3.Name = "panel3";
             this.panel3.Padding = new System.Windows.Forms.Padding(5);
-            this.panel3.Size = new System.Drawing.Size(459, 517);
+            this.panel3.Size = new System.Drawing.Size(459, 492);
             this.panel3.TabIndex = 0;
-            // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "excel.png");
-            this.imageList1.Images.SetKeyName(1, "plus.png");
-            this.imageList1.Images.SetKeyName(2, "trash.png");
-            this.imageList1.Images.SetKeyName(3, "pencil.png");
-            this.imageList1.Images.SetKeyName(4, "search.png");
-            this.imageList1.Images.SetKeyName(5, "arrow-left.png");
-            this.imageList1.Images.SetKeyName(6, "check.png");
-            this.imageList1.Images.SetKeyName(7, "close.png");
             // 
             // label5
             // 
@@ -139,18 +126,18 @@ namespace AltasMES
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(14, 137);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(74, 21);
+            this.label4.Size = new System.Drawing.Size(90, 21);
             this.label4.TabIndex = 16;
-            this.label4.Text = "주문날짜";
+            this.label4.Text = "주문요청일";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(297, 26);
+            this.label3.Location = new System.Drawing.Point(312, 26);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(74, 21);
             this.label3.TabIndex = 15;
-            this.label3.Text = "출하여부";
+            this.label3.Text = "완료여부";
             // 
             // label2
             // 
@@ -215,7 +202,7 @@ namespace AltasMES
             this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.Controls.Add(this.groupBox1);
-            this.panel4.Location = new System.Drawing.Point(-1, 267);
+            this.panel4.Location = new System.Drawing.Point(-1, 242);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(459, 166);
             this.panel4.TabIndex = 8;
@@ -249,7 +236,7 @@ namespace AltasMES
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAdd.ImageIndex = 5;
             this.btnAdd.ImageList = this.imageList1;
-            this.btnAdd.Location = new System.Drawing.Point(202, 455);
+            this.btnAdd.Location = new System.Drawing.Point(202, 430);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnAdd.Size = new System.Drawing.Size(78, 37);
@@ -259,12 +246,25 @@ namespace AltasMES
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "excel.png");
+            this.imageList1.Images.SetKeyName(1, "plus.png");
+            this.imageList1.Images.SetKeyName(2, "trash.png");
+            this.imageList1.Images.SetKeyName(3, "pencil.png");
+            this.imageList1.Images.SetKeyName(4, "search.png");
+            this.imageList1.Images.SetKeyName(5, "arrow-left.png");
+            this.imageList1.Images.SetKeyName(6, "check.png");
+            this.imageList1.Images.SetKeyName(7, "close.png");
+            // 
             // frmOrder_Detail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(483, 598);
+            this.ClientSize = new System.Drawing.Size(483, 573);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

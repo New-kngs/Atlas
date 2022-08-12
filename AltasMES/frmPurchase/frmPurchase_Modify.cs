@@ -17,7 +17,8 @@ namespace AltasMES
         ServiceHelper srv = null;
         List<ItemVO> purList = null;
         List<PurchaseDetailsVO> purchaseList = null;
-        List<PurchaseDetailsVO> lastPurList = null;
+        //List<PurchaseDetailsVO> lastPurList = null;
+        List<PurchaseDetailsVO> resultPurList = null;
 
 
         public frmPurchase_Modify(PurchaseVO purchase)
@@ -27,8 +28,7 @@ namespace AltasMES
             srv = new ServiceHelper("");
             this.purchase = purchase;
             txtCusName.Text = purchase.CustomerName;
-            textBox1.Text = purchase.PurchaseID;
-            
+            textBox1.Text = purchase.PurchaseID;           
             
             
         }
@@ -74,6 +74,7 @@ namespace AltasMES
             dgvPurItem.Columns.Add(btn2);
 
             LoadData();
+            LoadPurPrice();
 
             txtCount.Text = dgvPurItem.Rows.Count.ToString();
         }
@@ -84,7 +85,7 @@ namespace AltasMES
             List<ItemVO> purItemList = purList.FindAll(p => p.CustomerName.Equals(txtCusName.Text));
 
             purchaseList = srv.GetAsync<List<PurchaseDetailsVO>>("api/Purchase/GetAllPurchaseDetail").Data;
-            List<PurchaseDetailsVO> resultPurList = purchaseList.FindAll(p => p.PurchaseID.Equals(textBox1.Text));
+            resultPurList = purchaseList.FindAll(p => p.PurchaseID.Equals(textBox1.Text));
 
             if (resultPurList == null || purItemList == null)
             {
@@ -93,7 +94,7 @@ namespace AltasMES
 
             dgvPurItem.DataSource = dgvItem.DataSource = null;
             dgvItem.DataSource = new AdvancedList<ItemVO>(purItemList);
-            dgvPurItem.DataSource = new AdvancedList<PurchaseDetailsVO>(resultPurList);
+            dgvPurItem.DataSource = resultPurList; //new List<PurchaseDetailsVO>(resultPurList);
         }
 
         private void dgvItem_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -119,13 +120,12 @@ namespace AltasMES
                     }                    
                 }
                 // null
-                lastPurList.Add( new PurchaseDetailsVO { ItemID = itemId, ItemName = itemName, ItemSize = itemSize, CustomerName = cusName, PurTotPrice = price, Qty = 0, }); // price);
+                resultPurList.Add( new PurchaseDetailsVO { ItemID = itemId, ItemName = itemName, ItemSize = itemSize, CustomerName = cusName, PurTotPrice = price, Qty = 0, }); // price);
                 dgvItem.ClearSelection();
+                
+                txtCusName.Text = cusName;
                 dgvPurItem.DataSource = null;
-                dgvPurItem.DataSource = lastPurList;
-                //txtCusName.Text = cusName;
-                //txtPrice.Text = "0";
-
+                dgvPurItem.DataSource = resultPurList;                 
 
                 int sum = 0;
                 for (int i = 0; i < dgvPurItem.Rows.Count; i++)
@@ -133,7 +133,88 @@ namespace AltasMES
                     sum += Convert.ToInt32(dgvPurItem.Rows[i].Cells[3].Value);
                 }
                 txtCount.Text = dgvPurItem.Rows.Count.ToString();
+                dgvPurItem.ClearSelection();
             }
+        }
+
+        private void dgvPurItem_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            if (e.ColumnIndex == 6)
+            {
+                //AdvancedList<PurchaseDetailsVO> purNewList = dgvPurItem.DataSource as AdvancedList<PurchaseDetailsVO>;
+                List<PurchaseDetailsVO> purNewList = dgvPurItem.DataSource as List<PurchaseDetailsVO>;
+                purNewList.RemoveAt(e.RowIndex);
+                dgvPurItem.DataSource = null;
+                dgvPurItem.DataSource = purNewList;
+                dgvPurItem.ClearSelection();
+
+                int sum = 0;
+                int price = 0;
+                int qty = 0;
+                for (int i = 0; i < dgvPurItem.Rows.Count; i++)
+                {
+                    sum += qty = Convert.ToInt32(dgvPurItem.Rows[i].Cells[3].Value); // 수량
+                    price += qty * Convert.ToInt32(dgvPurItem.Rows[i].Cells[4].Value); // 단가
+                }
+                txtCount.Text = dgvPurItem.Rows.Count.ToString();
+                txtPrice.Text = price.ToString("#,##0") + " 원";
+
+                if (dgvPurItem.Rows.Count < 1)
+                {
+                    txtCusName.Text = string.Empty;
+                }
+            }
+        }
+
+        private void dgvPurItem_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            int sum = 0;
+            int price = 0;
+            int qty = 0;
+
+            for (int i = 0; i < dgvPurItem.Rows.Count; i++)
+            {
+                if (int.TryParse(dgvPurItem.Rows[i].Cells[3].Value.ToString(), out qty))
+                {
+                    sum += qty;
+                    price += qty * Convert.ToInt32(dgvPurItem.Rows[i].Cells[4].Value);
+                }
+                else
+                {
+                    MessageBox.Show("수량은 숫자를 입력해 주세요");
+                    dgvPurItem.Rows[i].Cells[3].Value = 0;
+                    return;
+                }
+
+            }
+            txtCount.Text = dgvPurItem.Rows.Count.ToString();
+            txtPrice.Text = price.ToString("#,##0") + " 원";
+        }
+
+
+        private void LoadPurPrice()
+        {
+            int num = 0;
+            for (int i = 0; i < dgvPurItem.Rows.Count; i++)
+            {
+                string id = dgvPurItem.Rows[i].Cells["ItemID"].Value.ToString();
+                int qtc = Convert.ToInt32(dgvPurItem.Rows[i].Cells["Qty"].Value);
+                purList.FindAll((f) => f.ItemID.Equals(id)).ForEach((f) => num += f.ItemPrice * qtc);
+            }
+            txtPrice.Text = num.ToString("#,##0") + " 원";
+        }
+
+        private void frmPurchase_Modify_Shown(object sender, EventArgs e)
+        {
+            dgvItem.ClearSelection();
+            dgvPurItem.ClearSelection();
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -126,6 +126,8 @@ namespace AltasMES
             this.dgvPurItem.RowTemplate.Height = 23;
             this.dgvPurItem.Size = new System.Drawing.Size(779, 241);
             this.dgvPurItem.TabIndex = 1;
+            this.dgvPurItem.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPurItem_CellClick);
+            this.dgvPurItem.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPurItem_CellValueChanged);
             // 
             // groupBox3
             // 
@@ -230,6 +232,7 @@ namespace AltasMES
             this.btnAdd.Text = "수정";
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnModify
             // 
@@ -285,6 +288,7 @@ namespace AltasMES
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "발주 상세";
             this.Load += new System.EventHandler(this.frmPurchase_Modify_Load);
+            this.Shown += new System.EventHandler(this.frmPurchase_Modify_Shown);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
