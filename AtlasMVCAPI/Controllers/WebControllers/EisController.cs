@@ -30,11 +30,27 @@ namespace AtlasMVCAPI.Controllers
             ViewBag.endDate = endDate;
 
             ItemDAC db = new ItemDAC();
-            DataSet dsPivotMoney = db.GetPivotMoney(startDate, endDate);
-            
-            // Session["DS_PivotMoney"] = dsPivotMoney;
+            DataSet ds = db.GetPivotMoney(startDate, endDate);
 
-            return View(dsPivotMoney);
+
+            for(int len=0; len<ds.Tables.Count;len++)
+            {
+                foreach (DataRow dr in ds.Tables[len].Rows)
+                {
+                    for (int i = 0; i < ds.Tables[0].Columns.Count; i++)
+                    { 
+                        if (dr[i].ToString() == "")
+                        {
+                            dr[i] = 0;
+                        }
+                    }
+                }
+            }
+
+            Session["Sales"] = ds.Tables[0];
+            Session["Purchase"] = ds.Tables[1];
+
+            return View();
         }
         public ActionResult FailPage()
         {
