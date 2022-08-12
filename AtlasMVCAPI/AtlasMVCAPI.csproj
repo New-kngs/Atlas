@@ -2078,6 +2078,7 @@
     <Compile Include="Models\DAC\WareHouseDAC.cs" />
     <Compile Include="Models\Helper\Helper.cs" />
     <Compile Include="Models\PagingInfo.cs" />
+    <Compile Include="Models\MoneyViewModel.cs" />
     <Compile Include="Models\ProductListViewModel.cs" />
     <Compile Include="Models\ProductPopUpModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
