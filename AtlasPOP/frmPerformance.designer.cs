@@ -43,6 +43,7 @@ namespace AtlasPOP
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.pgState = new System.Windows.Forms.ProgressBar();
             this.txtFail = new System.Windows.Forms.TextBox();
             this.lblState = new System.Windows.Forms.Label();
@@ -68,6 +69,7 @@ namespace AtlasPOP
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1086, 560);
             this.panel1.TabIndex = 0;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // panel3
             // 
@@ -196,12 +198,22 @@ namespace AtlasPOP
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.pgState);
             this.panel2.Location = new System.Drawing.Point(288, 38);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(786, 510);
             this.panel2.TabIndex = 4;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(13, 420);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(38, 12);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "label2";
             // 
             // pgState
             // 
@@ -263,6 +275,7 @@ namespace AtlasPOP
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -289,5 +302,6 @@ namespace AtlasPOP
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
     }
 }
