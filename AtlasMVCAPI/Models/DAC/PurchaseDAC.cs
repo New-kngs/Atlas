@@ -83,61 +83,8 @@ namespace AtlasMVCAPI.Models
                 else
                     return null;
             }
-        }
-       
-        public bool SavePurchasex(PurchaseVO pur, List<PurchaseDetailsVO> purDetail)
-        {
-            SqlConnection conn = new SqlConnection(strConn);
-            conn.Open();
-
-            SqlTransaction trans = conn.BeginTransaction();
-            try
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-
-                    cmd.Connection = conn;
-                    cmd.CommandText = "SP_CreatePurchase";
-                    cmd.Transaction = trans;
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    cmd.Parameters.AddWithValue("@CustomerID", pur.CustomerID);
-                    cmd.Parameters.AddWithValue("@CreateUser", pur.CreateUser);
-                    //cmd.Parameters.AddWithValue("@CreateDate", DateTime.Now);
-
-                    string PurchaseId = cmd.ExecuteScalar().ToString();
-
-                    cmd.Parameters.Clear();
-                    cmd.CommandText = @"insert into TB_PurchaseDetails(PurchaseID, ItemID, Qty) values(@PurchaseID, @ItemID, @Qty)";
-
-                    cmd.Parameters.AddWithValue("@PurchaseID", PurchaseId);
-                    cmd.Parameters.Add("@ItemID", SqlDbType.NVarChar, 10);
-                    cmd.Parameters.Add("@Qty", SqlDbType.Int);
-
-                    int iRowAffect = 0;
-                    foreach (PurchaseDetailsVO item in purDetail)
-                    {
-                        cmd.Parameters[@"ItemID"].Value = item.ItemID;
-                        cmd.Parameters[@"Qty"].Value = item.Qty;
-
-                        iRowAffect += cmd.ExecuteNonQuery();
-                    }
-                    trans.Commit();
-                    return (iRowAffect > 0);
-                }
-            }
-            catch (Exception err)
-            {
-                string sss = err.Message;
-                trans.Rollback();
-                return false;
-            }
-            finally
-            {
-                conn.Close();
-            }
-        }
-
+        }      
+        
         public bool SavePurchase(string CustomerID, string CreateUser, string sbItemID, string sbQty)
         {
             using (SqlCommand cmd = new SqlCommand())
@@ -157,6 +104,33 @@ namespace AtlasMVCAPI.Models
 
                 return (iRowAffect > 0);
             }
+        }
+
+        public bool UpdatePurchase(string purId, string modifyuser, string sbItemID, string sbQty)
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.CommandText = @"update TB_Purchase set ModifyDate = @ModifyDate, ModifyUser = @ModifyUser
+                                    where PurchaseID = @PurchaseID;
+
+                                    update TB_PurchaseDetails set ItemID = @ItemID, Qty = @Qty,
+                                    where PurchaseID = @PurchaseID";
+
+                cmd.Parameters.AddWithValue("@PurchaseID", purId);
+                cmd.Parameters.AddWithValue("@ModifyUser", modifyuser);
+                cmd.Parameters.AddWithValue("@sbItemID", sbItemID);
+                cmd.Parameters.AddWithValue("@sbQty", sbQty);
+                cmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
+                
+
+                cmd.Connection.Open();
+                int iRowAffect = cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+
+                return (iRowAffect > 0);
+            }
+
         }
 
 

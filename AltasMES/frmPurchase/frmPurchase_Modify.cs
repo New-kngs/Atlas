@@ -28,9 +28,11 @@ namespace AltasMES
             srv = new ServiceHelper("");
             this.purchase = purchase;
             txtCusName.Text = purchase.CustomerName;
-            textBox1.Text = purchase.PurchaseID;           
-            
-            
+            txtPurID.Text = purchase.PurchaseID;
+            txtInstate.Text = purchase.InState;
+            txtEndDate.Text = purchase.PurchaseEndDate;
+
+
         }
 
         private void frmPurchase_Modify_Load(object sender, EventArgs e)
@@ -45,17 +47,17 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvItem, "재고수량", "CurrentQty", colwidth: 100, align: DataGridViewContentAlignment.MiddleRight);
             DataGridUtil.AddGridTextBoxColumn(dgvItem, "단가", "ItemPrice", colwidth: 100, align: DataGridViewContentAlignment.MiddleRight);
             DataGridUtil.AddGridTextBoxColumn(dgvItem, "거래처명", "CustomerName", colwidth: 120, align: DataGridViewContentAlignment.MiddleLeft);
+            DataGridUtil.AddGridTextBoxColumn(dgvItem, "거래처ID", "CustomerID", visibility: false);
             dgvItem.Columns["ItemPrice"].DefaultCellStyle.Format = "###,##0";
             dgvItem.ClearSelection();
-
             DataGridViewButtonColumn btn1 = new DataGridViewButtonColumn();
             btn1.HeaderText = "자재추가";
             btn1.Text = "추가";
             btn1.Width = 80;
             btn1.DefaultCellStyle.Padding = new Padding(5, 1, 5, 1);
             btn1.UseColumnTextForButtonValue = true;
-            dgvItem.Columns.Add(btn1);
-
+            dgvItem.Columns.Add(btn1);         
+                       
             // 발주 리스트
             DataGridUtil.SetInitGridView(dgvPurItem);
             DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "자재ID", "ItemID", colwidth: 90, align: DataGridViewContentAlignment.MiddleCenter);
@@ -71,12 +73,14 @@ namespace AltasMES
             btn2.Width = 80;
             btn2.DefaultCellStyle.Padding = new Padding(5, 1, 5, 1);
             btn2.UseColumnTextForButtonValue = true;
-            dgvPurItem.Columns.Add(btn2);
+            dgvPurItem.Columns.Add(btn2);            
 
             LoadData();
             LoadPurPrice();
 
             txtCount.Text = dgvPurItem.Rows.Count.ToString();
+
+            
         }
 
         private void LoadData()
@@ -85,7 +89,7 @@ namespace AltasMES
             List<ItemVO> purItemList = purList.FindAll(p => p.CustomerName.Equals(txtCusName.Text));
 
             purchaseList = srv.GetAsync<List<PurchaseDetailsVO>>("api/Purchase/GetAllPurchaseDetail").Data;
-            resultPurList = purchaseList.FindAll(p => p.PurchaseID.Equals(textBox1.Text));
+            resultPurList = purchaseList.FindAll(p => p.PurchaseID.Equals(txtPurID.Text));
 
             if (resultPurList == null || purItemList == null)
             {
@@ -101,13 +105,14 @@ namespace AltasMES
         {
             if (e.RowIndex < 0) return;
 
-            if (e.ColumnIndex == 6)
+            if (e.ColumnIndex == 7)
             {
                 string itemId = dgvItem["ItemID", e.RowIndex].Value.ToString();
                 string itemName = dgvItem["ItemName", e.RowIndex].Value.ToString();
                 string itemSize = dgvItem["ItemSize", e.RowIndex].Value.ToString();
                 string cusName = dgvItem["CustomerName", e.RowIndex].Value.ToString();
-                int price = Convert.ToInt32(dgvItem["ItemPrice", e.RowIndex].Value);                
+                int price = Convert.ToInt32(dgvItem["ItemPrice", e.RowIndex].Value);
+                string inState = txtInstate.Text;
 
                 foreach (DataGridViewRow item in dgvPurItem.Rows)
                 {
@@ -117,7 +122,7 @@ namespace AltasMES
                     {
                         MessageBox.Show($"이미 추가된 자재입니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
-                    }                    
+                    }               
                 }
                 // null
                 resultPurList.Add( new PurchaseDetailsVO { ItemID = itemId, ItemName = itemName, ItemSize = itemSize, CustomerName = cusName, PurTotPrice = price, Qty = 0, }); // price);
@@ -214,7 +219,47 @@ namespace AltasMES
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            if (dgvPurItem.Rows.Count < 1)
+            {
+                MessageBox.Show("등록된 발주 목록이 없습니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
+            List<PurchaseDetailsVO> purDetailList = new List<PurchaseDetailsVO>();
+            for (int i = 0; i < dgvPurItem.Rows.Count; i++)
+            {
+                if (Convert.ToInt32(dgvPurItem.Rows[i].Cells[3].Value) == 0)
+                {
+                    MessageBox.Show("발주 수량을 확인해 주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                else if (Convert.ToInt32(dgvPurItem.Rows[i].Cells[3].Value) > 300)
+                {
+                    MessageBox.Show("한번에 발주가 가능한 자재 수량은 300개 입니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    dgvPurItem.CurrentCell = dgvPurItem.Rows[i].Cells[3];
+                    return;
+                }
+                PurchaseDetailsVO item = new PurchaseDetailsVO();
+                item.ItemID = dgvPurItem.Rows[i].Cells[0].Value.ToString();
+                item.Qty = Convert.ToInt32(dgvPurItem.Rows[i].Cells[3].Value.ToString());
+
+                purDetailList.Add(item);
+            }
+            PurchaseVO purList = new PurchaseVO()
+            {
+                ModifyUser = this.purchase.ModifyUser,
+                CustomerID = dgvItem["CustomerID", 7].Value.ToString(),
+            };
+            ResMessage result = srv.SavePurchase("api/Purchase/SavePurchase", purList, purDetailList);
+
+
+            if (result.ErrCode == 0)
+            {
+                MessageBox.Show("등록이 완료되었습니다.", "발주 등록", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = DialogResult.OK;
+            }
+            else
+                MessageBox.Show("오류가 발생하였습니다. 다시 시도 하여 주십시오.");
         }
     }
 }

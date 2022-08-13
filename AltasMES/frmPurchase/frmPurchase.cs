@@ -31,11 +31,13 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvPurchase, "발주ID", "PurchaseID", colwidth: 100, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvPurchase, "거래처명", "CustomerName", colwidth: 200, align: DataGridViewContentAlignment.MiddleLeft);
             DataGridUtil.AddGridTextBoxColumn(dgvPurchase, "완료여부", "InState", colwidth: 110, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvPurchase, "발주완료일", "PurchaseEndDate", colwidth: 160, align: DataGridViewContentAlignment.MiddleCenter);            
-            DataGridUtil.AddGridTextBoxColumn(dgvPurchase, "생성사용자", "CreateUser", colwidth: 120, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvPurchase, "발주완료일", "PurchaseEndDate", colwidth: 170, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvPurchase, "창고명", "WHName", colwidth: 110, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvPurchase, "발주요청일", "CreateDate", colwidth: 170, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvPurchase, "변경사용자", "ModifyUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvPurchase, "생성사용자", "CreateUser", colwidth: 120, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvPurchase, "발주수정일", "ModifyDate", colwidth: 170, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvPurchase, "변경사용자", "ModifyUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
+            
 
 
             dtpTo.Value = DateTime.Now;
@@ -168,13 +170,15 @@ namespace AltasMES
 
         private void btnModify_Click(object sender, EventArgs e)
         {
-            if (dgvPurchase.CurrentCell == null) return;
+            if (dgvPurchase.CurrentCell == null) return;            
 
             if (!dgvPurchase.CurrentCell.Selected || selId == string.Empty)
             {
                 MessageBox.Show("발주 항목을 선택해 주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+           
             
             PurchaseVO pur = srv.GetAsync<PurchaseVO>($"/api/Purchase/{selId}").Data;
             pur.ModifyUser = ((Main)this.MdiParent).EmpName.ToString();

@@ -40,6 +40,7 @@ namespace AltasMES
             this.cboStateYN = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.BasePanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.Basepanel4.SuspendLayout();
@@ -62,6 +63,7 @@ namespace AltasMES
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.txtSearch);
             this.groupBox2.Controls.Add(this.label3);
@@ -101,7 +103,7 @@ namespace AltasMES
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.Location = new System.Drawing.Point(675, 43);
+            this.label1.Location = new System.Drawing.Point(764, 43);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(22, 21);
             this.label1.TabIndex = 18;
@@ -114,7 +116,7 @@ namespace AltasMES
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSearch.ImageIndex = 3;
             this.btnSearch.ImageList = this.imageList1;
-            this.btnSearch.Location = new System.Drawing.Point(830, 39);
+            this.btnSearch.Location = new System.Drawing.Point(919, 39);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnSearch.Size = new System.Drawing.Size(32, 29);
@@ -126,7 +128,7 @@ namespace AltasMES
             // dtpFrom
             // 
             this.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFrom.Location = new System.Drawing.Point(549, 39);
+            this.dtpFrom.Location = new System.Drawing.Point(638, 39);
             this.dtpFrom.Name = "dtpFrom";
             this.dtpFrom.Size = new System.Drawing.Size(123, 29);
             this.dtpFrom.TabIndex = 20;
@@ -134,7 +136,7 @@ namespace AltasMES
             // dtpTo
             // 
             this.dtpTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpTo.Location = new System.Drawing.Point(700, 39);
+            this.dtpTo.Location = new System.Drawing.Point(789, 39);
             this.dtpTo.Name = "dtpTo";
             this.dtpTo.Size = new System.Drawing.Size(123, 29);
             this.dtpTo.TabIndex = 21;
@@ -201,6 +203,16 @@ namespace AltasMES
             this.txtSearch.TabIndex = 26;
             this.txtSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearch_KeyPress);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label4.Location = new System.Drawing.Point(545, 43);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(90, 21);
+            this.label4.TabIndex = 29;
+            this.label4.Text = "주문요청일";
+            // 
             // frmOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -236,5 +248,6 @@ namespace AltasMES
         private System.Windows.Forms.ComboBox cboStateYN;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.Label label4;
     }
 }

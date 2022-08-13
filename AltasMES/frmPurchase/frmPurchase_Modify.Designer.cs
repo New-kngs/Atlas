@@ -40,17 +40,19 @@ namespace AltasMES
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtCusName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtPurID = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtPrice = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtCount = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.btnModify = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvItem = new System.Windows.Forms.DataGridView();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.txtInstate = new System.Windows.Forms.TextBox();
+            this.txtEndDate = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -97,6 +99,8 @@ namespace AltasMES
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.txtEndDate);
+            this.panel3.Controls.Add(this.txtInstate);
             this.panel3.Controls.Add(this.groupBox2);
             this.panel3.Controls.Add(this.groupBox3);
             this.panel3.Controls.Add(this.btnAdd);
@@ -136,7 +140,7 @@ namespace AltasMES
             // 
             this.groupBox3.Controls.Add(this.txtCusName);
             this.groupBox3.Controls.Add(this.label1);
-            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Controls.Add(this.txtPurID);
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Controls.Add(this.txtPrice);
             this.groupBox3.Controls.Add(this.label5);
@@ -168,14 +172,14 @@ namespace AltasMES
             this.label1.TabIndex = 9;
             this.label1.Text = "거래처명";
             // 
-            // textBox1
+            // txtPurID
             // 
-            this.textBox1.BackColor = System.Drawing.Color.White;
-            this.textBox1.Location = new System.Drawing.Point(70, 32);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(111, 29);
-            this.textBox1.TabIndex = 8;
+            this.txtPurID.BackColor = System.Drawing.Color.White;
+            this.txtPurID.Location = new System.Drawing.Point(70, 32);
+            this.txtPurID.Name = "txtPurID";
+            this.txtPurID.ReadOnly = true;
+            this.txtPurID.Size = new System.Drawing.Size(111, 29);
+            this.txtPurID.TabIndex = 8;
             // 
             // label6
             // 
@@ -242,6 +246,19 @@ namespace AltasMES
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "excel.png");
+            this.imageList1.Images.SetKeyName(1, "plus.png");
+            this.imageList1.Images.SetKeyName(2, "trash.png");
+            this.imageList1.Images.SetKeyName(3, "pencil.png");
+            this.imageList1.Images.SetKeyName(4, "search.png");
+            this.imageList1.Images.SetKeyName(5, "arrow-left.png");
+            this.imageList1.Images.SetKeyName(6, "check.png");
+            this.imageList1.Images.SetKeyName(7, "close.png");
+            // 
             // btnModify
             // 
             this.btnModify.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -281,18 +298,25 @@ namespace AltasMES
             this.dgvItem.TabIndex = 0;
             this.dgvItem.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItem_CellClick);
             // 
-            // imageList1
+            // txtInstate
             // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "excel.png");
-            this.imageList1.Images.SetKeyName(1, "plus.png");
-            this.imageList1.Images.SetKeyName(2, "trash.png");
-            this.imageList1.Images.SetKeyName(3, "pencil.png");
-            this.imageList1.Images.SetKeyName(4, "search.png");
-            this.imageList1.Images.SetKeyName(5, "arrow-left.png");
-            this.imageList1.Images.SetKeyName(6, "check.png");
-            this.imageList1.Images.SetKeyName(7, "close.png");
+            this.txtInstate.BackColor = System.Drawing.Color.White;
+            this.txtInstate.Location = new System.Drawing.Point(50, 668);
+            this.txtInstate.Name = "txtInstate";
+            this.txtInstate.ReadOnly = true;
+            this.txtInstate.Size = new System.Drawing.Size(45, 29);
+            this.txtInstate.TabIndex = 15;
+            this.txtInstate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txtEndDate
+            // 
+            this.txtEndDate.BackColor = System.Drawing.Color.White;
+            this.txtEndDate.Location = new System.Drawing.Point(127, 668);
+            this.txtEndDate.Name = "txtEndDate";
+            this.txtEndDate.ReadOnly = true;
+            this.txtEndDate.Size = new System.Drawing.Size(145, 29);
+            this.txtEndDate.TabIndex = 16;
+            this.txtEndDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // frmPurchase_Modify
             // 
@@ -314,6 +338,7 @@ namespace AltasMES
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPurItem)).EndInit();
             this.groupBox3.ResumeLayout(false);
@@ -342,9 +367,11 @@ namespace AltasMES
         protected System.Windows.Forms.Button btnModify;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dgvItem;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtPurID;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtCusName;
         protected System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.TextBox txtInstate;
+        private System.Windows.Forms.TextBox txtEndDate;
     }
 }
