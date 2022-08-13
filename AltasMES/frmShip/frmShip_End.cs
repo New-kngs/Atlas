@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO.Ports;
+using AtlasDTO;
 
 namespace AltasMES
 {
@@ -21,22 +22,86 @@ namespace AltasMES
 
         SerialPort _port;
         bool IsOpen = false;
+        ServiceHelper service = null;
+       
+        List<ShipVO> shipList = null;
+        List<OrderDetailVO> orderList = null;
+        List<CustomerVO> cusList = null;
+        string modUser = string.Empty;
 
-        public frmShip_End()
+
+        public frmShip_End(string moduser)
         {
+            modUser = moduser;
             InitializeComponent();
         }
 
         private void frmShip_End_Load(object sender, EventArgs e)
         {
-            
+            service = new ServiceHelper("");
+            shipList = service.GetAsync<List<ShipVO>>("api/Ship/GetAllShip").Data;
+            orderList = service.GetAsync<List<OrderDetailVO>>("api/Order/GetAllOrderDetail").Data;
+            cusList = service.GetAsync<List<CustomerVO>>("api/Customer/GetCustomerlist").Data;
+
+            DataGridUtil.SetInitGridView(dgvOrderDetail);
+            DataGridUtil.AddGridTextBoxColumn(dgvOrderDetail, "제품ID", "ItemID", colwidth: 100, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvOrderDetail, "제품명", "ItemName", colwidth: 200, align: DataGridViewContentAlignment.MiddleLeft);
+            DataGridUtil.AddGridTextBoxColumn(dgvOrderDetail, "수량", "Qty", colwidth: 100, align: DataGridViewContentAlignment.MiddleRight);
+            DataGridUtil.AddGridTextBoxColumn(dgvOrderDetail, "주문번호", "OrderID", visibility: false);
+
+           
+
             SerialPortConnect();
             ReadCompleted += FrmShip_End_ReadCompleted;
         }
 
         private void FrmShip_End_ReadCompleted(object sender, ReadEventArgs e)
         {
+
             textBox1.Text = e.ReadMessage;
+
+            string BarID = e.ReadMessage.Trim();
+            int chBarID = 0;
+
+
+            if (!int.TryParse(BarID,out chBarID))
+            {
+                MessageBox.Show("출하 대기 목록에 존재 하지 않습니다.");
+                txtOrderID.Text = "";
+                txtName.Text = "";
+                txtCreateDate.Text = "";
+                txtEndDate.Text = "";
+                txtAddr.Text = "";
+                dgvOrderDetail.DataSource = null;
+                return;
+            }
+
+            ShipVO shipVO = shipList.Find(n => n.BarCodeID.Equals(Convert.ToInt32(BarID)));
+
+            if(shipVO == null)
+            {
+                MessageBox.Show("출하 대기 목록에 존재 하지 않습니다.");
+                txtOrderID.Text = "";
+                txtName.Text = "";
+                txtCreateDate.Text = "";
+                txtEndDate.Text = "";
+                txtAddr.Text = "";
+              
+                dgvOrderDetail.DataSource = null;
+                return;
+            }
+
+            
+
+            txtOrderID.Text = shipVO.OrderID;
+            txtName.Text = shipVO.CustomerName;
+            txtCreateDate.Text = shipVO.CreateDate;
+            txtEndDate.Text = shipVO.EndDate;
+            txtAddr.Text = cusList.Find(n => n.CustomerName.Equals(shipVO.CustomerName.Trim())).Address;
+
+            dgvOrderDetail.DataSource = orderList.FindAll(n => n.OrderID.Equals(shipVO.OrderID)).ToList();
+            dgvOrderDetail.ClearSelection();
+            
         }
 
         private void SerialPortConnect()
@@ -70,7 +135,7 @@ namespace AltasMES
                 }
                 _port.Open();
                 IsOpen = true;
-                MessageBox.Show("연결성공");
+               // MessageBox.Show("연결성공");
             }
             catch (Exception err)
             {
@@ -122,8 +187,52 @@ namespace AltasMES
 
         private void frmShip_End_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _port.Close();
+            if (_port.IsOpen)
+            {
+                _port.Close();
+            }
 
+            if (service != null)
+            {
+                service.Dispose();
+            }
+
+        }
+
+        private void frmShip_End_Shown(object sender, EventArgs e)
+        {
+            dgvOrderDetail.ClearSelection();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnEnd_Click(object sender, EventArgs e)
+        {
+
+            if(string.IsNullOrWhiteSpace(txtOrderID.Text))
+            {
+                MessageBox.Show("출하 할 목록을 먼저 조회해주세요");
+                return;
+            }
+
+            OrderVO VO = new OrderVO
+            {
+                OrderID = txtOrderID.Text,
+                ModifyUser = modUser,
+            };
+
+            ResMessage<List<OrderVO>> result = service.PostAsync<OrderVO, List<OrderVO>>("api/Order/OrderEnd", VO);
+
+            if (result.ErrCode == 0)
+            {
+                MessageBox.Show("출하 처리가 완료 되었습니다.");
+                this.DialogResult = DialogResult.OK;
+            }
+            else
+                MessageBox.Show(result.ErrMsg);
         }
     }
 }

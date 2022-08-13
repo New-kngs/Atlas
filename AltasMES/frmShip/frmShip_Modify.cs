@@ -26,20 +26,23 @@ namespace AltasMES
 
         private void frmShip_Modify_Load(object sender, EventArgs e)
         {
-            txtOrderID.Text = Ship.OrderID;
-            txtName.Text = Ship.CustomerName;
-            txtCreateDate.Text = Ship.CreateDate;
-            txtEndDate.Text = Ship.EndDate;
+           
 
             DataGridUtil.SetInitGridView(dgvOrderDetail);
             DataGridUtil.AddGridTextBoxColumn(dgvOrderDetail, "제품ID", "ItemID", colwidth: 100, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvOrderDetail, "제품명", "ItemName", colwidth: 200, align: DataGridViewContentAlignment.MiddleLeft);
+            DataGridUtil.AddGridTextBoxColumn(dgvOrderDetail, "제품명", "ItemName", colwidth: 250, align: DataGridViewContentAlignment.MiddleLeft);
             DataGridUtil.AddGridTextBoxColumn(dgvOrderDetail, "수량", "Qty", colwidth: 100, align: DataGridViewContentAlignment.MiddleRight);
 
 
             service = new ServiceHelper("");
             allList = service.GetAsync<List<OrderDetailVO>>("api/Order/GetAllOrderDetail").Data.FindAll(n=>n.OrderID.Equals(Ship.OrderID)).ToList();
             Ship.Address = service.GetAsync<List<CustomerVO>>("api/Customer/GetCustomerlist").Data.Find(n=>n.CustomerName.Equals(Ship.CustomerName)).Address;
+
+            txtOrderID.Text = Ship.OrderID;
+            txtName.Text = Ship.CustomerName;
+            txtCreateDate.Text = Ship.CreateDate;
+            txtEndDate.Text = Ship.EndDate;
+            txtAddr.Text = Ship.Address;
 
             dgvOrderDetail.DataSource = allList;
 

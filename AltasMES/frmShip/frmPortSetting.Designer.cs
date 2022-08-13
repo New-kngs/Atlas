@@ -60,9 +60,11 @@ namespace AltasMES
             this.groupBox1.Controls.Add(this.cboComPort);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.groupBox1.Location = new System.Drawing.Point(31, 18);
+            this.groupBox1.Location = new System.Drawing.Point(35, 22);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(265, 252);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox1.Size = new System.Drawing.Size(303, 315);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Settings";
@@ -76,9 +78,10 @@ namespace AltasMES
             "Xon/Xoff",
             "request to send",
             "request to send xon/xoff"});
-            this.cboHandShake.Location = new System.Drawing.Point(108, 210);
+            this.cboHandShake.Location = new System.Drawing.Point(123, 262);
+            this.cboHandShake.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cboHandShake.Name = "cboHandShake";
-            this.cboHandShake.Size = new System.Drawing.Size(121, 25);
+            this.cboHandShake.Size = new System.Drawing.Size(138, 29);
             this.cboHandShake.TabIndex = 9;
             // 
             // cboParity
@@ -91,9 +94,10 @@ namespace AltasMES
             "even",
             "mark",
             "space"});
-            this.cboParity.Location = new System.Drawing.Point(108, 166);
+            this.cboParity.Location = new System.Drawing.Point(123, 208);
+            this.cboParity.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cboParity.Name = "cboParity";
-            this.cboParity.Size = new System.Drawing.Size(121, 25);
+            this.cboParity.Size = new System.Drawing.Size(138, 29);
             this.cboParity.TabIndex = 8;
             // 
             // cboDataSize
@@ -104,35 +108,36 @@ namespace AltasMES
             "8",
             "7",
             "6"});
-            this.cboDataSize.Location = new System.Drawing.Point(108, 122);
+            this.cboDataSize.Location = new System.Drawing.Point(123, 152);
+            this.cboDataSize.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cboDataSize.Name = "cboDataSize";
-            this.cboDataSize.Size = new System.Drawing.Size(121, 25);
+            this.cboDataSize.Size = new System.Drawing.Size(138, 29);
             this.cboDataSize.TabIndex = 7;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(26, 213);
+            this.label5.Location = new System.Drawing.Point(30, 266);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(76, 17);
+            this.label5.Size = new System.Drawing.Size(98, 23);
             this.label5.TabIndex = 6;
             this.label5.Text = "Handshake";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(26, 169);
+            this.label4.Location = new System.Drawing.Point(30, 211);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(44, 17);
+            this.label4.Size = new System.Drawing.Size(57, 23);
             this.label4.TabIndex = 5;
             this.label4.Text = "Parity";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(26, 125);
+            this.label3.Location = new System.Drawing.Point(30, 156);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(61, 17);
+            this.label3.Size = new System.Drawing.Size(80, 23);
             this.label3.TabIndex = 4;
             this.label3.Text = "DataSize";
             // 
@@ -146,17 +151,18 @@ namespace AltasMES
             "38400",
             "57600",
             "115200"});
-            this.cboBaudRate.Location = new System.Drawing.Point(108, 78);
+            this.cboBaudRate.Location = new System.Drawing.Point(123, 98);
+            this.cboBaudRate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cboBaudRate.Name = "cboBaudRate";
-            this.cboBaudRate.Size = new System.Drawing.Size(121, 25);
+            this.cboBaudRate.Size = new System.Drawing.Size(138, 29);
             this.cboBaudRate.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(26, 81);
+            this.label2.Location = new System.Drawing.Point(30, 101);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 17);
+            this.label2.Size = new System.Drawing.Size(87, 23);
             this.label2.TabIndex = 2;
             this.label2.Text = "BaudRate";
             // 
@@ -164,26 +170,29 @@ namespace AltasMES
             // 
             this.cboComPort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboComPort.FormattingEnabled = true;
-            this.cboComPort.Location = new System.Drawing.Point(108, 34);
+            this.cboComPort.Location = new System.Drawing.Point(123, 42);
+            this.cboComPort.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cboComPort.Name = "cboComPort";
-            this.cboComPort.Size = new System.Drawing.Size(121, 25);
+            this.cboComPort.Size = new System.Drawing.Size(138, 29);
             this.cboComPort.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(26, 37);
+            this.label1.Location = new System.Drawing.Point(30, 46);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(34, 17);
+            this.label1.Size = new System.Drawing.Size(45, 23);
             this.label1.TabIndex = 0;
             this.label1.Text = "Port";
             // 
             // btnSave
             // 
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Bold);
-            this.btnSave.Location = new System.Drawing.Point(31, 432);
+            this.btnSave.Location = new System.Drawing.Point(35, 540);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(265, 43);
+            this.btnSave.Size = new System.Drawing.Size(303, 54);
             this.btnSave.TabIndex = 14;
             this.btnSave.Text = "Config 저장";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -192,28 +201,31 @@ namespace AltasMES
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Bold);
-            this.textBox1.Location = new System.Drawing.Point(31, 360);
+            this.textBox1.Location = new System.Drawing.Point(35, 450);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(265, 49);
+            this.textBox1.Size = new System.Drawing.Size(302, 60);
             this.textBox1.TabIndex = 13;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label6.Location = new System.Drawing.Point(33, 336);
+            this.label6.Location = new System.Drawing.Point(38, 420);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(152, 17);
+            this.label6.Size = new System.Drawing.Size(196, 23);
             this.label6.TabIndex = 12;
             this.label6.Text = "연결여부 확인 (Receive)";
             // 
             // btnConnect
             // 
+            this.btnConnect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConnect.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Bold);
-            this.btnConnect.Location = new System.Drawing.Point(31, 277);
+            this.btnConnect.Location = new System.Drawing.Point(35, 346);
+            this.btnConnect.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnConnect.Name = "btnConnect";
-            this.btnConnect.Size = new System.Drawing.Size(265, 31);
+            this.btnConnect.Size = new System.Drawing.Size(303, 39);
             this.btnConnect.TabIndex = 11;
             this.btnConnect.Text = "연결";
             this.btnConnect.UseVisualStyleBackColor = true;
@@ -221,16 +233,22 @@ namespace AltasMES
             // 
             // frmPortSetting
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(327, 492);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(374, 615);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.btnConnect);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmPortSetting";
-            this.Text = "frmPortSetting";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "바코드 설정";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPortSetting_FormClosing);
             this.Load += new System.EventHandler(this.frmPortSetting_Load);
             this.groupBox1.ResumeLayout(false);

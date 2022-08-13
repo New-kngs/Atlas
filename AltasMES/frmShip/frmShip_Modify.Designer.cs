@@ -49,6 +49,8 @@ namespace AltasMES
             this.btnPrint = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtAddr = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrderDetail)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -74,10 +76,12 @@ namespace AltasMES
             // 
             this.dgvOrderDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvOrderDetail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvOrderDetail.Location = new System.Drawing.Point(3, 25);
+            this.dgvOrderDetail.Location = new System.Drawing.Point(3, 31);
+            this.dgvOrderDetail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvOrderDetail.Name = "dgvOrderDetail";
+            this.dgvOrderDetail.RowHeadersWidth = 51;
             this.dgvOrderDetail.RowTemplate.Height = 23;
-            this.dgvOrderDetail.Size = new System.Drawing.Size(446, 138);
+            this.dgvOrderDetail.Size = new System.Drawing.Size(591, 173);
             this.dgvOrderDetail.TabIndex = 0;
             // 
             // groupBox1
@@ -85,82 +89,88 @@ namespace AltasMES
             this.groupBox1.Controls.Add(this.dgvOrderDetail);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(452, 166);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox1.Size = new System.Drawing.Size(597, 208);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "출하 상세 내역";
+            this.groupBox1.Text = "주문 상세 내역";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(14, 192);
+            this.label5.Location = new System.Drawing.Point(6, 278);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(90, 21);
+            this.label5.Size = new System.Drawing.Size(112, 28);
             this.label5.TabIndex = 17;
             this.label5.Text = "생산완료일";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(14, 137);
+            this.label4.Location = new System.Drawing.Point(6, 212);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(90, 21);
+            this.label4.Size = new System.Drawing.Size(112, 28);
             this.label4.TabIndex = 16;
             this.label4.Text = "주문요청일";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(14, 80);
+            this.label2.Location = new System.Drawing.Point(6, 94);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 21);
+            this.label2.Size = new System.Drawing.Size(92, 28);
             this.label2.TabIndex = 14;
             this.label2.Text = "거래처명";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 26);
+            this.label1.Location = new System.Drawing.Point(10, 31);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 21);
+            this.label1.Size = new System.Drawing.Size(71, 28);
             this.label1.TabIndex = 13;
             this.label1.Text = "주문ID";
             // 
             // txtEndDate
             // 
             this.txtEndDate.BackColor = System.Drawing.Color.White;
-            this.txtEndDate.Location = new System.Drawing.Point(110, 188);
+            this.txtEndDate.Location = new System.Drawing.Point(127, 273);
+            this.txtEndDate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtEndDate.Name = "txtEndDate";
             this.txtEndDate.ReadOnly = true;
-            this.txtEndDate.Size = new System.Drawing.Size(166, 29);
+            this.txtEndDate.Size = new System.Drawing.Size(421, 34);
             this.txtEndDate.TabIndex = 10;
             // 
             // txtCreateDate
             // 
             this.txtCreateDate.BackColor = System.Drawing.Color.White;
-            this.txtCreateDate.Location = new System.Drawing.Point(110, 133);
+            this.txtCreateDate.Location = new System.Drawing.Point(127, 211);
+            this.txtCreateDate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtCreateDate.Name = "txtCreateDate";
             this.txtCreateDate.ReadOnly = true;
-            this.txtCreateDate.Size = new System.Drawing.Size(166, 29);
+            this.txtCreateDate.Size = new System.Drawing.Size(421, 34);
             this.txtCreateDate.TabIndex = 12;
             // 
             // txtName
             // 
             this.txtName.BackColor = System.Drawing.Color.White;
-            this.txtName.Location = new System.Drawing.Point(110, 77);
+            this.txtName.Location = new System.Drawing.Point(127, 91);
+            this.txtName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtName.Name = "txtName";
             this.txtName.ReadOnly = true;
-            this.txtName.Size = new System.Drawing.Size(166, 29);
+            this.txtName.Size = new System.Drawing.Size(421, 34);
             this.txtName.TabIndex = 11;
             // 
             // txtOrderID
             // 
             this.txtOrderID.BackColor = System.Drawing.Color.White;
-            this.txtOrderID.Location = new System.Drawing.Point(110, 23);
+            this.txtOrderID.Location = new System.Drawing.Point(127, 29);
+            this.txtOrderID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtOrderID.Name = "txtOrderID";
             this.txtOrderID.ReadOnly = true;
-            this.txtOrderID.Size = new System.Drawing.Size(166, 29);
+            this.txtOrderID.Size = new System.Drawing.Size(421, 34);
             this.txtOrderID.TabIndex = 9;
             // 
             // panel4
@@ -168,18 +178,20 @@ namespace AltasMES
             this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.Controls.Add(this.groupBox1);
-            this.panel4.Location = new System.Drawing.Point(-1, 267);
+            this.panel4.Location = new System.Drawing.Point(-1, 334);
+            this.panel4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(452, 166);
+            this.panel4.Size = new System.Drawing.Size(597, 208);
             this.panel4.TabIndex = 8;
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 63);
+            this.panel2.Location = new System.Drawing.Point(0, 79);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(476, 535);
+            this.panel2.Size = new System.Drawing.Size(624, 669);
             this.panel2.TabIndex = 6;
             // 
             // panel3
@@ -188,6 +200,8 @@ namespace AltasMES
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.label3);
+            this.panel3.Controls.Add(this.txtAddr);
             this.panel3.Controls.Add(this.btnCancel);
             this.panel3.Controls.Add(this.label5);
             this.panel3.Controls.Add(this.label4);
@@ -200,10 +214,11 @@ namespace AltasMES
             this.panel3.Controls.Add(this.panel4);
             this.panel3.Controls.Add(this.btnPrint);
             this.panel3.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.panel3.Location = new System.Drawing.Point(12, 6);
+            this.panel3.Location = new System.Drawing.Point(14, 8);
+            this.panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Padding = new System.Windows.Forms.Padding(5);
-            this.panel3.Size = new System.Drawing.Size(452, 517);
+            this.panel3.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panel3.Size = new System.Drawing.Size(596, 646);
             this.panel3.TabIndex = 0;
             // 
             // btnCancel
@@ -214,10 +229,11 @@ namespace AltasMES
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancel.ImageIndex = 7;
             this.btnCancel.ImageList = this.imageList1;
-            this.btnCancel.Location = new System.Drawing.Point(269, 459);
+            this.btnCancel.Location = new System.Drawing.Point(375, 574);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.btnCancel.Size = new System.Drawing.Size(83, 37);
+            this.btnCancel.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.btnCancel.Size = new System.Drawing.Size(95, 46);
             this.btnCancel.TabIndex = 19;
             this.btnCancel.Text = "닫기";
             this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -231,10 +247,11 @@ namespace AltasMES
             this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnPrint.ImageIndex = 6;
             this.btnPrint.ImageList = this.imageList1;
-            this.btnPrint.Location = new System.Drawing.Point(59, 459);
+            this.btnPrint.Location = new System.Drawing.Point(112, 574);
+            this.btnPrint.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.btnPrint.Size = new System.Drawing.Size(155, 37);
+            this.btnPrint.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.btnPrint.Size = new System.Drawing.Size(177, 46);
             this.btnPrint.TabIndex = 6;
             this.btnPrint.Text = "출하 라벨 생성";
             this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -247,7 +264,7 @@ namespace AltasMES
             this.lblTitle.Font = new System.Drawing.Font("맑은 고딕", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.Location = new System.Drawing.Point(0, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(476, 63);
+            this.lblTitle.Size = new System.Drawing.Size(624, 79);
             this.lblTitle.TabIndex = 1;
             this.lblTitle.Text = "출하 상세";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -257,19 +274,40 @@ namespace AltasMES
             this.panel1.Controls.Add(this.lblTitle);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(476, 63);
+            this.panel1.Size = new System.Drawing.Size(624, 79);
             this.panel1.TabIndex = 5;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 156);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(119, 28);
+            this.label3.TabIndex = 21;
+            this.label3.Text = "거래처 주소";
+            // 
+            // txtAddr
+            // 
+            this.txtAddr.BackColor = System.Drawing.Color.White;
+            this.txtAddr.Location = new System.Drawing.Point(127, 151);
+            this.txtAddr.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtAddr.Name = "txtAddr";
+            this.txtAddr.ReadOnly = true;
+            this.txtAddr.Size = new System.Drawing.Size(421, 34);
+            this.txtAddr.TabIndex = 20;
             // 
             // frmShip_Modify
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(476, 598);
+            this.ClientSize = new System.Drawing.Size(624, 748);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmShip_Modify";
@@ -309,5 +347,7 @@ namespace AltasMES
         protected System.Windows.Forms.Label lblTitle;
         protected System.Windows.Forms.Panel panel1;
         protected System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtAddr;
     }
 }

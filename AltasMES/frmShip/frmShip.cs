@@ -64,7 +64,7 @@ namespace AltasMES
                 BarCodeID = Convert.ToInt32(dgvShip.SelectedRows[0].Cells["BarcodeID"].Value),
                 CreateDate = dgvShip.SelectedRows[0].Cells["CreateDate"].Value.ToString(),
                 EndDate = dgvShip.SelectedRows[0].Cells["EndDate"].Value.ToString(),
-
+                
             };
 
             frmShip_Modify frm = new frmShip_Modify(VO);
@@ -82,7 +82,10 @@ namespace AltasMES
 
         private void btnModify_Click(object sender, EventArgs e)
         {
-            frmShip_End frm = new frmShip_End();
+
+
+
+            frmShip_End frm = new frmShip_End(((Main)this.MdiParent).EmpName.ToString());
             frm.ShowDialog();
         }
     }

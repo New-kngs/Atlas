@@ -132,5 +132,35 @@ namespace AtlasMVCAPI.Controllers
             }
         }
 
+        //POST : https://localhost:44391/api/Order/OrderEnd
+        [HttpPost]
+        [Route("OrderEnd")]
+        public IHttpActionResult OrderEnd(OrderVO vo)
+        {
+            try
+            {
+                OrderDAC db = new OrderDAC();
+                bool flag = db.OrderEnd(vo);
+
+                ResMessage result = new ResMessage()
+                {
+                    ErrCode = (!flag) ? -9 : 0,
+                    ErrMsg = (!flag) ? "저장중 오류발생" : "S"
+                };
+
+                return Ok(result);
+            }
+            catch (Exception err)
+            {
+                System.Diagnostics.Debug.WriteLine(err.Message);
+
+                return Ok(new ResMessage()
+                {
+                    ErrCode = -9,
+                    ErrMsg = err.Message
+                });
+            }
+        }
+
     }
 }
