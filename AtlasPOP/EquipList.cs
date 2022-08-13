@@ -15,32 +15,26 @@ namespace AtlasPOP
     {
 
         popServiceHelper service = null;
+        public EquipDetailsVO equip { get; set; }
         public EquipList(EquipDetailsVO equip, string OpID)
         {
             InitializeComponent();
             service = new popServiceHelper("");
             ResMessage<List<OperationVO>> list = service.GetAsync<List<OperationVO>>("api/pop/AllOperation");
-
+            this.equip = equip;
             lblName.Text = equip.EquipName;
             lblType.Text = $"{equip.EquipCategory}({equip.EquipID})";
-            lblState.Text = list.Data.Find((n) => n.OpID.Equals(OpID)).OpState;
 
-            if (lblState.Text == "작업중")
-                lblState.ForeColor = Color.Green;
-            else if (lblState.Text == "작업종료")
-                lblState.ForeColor = Color.Red;
+            
         }
-
-        private void EquipList_MouseClick(object sender, MouseEventArgs e)
+        public void DrawState(string opstate)
         {
-
-
+            
+            lblState state = new lblState(opstate);
+            state.Dock = DockStyle.Fill;
+            this.Invoke((MethodInvoker)(() => panel1.Controls.Add(state)));
         }
 
-        private void EquipList_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void lblName_Click(object sender, EventArgs e)
         {

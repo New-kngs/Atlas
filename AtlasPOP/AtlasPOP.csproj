@@ -106,11 +106,11 @@
     <Compile Include="AtlasPOP.Designer.cs">
       <DependentUpon>AtlasPOP.cs</DependentUpon>
     </Compile>
-    <Compile Include="dataProgress.cs">
+    <Compile Include="lblState.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="dataProgress.Designer.cs">
-      <DependentUpon>dataProgress.cs</DependentUpon>
+    <Compile Include="lblState.Designer.cs">
+      <DependentUpon>lblState.cs</DependentUpon>
     </Compile>
     <Compile Include="EquipList.cs">
       <SubType>UserControl</SubType>
@@ -166,8 +166,8 @@
     <EmbeddedResource Include="AtlasPOP.resx">
       <DependentUpon>AtlasPOP.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="dataProgress.resx">
-      <DependentUpon>dataProgress.cs</DependentUpon>
+    <EmbeddedResource Include="lblState.resx">
+      <DependentUpon>lblState.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EquipList.resx">
       <DependentUpon>EquipList.cs</DependentUpon>

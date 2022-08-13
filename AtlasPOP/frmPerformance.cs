@@ -16,7 +16,7 @@ using System.Windows.Forms;
 
 namespace AtlasPOP
 {
-
+    
     public partial class frmPerformance : Form
     {
 
@@ -40,6 +40,7 @@ namespace AtlasPOP
         popServiceHelper service;
         AtlasPOP main;
         ResMessage<List<EquipDetailsVO>> equip = null;
+        EquipList item;
         public OperationVO oper { get; set; }
         List<EquipDetailsVO> EquipList = null;
         public frmPerformance(string task, string IP, string Port, OperationVO oper, int processid, AtlasPOP main)
@@ -72,14 +73,11 @@ namespace AtlasPOP
         }
         private void frmPerformance_Load(object sender, EventArgs e)
         {
-
-
             txtOp.Text = oper.OpID;
             txtItem.Text = oper.ItemName;
             txtOrder.Text = oper.OrderID;
             txtProc.Text = oper.ProcessName;
             txtQty.Text = oper.PlanQty.ToString();
-
 
             drawEquip();
             if (worker.IsBusy != true) //스레드 중복 실행 방지
@@ -118,6 +116,13 @@ namespace AtlasPOP
 
             while (count <= oper.PlanQty)
             {
+                int ss = oper.PlanQty / EquipList.Count;
+                if (count >= ss)
+                {
+                    opFinish(this,e);
+                }
+
+
                 if (worker.CancellationPending == true) //쓰레드 취소 요청시
                 {
                     e.Cancel = true;
@@ -131,7 +136,11 @@ namespace AtlasPOP
             
         }
 
-
+        private void opFinish(object sender, DoWorkEventArgs e)
+        {
+            //몰라
+            item.DrawState("작업종료");
+        }
 
         private void M_thread_ReadDataReceive(object sender, ReadDataEventArgs e)
         {
@@ -205,7 +214,7 @@ namespace AtlasPOP
                 for (int c = 0; c < iRow; c++)
                 {
                     if (idx >= EquipList.Count) break;
-                    EquipList item = new EquipList(EquipList[c], OperID);
+                    item = new EquipList(EquipList[c], OperID);
                     item.Name = $"process";
                     item.Location = new Point(224 * c + 5, 3);
                     item.Size = new Size(214, 154);
@@ -224,11 +233,6 @@ namespace AtlasPOP
         private void timer_Connec_Tick(object sender, EventArgs e)
         {
             pgState.PerformStep();
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }
