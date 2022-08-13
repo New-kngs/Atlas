@@ -31,7 +31,7 @@ namespace AtlasPOP
         {
             this.lblName = new System.Windows.Forms.Label();
             this.lblType = new System.Windows.Forms.Label();
-            this.lblState = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // lblName
@@ -57,29 +57,24 @@ namespace AtlasPOP
             this.lblType.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblType.Click += new System.EventHandler(this.lblType_Click);
             // 
-            // lblState
+            // panel1
             // 
-            this.lblState.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblState.Font = new System.Drawing.Font("굴림", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblState.Location = new System.Drawing.Point(0, 115);
-            this.lblState.Name = "lblState";
-            this.lblState.Size = new System.Drawing.Size(212, 37);
-            this.lblState.TabIndex = 0;
-            this.lblState.Text = "상태";
-            this.lblState.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 89);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(212, 63);
+            this.panel1.TabIndex = 1;
             // 
             // EquipList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Controls.Add(this.lblState);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblType);
             this.Controls.Add(this.lblName);
             this.Name = "EquipList";
             this.Size = new System.Drawing.Size(212, 152);
-            this.Load += new System.EventHandler(this.EquipList_Load);
-            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.EquipList_MouseClick);
             this.ResumeLayout(false);
 
         }
@@ -88,6 +83,6 @@ namespace AtlasPOP
 
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lblType;
-        private System.Windows.Forms.Label lblState;
+        private System.Windows.Forms.Panel panel1;
     }
 }

@@ -45,7 +45,7 @@ namespace AtlasPOP
             dgvList.ClearSelection();
             dgvList.MultiSelect = false;
 
-            string[] combo = {"전체", "작업대기", "작업중", "작업종료" };
+            string[] combo = {"전체", "작업대기", "작업중", "입고대기", "작업종료" };
             cboState.Items.AddRange(combo);
             cboState.SelectedIndex = 0;
             dtpTo.Value = DateTime.Now;
