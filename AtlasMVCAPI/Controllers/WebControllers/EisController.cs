@@ -34,9 +34,9 @@ namespace AtlasMVCAPI.Controllers
             DataSet ds = db.GetPivotMoney(startDate, endDate);
 
 
-            for(int len=0; len<ds.Tables.Count;len++)
+            for(int len=0; len<ds.Tables.Count;len++) // 매출, 매입 테이블
             {
-                foreach (DataRow dr in ds.Tables[len].Rows)
+                foreach (DataRow dr in ds.Tables[len].Rows) 
                 {
                     for (int i = 0; i < ds.Tables[0].Columns.Count; i++)
                     { 
@@ -77,16 +77,16 @@ namespace AtlasMVCAPI.Controllers
             // (데이터) "[10, 2]"
             //          "[1, 20]"
             //          "[12, 10]"
-            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++) // 제품 갯수
             {
                 StringBuilder sb = new StringBuilder(); // 초기화
-                for (int j=1; j<ds.Tables[0].Columns.Count; j++)
+                for (int j=1; j<ds.Tables[0].Columns.Count-1; j++) // 컬럼 번호(1~7)
                 {
                     sb.Append(ds.Tables[0].Rows[i][j] + ",");
                 }
                 ItemSalePrice.Add(sb.ToString());
             }
-            for (int j = 1; j < ds.Tables[0].Rows.Count; j++)
+            for (int j = 0; j < ItemSalePrice.Count; j++)
             {
                 ItemSalePrice[j] = ItemSalePrice[j].TrimEnd(',');
                 ItemSalePrice[j] = "[" + ItemSalePrice[j] + "]";
@@ -107,7 +107,7 @@ namespace AtlasMVCAPI.Controllers
                 }
                 ItemPurchasePrice.Add(sb.ToString());
             }
-            for (int j = 1; j < ds.Tables[1].Rows.Count; j++) // 제품 갯수에 맞춰 반복
+            for (int j = 0; j < ItemPurchasePrice.Count; j++) // 제품 갯수에 맞춰 반복
             {
                 ItemPurchasePrice[j] = ItemPurchasePrice[j].TrimEnd(',');
                 ItemPurchasePrice[j] = "[" + ItemPurchasePrice[j] + "]";
