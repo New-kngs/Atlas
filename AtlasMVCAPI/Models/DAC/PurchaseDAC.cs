@@ -85,7 +85,7 @@ namespace AtlasMVCAPI.Models
             }
         }
        
-        public bool SavePurchase(PurchaseVO pur, List<PurchaseDetailsVO> purDetail)
+        public bool SavePurchasex(PurchaseVO pur, List<PurchaseDetailsVO> purDetail)
         {
             SqlConnection conn = new SqlConnection(strConn);
             conn.Open();
@@ -97,7 +97,7 @@ namespace AtlasMVCAPI.Models
                 {
 
                     cmd.Connection = conn;
-                    cmd.CommandText = "SP_CreatePurchase1";
+                    cmd.CommandText = "SP_CreatePurchase";
                     cmd.Transaction = trans;
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -135,6 +135,27 @@ namespace AtlasMVCAPI.Models
             finally
             {
                 conn.Close();
+            }
+        }
+
+        public bool SavePurchase(string CustomerID, string CreateUser, string sbItemID, string sbQty)
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {            
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.CommandText = "SP_CreatePurchase";
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@CustomerID", CustomerID);
+                cmd.Parameters.AddWithValue("@CreateUser", CreateUser);
+                cmd.Parameters.AddWithValue("@sbItemID", sbItemID);
+                cmd.Parameters.AddWithValue("@sbQty", sbQty);
+
+                cmd.Connection.Open();
+                int iRowAffect = cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+
+                return (iRowAffect > 0);
             }
         }
 

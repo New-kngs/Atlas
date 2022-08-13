@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Text;
 
 namespace AtlasMVCAPI.Controllers
 {
@@ -21,11 +22,22 @@ namespace AtlasMVCAPI.Controllers
         {
             try
             {
+                StringBuilder sbPur = new StringBuilder();
+                StringBuilder sbQty = new StringBuilder();
+
                 List<PurchaseDetailsVO> purDetail = purList.Detail;
                 PurchaseVO pur = purList.Master;
 
+                foreach (PurchaseDetailsVO purResult in purDetail)
+                {
+                    sbPur.Append(purResult.ItemID);
+                    sbQty.Append(purResult.Qty);
+
+                    sbPur.Append(',');
+                    sbQty.Append(',');
+                }
                 PurchaseDAC db = new PurchaseDAC();
-                bool flag = db.SavePurchase(pur, purDetail);
+                bool flag = db.SavePurchase(pur.CustomerID, pur.CreateUser, sbPur.ToString().Trim().TrimEnd(','), sbQty.ToString().TrimEnd(','));
 
                 ResMessage result = new ResMessage()
                 {
