@@ -202,10 +202,10 @@ order by A.CreateDate desc";
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = new SqlConnection(strConn);
-                cmd.CommandText = @"Update TB_Order set OrderShip = 'Y', ModifyDate = @ModifyDate, ModifyUser = @ModifyUser where OrderID = @OrderID";
+                cmd.CommandText = @"Update TB_Order set OrderShip = 'Y', OrderEndDate = @OrderEndDate, ModifyUser = @ModifyUser where OrderID = @OrderID";
 
                 cmd.Parameters.AddWithValue("@OrderID", VO.OrderID);
-                cmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
+                cmd.Parameters.AddWithValue("@OrderEndDate", DateTime.Now);
                 cmd.Parameters.AddWithValue("@ModifyUser", VO.ModifyUser);
                 cmd.Connection.Open();
                 int iRowAffect = cmd.ExecuteNonQuery();

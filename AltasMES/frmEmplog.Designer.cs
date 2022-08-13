@@ -1,7 +1,7 @@
 ﻿
 namespace AltasMES
 {
-    partial class frmShip
+    partial class frmEmplog
     {
         /// <summary>
         /// Required designer variable.
@@ -29,12 +29,12 @@ namespace AltasMES
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmShip));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEmplog));
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.dgvShip = new System.Windows.Forms.DataGridView();
-            this.lblSearch = new System.Windows.Forms.Label();
+            this.dgvEmp = new System.Windows.Forms.DataGridView();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtSerach = new System.Windows.Forms.TextBox();
+            this.lblSearch = new System.Windows.Forms.Label();
             this.BasePanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.Basepanel4.SuspendLayout();
@@ -42,7 +42,7 @@ namespace AltasMES
             this.Basepanel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvShip)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEmp)).BeginInit();
             this.SuspendLayout();
             // 
             // BasePanel1
@@ -56,20 +56,10 @@ namespace AltasMES
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.lblSearch);
             this.groupBox2.Controls.Add(this.btnSearch);
             this.groupBox2.Controls.Add(this.txtSerach);
-            this.groupBox2.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.ImageIndex = 3;
-            this.btnAdd.Location = new System.Drawing.Point(904, 25);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.btnAdd.Padding = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.btnAdd.Size = new System.Drawing.Size(175, 46);
-            this.btnAdd.Text = "조회-라벨생성";
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            this.groupBox2.Controls.Add(this.lblSearch);
+            this.groupBox2.Font = new System.Drawing.Font("맑은 고딕", 11F, System.Drawing.FontStyle.Bold);
             // 
             // imageList1
             // 
@@ -82,23 +72,11 @@ namespace AltasMES
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(663, 25);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.btnDelete.Padding = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.btnDelete.Visible = false;
-            // 
-            // btnModify
-            // 
-            this.btnModify.Location = new System.Drawing.Point(763, 25);
-            this.btnModify.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.btnModify.Padding = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.btnModify.Size = new System.Drawing.Size(132, 46);
-            this.btnModify.Text = "출하지시";
-            this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.dgvShip);
+            this.groupBox3.Controls.Add(this.dgvEmp);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
@@ -106,32 +84,22 @@ namespace AltasMES
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox3.Size = new System.Drawing.Size(1182, 613);
-            this.groupBox3.TabIndex = 6;
+            this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "출하대기목록";
+            this.groupBox3.Text = "groupBox3";
             // 
-            // dgvShip
+            // dgvEmp
             // 
-            this.dgvShip.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvShip.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvShip.Location = new System.Drawing.Point(3, 31);
-            this.dgvShip.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dgvShip.Name = "dgvShip";
-            this.dgvShip.RowHeadersWidth = 51;
-            this.dgvShip.RowTemplate.Height = 23;
-            this.dgvShip.Size = new System.Drawing.Size(1176, 578);
-            this.dgvShip.TabIndex = 1;
-            this.dgvShip.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvShip_ColumnHeaderMouseClick);
-            // 
-            // lblSearch
-            // 
-            this.lblSearch.AutoSize = true;
-            this.lblSearch.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblSearch.Location = new System.Drawing.Point(12, 51);
-            this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(92, 28);
-            this.lblSearch.TabIndex = 18;
-            this.lblSearch.Text = "거래처명";
+            this.dgvEmp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEmp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvEmp.Location = new System.Drawing.Point(3, 31);
+            this.dgvEmp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dgvEmp.Name = "dgvEmp";
+            this.dgvEmp.RowHeadersWidth = 51;
+            this.dgvEmp.RowTemplate.Height = 23;
+            this.dgvEmp.Size = new System.Drawing.Size(1176, 578);
+            this.dgvEmp.TabIndex = 0;
+            this.dgvEmp.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvEmp_ColumnHeaderMouseClick);
             // 
             // btnSearch
             // 
@@ -140,37 +108,44 @@ namespace AltasMES
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSearch.ImageIndex = 3;
             this.btnSearch.ImageList = this.imageList1;
-            this.btnSearch.Location = new System.Drawing.Point(363, 47);
+            this.btnSearch.Location = new System.Drawing.Point(362, 49);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.btnSearch.Size = new System.Drawing.Size(36, 35);
-            this.btnSearch.TabIndex = 20;
+            this.btnSearch.Size = new System.Drawing.Size(40, 36);
+            this.btnSearch.TabIndex = 15;
             this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // txtSerach
             // 
             this.txtSerach.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.txtSerach.Location = new System.Drawing.Point(107, 48);
+            this.txtSerach.Location = new System.Drawing.Point(110, 50);
             this.txtSerach.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSerach.Name = "txtSerach";
             this.txtSerach.Size = new System.Drawing.Size(245, 34);
-            this.txtSerach.TabIndex = 19;
-            this.txtSerach.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSerach_KeyPress);
+            this.txtSerach.TabIndex = 14;
             // 
-            // frmShip
+            // lblSearch
+            // 
+            this.lblSearch.AutoSize = true;
+            this.lblSearch.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblSearch.Location = new System.Drawing.Point(12, 53);
+            this.lblSearch.Name = "lblSearch";
+            this.lblSearch.Size = new System.Drawing.Size(69, 28);
+            this.lblSearch.TabIndex = 13;
+            this.lblSearch.Text = "label1";
+            // 
+            // frmEmplog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1182, 852);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "frmShip";
-            this.Text = "출하";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmShip_FormClosing);
-            this.Load += new System.EventHandler(this.frmShip_Load);
-            this.Shown += new System.EventHandler(this.frmShip_Shown);
+            this.Name = "frmEmplog";
+            this.Text = "frmEmplog";
+            this.Load += new System.EventHandler(this.frmEmplog_Load);
+            this.Shown += new System.EventHandler(this.frmEmplog_Shown);
             this.BasePanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.Basepanel4.ResumeLayout(false);
@@ -180,17 +155,18 @@ namespace AltasMES
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvShip)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEmp)).EndInit();
             this.ResumeLayout(false);
 
         }
 
+
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.DataGridView dgvShip;
-        private System.Windows.Forms.Label lblSearch;
+        private System.Windows.Forms.DataGridView dgvEmp;
         protected System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TextBox txtSerach;
+        private System.Windows.Forms.Label lblSearch;
     }
 }

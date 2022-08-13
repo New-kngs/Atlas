@@ -52,49 +52,55 @@ namespace AltasMES
             // txtJibunAddr2
             // 
             this.txtJibunAddr2.Font = new System.Drawing.Font("맑은 고딕", 11F);
-            this.txtJibunAddr2.Location = new System.Drawing.Point(252, 456);
+            this.txtJibunAddr2.Location = new System.Drawing.Point(288, 570);
+            this.txtJibunAddr2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtJibunAddr2.Name = "txtJibunAddr2";
-            this.txtJibunAddr2.Size = new System.Drawing.Size(307, 27);
+            this.txtJibunAddr2.Size = new System.Drawing.Size(350, 32);
             this.txtJibunAddr2.TabIndex = 62;
             // 
             // txtJibunZipCode
             // 
             this.txtJibunZipCode.Font = new System.Drawing.Font("맑은 고딕", 11F);
-            this.txtJibunZipCode.Location = new System.Drawing.Point(163, 456);
+            this.txtJibunZipCode.Location = new System.Drawing.Point(186, 570);
+            this.txtJibunZipCode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtJibunZipCode.Name = "txtJibunZipCode";
-            this.txtJibunZipCode.Size = new System.Drawing.Size(83, 27);
+            this.txtJibunZipCode.Size = new System.Drawing.Size(94, 32);
             this.txtJibunZipCode.TabIndex = 61;
             // 
             // txtJibunAddr1
             // 
             this.txtJibunAddr1.Font = new System.Drawing.Font("맑은 고딕", 11F);
-            this.txtJibunAddr1.Location = new System.Drawing.Point(163, 422);
+            this.txtJibunAddr1.Location = new System.Drawing.Point(186, 528);
+            this.txtJibunAddr1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtJibunAddr1.Name = "txtJibunAddr1";
-            this.txtJibunAddr1.Size = new System.Drawing.Size(396, 27);
+            this.txtJibunAddr1.Size = new System.Drawing.Size(452, 32);
             this.txtJibunAddr1.TabIndex = 60;
             // 
             // txtRoadAddr2
             // 
             this.txtRoadAddr2.Font = new System.Drawing.Font("맑은 고딕", 11F);
-            this.txtRoadAddr2.Location = new System.Drawing.Point(252, 386);
+            this.txtRoadAddr2.Location = new System.Drawing.Point(288, 482);
+            this.txtRoadAddr2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtRoadAddr2.Name = "txtRoadAddr2";
-            this.txtRoadAddr2.Size = new System.Drawing.Size(307, 27);
+            this.txtRoadAddr2.Size = new System.Drawing.Size(350, 32);
             this.txtRoadAddr2.TabIndex = 59;
             // 
             // txtRoadZipcode
             // 
             this.txtRoadZipcode.Font = new System.Drawing.Font("맑은 고딕", 11F);
-            this.txtRoadZipcode.Location = new System.Drawing.Point(163, 386);
+            this.txtRoadZipcode.Location = new System.Drawing.Point(186, 482);
+            this.txtRoadZipcode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtRoadZipcode.Name = "txtRoadZipcode";
-            this.txtRoadZipcode.Size = new System.Drawing.Size(83, 27);
+            this.txtRoadZipcode.Size = new System.Drawing.Size(94, 32);
             this.txtRoadZipcode.TabIndex = 58;
             // 
             // txtRoadAddr1
             // 
             this.txtRoadAddr1.Font = new System.Drawing.Font("맑은 고딕", 11F);
-            this.txtRoadAddr1.Location = new System.Drawing.Point(163, 355);
+            this.txtRoadAddr1.Location = new System.Drawing.Point(186, 444);
+            this.txtRoadAddr1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtRoadAddr1.Name = "txtRoadAddr1";
-            this.txtRoadAddr1.Size = new System.Drawing.Size(396, 27);
+            this.txtRoadAddr1.Size = new System.Drawing.Size(452, 32);
             this.txtRoadAddr1.TabIndex = 57;
             // 
             // btnJibun
@@ -103,9 +109,10 @@ namespace AltasMES
             this.btnJibun.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnJibun.Font = new System.Drawing.Font("맑은 고딕", 10F);
             this.btnJibun.ForeColor = System.Drawing.Color.Black;
-            this.btnJibun.Location = new System.Drawing.Point(31, 421);
+            this.btnJibun.Location = new System.Drawing.Point(35, 526);
+            this.btnJibun.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnJibun.Name = "btnJibun";
-            this.btnJibun.Size = new System.Drawing.Size(126, 62);
+            this.btnJibun.Size = new System.Drawing.Size(144, 78);
             this.btnJibun.TabIndex = 54;
             this.btnJibun.Text = "지번주소 확인";
             this.btnJibun.UseVisualStyleBackColor = false;
@@ -117,9 +124,10 @@ namespace AltasMES
             this.btnRoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRoad.Font = new System.Drawing.Font("맑은 고딕", 10F);
             this.btnRoad.ForeColor = System.Drawing.Color.Black;
-            this.btnRoad.Location = new System.Drawing.Point(31, 355);
+            this.btnRoad.Location = new System.Drawing.Point(35, 444);
+            this.btnRoad.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnRoad.Name = "btnRoad";
-            this.btnRoad.Size = new System.Drawing.Size(126, 60);
+            this.btnRoad.Size = new System.Drawing.Size(144, 75);
             this.btnRoad.TabIndex = 53;
             this.btnRoad.Text = "도로명 주소확인";
             this.btnRoad.UseVisualStyleBackColor = false;
@@ -129,38 +137,42 @@ namespace AltasMES
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("맑은 고딕", 12F);
-            this.label1.Location = new System.Drawing.Point(29, 31);
+            this.label1.Location = new System.Drawing.Point(33, 39);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(170, 21);
+            this.label1.Size = new System.Drawing.Size(211, 28);
             this.label1.TabIndex = 56;
             this.label1.Text = "도로명(지번) 주소검색";
             // 
             // dgvZip
             // 
             this.dgvZip.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvZip.Location = new System.Drawing.Point(31, 62);
+            this.dgvZip.Location = new System.Drawing.Point(35, 78);
+            this.dgvZip.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvZip.Name = "dgvZip";
             this.dgvZip.RowHeadersWidth = 51;
             this.dgvZip.RowTemplate.Height = 23;
-            this.dgvZip.Size = new System.Drawing.Size(525, 287);
+            this.dgvZip.Size = new System.Drawing.Size(600, 359);
             this.dgvZip.TabIndex = 55;
             this.dgvZip.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvZip_CellClick);
             // 
             // txtSearch
             // 
             this.txtSearch.Font = new System.Drawing.Font("맑은 고딕", 12F);
-            this.txtSearch.Location = new System.Drawing.Point(203, 27);
+            this.txtSearch.Location = new System.Drawing.Point(232, 34);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(311, 29);
+            this.txtSearch.Size = new System.Drawing.Size(355, 34);
             this.txtSearch.TabIndex = 51;
+            this.txtSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearch_KeyPress);
             // 
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.btnSerach);
-            this.panel1.Location = new System.Drawing.Point(12, 12);
+            this.panel1.Location = new System.Drawing.Point(14, 15);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(563, 488);
+            this.panel1.Size = new System.Drawing.Size(643, 610);
             this.panel1.TabIndex = 119;
             // 
             // btnSerach
@@ -171,11 +183,11 @@ namespace AltasMES
             this.btnSerach.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSerach.ImageIndex = 4;
             this.btnSerach.ImageList = this.imageList2;
-            this.btnSerach.Location = new System.Drawing.Point(509, 14);
-            this.btnSerach.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSerach.Location = new System.Drawing.Point(582, 18);
+            this.btnSerach.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btnSerach.Name = "btnSerach";
-            this.btnSerach.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.btnSerach.Size = new System.Drawing.Size(34, 30);
+            this.btnSerach.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.btnSerach.Size = new System.Drawing.Size(39, 38);
             this.btnSerach.TabIndex = 120;
             this.btnSerach.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSerach.UseVisualStyleBackColor = true;
@@ -196,10 +208,10 @@ namespace AltasMES
             // 
             // ZipcodePopup
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(591, 517);
+            this.ClientSize = new System.Drawing.Size(675, 646);
             this.Controls.Add(this.txtJibunAddr2);
             this.Controls.Add(this.txtJibunZipCode);
             this.Controls.Add(this.txtJibunAddr1);
@@ -213,6 +225,7 @@ namespace AltasMES
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "ZipcodePopup";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "주소 검색";

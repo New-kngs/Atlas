@@ -248,7 +248,7 @@ namespace AltasMES
             this.MinimizeBox = false;
             this.Name = "frmPortSetting";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "바코드 설정";
+            this.Text = "바코드 연결 설정";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPortSetting_FormClosing);
             this.Load += new System.EventHandler(this.frmPortSetting_Load);
             this.groupBox1.ResumeLayout(false);

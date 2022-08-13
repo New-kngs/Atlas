@@ -89,13 +89,13 @@ namespace AltasMES
             this.btnSetting.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSetting.ImageIndex = 8;
             this.btnSetting.ImageList = this.imageList1;
-            this.btnSetting.Location = new System.Drawing.Point(424, 24);
+            this.btnSetting.Location = new System.Drawing.Point(448, 22);
             this.btnSetting.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSetting.Name = "btnSetting";
             this.btnSetting.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.btnSetting.Size = new System.Drawing.Size(155, 40);
+            this.btnSetting.Size = new System.Drawing.Size(138, 40);
             this.btnSetting.TabIndex = 20;
-            this.btnSetting.Text = "바코드 설정";
+            this.btnSetting.Text = "연결 설정";
             this.btnSetting.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSetting.UseVisualStyleBackColor = true;
             this.btnSetting.Click += new System.EventHandler(this.btnSetting_Click);
@@ -122,7 +122,7 @@ namespace AltasMES
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(606, 79);
             this.lblTitle.TabIndex = 1;
-            this.lblTitle.Text = "출하 완료";
+            this.lblTitle.Text = "출하 지시";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel3
@@ -195,7 +195,7 @@ namespace AltasMES
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.dgvOrderDetail);
-            this.groupBox1.Location = new System.Drawing.Point(9, 405);
+            this.groupBox1.Location = new System.Drawing.Point(11, 405);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -343,7 +343,8 @@ namespace AltasMES
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmShip_End";
-            this.Text = "출하완료";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "출하지시";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmShip_End_FormClosing);
             this.Load += new System.EventHandler(this.frmShip_End_Load);
             this.Shown += new System.EventHandler(this.frmShip_End_Shown);

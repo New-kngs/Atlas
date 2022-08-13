@@ -27,10 +27,9 @@ namespace AltasMES
         private void frmShip_Modify_Load(object sender, EventArgs e)
         {
            
-
             DataGridUtil.SetInitGridView(dgvOrderDetail);
             DataGridUtil.AddGridTextBoxColumn(dgvOrderDetail, "제품ID", "ItemID", colwidth: 100, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvOrderDetail, "제품명", "ItemName", colwidth: 250, align: DataGridViewContentAlignment.MiddleLeft);
+            DataGridUtil.AddGridTextBoxColumn(dgvOrderDetail, "제품명", "ItemName", colwidth: 200, align: DataGridViewContentAlignment.MiddleLeft);
             DataGridUtil.AddGridTextBoxColumn(dgvOrderDetail, "수량", "Qty", colwidth: 100, align: DataGridViewContentAlignment.MiddleRight);
 
 
@@ -49,14 +48,6 @@ namespace AltasMES
 
         }
 
-        private void frmShip_Modify_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if(service != null)
-            {
-                service.Dispose();
-            }
-        }
-
         private void btnPrint_Click(object sender, EventArgs e)
         {
 
@@ -65,16 +56,30 @@ namespace AltasMES
 
             DataTable dt = CommonUtil.LinqQueryToDataTable(vo); //DataTable
 
-            XtraReport1 rpt = new XtraReport1();
-            rpt.DataSource = dt;
+            XtraReport1 rpt = new XtraReport1
+            {
+                DataSource = dt
+            };
             _ = new ReportPreviewForm(rpt);
-
 
         }
 
         private void frmShip_Modify_Shown(object sender, EventArgs e)
         {
             dgvOrderDetail.ClearSelection();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void frmShip_Modify_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (service != null)
+            {
+                service.Dispose();
+            }
         }
     }
 }

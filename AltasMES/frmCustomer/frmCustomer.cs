@@ -170,7 +170,7 @@ namespace AltasMES
         private void btnModify_Click(object sender, EventArgs e)
         {
       
-            if (dgvCus.CurrentCell == null)
+            if (dgvCus.CurrentCell == null || !dgvCus.CurrentCell.Selected )
             {
                 MessageBox.Show("수정하실 거래처를 선택해주세요.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -198,7 +198,7 @@ namespace AltasMES
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (dgvCus.CurrentCell == null)
+            if (dgvCus.CurrentCell == null || !dgvCus.CurrentCell.Selected )
             {
                 MessageBox.Show("삭제하실 거래처를 선택해주세요.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;

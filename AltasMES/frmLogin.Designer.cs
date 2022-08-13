@@ -94,7 +94,8 @@ namespace AltasMES
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(182, 34);
             this.txtID.TabIndex = 0;
-            this.txtID.Text = "Master";
+            this.txtID.Text = "gudi01";
+            this.txtID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtID_KeyPress);
             // 
             // txtPwd
             // 
@@ -106,6 +107,7 @@ namespace AltasMES
             this.txtPwd.Size = new System.Drawing.Size(182, 34);
             this.txtPwd.TabIndex = 1;
             this.txtPwd.Text = "1234";
+            this.txtPwd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPwd_KeyPress);
             // 
             // btnExit
             // 
@@ -130,7 +132,7 @@ namespace AltasMES
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.Location = new System.Drawing.Point(151, 215);
+            this.label1.Location = new System.Drawing.Point(129, 215);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(87, 32);
             this.label1.TabIndex = 11;

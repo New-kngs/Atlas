@@ -40,7 +40,7 @@ namespace AltasMES
 
             DataGridUtil.AddGridTextBoxColumn(dgvEmp, "Eid", "Eid",visibility: false);
             DataGridUtil.AddGridTextBoxColumn(dgvEmp, "사용자ID", "EmpID", colwidth: 200, align: DataGridViewContentAlignment.MiddleLeft);
-            DataGridUtil.AddGridTextBoxColumn(dgvEmp, "사용자이름", "EmpName", colwidth: 200, align: DataGridViewContentAlignment.MiddleLeft);
+            DataGridUtil.AddGridTextBoxColumn(dgvEmp, "사용자명", "EmpName", colwidth: 200, align: DataGridViewContentAlignment.MiddleLeft);
             DataGridUtil.AddGridTextBoxColumn(dgvEmp, "부서명", "DeptName", colwidth: 150, align: DataGridViewContentAlignment.MiddleLeft);
             DataGridUtil.AddGridTextBoxColumn(dgvEmp, "비밀번호", "EmpPwd", visibility: false);
             DataGridUtil.AddGridTextBoxColumn(dgvEmp, "연락처", "EmpPhone", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
@@ -59,7 +59,6 @@ namespace AltasMES
         private void EmployeeFormInit()
         {
             CommonUtil.ComboBinding(cboCategory, DeptList, "DeptName", "DeptN", blankText: "전체");
-
 
             cboCategory.SelectedIndex = 0;
 
@@ -128,6 +127,8 @@ namespace AltasMES
 
             }
 
+            dgvEmp.ClearSelection();
+
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -145,7 +146,7 @@ namespace AltasMES
           
             
 
-            if (!dgvEmp.CurrentCell.Selected)
+            if (dgvEmp.CurrentCell == null || !dgvEmp.CurrentCell.Selected)
             {
                 MessageBox.Show("수정하실 사용자를 선택해주세요.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -177,7 +178,7 @@ namespace AltasMES
         private void btnDelete_Click(object sender, EventArgs e)
         {
 
-            if (dgvEmp.CurrentCell == null)
+            if (dgvEmp.CurrentCell == null || !dgvEmp.CurrentCell.Selected)
            {
                 MessageBox.Show("삭제하실 사용자를 선택해주세요.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;

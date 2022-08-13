@@ -140,7 +140,7 @@ namespace AltasMES
             catch (Exception err)
             {
                 IsOpen = false;
-                MessageBox.Show(err.Message);
+                MessageBox.Show(err.Message + "\n바코드 연결 설정이 필요합니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -185,6 +185,34 @@ namespace AltasMES
             }
         }
 
+       
+
+        private void btnEnd_Click(object sender, EventArgs e)
+        {
+
+            if(string.IsNullOrWhiteSpace(txtOrderID.Text))
+            {
+                MessageBox.Show("출하 할 목록을 먼저 조회해주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            OrderVO VO = new OrderVO
+            {
+                OrderID = txtOrderID.Text,
+                ModifyUser = modUser,
+            };
+
+            ResMessage<List<OrderVO>> result = service.PostAsync<OrderVO, List<OrderVO>>("api/Order/OrderEnd", VO);
+
+            if (result.ErrCode == 0)
+            {
+                MessageBox.Show("출하 처리가 완료 되었습니다.", "출하", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = DialogResult.OK;
+            }
+            else
+                MessageBox.Show(result.ErrMsg);
+        }
+
         private void frmShip_End_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (_port.IsOpen)
@@ -207,32 +235,6 @@ namespace AltasMES
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void btnEnd_Click(object sender, EventArgs e)
-        {
-
-            if(string.IsNullOrWhiteSpace(txtOrderID.Text))
-            {
-                MessageBox.Show("출하 할 목록을 먼저 조회해주세요");
-                return;
-            }
-
-            OrderVO VO = new OrderVO
-            {
-                OrderID = txtOrderID.Text,
-                ModifyUser = modUser,
-            };
-
-            ResMessage<List<OrderVO>> result = service.PostAsync<OrderVO, List<OrderVO>>("api/Order/OrderEnd", VO);
-
-            if (result.ErrCode == 0)
-            {
-                MessageBox.Show("출하 처리가 완료 되었습니다.");
-                this.DialogResult = DialogResult.OK;
-            }
-            else
-                MessageBox.Show(result.ErrMsg);
         }
     }
 }

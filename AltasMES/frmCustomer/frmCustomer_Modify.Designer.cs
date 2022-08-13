@@ -407,7 +407,7 @@ namespace AltasMES
             this.ClientSize = new System.Drawing.Size(781, 714);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.lblTitle);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmCustomer_Modify";

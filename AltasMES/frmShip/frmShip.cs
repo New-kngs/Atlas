@@ -27,7 +27,6 @@ namespace AltasMES
         private void frmShip_Load(object sender, EventArgs e)
         {
             service = new ServiceHelper("");
-            allList = service.GetAsync<List<ShipVO>>("api/Ship/GetAllShip").Data;
 
             lblTitle.Text = "출하";
             groupBox2.Text = "검색조건";
@@ -41,7 +40,9 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvShip, "생산완료일", "EndDate", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvShip, "Barcode", "BarcodeID", visibility: false);
 
-            dgvShip.DataSource = new AdvancedList<ShipVO>(allList);
+            Databinding();
+           
+            
         }
 
         private void frmShip_Shown(object sender, EventArgs e)
@@ -51,7 +52,7 @@ namespace AltasMES
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (!dgvShip.CurrentCell.Selected)
+            if (dgvShip.CurrentCell == null || !dgvShip.CurrentCell.Selected)
             {
                 MessageBox.Show("조회하실 출하 내역을 선택해주세요.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -82,11 +83,57 @@ namespace AltasMES
 
         private void btnModify_Click(object sender, EventArgs e)
         {
-
-
-
             frmShip_End frm = new frmShip_End(((Main)this.MdiParent).EmpName.ToString());
-            frm.ShowDialog();
+            if(frm.ShowDialog() == DialogResult.OK)
+            {
+                Databinding();
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            
+            if (allList != null)
+            {
+                if (string.IsNullOrWhiteSpace(txtSerach.Text.Trim()))
+                {
+                    dgvShip.DataSource = null;
+                    dgvShip.DataSource = new AdvancedList<ShipVO>(allList);
+                    dgvShip.ClearSelection();
+                }
+                else
+                {
+                    List<ShipVO> list = allList.FindAll(n => n.CustomerName.Contains(txtSerach.Text.Trim()));
+                    dgvShip.DataSource = new AdvancedList<ShipVO>(list);
+                    dgvShip.ClearSelection();
+
+                }
+            }
+          
+        }
+
+
+        private void txtSerach_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                btnSearch_Click(this, e);
+        }
+
+        private void Databinding()
+        {
+            allList = service.GetAsync<List<ShipVO>>("api/Ship/GetAllShip").Data;
+
+            if (allList != null)
+                dgvShip.DataSource = new AdvancedList<ShipVO>(allList);
+            else
+                MessageBox.Show("출하가능한 목록이 없습니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            dgvShip.ClearSelection();
+        }
+
+        private void dgvShip_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            dgvShip.ClearSelection();
         }
     }
 }

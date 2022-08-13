@@ -88,6 +88,8 @@ namespace AltasMES
             Properties.Settings.Default.Save();
 
             MessageBox.Show("시리얼포트 설정이 저장되었습니다.");
+            this.Close();
+
         }
 
         private void frmPortSetting_FormClosing(object sender, FormClosingEventArgs e)

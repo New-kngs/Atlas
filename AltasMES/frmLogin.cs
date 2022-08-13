@@ -35,13 +35,13 @@ namespace AltasMES
         {
             if(string.IsNullOrWhiteSpace(txtID.Text))
             {
-                MessageBox.Show("ID를 입력해주세요");
+                MessageBox.Show("ID를 입력해주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if(string.IsNullOrWhiteSpace(txtPwd.Text))
             {
-                MessageBox.Show("비밀번호를 입력해주세요");
+                MessageBox.Show("비밀번호를 입력해주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
 
             }
@@ -49,7 +49,7 @@ namespace AltasMES
 
             if(list.Find(n => n.EmpID.Equals(txtID.Text)) == null )
             {
-                MessageBox.Show("ID를 확인하여 주세요");
+                MessageBox.Show("ID를 확인하여 주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -67,7 +67,7 @@ namespace AltasMES
                 }
                 else
                 {
-                    MessageBox.Show("비밀번호를 확인하여 주세요");
+                    MessageBox.Show("비밀번호를 확인하여 주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -79,6 +79,18 @@ namespace AltasMES
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void txtPwd_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                btnLogin_Click(this, e);
+        }
+
+        private void txtID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                txtPwd.Focus();
         }
     }
 }

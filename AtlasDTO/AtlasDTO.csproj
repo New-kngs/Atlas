@@ -45,6 +45,7 @@
     <Compile Include="ComboItemVO.cs" />
     <Compile Include="CustomerVO.cs" />
     <Compile Include="DepartmentVO.cs" />
+    <Compile Include="EmplogVO.cs" />
     <Compile Include="EmployeeVO.cs" />
     <Compile Include="EquipDetailsVO.cs" />
     <Compile Include="EquipmentVO.cs" />

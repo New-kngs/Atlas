@@ -26,8 +26,6 @@ namespace AltasMES
             InitializeComponent();
         }
 
-      
-
         private void ZipcodePopup_Load(object sender, EventArgs e)
         {
             DataGridUtil.SetInitGridView(dgvZip);
@@ -83,6 +81,12 @@ namespace AltasMES
 
         }
 
+        private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                btnSerach_Click(this, e);
+
+        }
 
         private void btnRoad_Click(object sender, EventArgs e)
         {

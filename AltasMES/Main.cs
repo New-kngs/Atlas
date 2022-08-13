@@ -321,7 +321,7 @@ namespace AltasMES
 
 
             string[] btnName = { "사용자", "부서", "사용이력" };
-            string[] btnTag = { "frmEmployee", "frmDepartment", "frmEmpHis" };
+            string[] btnTag = { "frmEmployee", "frmDepartment", "frmEmplog" };
 
             for (int i = 0; i < btnName.Length; i++)
             {
@@ -347,7 +347,7 @@ namespace AltasMES
 
         private void LogOutStrip_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("로그아웃 하시겠습니까?", "로그아웃", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("로그아웃 하시겠습니까?", "로그아웃", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 this.Hide();
                 

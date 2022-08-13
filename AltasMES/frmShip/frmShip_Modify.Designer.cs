@@ -32,8 +32,16 @@ namespace AltasMES
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmShip_Modify));
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.dgvOrderDetail = new System.Windows.Forms.DataGridView();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtAddr = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dgvOrderDetail = new System.Windows.Forms.DataGridView();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -42,21 +50,11 @@ namespace AltasMES
             this.txtCreateDate = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
             this.txtOrderID = new System.Windows.Forms.TextBox();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnPrint = new System.Windows.Forms.Button();
-            this.lblTitle = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtAddr = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvOrderDetail)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOrderDetail)).BeginInit();
             this.SuspendLayout();
             // 
             // imageList1
@@ -71,118 +69,6 @@ namespace AltasMES
             this.imageList1.Images.SetKeyName(5, "arrow-left.png");
             this.imageList1.Images.SetKeyName(6, "check.png");
             this.imageList1.Images.SetKeyName(7, "close.png");
-            // 
-            // dgvOrderDetail
-            // 
-            this.dgvOrderDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvOrderDetail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvOrderDetail.Location = new System.Drawing.Point(3, 31);
-            this.dgvOrderDetail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dgvOrderDetail.Name = "dgvOrderDetail";
-            this.dgvOrderDetail.RowHeadersWidth = 51;
-            this.dgvOrderDetail.RowTemplate.Height = 23;
-            this.dgvOrderDetail.Size = new System.Drawing.Size(591, 173);
-            this.dgvOrderDetail.TabIndex = 0;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.dgvOrderDetail);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox1.Size = new System.Drawing.Size(597, 208);
-            this.groupBox1.TabIndex = 8;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "주문 상세 내역";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 278);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(112, 28);
-            this.label5.TabIndex = 17;
-            this.label5.Text = "생산완료일";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 212);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(112, 28);
-            this.label4.TabIndex = 16;
-            this.label4.Text = "주문요청일";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 94);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(92, 28);
-            this.label2.TabIndex = 14;
-            this.label2.Text = "거래처명";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 31);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 28);
-            this.label1.TabIndex = 13;
-            this.label1.Text = "주문ID";
-            // 
-            // txtEndDate
-            // 
-            this.txtEndDate.BackColor = System.Drawing.Color.White;
-            this.txtEndDate.Location = new System.Drawing.Point(127, 273);
-            this.txtEndDate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtEndDate.Name = "txtEndDate";
-            this.txtEndDate.ReadOnly = true;
-            this.txtEndDate.Size = new System.Drawing.Size(421, 34);
-            this.txtEndDate.TabIndex = 10;
-            // 
-            // txtCreateDate
-            // 
-            this.txtCreateDate.BackColor = System.Drawing.Color.White;
-            this.txtCreateDate.Location = new System.Drawing.Point(127, 211);
-            this.txtCreateDate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtCreateDate.Name = "txtCreateDate";
-            this.txtCreateDate.ReadOnly = true;
-            this.txtCreateDate.Size = new System.Drawing.Size(421, 34);
-            this.txtCreateDate.TabIndex = 12;
-            // 
-            // txtName
-            // 
-            this.txtName.BackColor = System.Drawing.Color.White;
-            this.txtName.Location = new System.Drawing.Point(127, 91);
-            this.txtName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtName.Name = "txtName";
-            this.txtName.ReadOnly = true;
-            this.txtName.Size = new System.Drawing.Size(421, 34);
-            this.txtName.TabIndex = 11;
-            // 
-            // txtOrderID
-            // 
-            this.txtOrderID.BackColor = System.Drawing.Color.White;
-            this.txtOrderID.Location = new System.Drawing.Point(127, 29);
-            this.txtOrderID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtOrderID.Name = "txtOrderID";
-            this.txtOrderID.ReadOnly = true;
-            this.txtOrderID.Size = new System.Drawing.Size(421, 34);
-            this.txtOrderID.TabIndex = 9;
-            // 
-            // panel4
-            // 
-            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel4.Controls.Add(this.groupBox1);
-            this.panel4.Location = new System.Drawing.Point(-1, 334);
-            this.panel4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(597, 208);
-            this.panel4.TabIndex = 8;
             // 
             // panel2
             // 
@@ -200,9 +86,9 @@ namespace AltasMES
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.label3);
+            this.panel3.Controls.Add(this.label6);
             this.panel3.Controls.Add(this.txtAddr);
-            this.panel3.Controls.Add(this.btnCancel);
+            this.panel3.Controls.Add(this.groupBox1);
             this.panel3.Controls.Add(this.label5);
             this.panel3.Controls.Add(this.label4);
             this.panel3.Controls.Add(this.label2);
@@ -211,13 +97,13 @@ namespace AltasMES
             this.panel3.Controls.Add(this.txtCreateDate);
             this.panel3.Controls.Add(this.txtName);
             this.panel3.Controls.Add(this.txtOrderID);
-            this.panel3.Controls.Add(this.panel4);
+            this.panel3.Controls.Add(this.btnCancel);
             this.panel3.Controls.Add(this.btnPrint);
             this.panel3.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.panel3.Location = new System.Drawing.Point(14, 8);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panel3.Padding = new System.Windows.Forms.Padding(6);
             this.panel3.Size = new System.Drawing.Size(596, 646);
             this.panel3.TabIndex = 0;
             // 
@@ -238,6 +124,7 @@ namespace AltasMES
             this.btnCancel.Text = "닫기";
             this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnPrint
             // 
@@ -251,7 +138,7 @@ namespace AltasMES
             this.btnPrint.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.btnPrint.Size = new System.Drawing.Size(177, 46);
+            this.btnPrint.Size = new System.Drawing.Size(187, 46);
             this.btnPrint.TabIndex = 6;
             this.btnPrint.Text = "출하 라벨 생성";
             this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -266,7 +153,7 @@ namespace AltasMES
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(624, 79);
             this.lblTitle.TabIndex = 1;
-            this.lblTitle.Text = "출하 상세";
+            this.lblTitle.Text = "출하 상세 조회";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel1
@@ -279,24 +166,124 @@ namespace AltasMES
             this.panel1.Size = new System.Drawing.Size(624, 79);
             this.panel1.TabIndex = 5;
             // 
-            // label3
+            // label6
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 156);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(119, 28);
-            this.label3.TabIndex = 21;
-            this.label3.Text = "거래처 주소";
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(36, 163);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(112, 28);
+            this.label6.TabIndex = 37;
+            this.label6.Text = "거래처주소";
             // 
             // txtAddr
             // 
             this.txtAddr.BackColor = System.Drawing.Color.White;
-            this.txtAddr.Location = new System.Drawing.Point(127, 151);
+            this.txtAddr.Location = new System.Drawing.Point(168, 161);
             this.txtAddr.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtAddr.Name = "txtAddr";
             this.txtAddr.ReadOnly = true;
-            this.txtAddr.Size = new System.Drawing.Size(421, 34);
-            this.txtAddr.TabIndex = 20;
+            this.txtAddr.Size = new System.Drawing.Size(397, 34);
+            this.txtAddr.TabIndex = 36;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.dgvOrderDetail);
+            this.groupBox1.Location = new System.Drawing.Point(27, 335);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox1.Size = new System.Drawing.Size(541, 208);
+            this.groupBox1.TabIndex = 25;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "주문 상세 내역";
+            // 
+            // dgvOrderDetail
+            // 
+            this.dgvOrderDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvOrderDetail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvOrderDetail.Location = new System.Drawing.Point(3, 31);
+            this.dgvOrderDetail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dgvOrderDetail.Name = "dgvOrderDetail";
+            this.dgvOrderDetail.RowHeadersWidth = 51;
+            this.dgvOrderDetail.RowTemplate.Height = 23;
+            this.dgvOrderDetail.Size = new System.Drawing.Size(535, 173);
+            this.dgvOrderDetail.TabIndex = 0;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(36, 281);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(112, 28);
+            this.label5.TabIndex = 33;
+            this.label5.Text = "생산완료일";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(36, 223);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(112, 28);
+            this.label4.TabIndex = 32;
+            this.label4.Text = "주문요청일";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(36, 105);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(92, 28);
+            this.label2.TabIndex = 31;
+            this.label2.Text = "거래처명";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(36, 38);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(71, 28);
+            this.label1.TabIndex = 30;
+            this.label1.Text = "주문ID";
+            // 
+            // txtEndDate
+            // 
+            this.txtEndDate.BackColor = System.Drawing.Color.White;
+            this.txtEndDate.Location = new System.Drawing.Point(167, 278);
+            this.txtEndDate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtEndDate.Name = "txtEndDate";
+            this.txtEndDate.ReadOnly = true;
+            this.txtEndDate.Size = new System.Drawing.Size(398, 34);
+            this.txtEndDate.TabIndex = 27;
+            // 
+            // txtCreateDate
+            // 
+            this.txtCreateDate.BackColor = System.Drawing.Color.White;
+            this.txtCreateDate.Location = new System.Drawing.Point(169, 220);
+            this.txtCreateDate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtCreateDate.Name = "txtCreateDate";
+            this.txtCreateDate.ReadOnly = true;
+            this.txtCreateDate.Size = new System.Drawing.Size(399, 34);
+            this.txtCreateDate.TabIndex = 29;
+            // 
+            // txtName
+            // 
+            this.txtName.BackColor = System.Drawing.Color.White;
+            this.txtName.Location = new System.Drawing.Point(168, 102);
+            this.txtName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtName.Name = "txtName";
+            this.txtName.ReadOnly = true;
+            this.txtName.Size = new System.Drawing.Size(397, 34);
+            this.txtName.TabIndex = 28;
+            // 
+            // txtOrderID
+            // 
+            this.txtOrderID.BackColor = System.Drawing.Color.White;
+            this.txtOrderID.Location = new System.Drawing.Point(168, 35);
+            this.txtOrderID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtOrderID.Name = "txtOrderID";
+            this.txtOrderID.ReadOnly = true;
+            this.txtOrderID.Size = new System.Drawing.Size(397, 34);
+            this.txtOrderID.TabIndex = 26;
             // 
             // frmShip_Modify
             // 
@@ -312,17 +299,16 @@ namespace AltasMES
             this.MinimizeBox = false;
             this.Name = "frmShip_Modify";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmShip_Modify";
+            this.Text = "출하상세조회";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmShip_Modify_FormClosing);
             this.Load += new System.EventHandler(this.frmShip_Modify_Load);
             this.Shown += new System.EventHandler(this.frmShip_Modify_Shown);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvOrderDetail)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel1.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOrderDetail)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -330,8 +316,16 @@ namespace AltasMES
         #endregion
 
         protected System.Windows.Forms.ImageList imageList1;
-        private System.Windows.Forms.DataGridView dgvOrderDetail;
+        protected System.Windows.Forms.Button btnPrint;
+        protected System.Windows.Forms.Panel panel2;
+        protected System.Windows.Forms.Panel panel3;
+        protected System.Windows.Forms.Label lblTitle;
+        protected System.Windows.Forms.Panel panel1;
+        protected System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtAddr;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.DataGridView dgvOrderDetail;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
@@ -340,14 +334,5 @@ namespace AltasMES
         private System.Windows.Forms.TextBox txtCreateDate;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.TextBox txtOrderID;
-        private System.Windows.Forms.Panel panel4;
-        protected System.Windows.Forms.Button btnPrint;
-        protected System.Windows.Forms.Panel panel2;
-        protected System.Windows.Forms.Panel panel3;
-        protected System.Windows.Forms.Label lblTitle;
-        protected System.Windows.Forms.Panel panel1;
-        protected System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtAddr;
     }
 }
