@@ -41,6 +41,35 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
+      
+        [HttpPost]
+        [Route("SaveEmplog")]
+        public IHttpActionResult SaveEmplog(EmplogVO emp)
+        {
+            try
+            {
+                EmplogDAC db = new EmplogDAC();
+                bool flag = db.SaveEmplog(emp);
+
+                ResMessage result = new ResMessage()
+                {
+                    ErrCode = (!flag) ? -9 : 0,
+                    ErrMsg = (!flag) ? "저장중 오류발생" : "S"
+                };
+
+                return Ok(result);
+            }
+            catch (Exception err)
+            {
+                System.Diagnostics.Debug.WriteLine(err.Message);
+
+                return Ok(new ResMessage()
+                {
+                    ErrCode = -9,
+                    ErrMsg = err.Message
+                });
+            }
+        }
 
     }
 }

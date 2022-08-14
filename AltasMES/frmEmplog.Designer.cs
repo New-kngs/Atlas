@@ -35,6 +35,8 @@ namespace AltasMES
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtSerach = new System.Windows.Forms.TextBox();
             this.lblSearch = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cboCategory = new System.Windows.Forms.ComboBox();
             this.BasePanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.Basepanel4.SuspendLayout();
@@ -56,6 +58,8 @@ namespace AltasMES
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.cboCategory);
             this.groupBox2.Controls.Add(this.btnSearch);
             this.groupBox2.Controls.Add(this.txtSerach);
             this.groupBox2.Controls.Add(this.lblSearch);
@@ -108,7 +112,7 @@ namespace AltasMES
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSearch.ImageIndex = 3;
             this.btnSearch.ImageList = this.imageList1;
-            this.btnSearch.Location = new System.Drawing.Point(362, 49);
+            this.btnSearch.Location = new System.Drawing.Point(611, 51);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
@@ -116,25 +120,49 @@ namespace AltasMES
             this.btnSearch.TabIndex = 15;
             this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // txtSerach
             // 
             this.txtSerach.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.txtSerach.Location = new System.Drawing.Point(110, 50);
+            this.txtSerach.Location = new System.Drawing.Point(359, 52);
             this.txtSerach.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSerach.Name = "txtSerach";
             this.txtSerach.Size = new System.Drawing.Size(245, 34);
             this.txtSerach.TabIndex = 14;
+            this.txtSerach.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSerach_KeyPress);
             // 
             // lblSearch
             // 
             this.lblSearch.AutoSize = true;
             this.lblSearch.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblSearch.Location = new System.Drawing.Point(12, 53);
+            this.lblSearch.Location = new System.Drawing.Point(261, 55);
             this.lblSearch.Name = "lblSearch";
             this.lblSearch.Size = new System.Drawing.Size(69, 28);
             this.lblSearch.TabIndex = 13;
             this.lblSearch.Text = "label1";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.Location = new System.Drawing.Point(16, 52);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(99, 28);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "부서 구분";
+            // 
+            // cboCategory
+            // 
+            this.cboCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCategory.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cboCategory.FormattingEnabled = true;
+            this.cboCategory.Location = new System.Drawing.Point(111, 48);
+            this.cboCategory.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cboCategory.Name = "cboCategory";
+            this.cboCategory.Size = new System.Drawing.Size(125, 36);
+            this.cboCategory.TabIndex = 16;
+            this.cboCategory.SelectedIndexChanged += new System.EventHandler(this.cboCategory_SelectedIndexChanged);
             // 
             // frmEmplog
             // 
@@ -144,6 +172,7 @@ namespace AltasMES
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "frmEmplog";
             this.Text = "frmEmplog";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmEmplog_FormClosing);
             this.Load += new System.EventHandler(this.frmEmplog_Load);
             this.Shown += new System.EventHandler(this.frmEmplog_Shown);
             this.BasePanel1.ResumeLayout(false);
@@ -168,5 +197,7 @@ namespace AltasMES
         protected System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TextBox txtSerach;
         private System.Windows.Forms.Label lblSearch;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cboCategory;
     }
 }

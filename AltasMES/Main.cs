@@ -8,6 +8,8 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AtlasDTO;
+
 
 namespace AltasMES
 {
@@ -20,7 +22,7 @@ namespace AltasMES
         {
             InitializeComponent();
         }
-
+        ServiceHelper service = null;
         public  string EmpID { get; set; }
         public  string EmpName { get; set; }
         public  string DeptName  {get; set;}
@@ -29,7 +31,7 @@ namespace AltasMES
         private void Main_Load(object sender, EventArgs e)
         {
 
-
+            service = new ServiceHelper("");
             frmLogin login = new frmLogin();
             if(login.ShowDialog(this) != DialogResult.OK)
             {
@@ -52,21 +54,20 @@ namespace AltasMES
 
                 if (DeptName == "생산부서")
                 {
-                    SalesStrip.Visible = false;
-                    SystemStripButton1.Visible = false;
+                    StandardStrip.Visible = ProductionStrip.Visible = true;
+                    SalesStrip.Visible = SystemStripButton1.Visible = false;
                 }
 
-                if (DeptName == "영업부서")
-                {
-                    ProductionStrip.Visible = false;
-                    SystemStripButton1.Visible = false;
-                }
-
-                if(DeptName == "관리부서" || DeptName == "임원")
+                else if (DeptName == "영업부서")
                 {
                     SalesStrip.Visible = true;
-                    ProductionStrip.Visible = true;
-                    SystemStripButton1.Visible = true;
+                    StandardStrip.Visible =  SystemStripButton1.Visible = ProductionStrip.Visible = false;
+                    
+                }
+
+                else
+                {
+                    StandardStrip.Visible = SystemStripButton1.Visible = ProductionStrip.Visible  = SalesStrip.Visible = true;
                 }
 
             }
@@ -350,7 +351,17 @@ namespace AltasMES
             if (MessageBox.Show("로그아웃 하시겠습니까?", "로그아웃", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 this.Hide();
-                
+
+                EmplogVO emp = new EmplogVO
+                {
+                    EmpID = EmpID,
+                    LogText = "로그아웃"
+                };
+
+
+                ResMessage<List<EmplogVO>> result = service.PostAsync<EmplogVO, List<EmplogVO>>("api/Emplog/SaveEmplog", emp);
+
+
                 if (TabControl1.Controls.Count > 0)
                 {
                     foreach (var item in this.MdiChildren)
@@ -386,27 +397,43 @@ namespace AltasMES
 
                     if (DeptName == "생산부서")
                     {
-                        SalesStrip.Visible = false;
-                        SystemStripButton1.Visible = false;
+                        StandardStrip.Visible = ProductionStrip.Visible = true;
+                        SalesStrip.Visible = SystemStripButton1.Visible = false;
                     }
 
-                    if (DeptName == "영업부서")
-                    {
-                        ProductionStrip.Visible = false;
-                        SystemStripButton1.Visible = false;
-                    }
-
-                    if (DeptName == "관리부서" || DeptName == "임원")
+                    else if (DeptName == "영업부서")
                     {
                         SalesStrip.Visible = true;
-                        ProductionStrip.Visible = true;
-                        SystemStripButton1.Visible = true;
+                        StandardStrip.Visible = SystemStripButton1.Visible = ProductionStrip.Visible = false;
+
+                    }
+
+                    else
+                    {
+                        StandardStrip.Visible = SystemStripButton1.Visible = ProductionStrip.Visible = SalesStrip.Visible = true;
                     }
 
                 }
 
 
             }
+        }
+
+        private void Main_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+            EmplogVO emp = new EmplogVO
+            {
+                EmpID = "Master",
+                LogText = "MES 시스템 종료"
+            };
+
+            ResMessage<List<EmplogVO>> result = service.PostAsync<EmplogVO, List<EmplogVO>>("api/Emplog/SaveEmplog", emp);
+
+
+            if (service != null)
+                service.Dispose();           
+                    
         }
     }
 }

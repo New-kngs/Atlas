@@ -61,6 +61,15 @@ namespace AltasMES
                     ((Main)this.Owner).EmpName = list.Find(m => m.EmpID.Equals(txtID.Text)).EmpName;
                     ((Main)this.Owner).EmpID = txtID.Text;
                     ((Main)this.Owner).DeptName = list.Find(m => m.EmpID.Equals(txtID.Text)).DeptName;
+
+                    EmplogVO emp = new EmplogVO
+                    {
+                        EmpID = txtID.Text,
+                        LogText = "로그인"
+                    };
+
+                    ResMessage<List<EmplogVO>> result = service.PostAsync<EmplogVO, List<EmplogVO>>("api/Emplog/SaveEmplog", emp);
+
                     this.DialogResult = DialogResult.OK;
                     this.Close();
 

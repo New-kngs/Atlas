@@ -265,6 +265,7 @@ namespace AltasMES
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Main";
             this.Text = "AltasMES";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
             this.Load += new System.EventHandler(this.Main_Load);
             this.MdiChildActivate += new System.EventHandler(this.Main_MdiChildActivate);
             this.panel1.ResumeLayout(false);

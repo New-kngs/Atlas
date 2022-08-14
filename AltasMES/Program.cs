@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AtlasDTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,8 +18,19 @@ namespace AltasMES
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            EmplogVO emp = new EmplogVO
+            {
+                EmpID = "Master",
+                LogText = "MES 시스템 시작"
+            };
+
+            ServiceHelper service = new ServiceHelper("");
+            ResMessage<List<EmplogVO>> result = service.PostAsync<EmplogVO, List<EmplogVO>>("api/Emplog/SaveEmplog", emp);
 
             Application.Run(new Main());
+
+
+            
 
         }
     }
