@@ -339,7 +339,6 @@
             this.dgvDetail.Size = new System.Drawing.Size(499, 209);
             this.dgvDetail.TabIndex = 0;
             this.dgvDetail.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetail_CellClick);
-            this.dgvDetail.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetail_CellContentClick);
             // 
             // frmPlan
             // 

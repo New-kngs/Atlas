@@ -42,19 +42,23 @@ namespace AltasMES
 
             //ItemID, ItemName, PlanQty, CurrentQty, SafeQty
             DataGridUtil.SetInitGridView(dgvSemi);
-            DataGridUtil.AddGridTextBoxColumn(dgvSemi, "제품ID", "ItemID", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvSemi, "제품ID", "ItemID", colwidth: 120, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvSemi, "제품명", "ItemName", colwidth: 215, align: DataGridViewContentAlignment.MiddleLeft);
-            DataGridUtil.AddGridTextBoxColumn(dgvSemi, "필요수량", "PlanQty", colwidth: 150, align: DataGridViewContentAlignment.MiddleRight);
-            DataGridUtil.AddGridTextBoxColumn(dgvSemi, "현재재고", "CurrentQty", colwidth: 150, align: DataGridViewContentAlignment.MiddleRight);
-            DataGridUtil.AddGridTextBoxColumn(dgvSemi, "안전재고", "SafeQty", colwidth: 150, align: DataGridViewContentAlignment.MiddleRight);
+            DataGridUtil.AddGridTextBoxColumn(dgvSemi, "소요수량", "PlanQty", colwidth: 120, align: DataGridViewContentAlignment.MiddleRight);
+            DataGridUtil.AddGridTextBoxColumn(dgvSemi, "현재재고", "CurrentQty", colwidth: 120, align: DataGridViewContentAlignment.MiddleRight);
+            DataGridUtil.AddGridTextBoxColumn(dgvSemi, "안전재고", "SafeQty", colwidth: 120, align: DataGridViewContentAlignment.MiddleRight);
+            DataGridUtil.AddGridTextBoxColumn(dgvSemi, "필요수량", "NeedQty", colwidth: 120, align: DataGridViewContentAlignment.MiddleRight);
+
 
             //ItemID, ItemName, PlanQty, CurrentQty, SafeQty
             DataGridUtil.SetInitGridView(dgvMaterial);
-            DataGridUtil.AddGridTextBoxColumn(dgvMaterial, "제품ID", "ItemID", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvMaterial, "제품ID", "ItemID", colwidth: 120, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvMaterial, "제품명", "ItemName", colwidth: 215, align: DataGridViewContentAlignment.MiddleLeft);
-            DataGridUtil.AddGridTextBoxColumn(dgvMaterial, "필요수량", "PlanQty", colwidth: 150, align: DataGridViewContentAlignment.MiddleRight);
-            DataGridUtil.AddGridTextBoxColumn(dgvMaterial, "현재재고", "CurrentQty", colwidth: 150, align: DataGridViewContentAlignment.MiddleRight);
-            DataGridUtil.AddGridTextBoxColumn(dgvMaterial, "안전재고", "SafeQty", colwidth: 150, align: DataGridViewContentAlignment.MiddleRight);
+            DataGridUtil.AddGridTextBoxColumn(dgvMaterial, "소요수량", "PlanQty", colwidth: 120, align: DataGridViewContentAlignment.MiddleRight);
+            DataGridUtil.AddGridTextBoxColumn(dgvMaterial, "현재재고", "CurrentQty", colwidth: 120, align: DataGridViewContentAlignment.MiddleRight);
+            DataGridUtil.AddGridTextBoxColumn(dgvMaterial, "안전재고", "SafeQty", colwidth: 120, align: DataGridViewContentAlignment.MiddleRight);
+            DataGridUtil.AddGridTextBoxColumn(dgvMaterial, "필요수량", "NeedQty", colwidth: 120, align: DataGridViewContentAlignment.MiddleRight);
+
 
             dtpTo.Value = DateTime.Now;
             dtpFrom.Value = DateTime.Now.AddDays(-7);
@@ -153,11 +157,6 @@ namespace AltasMES
         private void btnModify_Click(object sender, EventArgs e)
         {
             frmProdPlan_Add frm = new frmProdPlan_Add(plan);
-        }
-
-        private void dgvDetail_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+        }        
     }
 }
