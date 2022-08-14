@@ -40,7 +40,7 @@ namespace AtlasPOP
             this.lblName.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblName.Location = new System.Drawing.Point(0, 0);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(212, 24);
+            this.lblName.Size = new System.Drawing.Size(242, 30);
             this.lblName.TabIndex = 0;
             this.lblName.Text = "설비명";
             this.lblName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -49,9 +49,9 @@ namespace AtlasPOP
             // lblType
             // 
             this.lblType.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblType.Location = new System.Drawing.Point(-1, 33);
+            this.lblType.Location = new System.Drawing.Point(-3, 30);
             this.lblType.Name = "lblType";
-            this.lblType.Size = new System.Drawing.Size(214, 26);
+            this.lblType.Size = new System.Drawing.Size(245, 32);
             this.lblType.TabIndex = 0;
             this.lblType.Text = "설비유형";
             this.lblType.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -60,21 +60,24 @@ namespace AtlasPOP
             // panel1
             // 
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 89);
+            this.panel1.Location = new System.Drawing.Point(0, 111);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(212, 63);
+            this.panel1.Size = new System.Drawing.Size(242, 79);
             this.panel1.TabIndex = 1;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // EquipList
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblType);
             this.Controls.Add(this.lblName);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "EquipList";
-            this.Size = new System.Drawing.Size(212, 152);
+            this.Size = new System.Drawing.Size(242, 190);
             this.ResumeLayout(false);
 
         }

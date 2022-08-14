@@ -21,8 +21,6 @@ namespace AtlasPOP
     {
 
         bool bExit = false;
-
-        bool logVisible = false;
         string hostIP;
         int hostPort;
         int timer_CONNECT;
@@ -34,28 +32,29 @@ namespace AtlasPOP
         int totQty = 0;
         int totfail = 0;
         int procID;
+        int index = 0;
+        int ss;
         ThreadPLCTask m_thread;
         BackgroundWorker worker;
         LoggingUtility m_log;
         popServiceHelper service;
         AtlasPOP main;
         ResMessage<List<EquipDetailsVO>> equip = null;
-        EquipList item;
         public OperationVO oper { get; set; }
         List<EquipDetailsVO> EquipList = null;
+        Dictionary<int, EquipList> dicEquip = null;
         public frmPerformance(string task, string IP, string Port, OperationVO oper, int processid, AtlasPOP main)
         {
             InitializeComponent();
-
-
+            dicEquip = new Dictionary<int, EquipList>();
+            this.main = main;
             this.oper = oper;
             this.procID = processid;
             hostIP = IP;
             hostPort = int.Parse(Port);
             taskID = task;
             service = new popServiceHelper("");
-            this.main = main;
-
+            
             timer_CONNECT = timer_Connec.Interval = int.Parse(ConfigurationManager.AppSettings["timer_Connect"]);
             timer_KeepAlive = int.Parse(ConfigurationManager.AppSettings["timer_KeepAlive"]);
             timer_Read = int.Parse(ConfigurationManager.AppSettings["timer_Read"]);
@@ -113,13 +112,16 @@ namespace AtlasPOP
         private void worker_DoWork(object sender, DoWorkEventArgs e)
         {
             int count = 0;
-
+            ss = oper.PlanQty / EquipList.Count;
+            int time = oper.PlanQty / EquipList.Count;
             while (count <= oper.PlanQty)
             {
-                int ss = oper.PlanQty / EquipList.Count;
-                if (count >= ss)
+               
+
+                if (count == time)
                 {
                     opFinish(this,e);
+                    time += ss;
                 }
 
 
@@ -138,8 +140,9 @@ namespace AtlasPOP
 
         private void opFinish(object sender, DoWorkEventArgs e)
         {
-            //몰라
-            item.DrawState("작업종료");
+            
+            dicEquip[index].DrawState("작업종료");
+            index++;
         }
 
         private void M_thread_ReadDataReceive(object sender, ReadDataEventArgs e)
@@ -211,18 +214,22 @@ namespace AtlasPOP
                 int iRow = (int)Math.Ceiling(EquipList.Count / 1.0);
 
                 int idx = 0;
-                for (int c = 0; c < iRow; c++)
+                for(int r = 0; r< iRow; r++)
                 {
-                    if (idx >= EquipList.Count) break;
-                    item = new EquipList(EquipList[c], OperID);
-                    item.Name = $"process";
-                    item.Location = new Point(224 * c + 5, 3);
-                    item.Size = new Size(214, 154);
+                    for (int c = 0; c < 4; c++)
+                    {
+                        if (idx >= EquipList.Count) break;
+                        EquipList item = new EquipList(EquipList[c], OperID, idx);
+                        dicEquip[idx] = item;
+                        item.Name = $"process";
+                        item.Location = new Point(240 * c + 5, 164 * r + 5);
+                        item.Size = new Size(230, 154);
 
-
-                    panel2.Controls.Add(item);
-                    idx++;
+                        panel2.Controls.Add(item);
+                        idx++;
+                    }
                 }
+                
             }
             else
             {

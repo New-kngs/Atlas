@@ -16,20 +16,20 @@ namespace AtlasPOP
 
         popServiceHelper service = null;
         public EquipDetailsVO equip { get; set; }
-        public EquipList(EquipDetailsVO equip, string OpID)
+        public EquipList(EquipDetailsVO equip, string OpID,int idx)
         {
             InitializeComponent();
             service = new popServiceHelper("");
             ResMessage<List<OperationVO>> list = service.GetAsync<List<OperationVO>>("api/pop/AllOperation");
             this.equip = equip;
-            lblName.Text = equip.EquipName;
+            lblName.Text = $"{idx+1}번 {equip.EquipName}";
             lblType.Text = $"{equip.EquipCategory}({equip.EquipID})";
-
+            
             
         }
         public void DrawState(string opstate)
         {
-            
+
             lblState state = new lblState(opstate);
             state.Dock = DockStyle.Fill;
             this.Invoke((MethodInvoker)(() => panel1.Controls.Add(state)));
@@ -42,6 +42,11 @@ namespace AtlasPOP
         }
 
         private void lblType_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
