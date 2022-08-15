@@ -15,12 +15,9 @@ namespace AltasMES
     {
         ServiceHelper srv = null;
         public PlanVO plan { get; set; }
-        public frmPlan_Add(PlanVO plan)
+        public frmPlan_Add()
         {
-            InitializeComponent();
-            this.plan = plan;
-
-            //textBox1.Text = plan.PlanID;
+            InitializeComponent();            
         }
     }
 }
