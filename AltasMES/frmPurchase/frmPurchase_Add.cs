@@ -56,6 +56,7 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "규격", "ItemSize", colwidth: 70, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "수량", "Qty", colwidth: 70, Readonly: false, align: DataGridViewContentAlignment.MiddleRight);
             DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "거래처명", "CustomerName", visibility: false); //colwidth: 120, align: DataGridViewContentAlignment.MiddleLeft); //visibility: false);
+            DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "거래처ID", "CustomerID", visibility: false);
             DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "단가", "ItemPrice", visibility: false);
             
 
@@ -140,6 +141,7 @@ namespace AltasMES
                 string itemName = dgvItem["ItemName", e.RowIndex].Value.ToString();
                 string itemSize = dgvItem["ItemSize", e.RowIndex].Value.ToString();
                 string cusName = dgvItem["CustomerName", e.RowIndex].Value.ToString();
+                string cusId = dgvItem["CustomerID", e.RowIndex].Value.ToString();
                 int price = Convert.ToInt32(dgvItem["ItemPrice", e.RowIndex].Value);
                 //int purQty = Convert.ToInt32(dgvPurItem["Qty", e.RowIndex].Value);
 
@@ -163,7 +165,7 @@ namespace AltasMES
                         }
                     }
                 }
-                dgvPurItem.Rows.Add(itemId, itemName, itemSize, 0, cusName, price);
+                dgvPurItem.Rows.Add(itemId, itemName, itemSize, 0, cusName, cusId, price);
                 dgvItem.ClearSelection();
                 dgvPurItem.ClearSelection();
                 txtCusName.Text = cusName;
@@ -182,7 +184,7 @@ namespace AltasMES
         {
             if (e.RowIndex < 0) return;
 
-            if (e.ColumnIndex == 6)
+            if (e.ColumnIndex == 7)
             {
                 DataGridViewRow dgvRow = dgvPurItem.Rows[e.RowIndex];
                 dgvPurItem.Rows.Remove(dgvRow);
@@ -194,7 +196,7 @@ namespace AltasMES
                 for (int i = 0; i < dgvPurItem.Rows.Count; i++)
                 {
                     sum += qty = Convert.ToInt32(dgvPurItem.Rows[i].Cells[3].Value); // 수량
-                    price += qty * Convert.ToInt32(dgvPurItem.Rows[i].Cells[5].Value); // 단가
+                    price += qty * Convert.ToInt32(dgvPurItem.Rows[i].Cells[6].Value); // 단가
                 }
                 txtCount.Text = dgvPurItem.Rows.Count.ToString();
                 txtPrice.Text = price.ToString("#,##0") + " 원";
@@ -218,7 +220,7 @@ namespace AltasMES
                 if (int.TryParse(dgvPurItem.Rows[i].Cells[3].Value.ToString(), out qty))
                 {
                     sum += qty;
-                    price += qty * Convert.ToInt32(dgvPurItem.Rows[i].Cells[5].Value);
+                    price += qty * Convert.ToInt32(dgvPurItem.Rows[i].Cells[6].Value);
                 }
                 else
                 {
@@ -268,7 +270,7 @@ namespace AltasMES
             PurchaseVO purList = new PurchaseVO()
             {
                 CreateUser = this.item.CreateUser,
-                CustomerID = dgvItem["CustomerID", 6].Value.ToString(),                
+                CustomerID = dgvPurItem["CustomerID", 0].Value.ToString(),
             };
             ResMessage result = srv.SavePurchase("api/Purchase/SavePurchase", purList, purDetailList);
 

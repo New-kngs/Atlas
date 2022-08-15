@@ -32,11 +32,14 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvPurchase, "거래처명", "CustomerName", colwidth: 200, align: DataGridViewContentAlignment.MiddleLeft);
             DataGridUtil.AddGridTextBoxColumn(dgvPurchase, "완료여부", "InState", colwidth: 110, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvPurchase, "발주완료일", "PurchaseEndDate", colwidth: 170, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvPurchase, "창고명", "WHName", colwidth: 110, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvPurchase, "발주요청일", "CreateDate", colwidth: 170, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvPurchase, "생성사용자", "CreateUser", colwidth: 120, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvPurchase, "발주수정일", "ModifyDate", colwidth: 170, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvPurchase, "변경사용자", "ModifyUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvPurchase, "수정사용자", "ModifyUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);            
+            DataGridUtil.AddGridTextBoxColumn(dgvPurchase, "창고명", "WHName", colwidth: 110, align: DataGridViewContentAlignment.MiddleCenter);
+            
+            
+            
             
 
 
@@ -189,6 +192,48 @@ namespace AltasMES
             }
             selId = string.Empty;
             dgvPurchase.ClearSelection();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (dgvPurchase.CurrentCell == null) return;
+
+            if (!dgvPurchase.CurrentCell.Selected || selId == string.Empty)
+            {
+                MessageBox.Show("삭제하실 발주 목록을 선택해주세요.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string purInstate = (dgvPurchase.SelectedRows[0].Cells["InState"].Value).ToString();
+
+            if (purInstate.Equals("Y"))
+            {
+                MessageBox.Show("완료된 발주 항목은 삭제가 불가 합니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (MessageBox.Show($"발주ID : {dgvPurchase.SelectedRows[0].Cells["PurchaseID"].Value} 대해 삭제 하시겠습니까?", "발주 삭제", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+
+                PurchaseVO delPurId = new PurchaseVO()
+                {
+                    PurchaseID = dgvPurchase.SelectedRows[0].Cells["PurchaseID"].Value.ToString(),
+                };
+
+
+                ResMessage<List<PurchaseVO>> result = srv.PostAsync<PurchaseVO, List<PurchaseVO>>("api/Purchase/DeletePurchase", delPurId);
+
+                if (result.ErrCode == 0)
+                {
+                    MessageBox.Show("삭제가 완료되었습니다.", "발주 삭제", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    LoadData();
+                    selId = string.Empty;
+                    dgvPurchase.ClearSelection();
+                }
+                else
+                    MessageBox.Show(result.ErrMsg);
+            }
         }
     }
 }

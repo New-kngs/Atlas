@@ -133,6 +133,26 @@ namespace AtlasMVCAPI.Models
 
         }
 
+        public bool DeletePurchase(PurchaseVO purId)
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.CommandText = "SP_DeletePurchase";
+                cmd.CommandType = CommandType.StoredProcedure;
+
+
+                cmd.Parameters.AddWithValue("@PurchaseID", purId.PurchaseID);
+
+                cmd.Connection.Open();
+                int iRowAffect = cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+
+                return (iRowAffect > 0);
+
+            }
+        }
+
 
         public List<PurchaseDetailsVO> GetAllPurchaseDetail()
         {
