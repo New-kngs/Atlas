@@ -216,6 +216,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmPlan_Add";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "작업지시생성(추가)";
             this.Load += new System.EventHandler(this.frmPlan_Add_Load);
             this.panel2.ResumeLayout(false);

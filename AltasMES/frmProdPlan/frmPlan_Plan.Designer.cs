@@ -337,7 +337,7 @@
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancel.ImageIndex = 5;
             this.btnCancel.ImageList = this.imageList1;
-            this.btnCancel.Location = new System.Drawing.Point(215, 444);
+            this.btnCancel.Location = new System.Drawing.Point(237, 444);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -369,7 +369,7 @@
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAdd.ImageIndex = 6;
             this.btnAdd.ImageList = this.imageList1;
-            this.btnAdd.Location = new System.Drawing.Point(138, 444);
+            this.btnAdd.Location = new System.Drawing.Point(129, 444);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -410,6 +410,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmPlan_Plan";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "작업지시생성(주문)";
             this.Load += new System.EventHandler(this.frmPlan_Plan_Load);
             this.panel2.ResumeLayout(false);
