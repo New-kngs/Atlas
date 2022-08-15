@@ -381,9 +381,12 @@ namespace AltasMES
         private void AllClear()
         {
             label2.Visible = cboPdt.Visible = false;
+            dgvUnreg.DataSource = null;
             dgvNew.DataSource = null;
             dgvParts.DataSource = null;
+            DataLoad();
             cboCategory.SelectedIndex = 0;
+            dgvUnreg.ClearSelection();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

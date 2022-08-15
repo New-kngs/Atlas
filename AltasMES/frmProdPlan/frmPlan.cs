@@ -1,12 +1,6 @@
 ﻿using AtlasDTO;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AltasMES
@@ -14,11 +8,11 @@ namespace AltasMES
     public partial class frmPlan : BaseForm
     {
         ServiceHelper srv = null;
-        PlanVO plan = null;
+
         public frmPlan()
         {
             InitializeComponent();
-        }              
+        }
 
         private void frmPlan_Load(object sender, EventArgs e)
         {
@@ -36,7 +30,7 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvDetail, "제품ID", "ItemID", colwidth: 160, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvDetail, "제품명", "ItemName", colwidth: 220, align: DataGridViewContentAlignment.MiddleLeft);
             DataGridUtil.AddGridTextBoxColumn(dgvDetail, "주문수량", "Qty", colwidth: 110, align: DataGridViewContentAlignment.MiddleRight);
-            DataGridUtil.AddGridTextBoxColumn(dgvDetail, "현재재고", "CurrentQty", colwidth: 110, align: DataGridViewContentAlignment.MiddleRight); 
+            DataGridUtil.AddGridTextBoxColumn(dgvDetail, "현재재고", "CurrentQty", colwidth: 110, align: DataGridViewContentAlignment.MiddleRight);
             DataGridUtil.AddGridTextBoxColumn(dgvDetail, "안전재고", "SafeQty", colwidth: 110, align: DataGridViewContentAlignment.MiddleRight);
             DataGridUtil.AddGridTextBoxColumn(dgvDetail, "필요수량", "NeedQty", colwidth: 110, align: DataGridViewContentAlignment.MiddleRight);
 
@@ -64,7 +58,6 @@ namespace AltasMES
             dtpFrom.Value = DateTime.Now.AddDays(-7);
 
             LoadData();
-            dgvList.ClearSelection();
         }
 
         public void LoadData()
@@ -99,8 +92,8 @@ namespace AltasMES
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            int from = Convert.ToInt32( dtpFrom.Value.ToString("yyyyMMdd"));
-            int to = Convert.ToInt32( dtpTo.Value.ToString("yyyyMMdd"));
+            int from = Convert.ToInt32(dtpFrom.Value.ToString("yyyyMMdd"));
+            int to = Convert.ToInt32(dtpTo.Value.ToString("yyyyMMdd"));
 
             if (from > to)
             {
@@ -113,7 +106,7 @@ namespace AltasMES
             {
                 LoadData();
                 dgvList.ClearSelection();
-            }            
+            }
         }
 
         private void dgvDetail_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -142,27 +135,79 @@ namespace AltasMES
 
             List<PlanVO> semiList = resource.Data.FindAll((f) => f.ItemCategory.Equals("반제품"));
             List<PlanVO> mList = resource.Data.FindAll((f) => f.ItemCategory.Equals("자재"));
-            
+
             dgvSemi.DataSource = semiList;
             dgvMaterial.DataSource = mList;
             dgvSemi.ClearSelection();
             dgvMaterial.ClearSelection();
-
-            plan = new PlanVO()
-            {
-                
-            };
-
         }
 
         private void btnModify_Click(object sender, EventArgs e)
         {
-            frmProdPlan_Add frm = new frmProdPlan_Add(plan);
+            PlanVO plan = new PlanVO()
+            {
+
+            };
+            frmPlan_Add frm = new frmPlan_Add(plan);
+
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                LoadData();
+                dgvList.ClearSelection();
+                dgvDetail.DataSource = null;
+                dgvSemi.DataSource = null;
+                dgvMaterial.DataSource = null;
+            }
         }
 
         private void frmPlan_FormClosing(object sender, FormClosingEventArgs e)
         {
             srv.Dispose();
+        }
+
+        private void frmPlan_Shown(object sender, EventArgs e)
+        {
+            dgvList.ClearSelection();
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            PlanOptVO plan = new PlanOptVO()
+            {
+                OrderID = dgvList["OrderID", dgvList.CurrentRow.Index].Value.ToString(),
+                ProductID = dgvDetail["OrderID", dgvDetail.CurrentRow.Index].Value.ToString(),
+                ProductQty = dgvList["OrderID", dgvList.CurrentRow.Index].Value.ToString(),
+                Semi1 = dgvList["OrderID", dgvList.CurrentRow.Index].Value.ToString(),
+                Semi1Qty = dgvList["OrderID", dgvList.CurrentRow.Index].Value.ToString(),
+                Semi2 = dgvList["OrderID", dgvList.CurrentRow.Index].Value.ToString(),
+                Semi2Qty = dgvList["OrderID", dgvList.CurrentRow.Index].Value.ToString(),
+                Material1 = dgvList["OrderID", dgvList.CurrentRow.Index].Value.ToString(),
+                Material1Qty = dgvList["OrderID", dgvList.CurrentRow.Index].Value.ToString(),
+                Material2 = dgvList["OrderID", dgvList.CurrentRow.Index].Value.ToString(),
+                Material2Qty = dgvList["OrderID", dgvList.CurrentRow.Index].Value.ToString(),
+                Material3 = dgvList["OrderID", dgvList.CurrentRow.Index].Value.ToString(),
+                Material3Qty = dgvList["OrderID", dgvList.CurrentRow.Index].Value.ToString(),
+                Material4 = dgvList["OrderID", dgvList.CurrentRow.Index].Value.ToString(),
+                Material4Qty = dgvList["OrderID", dgvList.CurrentRow.Index].Value.ToString(),
+                Material5 = dgvList["OrderID", dgvList.CurrentRow.Index].Value.ToString(),
+                Material5Qty = dgvList["OrderID", dgvList.CurrentRow.Index].Value.ToString(),
+                Material6 = dgvList["OrderID", dgvList.CurrentRow.Index].Value.ToString(),
+                Material6Qty = dgvList["OrderID", dgvList.CurrentRow.Index].Value.ToString(),
+                Material7 = dgvList["OrderID", dgvList.CurrentRow.Index].Value.ToString(),
+                Material7Qty = dgvList["OrderID", dgvList.CurrentRow.Index].Value.ToString(),
+                Material8 = dgvList["OrderID", dgvList.CurrentRow.Index].Value.ToString(),
+                Material8Qty = dgvList["OrderID", dgvList.CurrentRow.Index].Value.ToString()
+            };
+            frmPlan_Plan frm = new frmPlan_Plan(plan);
+
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                LoadData();
+                dgvList.ClearSelection();
+                dgvDetail.DataSource = null;
+                dgvSemi.DataSource = null;
+                dgvMaterial.DataSource = null;
+            }
         }
     }
 }

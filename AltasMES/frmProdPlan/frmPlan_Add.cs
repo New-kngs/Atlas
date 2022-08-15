@@ -11,10 +11,11 @@ using System.Windows.Forms;
 
 namespace AltasMES
 {
-    public partial class frmProdPlan_Add : Form
+    public partial class frmPlan_Add : Form
     {
+        ServiceHelper srv = null;
         public PlanVO plan { get; set; }
-        public frmProdPlan_Add(PlanVO plan)
+        public frmPlan_Add(PlanVO plan)
         {
             InitializeComponent();
             this.plan = plan;

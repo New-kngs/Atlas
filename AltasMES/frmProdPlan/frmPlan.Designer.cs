@@ -107,11 +107,12 @@
             // btnAdd
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.Location = new System.Drawing.Point(886, 20);
+            this.btnAdd.Location = new System.Drawing.Point(721, 20);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAdd.Padding = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.btnAdd.Size = new System.Drawing.Size(136, 37);
-            this.btnAdd.Text = "작업지시생성";
+            this.btnAdd.Size = new System.Drawing.Size(148, 37);
+            this.btnAdd.Text = "작업지시(주문)";
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // imageList1
             // 
@@ -146,11 +147,11 @@
             // btnModify
             // 
             this.btnModify.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnModify.Location = new System.Drawing.Point(712, 20);
+            this.btnModify.Location = new System.Drawing.Point(875, 20);
             this.btnModify.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnModify.Padding = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.btnModify.Size = new System.Drawing.Size(168, 37);
-            this.btnModify.Text = "추가작업지시생성";
+            this.btnModify.Size = new System.Drawing.Size(147, 37);
+            this.btnModify.Text = "작업지시(추가)";
             this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
             // 
             // dtpFrom
@@ -350,6 +351,7 @@
             this.Text = "생산계획";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPlan_FormClosing);
             this.Load += new System.EventHandler(this.frmPlan_Load);
+            this.Shown += new System.EventHandler(this.frmPlan_Shown);
             this.BasePanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.Basepanel4.ResumeLayout(false);
