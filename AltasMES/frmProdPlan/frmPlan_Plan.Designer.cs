@@ -407,6 +407,8 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmPlan_Plan";
             this.Text = "작업지시생성(주문)";
             this.Load += new System.EventHandler(this.frmPlan_Plan_Load);

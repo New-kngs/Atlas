@@ -106,6 +106,10 @@ namespace AltasMES
             {
                 LoadData();
                 dgvList.ClearSelection();
+                dgvList.ClearSelection();
+                dgvDetail.DataSource = null;
+                dgvSemi.DataSource = null;
+                dgvMaterial.DataSource = null;
             }
         }
 
