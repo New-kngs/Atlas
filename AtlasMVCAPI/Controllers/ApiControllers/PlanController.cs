@@ -81,16 +81,16 @@ namespace AtlasMVCAPI.Controllers
         /// Author : 정희록
         /// </summary>
         /// <returns>주문리스트 중 선택한 제품의 구성품을 조회해서 반환</returns>
-        //https://localhost:44391/api/Plan/Components/{item}
-        [Route("Components/{item}")]
-        public IHttpActionResult GetComponents(string item)
+        //https://localhost:44391/api/Plan/Components/{order}/{item}
+        [Route("Components/{order}/{item}")]
+        public IHttpActionResult GetComponents(string order, string item)
         {
             try
             {
                 PlanDAC db = new PlanDAC();
-                List<BOMVO> list = db.GetComponents(item);
+                List<PlanVO> list = db.GetComponents(order, item);
 
-                ResMessage<List<BOMVO>> result = new ResMessage<List<BOMVO>>()
+                ResMessage<List<PlanVO>> result = new ResMessage<List<PlanVO>>()
                 {
                     ErrCode = (list == null) ? -9 : 0,
                     ErrMsg = (list == null) ? "조회중 오류발생" : "S",

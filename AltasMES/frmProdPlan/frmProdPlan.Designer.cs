@@ -348,6 +348,7 @@
             this.Name = "frmPlan";
             this.ShowIcon = false;
             this.Text = "생산계획";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPlan_FormClosing);
             this.Load += new System.EventHandler(this.frmPlan_Load);
             this.BasePanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

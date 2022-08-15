@@ -123,6 +123,7 @@ namespace AltasMES
             dgvSemi.DataSource = null;
             dgvMaterial.DataSource = null;
 
+            string order = dgvList["OrderID", e.RowIndex].Value.ToString();
             string item = dgvDetail["ItemID", e.RowIndex].Value.ToString();
             //int qty = Convert.ToInt32(dgvDetail["Qty", e.RowIndex].Value);
             //int currentQty = Convert.ToInt32(dgvDetail["CurrentQty", e.RowIndex].Value);
@@ -137,10 +138,10 @@ namespace AltasMES
             //    planQty = qty + safeQty - currentQty;
             //}
 
-            ResMessage<List<BOMVO>> resource = srv.GetAsync<List<BOMVO>>($"api/Plan/Components/{item}");
+            ResMessage<List<PlanVO>> resource = srv.GetAsync<List<PlanVO>>($"api/Plan/Components/{order}/{item}");
 
-            List<BOMVO> semiList = resource.Data.FindAll((f) => f.ItemCategory.Equals("반제품"));
-            List<BOMVO> mList = resource.Data.FindAll((f) => f.ItemCategory.Equals("자재"));
+            List<PlanVO> semiList = resource.Data.FindAll((f) => f.ItemCategory.Equals("반제품"));
+            List<PlanVO> mList = resource.Data.FindAll((f) => f.ItemCategory.Equals("자재"));
             
             dgvSemi.DataSource = semiList;
             dgvMaterial.DataSource = mList;
@@ -157,6 +158,11 @@ namespace AltasMES
         private void btnModify_Click(object sender, EventArgs e)
         {
             frmProdPlan_Add frm = new frmProdPlan_Add(plan);
-        }        
+        }
+
+        private void frmPlan_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            srv.Dispose();
+        }
     }
 }
