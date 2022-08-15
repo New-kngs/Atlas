@@ -123,7 +123,7 @@ namespace AltasMES
             dgvSemi.DataSource = null;
             dgvMaterial.DataSource = null;
 
-            string order = dgvList["OrderID", e.RowIndex].Value.ToString();
+            string order = dgvList["OrderID", dgvList.CurrentRow.Index].Value.ToString();
             string item = dgvDetail["ItemID", e.RowIndex].Value.ToString();
             //int qty = Convert.ToInt32(dgvDetail["Qty", e.RowIndex].Value);
             //int currentQty = Convert.ToInt32(dgvDetail["CurrentQty", e.RowIndex].Value);
