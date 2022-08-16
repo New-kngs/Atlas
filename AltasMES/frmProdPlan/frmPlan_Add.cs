@@ -36,24 +36,45 @@ namespace AltasMES
 
         private void btnAdd_Click(object sender, EventArgs e)//SavePlanAdd(PlanVO list)
         {
-            //@ItemID, @PlanQty, @OrderID, @CreateDate, @CreateUser
-            PlanVO list = new PlanVO
+            if (cboCategory.SelectedIndex == 0)
             {
-                ItemID = plan.ItemID,
-                PlanQty = Convert.ToInt32(txtQty.Text),
-                CreateUser = plan.CreateUser,
-                OrderID = plan.OrderID,
-            };
-
-            ResMessage<List<PlanVO>> result = srv.PostAsync<PlanVO, List<PlanVO>>("SavePlanShip", list);
-
-            if (result.ErrCode == 0)
+                MessageBox.Show("제품유형을 선택하십시오.");
+                return;
+            }
+            else if (cboItemName.SelectedIndex == 0)
             {
-                MessageBox.Show("성공적으로 등록되었습니다.");
-                this.DialogResult = DialogResult.OK;
+                MessageBox.Show("제품을 선택하십시오.");
+                return;
+            }
+            else if (string.IsNullOrEmpty(txtQty.Text))
+            {
+                MessageBox.Show("수량을 입력하십시오.");
+                return;
             }
             else
-                MessageBox.Show(result.ErrMsg);
+            {
+                ResMessage<List<ItemVO>> items = srv.GetAsync<List<ItemVO>>("api/Item/AllItem");
+
+                string itemName = cboItemName.Text;
+                string itemID = items.Data.Find((f) => f.ItemName.Equals(itemName)).ItemID;
+
+                PlanVO list = new PlanVO
+                {
+                    ItemID = itemID,
+                    PlanQty = Convert.ToInt32(txtQty.Text),
+                    CreateUser = this.plan.CreateUser,
+                };
+
+                ResMessage<List<PlanVO>> result = srv.PostAsync<PlanVO, List<PlanVO>>("api/Plan/SavePlanAdd", list);
+
+                if (result.ErrCode == 0)
+                {
+                    MessageBox.Show("성공적으로 등록되었습니다.");
+                    this.DialogResult = DialogResult.OK;
+                }
+                else
+                    MessageBox.Show(result.ErrMsg);
+            }            
         }
 
         private void cboCategory_SelectedIndexChanged(object sender, EventArgs e)

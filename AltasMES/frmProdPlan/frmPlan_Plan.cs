@@ -1,5 +1,6 @@
 ﻿using AtlasDTO;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace AltasMES
@@ -16,6 +17,8 @@ namespace AltasMES
 
         private void frmPlan_Plan_Load(object sender, EventArgs e)
         {
+            srv = new ServiceHelper("");
+
             txtOrderID.Text = plan.OrderID;
             txtProduct.Text = plan.ProductName;
             txtProductQty.Text = plan.ProductQty.ToString();
@@ -58,7 +61,32 @@ namespace AltasMES
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            //ResMessage<List<ItemVO>> items = srv.GetAsync<List<ItemVO>>("api/Item/AllItem");
 
+            //string itemName = cboItemName.Text;
+            //string itemID = items.Data.Find((f) => f.ItemName.Equals(itemName)).ItemID;
+
+            PlanOptVO list = new PlanOptVO
+            {
+                OrderID = this.plan.OrderID,
+                ProductID = this.plan.ProductID,
+                ProductQty = this.plan.ProductQty,  
+                Semi1ID = this.plan.Semi1ID,
+                Semi1Qty = plan.Semi1Qty,
+                Semi2ID = this.plan.Semi2ID,
+                Semi2Qty = plan.Semi2Qty,
+                CreateUser = this.plan.CreateUser,
+            };
+
+            ResMessage<List<PlanOptVO>> result = srv.PostAsync<PlanOptVO, List<PlanOptVO>>("api/Plan/SavePlanPlan", list);
+
+            if (result.ErrCode == 0)
+            {
+                MessageBox.Show("성공적으로 등록되었습니다.");
+                this.DialogResult = DialogResult.OK;
+            }
+            else
+                MessageBox.Show(result.ErrMsg);
         }
 
         

@@ -179,5 +179,75 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
+
+        /// <summary>
+        /// Author : 정희록
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        //POST : https://localhost:44391/api/Plan/SavePlanAdd
+        [HttpPost]
+        [Route("SavePlanAdd")]
+        public IHttpActionResult SavePlanAdd(PlanVO list)
+        {
+            try
+            {
+                PlanDAC db = new PlanDAC();
+                bool flag = db.SavePlanAdd(list);
+
+                ResMessage result = new ResMessage()
+                {
+                    ErrCode = (!flag) ? -9 : 0,
+                    ErrMsg = (!flag) ? "저장중 오류발생" : "S"
+                };
+
+                return Ok(result);
+            }
+            catch (Exception err)
+            {
+                System.Diagnostics.Debug.WriteLine(err.Message);
+
+                return Ok(new ResMessage()
+                {
+                    ErrCode = -9,
+                    ErrMsg = err.Message
+                });
+            }
+        }
+
+        /// <summary>
+        /// Author : 정희록
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        //POST : https://localhost:44391/api/Plan/SavePlanPlan
+        [HttpPost]
+        [Route("SavePlanPlan")]
+        public IHttpActionResult SavePlanPlan(PlanOptVO list)
+        {
+            try
+            {
+                PlanDAC db = new PlanDAC();
+                bool flag = db.SavePlanPlan(list);
+
+                ResMessage result = new ResMessage()
+                {
+                    ErrCode = (!flag) ? -9 : 0,
+                    ErrMsg = (!flag) ? "저장중 오류발생" : "S"
+                };
+
+                return Ok(result);
+            }
+            catch (Exception err)
+            {
+                System.Diagnostics.Debug.WriteLine(err.Message);
+
+                return Ok(new ResMessage()
+                {
+                    ErrCode = -9,
+                    ErrMsg = err.Message
+                });
+            }
+        }
     }
 }

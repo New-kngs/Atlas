@@ -59,7 +59,6 @@ namespace AltasMES
                 MessageBox.Show("제품유형을 선택하여주시기 바랍니다.");
                 return;
             }
-            service = new ServiceHelper("api/WareHouse");
             WareHouseVO wareHouse = new WareHouseVO
             {
                 WHName = txtName.Text,
@@ -68,7 +67,7 @@ namespace AltasMES
                 CreateUser = this.wareHouse.CreateUser
             };
 
-            ResMessage<List<WareHouseVO>> result = service.PostAsync<WareHouseVO, List<WareHouseVO>>("SaveWareHouse", wareHouse);
+            ResMessage<List<WareHouseVO>> result = service.PostAsync<WareHouseVO, List<WareHouseVO>>("api/WareHouse/SaveWareHouse", wareHouse);
 
             if (result.ErrCode == 0)
             {

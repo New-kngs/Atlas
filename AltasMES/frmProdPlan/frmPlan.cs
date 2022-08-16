@@ -207,6 +207,7 @@ namespace AltasMES
                         Semi2ID = dgvSemi.Rows[1].Cells["ItemID"].Value.ToString(),
                         Semi2Name = dgvSemi.Rows[1].Cells["ItemName"].Value.ToString(),
                         Semi2Qty = Convert.ToInt32(dgvSemi.Rows[1].Cells["NeedQty"].Value),
+                        CreateUser = ((Main)this.MdiParent).EmpName.ToString()
                         //Material1ID = dgvMaterial.Rows[0].Cells["ItemID"].Value.ToString(),
                         //Material1Name = dgvMaterial.Rows[0].Cells["ItemName"].Value.ToString(),
                         //Material1Qty = Convert.ToInt32(dgvMaterial.Rows[0].Cells["NeedQty"].Value),

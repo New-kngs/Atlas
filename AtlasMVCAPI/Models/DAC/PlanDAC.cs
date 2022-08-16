@@ -178,15 +178,58 @@ namespace AtlasMVCAPI.Models
             using (SqlCommand cmd = new SqlCommand
             {
                 Connection = new SqlConnection(strConn),
-                CommandText = @"insert into TB_Plan (ItemID, PlanQty, OrderID, CreateDate, CreateUser) 
-                                values (@ItemID, @PlanQty, @OrderID, @CreateDate, @CreateUser)",
+                CommandText = @"insert into TB_Plan (ItemID, PlanQty, CreateDate, CreateUser) 
+                                values (@ItemID, @PlanQty, @CreateDate, @CreateUser)",
             })
             {
                 cmd.Parameters.AddWithValue("@ItemID", list.ItemID);
                 cmd.Parameters.AddWithValue("@PlanQty", list.LOTIQty);
                 cmd.Parameters.AddWithValue("@CreateUser", list.CreateUser);
                 cmd.Parameters.AddWithValue("@CreateDate", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+
+                cmd.Connection.Open();
+                int iRowAffect = cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+
+                return (iRowAffect > 0);
+            }
+        }
+
+        public bool SavePlanPlan(PlanOptVO list)
+        {            
+            using (SqlCommand cmd = new SqlCommand
+            {
+                Connection = new SqlConnection(strConn),
+                //CommandText = @"insert into TB_Plan (OrderID, ItemID, PlanQty, CreateDate, CreateUser) 
+                //                values 
+                //                (@OrderID, @ItemID, @PlanQty, @CreateDate, @CreateUser),
+                //                (@OrderID, @ItemID1, @PlanQty1, @CreateDate, @CreateUser),
+                //                (@OrderID, @ItemID2, @PlanQty2, @CreateDate, @CreateUser);",
+                CommandText = @"insert into TB_Plan (OrderID, ItemID, PlanQty, CreateDate, CreateUser) 
+                                values (@OrderID, @ItemID, @PlanQty, @CreateDate, @CreateUser);   
+
+                                insert into TB_Plan (OrderID, ItemID, PlanQty, CreateDate, CreateUser) 
+                                values (@OrderID, @ItemID1, @PlanQty1, @CreateDate, @CreateUser);
+
+                                insert into TB_Plan (OrderID, ItemID, PlanQty, CreateDate, CreateUser) 
+                                values (@OrderID, @ItemID2, @PlanQty2, @CreateDate, @CreateUser);
+
+                                delete from TB_Plan where PlanQty = 0;",
+            })
+            {
                 cmd.Parameters.AddWithValue("@OrderID", list.OrderID);
+                cmd.Parameters.AddWithValue("@CreateUser", list.CreateUser);
+                cmd.Parameters.AddWithValue("@CreateDate", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+
+                cmd.Parameters.AddWithValue("@ItemID", list.ProductID);
+                cmd.Parameters.AddWithValue("@PlanQty", list.ProductQty);
+                
+                cmd.Parameters.AddWithValue("@ItemID1", list.Semi1ID);
+                cmd.Parameters.AddWithValue("@PlanQty1", list.Semi1Qty);
+                
+                cmd.Parameters.AddWithValue("@ItemID2", list.Semi2ID);
+                cmd.Parameters.AddWithValue("@PlanQty2", list.Semi2Qty);
+
                 cmd.Connection.Open();
                 int iRowAffect = cmd.ExecuteNonQuery();
                 cmd.Connection.Close();
