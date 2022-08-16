@@ -59,5 +59,11 @@ namespace AltasMES
                 }
             }
         }
+
+        private void txtQty_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8 && e.KeyChar != 13)
+                e.Handled = true;
+        }
     }
 }

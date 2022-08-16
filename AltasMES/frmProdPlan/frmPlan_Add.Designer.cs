@@ -84,6 +84,7 @@
             this.txtQty.Name = "txtQty";
             this.txtQty.Size = new System.Drawing.Size(93, 29);
             this.txtQty.TabIndex = 22;
+            this.txtQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQty_KeyPress);
             // 
             // btnCancel
             // 
@@ -188,6 +189,7 @@
             // 
             // cboCategory
             // 
+            this.cboCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCategory.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cboCategory.FormattingEnabled = true;
             this.cboCategory.Location = new System.Drawing.Point(111, 24);
@@ -198,6 +200,7 @@
             // 
             // cboItemName
             // 
+            this.cboItemName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboItemName.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cboItemName.FormattingEnabled = true;
             this.cboItemName.Location = new System.Drawing.Point(111, 59);
