@@ -65,7 +65,35 @@ namespace AtlasMVCAPI.Models
             }
         }
 
-        public List<BOMVO> GetComponents(string item)
+        //public List<BOMVO> GetComponents(string item)
+        //{
+        //    using (SqlCommand cmd = new SqlCommand())
+        //    {
+        //        cmd.Connection = new SqlConnection(strConn);
+        //        cmd.CommandText =
+        //            @"with BOM_CTE as
+        //            (
+        //            select ItemID, ParentID, UnitQty, 0 levels, cast(ItemID as varchar(30)) sortOrder
+        //            from TB_BOM where ItemID = @ItemID
+        //            UNION ALL
+        //            select C.ItemID, C.ParentID, C.UnitQty, (P.levels +1) levels, cast(P.sortOrder + '>' + C.ItemID as varchar(30)) sortOrder
+        //            from TB_BOM C inner join BOM_CTE P on C.ParentID = P.ItemID
+        //            )                    
+        //            select distinct ItemName, ItemCategory, ItemSize, CurrentQty, SafeQty,
+        //                   B.ItemID, T.ItemName, B.UnitQty, LEVELS, sortOrder
+        //            from BOM_CTE B join TB_Item T on B.ItemID = T.ItemID
+        //            order by sortOrder";
+
+        //        cmd.Parameters.AddWithValue("@ItemID", item);
+
+        //        cmd.Connection.Open();
+        //        List<BOMVO> list = Helper.DataReaderMapToList<BOMVO>(cmd.ExecuteReader());
+        //        cmd.Connection.Close();
+
+        //        return list;
+        //    }
+        //}
+        public List<PlanVO> GetComponents(string order, string item)
         {
             using (SqlCommand cmd = new SqlCommand())
             {
@@ -78,22 +106,28 @@ namespace AtlasMVCAPI.Models
                     UNION ALL
                     select C.ItemID, C.ParentID, C.UnitQty, (P.levels +1) levels, cast(P.sortOrder + '>' + C.ItemID as varchar(30)) sortOrder
                     from TB_BOM C inner join BOM_CTE P on C.ParentID = P.ItemID
-                    )
-                    
-                    select distinct ItemName, ItemCategory, ItemSize, CurrentQty, SafeQty,
-                           B.ItemID, T.ItemName, B.UnitQty, LEVELS, sortOrder
-                    from BOM_CTE B join TB_Item T on B.ItemID = T.ItemID
-                    order by sortOrder";
+                    )                    
+                    select distinct ItemName, ItemCategory, ItemSize, CurrentQty, SafeQty, B.ItemID, T.ItemName, LEVELS, sortOrder,
+                    	   ((select case when (OD.Qty + I.SafeQty - I.CurrentQty ) > 0 then OD.Qty + I.SafeQty - I.CurrentQty else 0 end planA 
+                            from TB_OrderDetails OD inner join TB_Item I on OD.ItemID = I.ItemID 
+                            where OrderID = @OrderID and OD.ItemID = @ItemID) * B.UnitQty) PlanQty,
+                    		case when (((select case when (OD.Qty + I.SafeQty - I.CurrentQty ) > 0 then OD.Qty + I.SafeQty - I.CurrentQty else 0 end planA 
+                            from TB_OrderDetails OD inner join TB_Item I on OD.ItemID = I.ItemID 
+                            where OrderID = @OrderID and OD.ItemID = @ItemID) * B.UnitQty) + SafeQty - CurrentQty ) > 0 then ((select case when (OD.Qty + I.SafeQty - I.CurrentQty ) > 0 then OD.Qty + I.SafeQty - I.CurrentQty else 0 end planA
+                    		from TB_OrderDetails OD inner join TB_Item I on OD.ItemID = I.ItemID 
+                            where OrderID = @OrderID and OD.ItemID = @ItemID) * B.UnitQty) + SafeQty - CurrentQty else 0 end NeedQty
+                    from BOM_CTE B join TB_Item T on B.ItemID = T.ItemID";
 
+                cmd.Parameters.AddWithValue("@OrderID", order); 
                 cmd.Parameters.AddWithValue("@ItemID", item);
+                
 
                 cmd.Connection.Open();
-                List<BOMVO> list = Helper.DataReaderMapToList<BOMVO>(cmd.ExecuteReader());
+                List<PlanVO> list = Helper.DataReaderMapToList<PlanVO>(cmd.ExecuteReader());
                 cmd.Connection.Close();
 
                 return list;
             }
         }
-
     }
 }
