@@ -14,9 +14,11 @@ namespace AltasMES
     public partial class frmPlan_Add : Form
     {
         ServiceHelper srv = null;
-        public frmPlan_Add()
+        public PlanVO plan { get; set; }
+        public frmPlan_Add(PlanVO plan)
         {
-            InitializeComponent();            
+            InitializeComponent();
+            this.plan = plan;   
         }
 
         private void frmPlan_Add_Load(object sender, EventArgs e)
@@ -32,14 +34,30 @@ namespace AltasMES
             this.Close();
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e)//SavePlanAdd(PlanVO list)
         {
+            //@ItemID, @PlanQty, @OrderID, @CreateDate, @CreateUser
+            PlanVO list = new PlanVO
+            {
+                ItemID = plan.ItemID,
+                PlanQty = Convert.ToInt32(txtQty.Text),
+                CreateUser = plan.CreateUser,
+                OrderID = plan.OrderID,
+            };
 
+            ResMessage<List<PlanVO>> result = srv.PostAsync<PlanVO, List<PlanVO>>("SavePlanShip", list);
+
+            if (result.ErrCode == 0)
+            {
+                MessageBox.Show("성공적으로 등록되었습니다.");
+                this.DialogResult = DialogResult.OK;
+            }
+            else
+                MessageBox.Show(result.ErrMsg);
         }
 
         private void cboCategory_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
+        {            
             if (cboCategory.SelectedIndex == 0)
             {
                 cboItemName.Items.Clear();

@@ -107,7 +107,7 @@
             // btnAdd
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.Location = new System.Drawing.Point(721, 20);
+            this.btnAdd.Location = new System.Drawing.Point(720, 20);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAdd.Padding = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.btnAdd.Size = new System.Drawing.Size(148, 37);
@@ -126,7 +126,7 @@
             // btnExecl
             // 
             this.btnExecl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExecl.Location = new System.Drawing.Point(628, 20);
+            this.btnExecl.Location = new System.Drawing.Point(461, 20);
             this.btnExecl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnExecl.Padding = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.btnExecl.Visible = false;
@@ -134,10 +134,12 @@
             // btnDelete
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelete.Location = new System.Drawing.Point(545, 20);
+            this.btnDelete.ImageIndex = 1;
+            this.btnDelete.Location = new System.Drawing.Point(636, 18);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDelete.Padding = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.btnDelete.Visible = false;
+            this.btnDelete.Text = "출하";
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // lblTitle
             // 
@@ -147,10 +149,11 @@
             // btnModify
             // 
             this.btnModify.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnModify.Location = new System.Drawing.Point(875, 20);
+            this.btnModify.ImageIndex = 0;
+            this.btnModify.Location = new System.Drawing.Point(874, 20);
             this.btnModify.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnModify.Padding = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.btnModify.Size = new System.Drawing.Size(147, 37);
+            this.btnModify.Size = new System.Drawing.Size(148, 37);
             this.btnModify.Text = "작업지시(추가)";
             this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
             // 

@@ -1,4 +1,6 @@
 ﻿using AtlasDTO;
+using DevExpress.Data.Mask.Internal;
+using DevExpress.PivotGrid.OLAP;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -84,6 +86,8 @@ namespace AltasMES
 
             string order = dgvList["OrderID", e.RowIndex].Value.ToString();
 
+            ResMessage<List<PlanVO>> list = srv.GetAsync<List<PlanVO>>($"api/Plan/LOTlist/{order}");
+
             ResMessage<List<PlanVO>> resource = srv.GetAsync<List<PlanVO>>($"api/Plan/OrderDetail/{order}");
 
             dgvDetail.DataSource = resource.Data;
@@ -147,8 +151,12 @@ namespace AltasMES
         }
 
         private void btnModify_Click(object sender, EventArgs e)
-        {            
-            frmPlan_Add frm = new frmPlan_Add();
+        {        
+            PlanVO plan = new PlanVO()
+            {
+                CreateUser = ((Main)this.MdiParent).EmpName.ToString()
+            };
+            frmPlan_Add frm = new frmPlan_Add(plan);
 
             if (frm.ShowDialog() == DialogResult.OK)
             {
@@ -171,7 +179,7 @@ namespace AltasMES
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
-        {
+        {           
             if (dgvSemi.DataSource == null)
             {
                 MessageBox.Show("작업지시를 생성할 주문서와 제품을 선택하여 주십시오.");
@@ -179,45 +187,85 @@ namespace AltasMES
             }
             else
             {
-                PlanOptVO plan = new PlanOptVO()
+                int need = Convert.ToInt32(dgvDetail["NeedQty", dgvDetail.CurrentRow.Index].Value);
+                if (need == 0)
                 {
-                    OrderID = dgvList["OrderID", dgvList.CurrentRow.Index].Value.ToString(),
-                    ProductID = dgvDetail["ItemID", dgvDetail.CurrentRow.Index].Value.ToString(),
-                    ProductName = dgvDetail["ItemName", dgvDetail.CurrentRow.Index].Value.ToString(),
-                    ProductQty = Convert.ToInt32(dgvDetail["NeedQty", dgvDetail.CurrentRow.Index].Value),
-                    Semi1ID = dgvSemi.Rows[0].Cells["ItemID"].Value.ToString(),
-                    Semi1Name = dgvSemi.Rows[0].Cells["ItemName"].Value.ToString(),
-                    Semi1Qty = Convert.ToInt32(dgvSemi.Rows[0].Cells["NeedQty"].Value),
-                    Semi2ID = dgvSemi.Rows[1].Cells["ItemID"].Value.ToString(),
-                    Semi2Name = dgvSemi.Rows[1].Cells["ItemName"].Value.ToString(),
-                    Semi2Qty = Convert.ToInt32(dgvSemi.Rows[1].Cells["NeedQty"].Value),
-                    Material1ID = dgvMaterial.Rows[0].Cells["ItemID"].Value.ToString(),
-                    Material1Name = dgvMaterial.Rows[0].Cells["ItemName"].Value.ToString(),
-                    Material1Qty = Convert.ToInt32(dgvMaterial.Rows[0].Cells["NeedQty"].Value),
-                    Material2ID = dgvMaterial.Rows[1].Cells["ItemID"].Value.ToString(),
-                    Material2Name = dgvMaterial.Rows[1].Cells["ItemName"].Value.ToString(),
-                    Material2Qty = Convert.ToInt32(dgvMaterial.Rows[1].Cells["NeedQty"].Value),
-                    Material3ID = dgvMaterial.Rows[2].Cells["ItemID"].Value.ToString(),
-                    Material3Name = dgvMaterial.Rows[2].Cells["ItemName"].Value.ToString(),
-                    Material3Qty = Convert.ToInt32(dgvMaterial.Rows[2].Cells["NeedQty"].Value),
-                    Material4ID = dgvMaterial.Rows[3].Cells["ItemID"].Value.ToString(),
-                    Material4Name = dgvMaterial.Rows[3].Cells["ItemName"].Value.ToString(),
-                    Material4Qty = Convert.ToInt32(dgvMaterial.Rows[3].Cells["NeedQty"].Value),
-                    Material5ID = dgvMaterial.Rows[4].Cells["ItemID"].Value.ToString(),
-                    Material5Name = dgvMaterial.Rows[4].Cells["ItemName"].Value.ToString(),
-                    Material5Qty = Convert.ToInt32(dgvMaterial.Rows[4].Cells["NeedQty"].Value),
-                    Material6ID = dgvMaterial.Rows[5].Cells["ItemID"].Value.ToString(),
-                    Material6Name = dgvMaterial.Rows[5].Cells["ItemName"].Value.ToString(),
-                    Material6Qty = Convert.ToInt32(dgvMaterial.Rows[5].Cells["NeedQty"].Value),
-                    Material7ID = dgvMaterial.Rows[6].Cells["ItemID"].Value.ToString(),
-                    Material7Name = dgvMaterial.Rows[6].Cells["ItemName"].Value.ToString(),
-                    Material7Qty = Convert.ToInt32(dgvMaterial.Rows[6].Cells["NeedQty"].Value),
-                    Material8ID = dgvMaterial.Rows[7].Cells["ItemID"].Value.ToString(),
-                    Material8Name = dgvMaterial.Rows[7].Cells["ItemName"].Value.ToString(),
-                    Material8Qty = Convert.ToInt32(dgvMaterial.Rows[7].Cells["NeedQty"].Value)
-                };
-                frmPlan_Plan frm = new frmPlan_Plan(plan);
+                    MessageBox.Show("주문수량이 만족됩니다. 출하지시 또는 추가작업지시를 선택하세요.");
+                    return;
+                }
+                else
+                {
+                    PlanOptVO plan = new PlanOptVO()
+                    {
+                        OrderID = dgvList["OrderID", dgvList.CurrentRow.Index].Value.ToString(),
+                        ProductID = dgvDetail["ItemID", dgvDetail.CurrentRow.Index].Value.ToString(),
+                        ProductName = dgvDetail["ItemName", dgvDetail.CurrentRow.Index].Value.ToString(),
+                        ProductQty = Convert.ToInt32(dgvDetail["NeedQty", dgvDetail.CurrentRow.Index].Value),
+                        Semi1ID = dgvSemi.Rows[0].Cells["ItemID"].Value.ToString(),
+                        Semi1Name = dgvSemi.Rows[0].Cells["ItemName"].Value.ToString(),
+                        Semi1Qty = Convert.ToInt32(dgvSemi.Rows[0].Cells["NeedQty"].Value),
+                        Semi2ID = dgvSemi.Rows[1].Cells["ItemID"].Value.ToString(),
+                        Semi2Name = dgvSemi.Rows[1].Cells["ItemName"].Value.ToString(),
+                        Semi2Qty = Convert.ToInt32(dgvSemi.Rows[1].Cells["NeedQty"].Value),
+                        //Material1ID = dgvMaterial.Rows[0].Cells["ItemID"].Value.ToString(),
+                        //Material1Name = dgvMaterial.Rows[0].Cells["ItemName"].Value.ToString(),
+                        //Material1Qty = Convert.ToInt32(dgvMaterial.Rows[0].Cells["NeedQty"].Value),
+                        //Material2ID = dgvMaterial.Rows[1].Cells["ItemID"].Value.ToString(),
+                        //Material2Name = dgvMaterial.Rows[1].Cells["ItemName"].Value.ToString(),
+                        //Material2Qty = Convert.ToInt32(dgvMaterial.Rows[1].Cells["NeedQty"].Value),
+                        //Material3ID = dgvMaterial.Rows[2].Cells["ItemID"].Value.ToString(),
+                        //Material3Name = dgvMaterial.Rows[2].Cells["ItemName"].Value.ToString(),
+                        //Material3Qty = Convert.ToInt32(dgvMaterial.Rows[2].Cells["NeedQty"].Value),
+                        //Material4ID = dgvMaterial.Rows[3].Cells["ItemID"].Value.ToString(),
+                        //Material4Name = dgvMaterial.Rows[3].Cells["ItemName"].Value.ToString(),
+                        //Material4Qty = Convert.ToInt32(dgvMaterial.Rows[3].Cells["NeedQty"].Value),
+                        //Material5ID = dgvMaterial.Rows[4].Cells["ItemID"].Value.ToString(),
+                        //Material5Name = dgvMaterial.Rows[4].Cells["ItemName"].Value.ToString(),
+                        //Material5Qty = Convert.ToInt32(dgvMaterial.Rows[4].Cells["NeedQty"].Value),
+                        //Material6ID = dgvMaterial.Rows[5].Cells["ItemID"].Value.ToString(),
+                        //Material6Name = dgvMaterial.Rows[5].Cells["ItemName"].Value.ToString(),
+                        //Material6Qty = Convert.ToInt32(dgvMaterial.Rows[5].Cells["NeedQty"].Value),
+                        //Material7ID = dgvMaterial.Rows[6].Cells["ItemID"].Value.ToString(),
+                        //Material7Name = dgvMaterial.Rows[6].Cells["ItemName"].Value.ToString(),
+                        //Material7Qty = Convert.ToInt32(dgvMaterial.Rows[6].Cells["NeedQty"].Value),
+                        //Material8ID = dgvMaterial.Rows[7].Cells["ItemID"].Value.ToString(),
+                        //Material8Name = dgvMaterial.Rows[7].Cells["ItemName"].Value.ToString(),
+                        //Material8Qty = Convert.ToInt32(dgvMaterial.Rows[7].Cells["NeedQty"].Value)
+                    };
+                    frmPlan_Plan frm = new frmPlan_Plan(plan);
 
+                    if (frm.ShowDialog() == DialogResult.OK)
+                    {
+                        LoadData();
+                        dgvList.ClearSelection();
+                        dgvDetail.DataSource = null;
+                        dgvSemi.DataSource = null;
+                        dgvMaterial.DataSource = null;
+                    }
+                }
+               
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (dgvList.SelectedRows.Count <1 || dgvDetail.SelectedRows.Count <1)
+            {
+                MessageBox.Show("출하지시할 주문서와 제품을 선택하여 주십시오.");
+                return;
+            }
+            else
+            {
+                PlanVO plan = new PlanVO()
+                {
+                    ItemID = dgvDetail["ItemID", dgvDetail.CurrentRow.Index].Value.ToString(),
+                    ItemName = dgvDetail["ItemName", dgvDetail.CurrentRow.Index].Value.ToString(),
+                    LOTIQty = Convert.ToInt32(dgvDetail["Qty", dgvDetail.CurrentRow.Index].Value),
+                    CreateUser = ((Main)this.MdiParent).EmpName.ToString(),
+                    OrderID = dgvList["OrderID", dgvList.CurrentRow.Index].Value.ToString()
+                };
+
+                frmPlan_Ship frm = new frmPlan_Ship(plan);
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     LoadData();
@@ -226,7 +274,10 @@ namespace AltasMES
                     dgvSemi.DataSource = null;
                     dgvMaterial.DataSource = null;
                 }
+
             }
+
         }
+
     }
 }

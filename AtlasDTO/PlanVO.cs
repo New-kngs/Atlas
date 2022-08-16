@@ -23,5 +23,6 @@ namespace AtlasDTO
         public string CreateUser { get; set; }
         public string ModifyDate { get; set; }
         public string ModifyUser { get; set; }
+        public int LOTIQty { get; set; }
     }
 }

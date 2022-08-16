@@ -326,6 +326,12 @@
     <Compile Include="frmProdPlan\frmPlan_Add.Designer.cs">
       <DependentUpon>frmPlan_Add.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmProdPlan\frmPlan_Ship.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProdPlan\frmPlan_Ship.Designer.cs">
+      <DependentUpon>frmPlan_Ship.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPurchase\frmPurchase_Add.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -536,6 +542,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmProdPlan\frmPlan_Add.resx">
       <DependentUpon>frmPlan_Add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProdPlan\frmPlan_Ship.resx">
+      <DependentUpon>frmPlan_Ship.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPurchase\frmPurchase_Add.resx">
       <DependentUpon>frmPurchase_Add.cs</DependentUpon>

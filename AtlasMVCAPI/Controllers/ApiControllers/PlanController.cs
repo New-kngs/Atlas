@@ -110,5 +110,74 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
+
+        /// <summary>
+        /// Author : 정희록
+        /// </summary>
+        /// <param name="plan"></param>
+        /// <returns>주문리스트중 주문수량이 출하가능한 경우 LOT번호와 바코드 번호 생성해서 출고창고 입고 </returns>
+        //POST : https://localhost:44391/api/Plan/SavePlanShip
+        [HttpPost]
+        [Route("SavePlanShip")]
+        public IHttpActionResult SavePlanShip(PlanVO list)
+        {
+            try
+            {
+                PlanDAC db = new PlanDAC();
+                bool flag = db.SavePlanShip(list);
+
+                ResMessage result = new ResMessage()
+                {
+                    ErrCode = (!flag) ? -9 : 0,
+                    ErrMsg = (!flag) ? "저장중 오류발생" : "S"
+                };
+
+                return Ok(result);
+            }
+            catch (Exception err)
+            {
+                System.Diagnostics.Debug.WriteLine(err.Message);
+
+                return Ok(new ResMessage()
+                {
+                    ErrCode = -9,
+                    ErrMsg = err.Message
+                });
+            }
+        }
+
+        /// <summary>
+        /// Author : 정희록
+        /// </summary>
+        /// <returns>주문리스트의 상세내용을 조회해서 반환</returns>
+        //https://localhost:44391/api/Plan/LOTlist/{order}
+        [Route("LOTlist/{order}")]
+        public IHttpActionResult GetLOTList(string order)
+        {
+            try
+            {
+                PlanDAC db = new PlanDAC();
+                List<PlanVO> list = db.GetLOTList(order);
+
+                ResMessage<List<PlanVO>> result = new ResMessage<List<PlanVO>>()
+                {
+                    ErrCode = (list == null) ? -9 : 0,
+                    ErrMsg = (list == null) ? "조회중 오류발생" : "S",
+                    Data = list
+                };
+
+                return Ok(result);
+            }
+            catch (Exception err)
+            {
+                System.Diagnostics.Debug.WriteLine(err.Message);
+
+                return Ok(new ResMessage()
+                {
+                    ErrCode = -9,
+                    ErrMsg = "서비스 관리자에게 문의하시기 바랍니다."
+                });
+            }
+        }
     }
 }

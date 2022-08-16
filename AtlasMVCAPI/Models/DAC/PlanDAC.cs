@@ -44,6 +44,7 @@ namespace AtlasMVCAPI.Models
             }
         }
 
+        
         public List<PlanVO> GetOrderDetail(string order)
         {
             using (SqlCommand cmd = new SqlCommand())
@@ -127,6 +128,70 @@ namespace AtlasMVCAPI.Models
                 cmd.Connection.Close();
 
                 return list;
+            }
+        }
+
+        
+        public bool SavePlanShip(PlanVO list)
+        {
+            using (SqlCommand cmd = new SqlCommand
+            {
+                Connection = new SqlConnection(strConn),
+                CommandText = "SP_CreateLOT_BarCodeID",
+                CommandType = CommandType.StoredProcedure
+            })
+            {
+                cmd.Parameters.AddWithValue("@ItemID", list.ItemID);
+                cmd.Parameters.AddWithValue("@LOTIQty", list.LOTIQty);
+                cmd.Parameters.AddWithValue("@CreateUser", list.CreateUser);
+                cmd.Parameters.AddWithValue("@OrderID", list.OrderID);
+                cmd.Connection.Open();
+                int iRowAffect = cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+
+                return (iRowAffect > 0);
+            }
+        }
+
+        public List<PlanVO> GetLOTList(string order)
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.CommandText =
+                    @"select LOTID, OrderID, ItemID, LOTIQty, BarCodeID, CreateDate, CreateUser, ModifyDate, ModifyUser
+                     from TB_LOT
+                     where OrderID = @OrderID";
+
+                cmd.Parameters.AddWithValue("@OrderID", order);
+
+                cmd.Connection.Open();
+                List<PlanVO> list = Helper.DataReaderMapToList<PlanVO>(cmd.ExecuteReader());
+                cmd.Connection.Close();
+
+                return list;
+            }
+        }
+
+        public bool SavePlanAdd(PlanVO list)
+        {
+            using (SqlCommand cmd = new SqlCommand
+            {
+                Connection = new SqlConnection(strConn),
+                CommandText = @"insert into TB_Plan (ItemID, PlanQty, OrderID, CreateDate, CreateUser) 
+                                values (@ItemID, @PlanQty, @OrderID, @CreateDate, @CreateUser)",
+            })
+            {
+                cmd.Parameters.AddWithValue("@ItemID", list.ItemID);
+                cmd.Parameters.AddWithValue("@PlanQty", list.LOTIQty);
+                cmd.Parameters.AddWithValue("@CreateUser", list.CreateUser);
+                cmd.Parameters.AddWithValue("@CreateDate", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                cmd.Parameters.AddWithValue("@OrderID", list.OrderID);
+                cmd.Connection.Open();
+                int iRowAffect = cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+
+                return (iRowAffect > 0);
             }
         }
     }
