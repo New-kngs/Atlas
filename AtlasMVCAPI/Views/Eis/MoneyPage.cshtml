@@ -65,7 +65,7 @@
                                         <!-- <th scope="col">#</th> -->
                                         @foreach (DataColumn col in table.Columns)
                                         {
-                                            <th scope="col">@col.ColumnName</th>
+                                            <th scope="col" style="text-align:center;">@col.ColumnName</th>
                                         }
                                     </tr>
                                 </thead>
@@ -75,7 +75,7 @@
                                         <tr>
                                             @for (int i = 0; i < table.Columns.Count; i++)
                                             {
-                                                <td>@row[i]</td>
+                                                <td style="text-align:right;">@row[i]</td>
                                             }
                                         </tr>
                                     }
