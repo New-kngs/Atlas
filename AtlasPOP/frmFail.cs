@@ -93,7 +93,7 @@ namespace AtlasPOP
                     FailCode = cboFailList.SelectedValue.ToString(),
                     FailName = cboFailList.Text,
                     OpID = oper.OpID,
-                    CreateUser = oper.EmpID
+                    CreateUser = oper.EmpName
                 };
                 failList.Add(fail);
             }

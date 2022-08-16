@@ -240,6 +240,7 @@ namespace AtlasPOP
                 MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
             }
 
+            Oper.EmpName = User;
             frmFail frm = new frmFail(Oper);
             if (frm.ShowDialog() == DialogResult.OK)
             {
@@ -260,7 +261,7 @@ namespace AtlasPOP
                 MessageBox.Show("작업을 선택해주세요");
                 return;
             }
-
+            Oper.EmpName = User;
             frmResource frm = new frmResource(Oper);
             if (frm.ShowDialog() == DialogResult.OK)
             {
