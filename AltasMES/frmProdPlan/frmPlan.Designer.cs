@@ -135,7 +135,7 @@
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDelete.ImageIndex = 1;
-            this.btnDelete.Location = new System.Drawing.Point(636, 18);
+            this.btnDelete.Location = new System.Drawing.Point(636, 20);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDelete.Padding = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.btnDelete.Text = "출하";
