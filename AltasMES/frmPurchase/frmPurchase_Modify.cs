@@ -81,9 +81,10 @@ namespace AltasMES
 
             if (instate.Equals("Y"))
             {
-                btnAdd.Visible = false;
+                btnAdd.Visible = btnComplete.Visible = false;
                 btn1.Visible = btn2.Visible = false;
-            }
+                btnClose.Location = new Point(362, 645);
+            }          
 
 
         }
@@ -176,7 +177,6 @@ namespace AltasMES
                 }
             }
         }
-
         private void dgvPurItem_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             int sum = 0;
@@ -200,26 +200,7 @@ namespace AltasMES
             }
             txtCount.Text = dgvPurItem.Rows.Count.ToString();
             txtPrice.Text = price.ToString("#,##0") + " 원";
-        }
-
-
-        private void LoadPurPrice()
-        {
-            int num = 0;
-            for (int i = 0; i < dgvPurItem.Rows.Count; i++)
-            {
-                string id = dgvPurItem.Rows[i].Cells["ItemID"].Value.ToString();
-                int qtc = Convert.ToInt32(dgvPurItem.Rows[i].Cells["Qty"].Value);
-                purList.FindAll((f) => f.ItemID.Equals(id)).ForEach((f) => num += f.ItemPrice * qtc);
-            }
-            txtPrice.Text = num.ToString("#,##0") + " 원";
-        }
-
-        private void frmPurchase_Modify_Shown(object sender, EventArgs e)
-        {
-            dgvItem.ClearSelection();
-            dgvPurItem.ClearSelection();
-        }
+        }               
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -227,13 +208,7 @@ namespace AltasMES
             {
                 MessageBox.Show("등록된 발주 목록이 없습니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
-            }
-            
-            //if (instate.Equals("Y"))
-            //{
-            //    MessageBox.Show("발주 완료된 항목은 수정이 불가 합니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    return;
-            //}
+            }          
 
             List<PurchaseDetailsVO> purDetailList = new List<PurchaseDetailsVO>();
             for (int i = 0; i < dgvPurItem.Rows.Count; i++)
@@ -271,17 +246,12 @@ namespace AltasMES
             }
             else
                 MessageBox.Show("오류가 발생하였습니다. 다시 시도 하여 주십시오.");
-        }
-
-        private void btnModify_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        }       
 
         private void btnComplete_Click(object sender, EventArgs e)
         {
 
-            if (MessageBox.Show($"발주ID : {txtPurID.Text}를 완료 처리 하시겠습니까?", "발주 완료", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show($"발주ID : {txtPurID.Text}를 입고 완료 처리 하시겠습니까?", "입고 완료", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
 
                 PurchaseVO cPurId = new PurchaseVO()
@@ -292,14 +262,38 @@ namespace AltasMES
 
                 if (result.ErrCode == 0)
                 {
-                    MessageBox.Show("발주 완료 처리가 완료되었습니다.", "발주 완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("입고 완료 처리 되었습니다.", "입고 완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    LoadData();                    
+                    //LoadData();                    
                     dgvItem.ClearSelection();
+                    this.Close();
                 }
                 else
                     MessageBox.Show(result.ErrMsg);
             }
+        }
+
+        private void LoadPurPrice()
+        {
+            int num = 0;
+            for (int i = 0; i < dgvPurItem.Rows.Count; i++)
+            {
+                string id = dgvPurItem.Rows[i].Cells["ItemID"].Value.ToString();
+                int qtc = Convert.ToInt32(dgvPurItem.Rows[i].Cells["Qty"].Value);
+                purList.FindAll((f) => f.ItemID.Equals(id)).ForEach((f) => num += f.ItemPrice * qtc);
+            }
+            txtPrice.Text = num.ToString("#,##0") + " 원";
+        }
+
+        private void frmPurchase_Modify_Shown(object sender, EventArgs e)
+        {
+            dgvItem.ClearSelection();
+            dgvPurItem.ClearSelection();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

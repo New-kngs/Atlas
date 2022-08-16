@@ -93,7 +93,7 @@ namespace AltasMES
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 79);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(829, 825);
+            this.panel2.Size = new System.Drawing.Size(829, 804);
             this.panel2.TabIndex = 5;
             // 
             // panel3
@@ -112,7 +112,7 @@ namespace AltasMES
             this.panel3.Location = new System.Drawing.Point(12, 6);
             this.panel3.Name = "panel3";
             this.panel3.Padding = new System.Windows.Forms.Padding(5);
-            this.panel3.Size = new System.Drawing.Size(805, 807);
+            this.panel3.Size = new System.Drawing.Size(805, 786);
             this.panel3.TabIndex = 0;
             // 
             // groupBox2
@@ -304,7 +304,7 @@ namespace AltasMES
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAdd.ImageIndex = 1;
             this.btnAdd.ImageList = this.imageList1;
-            this.btnAdd.Location = new System.Drawing.Point(322, 738);
+            this.btnAdd.Location = new System.Drawing.Point(311, 730);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnAdd.Size = new System.Drawing.Size(78, 37);
@@ -322,7 +322,7 @@ namespace AltasMES
             this.btnModify.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnModify.ImageIndex = 5;
             this.btnModify.ImageList = this.imageList1;
-            this.btnModify.Location = new System.Drawing.Point(406, 738);
+            this.btnModify.Location = new System.Drawing.Point(415, 730);
             this.btnModify.Name = "btnModify";
             this.btnModify.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnModify.Size = new System.Drawing.Size(78, 37);
@@ -360,7 +360,7 @@ namespace AltasMES
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(829, 904);
+            this.ClientSize = new System.Drawing.Size(829, 883);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

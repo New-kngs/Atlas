@@ -104,41 +104,7 @@ namespace AltasMES
                 LoadData();
             }
 
-        }
-
-        private void cboStateYN_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            LoadData();
-        }
-
-        private void frm_Purchase_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13)
-            {
-                btnSearch_Click(this, e);
-            }
-        }
-
-        private void frm_Purchase_Shown(object sender, EventArgs e)
-        {
-            dgvPurchase.ClearSelection();
-        }
-
-        private void frm_Purchase_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (srv != null)
-            {
-                srv.Dispose();
-            }
-        }       
-
-        private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13)
-            {
-                btnSearch_Click(this, e);
-            }
-        }
+        }        
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -149,8 +115,9 @@ namespace AltasMES
             frmPurchase_Add pop = new frmPurchase_Add(item);
             if (pop.ShowDialog() == DialogResult.OK)
             {
-                LoadData();
+                LoadData();             
             }
+            dgvPurchase.ClearSelection();
         }       
 
         private void dgvPurchase_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -168,22 +135,19 @@ namespace AltasMES
             {
                 MessageBox.Show("발주 항목을 선택해 주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
-            }
-            //string endDate = (dgvPurchase.SelectedRows[0].Cells["PurchaseEndDate"].Value).ToString();
+            }            
 
             PurchaseVO pur = srv.GetAsync<PurchaseVO>($"/api/Purchase/{selId}").Data;
             pur.ModifyUser = ((Main)this.MdiParent).EmpName.ToString();
             pur.InState = (dgvPurchase.SelectedRows[0].Cells["InState"].Value).ToString();
-            //if (endDate != null)
-            //    pur.PurchaseEndDate = endDate;
-            //else
-            //    pur.PurchaseEndDate = string.Empty;
             
             frmPurchase_Modify pop = new frmPurchase_Modify(pur);
             if (pop.ShowDialog() == DialogResult.OK)
             {
+                dgvPurchase.DataSource = null;
                 LoadData();
             }
+            LoadData();
             selId = string.Empty;
             dgvPurchase.ClearSelection();
         }
@@ -225,6 +189,40 @@ namespace AltasMES
                 }
                 else
                     MessageBox.Show(result.ErrMsg);
+            }
+        }
+
+        private void cboStateYN_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+        private void frm_Purchase_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                btnSearch_Click(this, e);
+            }
+        }
+
+        private void frm_Purchase_Shown(object sender, EventArgs e)
+        {
+            dgvPurchase.ClearSelection();
+        }        
+
+        private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                btnSearch_Click(this, e);
+            }
+        }
+
+        private void frm_Purchase_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (srv != null)
+            {
+                srv.Dispose();
             }
         }
     }
