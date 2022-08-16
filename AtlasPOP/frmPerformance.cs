@@ -140,7 +140,6 @@ namespace AtlasPOP
 
         private void opFinish(object sender, DoWorkEventArgs e)
         {
-            
             dicEquip[index].DrawState("작업종료");
             index++;
         }
@@ -175,12 +174,23 @@ namespace AtlasPOP
 
             if (Convert.ToInt32(datas[0]) <= (Convert.ToInt32(txtTotQty.Text) + totfail))
             {
-                DialogResult result = MessageBox.Show("작업이 끝났습니다", "작업 종료", MessageBoxButtons.OK);
+                worker.CancelAsync();
+                timer_Connec.Stop();
+                
+
+                DialogResult result = MessageBox.Show($"{oper.ProcessName}의 작업이 끝났습니다", "작업 종료", MessageBoxButtons.OK);
                 if (result == DialogResult.OK)
                 {
-                    worker.CancelAsync();
-                    timer_Connec.Stop();
-                    main.Finish(totQty, totfail, hostPort.ToString());
+                    ResMessage<List<OperationVO>> finish = service.PostAsync<OperationVO, List<OperationVO>>("api/pop/UdateFinish", oper);
+                    if (finish.ErrCode == 0)
+                    {
+                        MessageBox.Show("작업종료");
+                        main.Finish(totQty, totfail, hostPort.ToString());
+                    }
+                    else
+                    {
+                        MessageBox.Show("종료 중 문제가 발생하였습니다.");
+                    }
                 }
                 this.Close();
             }

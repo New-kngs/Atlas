@@ -24,7 +24,7 @@ namespace AtlasPOP
         LoggingUtility m_log;
         string hostIP;
         int hostPort;
-        int timer_CONNECT, timer_KeepAlive, timer_Read;
+        int timer_CONNECT, timer_Read, timer_KeepAlive;
 
         public bool ConnectStatus { get; set; }
 
@@ -94,13 +94,14 @@ namespace AtlasPOP
                     m_log.WriteInfo("서버 접속");
                 }
             }
-            else
+            OnReceive();
+            /*else
             {
                 //keep alive 체크
                 if (!m_aliveTimer.IsRunning || m_aliveTimer.Elapsed.TotalMilliseconds > timer_KeepAlive)
                 {
                     if (!m_aliveTimer.IsRunning)
-                        m_aliveTimer.Restart();
+                        //m_aliveTimer.Restart();
 
                     m_log.WriteInfo("재접속을 위한 연결종료");
                     ConnectStatus = false;
@@ -110,7 +111,7 @@ namespace AtlasPOP
                     if (client.Client.Connected)
                     {
                         ConnectStatus = true;
-                        m_aliveTimer.Restart();
+                        //m_aliveTimer.Restart();
 
                         m_log.WriteInfo("서버 재접속 성공");
                     }
@@ -118,8 +119,8 @@ namespace AtlasPOP
 
                 //데이터수신
                 //50|20|1 , HeartBeat
-                OnReceive();
-            }
+               
+            }*/
         }
 
         private void OnReceive()

@@ -127,7 +127,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lblDept.Location" type="System.Drawing.Point, System.Drawing">
-    <value>886, 9</value>
+    <value>156, 9</value>
   </data>
   <data name="lblDept.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 12</value>

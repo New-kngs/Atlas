@@ -37,7 +37,6 @@ namespace AtlasPOP
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.panel3 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.lblCustomer = new System.Windows.Forms.Label();
             this.lblEnd = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.lblBegin = new System.Windows.Forms.Label();
@@ -58,6 +57,8 @@ namespace AtlasPOP
             this.label3 = new System.Windows.Forms.Label();
             this.lblOper = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblCustomer = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnState = new System.Windows.Forms.Button();
             this.btnLaping = new System.Windows.Forms.Button();
@@ -65,7 +66,6 @@ namespace AtlasPOP
             this.btnStart = new System.Windows.Forms.Button();
             this.btnEnd = new System.Windows.Forms.Button();
             this.btnResource = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -145,14 +145,6 @@ namespace AtlasPOP
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 10);
             this.tableLayoutPanel1.Controls.Add(this.lblCustomer, 1, 10);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            // 
-            // lblCustomer
-            // 
-            this.lblCustomer.BackColor = System.Drawing.Color.White;
-            this.lblCustomer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            resources.ApplyResources(this.lblCustomer, "lblCustomer");
-            this.lblCustomer.Name = "lblCustomer";
-            this.lblCustomer.Click += new System.EventHandler(this.lblCustomer_Click);
             // 
             // lblEnd
             // 
@@ -274,6 +266,19 @@ namespace AtlasPOP
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
             // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
+            // 
+            // lblCustomer
+            // 
+            this.lblCustomer.BackColor = System.Drawing.Color.White;
+            this.lblCustomer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.lblCustomer, "lblCustomer");
+            this.lblCustomer.Name = "lblCustomer";
+            this.lblCustomer.Click += new System.EventHandler(this.lblCustomer_Click);
+            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(87)))), ((int)(((byte)(117)))), ((int)(((byte)(204)))));
@@ -339,11 +344,6 @@ namespace AtlasPOP
             this.btnResource.Name = "btnResource";
             this.btnResource.UseVisualStyleBackColor = false;
             this.btnResource.Click += new System.EventHandler(this.btnResource_Click_1);
-            // 
-            // label2
-            // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.Name = "label2";
             // 
             // AtlasPOP
             // 

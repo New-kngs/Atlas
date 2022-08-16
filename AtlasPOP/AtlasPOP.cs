@@ -106,6 +106,7 @@ namespace AtlasPOP
         /// <param name="e"></param>
         private void btnStart_Click(object sender, EventArgs e)
         {
+            
             if (Oper == null)
             {
                 MessageBox.Show("작업을 선택해주세요");
@@ -126,6 +127,14 @@ namespace AtlasPOP
                 MessageBox.Show("자재가 투입되지 않았습니다.");
                 return;
             }
+            ResMessage<List<EquipDetailsVO>> equip = service.GetAsync<List<EquipDetailsVO>>("api/pop/GetEquip");
+            List<EquipDetailsVO> EquipList = equip.Data.FindAll((p) => p.ProcessID == Oper.ProcessID);
+            if (EquipList.Count == 0)
+            {
+                MessageBox.Show("등록된 설비가 없습니다.");
+                return;
+            }
+            
 
             ResMessage<List<OperationVO>> start = service.PostAsync<OperationVO, List<OperationVO>>("api/pop/UdateState", Oper);
             if (start.ErrCode == 0)
@@ -171,17 +180,9 @@ namespace AtlasPOP
             Oper.CompleteQty = qty;
             Oper.FailQty = failqty;
 
-            ResMessage<List<OperationVO>> finish = service.PostAsync<OperationVO, List<OperationVO>>("api/pop/UdateFinish", Oper);
-            if (finish.ErrCode == 0)
-            {
-                frmPerfLST[Oper.port].Close();
-                frmPerfLST.Remove(Oper.port);
-                MessageBox.Show("작업종료");
-            }
-            else
-            {
-                MessageBox.Show("종료 중 문제가 발생하였습니다.");
-            }
+            frmPerfLST[Oper.port].Close();
+            frmPerfLST.Remove(Oper.port);
+
             frmoper.LoadData();
         }
 
@@ -275,7 +276,8 @@ namespace AtlasPOP
         {
             foreach (Process proc in Process.GetProcesses())
             {
-                proc.Close();
+                Environment.Exit(proc.Id);
+                
             }
             this.Close();
             Application.Exit();

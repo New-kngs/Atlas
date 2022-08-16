@@ -24,12 +24,12 @@ namespace AtlasPOP
             this.equip = equip;
             lblName.Text = $"{idx+1}번 {equip.EquipName}";
             lblType.Text = $"{equip.EquipCategory}({equip.EquipID})";
-            
+            label1.Text = "작업중";
             
         }
         public void DrawState(string opstate)
         {
-
+            this.Invoke((MethodInvoker)(() => label1.Visible = false));
             lblState state = new lblState(opstate);
             state.Dock = DockStyle.Fill;
             this.Invoke((MethodInvoker)(() => panel1.Controls.Add(state)));

@@ -17,8 +17,11 @@ namespace VirtualPLCMachin
 
            Service srv = new Service(args[0], args[1], args[2], args[3]);
             srv.OnStart();
+            
+
 
             Console.ReadLine();
+            
         }
     }
 
