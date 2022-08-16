@@ -42,9 +42,8 @@ namespace AtlasMVCAPI.Models
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = new SqlConnection(strConn);
-                cmd.CommandText = @"select PurchaseID, CustomerName, InState, convert(varchar(30), PurchaseEndDate, 120) PurchaseEndDate, WHName, convert(varchar(30), P.CreateDate, 120) CreateDate, P.CreateUser, convert(varchar(30), P.ModifyDate, 120) ModifyDate, P.ModifyUser
+                cmd.CommandText = @"select PurchaseID, CustomerName, InState, convert(varchar(30), PurchaseEndDate, 120) PurchaseEndDate, convert(varchar(30), P.CreateDate, 120) CreateDate, P.CreateUser, convert(varchar(30), P.ModifyDate, 120) ModifyDate, P.ModifyUser
                                     from TB_Purchase P inner join TB_Customer C on P.CustomerID = C.CustomerID
-				                                       left outer join TB_Warehouse W on P.WHID = W.WHID
                                     where P.CreateDate Between @from and @to";
 
                 cmd.Parameters.AddWithValue("@from", from);
