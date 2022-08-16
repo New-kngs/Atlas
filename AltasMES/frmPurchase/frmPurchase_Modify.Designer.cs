@@ -51,6 +51,7 @@ namespace AltasMES
             this.btnModify = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvItem = new System.Windows.Forms.DataGridView();
+            this.btnComplete = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -97,6 +98,7 @@ namespace AltasMES
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.btnComplete);
             this.panel3.Controls.Add(this.groupBox2);
             this.panel3.Controls.Add(this.groupBox3);
             this.panel3.Controls.Add(this.btnAdd);
@@ -232,7 +234,7 @@ namespace AltasMES
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAdd.ImageIndex = 1;
             this.btnAdd.ImageList = this.imageList1;
-            this.btnAdd.Location = new System.Drawing.Point(322, 663);
+            this.btnAdd.Location = new System.Drawing.Point(257, 663);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnAdd.Size = new System.Drawing.Size(78, 37);
@@ -263,7 +265,7 @@ namespace AltasMES
             this.btnModify.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnModify.ImageIndex = 5;
             this.btnModify.ImageList = this.imageList1;
-            this.btnModify.Location = new System.Drawing.Point(406, 663);
+            this.btnModify.Location = new System.Drawing.Point(487, 663);
             this.btnModify.Name = "btnModify";
             this.btnModify.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnModify.Size = new System.Drawing.Size(78, 37);
@@ -294,6 +296,24 @@ namespace AltasMES
             this.dgvItem.Size = new System.Drawing.Size(779, 241);
             this.dgvItem.TabIndex = 0;
             this.dgvItem.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItem_CellClick);
+            // 
+            // btnComplete
+            // 
+            this.btnComplete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnComplete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnComplete.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnComplete.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnComplete.ImageIndex = 6;
+            this.btnComplete.ImageList = this.imageList1;
+            this.btnComplete.Location = new System.Drawing.Point(372, 663);
+            this.btnComplete.Name = "btnComplete";
+            this.btnComplete.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.btnComplete.Size = new System.Drawing.Size(78, 37);
+            this.btnComplete.TabIndex = 15;
+            this.btnComplete.Text = "완료";
+            this.btnComplete.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnComplete.UseVisualStyleBackColor = true;
+            this.btnComplete.Click += new System.EventHandler(this.btnComplete_Click);
             // 
             // frmPurchase_Modify
             // 
@@ -347,5 +367,6 @@ namespace AltasMES
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtCusName;
         protected System.Windows.Forms.ImageList imageList1;
+        protected System.Windows.Forms.Button btnComplete;
     }
 }

@@ -81,7 +81,7 @@ namespace AltasMES
 
             if (instate.Equals("Y"))
             {
-                btnAdd.Enabled = false;
+                btnAdd.Visible = false;
                 btn1.Visible = btn2.Visible = false;
             }
 
@@ -152,8 +152,7 @@ namespace AltasMES
             if (e.RowIndex < 0) return;
 
             if (e.ColumnIndex == 6)
-            {
-                //AdvancedList<PurchaseDetailsVO> purNewList = dgvPurItem.DataSource as AdvancedList<PurchaseDetailsVO>;
+            {                
                 List<PurchaseDetailsVO> purNewList = dgvPurItem.DataSource as List<PurchaseDetailsVO>;
                 purNewList.RemoveAt(e.RowIndex);
                 dgvPurItem.DataSource = null;
@@ -277,6 +276,30 @@ namespace AltasMES
         private void btnModify_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnComplete_Click(object sender, EventArgs e)
+        {
+
+            if (MessageBox.Show($"발주ID : {txtPurID.Text}를 완료 처리 하시겠습니까?", "발주 완료", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+
+                PurchaseVO cPurId = new PurchaseVO()
+                {
+                    PurchaseID = txtPurID.Text
+                };
+                ResMessage<List<PurchaseVO>> result = srv.PostAsync<PurchaseVO, List<PurchaseVO>>("api/Purchase/UpdatePurStateItemQty", cPurId);
+
+                if (result.ErrCode == 0)
+                {
+                    MessageBox.Show("발주 완료 처리가 완료되었습니다.", "발주 완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    LoadData();                    
+                    dgvItem.ClearSelection();
+                }
+                else
+                    MessageBox.Show(result.ErrMsg);
+            }
         }
     }
 }

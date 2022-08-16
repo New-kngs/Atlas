@@ -99,6 +99,7 @@ namespace AltasMES
             // 
             // btnModify
             // 
+            this.btnModify.Text = "상세";
             this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
             // 
             // label2
