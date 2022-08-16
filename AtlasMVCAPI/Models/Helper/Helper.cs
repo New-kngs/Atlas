@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtlasMVCAPI
+namespace AtlasMVCAPI.Models
 {
     public class Helper
     {/// <summary>

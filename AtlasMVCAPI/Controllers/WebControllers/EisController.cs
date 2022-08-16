@@ -17,6 +17,7 @@ namespace AtlasMVCAPI.Controllers
         {
             return View();
         }
+        // 매출
         public ActionResult MoneyPage(string startDate, string endDate)
         {
             if(startDate == null)
@@ -80,7 +81,7 @@ namespace AtlasMVCAPI.Controllers
             for (int i = 0; i < ds.Tables[0].Rows.Count; i++) // 제품 갯수
             {
                 StringBuilder sb = new StringBuilder(); // 초기화
-                for (int j=1; j<ds.Tables[0].Columns.Count-1; j++) // 컬럼 번호(1~7)
+                for (int j=1; j<ds.Tables[0].Columns.Count; j++) // 컬럼 번호(1~7)
                 {
                     sb.Append(ds.Tables[0].Rows[i][j] + ",");
                 }
@@ -91,6 +92,7 @@ namespace AtlasMVCAPI.Controllers
                 ItemSalePrice[j] = ItemSalePrice[j].TrimEnd(',');
                 ItemSalePrice[j] = "[" + ItemSalePrice[j] + "]";
             }
+            // Helper.DataTableMapToList<>(TB_Sales);
 
             // 매입
 
@@ -114,12 +116,16 @@ namespace AtlasMVCAPI.Controllers
             }
 
             MoneyViewModel model = new MoneyViewModel();
-            model.M_Date = sbSaleDate.ToString().TrimEnd(',');
+            model.M_Date = sbSaleDate.ToString().TrimEnd(','); // "\""
             model.ItemSalesName = ItemSalesName;
             model.ItemSalePrice = ItemSalePrice;
             model.ItemPurchaseName = ItemPurchaseName;
             model.ItemPurchasePrice = ItemPurchasePrice;
-            return View();
+
+            ViewData["Table"] = TB_Sales;
+
+
+            return View(model);
         }
         public ActionResult FailPage()
         {
@@ -132,6 +138,21 @@ namespace AtlasMVCAPI.Controllers
 
             ViewBag.LabelTop4 = "[" + string.Join(",", name) + "]";
             ViewBag.DataTop4 = "[" + string.Join(",", qty) + "]";
+            return View();
+        }
+        public ActionResult FailRate(string searchDate)
+        {
+            if (searchDate == null)
+            {
+                searchDate = DateTime.Now.ToString("yyyy-MM-dd");
+            }
+            ViewBag.searchDate = searchDate;
+
+            // ItemDAC db = new ItemDAC();
+            return View();
+        }
+        public ActionResult TestPage()
+        {
             return View();
         }
     }

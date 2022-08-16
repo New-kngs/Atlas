@@ -15,25 +15,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Theme style -->
     <link rel="stylesheet" href="/dist/css/adminlte.min.css">
     <!-- daterange picker -->
-    <link rel="stylesheet" href="/../../plugins/daterangepicker/daterangepicker.css">
-    <link rel="stylesheet" href="/../../plugins/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="/plugins/daterangepicker/daterangepicker.css">
     <!-- iCheck for checkboxes and radio inputs -->
-    <link rel="stylesheet" href="/../../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <link rel="stylesheet" href="/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- Bootstrap Color Picker -->
-    <link rel="stylesheet" href="/../../plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
+    <link rel="stylesheet" href="/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
     <!-- Tempusdominus Bootstrap 4 -->
-    <link rel="stylesheet" href="/../../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <link rel="stylesheet" href="/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
     <!-- Select2 -->
-    <link rel="stylesheet" href="/../../plugins/select2/css/select2.min.css">
-    <link rel="stylesheet" href="/../../plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+    <link rel="stylesheet" href="/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
     <!-- Bootstrap4 Duallistbox -->
-    <link rel="stylesheet" href="/../../plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+    <link rel="stylesheet" href="/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
     <!-- BS Stepper -->
-    <link rel="stylesheet" href="/../../plugins/bs-stepper/css/bs-stepper.min.css">
+    <link rel="stylesheet" href="/plugins/bs-stepper/css/bs-stepper.min.css">
     <!-- dropzonejs -->
-    <link rel="stylesheet" href="/../../plugins/dropzone/min/dropzone.min.css">
+    <link rel="stylesheet" href="/plugins/dropzone/min/dropzone.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="/../../dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="/dist/css/adminlte.min.css">
+    <script nonce="6a3dc440-93f7-4409-932e-ad58533e4f53">(function (w, d) { !function (a, e, t, r) { a.zarazData = a.zarazData || {}; a.zarazData.executed = []; a.zaraz = { deferred: [] }; a.zaraz.q = []; a.zaraz._f = function (e) { return function () { var t = Array.prototype.slice.call(arguments); a.zaraz.q.push({ m: e, a: t }) } }; for (const e of ["track", "set", "ecommerce", "debug"]) a.zaraz[e] = a.zaraz._f(e); a.zaraz.init = () => { var t = e.getElementsByTagName(r)[0], z = e.createElement(r), n = e.getElementsByTagName("title")[0]; n && (a.zarazData.t = e.getElementsByTagName("title")[0].text); a.zarazData.x = Math.random(); a.zarazData.w = a.screen.width; a.zarazData.h = a.screen.height; a.zarazData.j = a.innerHeight; a.zarazData.e = a.innerWidth; a.zarazData.l = a.location.href; a.zarazData.r = e.referrer; a.zarazData.k = a.screen.colorDepth; a.zarazData.n = e.characterSet; a.zarazData.o = (new Date).getTimezoneOffset(); a.zarazData.q = []; for (; a.zaraz.q.length;) { const e = a.zaraz.q.shift(); a.zarazData.q.push(e) } z.defer = !0; for (const e of [localStorage, sessionStorage]) Object.keys(e || {}).filter((a => a.startsWith("_zaraz_"))).forEach((t => { try { a.zarazData["z_" + t.slice(7)] = JSON.parse(e.getItem(t)) } catch { a.zarazData["z_" + t.slice(7)] = e.getItem(t) } })); z.referrerPolicy = "origin"; z.src = "/cdn-cgi/zaraz/s.js?z=" + btoa(encodeURIComponent(JSON.stringify(a.zarazData))); t.parentNode.insertBefore(z, t) };["complete", "interactive"].includes(e.readyState) ? zaraz.init() : a.addEventListener("DOMContentLoaded", zaraz.init) }(w, d, 0, "script"); })(window, document);</script>
 </head>
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
@@ -124,7 +124,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <li class="nav-item">
                     @using (Html.BeginForm("Logout", "Login"))
                     {
-        <input type="submit" class="btn btn-secondary" value="LogOut"></input>}
+                        <input type="submit" class="btn btn-secondary" value="LogOut"></input>}
                 </li>
 
                 <li class="nav-item">
@@ -156,9 +156,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <!-- Add icons to the links using the .nav-icon class
     with font-awesome or any other icon font library -->
                             <!--<li class="nav-item menu-open"> -->
-                            
                             <!-- Html.Action("MenuList", "Menu") -->
-                           
+
                             <li class="nav-item">
                                 <a href="/Eis/MoneyPage" class="nav-link">
                                     <i class="nav-icon fas fa-thin fa-chart-line"></i>
@@ -169,6 +168,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </li>
                             <li class="nav-item">
                                 <a href="/Eis/FailPage" class="nav-link">
+                                    <i class="nav-icon fas fa-solid fa-list"></i>
+                                    <p>
+                                        ####
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/Eis/FailRate" class="nav-link">
                                     <i class="nav-icon fas fa-solid fa-list"></i>
                                     <p>
                                         불량
@@ -215,11 +222,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Main Footer -->
         <footer class="main-footer">
             <!-- To the right -->
-            <div class="float-right d-none d-sm-inline">
+            @*<div class="float-right d-none d-sm-inline">
                 Anything you want
-            </div>
+            </div>*@
             <!-- Default to the left -->
-            <strong>Copyright &copy; 2014-2021 <a>Atlas Mattress</a>.</strong> 
+            <strong>Copyright &copy; 2014-2021 <a>Atlas Mattress</a>.</strong>
         </footer>
     </div>
     <!-- ./wrapper -->

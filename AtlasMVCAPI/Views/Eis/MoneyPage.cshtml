@@ -1,5 +1,5 @@
 ﻿@using System.Data;
-@model DataSet
+@model AtlasMVCAPI.Models.MoneyViewModel
 @{
     ViewBag.Title = "ItemPricePivotSearch";
     Layout = "~/Views/Shared/_LayoutPageEIS.cshtml";
@@ -7,6 +7,7 @@
 @{
     string start = ViewBag.startDate;
     string end = ViewBag.endDate;
+    DataTable table = ViewData["Table"] as DataTable; // 매출 Pivot Table
 }
 
 <!-- Main content -->
@@ -36,126 +37,187 @@
     <br />
     <!-- title row -->
     <div class="row">
-        <div class="col-12">
-            <!-- LINE CHART -->
-            <div class="card card-info">
-                <div class="card-header">
-                    <h3 class="card-title">매출현황</h3>
+        <div class="col-md-12">
+            <canvas hidden id="areaChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+            <div class="col-12">
+                <!-- LINE CHART -->
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">매출현황</h3>
 
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <button type="button" class="btn btn-tool" data-card-widget="remove">
-                            <i class="fas fa-times"></i>
-                        </button>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
                     </div>
-                </div>
-                <div class="card-body">
-                    <div class="chart">
-                        <canvas id="lineChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                    <div class="card-body">
+                        <div class="chart">
+                            <canvas id="lineChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                            <table>
+                                <tr>
+                                    <th>야ㅇ호</th>
+                                    <th>야ㅇ호</th>
+                                </tr>
+                                <tr>
+                                    <td>무ㅇ</td>
+                                    <td>무ㅇ</td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
+                   
                 </div>
-                <!-- /.card-body -->
             </div>
-        </div>
-        <div class="col-12">
-            <!-- LINE CHART -->
-            <div class="card card-info">
-                <div class="card-header">
-                    <h3 class="card-title">매입현황</h3>
-
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <button type="button" class="btn btn-tool" data-card-widget="remove">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="chart">
-                        <canvas id="lineChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                    </div>
-                </div>
-                <!-- /.card-body -->
-            </div>
+           
         </div>
     </div>
 </div>
-@{
+    @{
+        // 기간조회
+        string inputDates = Model.M_Date; // "08-12,08-13,08-15"
+                                          // ['January', 'February', 'March', 'April', 'May', 'June', 'July']
 
-
-
-
-    string labels = ViewBag.Labels;
-
-    string label1 = ViewBag.Label1;
-    string data1 = ViewBag.Data1;
-
-    string label2 = ViewBag.Label2;
-    string data2 = ViewBag.Data2;
-
-    string label3 = ViewBag.Label3;
-    string data3 = ViewBag.Data3;
-}
-@section Scripts
+        List<string> ItemSaleNames = Model.ItemSalesName;
+        List<string> ItemSalePrice = Model.ItemSalePrice;
+        List<string> ItemPurchaseName = Model.ItemPurchaseName;
+        List<string> ItemPurchasePrice = Model.ItemPurchasePrice;
+    }
+    @section Scripts
 {
-    <!-- ChartJS -->
-    <script src="/plugins/chart.js/Chart.min.js"></script>
-    <script>
+        <!-- ChartJS -->
+        <script src="/plugins/chart.js/Chart.min.js"></script>
+
+        <!-- 달력 -->
+        <script src="/plugins/select2/js/select2.full.min.js"></script>
+
+        <script src="/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+
+        <script src="/plugins/moment/moment.min.js"></script>
+        <script src="/plugins/inputmask/jquery.inputmask.min.js"></script>
+
+        <script src="/plugins/daterangepicker/daterangepicker.js"></script>
+
+        <script src="/dist/js/adminlte.min.js?v=3.2.0"></script>
+
+        <!-- ChartJS -->
+        <script src="/plugins/chart.js/Chart.min.js"></script>
+
+
+
+
+        <script>
         $(function () {
+            // Chart
             /* ChartJS
              * -------
              * Here we will create a few charts using ChartJS
              */
 
             //--------------
-            //- AREA CHART -
+            //- AREA CHART (매출) -
             //--------------
 
             // Get context with jQuery - using jQuery's .get() method.
             var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
-
-            var temp = "@labels"; //"January,February,March,April,May,June,July"
+            var temp = "@inputDates"; //"January,February,March,April,May,June,July"
             var arrTemp = temp.split(','); //['January', 'February', 'March', 'April', 'May', 'June', 'July']
 
             var areaChartData = {
+                // labels: [inputDates],
+                // labels: ['08-08', '08-09', '08-10', '08-11', '08-12', '08-13', '08-14'],
                 labels: arrTemp,
                 datasets: [
                     {
-                        label: '@label1',
-                        backgroundColor: 'rgba(60,141,188,0.9)',
-                        borderColor: 'rgba(60,141,188,0.8)',
+                        label: '@ItemSaleNames[0]',
+                        backgroundColor: 'rgba(255,167,167,0.9)',
+                        borderColor: 'rgba(255,167,167,0.8)',
                         pointRadius: false,
                         pointColor: '#3b8bba',
                         pointStrokeColor: 'rgba(60,141,188,1)',
                         pointHighlightFill: '#fff',
                         pointHighlightStroke: 'rgba(60,141,188,1)',
-                        data: @data1
+                        data: @ItemSalePrice[0]
                     },
                     {
-                        label: '@label2',
-                        backgroundColor: 'rgba(210, 214, 222, 1)',
-                        borderColor: 'rgba(210, 214, 222, 1)',
-                        pointRadius: false,
-                        pointColor: 'rgba(210, 214, 222, 1)',
-                        pointStrokeColor: '#c1c7d1',
-                        pointHighlightFill: '#fff',
-                        pointHighlightStroke: 'rgba(220,220,220,1)',
-                        data: @data2
+                        label               : '@ItemSaleNames[1]',
+                        backgroundColor: 'rgba(255, 193, 158, 1)',
+                        borderColor: 'rgba(255, 193, 158, 0.8)',
+                        pointRadius         : false,
+                        pointColor          : '#fff',
+                        pointStrokeColor:     '#fff',
+                        pointHighlightFill  : '#fff',
+                        pointHighlightStroke: '#fff',
+                        data                : @ItemSalePrice[1]
                     },
                     {
-                        label: '@label3',
-                        backgroundColor: 'rgba(210, 105, 84, 1)',
-                        borderColor: 'rgba(210, 105, 84, 1)',
-                        pointRadius: false,
-                        pointColor: 'rgba(210, 105, 84, 1)',
-                        pointStrokeColor: '#c1c7d1',
-                        pointHighlightFill: '#fff',
-                        pointHighlightStroke: 'rgba(220,220,220,1)',
-                        data: @data3
+                        label               : '@ItemSaleNames[2]',
+                        backgroundColor: 'rgba(255, 224, 140, 1)',
+                        borderColor: 'rgba(255, 224, 140, 0.8)',
+                        pointRadius         : false,
+                        pointColor          : '#fff',
+                        pointStrokeColor:     '#fff',
+                        pointHighlightFill  : '#fff',
+                        pointHighlightStroke: '#fff',
+                        data                : @ItemSalePrice[2]
+                    },
+                    {
+                        label               : '@ItemSaleNames[3]',
+                        backgroundColor: 'rgba(250, 237, 125, 1)',
+                        borderColor: 'rgba(250, 237, 125, 0.8)',
+                        pointRadius         : false,
+                        pointColor          : '#fff',
+                        pointStrokeColor:     '#fff',
+                        pointHighlightFill  : '#fff',
+                        pointHighlightStroke: '#fff',
+                        data                : @ItemSalePrice[3]
+                    },
+                    {
+                        label               : '@ItemSaleNames[4]',
+                        backgroundColor: 'rgba(206, 242, 121, 1)',
+                        borderColor: 'rgba(206, 242, 121, 0.8)',
+                        pointRadius         : false,
+                        pointColor          : '#fff',
+                        pointStrokeColor:     '#fff',
+                        pointHighlightFill  : '#fff',
+                        pointHighlightStroke: '#fff',
+                        data                : @ItemSalePrice[4]
+                    },
+                    {
+                        label               : '@ItemSaleNames[5]',
+                        backgroundColor: 'rgba(183, 240, 177, 1)',
+                        borderColor: 'rgba(183, 240, 177, 0.8)',
+                        pointRadius         : false,
+                        pointColor          : '#fff',
+                        pointStrokeColor:     '#fff',
+                        pointHighlightFill  : '#fff',
+                        pointHighlightStroke: '#fff',
+                        data                : @ItemSalePrice[5]
+                    },
+                    {
+                        label               : '@ItemSaleNames[6]',
+                        backgroundColor: 'rgba(178, 235, 244, 1)',
+                        borderColor: 'rgba(178, 235, 244, 0.8)',
+                        pointRadius         : false,
+                        pointColor          : '#fff',
+                        pointStrokeColor:     '#fff',
+                        pointHighlightFill  : '#fff',
+                        pointHighlightStroke: '#fff',
+                        data                : @ItemSalePrice[6]
+                    },
+                    {
+                        label               : '@ItemSaleNames[7]',
+                        backgroundColor: 'rgba(209, 178, 255, 1)',
+                        borderColor: 'rgba(209, 178, 255, 0.8)',
+                        pointRadius         : false,
+                        pointColor          : '#fff',
+                        pointStrokeColor:     '#fff',
+                        pointHighlightFill  : '#fff',
+                        pointHighlightStroke: '#fff',
+                        data                : @ItemSalePrice[7]
                     },
                 ]
             }
@@ -164,7 +226,7 @@
                 maintainAspectRatio: false,
                 responsive: true,
                 legend: {
-                    display: false
+                    display: true
                 },
                 scales: {
                     xAxes: [{
@@ -195,7 +257,6 @@
             var lineChartData = $.extend(true, {}, areaChartData)
             lineChartData.datasets[0].fill = false;
             lineChartData.datasets[1].fill = false;
-            lineChartData.datasets[2].fill = false;
             lineChartOptions.datasetFill = false
 
             var lineChart = new Chart(lineChartCanvas, {
@@ -204,126 +265,8 @@
                 options: lineChartOptions
             })
 
-            //-------------
-            //- DONUT CHART -
-            //-------------
-            // Get context with jQuery - using jQuery's .get() method.
-            var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
-            var donutData = {
-                labels: [
-                    'Chrome',
-                    'IE',
-                    'FireFox',
-                    'Safari',
-                    'Opera',
-                    'Navigator',
-                ],
-                datasets: [
-                    {
-                        data: [700, 500, 400, 600, 300, 100],
-                        backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
-                    }
-                ]
-            }
-            var donutOptions = {
-                maintainAspectRatio: false,
-                responsive: true,
-            }
-            //Create pie or douhnut chart
-            // You can switch between pie and douhnut using the method below.
-            new Chart(donutChartCanvas, {
-                type: 'doughnut',
-                data: donutData,
-                options: donutOptions
-            })
+        })
 
-            //-------------
-            //- PIE CHART -
-            //-------------
-            // Get context with jQuery - using jQuery's .get() method.
-            var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
-            var pieData = donutData;
-            var pieOptions = {
-                maintainAspectRatio: false,
-                responsive: true,
-            }
-            //Create pie or douhnut chart
-            // You can switch between pie and douhnut using the method below.
-            new Chart(pieChartCanvas, {
-                type: 'pie',
-                data: pieData,
-                options: pieOptions
-            })
-
-            //-------------
-            //- BAR CHART -
-            //-------------
-            var barChartCanvas = $('#barChart').get(0).getContext('2d')
-            var barChartData = $.extend(true, {}, areaChartData)
-            var temp0 = areaChartData.datasets[0]
-            var temp1 = areaChartData.datasets[1]
-            barChartData.datasets[0] = temp1
-            barChartData.datasets[1] = temp0
-
-            var barChartOptions = {
-                responsive: true,
-                maintainAspectRatio: false,
-                datasetFill: false
-            }
-
-            new Chart(barChartCanvas, {
-                type: 'bar',
-                data: barChartData,
-                options: barChartOptions
-            })
-
-            //---------------------
-            //- STACKED BAR CHART -
-            //---------------------
-            var stackedBarChartCanvas = $('#stackedBarChart').get(0).getContext('2d')
-            var stackedBarChartData = $.extend(true, {}, barChartData)
-
-            var stackedBarChartOptions = {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    xAxes: [{
-                        stacked: true,
-                    }],
-                    yAxes: [{
-                        stacked: true
-                    }]
-                }
-            }
-
-            new Chart(stackedBarChartCanvas, {
-                type: 'bar',
-                data: stackedBarChartData,
-                options: stackedBarChartOptions
-            })
-
-
-
-
-        })</script>
-
-
-
-    <!-- 달력 -->
-    <script src="/plugins/select2/js/select2.full.min.js"></script>
-
-    <script src="/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
-
-    <script src="/plugins/moment/moment.min.js"></script>
-    <script src="/plugins/inputmask/jquery.inputmask.min.js"></script>
-
-    <script src="/plugins/daterangepicker/daterangepicker.js"></script>
-
-    <script src="/dist/js/adminlte.min.js?v=3.2.0"></script>
-
-    
-    <script>
-        $(function () {
             //Date range picker
             $('#reservation').daterangepicker(
                 {
@@ -363,12 +306,58 @@
                 document.getElementById("endDate").value = picker.endDate.format('YYYY-MM-DD');
             })
 
-        })
+
 
         function search_fn() {
             window.location.href = 'Index?startDate=' + document.getElementById("startDate").value + '&endDate=' + document.getElementById("endDate").value;
         }
 
-    </script>
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                //debugger;
+                //alert($('#dataObjCol').val());
+                var dataObjCol = JSON.parse($('#dataObjCol').val());
+                var dataObjData = JSON.parse($('#dataObjData').val());
 
-}
+
+
+                // Datatable settings.
+                $('#TableId').DataTable(
+                    {
+
+                        "data": dataObjData,
+                        "columns": dataObjCol,
+                        //    { "data": "ORDER_DATE" },
+                        //    { "data": "WORK_ORDER_ID" },
+                        //    { "data": "PRODUCT_CODE" },
+                        //    { "data": "PRODUCT_NAME" },
+                        //    { "data": "ORDER_QTY" },
+                        //    { "data": "PRODUCT_QTY" },
+                        //    { "data": "DEFECT_QTY" },
+                        //    { "data": "QUALITY_RATE" },
+                        //    { "data": "DEFECT_RATE" },
+                        //    { "data": "WORK_CLOSE_TIME" } //데이터가 이렇게 넘어오게 하면 되는 거잖아? 근데 지금은 타이틀도 같이 넘어오는 상태고..그 타이틀은 보여주는 컬럼인가?
+
+                        //],
+                        "bPaginate": false,
+                        "bFilter": false,
+                        "bInfo": false,
+                        "autoWidth": false,
+                        "bSort": false,
+                        "columnDefs": [
+                            {
+                                "width": "28px",
+                                "targets": "0",
+                                "className": "text-right"
+                            },
+                            {
+                                "width": "2px",
+                                "targets": "1",
+                                "className": "text-right"
+                            }
+                        ]
+                    });
+            });
+        </script>
+    }
