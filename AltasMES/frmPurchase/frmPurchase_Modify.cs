@@ -17,8 +17,9 @@ namespace AltasMES
         ServiceHelper srv = null;
         List<ItemVO> purList = null;
         List<PurchaseDetailsVO> purchaseList = null;
-        //List<PurchaseDetailsVO> lastPurList = null;
         List<PurchaseDetailsVO> resultPurList = null;
+
+        string instate = string.Empty;
 
 
         public frmPurchase_Modify(PurchaseVO purchase)
@@ -28,11 +29,8 @@ namespace AltasMES
             srv = new ServiceHelper("");
             this.purchase = purchase;
             txtCusName.Text = purchase.CustomerName;
-            txtPurID.Text = purchase.PurchaseID;
-            txtInstate.Text = purchase.InState;
-            txtEndDate.Text = purchase.PurchaseEndDate;
-
-
+            txtPurID.Text = purchase.PurchaseID;            
+            instate = purchase.InState;
         }
 
         private void frmPurchase_Modify_Load(object sender, EventArgs e)
@@ -66,6 +64,7 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "수량", "Qty", colwidth: 70, Readonly: false, align: DataGridViewContentAlignment.MiddleRight);
             DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "단가", "ItemPrice", visibility: false);
             DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "거래처명", "CustomerName", visibility: false);
+            //DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "거래처ID", "CustomerID", visibility: false);
 
             DataGridViewButtonColumn btn2 = new DataGridViewButtonColumn();
             btn2.HeaderText = "자재삭제";
@@ -80,7 +79,13 @@ namespace AltasMES
 
             txtCount.Text = dgvPurItem.Rows.Count.ToString();
 
-            
+            if (instate.Equals("Y"))
+            {
+                btnAdd.Enabled = false;
+                btn1.Visible = btn2.Visible = false;
+            }
+
+
         }
 
         private void LoadData()
@@ -112,7 +117,7 @@ namespace AltasMES
                 string itemSize = dgvItem["ItemSize", e.RowIndex].Value.ToString();
                 string cusName = dgvItem["CustomerName", e.RowIndex].Value.ToString();
                 int price = Convert.ToInt32(dgvItem["ItemPrice", e.RowIndex].Value);
-                string inState = txtInstate.Text;
+                string inState = this.purchase.InState;
 
                 foreach (DataGridViewRow item in dgvPurItem.Rows)
                 {
@@ -224,6 +229,12 @@ namespace AltasMES
                 MessageBox.Show("등록된 발주 목록이 없습니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            
+            //if (instate.Equals("Y"))
+            //{
+            //    MessageBox.Show("발주 완료된 항목은 수정이 불가 합니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return;
+            //}
 
             List<PurchaseDetailsVO> purDetailList = new List<PurchaseDetailsVO>();
             for (int i = 0; i < dgvPurItem.Rows.Count; i++)
@@ -248,18 +259,24 @@ namespace AltasMES
             PurchaseVO purList = new PurchaseVO()
             {
                 ModifyUser = this.purchase.ModifyUser,
-                CustomerID = dgvItem["CustomerID", 7].Value.ToString(),
+                CustomerID = dgvItem.Rows[0].Cells[6].Value.ToString(),
+                PurchaseID = this.purchase.PurchaseID
             };
-            ResMessage result = srv.SavePurchase("api/Purchase/SavePurchase", purList, purDetailList);
+            ResMessage result = srv.SavePurchase("api/Purchase/UpdatePurchase", purList, purDetailList);
 
 
             if (result.ErrCode == 0)
             {
-                MessageBox.Show("등록이 완료되었습니다.", "발주 등록", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("수정이 완료되었습니다.", "발주 수정", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;
             }
             else
                 MessageBox.Show("오류가 발생하였습니다. 다시 시도 하여 주십시오.");
+        }
+
+        private void btnModify_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

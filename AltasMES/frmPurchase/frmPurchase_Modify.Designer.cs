@@ -51,8 +51,6 @@ namespace AltasMES
             this.btnModify = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvItem = new System.Windows.Forms.DataGridView();
-            this.txtInstate = new System.Windows.Forms.TextBox();
-            this.txtEndDate = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -99,8 +97,6 @@ namespace AltasMES
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.txtEndDate);
-            this.panel3.Controls.Add(this.txtInstate);
             this.panel3.Controls.Add(this.groupBox2);
             this.panel3.Controls.Add(this.groupBox3);
             this.panel3.Controls.Add(this.btnAdd);
@@ -272,9 +268,10 @@ namespace AltasMES
             this.btnModify.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnModify.Size = new System.Drawing.Size(78, 37);
             this.btnModify.TabIndex = 6;
-            this.btnModify.Text = "취소";
+            this.btnModify.Text = "닫기";
             this.btnModify.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnModify.UseVisualStyleBackColor = true;
+            this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
             // 
             // groupBox1
             // 
@@ -298,26 +295,6 @@ namespace AltasMES
             this.dgvItem.TabIndex = 0;
             this.dgvItem.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItem_CellClick);
             // 
-            // txtInstate
-            // 
-            this.txtInstate.BackColor = System.Drawing.Color.White;
-            this.txtInstate.Location = new System.Drawing.Point(50, 668);
-            this.txtInstate.Name = "txtInstate";
-            this.txtInstate.ReadOnly = true;
-            this.txtInstate.Size = new System.Drawing.Size(45, 29);
-            this.txtInstate.TabIndex = 15;
-            this.txtInstate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // txtEndDate
-            // 
-            this.txtEndDate.BackColor = System.Drawing.Color.White;
-            this.txtEndDate.Location = new System.Drawing.Point(127, 668);
-            this.txtEndDate.Name = "txtEndDate";
-            this.txtEndDate.ReadOnly = true;
-            this.txtEndDate.Size = new System.Drawing.Size(145, 29);
-            this.txtEndDate.TabIndex = 16;
-            this.txtEndDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
             // frmPurchase_Modify
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -338,7 +315,6 @@ namespace AltasMES
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPurItem)).EndInit();
             this.groupBox3.ResumeLayout(false);
@@ -371,7 +347,5 @@ namespace AltasMES
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtCusName;
         protected System.Windows.Forms.ImageList imageList1;
-        private System.Windows.Forms.TextBox txtInstate;
-        private System.Windows.Forms.TextBox txtEndDate;
     }
 }

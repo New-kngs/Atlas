@@ -327,7 +327,7 @@ namespace AltasMES
             this.btnModify.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnModify.Size = new System.Drawing.Size(78, 37);
             this.btnModify.TabIndex = 6;
-            this.btnModify.Text = "취소";
+            this.btnModify.Text = "닫기";
             this.btnModify.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnModify.UseVisualStyleBackColor = true;
             this.btnModify.Click += new System.EventHandler(this.btnModify_Click);

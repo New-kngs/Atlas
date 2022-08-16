@@ -110,19 +110,48 @@ namespace AtlasMVCAPI.Models
         {
             using (SqlCommand cmd = new SqlCommand())
             {
+                
                 cmd.Connection = new SqlConnection(strConn);
-                cmd.CommandText = @"update TB_Purchase set ModifyDate = @ModifyDate, ModifyUser = @ModifyUser
-                                    where PurchaseID = @PurchaseID;
+                cmd.CommandText = "SP_UpdatePurchase";
+                cmd.CommandType = CommandType.StoredProcedure;
 
-                                    update TB_PurchaseDetails set ItemID = @ItemID, Qty = @Qty,
-                                    where PurchaseID = @PurchaseID";
-
+                // input
                 cmd.Parameters.AddWithValue("@PurchaseID", purId);
                 cmd.Parameters.AddWithValue("@ModifyUser", modifyuser);
                 cmd.Parameters.AddWithValue("@sbItemID", sbItemID);
                 cmd.Parameters.AddWithValue("@sbQty", sbQty);
-                cmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
-                
+                //cmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
+
+                // output
+                //cmd.Parameters.Add(new SqlParameter("@PO_CD", SqlDbType.Int)).Direction = ParameterDirection.Output;
+                //cmd.Parameters.Add(new SqlParameter("@PO_MSG", SqlDbType.NVarChar, 1000)).Direction = ParameterDirection.Output;
+                               
+               
+                cmd.Connection.Open();
+                int iRowAffect = cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+
+                return (iRowAffect > 0);
+            }
+
+        }
+
+        public bool UpdatePurStateItemQty(PurchaseVO pur)
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.CommandText = "SP_UpdatePurStateItemQty";
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                // input
+                cmd.Parameters.AddWithValue("@PurchaseID", pur.PurchaseID);               
+
+                // output
+                //cmd.Parameters.Add(new SqlParameter("@PO_CD", SqlDbType.Int)).Direction = ParameterDirection.Output;
+                //cmd.Parameters.Add(new SqlParameter("@PO_MSG", SqlDbType.NVarChar, 1000)).Direction = ParameterDirection.Output;
+
 
                 cmd.Connection.Open();
                 int iRowAffect = cmd.ExecuteNonQuery();
@@ -159,8 +188,9 @@ namespace AtlasMVCAPI.Models
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = new SqlConnection(strConn);
-                cmd.CommandText = @"select PurchaseID, PD.ItemID, ItemName, ItemSize, Qty, ItemPrice
-                                    from TB_PurchaseDetails PD inner join TB_Item I on PD.ItemID = I.ItemID";
+                cmd.CommandText = @"select PD.PurchaseID, PD.ItemID, ItemName, ItemSize, Qty, ItemPrice , InState
+                                    from TB_PurchaseDetails PD inner join TB_Item I on PD.ItemID = I.ItemID
+							                                   inner join TB_Purchase P on PD.PurchaseID = P.PurchaseID";
 
                 cmd.Connection.Open();
                 List<PurchaseDetailsVO> list = Helper.DataReaderMapToList<PurchaseDetailsVO>(cmd.ExecuteReader());

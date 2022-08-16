@@ -33,23 +33,18 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvPurchase, "완료여부", "InState", colwidth: 110, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvPurchase, "발주요청일", "CreateDate", colwidth: 170, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvPurchase, "생성사용자", "CreateUser", colwidth: 120, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvPurchase, "발주완료일", "PurchaseEndDate", colwidth: 170, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvPurchase, "발주수정일", "ModifyDate", colwidth: 170, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvPurchase, "수정사용자", "ModifyUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);            
+            DataGridUtil.AddGridTextBoxColumn(dgvPurchase, "수정사용자", "ModifyUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvPurchase, "발주완료일", "PurchaseEndDate", colwidth: 170, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvPurchase, "창고명", "WHName", colwidth: 110, align: DataGridViewContentAlignment.MiddleCenter);
             
-            
-            
-            
-
-
             dtpTo.Value = DateTime.Now;
             dtpFrom.Value = DateTime.Now.AddDays(-7);
 
             cboStateYN.Items.AddRange(new string[] { "전체", "Y", "N" });
             cboStateYN.SelectedIndex = 0;
 
-            LoadData();
+            LoadData();            
         }
 
         public void LoadData()
@@ -82,7 +77,6 @@ namespace AltasMES
                         list = purchaseList;
                     }
                 }
-
                 dgvPurchase.DataSource = null;
                 dgvPurchase.DataSource = new AdvancedList<PurchaseVO>(list);
             }
@@ -94,10 +88,7 @@ namespace AltasMES
                 return;
             }
             dgvPurchase.ClearSelection();
-        }
-
-
-        
+        }       
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
@@ -153,16 +144,14 @@ namespace AltasMES
         {
             PurchaseVO item = new PurchaseVO()
             {
-                CreateUser = ((Main)this.MdiParent).EmpName.ToString()
+                CreateUser = ((Main)this.MdiParent).EmpName.ToString()                
             };
             frmPurchase_Add pop = new frmPurchase_Add(item);
             if (pop.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
             }
-        }
-
-       
+        }       
 
         private void dgvPurchase_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -180,11 +169,16 @@ namespace AltasMES
                 MessageBox.Show("발주 항목을 선택해 주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            //string endDate = (dgvPurchase.SelectedRows[0].Cells["PurchaseEndDate"].Value).ToString();
 
-           
-            
             PurchaseVO pur = srv.GetAsync<PurchaseVO>($"/api/Purchase/{selId}").Data;
             pur.ModifyUser = ((Main)this.MdiParent).EmpName.ToString();
+            pur.InState = (dgvPurchase.SelectedRows[0].Cells["InState"].Value).ToString();
+            //if (endDate != null)
+            //    pur.PurchaseEndDate = endDate;
+            //else
+            //    pur.PurchaseEndDate = string.Empty;
+            
             frmPurchase_Modify pop = new frmPurchase_Modify(pur);
             if (pop.ShowDialog() == DialogResult.OK)
             {
@@ -208,19 +202,17 @@ namespace AltasMES
 
             if (purInstate.Equals("Y"))
             {
-                MessageBox.Show("완료된 발주 항목은 삭제가 불가 합니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("발주가 완료된 항목은 삭제가 불가 합니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (MessageBox.Show($"발주ID : {dgvPurchase.SelectedRows[0].Cells["PurchaseID"].Value} 대해 삭제 하시겠습니까?", "발주 삭제", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show($"발주ID : {dgvPurchase.SelectedRows[0].Cells["PurchaseID"].Value}를 삭제 하시겠습니까?", "발주 삭제", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
 
                 PurchaseVO delPurId = new PurchaseVO()
                 {
                     PurchaseID = dgvPurchase.SelectedRows[0].Cells["PurchaseID"].Value.ToString(),
                 };
-
-
                 ResMessage<List<PurchaseVO>> result = srv.PostAsync<PurchaseVO, List<PurchaseVO>>("api/Purchase/DeletePurchase", delPurId);
 
                 if (result.ErrCode == 0)

@@ -14,9 +14,8 @@ namespace AltasMES
     public partial class frmPurchase_Add : Form
     {
         ServiceHelper srv = null;
-        List<CustomerVO> cusList = null;
-        //List<ItemVO> purCusList = null;
-        List<ItemVO> purItemList = null;
+        List<CustomerVO> cusList = null; 
+        List<ItemVO> purItemList = null;        
 
         public PurchaseVO item { get; set; }
         public frmPurchase_Add(PurchaseVO item)
@@ -55,11 +54,10 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "자재명", "ItemName", colwidth: 330, align: DataGridViewContentAlignment.MiddleLeft);
             DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "규격", "ItemSize", colwidth: 70, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "수량", "Qty", colwidth: 70, Readonly: false, align: DataGridViewContentAlignment.MiddleRight);
-            DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "거래처명", "CustomerName", visibility: false); //colwidth: 120, align: DataGridViewContentAlignment.MiddleLeft); //visibility: false);
+            DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "거래처명", "CustomerName", visibility: false);
             DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "거래처ID", "CustomerID", visibility: false);
             DataGridUtil.AddGridTextBoxColumn(dgvPurItem, "단가", "ItemPrice", visibility: false);
             
-
             DataGridViewButtonColumn btn2 = new DataGridViewButtonColumn();
             btn2.HeaderText = "자재삭제";
             btn2.Text = "삭제";
@@ -67,13 +65,11 @@ namespace AltasMES
             btn2.DefaultCellStyle.Padding = new Padding(5, 1, 5, 1);
             btn2.UseColumnTextForButtonValue = true;
             dgvPurItem.Columns.Add(btn2);
-
-            
+                        
             LoadData();
 
             cusList = srv.GetAsync<List<CustomerVO>>("api/Customer/AllCustomer").Data;
             CommonUtil.ComboBinding<CustomerVO>(cboCustomer, cusList.FindAll(p => p.Category.Equals("입고")), "CustomerName", "CustomerID", blankText: "전체");
-
         }
 
         public void LoadData()
@@ -128,7 +124,6 @@ namespace AltasMES
                 }
             }
             dgvItem.ClearSelection();
-
         }
 
         private void dgvItem_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -142,8 +137,7 @@ namespace AltasMES
                 string itemSize = dgvItem["ItemSize", e.RowIndex].Value.ToString();
                 string cusName = dgvItem["CustomerName", e.RowIndex].Value.ToString();
                 string cusId = dgvItem["CustomerID", e.RowIndex].Value.ToString();
-                int price = Convert.ToInt32(dgvItem["ItemPrice", e.RowIndex].Value);
-                //int purQty = Convert.ToInt32(dgvPurItem["Qty", e.RowIndex].Value);
+                int price = Convert.ToInt32(dgvItem["ItemPrice", e.RowIndex].Value);         
 
                 foreach (DataGridViewRow item in dgvPurItem.Rows)
                 {
@@ -208,7 +202,6 @@ namespace AltasMES
             }
         }
 
-
         private void dgvPurItem_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             int sum = 0;
@@ -232,20 +225,15 @@ namespace AltasMES
             }
             txtCount.Text = dgvPurItem.Rows.Count.ToString();
             txtPrice.Text = price.ToString("#,##0") + " 원";
-
         }        
 
-        
-
         private void btnAdd_Click(object sender, EventArgs e)
-        {
-            //purCusList = srv.GetAsync<List<ItemVO>>("api/Item/AllItem").Data;
-
+        {          
             if (dgvPurItem.Rows.Count < 1)
             {
                 MessageBox.Show("등록된 발주 목록이 없습니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
-            }
+            }           
 
             List<PurchaseDetailsVO> purDetailList = new List<PurchaseDetailsVO>();
             for (int i = 0; i < dgvPurItem.Rows.Count; i++)
@@ -273,7 +261,6 @@ namespace AltasMES
                 CustomerID = dgvPurItem["CustomerID", 0].Value.ToString(),
             };
             ResMessage result = srv.SavePurchase("api/Purchase/SavePurchase", purList, purDetailList);
-
 
             if (result.ErrCode == 0)
             {

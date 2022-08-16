@@ -103,6 +103,36 @@ namespace AtlasMVCAPI.Controllers
             }
         }
 
+        //POST : https://localhost:44391/api/Purchase/UpdatePurStateItemQty
+        [HttpPost]
+        [Route("UpdatePurStateItemQty")]
+        public IHttpActionResult UpdatePurStateItemQty(PurchaseVO pur)
+        {
+            try
+            {               
+                PurchaseDAC db = new PurchaseDAC();
+                bool flag = db.UpdatePurStateItemQty(pur);
+
+                ResMessage result = new ResMessage()
+                {
+                    ErrCode = (!flag) ? -9 : 0,
+                    ErrMsg = (!flag) ? "저장중 오류발생" : "S"
+                };
+
+                return Ok(result);
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+
+                return Ok(new ResMessage()
+                {
+                    ErrCode = -9,
+                    ErrMsg = err.Message
+                });
+            }
+        }
+
 
         //POST : https://localhost:44391/api/Purchase/DeletePurchase
         [HttpPost]
