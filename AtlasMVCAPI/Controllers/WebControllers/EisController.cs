@@ -122,8 +122,8 @@ namespace AtlasMVCAPI.Controllers
             model.ItemPurchaseName = ItemPurchaseName;
             model.ItemPurchasePrice = ItemPurchasePrice;
 
+            // ViewData["ColumnCnt"] = TB_Sales.Columns.Count;
             ViewData["Table"] = TB_Sales;
-
 
             return View(model);
         }
