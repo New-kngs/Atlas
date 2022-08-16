@@ -135,7 +135,7 @@ namespace AtlasMVCAPI.Models
         }
 
         public bool SaveProcessEquip(List<EquipDetailsVO> equip)
-        {           
+        {
             SqlConnection conn = new SqlConnection(strConn);
             conn.Open();
 
@@ -147,44 +147,48 @@ namespace AtlasMVCAPI.Models
                 {
                     cmd.Connection = conn;
                     cmd.CommandText = @"delete from TB_EquipmentDetails where ProcessID=@ProcessID";
-                    cmd.Transaction = trans;                
+                    cmd.Transaction = trans;
                     cmd.Parameters.AddWithValue("@ProcessID", equip[0].ProcessID);
 
                     cmd.ExecuteNonQuery();
 
-                    cmd.CommandText = @"insert into TB_EquipmentDetails(ProcessID, EquipID, EquipName, CreateDate, CreateUser)
-                                     values(@ProcessID, @EquipID, @EquipName, @CreateDate, @CreateUser)";
-                
+                    cmd.CommandText = @"insert into TB_EquipmentDetails(Num, ProcessID, EquipID, EquipName, CreateDate, CreateUser)
+                                     values(@num, @ProcessID, @EquipID, @EquipName, @CreateDate, @CreateUser)";
+
+                    cmd.Parameters.Add("@num", System.Data.SqlDbType.Int);
                     cmd.Parameters.Add("@EquipID", System.Data.SqlDbType.Int);
                     cmd.Parameters.Add("@EquipName", System.Data.SqlDbType.NVarChar, 50);
                     cmd.Parameters.Add("@CreateUser", System.Data.SqlDbType.NVarChar, 50);
                     cmd.Parameters.Add("@CreateDate", System.Data.SqlDbType.DateTime);
 
+                    int num = 1;
                     int iRowAffect = 0;
                     foreach (EquipDetailsVO item in equip)
                     {
+                        cmd.Parameters["@num"].Value = num;
                         cmd.Parameters["@EquipID"].Value = item.EquipID;
                         cmd.Parameters["@EquipName"].Value = item.EquipName;
                         cmd.Parameters["@CreateDate"].Value = DateTime.Now;
                         cmd.Parameters["@CreateUser"].Value = item.CreateUser;
-                    
+
                         iRowAffect += cmd.ExecuteNonQuery();
-                    }                    
-                    trans.Commit();                    
+                        num++;
+                    }
+                    trans.Commit();
                     return (iRowAffect > 0);
                 }
             }
-            catch(Exception err)
+            catch (Exception err)
             {
                 string sss = err.Message;
-                trans.Rollback();                
+                trans.Rollback();
                 return false;
             }
             finally
             {
                 conn.Close();
             }
-            
+
         }
 
         public List<EquipDetailsVO> GetProcessEquip()

@@ -83,17 +83,17 @@ namespace AtlasPOP
             this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.label1);
             this.panel3.Controls.Add(this.label5);
-            this.panel3.Location = new System.Drawing.Point(16, 48);
+            this.panel3.Location = new System.Drawing.Point(16, 13);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(393, 760);
+            this.panel3.Size = new System.Drawing.Size(393, 795);
             this.panel3.TabIndex = 5;
             // 
             // txtQty
             // 
             this.txtQty.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtQty.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
-            this.txtQty.Location = new System.Drawing.Point(141, 261);
+            this.txtQty.Location = new System.Drawing.Point(139, 205);
             this.txtQty.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtQty.Name = "txtQty";
             this.txtQty.Size = new System.Drawing.Size(249, 30);
@@ -103,7 +103,7 @@ namespace AtlasPOP
             // 
             this.txtProc.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtProc.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
-            this.txtProc.Location = new System.Drawing.Point(141, 215);
+            this.txtProc.Location = new System.Drawing.Point(139, 159);
             this.txtProc.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtProc.Name = "txtProc";
             this.txtProc.Size = new System.Drawing.Size(249, 30);
@@ -113,7 +113,7 @@ namespace AtlasPOP
             // 
             this.txtOrder.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtOrder.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
-            this.txtOrder.Location = new System.Drawing.Point(141, 171);
+            this.txtOrder.Location = new System.Drawing.Point(139, 115);
             this.txtOrder.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtOrder.Name = "txtOrder";
             this.txtOrder.Size = new System.Drawing.Size(249, 30);
@@ -123,7 +123,7 @@ namespace AtlasPOP
             // 
             this.txtItem.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtItem.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
-            this.txtItem.Location = new System.Drawing.Point(141, 126);
+            this.txtItem.Location = new System.Drawing.Point(139, 70);
             this.txtItem.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtItem.Name = "txtItem";
             this.txtItem.Size = new System.Drawing.Size(249, 30);
@@ -133,7 +133,7 @@ namespace AtlasPOP
             // 
             this.txtOp.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtOp.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
-            this.txtOp.Location = new System.Drawing.Point(141, 81);
+            this.txtOp.Location = new System.Drawing.Point(139, 25);
             this.txtOp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtOp.Name = "txtOp";
             this.txtOp.Size = new System.Drawing.Size(249, 30);
@@ -144,7 +144,7 @@ namespace AtlasPOP
             this.label9.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label9.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Bold);
             this.label9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label9.Location = new System.Drawing.Point(10, 204);
+            this.label9.Location = new System.Drawing.Point(8, 148);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(103, 45);
             this.label9.TabIndex = 30;
@@ -156,7 +156,7 @@ namespace AtlasPOP
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label7.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Bold);
             this.label7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label7.Location = new System.Drawing.Point(10, 159);
+            this.label7.Location = new System.Drawing.Point(8, 103);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(103, 45);
             this.label7.TabIndex = 28;
@@ -168,7 +168,7 @@ namespace AtlasPOP
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label3.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Bold);
             this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label3.Location = new System.Drawing.Point(10, 249);
+            this.label3.Location = new System.Drawing.Point(8, 193);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(123, 45);
             this.label3.TabIndex = 26;
@@ -180,7 +180,7 @@ namespace AtlasPOP
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label1.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Bold);
             this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label1.Location = new System.Drawing.Point(10, 69);
+            this.label1.Location = new System.Drawing.Point(8, 25);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(123, 45);
             this.label1.TabIndex = 26;
@@ -192,7 +192,7 @@ namespace AtlasPOP
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label5.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Bold);
             this.label5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label5.Location = new System.Drawing.Point(10, 114);
+            this.label5.Location = new System.Drawing.Point(8, 58);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(103, 45);
             this.label5.TabIndex = 26;
@@ -207,10 +207,10 @@ namespace AtlasPOP
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.pgState);
-            this.panel2.Location = new System.Drawing.Point(416, 48);
+            this.panel2.Location = new System.Drawing.Point(416, 13);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1097, 760);
+            this.panel2.Size = new System.Drawing.Size(1097, 795);
             this.panel2.TabIndex = 4;
             // 
             // label2
@@ -221,12 +221,13 @@ namespace AtlasPOP
             this.label2.Size = new System.Drawing.Size(45, 15);
             this.label2.TabIndex = 1;
             this.label2.Text = "label2";
+            this.label2.Visible = false;
             // 
             // pgState
             // 
             this.pgState.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pgState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.pgState.Location = new System.Drawing.Point(0, 673);
+            this.pgState.Location = new System.Drawing.Point(0, 708);
             this.pgState.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pgState.Name = "pgState";
             this.pgState.Size = new System.Drawing.Size(1095, 85);
@@ -239,6 +240,7 @@ namespace AtlasPOP
             this.txtFail.Name = "txtFail";
             this.txtFail.Size = new System.Drawing.Size(114, 25);
             this.txtFail.TabIndex = 3;
+            this.txtFail.Visible = false;
             // 
             // lblState
             // 
@@ -254,6 +256,7 @@ namespace AtlasPOP
             this.txtTotQty.Name = "txtTotQty";
             this.txtTotQty.Size = new System.Drawing.Size(114, 25);
             this.txtTotQty.TabIndex = 0;
+            this.txtTotQty.Visible = false;
             // 
             // txtReadPLC
             // 
@@ -262,6 +265,7 @@ namespace AtlasPOP
             this.txtReadPLC.Name = "txtReadPLC";
             this.txtReadPLC.Size = new System.Drawing.Size(114, 25);
             this.txtReadPLC.TabIndex = 0;
+            this.txtReadPLC.Visible = false;
             // 
             // timer_Connec
             // 
