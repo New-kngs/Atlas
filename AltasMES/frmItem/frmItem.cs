@@ -20,8 +20,10 @@ namespace AltasMES
 
         public frmItem()
         {
-            InitializeComponent();  
+            InitializeComponent();
         }
+
+        string[] inputColumn = { "제품ID", "유형", "제품명", "규격", "단가", "재고수량", "안전재고량", "사용여부" };
 
         private void frmItem_Load(object sender, EventArgs e)
         {
@@ -240,6 +242,25 @@ namespace AltasMES
         private void dgvItem_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             dgvItem.ClearSelection();
+        }
+
+        private void btnExecl_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Filter = "Execl Files(*.xls)|*.xls";
+            dlg.Title = "엑셀파일로 내보내기";
+
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+
+                ExcelUtil excel = new ExcelUtil();
+
+                if (excel.ExportExcelGridView(dlg.FileName, dgvItem, inputColumn))
+                {
+                    MessageBox.Show("엑셀 다운로드 완료", "엑셀 다운로드", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+            }
         }
     }
 }

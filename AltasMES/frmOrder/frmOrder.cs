@@ -17,6 +17,7 @@ namespace AltasMES
         List<OrderVO> orderList = null;  // 기간내의 주문목록       
 
         string selId = string.Empty;
+        string[] inputColumn = { "주문ID", "거래처명", "완료여부", "주문요청일", "생성사용자", "주문완료일", "출하담당자" };
 
         public frmOrder()
         {
@@ -164,6 +165,25 @@ namespace AltasMES
         private void dgvOrder_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             dgvOrder.ClearSelection();
+        }
+
+        private void btnExecl_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Filter = "Execl Files(*.xls)|*.xls";
+            dlg.Title = "엑셀파일로 내보내기";
+
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+
+                ExcelUtil excel = new ExcelUtil();
+
+                if (excel.ExportExcelGridView(dlg.FileName, dgvOrder, inputColumn))
+                {
+                    MessageBox.Show("엑셀 다운로드 완료", "엑셀 다운로드", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+            }
         }
     }
 }

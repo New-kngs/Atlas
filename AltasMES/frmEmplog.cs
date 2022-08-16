@@ -18,6 +18,8 @@ namespace AltasMES
         List<DepartmentVO> DeptList = null;
         List<EmplogVO> clist = null;
 
+        string[] inputColumn = { "사용자ID", "사용자명", "부서명", "이력", "날짜" };
+
         public frmEmplog()
         {
             InitializeComponent();
@@ -135,6 +137,25 @@ namespace AltasMES
         {
             if (e.KeyChar == 13)
                 btnSearch_Click(this, e);
+        }
+
+        private void btnExecl_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Filter = "Execl Files(*.xls)|*.xls";
+            dlg.Title = "엑셀파일로 내보내기";
+
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+
+                ExcelUtil excel = new ExcelUtil();
+
+                if (excel.ExportExcelGridView(dlg.FileName, dgvEmp, inputColumn))
+                {
+                    MessageBox.Show("엑셀 다운로드 완료", "엑셀 다운로드", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+            }
         }
     }
 }

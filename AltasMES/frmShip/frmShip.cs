@@ -23,7 +23,9 @@ namespace AltasMES
 
         ServiceHelper service = null;
         List<ShipVO> allList = null;
+        List<ShipVO> clist = null;
 
+      
         private void frmShip_Load(object sender, EventArgs e)
         {
             service = new ServiceHelper("");
@@ -98,13 +100,14 @@ namespace AltasMES
                 if (string.IsNullOrWhiteSpace(txtSerach.Text.Trim()))
                 {
                     dgvShip.DataSource = null;
-                    dgvShip.DataSource = new AdvancedList<ShipVO>(allList);
+                    clist = allList;
+                    dgvShip.DataSource = new AdvancedList<ShipVO>(clist);
                     dgvShip.ClearSelection();
                 }
                 else
                 {
-                    List<ShipVO> list = allList.FindAll(n => n.CustomerName.Contains(txtSerach.Text.Trim()));
-                    dgvShip.DataSource = new AdvancedList<ShipVO>(list);
+                    clist = allList.FindAll(n => n.CustomerName.Contains(txtSerach.Text.Trim()));
+                    dgvShip.DataSource = new AdvancedList<ShipVO>(clist);
                     dgvShip.ClearSelection();
 
                 }
@@ -124,7 +127,10 @@ namespace AltasMES
             allList = service.GetAsync<List<ShipVO>>("api/Ship/GetAllShip").Data;
 
             if (allList != null)
-                dgvShip.DataSource = new AdvancedList<ShipVO>(allList);
+            {
+                clist = allList;
+                dgvShip.DataSource = new AdvancedList<ShipVO>(clist);
+            }
             else
                 MessageBox.Show("출하가능한 목록이 없습니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
@@ -134,6 +140,28 @@ namespace AltasMES
         private void dgvShip_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             dgvShip.ClearSelection();
+        }
+
+        private void btnExecl_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Filter = "Execl Files(*.xls)|*.xls";
+            dlg.Title = "엑셀파일로 내보내기";
+
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+
+                ExcelUtil excel = new ExcelUtil();
+
+            
+                string[] columnName = { "주문ID", "거래처명", "완료여부", "영업담당자", "주문요청일", "생산완료일"};
+
+                if (excel.ExportExcelGridView(dlg.FileName,dgvShip, columnName))
+                {
+                    MessageBox.Show("엑셀 다운로드 완료", "엑셀 다운로드", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+            }
         }
     }
 }

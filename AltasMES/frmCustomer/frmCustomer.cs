@@ -24,7 +24,7 @@ namespace AltasMES
         List<CustomerVO> allList = null;
         List<CustomerVO> cList = null;
 
-
+        string[] inputColumn = { "거래처ID", "거래처명", "거래처구분", "연락처", "이메일", "주소", "거래처담당자", "생성날짜", "생성사용자", "수정날짜", "수정사용자" };
         private void frmCustomer_Load(object sender, EventArgs e)
         {
             lblTitle.Text = "거래처";
@@ -223,6 +223,25 @@ namespace AltasMES
                 }
                 else
                     MessageBox.Show(result.ErrMsg);
+            }
+        }
+
+        private void btnExecl_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Filter = "Execl Files(*.xls)|*.xls";
+            dlg.Title = "엑셀파일로 내보내기";
+
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+
+                ExcelUtil excel = new ExcelUtil();
+
+                if (excel.ExportExcelGridView(dlg.FileName, dgvCus, inputColumn))
+                {
+                    MessageBox.Show("엑셀 다운로드 완료", "엑셀 다운로드", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
             }
         }
     }

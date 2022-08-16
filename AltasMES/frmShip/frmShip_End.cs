@@ -66,7 +66,7 @@ namespace AltasMES
 
             if (!int.TryParse(BarID,out chBarID))
             {
-                MessageBox.Show("출하 대기 목록에 존재 하지 않습니다.");
+                MessageBox.Show("출하 대기 목록에 존재 하지 않습니다.","정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtOrderID.Text = "";
                 txtName.Text = "";
                 txtCreateDate.Text = "";
@@ -80,7 +80,7 @@ namespace AltasMES
 
             if(shipVO == null)
             {
-                MessageBox.Show("출하 대기 목록에 존재 하지 않습니다.");
+                MessageBox.Show("출하 대기 목록에 존재 하지 않습니다.","정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtOrderID.Text = "";
                 txtName.Text = "";
                 txtCreateDate.Text = "";
@@ -196,21 +196,25 @@ namespace AltasMES
                 return;
             }
 
-            OrderVO VO = new OrderVO
+            if (MessageBox.Show($"{txtOrderID.Text} 대해 출하 처리 하시겠습니까?", "출하", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                OrderID = txtOrderID.Text,
-                ModifyUser = modUser,
-            };
 
-            ResMessage<List<OrderVO>> result = service.PostAsync<OrderVO, List<OrderVO>>("api/Order/OrderEnd", VO);
+                OrderVO VO = new OrderVO
+                {
+                    OrderID = txtOrderID.Text,
+                    ModifyUser = modUser,
+                };
 
-            if (result.ErrCode == 0)
-            {
-                MessageBox.Show("출하 처리가 완료 되었습니다.", "출하", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.DialogResult = DialogResult.OK;
+                ResMessage<List<OrderVO>> result = service.PostAsync<OrderVO, List<OrderVO>>("api/Order/OrderEnd", VO);
+
+                if (result.ErrCode == 0)
+                {
+                    MessageBox.Show("출하 처리가 완료 되었습니다.", "출하", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = DialogResult.OK;
+                }
+                else
+                    MessageBox.Show(result.ErrMsg);
             }
-            else
-                MessageBox.Show(result.ErrMsg);
         }
 
         private void frmShip_End_FormClosing(object sender, FormClosingEventArgs e)

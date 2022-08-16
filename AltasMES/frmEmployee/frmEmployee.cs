@@ -21,11 +21,13 @@ namespace AltasMES
         List<EmployeeVO> allList = null;
         List<EmployeeVO> cList = null;
         List<DepartmentVO> DeptList = null;
-
+       
         public frmEmployee()
         {
             InitializeComponent();
         }
+
+        string[] inputColumn = { "사용자ID", "사용자명", "부서명", "연락처" , "이메일" , "생성날짜" , "생성사용자" , "수정날짜", "수정사용자" };
 
         private void frmEmployee_Load(object sender, EventArgs e)
         {
@@ -38,7 +40,7 @@ namespace AltasMES
              
             DataGridUtil.SetInitGridView(dgvEmp);
 
-            DataGridUtil.AddGridTextBoxColumn(dgvEmp, "Eid", "Eid",visibility: false);
+            DataGridUtil.AddGridTextBoxColumn(dgvEmp, "사용자번호", "Eid",visibility: false);
             DataGridUtil.AddGridTextBoxColumn(dgvEmp, "사용자ID", "EmpID", colwidth: 200, align: DataGridViewContentAlignment.MiddleLeft);
             DataGridUtil.AddGridTextBoxColumn(dgvEmp, "사용자명", "EmpName", colwidth: 200, align: DataGridViewContentAlignment.MiddleLeft);
             DataGridUtil.AddGridTextBoxColumn(dgvEmp, "부서명", "DeptName", colwidth: 150, align: DataGridViewContentAlignment.MiddleLeft);
@@ -240,6 +242,25 @@ namespace AltasMES
             if (e.KeyChar == 13)
             {
                 btnSearch_Click(this, e);
+            }
+        }
+
+        private void btnExecl_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Filter = "Execl Files(*.xls)|*.xls";
+            dlg.Title = "엑셀파일로 내보내기";
+
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+            
+                ExcelUtil excel = new ExcelUtil();
+
+                if(excel.ExportExcelGridView(dlg.FileName, dgvEmp, inputColumn))
+                {
+                    MessageBox.Show("엑셀 다운로드 완료","엑셀 다운로드", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
             }
         }
     }

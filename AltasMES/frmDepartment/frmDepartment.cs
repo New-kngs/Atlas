@@ -21,7 +21,7 @@ namespace AltasMES
         ServiceHelper service = null;
         List<DepartmentVO> allList = null;
         DataTable dt = null;
-
+        string[] inputColumn = { "부서명", "부서영문명", "생성날짜", "생성사용자", "수정날짜", "수정사용자" };
         private void frmDepartment_Load(object sender, EventArgs e)
         {
 
@@ -250,6 +250,25 @@ namespace AltasMES
             if (e.KeyChar == 13)
             {
                 btnSearch_Click(this, e);
+            }
+        }
+
+        private void btnExecl_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Filter = "Execl Files(*.xls)|*.xls";
+            dlg.Title = "엑셀파일로 내보내기";
+
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+
+                ExcelUtil excel = new ExcelUtil();
+
+                if (excel.ExportExcelGridView(dlg.FileName, dgvdept, inputColumn))
+                {
+                    MessageBox.Show("엑셀 다운로드 완료", "엑셀 다운로드", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
             }
         }
     }
