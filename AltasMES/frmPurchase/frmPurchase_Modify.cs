@@ -304,6 +304,7 @@ namespace AltasMES
             List<RptPurchaseVO> rptPurchase = srv.GetAsync<List<RptPurchaseVO>>("api/Purchase/GetRptPurchase").Data;
             List<RptPurchaseVO> resultRpt = rptPurchase.FindAll(p => p.PurchaseID.Equals(txtPurID.Text));
 
+           
             RptPurchaseVO vo = new RptPurchaseVO()
             {
                 totPrice = txtPrice.Text,
@@ -312,8 +313,7 @@ namespace AltasMES
 
             resultRpt.Add(vo);
 
-
-             DataTable dt = CommonUtil.LinqQueryToDataTable(resultRpt); //DataTable
+            DataTable dt = CommonUtil.LinqQueryToDataTable(resultRpt); //DataTable
 
             rptPurchaseList rpt = new rptPurchaseList
             {
