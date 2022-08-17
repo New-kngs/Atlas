@@ -140,7 +140,10 @@ namespace AltasMES
             PurchaseVO pur = srv.GetAsync<PurchaseVO>($"/api/Purchase/{selId}").Data;
             pur.ModifyUser = ((Main)this.MdiParent).EmpName.ToString();
             pur.InState = (dgvPurchase.SelectedRows[0].Cells["InState"].Value).ToString();
+            pur.CreateDate = (dgvPurchase.SelectedRows[0].Cells["CreateDate"].Value).ToString();
             
+
+
             frmPurchase_Modify pop = new frmPurchase_Modify(pur);
             if (pop.ShowDialog() == DialogResult.OK)
             {

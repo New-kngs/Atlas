@@ -4,7 +4,7 @@ using System.Collections;
 using System.ComponentModel;
 using System.Drawing;
 
-namespace AltasMES.frmPurchase
+namespace AltasMES
 {
     public partial class rptPurchaseList : DevExpress.XtraReports.UI.XtraReport
     {

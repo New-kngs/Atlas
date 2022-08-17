@@ -20,6 +20,7 @@ namespace AltasMES
         List<PurchaseDetailsVO> resultPurList = null;
 
         string instate = string.Empty;
+        string CreateDate = string.Empty;
 
 
         public frmPurchase_Modify(PurchaseVO purchase)
@@ -31,6 +32,8 @@ namespace AltasMES
             txtCusName.Text = purchase.CustomerName;
             txtPurID.Text = purchase.PurchaseID;            
             instate = purchase.InState;
+            CreateDate = purchase.CreateDate;
+
         }
 
         private void frmPurchase_Modify_Load(object sender, EventArgs e)
@@ -294,6 +297,20 @@ namespace AltasMES
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+
+
+           DataTable dt = CommonUtil.LinqQueryToDataTable(resultPurList); //DataTable
+
+            rptPurchaseList rpt = new rptPurchaseList
+            {
+                DataSource = dt
+            };
+            _ = new ReportPreviewForm(rpt);
+
         }
     }
 }

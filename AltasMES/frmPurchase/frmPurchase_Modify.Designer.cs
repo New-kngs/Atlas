@@ -52,6 +52,7 @@ namespace AltasMES
             this.btnClose = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvItem = new System.Windows.Forms.DataGridView();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -64,6 +65,7 @@ namespace AltasMES
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnPrint);
             this.panel1.Controls.Add(this.lblTitle);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -315,6 +317,24 @@ namespace AltasMES
             this.dgvItem.TabIndex = 0;
             this.dgvItem.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItem_CellClick);
             // 
+            // btnPrint
+            // 
+            this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrint.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPrint.ImageIndex = 1;
+            this.btnPrint.ImageList = this.imageList1;
+            this.btnPrint.Location = new System.Drawing.Point(710, 25);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.btnPrint.Size = new System.Drawing.Size(93, 37);
+            this.btnPrint.TabIndex = 8;
+            this.btnPrint.Text = "발주서";
+            this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
             // frmPurchase_Modify
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -368,5 +388,6 @@ namespace AltasMES
         private System.Windows.Forms.TextBox txtCusName;
         protected System.Windows.Forms.ImageList imageList1;
         protected System.Windows.Forms.Button btnComplete;
+        protected System.Windows.Forms.Button btnPrint;
     }
 }
