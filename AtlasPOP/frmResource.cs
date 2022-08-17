@@ -76,15 +76,12 @@ namespace AtlasPOP
                 int CurrentQty = resource.Data.Find((r) => r.ItemID == oper.ItemID).CurrentQty;
                 int totQty = resource.Data.Find((r) => r.ItemID == oper.ItemID).Qty;
                 ResMessage<List<OperationVO>> result = service.GetAsync<List<OperationVO>>("api/pop/AllOperation");
+
                 string YN = result.Data.Find((n) => n.OpID == oper.OpID).resourceYN;
-
-
-
                 if (oper.resourceYN.Equals("Y"))
                 {
                     MessageBox.Show("이미 자재가 투입되어 있습니다.");
                     return;
-
                 }
 
                 if (totQty > CurrentQty)

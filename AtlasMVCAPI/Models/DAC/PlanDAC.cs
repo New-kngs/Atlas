@@ -183,7 +183,7 @@ namespace AtlasMVCAPI.Models
             })
             {
                 cmd.Parameters.AddWithValue("@ItemID", list.ItemID);
-                cmd.Parameters.AddWithValue("@PlanQty", list.LOTIQty);
+                cmd.Parameters.AddWithValue("@PlanQty", list.PlanQty);
                 cmd.Parameters.AddWithValue("@CreateUser", list.CreateUser);
                 cmd.Parameters.AddWithValue("@CreateDate", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
 
@@ -246,7 +246,8 @@ namespace AtlasMVCAPI.Models
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = new SqlConnection(strConn);
-                cmd.CommandText = @"select PlanID, ItemID, PlanQty, OrderID, CreateYN, convert(nvarchar(20), CreateDate,120) CreateDate,  CreateUser,convert(nvarchar(20), ModifyDate,120) ModifyDate, ModifyUser from TB_Plan";
+                cmd.CommandText = @"select PlanID, p.ItemID,ItemName, ItemCategory, PlanQty, OrderID, CreateYN, convert(nvarchar(20), p.CreateDate,120) CreateDate,  p.CreateUser,convert(nvarchar(20), p.ModifyDate,120) ModifyDate, p.ModifyUser 
+                    from TB_Plan p join TB_Item i on p.ItemID = i.ItemID";
 
                 cmd.Connection.Open();
                 List<PlanVO> list = Helper.DataReaderMapToList<PlanVO>(cmd.ExecuteReader());
@@ -274,6 +275,24 @@ namespace AtlasMVCAPI.Models
                 cmd.Parameters.AddWithValue("@EmpID", oper.CreateUser);
                 cmd.Parameters.AddWithValue("@ProcessID", oper.ProcessID);
 
+
+                cmd.Connection.Open();
+                int iRowAffect = cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+
+                return (iRowAffect > 0);
+            }
+        }
+
+        public bool DeletePlan(int planID)
+        {
+            using (SqlCommand cmd = new SqlCommand
+            {
+                Connection = new SqlConnection(strConn),
+                CommandText = @"delete from TB_Plan where PlanID = @PlanID",
+            })
+            {
+                cmd.Parameters.AddWithValue("@PlanID", planID);
 
                 cmd.Connection.Open();
                 int iRowAffect = cmd.ExecuteNonQuery();

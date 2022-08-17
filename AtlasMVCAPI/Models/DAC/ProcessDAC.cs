@@ -37,9 +37,8 @@ namespace AtlasMVCAPI.Models
             using (SqlCommand cmd = new SqlCommand
             {
                 Connection = new SqlConnection(strConn),
-                CommandText = @"insert into TB_Process (ProcessName, FailCheck, CreateUser)
-                                values ( @ProcessName,@FailCheck, @CreateUser)"
-
+                CommandText = @"SP_CreateProcess",
+                CommandType = System.Data.CommandType.StoredProcedure
             })
             {
                 cmd.Parameters.AddWithValue("@ProcessName", process.ProcessName);

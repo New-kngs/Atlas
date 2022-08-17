@@ -285,7 +285,8 @@ namespace AtlasMVCAPI.Controllers
         }
 
         /// <summary>
-        /// Author : 정희록
+        /// Author : 류경석
+        /// 작업지시서 생성
         /// </summary>
         /// <param name="list"></param>
         /// <returns></returns>
@@ -298,6 +299,42 @@ namespace AtlasMVCAPI.Controllers
             {
                 PlanDAC db = new PlanDAC();
                 bool flag = db.SaveOperation(oper);
+
+                ResMessage result = new ResMessage()
+                {
+                    ErrCode = (!flag) ? -9 : 0,
+                    ErrMsg = (!flag) ? "저장중 오류발생" : "S"
+                };
+
+                return Ok(result);
+            }
+            catch (Exception err)
+            {
+                System.Diagnostics.Debug.WriteLine(err.Message);
+
+                return Ok(new ResMessage()
+                {
+                    ErrCode = -9,
+                    ErrMsg = err.Message
+                });
+            }
+        }
+
+        /// <summary>
+        /// Author : 류경석
+        /// 작업요청 삭제
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        //POST : https://localhost:44391/api/Plan/DeletePlan
+        [HttpGet]
+        [Route("DeletePlan/{planID}")]
+        public IHttpActionResult DeletePlan(int planID)
+        {
+            try
+            {
+                PlanDAC db = new PlanDAC();
+                bool flag = db.DeletePlan(planID);
 
                 ResMessage result = new ResMessage()
                 {

@@ -221,10 +221,12 @@ namespace AtlasPOP
                 ModifyUser = User,
                 ItemID = Oper.ItemID
             };
-
+            // api / pop / UpdateFinishWorkYN
+            
             ResMessage<List<ItemVO>> putIn = service.PostAsync<ItemVO, List<ItemVO>>("api/pop/PutInItem", Item);
             if (putIn.ErrCode == 0)
             {
+                ResMessage<List<OperationVO>> finishiwork = service.PostAsync<OperationVO, List<OperationVO>>("api/pop/UpdateFinishWorkYN", Oper);
                 MessageBox.Show("생산된 제품이 창고에 입고되었습니다.");
                 frmoper.LoadData();
             }

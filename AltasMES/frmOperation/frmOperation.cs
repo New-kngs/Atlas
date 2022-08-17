@@ -26,11 +26,13 @@ namespace AltasMES
             DataGridUtil.SetInitGridView(dgvList);
             DataGridUtil.AddGridTextBoxColumn(dgvList, "생산계획ID", "PlanID");
             DataGridUtil.AddGridTextBoxColumn(dgvList, "제품ID", "ItemID");
+            DataGridUtil.AddGridTextBoxColumn(dgvList, "제품명", "ItemName");
+            DataGridUtil.AddGridTextBoxColumn(dgvList, "제품유형", "ItemCategory");
             DataGridUtil.AddGridTextBoxColumn(dgvList, "요청수량", "PlanQty");
             DataGridUtil.AddGridTextBoxColumn(dgvList, "주문ID", "OrderID");
             DataGridUtil.AddGridTextBoxColumn(dgvList, "작업지시생성여부", "CreateYN", visibility : false);
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "생산날짜", "CreateDate");
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "생산사용자", "CreateUser");
+            DataGridUtil.AddGridTextBoxColumn(dgvList, "생성날짜", "CreateDate");
+            DataGridUtil.AddGridTextBoxColumn(dgvList, "생성사용자", "CreateUser");
             DataGridUtil.AddGridTextBoxColumn(dgvList, "수정일날짜", "ModifyDate");
             DataGridUtil.AddGridTextBoxColumn(dgvList, "수정사용자", "ModifyUser");
 
@@ -38,10 +40,9 @@ namespace AltasMES
         }
         public void LoadData()
         {
+            
             planList = service.GetAsync<List<PlanVO>>("api/Plan/GetPlanList");
             planList.Data = planList.Data.FindAll((f) => f.CreateYN != "Y");
-
-
             if (planList.ErrCode == 0)
             {
                 dgvList.DataSource = planList.Data;
@@ -68,6 +69,7 @@ namespace AltasMES
             {
                 MessageBox.Show("생성되었습니다.");
                 LoadData();
+                dgvList.ClearSelection();
             }
         }
 
@@ -77,6 +79,42 @@ namespace AltasMES
             {
                 service.Dispose();
             }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            int planID = Convert.ToInt32(dgvList.SelectedRows[0].Cells["PlanID"].Value);
+            if(DialogResult.Yes == MessageBox.Show($"{planID}를 삭제하시겠습니까?", "삭제", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+            {
+
+                //ResMessage<List<BOMVO>> del = service.GetAsync<List<BOMVO>>($"api/BOM/DeleteBOM/" + id);
+                ResMessage<List<PlanVO>> deletePlan = service.GetAsync<List<PlanVO>>("api/Plan/DeletePlan/" + planID);
+                if(deletePlan.ErrCode == 0)
+                {
+                    MessageBox.Show("삭제가 완료되었습니다.");
+                    LoadData();
+                    dgvList.ClearSelection();
+                }
+                else
+                {
+                    MessageBox.Show("삭제중 오류가 발생하였습니다.");
+                    return;
+                }
+                
+            }        
+        }
+
+        private void frmOperation_Shown(object sender, EventArgs e)
+        {
+            dgvList.ClearSelection();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            LoadData();
+            planList.Data = planList.Data.FindAll((f) => f.ItemName.Contains(txtItemName.Text)).ToList();
+            dgvList.DataSource = planList.Data;
+            dgvList.ClearSelection();
         }
     }
 }

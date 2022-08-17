@@ -91,7 +91,10 @@ namespace AltasMES
             // 
             // btnExecl
             // 
-            this.btnExecl.Location = new System.Drawing.Point(493, 20);
+            this.btnExecl.ImageIndex = 5;
+            this.btnExecl.Location = new System.Drawing.Point(461, 20);
+            this.btnExecl.Size = new System.Drawing.Size(110, 37);
+            this.btnExecl.Text = "포트설정";
             this.btnExecl.Visible = false;
             // 
             // btnDelete

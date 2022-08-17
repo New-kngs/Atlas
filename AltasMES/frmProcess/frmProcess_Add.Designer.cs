@@ -44,13 +44,13 @@
             // lblTitle
             // 
             this.lblTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblTitle.Size = new System.Drawing.Size(376, 47);
+            this.lblTitle.Size = new System.Drawing.Size(386, 47);
             this.lblTitle.Text = "공정 등록";
             // 
             // panel1
             // 
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
-            this.panel1.Size = new System.Drawing.Size(376, 47);
+            this.panel1.Size = new System.Drawing.Size(386, 47);
             // 
             // imageList1
             // 
@@ -72,7 +72,7 @@
             this.panel2.Controls.Add(this.label1);
             this.panel2.Location = new System.Drawing.Point(0, 47);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
-            this.panel2.Size = new System.Drawing.Size(376, 230);
+            this.panel2.Size = new System.Drawing.Size(386, 241);
             this.panel2.Controls.SetChildIndex(this.panel3, 0);
             this.panel2.Controls.SetChildIndex(this.label1, 0);
             this.panel2.Controls.SetChildIndex(this.txtProcess, 0);
@@ -106,7 +106,7 @@
             // 
             this.groupBox1.Controls.Add(this.rdN);
             this.groupBox1.Controls.Add(this.rdY);
-            this.groupBox1.Location = new System.Drawing.Point(52, 70);
+            this.groupBox1.Location = new System.Drawing.Point(53, 77);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
@@ -147,7 +147,7 @@
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAdd.ImageIndex = 6;
             this.btnAdd.ImageList = this.imageList1;
-            this.btnAdd.Location = new System.Drawing.Point(109, 177);
+            this.btnAdd.Location = new System.Drawing.Point(120, 184);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -166,7 +166,7 @@
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancel.ImageIndex = 5;
             this.btnCancel.ImageList = this.imageList1;
-            this.btnCancel.Location = new System.Drawing.Point(199, 177);
+            this.btnCancel.Location = new System.Drawing.Point(210, 184);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -181,7 +181,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(376, 277);
+            this.ClientSize = new System.Drawing.Size(386, 288);
             this.Margin = new System.Windows.Forms.Padding(5, 8, 5, 8);
             this.Name = "frmProcess_Add";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
