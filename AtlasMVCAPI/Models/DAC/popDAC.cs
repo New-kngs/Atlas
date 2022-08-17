@@ -70,7 +70,7 @@ namespace AtlasMVCAPI.Models
                     PlanQty, OpState, convert(varchar(20), BeginDate,120) BeginDate,convert(varchar(20), EndDate,120) EndDate, op.EmpID, EmpName, port, CompleteQty, FailQty
                     from TB_Operation op join TB_Process p on op.ProcessID = p.ProcessID
                     join TB_Item i on op.ItemID = i.ItemID
-                    join TB_Employees e on e.EmpID = op.EmpID
+                    join TB_Employees e on e.EmpName = op.EmpID
                                     where convert(varchar(10), OpDate, 120) Between @dateFrom and @dateTo";
 
                 cmd.Parameters.AddWithValue("@dateFrom", dateFrom);
@@ -245,11 +245,9 @@ namespace AtlasMVCAPI.Models
             using (SqlCommand cmd = new SqlCommand
             {
                 Connection = new SqlConnection(strConn),
-                CommandText = @"update TB_Item set CurrentQty = @CurrentQty, ModifyDate = @ModifyDate, ModifyUser = @ModifyUser where ItemID = @ItemID;
-                  update TB_Operation set PutInYN = 'Y',OpState = '작업종료', ModifyDate = @ModifyDate, ModifyUser = @ModifyUser where @OpID = OpID"
+                CommandText = @"update TB_Item set CurrentQty = @CurrentQty, ModifyDate = @ModifyDate, ModifyUser = @ModifyUser where ItemID = @ItemID"
             })
             {
-                cmd.Parameters.AddWithValue("@OpID", item.OpID);
                 cmd.Parameters.AddWithValue("@CurrentQty", item.CurrentQty);
                 cmd.Parameters.AddWithValue("@ItemID", item.ItemID);
                 cmd.Parameters.AddWithValue("@ModifyUser", item.ModifyUser);
@@ -425,9 +423,9 @@ namespace AtlasMVCAPI.Models
             {
                 cmd.Connection = new SqlConnection(strConn);
                 cmd.CommandText = @" select op.OrderID, op.ItemID, ItemName, PlanQty, PutInYN
-                                     from TB_Operation op join TB_Item i on op.ItemID = i.ItemID
-                                     join TB_Order d on op.OrderID = d.OrderID
-                                      where PutInYN = 'Y' and LapingYN = 'N'";
+                                        from TB_Operation op join TB_Item i on op.ItemID = i.ItemID
+                                        join TB_Order d on op.OrderID = d.OrderID
+                                        where PutInYN = 'Y' and LapingYN = 'N' and OpState = '작업종료'";
 
                 cmd.Connection.Open();
                 List<OperationVO> list = Helper.DataReaderMapToList<OperationVO>(cmd.ExecuteReader());

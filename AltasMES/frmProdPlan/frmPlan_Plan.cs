@@ -78,6 +78,14 @@ namespace AltasMES
                 CreateUser = this.plan.CreateUser,
             };
 
+            /*List<PlanOptVO> planList = new List<PlanOptVO>();
+            if(list.ProductQty != 0)
+            {
+                planList.Add(list);
+            }*/
+            
+
+
             ResMessage<List<PlanOptVO>> result = srv.PostAsync<PlanOptVO, List<PlanOptVO>>("api/Plan/SavePlanPlan", list);
 
             if (result.ErrCode == 0)

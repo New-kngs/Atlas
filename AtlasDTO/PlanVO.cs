@@ -24,5 +24,6 @@ namespace AtlasDTO
         public string ModifyDate { get; set; }
         public string ModifyUser { get; set; }
         public int LOTIQty { get; set; }
+        public string CreateYN { get; set; }
     }
 }

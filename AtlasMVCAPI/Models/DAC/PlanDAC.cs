@@ -205,6 +205,8 @@ namespace AtlasMVCAPI.Models
                 //                (@OrderID, @ItemID, @PlanQty, @CreateDate, @CreateUser),
                 //                (@OrderID, @ItemID1, @PlanQty1, @CreateDate, @CreateUser),
                 //                (@OrderID, @ItemID2, @PlanQty2, @CreateDate, @CreateUser);",
+                
+                
                 CommandText = @"insert into TB_Plan (OrderID, ItemID, PlanQty, CreateDate, CreateUser) 
                                 values (@OrderID, @ItemID, @PlanQty, @CreateDate, @CreateUser);   
 
@@ -217,6 +219,7 @@ namespace AtlasMVCAPI.Models
                                 delete from TB_Plan where PlanQty = 0;",
             })
             {
+                
                 cmd.Parameters.AddWithValue("@OrderID", list.OrderID);
                 cmd.Parameters.AddWithValue("@CreateUser", list.CreateUser);
                 cmd.Parameters.AddWithValue("@CreateDate", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
@@ -243,13 +246,40 @@ namespace AtlasMVCAPI.Models
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = new SqlConnection(strConn);
-                cmd.CommandText = @"select PlanID, ItemID, PlanQty, OrderID, convert(nvarchar(20), CreateDate,120) CreateDate,  CreateUser,convert(nvarchar(20), ModifyDate,120) ModifyDate, ModifyUser from TB_Plan";
+                cmd.CommandText = @"select PlanID, ItemID, PlanQty, OrderID, CreateYN, convert(nvarchar(20), CreateDate,120) CreateDate,  CreateUser,convert(nvarchar(20), ModifyDate,120) ModifyDate, ModifyUser from TB_Plan";
 
                 cmd.Connection.Open();
                 List<PlanVO> list = Helper.DataReaderMapToList<PlanVO>(cmd.ExecuteReader());
                 cmd.Connection.Close();
 
                 return list;
+            }
+        }
+
+
+        public bool SaveOperation(OperationVO oper)
+        {
+            using (SqlCommand cmd = new SqlCommand
+            {
+                Connection = new SqlConnection(strConn),
+                CommandText = @"SP_CreateOperation",
+                CommandType = CommandType.StoredProcedure
+            })
+            {
+                cmd.Parameters.AddWithValue("@PlanID", oper.PlanID);
+                cmd.Parameters.AddWithValue("@OrderID", oper.OrderID);
+                cmd.Parameters.AddWithValue("@ItemID", oper.ItemID);
+                cmd.Parameters.AddWithValue("@PlanQty", oper.PlanQty);
+                cmd.Parameters.AddWithValue("@CreateUser", oper.CreateUser);
+                cmd.Parameters.AddWithValue("@EmpID", oper.CreateUser);
+                cmd.Parameters.AddWithValue("@ProcessID", oper.ProcessID);
+
+
+                cmd.Connection.Open();
+                int iRowAffect = cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+
+                return (iRowAffect > 0);
             }
         }
     }

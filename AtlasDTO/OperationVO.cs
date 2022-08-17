@@ -31,5 +31,8 @@ namespace AtlasDTO
         public int ProcessID { get; set; }
         public string port { get; set; }
 
+
+        public int PlanID { get; set; }
+
     }
 }

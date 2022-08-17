@@ -144,6 +144,7 @@ namespace AtlasPOP
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "포장";
             this.Load += new System.EventHandler(this.frmLaping_Load);
+            this.Shown += new System.EventHandler(this.frmLaping_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

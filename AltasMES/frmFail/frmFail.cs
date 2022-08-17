@@ -84,5 +84,13 @@ namespace AltasMES
             }
             
         }
+
+        private void frmFail_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (service != null)
+            {
+                service.Dispose();
+            }
+        }
     }
 }

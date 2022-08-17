@@ -283,5 +283,40 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
+
+        /// <summary>
+        /// Author : 정희록
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        //POST : https://localhost:44391/api/Plan/SaveOperation
+        [HttpPost]
+        [Route("SaveOperation")]
+        public IHttpActionResult SaveOperation(OperationVO oper)
+        {
+            try
+            {
+                PlanDAC db = new PlanDAC();
+                bool flag = db.SaveOperation(oper);
+
+                ResMessage result = new ResMessage()
+                {
+                    ErrCode = (!flag) ? -9 : 0,
+                    ErrMsg = (!flag) ? "저장중 오류발생" : "S"
+                };
+
+                return Ok(result);
+            }
+            catch (Exception err)
+            {
+                System.Diagnostics.Debug.WriteLine(err.Message);
+
+                return Ok(new ResMessage()
+                {
+                    ErrCode = -9,
+                    ErrMsg = err.Message
+                });
+            }
+        }
     }
 }

@@ -176,7 +176,9 @@ namespace AtlasPOP
             {
                 worker.CancelAsync();
                 timer_Connec.Stop();
-                
+
+                oper.CompleteQty = Convert.ToInt32(txtQty.Text);
+                oper.FailQty = totfail;
 
                 DialogResult result = MessageBox.Show($"{oper.ProcessName}의 작업이 끝났습니다", "작업 종료", MessageBoxButtons.OK);
                 if (result == DialogResult.OK)

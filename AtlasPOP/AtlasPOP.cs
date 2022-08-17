@@ -40,12 +40,13 @@ namespace AtlasPOP
             tableLayoutPanel1.Visible = false;
             frmPerfLST = new Dictionary<string, frmPerformance>();
             pocess_idLst = new Dictionary<string, int>();
-
+            
             frmLogin login = new frmLogin();
             if (login.ShowDialog(this) == DialogResult.OK)
             {
                 this.Visible = true;
                 lblDept.Text = $"[{Dept}]{User}님 ";
+                
             }
             else
             {
@@ -132,6 +133,12 @@ namespace AtlasPOP
                 MessageBox.Show("자재가 투입되지 않았습니다.");
                 return;
             }
+            if (frmPerfLST.ContainsKey(Oper.port))
+            {
+                MessageBox.Show("이미 작업중인 공정입니다. ");
+                return;
+            }
+
             ResMessage<List<EquipDetailsVO>> equip = service.GetAsync<List<EquipDetailsVO>>("api/pop/GetEquip");
             List<EquipDetailsVO> EquipList = equip.Data.FindAll((p) => p.ProcessID == Oper.ProcessID);
             if (EquipList.Count == 0)
@@ -255,7 +262,8 @@ namespace AtlasPOP
 
         private void btnLaping_Click(object sender, EventArgs e)
         {
-            frmLaping frm = new frmLaping(Oper);
+            
+            frmLaping frm = new frmLaping(User);
             frm.Show();
         }
 
@@ -297,7 +305,7 @@ namespace AtlasPOP
                 MessageBox.Show("작업을 선택해주세요.");
                 return;
             }
-            if (frmPerfLST[Oper.port] == null)
+            if (frmPerfLST.Count < 1)
             {
                 MessageBox.Show("작업이 시작되지않았습니다.");
                 return;

@@ -17,12 +17,15 @@ namespace AtlasPOP
         popServiceHelper service = null;
         public OperationVO oper { get; set; }
         LOTVO lot;
+        public string userName;
         
 
-        public frmLaping(OperationVO oper)
+        public frmLaping(string user)
         {
+
+            userName = user;
             InitializeComponent();
-            this.oper = oper;
+        
         }
         private void frmLaping_Load(object sender, EventArgs e)
         {
@@ -94,9 +97,10 @@ namespace AtlasPOP
             ItemVO Item = new ItemVO()
             {
                 CurrentQty = itemList.Data.Find((f) => f.ItemID == lot.ItemID).CurrentQty - lot.LOTIQty,
-                ModifyUser = "강지모",
+                ModifyUser = userName,
                 ItemID = lot.ItemID
             };
+            
             ResMessage<List<ItemVO>> putIn = service.PostAsync<ItemVO, List<ItemVO>>("api/pop/PutInItem", Item);
             if (putIn.ErrCode == 0)
             {
@@ -129,9 +133,14 @@ namespace AtlasPOP
             {
                 ItemID = dgvList.SelectedRows[0].Cells["ItemID"].Value.ToString(),
                 OrderID = dgvList.SelectedRows[0].Cells["OrderID"].Value.ToString(),
-                CreateUser = "강지모",
+                CreateUser = userName,
                 LOTIQty = Convert.ToInt32(dgvList.SelectedRows[0].Cells["PlanQty"].Value),
             };
+        }
+
+        private void frmLaping_Shown(object sender, EventArgs e)
+        {
+            dgvList.ClearSelection();
         }
     }
 }

@@ -50,6 +50,10 @@ namespace AltasMES
             this.groupBox2.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold);
             this.groupBox2.Text = "검색조건";
             // 
+            // btnAdd
+            // 
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
             // imageList1
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
@@ -93,6 +97,7 @@ namespace AltasMES
             this.ClientSize = new System.Drawing.Size(1034, 682);
             this.Name = "frmOperation";
             this.Text = "작업지시";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmOperation_FormClosing);
             this.Load += new System.EventHandler(this.frmOperation_Load);
             this.BasePanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

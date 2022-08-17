@@ -127,7 +127,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lblDept.Location" type="System.Drawing.Point, System.Drawing">
-    <value>156, 9</value>
+    <value>935, 72</value>
   </data>
   <data name="lblDept.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 12</value>
@@ -1123,7 +1123,7 @@
     <value>0</value>
   </data>
   <data name="btnLaping.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Right</value>
+    <value>Bottom, Right</value>
   </data>
   <data name="btnLaping.Font" type="System.Drawing.Font, System.Drawing">
     <value>굴림, 15.75pt, style=Bold</value>
@@ -1132,7 +1132,7 @@
     <value>3, 467</value>
   </data>
   <data name="btnLaping.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
+    <value>3, 4, 3, 20</value>
   </data>
   <data name="btnLaping.Size" type="System.Drawing.Size, System.Drawing">
     <value>122, 89</value>

@@ -167,6 +167,7 @@ namespace AltasMES
             this.ClientSize = new System.Drawing.Size(1034, 682);
             this.Name = "frmFail";
             this.Text = "불량";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmFail_FormClosing);
             this.Load += new System.EventHandler(this.frmFail_Load);
             this.BasePanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
