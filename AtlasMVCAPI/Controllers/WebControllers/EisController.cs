@@ -258,7 +258,7 @@ namespace AtlasMVCAPI.Controllers
             }
             ViewBag.searchDate = searchDate;
 
-            // ItemDAC db = new ItemDAC();
+            FailDAC db = new FailDAC();
             return View();
         }
     }

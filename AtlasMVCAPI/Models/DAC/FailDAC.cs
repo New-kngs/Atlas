@@ -75,6 +75,23 @@ namespace AtlasMVCAPI.Models
                 return list;
             }
         }
+        // 계획수량 대비 불량수량(작성 중...) (작성자: 지현)
+        public List<FailVO> GetFailRate()
+        {
+            using(SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.CommandText = @"select ItemName, ISNULL(PlanQty, 0) PlanQty, ISNULL(FailQty,0) FailQty 
+from TB_Item I
+left outer join
+(   select distinct ItemID, convert(nvarchar(10), convert(date, OpDate)) OpDate, SUM(PlanQty) PlanQty, SUM(FailQty) FailQty
+from TB_Operation
+group by ItemID, convert(nvarchar(10), convert(date, OpDate))   ) O on I.ItemID = O.ItemID and OpDate = '2022-08-05'
+where ItemCategory = '완제품'";
 
+               
+            }
+            return null;
+        }
     }
 }

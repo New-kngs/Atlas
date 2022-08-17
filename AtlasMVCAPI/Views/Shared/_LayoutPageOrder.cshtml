@@ -44,37 +44,40 @@
                             <a class="nav-link" href="/Cart/Basket/">
                                 <i class="fa fa-shopping-basket"></i>
                                 @Html.Action("Summary", "Cart")
-                                </i>
                             </a>
                         </li>
-                        
-                        <!-- 파셜뷰 -->
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link" data-toggle="dropdown" href="#">
-                                <i class="fa fa-thin fa-phone"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-left">
-                                <span class="dropdown-header">담당자 정보</span>
-                                <div class="dropdown-divider"></div>
-                                <a href="#" class="dropdown-item">
-                                    <i class="fa fa-user-tie"></i> 이름
-                                    <!--loginInfo.DeptName.ToString()-->
-                                    <!--Session["EmpName"]-->
-                                    <span class="float-right text-muted text-sm">@loginInfo.DeptName.ToString() @loginInfo.EmpName.ToString()</span>
+                        <!-- 파셜뷰 -->
+                        @if (loginInfo != null)
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link" data-toggle="dropdown" href="#">
+                                    <i class="fa fa-thin fa-phone"></i>
                                 </a>
-                                <div class="dropdown-divider"></div>
-                                <a href="#" class="dropdown-item">
-                                    <i class="fas fa-phone-volume"></i> 휴대폰 정보
-                                    <span class="float-right text-muted text-sm">@loginInfo.EmpPhone.ToString()</span>
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a href="#" class="dropdown-item">
-                                    <i class="fas fa-envelope mr-2"></i> 이메일
-                                    <span class="float-right text-muted text-sm">@loginInfo.EmpEmail.ToString()</span>
-                                </a>
-                            </div>
-                        </li>
+                                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-left">
+                                    <span class="dropdown-header">담당자 정보</span>
+                                    <div class="dropdown-divider"></div>
+                                    <a href="#" class="dropdown-item">
+                                        <i class="fa fa-user-tie"></i> 이름
+                                        <!--loginInfo.DeptName.ToString()-->
+                                        <!--Session["EmpName"]-->
+
+                                        <span class="float-right text-muted text-sm">@loginInfo.DeptName.ToString() @loginInfo.EmpName.ToString()</span>
+                                        
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a href="#" class="dropdown-item">
+                                        <i class="fas fa-phone-volume"></i> 휴대폰 정보
+                                        <span class="float-right text-muted text-sm">@loginInfo.EmpPhone.ToString()</span>
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a href="#" class="dropdown-item">
+                                        <i class="fas fa-envelope mr-2"></i> 이메일
+                                        <span class="float-right text-muted text-sm">@loginInfo.EmpEmail.ToString()</span>
+                                    </a>
+                                </div>
+                            </li>
+                        }
                     </ul>
 
                     <ul class="navbar-nav ml-auto">

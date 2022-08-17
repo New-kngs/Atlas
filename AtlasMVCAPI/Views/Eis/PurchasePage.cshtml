@@ -43,7 +43,7 @@
                 <!-- LINE CHART -->
                 <div class="card card-info">
                     <div class="card-header">
-                        <h3 class="card-title">매출현황</h3>
+                        <h3 class="card-title">매입현황</h3>
 
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -56,7 +56,7 @@
                     </div>
                     <div class="card-body">
                         <div class="chart">
-                            <canvas id="lineChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                            <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                         </div>
                         <div id="table" style="overflow: auto;">
                             <table class="table" cellpadding="0" cellspacing="0">
@@ -272,6 +272,28 @@
             })
 
             //-------------
+            //- BAR CHART -
+            //-------------
+            var barChartCanvas = $('#barChart').get(0).getContext('2d')
+            var barChartData = $.extend(true, {}, areaChartData)
+            var temp0 = areaChartData.datasets[0]
+            var temp1 = areaChartData.datasets[1]
+            barChartData.datasets[0] = temp1
+            barChartData.datasets[1] = temp0
+
+            var barChartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                datasetFill: false
+            }
+
+            new Chart(barChartCanvas, {
+                type: 'bar',
+                data: barChartData,
+                options: barChartOptions
+            })
+
+            //-------------
             //- LINE CHART -
             //--------------
             var lineChartCanvas = $('#lineChart').get(0).getContext('2d')
@@ -327,7 +349,6 @@
                 document.getElementById("startDate").value = picker.startDate.format('YYYY-MM-DD');
                 document.getElementById("endDate").value = picker.endDate.format('YYYY-MM-DD');
             })
-
 
 
         function search_fn() {
