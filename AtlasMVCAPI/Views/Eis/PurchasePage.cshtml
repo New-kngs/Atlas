@@ -44,7 +44,6 @@
                 <div class="card card-info">
                     <div class="card-header">
                         <h3 class="card-title">매입현황</h3>
-
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                 <i class="fas fa-minus"></i>
@@ -55,9 +54,11 @@
                         </div>
                     </div>
                     <div class="card-body">
+                        <h3>매입 제품 Top 6</h3>
                         <div class="chart">
                             <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                         </div>
+                        <h3>매입 전체 목록</h3>
                         <div id="table" style="overflow: auto;">
                             <table class="table" cellpadding="0" cellspacing="0">
                                 <thead>
@@ -218,28 +219,6 @@
                         pointHighlightFill  : '#fff',
                         pointHighlightStroke: '#fff',
                         data                : @ItemSalePrice[5]
-                    },
-                    {
-                        label               : '@ItemSaleNames[6]',
-                        backgroundColor: 'rgba(178, 235, 244, 1)',
-                        borderColor: 'rgba(178, 235, 244, 0.8)',
-                        pointRadius         : false,
-                        pointColor          : '#fff',
-                        pointStrokeColor:     '#fff',
-                        pointHighlightFill  : '#fff',
-                        pointHighlightStroke: '#fff',
-                        data                : @ItemSalePrice[6]
-                    },
-                    {
-                        label               : '@ItemSaleNames[7]',
-                        backgroundColor: 'rgba(209, 178, 255, 1)',
-                        borderColor: 'rgba(209, 178, 255, 0.8)',
-                        pointRadius         : false,
-                        pointColor          : '#fff',
-                        pointStrokeColor:     '#fff',
-                        pointHighlightFill  : '#fff',
-                        pointHighlightStroke: '#fff',
-                        data                : @ItemSalePrice[7]
                     },
                 ]
             }

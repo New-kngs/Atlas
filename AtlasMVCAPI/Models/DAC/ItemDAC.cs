@@ -310,7 +310,7 @@ where ParentID != '*'";
             }
         }
         /// <summary>
-        /// 기간 검색을 통해 매출을 Pivot으로 가져온다
+        /// 기간 검색을 통해 매출, 매입을 Pivot으로 가져온다 (작성자: 지현)
         /// </summary>
         /// <param name="from"></param>
         /// <param name="to"></param>
@@ -336,5 +336,33 @@ where ParentID != '*'";
                 return ds;
             }
         }
+        // 기간에 따른 제품(부품) 구매 순위 (작성자: 지현)
+        public List<ItemVO> GetItemPurchaseLanking(string from, string to)
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.Parameters.AddWithValue("@from", from);
+                cmd.Parameters.AddWithValue("@to", to);
+                cmd.CommandText = @"select Top 6 ItemName, SUM(ItemPrice*Qty) ItemPrice 
+from TB_Purchase P  
+inner join TB_PurchaseDetails PD on P.PurchaseID = PD.PurchaseID 
+inner join TB_item I on I.ItemID = PD.ItemID 
+where convert(date, P.CreateDate) between '@from' and '@to' 
+group by ItemName 
+order by ItemPrice desc";
+
+                cmd.Connection.Open();
+                List<ItemVO> list = Helper.DataReaderMapToList<ItemVO>(cmd.ExecuteReader());
+                cmd.Connection.Close();
+
+                if (list != null && list.Count > 0)
+                    return list;
+                else
+                    return null;
+            }
+                
+        }
+
     }
 }

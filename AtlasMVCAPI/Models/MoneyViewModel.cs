@@ -13,5 +13,6 @@ namespace AtlasMVCAPI.Models
         public List<string> ItemSalePrice { get; set; } 
         public List<string> ItemPurchaseName { get; set; } 
         public List<string> ItemPurchasePrice { get; set; }
+        public List<ItemVO> ListGraph { get; set; }
     }
 }

@@ -143,7 +143,7 @@ namespace AtlasMVCAPI.Controllers
 
             ItemDAC db = new ItemDAC();
             DataSet ds = db.GetPivotMoney(startDate, endDate);
-
+            
 
             for (int len = 0; len < ds.Tables.Count; len++) // 매출, 매입 테이블
             {
@@ -231,6 +231,8 @@ namespace AtlasMVCAPI.Controllers
             model.ItemSalePrice = ItemSalePrice;
             model.ItemPurchaseName = ItemPurchaseName;
             model.ItemPurchasePrice = ItemPurchasePrice;
+
+            model.ListGraph = db.GetItemPurchaseLanking(startDate, endDate);
 
             // ViewData["ColumnCnt"] = TB_Sales.Columns.Count;
             ViewData["Table"] = TB_Sales;
