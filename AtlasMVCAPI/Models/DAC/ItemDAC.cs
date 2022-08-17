@@ -363,5 +363,31 @@ where ParentID != '*'";
                     return null;
             }
         }
+        // 기간에 따른 제품(완제품) 판매 순위 (작성자: 지현)
+        public List<ItemVO> GetItemSaleLanking(string from, string to)
+        {
+
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.Parameters.AddWithValue("@from", from);
+                cmd.Parameters.AddWithValue("@to", to);
+                cmd.CommandText = @"select Top 6 ItemName, SUM(ItemPrice*Qty) ItemPrice 
+                                    from TB_Order O  
+                                    inner join TB_OrderDetails OD on O.OrderID = OD.OrderID 
+                                    inner join TB_item I on I.ItemID = OD.ItemID 
+                                    where CONVERT(CHAR(10), O.CreateDate, 23) between @from and @to                                     group by ItemName 
+                                    order by ItemPrice desc";
+
+                cmd.Connection.Open();
+                List<ItemVO> list = Helper.DataReaderMapToList<ItemVO>(cmd.ExecuteReader());
+                cmd.Connection.Close();
+
+                if (list != null && list.Count > 0)
+                    return list;
+                else
+                    return null;
+            }
+        }
     }
 }
