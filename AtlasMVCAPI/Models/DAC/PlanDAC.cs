@@ -22,15 +22,26 @@ namespace AtlasMVCAPI.Models
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = new SqlConnection(strConn);
+                //cmd.CommandText =
+                //    @"with orderlist as
+                //     (
+                //     select OrderID, CustomerName, convert(varchar(30), O.CreateDate, 120) CreateDate, O.CreateUser
+                //     from TB_Order O inner join TB_Customer C on O.CustomerID = C.CustomerID
+                //     )
+                //     select O.OrderID, CustomerName, convert(varchar(30), O.CreateDate, 120) CreateDate, O.CreateUser
+                //     from orderlist O inner join (select OrderID from TB_Order except select OrderID from TB_Plan) T 
+                //          on O.OrderID = T.OrderID
+                //     where CreateDate Between @From and @To";
                 cmd.CommandText =
-                    @"with orderlist as
-                     (
-                     select OrderID, CustomerName, convert(varchar(30), O.CreateDate, 120) CreateDate, O.CreateUser
-                     from TB_Order O inner join TB_Customer C on O.CustomerID = C.CustomerID
-                     )
-                     select O.OrderID, CustomerName, convert(varchar(30), O.CreateDate, 120) CreateDate, O.CreateUser
-                     from orderlist O inner join (select OrderID from TB_Order except select OrderID from TB_Plan) T 
-                          on O.OrderID = T.OrderID
+                    @"select distinct O.OrderID, O.CustomerName, convert(varchar(30), O.CreateDate, 120) CreateDate, O.CreateUser
+                     from (select OrderID, ItemID, CustomerName, convert(varchar(30), O.CreateDate, 120) CreateDate, O.CreateUser
+                           from (select O.OrderID, ItemID, CustomerID, CreateDate, CreateUser 
+                                        from TB_Order O inner join TB_OrderDetails OD on O.OrderID = OD.OrderID) O 
+                                        inner join TB_Customer C on O.CustomerID = C.CustomerID) O 
+                           inner join (select OrderID, ItemID from TB_OrderDetails except select OrderID, ItemID from TB_Plan) T 				     
+                           on O.OrderID = T.OrderID and O.ItemID = T.ItemID
+						   inner join (select OrderID, ItemID from TB_OrderDetails except select OrderID, ItemID from TB_LOT) B 
+						   on O.OrderID = B.OrderID and O.ItemID = B.ItemID
                      where CreateDate Between @From and @To";
 
                 cmd.Parameters.AddWithValue("@From", from);
@@ -50,11 +61,25 @@ namespace AtlasMVCAPI.Models
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = new SqlConnection(strConn);
+                //cmd.CommandText =
+                //    @"select OD.OrderID, OD.ItemID, OD.Qty, I.ItemName, I.CurrentQty, I.SafeQty, 
+                //        case when (OD.Qty + I.SafeQty - I.CurrentQty ) > 0 then OD.Qty + I.SafeQty - I.CurrentQty else 0 end NeedQty
+                //      from TB_OrderDetails OD inner join TB_Item I on OD.ItemID = I.ItemID
+                //      where OrderID = @OrderID";
                 cmd.CommandText =
-                    @"select OD.OrderID, OD.ItemID, OD.Qty, I.ItemName, I.CurrentQty, I.SafeQty, 
+                    @"with alist as
+                    (
+                     select OD.OrderID, OD.ItemID, OD.Qty, I.ItemName, I.CurrentQty, I.SafeQty, 
                         case when (OD.Qty + I.SafeQty - I.CurrentQty ) > 0 then OD.Qty + I.SafeQty - I.CurrentQty else 0 end NeedQty
-                      from TB_OrderDetails OD inner join TB_Item I on OD.ItemID = I.ItemID
-                      where OrderID = @OrderID";
+                     from TB_OrderDetails OD inner join TB_Item I on OD.ItemID = I.ItemID
+                     )
+                     select A.OrderID, A.ItemID, A.Qty, A.ItemName, A.CurrentQty, A.SafeQty, 
+                        case when (A.Qty + A.SafeQty - A.CurrentQty ) > 0 then A.Qty + A.SafeQty - A.CurrentQty else 0 end NeedQty
+                     from alist A inner join (select OrderID, ItemID from TB_OrderDetails except select OrderID, ItemID from TB_LOT) B 
+                                  on A.OrderID = B.OrderID and A.ItemID = B.ItemID
+                                  inner join (select OrderID, ItemID from TB_OrderDetails except select OrderID, ItemID from TB_Plan) T
+                                  on A.OrderID = T.OrderID and A.ItemID = T.ItemID
+					 where A.OrderID = @OrderID";
 
                 cmd.Parameters.AddWithValue("@OrderID", order);
 

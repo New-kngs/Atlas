@@ -21,6 +21,8 @@ namespace AltasMES
 
         private void frmPlan_Ship_Load(object sender, EventArgs e)
         {
+            srv = new ServiceHelper("");
+
             txtOrderID.Text = plan.OrderID;
             txtProduct.Text = plan.ItemName;
             txtQty.Text = plan.LOTIQty.ToString();
@@ -32,18 +34,16 @@ namespace AltasMES
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
-        {
-            srv = new ServiceHelper("api/Plan");
-            
+        {                        
             PlanVO list = new PlanVO
             {
-                ItemID = plan.ItemID,
-                LOTIQty = plan.LOTIQty,
-                CreateUser = plan.CreateUser,
-                OrderID = plan.OrderID,
+                ItemID = this.plan.ItemID,
+                LOTIQty = this.plan.LOTIQty,
+                CreateUser = this.plan.CreateUser,
+                OrderID = this.plan.OrderID,
             };
             
-            ResMessage<List<PlanVO>> result = srv.PostAsync<PlanVO, List<PlanVO>>("SavePlanShip", list);
+            ResMessage<List<PlanVO>> result = srv.PostAsync<PlanVO, List<PlanVO>>("api/Plan/SavePlanShip", list);
 
             if (result.ErrCode == 0)
             {

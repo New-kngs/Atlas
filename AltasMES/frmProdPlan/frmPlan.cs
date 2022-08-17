@@ -119,7 +119,7 @@ namespace AltasMES
 
         private void dgvDetail_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0) return;           
+            if (e.RowIndex < 0) return;
 
             dgvSemi.DataSource = null;
             dgvMaterial.DataSource = null;
@@ -151,7 +151,7 @@ namespace AltasMES
         }
 
         private void btnModify_Click(object sender, EventArgs e)
-        {        
+        {
             PlanVO plan = new PlanVO()
             {
                 CreateUser = ((Main)this.MdiParent).EmpName.ToString()
@@ -179,7 +179,7 @@ namespace AltasMES
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
-        {           
+        {
             if (dgvSemi.DataSource == null)
             {
                 MessageBox.Show("작업지시를 생성할 주문서와 제품을 선택하여 주십시오.");
@@ -244,38 +244,48 @@ namespace AltasMES
                         dgvMaterial.DataSource = null;
                     }
                 }
-               
+
             }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (dgvList.SelectedRows.Count <1 || dgvDetail.SelectedRows.Count <1)
+            if (dgvList.SelectedRows.Count < 1 || dgvDetail.SelectedRows.Count < 1)
             {
                 MessageBox.Show("출하지시할 주문서와 제품을 선택하여 주십시오.");
                 return;
-            }
+            }            
             else
             {
-                PlanVO plan = new PlanVO()
+                int current = Convert.ToInt32(dgvDetail["CurrentQty", dgvDetail.CurrentRow.Index].Value);
+                int qty = Convert.ToInt32(dgvDetail["Qty", dgvDetail.CurrentRow.Index].Value);
+                if (current < qty)
                 {
-                    ItemID = dgvDetail["ItemID", dgvDetail.CurrentRow.Index].Value.ToString(),
-                    ItemName = dgvDetail["ItemName", dgvDetail.CurrentRow.Index].Value.ToString(),
-                    LOTIQty = Convert.ToInt32(dgvDetail["Qty", dgvDetail.CurrentRow.Index].Value),
-                    CreateUser = ((Main)this.MdiParent).EmpName.ToString(),
-                    OrderID = dgvList["OrderID", dgvList.CurrentRow.Index].Value.ToString()
-                };
-
-                frmPlan_Ship frm = new frmPlan_Ship(plan);
-                if (frm.ShowDialog() == DialogResult.OK)
-                {
-                    LoadData();
-                    dgvList.ClearSelection();
-                    dgvDetail.DataSource = null;
-                    dgvSemi.DataSource = null;
-                    dgvMaterial.DataSource = null;
+                    MessageBox.Show("주문수량이 현재재고 보다 많습니다. 작업지시를 진행하십시오.");
+                    return;
                 }
+                else
+                {
+                    PlanVO plan = new PlanVO()
+                    {
+                        ItemID = dgvDetail["ItemID", dgvDetail.CurrentRow.Index].Value.ToString(),
+                        ItemName = dgvDetail["ItemName", dgvDetail.CurrentRow.Index].Value.ToString(),
+                        LOTIQty = Convert.ToInt32(dgvDetail["Qty", dgvDetail.CurrentRow.Index].Value),
+                        CreateUser = ((Main)this.MdiParent).EmpName.ToString(),
+                        OrderID = dgvList["OrderID", dgvList.CurrentRow.Index].Value.ToString()
+                    };
 
+                    frmPlan_Ship frm = new frmPlan_Ship(plan);
+                    if (frm.ShowDialog() == DialogResult.OK)
+                    {
+                        LoadData();
+                        dgvList.ClearSelection();
+                        dgvDetail.DataSource = null;
+                        dgvSemi.DataSource = null;
+                        dgvMaterial.DataSource = null;
+                    }
+                }
+                
             }
 
         }
