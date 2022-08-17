@@ -339,18 +339,19 @@ where ParentID != '*'";
         // 기간에 따른 제품(부품) 구매 순위 (작성자: 지현)
         public List<ItemVO> GetItemPurchaseLanking(string from, string to)
         {
+            
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = new SqlConnection(strConn);
                 cmd.Parameters.AddWithValue("@from", from);
                 cmd.Parameters.AddWithValue("@to", to);
                 cmd.CommandText = @"select Top 6 ItemName, SUM(ItemPrice*Qty) ItemPrice 
-from TB_Purchase P  
-inner join TB_PurchaseDetails PD on P.PurchaseID = PD.PurchaseID 
-inner join TB_item I on I.ItemID = PD.ItemID 
-where convert(date, P.CreateDate) between '@from' and '@to' 
-group by ItemName 
-order by ItemPrice desc";
+                                    from TB_Purchase P  
+                                    inner join TB_PurchaseDetails PD on P.PurchaseID = PD.PurchaseID 
+                                    inner join TB_item I on I.ItemID = PD.ItemID
+                                    where convert(varchar(30), P.CreateDate, 120) between @from and @to
+                                    group by ItemName 
+                                    order by ItemPrice desc";
 
                 cmd.Connection.Open();
                 List<ItemVO> list = Helper.DataReaderMapToList<ItemVO>(cmd.ExecuteReader());
@@ -361,8 +362,6 @@ order by ItemPrice desc";
                 else
                     return null;
             }
-                
         }
-
     }
 }
