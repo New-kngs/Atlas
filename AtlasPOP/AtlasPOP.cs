@@ -122,6 +122,11 @@ namespace AtlasPOP
                 MessageBox.Show("이미 종료된 작업입니다.");
                 return;
             }
+            if (Oper.OpState.Equals("입고대기"))
+            {
+                MessageBox.Show("작업이 완료되었습니다. 입고를 진행하여주십시오");
+                return;
+            }
             if (Oper.resourceYN.Equals("N"))
             {
                 MessageBox.Show("자재가 투입되지 않았습니다.");
@@ -286,9 +291,15 @@ namespace AtlasPOP
 
         private void btnState_Click(object sender, EventArgs e)
         {
+            
             if (Oper == null)
             {
                 MessageBox.Show("작업을 선택해주세요.");
+                return;
+            }
+            if (frmPerfLST[Oper.port] == null)
+            {
+                MessageBox.Show("작업이 시작되지않았습니다.");
                 return;
             }
             if (frmPerfLST == null)

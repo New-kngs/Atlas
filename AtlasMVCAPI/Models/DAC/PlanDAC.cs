@@ -237,5 +237,20 @@ namespace AtlasMVCAPI.Models
                 return (iRowAffect > 0);
             }
         }
+
+        public List<PlanVO> GetPlanList()
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.CommandText = @"select PlanID, ItemID, PlanQty, OrderID, convert(nvarchar(20), CreateDate,120) CreateDate,  CreateUser,convert(nvarchar(20), ModifyDate,120) ModifyDate, ModifyUser from TB_Plan";
+
+                cmd.Connection.Open();
+                List<PlanVO> list = Helper.DataReaderMapToList<PlanVO>(cmd.ExecuteReader());
+                cmd.Connection.Close();
+
+                return list;
+            }
+        }
     }
 }

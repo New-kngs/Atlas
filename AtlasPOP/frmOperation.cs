@@ -88,7 +88,7 @@ namespace AtlasPOP
         }
         private void dgvList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            loadDetails();
+            
         }
         public void loadDetails()
         {
@@ -119,6 +119,11 @@ namespace AtlasPOP
         private void frmOperation_Shown(object sender, EventArgs e)
         {
             dgvList.ClearSelection();
+        }
+
+        private void dgvList_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            loadDetails();
         }
     }
 }
