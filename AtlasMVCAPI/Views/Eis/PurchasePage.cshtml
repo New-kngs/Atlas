@@ -90,47 +90,47 @@
                             </table>
                         </div>
                     </div>
-                   
+
                 </div>
             </div>
-           
+
         </div>
     </div>
 </div>
-    @{
-        // 기간조회
-        string inputDates = Model.M_Date; // "08-12,08-13,08-15"
-                                          // ['January', 'February', 'March', 'April', 'May', 'June', 'July']
+@{
+    // 기간조회
+    string inputDates = Model.M_Date; // "08-12,08-13,08-15"
+                                      // ['January', 'February', 'March', 'April', 'May', 'June', 'July']
 
-        List<string> ItemSaleNames = Model.ItemSalesName;
-        List<string> ItemSalePrice = Model.ItemSalePrice;
-        List<string> ItemPurchaseName = Model.ItemPurchaseName;
-        List<string> ItemPurchasePrice = Model.ItemPurchasePrice;
-    }
-    @section Scripts
+    List<string> ItemSaleNames = Model.ItemSalesName;
+    List<string> ItemSalePrice = Model.ItemSalePrice;
+    List<string> ItemPurchaseName = Model.ItemPurchaseName;
+    List<string> ItemPurchasePrice = Model.ItemPurchasePrice;
+}
+@section Scripts
 {
-        <!-- ChartJS -->
-        <script src="/plugins/chart.js/Chart.min.js"></script>
+    <!-- ChartJS -->
+    <script src="/plugins/chart.js/Chart.min.js"></script>
 
-        <!-- 달력 -->
-        <script src="/plugins/select2/js/select2.full.min.js"></script>
+    <!-- 달력 -->
+    <script src="/plugins/select2/js/select2.full.min.js"></script>
 
-        <script src="/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+    <script src="/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
 
-        <script src="/plugins/moment/moment.min.js"></script>
-        <script src="/plugins/inputmask/jquery.inputmask.min.js"></script>
+    <script src="/plugins/moment/moment.min.js"></script>
+    <script src="/plugins/inputmask/jquery.inputmask.min.js"></script>
 
-        <script src="/plugins/daterangepicker/daterangepicker.js"></script>
+    <script src="/plugins/daterangepicker/daterangepicker.js"></script>
 
-        <script src="/dist/js/adminlte.min.js?v=3.2.0"></script>
+    <script src="/dist/js/adminlte.min.js?v=3.2.0"></script>
 
-        <!-- ChartJS -->
-        <script src="/plugins/chart.js/Chart.min.js"></script>
-
-
+    <!-- ChartJS -->
+    <script src="/plugins/chart.js/Chart.min.js"></script>
 
 
-        <script>
+
+
+    <script>
         $(function () {
             // Chart
             /* ChartJS
@@ -152,6 +152,7 @@
                 // labels: ['08-08', '08-09', '08-10', '08-11', '08-12', '08-13', '08-14'],
                 labels: arrTemp,
                 datasets: [
+                    @*@for(int i=0; i<ItemSaleNames.Count)*@
                     {
                         label: '@ItemSaleNames[0]',
                         backgroundColor: 'rgba(255,167,167,0.9)',
@@ -333,52 +334,52 @@
             window.location.href = 'Index?startDate=' + document.getElementById("startDate").value + '&endDate=' + document.getElementById("endDate").value;
         }
 
-        </script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                //debugger;
-                //alert($('#dataObjCol').val());
-                var dataObjCol = JSON.parse($('#dataObjCol').val());
-                var dataObjData = JSON.parse($('#dataObjData').val());
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //debugger;
+            //alert($('#dataObjCol').val());
+            var dataObjCol = JSON.parse($('#dataObjCol').val());
+            var dataObjData = JSON.parse($('#dataObjData').val());
 
 
 
-                // Datatable settings.
-                $('#TableId').DataTable(
-                    {
+            // Datatable settings.
+            $('#TableId').DataTable(
+                {
 
-                        "data": dataObjData,
-                        "columns": dataObjCol,
-                        //    { "data": "ORDER_DATE" },
-                        //    { "data": "WORK_ORDER_ID" },
-                        //    { "data": "PRODUCT_CODE" },
-                        //    { "data": "PRODUCT_NAME" },
-                        //    { "data": "ORDER_QTY" },
-                        //    { "data": "PRODUCT_QTY" },
-                        //    { "data": "DEFECT_QTY" },
-                        //    { "data": "QUALITY_RATE" },
-                        //    { "data": "DEFECT_RATE" },
-                        //    { "data": "WORK_CLOSE_TIME" } //데이터가 이렇게 넘어오게 하면 되는 거잖아? 근데 지금은 타이틀도 같이 넘어오는 상태고..그 타이틀은 보여주는 컬럼인가?
+                    "data": dataObjData,
+                    "columns": dataObjCol,
+                    //    { "data": "ORDER_DATE" },
+                    //    { "data": "WORK_ORDER_ID" },
+                    //    { "data": "PRODUCT_CODE" },
+                    //    { "data": "PRODUCT_NAME" },
+                    //    { "data": "ORDER_QTY" },
+                    //    { "data": "PRODUCT_QTY" },
+                    //    { "data": "DEFECT_QTY" },
+                    //    { "data": "QUALITY_RATE" },
+                    //    { "data": "DEFECT_RATE" },
+                    //    { "data": "WORK_CLOSE_TIME" } //데이터가 이렇게 넘어오게 하면 되는 거잖아? 근데 지금은 타이틀도 같이 넘어오는 상태고..그 타이틀은 보여주는 컬럼인가?
 
-                        //],
-                        "bPaginate": false,
-                        "bFilter": false,
-                        "bInfo": false,
-                        "autoWidth": false,
-                        "bSort": false,
-                        "columnDefs": [
-                            {
-                                "width": "28px",
-                                "targets": "0",
-                                "className": "text-right"
-                            },
-                            {
-                                "width": "2px",
-                                "targets": "1",
-                                "className": "text-right"
-                            }
-                        ]
-                    });
-            });
-        </script>
-    }
+                    //],
+                    "bPaginate": false,
+                    "bFilter": false,
+                    "bInfo": false,
+                    "autoWidth": false,
+                    "bSort": false,
+                    "columnDefs": [
+                        {
+                            "width": "28px",
+                            "targets": "0",
+                            "className": "text-right"
+                        },
+                        {
+                            "width": "2px",
+                            "targets": "1",
+                            "className": "text-right"
+                        }
+                    ]
+                });
+        });
+    </script>
+}
