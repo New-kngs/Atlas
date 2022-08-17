@@ -34,7 +34,7 @@ namespace AtlasPOP
             state.Dock = DockStyle.Fill;
             this.Invoke((MethodInvoker)(() => panel1.Controls.Add(state)));
         }
-
+        
 
         private void lblName_Click(object sender, EventArgs e)
         {

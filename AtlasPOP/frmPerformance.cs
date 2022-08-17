@@ -34,6 +34,7 @@ namespace AtlasPOP
         int procID;
         int index = 0;
         int ss;
+        bool finish = false;
         ThreadPLCTask m_thread;
         BackgroundWorker worker;
         LoggingUtility m_log;
@@ -43,6 +44,7 @@ namespace AtlasPOP
         public OperationVO oper { get; set; }
         List<EquipDetailsVO> EquipList = null;
         Dictionary<int, EquipList> dicEquip = null;
+        
         public frmPerformance(string task, string IP, string Port, OperationVO oper, int processid, AtlasPOP main)
         {
             InitializeComponent();
@@ -113,17 +115,14 @@ namespace AtlasPOP
         {
             int count = 0;
             ss = oper.PlanQty / EquipList.Count;
-            int time = oper.PlanQty / EquipList.Count;
+            float time = oper.PlanQty / EquipList.Count;
             while (count <= oper.PlanQty)
             {
-               
-
                 if (count == time)
                 {
                     opFinish(this,e);
                     time += ss;
                 }
-
 
                 if (worker.CancellationPending == true) //쓰레드 취소 요청시
                 {
@@ -135,7 +134,6 @@ namespace AtlasPOP
                 count++;
                 Thread.Sleep(1000);
             }
-            
         }
 
         private void opFinish(object sender, DoWorkEventArgs e)
@@ -179,10 +177,11 @@ namespace AtlasPOP
 
                 oper.CompleteQty = Convert.ToInt32(txtQty.Text);
                 oper.FailQty = totfail;
-
+                
                 DialogResult result = MessageBox.Show($"{oper.ProcessName}의 작업이 끝났습니다", "작업 종료", MessageBoxButtons.OK);
                 if (result == DialogResult.OK)
                 {
+                    
                     ResMessage<List<OperationVO>> finish = service.PostAsync<OperationVO, List<OperationVO>>("api/pop/UdateFinish", oper);
                     if (finish.ErrCode == 0)
                     {
@@ -212,6 +211,7 @@ namespace AtlasPOP
 
             }
         }
+        
 
         public void drawEquip()
         {
@@ -241,7 +241,6 @@ namespace AtlasPOP
                         idx++;
                     }
                 }
-                
             }
             else
             {

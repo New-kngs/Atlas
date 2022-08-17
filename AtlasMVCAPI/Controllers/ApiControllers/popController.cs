@@ -407,35 +407,7 @@ namespace AtlasMVCAPI.Controllers
             }
         }
 
-        //POST : https://localhost:44391/api/pop/UpdatePutInYN
-        [HttpPost]
-        [Route("UpdatePutInYN")]
-        public IHttpActionResult UpdatePutInYN(OperationVO oper)
-        {
-            try
-            {
-                popDAC db = new popDAC();
-                bool flag = db.UpdatePutInYN(oper);
-
-                ResMessage result = new ResMessage()
-                {
-                    ErrCode = (!flag) ? -9 : 0,
-                    ErrMsg = (!flag) ? "수정 중 오류발생" : "S"
-                };
-
-                return Ok(result);
-            }
-            catch (Exception err)
-            {
-                System.Diagnostics.Debug.WriteLine(err.Message);
-
-                return Ok(new ResMessage()
-                {
-                    ErrCode = -9,
-                    ErrMsg = err.Message
-                });
-            }
-        }
+        
 
         /// <summary>
         /// 등록된 모든 거래처명을 조회해서 반환

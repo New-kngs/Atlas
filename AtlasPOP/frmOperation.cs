@@ -40,6 +40,7 @@ namespace AtlasPOP
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "공정상태", "OpState", colwidth: 100, DataGridViewContentAlignment.MiddleCenter);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "자재투입여부", "resourceYN", colwidth: 140, DataGridViewContentAlignment.MiddleCenter);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "창고입고여부", "PutInYN", colwidth: 140, DataGridViewContentAlignment.MiddleCenter);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "포장여부", "LapingYN", visibility : false);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "담당ID", "EmpID", visibility: false);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "포트", "port",visibility: false);
             dgvList.ClearSelection();
@@ -124,6 +125,16 @@ namespace AtlasPOP
         private void dgvList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             loadDetails();
+        }
+
+        private void dgvList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            string finish = dgvList.Rows[e.RowIndex].Cells["LapingYN"].Value.ToString();
+
+            if (finish == "Y")
+            {
+                e.CellStyle.ForeColor = Color.Blue;
+            }      
         }
     }
 }

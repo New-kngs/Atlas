@@ -24,17 +24,17 @@ namespace AltasMES
         {
             service = new ServiceHelper("");
             DataGridUtil.SetInitGridView(dgvList);
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "생산계획ID", "PlanID");
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "제품ID", "ItemID");
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "제품명", "ItemName");
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "제품유형", "ItemCategory");
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "요청수량", "PlanQty");
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "주문ID", "OrderID");
+            DataGridUtil.AddGridTextBoxColumn(dgvList, "생산계획ID", "PlanID", colwidth: 120, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvList, "주문ID", "OrderID", colwidth: 100, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvList, "제품ID", "ItemID", colwidth: 100, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvList, "제품명", "ItemName", colwidth: 165, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvList, "제품유형", "ItemCategory", colwidth: 120, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvList, "요청수량", "PlanQty", colwidth: 120, align: DataGridViewContentAlignment.MiddleCenter);  
             DataGridUtil.AddGridTextBoxColumn(dgvList, "작업지시생성여부", "CreateYN", visibility : false);
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "생성날짜", "CreateDate");
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "생성사용자", "CreateUser");
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "수정일날짜", "ModifyDate");
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "수정사용자", "ModifyUser");
+            DataGridUtil.AddGridTextBoxColumn(dgvList, "생성날짜", "CreateDate", colwidth: 165, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvList, "생성사용자", "CreateUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvList, "수정일날짜", "ModifyDate", colwidth: 165, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvList, "수정사용자", "ModifyUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
 
             LoadData();
         }
@@ -55,6 +55,12 @@ namespace AltasMES
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            if (dgvList.CurrentCell == null) return;
+            if (!dgvList.CurrentCell.Selected)
+            {
+                MessageBox.Show("작업지시를 선택해주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             OperationVO oper = new OperationVO()
             {
                 PlanID = Convert.ToInt32(dgvList.SelectedRows[0].Cells["PlanID"].Value),
@@ -83,6 +89,13 @@ namespace AltasMES
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            if (dgvList.CurrentCell == null) return;
+            if (!dgvList.CurrentCell.Selected)
+            {
+                MessageBox.Show("작업지시를 선택해주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             int planID = Convert.ToInt32(dgvList.SelectedRows[0].Cells["PlanID"].Value);
             if(DialogResult.Yes == MessageBox.Show($"{planID}를 삭제하시겠습니까?", "삭제", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
             {

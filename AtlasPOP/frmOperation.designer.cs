@@ -160,7 +160,7 @@ namespace AtlasPOP
             this.dgvList.Size = new System.Drawing.Size(1191, 503);
             this.dgvList.TabIndex = 1;
             this.dgvList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvList_CellClick);
-
+            this.dgvList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvList_CellFormatting);
             // 
             // groupBox1
             // 

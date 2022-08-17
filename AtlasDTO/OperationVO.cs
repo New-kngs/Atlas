@@ -27,6 +27,7 @@ namespace AtlasDTO
         public string ModifyUser { get; set; }
         public string ProcessName { get; set; }
         public string PutInYN { get; set; }
+        public string LapingYN { get; set; }
         public string resourceYN { get; set; }
         public int ProcessID { get; set; }
         public string port { get; set; }

@@ -229,6 +229,9 @@ namespace AtlasPOP
                 ResMessage<List<OperationVO>> finishiwork = service.PostAsync<OperationVO, List<OperationVO>>("api/pop/UpdateFinishWorkYN", Oper);
                 MessageBox.Show("생산된 제품이 창고에 입고되었습니다.");
                 frmoper.LoadData();
+
+                frmPerfLST[Oper.port].Close();
+                frmPerfLST.Remove(Oper.port);
             }
             else
             {

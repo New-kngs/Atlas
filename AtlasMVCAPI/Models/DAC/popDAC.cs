@@ -24,7 +24,7 @@ namespace AtlasMVCAPI.Models
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = new SqlConnection(strConn);
-                cmd.CommandText = @"select OpID, convert(varchar(10), OpDate, 120) OpDate, resourceYN, PutInYN, op.ItemID, ItemName, OrderID, op.ProcessID, ProcessName,    
+                cmd.CommandText = @"select OpID, convert(varchar(10), OpDate, 120) OpDate, resourceYN, PutInYN, LapingYN, op.ItemID, ItemName, OrderID, op.ProcessID, ProcessName,    
                     PlanQty, OpState, convert(varchar(20), BeginDate,120) BeginDate,convert(varchar(20), EndDate,120) EndDate, op.EmpID, EmpName, port, CompleteQty, FailQty
                     from TB_Operation op join TB_Process p on op.ProcessID = p.ProcessID
                     join TB_Item i on op.ItemID = i.ItemID
@@ -66,7 +66,7 @@ namespace AtlasMVCAPI.Models
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = new SqlConnection(strConn);
-                cmd.CommandText = @"select OpID, convert(varchar(10), OpDate, 120) OpDate, resourceYN, PutInYN, op.ItemID, ItemName, OrderID, op.ProcessID, ProcessName,    
+                cmd.CommandText = @"select OpID, convert(varchar(10), OpDate, 120) OpDate, resourceYN, PutInYN,LapingYN, op.ItemID, ItemName, OrderID, op.ProcessID, ProcessName,    
                     PlanQty, OpState, convert(varchar(20), BeginDate,120) BeginDate,convert(varchar(20), EndDate,120) EndDate, op.EmpID, EmpName, port, CompleteQty, FailQty
                     from TB_Operation op join TB_Process p on op.ProcessID = p.ProcessID
                     join TB_Item i on op.ItemID = i.ItemID
@@ -290,31 +290,6 @@ namespace AtlasMVCAPI.Models
                 return (iRowAffect > 0);
             }
         }
-
-        /// <summary>
-        /// 창고 입고 여부 업데이트
-        /// </summary>
-        /// <param name="OpID"></param>
-        /// <returns></returns>
-        public bool UpdatePutInYN(OperationVO oper)
-        {
-            using (SqlCommand cmd = new SqlCommand
-            {
-                Connection = new SqlConnection(strConn),
-                CommandText = @"update TB_Operation set PutInYN = 'Y' where OpID = @OpID"
-            })
-            {
-                cmd.Parameters.AddWithValue("@OpID", oper.OpID);
-
-                cmd.Connection.Open();
-                int iRowAffect = cmd.ExecuteNonQuery();
-                cmd.Connection.Close();
-
-                return (iRowAffect > 0);
-            }
-        }
-
- 
 
         /// <summary>
         /// 작업시작
