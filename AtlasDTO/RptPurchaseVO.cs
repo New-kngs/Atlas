@@ -20,7 +20,8 @@ namespace AtlasDTO
         public string Phone { get; set; }
         public string EmpName { get; set; }
         public int? ItemPrice { get; set; }
-
+        public string ItemID { get; set; }
+        public string ItemSize { get; set; }
         public string totPrice { get; set; }
 
     }

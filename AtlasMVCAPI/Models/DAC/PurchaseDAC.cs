@@ -206,7 +206,7 @@ namespace AtlasMVCAPI.Models
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = new SqlConnection(strConn);
-                cmd.CommandText = @"select P.PurchaseID, CustomerName, ItemName, Qty, convert(varchar(20), P.CreateDate, 120) CreateDate ,convert(varchar(20), P.PurchaseEndDate, 120) PurchaseEndDate, InState, Address, Email, Phone, EmpName, ItemPrice
+                cmd.CommandText = @"select P.PurchaseID, CustomerName, PD.ItemID, ItemName, ItemSize, Qty, convert(varchar(20), P.CreateDate, 120) CreateDate ,convert(varchar(20), P.PurchaseEndDate, 120) PurchaseEndDate, InState, Address, Email, Phone, EmpName, ItemPrice
                                     from TB_PurchaseDetails PD inner join TB_Purchase P on PD.PurchaseID = P.PurchaseID
 						                                       inner join TB_Item I on PD.ItemID =I.ItemID
 						                                       inner join TB_Customer C on I.CustomerID = C.CustomerID
