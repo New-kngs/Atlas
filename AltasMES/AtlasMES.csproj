@@ -655,7 +655,9 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Microsoft.Office.Interop.Excel.dll" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AtlasDTO\AtlasDTO.csproj">
       <Project>{b4c8c339-791a-4219-9070-118f960a9490}</Project>
