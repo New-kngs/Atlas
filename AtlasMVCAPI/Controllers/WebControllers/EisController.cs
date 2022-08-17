@@ -122,6 +122,24 @@ namespace AtlasMVCAPI.Controllers
             model.ItemPurchaseName = ItemPurchaseName;
             model.ItemPurchasePrice = ItemPurchasePrice;
 
+            List<ItemVO> Axis = db.GetItemSaleLanking(startDate, endDate);
+            StringBuilder sbXaxis = new StringBuilder();
+            StringBuilder sbYaxis = new StringBuilder();
+
+            // '란체스터스프링Set_K','란체스터스프링Set_Q','Sunset항균방습패드S','말총항균방습패드D','Sunset항균방습패드D'
+            // 제품명을 긴 문자열로 붙힌다. (x축)
+            foreach (ItemVO x in Axis)
+            {
+                sbXaxis.Append(x.ItemName + ",");
+            }
+            foreach (ItemVO y in Axis)
+            {
+                sbYaxis.Append(y.ItemPrice + ",");
+            }
+            model.GraphX = sbXaxis.ToString().TrimEnd(',');
+            model.GraphY = "[" + sbYaxis.ToString().TrimEnd(',') + "]";
+
+
             // ViewData["ColumnCnt"] = TB_Sales.Columns.Count;
             ViewData["Table"] = TB_Sales;
 
