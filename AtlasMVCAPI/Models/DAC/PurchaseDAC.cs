@@ -200,5 +200,27 @@ namespace AtlasMVCAPI.Models
         }
 
 
+
+        public List<RptPurchaseVO> GetRptPurchase()
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.CommandText = @"select P.PurchaseID, CustomerName, ItemName, Qty, convert(varchar(20), P.CreateDate, 120) CreateDate ,convert(varchar(20), P.PurchaseEndDate, 120) PurchaseEndDate, InState, Address, Email, Phone, EmpName, ItemPrice
+                                    from TB_PurchaseDetails PD inner join TB_Purchase P on PD.PurchaseID = P.PurchaseID
+						                                       inner join TB_Item I on PD.ItemID =I.ItemID
+						                                       inner join TB_Customer C on I.CustomerID = C.CustomerID
+						                                       inner join TB_Employees E on C.EmpID = E.EmpID";
+                                    
+
+                cmd.Connection.Open();
+                List<RptPurchaseVO> list = Helper.DataReaderMapToList<RptPurchaseVO>(cmd.ExecuteReader());
+                cmd.Connection.Close();
+
+                return list;
+            }
+        }
+
+
     }
 }

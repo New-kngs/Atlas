@@ -300,10 +300,20 @@ namespace AltasMES
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
-        {
+        {           
+            List<RptPurchaseVO> rptPurchase = srv.GetAsync<List<RptPurchaseVO>>("api/Purchase/GetRptPurchase").Data;
+            List<RptPurchaseVO> resultRpt = rptPurchase.FindAll(p => p.PurchaseID.Equals(txtPurID.Text));
+
+            RptPurchaseVO vo = new RptPurchaseVO()
+            {
+                totPrice = txtPrice.Text,
+                Qty = null
+            };
+
+            resultRpt.Add(vo);
 
 
-           DataTable dt = CommonUtil.LinqQueryToDataTable(resultPurList); //DataTable
+             DataTable dt = CommonUtil.LinqQueryToDataTable(resultRpt); //DataTable
 
             rptPurchaseList rpt = new rptPurchaseList
             {
