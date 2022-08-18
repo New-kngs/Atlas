@@ -376,7 +376,9 @@ where ParentID != '*'";
                                     from TB_Order O  
                                     inner join TB_OrderDetails OD on O.OrderID = OD.OrderID 
                                     inner join TB_item I on I.ItemID = OD.ItemID 
-                                    where CONVERT(CHAR(10), O.CreateDate, 23) between @from and @to                                     group by ItemName 
+                                    where CONVERT(CHAR(10), O.CreateDate, 23) between @from and @to 
+                                    and O.OrderShip = 'Y' 
+                                    group by ItemName 
                                     order by ItemPrice desc";
 
                 cmd.Connection.Open();
@@ -388,6 +390,31 @@ where ParentID != '*'";
                 else
                     return null;
             }
+        }
+        /// <summary>
+        /// 완제품명을 가져오세요 (작성자: 지현)
+        /// </summary>
+        /// <returns></returns>
+        public List<ItemVO> GetItemName()
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.CommandText = @"select ItemName 
+                                    from TB_Item  
+                                    where ItemCategory = '완제품'  
+                                    order by 1";
+
+                cmd.Connection.Open();
+                List<ItemVO> list = Helper.DataReaderMapToList<ItemVO>(cmd.ExecuteReader());
+                cmd.Connection.Close();
+
+                if (list != null && list.Count > 0)
+                    return list;
+                else
+                    return null;
+            }
+               
         }
     }
 }

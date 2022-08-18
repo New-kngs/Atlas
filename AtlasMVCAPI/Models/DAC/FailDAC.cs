@@ -76,28 +76,43 @@ namespace AtlasMVCAPI.Models
                 return list;
             }
         }
-        // 계획수량 대비 불량수량(작성 중...) (작성자: 지현)
+        /// <summary>
+        /// 일일 생산 제품별로 다양한 불량 이유를 가져온다 (작성자: 지현)
+        /// </summary>
         public List<FailVO> GetFailRate(string searchDate)
         {
-            using(SqlCommand cmd = new SqlCommand())
+            using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = new SqlConnection(strConn);
-                cmd.CommandText = @"select ItemName, ISNULL(PlanQty, 0) PlanQty, ISNULL(FailQty,0) FailQty 
-                                    from TB_Item I 
-                                    left outer join 
-                                    (   select distinct ItemID, convert(nvarchar(10), convert(date, OpDate)) OpDate, SUM(PlanQty) PlanQty, SUM(FailQty) FailQty 
-                                    from TB_Operation 
-                                    group by ItemID, convert(nvarchar(10), convert(date, OpDate))   ) O on I.ItemID = O.ItemID and OpDate = @searchDate 
-                                    where ItemCategory = '완제품'";
+                cmd.CommandText = @"select ItemName, CodeName, SUM(f.FailQty) FailQty 
+from TB_Fail f join TB_Operation o on f.OpID = o.OpID 
+left outer join TB_CommonCode c on f.FailCode = c.Code 
+join TB_Item i on f.ItemID = i.ItemID 
+where convert(varchar(10), OpDate, 120) = @searchDate 
+group by ItemName, CodeName 
+having CodeName IS NOT NULL 
+Union 
+select ItemName, '없음', SUM(CompleteQty) CompleteQty 
+from 
+( 
+select ItemName, min(CompleteQty) CompleteQty 
+from TB_Fail f join TB_Operation o on f.OpID = o.OpID 
+left outer join TB_CommonCode c on f.FailCode = c.Code 
+join TB_Item i on f.ItemID = i.ItemID 
+where convert(varchar(10), OpDate, 120) = @searchDate 
+group by f.OpID, ItemName  
+) AS A 
+group by ItemName";
                 cmd.Parameters.AddWithValue("@searchDate", searchDate);
 
                 cmd.Connection.Open();
+                // ItemName, CodeName, FailQty
                 List<FailVO> list = Helper.DataReaderMapToList<FailVO>(cmd.ExecuteReader());
                 cmd.Connection.Close();
 
                 return list;
             }
-            
         }
+
     }
 }

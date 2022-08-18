@@ -272,19 +272,6 @@ namespace AtlasMVCAPI.Controllers
 
             return View(model);
         }
-        public ActionResult FailPage()
-        {
-            FailDAC db = new FailDAC();
-            List<FailVO> listFail = db.GetFailList();
-            var name = from f in listFail
-                       select f.FailName;
-            var qty = from f in listFail
-                       select f.FailQty;
-
-            ViewBag.LabelTop4 = "[" + string.Join(",", name) + "]";
-            ViewBag.DataTop4 = "[" + string.Join(",", qty) + "]";
-            return View();
-        }
         public ActionResult FailRate(string searchDate)
         {
             if (searchDate == null)
@@ -293,7 +280,89 @@ namespace AtlasMVCAPI.Controllers
             }
             ViewBag.searchDate = searchDate;
 
-            FailDAC db = new FailDAC();
+            FailDAC failDB = new FailDAC();
+            ItemDAC itemDB = new ItemDAC();
+            List<FailVO> failInfoList = failDB.GetFailRate(searchDate);
+
+            // var failInfo = failInfoList.GroupBy((x) => x.ItemName);
+            List<ItemVO> itemNames = itemDB.GetItemName(); // 완제품명 리스트
+            string[] arrData = new string[5]; // label(에러CommonCode)는 총 5개
+            // 예를 들어 arr[0]은 작업실수에 대한 완제품 수량
+            StringBuilder sbLabels = new StringBuilder(); // 완제품명을 누적하여 labels(x축)을 생성
+
+            // 총 5번을 돌아야한다.(label의 수량)
+            // 작업실수, 없음, 설비고장, 시스템오류, 자재불량
+            foreach (ItemVO name in itemNames) // 완제품 목록(bom복사 없을 시 완제품 8개를 반복)
+            {
+                sbLabels.Append(name.ItemName);
+                sbLabels.Append(",");
+
+                StringBuilder sbData = new StringBuilder();
+
+                var c = failInfoList.Find((x) => x.ItemName.Equals(name.ItemName));
+                if (c == null) // ItemName이 없으므로 CodeName이 없는 완제품 입니다.
+                {
+                    for (int k = 0; k < 5; k++)
+                    {
+                        arrData[k] = arrData[k] + "0,";
+                    }
+                }
+                else // CodeName이 있는 완제품 입니다.
+                {
+                    for(int z=0;z< failInfoList.Count; z++)
+                    {
+                        if(failInfoList[z].ItemName.Equals(name.ItemName) && failInfoList[z].CodeName.Equals("작업실수"))
+                        {
+                            arrData[0] = arrData[0] + failInfoList[z].FailQty.ToString() + ",";
+                        }
+                        else
+                        {
+                            arrData[0] = arrData[0] + "0,";
+                        }
+                        if (failInfoList[z].ItemName.Equals(name.ItemName) && failInfoList[z].CodeName.Equals("없음"))
+                        {
+                            arrData[1] = arrData[1] + failInfoList[z].FailQty.ToString() + ",";
+                        }
+                        else
+                        {
+                            arrData[1] = arrData[1] + "0,";
+                        }
+                        if (failInfoList[z].ItemName.Equals(name.ItemName) && failInfoList[z].CodeName.Equals("설비고장"))
+                        {
+                            arrData[2] = arrData[2] + failInfoList[z].FailQty.ToString() + ",";
+                        }
+                        else
+                        {
+                            arrData[2] = arrData[2] + "0,";
+                        }
+                        if (failInfoList[z].ItemName.Equals(name.ItemName) && failInfoList[z].CodeName.Equals("시스템오류"))
+                        {
+                            arrData[3] = arrData[3] + failInfoList[z].FailQty.ToString() + ",";
+                        }
+                        else
+                        {
+                            arrData[3] = arrData[3] + "0,";
+                        }
+                        if (failInfoList[z].ItemName.Equals(name.ItemName) && failInfoList[z].CodeName.Equals("자재불량"))
+                        {
+                            arrData[4] = arrData[0] + failInfoList[z].FailQty.ToString() + ",";
+                        }
+                        else
+                        {
+                            arrData[4] = arrData[0] + "0,";
+                        }
+                    }
+                }
+            }
+
+            ViewData["labels"] = sbLabels.ToString().TrimEnd(',');
+            for(int i = 0; i < 5; i++)
+            {
+                arrData[i] = "[" + arrData[i].ToString().TrimEnd(',') + "]";
+            }
+            ViewData["data"] = arrData;
+            
+
             return View();
         }
     }

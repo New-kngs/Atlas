@@ -77,29 +77,63 @@
         var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
 
         var areaChartData = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            labels: ['란체스터S', '란체스터D', '란체스ㅓK', 'D', '헬리온D', '헬리온D', '헬리온A', '할'],
             datasets: [
+               
                 {
-                    label: 'Digital Goods',
-                    backgroundColor: 'rgba(60,141,188,0.9)',
-                    borderColor: 'rgba(60,141,188,0.8)',
+                    label: '작업실수',
+                    backgroundColor: 'rgba(255, 167, 167, 1)',
+                    borderColor: 'rgba(255, 167, 167, 1)',
+                    pointRadius: false,
+                    pointColor: 'rgba(255, 167, 167, 1)',
+                    pointStrokeColor: '#c1c7d1',
+                    pointHighlightFill: '#fff',
+                    pointHighlightStroke: 'rgba(220,220,220,1)',
+                    data: [65, 59, 80, 81, 56, 55, 40, 12]
+                },
+                {
+                    label: '없음',
+                    backgroundColor: 'rgba(93,93,93,0.9)',
+                    borderColor: 'rgba(93,93,93,0.8)',
                     pointRadius: false,
                     pointColor: '#3b8bba',
                     pointStrokeColor: 'rgba(60,141,188,1)',
                     pointHighlightFill: '#fff',
                     pointHighlightStroke: 'rgba(60,141,188,1)',
-                    data: [28, 48, 40, 19, 86, 27, 90]
+                    data: [28, 48, 40, 19, 86, 27, 90, 12]
                 },
                 {
-                    label: 'Electronics',
-                    backgroundColor: 'rgba(210, 214, 222, 1)',
-                    borderColor: 'rgba(210, 214, 222, 1)',
+                    label: '설비고장',
+                    backgroundColor: 'rgba(178, 235, 244, 1)',
+                    borderColor: 'rgba(178, 235, 244, 1)',
                     pointRadius: false,
-                    pointColor: 'rgba(210, 214, 222, 1)',
+                    pointColor: 'rgba(178, 235, 244, 1)',
+                    pointStrokeColor: '#c1c7d1',
+                    pointHighlightFill: '#fff',
+                    pointHighlightStroke: 'rgba(178, 235, 244,1)',
+                    data: [65, 59, 80, 81, 56, 55, 40, 44]
+                },
+                {
+                    label: '시스템오류',
+                    backgroundColor: 'rgba(250, 237, 125, 1)',
+                    borderColor: 'rgba(250, 237, 125, 1)',
+                    pointRadius: false,
+                    pointColor: 'rgba(250, 237, 125, 1)',
                     pointStrokeColor: '#c1c7d1',
                     pointHighlightFill: '#fff',
                     pointHighlightStroke: 'rgba(220,220,220,1)',
-                    data: [65, 59, 80, 81, 56, 55, 40]
+                    data: [65, 59, 80, 81, 56, 55, 40, 42]
+                },
+                {
+                    label: '자재불량',
+                    backgroundColor: 'rgba(206, 242, 121, 1)',
+                    borderColor: 'rgba(206, 242, 121, 1)',
+                    pointRadius: false,
+                    pointColor: 'rgba(206, 242, 121, 1)',
+                    pointStrokeColor: '#c1c7d1',
+                    pointHighlightFill: '#fff',
+                    pointHighlightStroke: 'rgba(220,220,220,1)',
+                    data: [65, 59, 80, 81, 56, 55, 40, 32]
                 },
             ]
         }
