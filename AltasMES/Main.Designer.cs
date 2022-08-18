@@ -221,21 +221,21 @@ namespace AltasMES
             // 
             this.toolStripLblTime.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripLblTime.Name = "toolStripLblTime";
-            this.toolStripLblTime.Size = new System.Drawing.Size(120, 22);
+            this.toolStripLblTime.Size = new System.Drawing.Size(95, 22);
             this.toolStripLblTime.Text = "toolStripLblTime";
             // 
             // toolStripLblDept
             // 
             this.toolStripLblDept.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripLblDept.Name = "toolStripLblDept";
-            this.toolStripLblDept.Size = new System.Drawing.Size(120, 22);
+            this.toolStripLblDept.Size = new System.Drawing.Size(95, 22);
             this.toolStripLblDept.Text = "toolStripLblDept";
             // 
             // toolStripLblUser
             // 
             this.toolStripLblUser.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripLblUser.Name = "toolStripLblUser";
-            this.toolStripLblUser.Size = new System.Drawing.Size(117, 22);
+            this.toolStripLblUser.Size = new System.Drawing.Size(92, 22);
             this.toolStripLblUser.Text = "toolStripLblUser";
             // 
             // TabControl1
@@ -261,6 +261,7 @@ namespace AltasMES
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Main";
