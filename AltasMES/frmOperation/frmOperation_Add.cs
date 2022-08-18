@@ -38,6 +38,10 @@ namespace AltasMES
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            if(cboProcess.SelectedIndex == 0)
+            {
+                MessageBox.Show("공정을 선택해주세요");
+            }
             OperationVO operVO = new OperationVO()
             {
                 PlanID = oper.PlanID,
