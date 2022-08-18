@@ -47,7 +47,7 @@ namespace AltasMES
 
             if (result.ErrCode == 0)
             {
-                MessageBox.Show("성공적으로 등록되었습니다.");
+                MessageBox.Show("성공적으로 처리되었습니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;                
             }
             else

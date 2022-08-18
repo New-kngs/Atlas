@@ -99,6 +99,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnOK);
             this.Name = "frmResource";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "자재투입";
             this.Load += new System.EventHandler(this.frmResource_Load);

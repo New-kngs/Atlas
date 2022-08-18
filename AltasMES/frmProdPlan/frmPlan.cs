@@ -53,7 +53,7 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvMaterial, "소요수량", "PlanQty", colwidth: 120, align: DataGridViewContentAlignment.MiddleRight);
             DataGridUtil.AddGridTextBoxColumn(dgvMaterial, "현재재고", "CurrentQty", colwidth: 120, align: DataGridViewContentAlignment.MiddleRight);
             DataGridUtil.AddGridTextBoxColumn(dgvMaterial, "안전재고", "SafeQty", colwidth: 120, align: DataGridViewContentAlignment.MiddleRight);
-            DataGridUtil.AddGridTextBoxColumn(dgvMaterial, "필요수량", "NeedQty", colwidth: 120, align: DataGridViewContentAlignment.MiddleRight);
+            DataGridUtil.AddGridTextBoxColumn(dgvMaterial, "필요수량", "NeedQty", colwidth: 120, align: DataGridViewContentAlignment.MiddleRight, visibility : false);
 
 
             dtpTo.Value = DateTime.Now;
@@ -182,7 +182,7 @@ namespace AltasMES
         {
             if (dgvSemi.DataSource == null)
             {
-                MessageBox.Show("작업지시를 생성할 주문서와 제품을 선택하여 주십시오.");
+                MessageBox.Show("작업지시를 생성할 주문서와 제품을 선택하여 주십시오.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             else
@@ -252,7 +252,7 @@ namespace AltasMES
         {
             if (dgvList.SelectedRows.Count < 1 || dgvDetail.SelectedRows.Count < 1)
             {
-                MessageBox.Show("출하지시할 주문서와 제품을 선택하여 주십시오.");
+                MessageBox.Show("출하지시할 주문서와 제품을 선택하여 주십시오.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }            
             else

@@ -130,6 +130,7 @@ namespace AtlasPOP
             failList.Remove(fail);
 
             maxNum += fail.FailQty;
+            numQty.Maximum = maxNum;
             txtFailTOT.Text = maxNum.ToString();
 
             dgvList.DataSource = null;
@@ -156,26 +157,29 @@ namespace AtlasPOP
             int idx = opid.Data.FindIndex((f) => f.OpID.Contains(oper.OpID));
             if (txtFailTOT.Text != "0")
             {
-                MessageBox.Show("불량제품이 남아있습니다. \n 불량을 전부 등록해주세요");
+                MessageBox.Show("불량제품이 남아있습니다. \n 불량을 전부 등록해주세요", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning
+);
                 return;
             }
             
             if(idx >= 0)
             {
-                MessageBox.Show("이미 불량등록이 된 작업입니다.");
+                MessageBox.Show("이미 불량등록이 된 작업입니다.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning
+);
                 return;
             }
             
             ResMessage<List<FailVO>> putFail = service.PostAsync<List<FailVO>, List<FailVO>>("api/pop/InsertFailLog", failList);
             if (putFail.ErrCode == 0)
             {
-                MessageBox.Show("등록이 완료되었습니다.");
+                MessageBox.Show("등록이 완료되었습니다.", "완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 dgvList.DataSource = null;
                 failList = null;
             }
             else
             {
-                MessageBox.Show("등록 중 오류가 발생하였습니다.");
+                MessageBox.Show("등록 중 오류가 발생하였습니다.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning
+);
                 return;
             }
         }

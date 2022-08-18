@@ -35,8 +35,8 @@ namespace AtlasPOP
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "제품명", "ItemName", colwidth: 250);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "단위수량", "UnitQty", colwidth: 130, align: DataGridViewContentAlignment.MiddleRight);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "지시수량", "PlanQty", colwidth: 130, align: DataGridViewContentAlignment.MiddleRight);
-            popDataGridUtil.AddGridTextBoxColumn(dgvList, "총 수량", "Qty", colwidth: 130, align: DataGridViewContentAlignment.MiddleRight);
-            popDataGridUtil.AddGridTextBoxColumn(dgvList, "재고량", "CurrentQty", colwidth: 130, align: DataGridViewContentAlignment.MiddleRight);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "총 수량", "Qty", colwidth: 100, align: DataGridViewContentAlignment.MiddleRight);
+            popDataGridUtil.AddGridTextBoxColumn(dgvList, "재고량", "CurrentQty", colwidth: 100, align: DataGridViewContentAlignment.MiddleRight);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "생성일시", "CreateDate", colwidth: 200, visibility: false);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "생성사용자", "CreateUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter, visibility: false);
             popDataGridUtil.AddGridTextBoxColumn(dgvList, "변경일지", "ModifyDate", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter, visibility: false);
@@ -58,7 +58,8 @@ namespace AtlasPOP
             }
             else
             {
-                MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
+                MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning
+);
             }
 
             
@@ -68,7 +69,8 @@ namespace AtlasPOP
         {
             if (resource.Data.Count < 1)
             {
-                MessageBox.Show("BOM 등록이 되어 있지 않은 제품입니다.");
+                MessageBox.Show("BOM 등록이 되어 있지 않은 제품입니다.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning
+);
                 return;
             }
             else
@@ -80,13 +82,15 @@ namespace AtlasPOP
                 string YN = result.Data.Find((n) => n.OpID == oper.OpID).resourceYN;
                 if (oper.resourceYN.Equals("Y"))
                 {
-                    MessageBox.Show("이미 자재가 투입되어 있습니다.");
+                    MessageBox.Show("이미 자재가 투입되어 있습니다.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning
+);
                     return;
                 }
 
                 if (totQty > CurrentQty)
                 {
-                    MessageBox.Show("투입할 재고가 부족합니다.");
+                    MessageBox.Show("투입할 재고가 부족합니다.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning
+);
                     return;
                 }
                 //1. 자재투입 여부 업데이트
@@ -104,7 +108,7 @@ namespace AtlasPOP
                         MessageBox.Show(resultQty.ErrMsg);
                     }
 
-                    MessageBox.Show("재고 투입이 완료되었습니다.");
+                    MessageBox.Show("재고 투입이 완료되었습니다.", "완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.DialogResult = DialogResult.OK;
                 }
                 else

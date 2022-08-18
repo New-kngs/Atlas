@@ -89,7 +89,7 @@ namespace AltasMES
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(773, 79);
             this.lblTitle.TabIndex = 1;
-            this.lblTitle.Text = "삭제할 제품 상세 내용";
+            this.lblTitle.Text = "미사용 설정 상세 내용";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel2
@@ -462,7 +462,7 @@ namespace AltasMES
             this.Name = "frmItem_Delete";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "제품 삭제";
+            this.Text = "제품 미사용 설정";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmItem_Delete_FormClosing);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

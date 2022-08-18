@@ -153,6 +153,7 @@ namespace AltasMES
             // 
             // cboFail
             // 
+            this.cboFail.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboFail.FormattingEnabled = true;
             this.cboFail.Location = new System.Drawing.Point(19, 44);
             this.cboFail.Name = "cboFail";
@@ -169,6 +170,7 @@ namespace AltasMES
             this.Text = "불량";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmFail_FormClosing);
             this.Load += new System.EventHandler(this.frmFail_Load);
+            this.Shown += new System.EventHandler(this.frmFail_Shown);
             this.BasePanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.Basepanel4.ResumeLayout(false);

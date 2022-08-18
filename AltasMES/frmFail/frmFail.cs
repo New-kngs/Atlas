@@ -68,6 +68,7 @@ namespace AltasMES
         private void btnSearch_Click(object sender, EventArgs e)
         {
             LoadData();
+            dgvList.ClearSelection();
         }
 
         private void cboFail_SelectedIndexChanged(object sender, EventArgs e)
@@ -77,10 +78,12 @@ namespace AltasMES
                 LoadData();
                 result.Data = result.Data.FindAll((f) => f.FailName.Equals(cboFail.Text.Trim())).ToList();
                 dgvList.DataSource = new AdvancedList<FailVO>(result.Data);
+                dgvList.ClearSelection();
             }
             else
             {
                 LoadData();
+                dgvList.ClearSelection();
             }
             
         }
@@ -91,6 +94,11 @@ namespace AltasMES
             {
                 service.Dispose();
             }
+        }
+
+        private void frmFail_Shown(object sender, EventArgs e)
+        {
+            dgvList.ClearSelection();
         }
     }
 }

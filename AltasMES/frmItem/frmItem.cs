@@ -158,7 +158,7 @@ namespace AltasMES
 
             if (dgvItem.SelectedRows[0].Cells["StateYN"].Value.ToString() == "N")
             {
-                MessageBox.Show("이미 삭제된 제품 입니다.");
+                MessageBox.Show("이미 미사용 처리된 제품 입니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }         
 
@@ -205,7 +205,7 @@ namespace AltasMES
 
             if (itemList == null)
             {
-                MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
+                MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
             dgvItem.DataSource = null;

@@ -60,7 +60,7 @@ namespace AtlasPOP
             ResMessage<List<OperationVO>> lapingList = service.GetAsync<List<OperationVO>>("api/pop/GetLapingList");
             if (lapingList.ErrCode != 0)
             {
-                MessageBox.Show("데이터 로드 중 오류가 발생하였습니다.");
+                MessageBox.Show("데이터 로드 중 오류가 발생하였습니다.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
@@ -73,14 +73,14 @@ namespace AtlasPOP
             //등록된 로트인지 확인하는 예외처리 넣기
             if(lot == null)
             {
-                MessageBox.Show("선택된 지시서가 없습니다.");
+                MessageBox.Show("선택된 지시서가 없습니다.","경고", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             
             ResMessage<List<LOTVO>> createLOTID = service.PostAsync<LOTVO, List<LOTVO>>("api/pop/CreateLOT", lot);
             if(createLOTID.ErrCode == 0)
             {
-                MessageBox.Show("LOT가 생성되었습니다.");
+                MessageBox.Show("LOT가 생성되었습니다.","완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 btnCreateLOT.Enabled = false;
                 btnLaping.Enabled = true;
                 btnPutIN.Enabled = false;
@@ -104,7 +104,7 @@ namespace AtlasPOP
             ResMessage<List<ItemVO>> putIn = service.PostAsync<ItemVO, List<ItemVO>>("api/pop/PutInItem", Item);
             if (putIn.ErrCode == 0)
             {
-                MessageBox.Show("출하 창고에 입고되었습니다.");
+                MessageBox.Show("출하 창고에 입고되었습니다.", "완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadData();
                 btnCreateLOT.Enabled = true;
                 btnLaping.Enabled = false;
@@ -112,7 +112,7 @@ namespace AtlasPOP
             }
             else
             {
-                MessageBox.Show("입고 중 문제가 발생하였습니다.");
+                MessageBox.Show("입고 중 문제가 발생하였습니다.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
         }
@@ -120,7 +120,7 @@ namespace AtlasPOP
         private void btnLaping_Click(object sender, EventArgs e)
         {
  
-            MessageBox.Show("포장이 완료 되었습니다. 창고에 입고시켜주세요");
+            MessageBox.Show("포장이 완료 되었습니다. 창고에 입고시켜주세요", "완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
             btnCreateLOT.Enabled = false;
             btnLaping.Enabled = false;
             btnPutIN.Enabled = true;

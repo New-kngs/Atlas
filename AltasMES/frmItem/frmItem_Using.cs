@@ -44,7 +44,7 @@ namespace AltasMES
 
                 if (result.ErrCode == 0)
                 {
-                    MessageBox.Show("제품을 다시 사용하실 수 있습니다.");
+                    MessageBox.Show("제품이 사용 처리 되었습니다.");
                     this.DialogResult = DialogResult.OK;
                 }
                 else

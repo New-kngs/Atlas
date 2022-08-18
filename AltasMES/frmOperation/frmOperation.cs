@@ -73,7 +73,7 @@ namespace AltasMES
             frmOperation_Add frm = new frmOperation_Add(oper);
             if(frm.ShowDialog() == DialogResult.OK)
             {
-                MessageBox.Show("생성되었습니다.");
+                MessageBox.Show("작업지시가 생성되었습니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadData();
                 dgvList.ClearSelection();
             }

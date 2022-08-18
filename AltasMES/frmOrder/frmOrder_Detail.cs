@@ -70,7 +70,7 @@ namespace AltasMES
             }
             else
             {
-                MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
+                MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -108,6 +108,11 @@ namespace AltasMES
                 DataSource = dt
             };
             _ = new ReportPreviewForm(rpt);
+        }
+
+        private void frmOrder_Detail_Shown(object sender, EventArgs e)
+        {
+            dgvOrderDetail.ClearSelection();
         }
     }
 }

@@ -38,9 +38,10 @@ namespace AltasMES
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if(cboProcess.SelectedIndex == 0)
+            if(cboProcess.Text.Equals("선택"))
             {
-                MessageBox.Show("공정을 선택해주세요");
+                MessageBox.Show("공정을 선택해주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
             OperationVO operVO = new OperationVO()
             {
@@ -61,7 +62,7 @@ namespace AltasMES
             }
             else
             {
-                MessageBox.Show("문제가 발생하였습니다.");
+                MessageBox.Show("문제가 발생하였습니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

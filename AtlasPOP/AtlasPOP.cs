@@ -110,32 +110,37 @@ namespace AtlasPOP
             
             if (Oper == null)
             {
-                MessageBox.Show("작업을 선택해주세요");
+                MessageBox.Show("작업을 선택해주세요", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning
+);
                 return;
             }
             if (Oper.OpState.Equals("작업중"))
             {
-                MessageBox.Show("이미 작업중입니다.");
+                MessageBox.Show("이미 작업중입니다.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning
+);
                 return;
             }
             if (Oper.OpState.Equals("작업종료"))
             {
-                MessageBox.Show("이미 종료된 작업입니다.");
+                MessageBox.Show("이미 종료된 작업입니다.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning
+);
                 return;
             }
             if (Oper.OpState.Equals("입고대기"))
             {
-                MessageBox.Show("작업이 완료되었습니다. 입고를 진행하여주십시오");
+                MessageBox.Show("작업이 완료되었습니다. 입고를 진행하여주십시오", "완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             if (Oper.resourceYN.Equals("N"))
             {
-                MessageBox.Show("자재가 투입되지 않았습니다.");
+                MessageBox.Show("자재가 투입되지 않았습니다.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning
+);
                 return;
             }
             if (frmPerfLST.ContainsKey(Oper.port))
             {
-                MessageBox.Show("이미 작업중인 공정입니다. ");
+                MessageBox.Show("이미 작업중인 공정입니다. ", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning
+);
                 return;
             }
 
@@ -143,7 +148,8 @@ namespace AtlasPOP
             List<EquipDetailsVO> EquipList = equip.Data.FindAll((p) => p.ProcessID == Oper.ProcessID);
             if (EquipList.Count == 0)
             {
-                MessageBox.Show("등록된 설비가 없습니다.");
+                MessageBox.Show("등록된 설비가 없습니다.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning
+);
                 return;
             }
             
@@ -151,11 +157,12 @@ namespace AtlasPOP
             ResMessage<List<OperationVO>> start = service.PostAsync<OperationVO, List<OperationVO>>("api/pop/UdateState", Oper);
             if (start.ErrCode == 0)
             {
-                MessageBox.Show($"{Oper.OpID} - 작업시작");
+                MessageBox.Show($"{Oper.OpID} - 작업시작", "작업시작", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                MessageBox.Show("시스템에 오류가 발생하였습니다.");
+                MessageBox.Show("시스템에 오류가 발생하였습니다.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning
+);
             }
 
             string server = Application.StartupPath + "\\VirtualPLCMachin.exe";
@@ -202,12 +209,14 @@ namespace AtlasPOP
         {
             if (Oper == null)
             {
-                MessageBox.Show("작업을 선택해주세요.");
+                MessageBox.Show("작업을 선택해주세요.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning
+);
                 return;
             }
             if (!Oper.OpState.Equals("입고대기"))
             {
-                MessageBox.Show("작업중이지 않습니다. ");
+                MessageBox.Show("작업중이지 않습니다. ", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning
+);
                 return;
             }
 
@@ -227,7 +236,7 @@ namespace AtlasPOP
             if (putIn.ErrCode == 0)
             {
                 ResMessage<List<OperationVO>> finishiwork = service.PostAsync<OperationVO, List<OperationVO>>("api/pop/UpdateFinishWorkYN", Oper);
-                MessageBox.Show("생산된 제품이 창고에 입고되었습니다.");
+                MessageBox.Show("생산된 제품이 창고에 입고되었습니다.", "완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 frmoper.LoadData();
 
                 frmPerfLST[Oper.port].Close();
@@ -235,7 +244,8 @@ namespace AtlasPOP
             }
             else
             {
-                MessageBox.Show("종료 중 문제가 발생하였습니다.");
+                MessageBox.Show("종료 중 문제가 발생하였습니다.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning
+);
             }
         }
 
@@ -243,7 +253,8 @@ namespace AtlasPOP
         {
             if (Oper == null)
             {
-                MessageBox.Show("작업을 선택해주세요");
+                MessageBox.Show("작업을 선택해주세요","경고", MessageBoxButtons.OK, MessageBoxIcon.Warning
+);
                 return;
             }
 
@@ -254,7 +265,8 @@ namespace AtlasPOP
             }
             else
             {
-                MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.");
+                MessageBox.Show("서비스 호출 중 오류가 발생했습니다. 다시 시도하여 주십시오.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning
+);
             }
 
             Oper.EmpName = User;
@@ -276,7 +288,8 @@ namespace AtlasPOP
         {
             if (Oper == null)
             {
-                MessageBox.Show("작업을 선택해주세요");
+                MessageBox.Show("작업을 선택해주세요", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning
+);
                 return;
             }
             Oper.EmpName = User;
@@ -307,17 +320,20 @@ namespace AtlasPOP
             
             if (Oper == null)
             {
-                MessageBox.Show("작업을 선택해주세요.");
+                MessageBox.Show("작업을 선택해주세요.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning
+);
                 return;
             }
             if (frmPerfLST.Count < 1)
             {
-                MessageBox.Show("작업이 시작되지않았습니다.");
+                MessageBox.Show("작업이 시작되지않았습니다.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning
+);
                 return;
             }
             if (frmPerfLST == null)
             {
-                MessageBox.Show("작업중이지 않습니다.");
+                MessageBox.Show("작업중이지 않습니다.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning
+);
                 return;
             }
 

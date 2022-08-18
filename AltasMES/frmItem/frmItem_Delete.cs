@@ -42,7 +42,7 @@ namespace AltasMES
         {
             if (string.IsNullOrWhiteSpace(txtDeleteChk.Text.Trim()))
             {
-                MessageBox.Show("문구를 입력해주세요");
+                MessageBox.Show("문구를 입력해주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             if (txtID.Text.Equals(txtDeleteChk.Text.Trim()))
@@ -56,7 +56,7 @@ namespace AltasMES
                 if (result.ErrCode == 0)               
                 {
                     
-                    MessageBox.Show("성공적으로 삭제되었습니다.");
+                    MessageBox.Show("성공적으로 처리되었습니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.DialogResult = DialogResult.OK;
                 }
                 else
@@ -64,7 +64,7 @@ namespace AltasMES
             }
             else
             {
-                MessageBox.Show("문구를 다시 확인해주세요");
+                MessageBox.Show("문구를 다시 확인해주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
         }

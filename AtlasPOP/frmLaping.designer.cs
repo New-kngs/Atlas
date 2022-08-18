@@ -44,6 +44,7 @@ namespace AtlasPOP
             // 
             // dgvList
             // 
+            this.dgvList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvList.Location = new System.Drawing.Point(15, 15);
             this.dgvList.Name = "dgvList";

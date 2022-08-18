@@ -62,12 +62,12 @@ namespace AltasMES
 
             if (string.IsNullOrWhiteSpace(txtPrice.Text.Trim()))
             {
-                MessageBox.Show("제품 단가를 입력해주세요");
+                MessageBox.Show("제품 단가를 입력해주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             if (nmrSafeQty.Value < 1)
             {
-                MessageBox.Show("제품 안전재고량을 입력해주세요");
+                MessageBox.Show("제품 안전재고량을 입력해주세요", "정보", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             //if (nmrQty.Value < 1)
@@ -79,7 +79,7 @@ namespace AltasMES
             if (result.ErrCode == 0)
             {
                 //MessageBox.Show("수정 시작하시겠습니까?", "수정확인", MessageBoxButtons.YesNo) == DialogResult.Yes;
-                MessageBox.Show("성공적으로 수정되었습니다.");
+                MessageBox.Show("성공적으로 수정되었습니다.", "정보", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }

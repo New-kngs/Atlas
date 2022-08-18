@@ -114,6 +114,10 @@ namespace AltasMES
                 _port.DataReceived += _port_DataReceived;
             }
 
+            if(Properties.Settings.Default.PortName == null)
+            {
+                _port.PortName = "COM1";
+            }
             _port.PortName = Properties.Settings.Default.PortName;
             _port.BaudRate = Convert.ToInt32(Properties.Settings.Default.BaudRate);
             _port.DataBits = Convert.ToInt32(Properties.Settings.Default.DataSize);
