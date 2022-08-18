@@ -208,6 +208,7 @@ namespace AltasMES
             this.dgvPurchase.Size = new System.Drawing.Size(1028, 464);
             this.dgvPurchase.TabIndex = 1;
             this.dgvPurchase.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPurchase_CellClick);
+            this.dgvPurchase.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvPurchase_ColumnHeaderMouseClick);
             // 
             // label4
             // 

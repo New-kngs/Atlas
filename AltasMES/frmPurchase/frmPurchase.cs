@@ -249,5 +249,10 @@ namespace AltasMES
 
             }
         }
+
+        private void dgvPurchase_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            dgvPurchase.ClearSelection();
+        }
     }
 }
