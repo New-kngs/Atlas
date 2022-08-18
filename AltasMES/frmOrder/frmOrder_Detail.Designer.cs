@@ -37,19 +37,24 @@ namespace AltasMES
             this.panel3 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtEndDate = new System.Windows.Forms.TextBox();
             this.txtCreateDate = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
-            this.txtState = new System.Windows.Forms.TextBox();
             this.txtOrderID = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvOrderDetail = new System.Windows.Forms.DataGridView();
             this.btnAdd = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.btnPrint = new System.Windows.Forms.Button();
+            this.txtCount = new System.Windows.Forms.TextBox();
+            this.txtPrice = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtState = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -60,11 +65,12 @@ namespace AltasMES
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnPrint);
             this.panel1.Controls.Add(this.lblTitle);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(483, 63);
+            this.panel1.Size = new System.Drawing.Size(598, 63);
             this.panel1.TabIndex = 3;
             // 
             // lblTitle
@@ -73,7 +79,7 @@ namespace AltasMES
             this.lblTitle.Font = new System.Drawing.Font("맑은 고딕", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.Location = new System.Drawing.Point(0, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(483, 63);
+            this.lblTitle.Size = new System.Drawing.Size(598, 63);
             this.lblTitle.TabIndex = 1;
             this.lblTitle.Text = "주문 상세";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -84,7 +90,7 @@ namespace AltasMES
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 63);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(483, 510);
+            this.panel2.Size = new System.Drawing.Size(598, 457);
             this.panel2.TabIndex = 4;
             // 
             // panel3
@@ -93,15 +99,19 @@ namespace AltasMES
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.label3);
+            this.panel3.Controls.Add(this.txtState);
+            this.panel3.Controls.Add(this.label7);
+            this.panel3.Controls.Add(this.label6);
+            this.panel3.Controls.Add(this.txtPrice);
+            this.panel3.Controls.Add(this.txtCount);
             this.panel3.Controls.Add(this.label5);
             this.panel3.Controls.Add(this.label4);
-            this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.label2);
             this.panel3.Controls.Add(this.label1);
             this.panel3.Controls.Add(this.txtEndDate);
             this.panel3.Controls.Add(this.txtCreateDate);
             this.panel3.Controls.Add(this.txtName);
-            this.panel3.Controls.Add(this.txtState);
             this.panel3.Controls.Add(this.txtOrderID);
             this.panel3.Controls.Add(this.panel4);
             this.panel3.Controls.Add(this.btnAdd);
@@ -109,13 +119,13 @@ namespace AltasMES
             this.panel3.Location = new System.Drawing.Point(12, 6);
             this.panel3.Name = "panel3";
             this.panel3.Padding = new System.Windows.Forms.Padding(5);
-            this.panel3.Size = new System.Drawing.Size(459, 492);
+            this.panel3.Size = new System.Drawing.Size(574, 439);
             this.panel3.TabIndex = 0;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(14, 192);
+            this.label5.Location = new System.Drawing.Point(286, 137);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(90, 21);
             this.label5.TabIndex = 17;
@@ -129,15 +139,6 @@ namespace AltasMES
             this.label4.Size = new System.Drawing.Size(90, 21);
             this.label4.TabIndex = 16;
             this.label4.Text = "주문요청일";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(312, 26);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(74, 21);
-            this.label3.TabIndex = 15;
-            this.label3.Text = "완료여부";
             // 
             // label2
             // 
@@ -160,7 +161,7 @@ namespace AltasMES
             // txtEndDate
             // 
             this.txtEndDate.BackColor = System.Drawing.Color.White;
-            this.txtEndDate.Location = new System.Drawing.Point(110, 188);
+            this.txtEndDate.Location = new System.Drawing.Point(382, 134);
             this.txtEndDate.Name = "txtEndDate";
             this.txtEndDate.ReadOnly = true;
             this.txtEndDate.Size = new System.Drawing.Size(166, 29);
@@ -184,15 +185,6 @@ namespace AltasMES
             this.txtName.Size = new System.Drawing.Size(166, 29);
             this.txtName.TabIndex = 11;
             // 
-            // txtState
-            // 
-            this.txtState.BackColor = System.Drawing.Color.White;
-            this.txtState.Location = new System.Drawing.Point(393, 22);
-            this.txtState.Name = "txtState";
-            this.txtState.ReadOnly = true;
-            this.txtState.Size = new System.Drawing.Size(27, 29);
-            this.txtState.TabIndex = 10;
-            // 
             // txtOrderID
             // 
             this.txtOrderID.BackColor = System.Drawing.Color.White;
@@ -207,9 +199,9 @@ namespace AltasMES
             this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.Controls.Add(this.groupBox1);
-            this.panel4.Location = new System.Drawing.Point(-1, 242);
+            this.panel4.Location = new System.Drawing.Point(-1, 189);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(459, 166);
+            this.panel4.Size = new System.Drawing.Size(574, 166);
             this.panel4.TabIndex = 8;
             // 
             // groupBox1
@@ -218,7 +210,7 @@ namespace AltasMES
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(459, 166);
+            this.groupBox1.Size = new System.Drawing.Size(574, 166);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "주문 상세 내역";
@@ -230,7 +222,7 @@ namespace AltasMES
             this.dgvOrderDetail.Location = new System.Drawing.Point(3, 25);
             this.dgvOrderDetail.Name = "dgvOrderDetail";
             this.dgvOrderDetail.RowTemplate.Height = 23;
-            this.dgvOrderDetail.Size = new System.Drawing.Size(453, 138);
+            this.dgvOrderDetail.Size = new System.Drawing.Size(568, 138);
             this.dgvOrderDetail.TabIndex = 0;
             // 
             // btnAdd
@@ -241,7 +233,7 @@ namespace AltasMES
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAdd.ImageIndex = 5;
             this.btnAdd.ImageList = this.imageList1;
-            this.btnAdd.Location = new System.Drawing.Point(202, 430);
+            this.btnAdd.Location = new System.Drawing.Point(245, 381);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnAdd.Size = new System.Drawing.Size(78, 37);
@@ -264,12 +256,86 @@ namespace AltasMES
             this.imageList1.Images.SetKeyName(6, "check.png");
             this.imageList1.Images.SetKeyName(7, "close.png");
             // 
+            // btnPrint
+            // 
+            this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrint.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPrint.ImageIndex = 1;
+            this.btnPrint.ImageList = this.imageList1;
+            this.btnPrint.Location = new System.Drawing.Point(493, 19);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.btnPrint.Size = new System.Drawing.Size(93, 37);
+            this.btnPrint.TabIndex = 9;
+            this.btnPrint.Text = "주문서";
+            this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // txtCount
+            // 
+            this.txtCount.BackColor = System.Drawing.Color.White;
+            this.txtCount.Location = new System.Drawing.Point(382, 23);
+            this.txtCount.Name = "txtCount";
+            this.txtCount.ReadOnly = true;
+            this.txtCount.Size = new System.Drawing.Size(36, 29);
+            this.txtCount.TabIndex = 18;
+            // 
+            // txtPrice
+            // 
+            this.txtPrice.BackColor = System.Drawing.Color.White;
+            this.txtPrice.Location = new System.Drawing.Point(382, 77);
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.ReadOnly = true;
+            this.txtPrice.Size = new System.Drawing.Size(166, 29);
+            this.txtPrice.TabIndex = 19;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(286, 80);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(90, 21);
+            this.label6.TabIndex = 20;
+            this.label6.Text = "총주문금액";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(286, 26);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(74, 21);
+            this.label7.TabIndex = 21;
+            this.label7.Text = "등록건수";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(443, 27);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(74, 21);
+            this.label3.TabIndex = 23;
+            this.label3.Text = "완료여부";
+            this.label3.Visible = false;
+            // 
+            // txtState
+            // 
+            this.txtState.BackColor = System.Drawing.Color.White;
+            this.txtState.Location = new System.Drawing.Point(523, 23);
+            this.txtState.Name = "txtState";
+            this.txtState.ReadOnly = true;
+            this.txtState.Size = new System.Drawing.Size(27, 29);
+            this.txtState.TabIndex = 22;
+            this.txtState.Visible = false;
+            // 
             // frmOrder_Detail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(483, 573);
+            this.ClientSize = new System.Drawing.Size(598, 520);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -305,13 +371,18 @@ namespace AltasMES
         private System.Windows.Forms.DataGridView dgvOrderDetail;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtEndDate;
         private System.Windows.Forms.TextBox txtCreateDate;
         private System.Windows.Forms.TextBox txtName;
-        private System.Windows.Forms.TextBox txtState;
         private System.Windows.Forms.TextBox txtOrderID;
+        protected System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.TextBox txtCount;
+        private System.Windows.Forms.TextBox txtPrice;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtState;
+        private System.Windows.Forms.Label label7;
     }
 }

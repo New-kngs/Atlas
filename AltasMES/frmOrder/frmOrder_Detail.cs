@@ -25,7 +25,7 @@ namespace AltasMES
             this.order = order;
             txtOrderID.Text = order.OrderID;
             txtName.Text = order.CustomerName;
-            txtState.Text = order.OrderShip;
+            //txtState.Text = order.OrderShip;
             txtCreateDate.Text = order.CreateDate;
             txtEndDate.Text = order.OrderEndDate;
         }
@@ -35,10 +35,24 @@ namespace AltasMES
 
             DataGridUtil.SetInitGridView(dgvOrderDetail);            
             DataGridUtil.AddGridTextBoxColumn(dgvOrderDetail, "제품ID", "ItemID", colwidth: 100, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvOrderDetail, "제품명", "ItemName", colwidth: 200, align: DataGridViewContentAlignment.MiddleLeft);
-            DataGridUtil.AddGridTextBoxColumn(dgvOrderDetail, "수량", "Qty", colwidth: 100, align: DataGridViewContentAlignment.MiddleRight);
-
+            DataGridUtil.AddGridTextBoxColumn(dgvOrderDetail, "제품명", "ItemName", colwidth: 160, align: DataGridViewContentAlignment.MiddleLeft);
+            DataGridUtil.AddGridTextBoxColumn(dgvOrderDetail, "규격", "ItemSize", colwidth: 70, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvOrderDetail, "수량", "Qty", colwidth: 70, align: DataGridViewContentAlignment.MiddleRight);
+            DataGridUtil.AddGridTextBoxColumn(dgvOrderDetail, "단가", "ItemPrice", colwidth: 100, align: DataGridViewContentAlignment.MiddleRight);
+            dgvOrderDetail.Columns["ItemPrice"].DefaultCellStyle.Format = "###,##0";
             LoadData();
+
+            int sum = 0;
+            int price = 0;
+            int qty = 0;
+            for (int i = 0; i < dgvOrderDetail.Rows.Count; i++)
+            {
+                sum += qty = Convert.ToInt32(dgvOrderDetail.Rows[i].Cells[3].Value); // 수량
+                price += qty * Convert.ToInt32(dgvOrderDetail.Rows[i].Cells[4].Value); // 단가
+            }
+            txtCount.Text = dgvOrderDetail.Rows.Count.ToString();
+            txtPrice.Text = price.ToString("#,##0") + " 원";
+
         }
 
         public void LoadData()
@@ -73,6 +87,27 @@ namespace AltasMES
             this.Close();
         }
 
-        
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            List<RptOrderVO> rptOrder = srv.GetAsync<List<RptOrderVO>>("api/Order/GetRptOrder").Data;
+            List<RptOrderVO> resultRpt = rptOrder.FindAll(p => p.OrderID.Equals(txtOrderID.Text));
+
+
+            RptOrderVO vo = new RptOrderVO()
+            {
+                totPrice = txtPrice.Text,
+                Qty = null
+            };
+
+            resultRpt.Add(vo);
+
+            DataTable dt = CommonUtil.LinqQueryToDataTable(resultRpt); //DataTable
+
+            rptOrderList rpt = new rptOrderList
+            {
+                DataSource = dt
+            };
+            _ = new ReportPreviewForm(rpt);
+        }
     }
 }

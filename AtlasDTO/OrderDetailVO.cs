@@ -13,5 +13,7 @@ namespace AtlasDTO
         public int Qty { get; set; }
 
         public string ItemName { get; set; }
+        public int ItemPrice { get; set; }
+        public string ItemSize { get; set; }
     }
 }

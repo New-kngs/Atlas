@@ -162,5 +162,35 @@ namespace AtlasMVCAPI.Controllers
             }
         }
 
+
+        // Get : https://localhost:44391/api/Order/GetRptOrder
+        [Route("GetRptOrder")]
+        public IHttpActionResult GetRptOrder()
+        {
+            try
+            {
+                OrderDAC db = new OrderDAC();
+                List<RptOrderVO> list = db.GetRptOrder();
+
+                ResMessage<List<RptOrderVO>> result = new ResMessage<List<RptOrderVO>>()
+                {
+                    ErrCode = (list == null) ? -9 : 0,
+                    ErrMsg = (list == null) ? "조회중 오류발생" : "S",
+                    Data = list
+                };
+                return Ok(result);
+            }
+            catch (Exception err)
+            {
+                Debug.WriteLine(err.Message);
+
+                return Ok(new ResMessage()
+                {
+                    ErrCode = -9,
+                    ErrMsg = "서비스 관리자에게 문의하시기 바랍니다."
+                });
+            }
+        }
+
     }
 }

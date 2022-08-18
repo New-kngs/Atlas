@@ -85,11 +85,32 @@ namespace AtlasMVCAPI.Models
             using (SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = new SqlConnection(strConn);
-                cmd.CommandText = @"select OrderID, OD.ItemID, ItemName, Qty
-                                    from TB_OrderDetails  OD inner join TB_Item I on OD.ItemID = I.ItemID";
+                cmd.CommandText = @"select OD.OrderID, OD.ItemID, ItemName, Qty, ItemPrice, ItemSize
+                                    from TB_OrderDetails  OD inner join TB_Item I on OD.ItemID = I.ItemID
+						                                     inner join TB_Order O on OD.OrderID = O.OrderID
+						                                     inner join TB_Customer C on O.CustomerID = C.CustomerID";
 
                 cmd.Connection.Open();
                 List<OrderDetailVO> list = Helper.DataReaderMapToList<OrderDetailVO>(cmd.ExecuteReader());
+                cmd.Connection.Close();
+
+                return list;
+            }
+        }
+
+        public List<RptOrderVO> GetRptOrder()
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = new SqlConnection(strConn);
+                cmd.CommandText = @"select OD.OrderID, OD.ItemID, ItemName, Qty, ItemPrice, ItemSize, O.CreateUser, C.CustomerName, C.Email, C.Address, Convert(varchar(20), O.CreateDate, 120) CreateDate, C.Phone
+                                    from TB_OrderDetails OD inner join TB_Item I on OD.ItemID = I.ItemID
+                                                            inner join TB_Order O on OD.OrderID = O.OrderID
+				                                            inner join TB_Customer C on O.CustomerID = C.CustomerID";
+
+
+                cmd.Connection.Open();
+                List<RptOrderVO> list = Helper.DataReaderMapToList<RptOrderVO>(cmd.ExecuteReader());
                 cmd.Connection.Close();
 
                 return list;
@@ -213,7 +234,7 @@ order by A.CreateDate desc";
 
                 return (iRowAffect > 0);
             }
-        }
+        }       
 
     }
 }
