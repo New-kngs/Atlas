@@ -119,8 +119,7 @@ namespace AtlasPOP
 
         private void btnLaping_Click(object sender, EventArgs e)
         {
-            //그 로딩창 
-            Thread.Sleep(3000);
+ 
             MessageBox.Show("포장이 완료 되었습니다. 창고에 입고시켜주세요");
             btnCreateLOT.Enabled = false;
             btnLaping.Enabled = false;

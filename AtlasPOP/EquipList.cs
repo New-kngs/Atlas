@@ -34,7 +34,12 @@ namespace AtlasPOP
             state.Dock = DockStyle.Fill;
             this.Invoke((MethodInvoker)(() => panel1.Controls.Add(state)));
         }
-        
+
+        public void DrawFinish(string opstate)
+        {
+           
+        }
+
 
         private void lblName_Click(object sender, EventArgs e)
         {
@@ -49,6 +54,14 @@ namespace AtlasPOP
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        internal void DrawFinish(frmPerformance frmPerformance, ReadDataEventArgs e , string opstate)
+        {
+            this.Invoke((MethodInvoker)(() => label1.Visible = false));
+            lblState state = new lblState(opstate);
+            state.Dock = DockStyle.Fill;
+            this.Invoke((MethodInvoker)(() => panel1.Controls.Add(state)));
         }
     }
 }

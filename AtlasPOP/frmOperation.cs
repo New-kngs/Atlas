@@ -131,7 +131,7 @@ namespace AtlasPOP
         {
             string finish = dgvList.Rows[e.RowIndex].Cells["LapingYN"].Value.ToString();
 
-            if (finish == "Y")
+            if (finish != "Y")
             {
                 e.CellStyle.ForeColor = Color.Blue;
             }      

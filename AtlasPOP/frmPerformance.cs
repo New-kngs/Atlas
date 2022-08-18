@@ -44,7 +44,9 @@ namespace AtlasPOP
         public OperationVO oper { get; set; }
         List<EquipDetailsVO> EquipList = null;
         Dictionary<int, EquipList> dicEquip = null;
-        
+        EquipList item;
+
+
         public frmPerformance(string task, string IP, string Port, OperationVO oper, int processid, AtlasPOP main)
         {
             InitializeComponent();
@@ -140,6 +142,8 @@ namespace AtlasPOP
         {
             dicEquip[index].DrawState("작업종료");
             index++;
+            
+
         }
 
         private void M_thread_ReadDataReceive(object sender, ReadDataEventArgs e)
@@ -172,6 +176,18 @@ namespace AtlasPOP
 
             if (Convert.ToInt32(datas[0]) <= (Convert.ToInt32(txtTotQty.Text) + totfail))
             {
+                for(int i= 0; i<= EquipList.Count; i++)
+                {
+                    
+                    dicEquip[i].DrawState("작업종료");
+                    if(i== EquipList.Count - 1)
+                    {
+                        break;
+                    }
+                }
+                
+
+
                 worker.CancelAsync();
                 timer_Connec.Stop();
 
@@ -185,6 +201,9 @@ namespace AtlasPOP
                     ResMessage<List<OperationVO>> finish = service.PostAsync<OperationVO, List<OperationVO>>("api/pop/UdateFinish", oper);
                     if (finish.ErrCode == 0)
                     {
+                        
+                        
+
                         MessageBox.Show("작업종료");
                         main.Finish(totQty, totfail, hostPort.ToString());
                     }
@@ -231,7 +250,7 @@ namespace AtlasPOP
                     for (int c = 0; c < 4; c++)
                     {
                         if (idx >= EquipList.Count) break;
-                        EquipList item = new EquipList(EquipList[c], OperID, idx);
+                        item = new EquipList(EquipList[c], OperID, idx);
                         dicEquip[idx] = item;
                         item.Name = $"process";
                         item.Location = new Point(240 * c + 5, 164 * r + 5);
