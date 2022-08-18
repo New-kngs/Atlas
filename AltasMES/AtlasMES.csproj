@@ -287,6 +287,12 @@
     <Compile Include="frmOrder\frmOrder_Detail.Designer.cs">
       <DependentUpon>frmOrder_Detail.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmOrder\rptOrderList.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="frmOrder\rptOrderList.Designer.cs">
+      <DependentUpon>rptOrderList.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmProcess\frmPorcess_Modify.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -542,6 +548,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmOrder\frmOrder_Detail.resx">
       <DependentUpon>frmOrder_Detail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOrder\rptOrderList.resx">
+      <DependentUpon>rptOrderList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmProcess\frmPorcess_Modify.resx">
       <DependentUpon>frmPorcess_Modify.cs</DependentUpon>
