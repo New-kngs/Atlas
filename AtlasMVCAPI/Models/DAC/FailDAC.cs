@@ -76,22 +76,27 @@ namespace AtlasMVCAPI.Models
             }
         }
         // 계획수량 대비 불량수량(작성 중...) (작성자: 지현)
-        public List<FailVO> GetFailRate()
+        public List<FailVO> GetFailRate(string searchDate)
         {
             using(SqlCommand cmd = new SqlCommand())
             {
                 cmd.Connection = new SqlConnection(strConn);
                 cmd.CommandText = @"select ItemName, ISNULL(PlanQty, 0) PlanQty, ISNULL(FailQty,0) FailQty 
-from TB_Item I
-left outer join
-(   select distinct ItemID, convert(nvarchar(10), convert(date, OpDate)) OpDate, SUM(PlanQty) PlanQty, SUM(FailQty) FailQty
-from TB_Operation
-group by ItemID, convert(nvarchar(10), convert(date, OpDate))   ) O on I.ItemID = O.ItemID and OpDate = '2022-08-05'
-where ItemCategory = '완제품'";
+                                    from TB_Item I 
+                                    left outer join 
+                                    (   select distinct ItemID, convert(nvarchar(10), convert(date, OpDate)) OpDate, SUM(PlanQty) PlanQty, SUM(FailQty) FailQty 
+                                    from TB_Operation 
+                                    group by ItemID, convert(nvarchar(10), convert(date, OpDate))   ) O on I.ItemID = O.ItemID and OpDate = @searchDate 
+                                    where ItemCategory = '완제품'";
+                cmd.Parameters.AddWithValue("@searchDate", searchDate);
 
-               
+                cmd.Connection.Open();
+                List<FailVO> list = Helper.DataReaderMapToList<FailVO>(cmd.ExecuteReader());
+                cmd.Connection.Close();
+
+                return list;
             }
-            return null;
+            
         }
     }
 }

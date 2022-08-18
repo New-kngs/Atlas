@@ -16,7 +16,7 @@
             {
                 <input type="hidden" id="rdoCheck" name="rdoCheck" value="" />
                 <input type="hidden" id="orderEndDate" name="orderEndDate" value="" />
-                <input type="submit" class="btn btn-primary" value="상세보기" style="float: right;" onclick="javascript: ChkOrder();">
+                <input type="button" class="btn btn-primary" value="상세보기" style="float: right;" onclick="javascript: return ChkOrder();">
             }
         </div>
     </div>
@@ -50,9 +50,17 @@
 <!--javascript radio checked value-->
 <script>
     function ChkOrder() {
-        var rdoString = document.querySelector('input[name="orderNo"]:checked').value;
-        document.getElementById('rdoCheck').value = rdoString;
-        window.open("/OrderWeb/PurchaseOrder?rdoCheck=" + rdoString, "PopupWin", "width=663,height=900");
+        if (document.querySelector('input[name="orderNo"]:checked') == null) {
+            alert('주문번호를 선택해 주십시오.');
+            return false;
+        }
+        else {
+            var rdoString = document.querySelector('input[name="orderNo"]:checked').value;
+            document.getElementById('rdoCheck').value = rdoString;
+            window.open("/OrderWeb/PurchaseOrder?rdoCheck=" + rdoString, "PopupWin", "width=450,height=900");
+            return true;
+        }
+        
     }
     function newWindow() {
         window.open("/OrderWeb/PurchaseOrder", "PopupWin", "width=900,height=600");

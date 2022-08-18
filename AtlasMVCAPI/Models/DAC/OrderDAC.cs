@@ -160,7 +160,7 @@ where OD.OrderID = @OrderID";
                 cmd.CommandText = @"select A.OrderID, convert(nvarchar(10), convert(date, CreateDate)) CreateDate,convert(nvarchar(10), convert(date, OrderEndDate)) OrderEndDate, price, case when OrderShip = 'N' THEN '배송준비' ELSE '배송완료' END AS OrderShip 
 from TB_Order A 
 left outer join 
-(select OrderID, ISNULL(sum(ItemPrice),0) price 
+(select OrderID, ISNULL(sum(ItemPrice * qty),0) price 
 from TB_OrderDetails OD 
 inner join TB_Item I on OD.ItemID = I.ItemID 
 group by OrderID) B 

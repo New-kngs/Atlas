@@ -17,9 +17,9 @@
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="/dist/css/adminlte.min.css">
 </head>
 <body>
     <div class="wrapper">
@@ -112,8 +112,8 @@
                 </div>
                 <!-- /.col -->
                 <div class="col-4">
-                    <h3>총 결제금액</h3>
-                    <h3>@Model.Sum((p) => p.SumQty).ToString("c")</h3>
+                    <h3>총 결제금액:
+                     @Model.Sum((p) => p.SumQty).ToString("c")</h3>
                 </div>
                 <!-- /.col -->
             </div>
