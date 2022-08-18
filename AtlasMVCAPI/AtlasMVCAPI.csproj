@@ -2239,9 +2239,8 @@
     <Content Include="Views\Eis\HomePage.cshtml" />
     <Content Include="Views\OrderWeb\PurchaseOrder.cshtml" />
     <Content Include="Views\Eis\MoneyPage.cshtml" />
-    <Content Include="Views\Eis\FailPage.cshtml" />
-    <Content Include="Views\Eis\FailRate.cshtml" />
     <Content Include="Views\Eis\PurchasePage.cshtml" />
+    <Content Include="Views\Eis\FailRate.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

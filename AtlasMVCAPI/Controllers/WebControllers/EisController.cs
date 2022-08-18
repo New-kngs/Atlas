@@ -360,10 +360,10 @@ namespace AtlasMVCAPI.Controllers
             {
                 arrData[i] = "[" + arrData[i].ToString().TrimEnd(',') + "]";
             }
-            ViewData["data"] = arrData;
-            
+            List<string> model = arrData.ToList();
 
-            return View();
+            return View(model);
         }
     }
+
 }
