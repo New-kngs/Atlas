@@ -7,7 +7,13 @@
 <section class="content">
     <div class="container-fluid">
         <div class="row">
-           
+            <div class="col-md-12">
+                <form action="/Eis/FailRate" method="post">
+                    <!-- class="form-control" -->
+                    <input type="date" max="@DateTime.Now.ToString("yyyy-MM-dd")" name="searchDate"><button type="submit" class="btn btn-primary">조회</button>
+                </form>
+            </div>
+            <br />
             <!-- /.col (LEFT) -->
             <div class="col-md-12">
 
@@ -15,7 +21,7 @@
                 <canvas hidden id="lineChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                 <canvas hidden id="areaChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                 <canvas hidden id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-
+                
                 <!-- /.card -->
                 <!-- STACKED BAR CHART -->
                 <div class="card card-success">
