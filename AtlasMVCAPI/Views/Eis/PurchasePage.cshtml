@@ -71,7 +71,7 @@
                                             }
                                             else
                                             {
-                                                <th scope="col" style="text-align:center;">@col.ColumnName</th>
+                                                <th scope="col" style="text-align:center;">제품명</th>
                                             }
                                         }
                                     </tr>
@@ -79,12 +79,20 @@
                                 <tbody>
                                     @foreach (DataRow row in table.Rows)
                                     {
-                                        <tr>
-                                            @for (int i = 0; i < table.Columns.Count; i++)
+                                    <tr>
+                                        @for (int i = 0; i < table.Columns.Count; i++)
+                                        {
+                                            if (i > 0)
                                             {
-                                                <td style="text-align:right;">@row[i]</td>
+                                                <td style="text-align:right;">@string.Format("{0:c}", row[i])</td>
                                             }
-                                        </tr>
+                                            else
+                                            {
+                                                <td style="text-align:left;">@row[i]</td>
+
+                                            }
+                                        }
+                                    </tr>
                                     }
                                 </tbody>
                             </table>
@@ -220,6 +228,9 @@
             var barChartOptions = {
                 responsive: true,
                 maintainAspectRatio: false,
+                legend: {
+                    display: false,
+                },
                 datasetFill: true
             }
 

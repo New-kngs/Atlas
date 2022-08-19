@@ -123,6 +123,10 @@ namespace AtlasMVCAPI.Controllers
             model.ItemPurchasePrice = ItemPurchasePrice;
 
             List<ItemVO> Axis = db.GetItemSaleLanking(startDate, endDate);
+            if (Axis == null)
+            {
+
+            }
             StringBuilder sbXaxis = new StringBuilder();
             StringBuilder sbYaxis = new StringBuilder();
 
