@@ -253,7 +253,11 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="OperID"></param>
+        /// <returns></returns>
         //POST : https://localhost:44391/api/pop/UpdateResourceYN
         [HttpPost]
         [Route("UpdateResourceYN/{OperID}")]
@@ -283,6 +287,11 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bom"></param>
+        /// <returns></returns>
         //POST : https://localhost:44391/api/pop/UpdateResourceQty
         [HttpPost]
         [Route("UpdateResourceQty")]
@@ -346,7 +355,11 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         //POST : https://localhost:44391/api/pop/PutInItem
         [HttpPost]
         [Route("PutInItem")]
@@ -376,7 +389,11 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="failList"></param>
+        /// <returns></returns>
         //POST : https://localhost:44391/api/pop/InsertFailLog
         [HttpPost]
         [Route("InsertFailLog")]
@@ -442,7 +459,11 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="oper"></param>
+        /// <returns></returns>
         //POST : https://localhost:44391/api/pop/UdateState
         [HttpPost]
         [Route("UdateState")]
@@ -472,7 +493,11 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="oper"></param>
+        /// <returns></returns>
         //POST : https://localhost:44391/api/pop/UpdateFinishWorkYN
         [HttpPost]
         [Route("UpdateFinishWorkYN")]
@@ -502,7 +527,11 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="oper"></param>
+        /// <returns></returns>
         //POST : https://localhost:44391/api/pop/UdateFinish
         [HttpPost]
         [Route("UdateFinish")]
@@ -532,7 +561,11 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lot"></param>
+        /// <returns></returns>
         //POST : https://localhost:44391/api/pop/CreateLOT
         [HttpPost]
         [Route("CreateLOT")]

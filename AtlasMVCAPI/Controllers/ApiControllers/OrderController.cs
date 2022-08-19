@@ -41,7 +41,11 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         // Get : https://localhost:44391/api/Order/{id}
         [HttpGet]
         [Route("{id}")]
@@ -71,7 +75,12 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="From"></param>
+        /// <param name="To"></param>
+        /// <returns></returns>
         [Route("GetSearchOrder/{From}/{To}")]
         [HttpGet]
         public IHttpActionResult GetSearchOrder(string From, string To)
@@ -102,7 +111,10 @@ namespace AtlasMVCAPI.Controllers
             }
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         // Get : https://localhost:44391/api/Order/GetAllOrderDetail
         [Route("GetAllOrderDetail")]
         public IHttpActionResult GetAllOrderDetail()
@@ -131,7 +143,11 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="vo"></param>
+        /// <returns></returns>
         //POST : https://localhost:44391/api/Order/OrderEnd
         [HttpPost]
         [Route("OrderEnd")]
@@ -162,7 +178,10 @@ namespace AtlasMVCAPI.Controllers
             }
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         // Get : https://localhost:44391/api/Order/GetRptOrder
         [Route("GetRptOrder")]
         public IHttpActionResult GetRptOrder()

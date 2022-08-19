@@ -44,7 +44,11 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="equip"></param>
+        /// <returns></returns>
         //POST : https://localhost:44391/api/Equipment/SaveEquip
         [HttpPost]
         [Route("SaveEquip")]
@@ -74,7 +78,11 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="equip"></param>
+        /// <returns></returns>
         //POST : https://localhost:44391/api/Equipment/UpdateEquip
         [HttpPost]
         [Route("UpdateEquip")]
@@ -104,7 +112,11 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="equip"></param>
+        /// <returns></returns>
         //POST : https://localhost:44391/api/Equipment/DeleteEquip
         [HttpPost]
         [Route("DeleteEquip")]
@@ -134,7 +146,11 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="equip"></param>
+        /// <returns></returns>
         //POST : https://localhost:44391/api/Equipment/UsingEquip
         [HttpPost]
         [Route("UsingEquip")]

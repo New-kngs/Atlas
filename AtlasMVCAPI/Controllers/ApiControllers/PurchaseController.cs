@@ -14,7 +14,11 @@ namespace AtlasMVCAPI.Controllers
     [RoutePrefix("api/Purchase")]
     public class PurchaseController : ApiController
     {
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="purList"></param>
+        /// <returns></returns>
         //POST : https://localhost:44391/api/Purchase/SavePurchase
         [HttpPost]
         [Route("SavePurchase")]
@@ -58,7 +62,11 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="purList"></param>
+        /// <returns></returns>
         //POST : https://localhost:44391/api/Purchase/UpdatePurchase
         [HttpPost]
         [Route("UpdatePurchase")]
@@ -102,7 +110,11 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pur"></param>
+        /// <returns></returns>
         //POST : https://localhost:44391/api/Purchase/UpdatePurStateItemQty
         [HttpPost]
         [Route("UpdatePurStateItemQty")]
@@ -133,7 +145,11 @@ namespace AtlasMVCAPI.Controllers
             }
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="purId"></param>
+        /// <returns></returns>
         //POST : https://localhost:44391/api/Purchase/DeletePurchase
         [HttpPost]
         [Route("DeletePurchase")]
@@ -163,7 +179,10 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         // Get : https://localhost:44391/api/Purchase/GetAllPurchase
         [Route("GetAllPurchase")]
         public IHttpActionResult GetAllPurchase()
@@ -193,7 +212,11 @@ namespace AtlasMVCAPI.Controllers
             }
         }
         
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("{id}")]
         public IHttpActionResult GeTPurchaseById(string id)
@@ -222,7 +245,12 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="From"></param>
+        /// <param name="To"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("GetSearchPurchase/{From}/{To}")]        
         public IHttpActionResult GetSearchPurchase(string From, string To)
@@ -252,7 +280,10 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         // Get : https://localhost:44391/api/Purchase/GetAllPurchaseDetail
         [Route("GetAllPurchaseDetail")]
         public IHttpActionResult GetAllPurchaseDetail()
@@ -282,7 +313,10 @@ namespace AtlasMVCAPI.Controllers
             }
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         // Get : https://localhost:44391/api/Purchase/GetRptPurchase
         [Route("GetRptPurchase")]
         public IHttpActionResult GetRptPurchase()

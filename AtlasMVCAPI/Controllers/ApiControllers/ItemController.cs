@@ -44,7 +44,10 @@ namespace AtlasMVCAPI.Controllers
             }
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         // Get : https://localhost:44391/api/Item/PurChaseItem
         [Route("PurChaseItem")]
         public IHttpActionResult GetPurChaseItem()
@@ -74,7 +77,10 @@ namespace AtlasMVCAPI.Controllers
             }
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         // Get : https://localhost:44391/api/Item/AllItemCategory
         [Route("AllItemCategory")]
         public IHttpActionResult GetAllItemCategory()
@@ -104,7 +110,11 @@ namespace AtlasMVCAPI.Controllers
             }
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         // Get : https://localhost:44391/api/Item/{id}
         [HttpGet]
         [Route("{id}")]
@@ -134,7 +144,10 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         // SaveItem
         // POST : https://localhost:44391/api/Item/SaveItem
         [HttpPost]
@@ -185,7 +198,10 @@ namespace AtlasMVCAPI.Controllers
             }
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         // UpdateItem
         // POST : https://localhost:44391/api/Item/UpdateItem
         [HttpPost]
@@ -236,7 +252,11 @@ namespace AtlasMVCAPI.Controllers
             }
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         // DeleteItem
         // POST : https://localhost:44391/api/Item/DeleteItem
         [HttpPost]
@@ -266,7 +286,11 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         // UsingItem
         // POST : https://localhost:44391/api/Item/UsingItem
         [HttpPost]

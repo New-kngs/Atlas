@@ -41,6 +41,12 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="from"></param>
+        /// <param name="to"></param>
+        /// <returns></returns>
         // Get : https://localhost:44391/api/Fail/GetFailSearchList
         [Route("GetFailSearchList/{from}/{to}")]
         public IHttpActionResult GetFailSearchList(string from, string to)
@@ -69,7 +75,10 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         // Get : https://localhost:44391/api/Fail/GetFailCode
         [Route("GetFailCode")]
         public IHttpActionResult GetFailCode()

@@ -46,7 +46,11 @@ namespace AtlasMVCAPI.Controllers
                 }) ;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="process"></param>
+        /// <returns></returns>
         //POST : https://localhost:44391/api/Process/SaveProcess
         [HttpPost]
         [Route("SaveProcess")]
@@ -77,7 +81,11 @@ namespace AtlasMVCAPI.Controllers
             }
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="process"></param>
+        /// <returns></returns>
         //POST : https://localhost:44391/api/Process/UpdateProcess
         [HttpPost]
         [Route("UpdateProcess")]
@@ -107,7 +115,11 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="process"></param>
+        /// <returns></returns>
         //POST : https://localhost:44391/api/Process/DeleteProcess
         [HttpPost]
         [Route("DeleteProcess")]
@@ -137,7 +149,11 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="process"></param>
+        /// <returns></returns>
         //POST : https://localhost:44391/api/Process/UsingProcess
         [HttpPost]
         [Route("UsingProcess")]
@@ -201,7 +217,11 @@ namespace AtlasMVCAPI.Controllers
             }
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="equip"></param>
+        /// <returns></returns>
         //POST : https://localhost:44391/api/Process/SaveProcessEquip
         [HttpPost]
         [Route("SaveProcessEquip")]

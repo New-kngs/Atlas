@@ -34,15 +34,15 @@ namespace AtlasMVCAPI.Models
                 //     where CreateDate Between @From and @To";
                 cmd.CommandText =
                     @"select distinct O.OrderID, O.CustomerName, convert(varchar(30), O.CreateDate, 120) CreateDate, O.CreateUser
-                     from (select OrderID, ItemID, CustomerName, convert(varchar(30), O.CreateDate, 120) CreateDate, O.CreateUser
-                           from (select O.OrderID, ItemID, CustomerID, CreateDate, CreateUser 
-                                        from TB_Order O inner join TB_OrderDetails OD on O.OrderID = OD.OrderID) O 
-                                        inner join TB_Customer C on O.CustomerID = C.CustomerID) O 
-                           inner join (select OrderID, ItemID from TB_OrderDetails except select OrderID, ItemID from TB_Plan) T 				     
-                           on O.OrderID = T.OrderID and O.ItemID = T.ItemID
-						   inner join (select OrderID, ItemID from TB_OrderDetails except select OrderID, ItemID from TB_LOT) B 
-						   on O.OrderID = B.OrderID and O.ItemID = B.ItemID
-                     where CreateDate Between @From and @To";
+                        from (select OrderID, ItemID, CustomerName, convert(varchar(30), O.CreateDate, 120) CreateDate, O.CreateUser
+                        from (select O.OrderID, ItemID, CustomerID, CreateDate, CreateUser 
+                        from TB_Order O inner join TB_OrderDetails OD on O.OrderID = OD.OrderID where OrderShip = 'N') O 
+                        inner join TB_Customer C on O.CustomerID = C.CustomerID) O 
+                        inner join (select OrderID, ItemID from TB_OrderDetails except select OrderID, ItemID from TB_Plan) T 				     
+                        on O.OrderID = T.OrderID and O.ItemID = T.ItemID
+                        inner join (select OrderID, ItemID from TB_OrderDetails except select OrderID, ItemID from TB_LOT) B 
+                        on O.OrderID = B.OrderID and O.ItemID = B.ItemID
+                        where CreateDate Between @From and @To";
 
                 cmd.Parameters.AddWithValue("@From", from);
                 cmd.Parameters.AddWithValue("@To", to);

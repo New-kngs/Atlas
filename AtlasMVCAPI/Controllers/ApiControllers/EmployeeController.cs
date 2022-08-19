@@ -45,7 +45,10 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         // Get : https://localhost:44391/api/Employee/DomainCategory
         [Route("DomainCategory")]
         public IHttpActionResult GetDomainCategory()
@@ -75,7 +78,10 @@ namespace AtlasMVCAPI.Controllers
             }
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         // Get : https://localhost:44391/api/Employee/GetSalesEmplist
         [Route("GetSalesEmplist")]
         public IHttpActionResult GetSalesEmplist()
@@ -107,7 +113,11 @@ namespace AtlasMVCAPI.Controllers
 
 
         
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="emp"></param>
+        /// <returns></returns>
         //POST : https://localhost:44391/api/Employee/SaveEmployee
         [HttpPost]
         [Route("SaveEmployee")]
@@ -137,7 +147,11 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="emp"></param>
+        /// <returns></returns>
         //POST : https://localhost:44391/api/Employee/UpdateEmployee
         [HttpPost]
         [Route("UpdateEmployee")]
@@ -167,7 +181,11 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="emp"></param>
+        /// <returns></returns>
         //POST : https://localhost:44391/api/Employee/DeleteEmployee
         [HttpPost]
         [Route("DeleteEmployee")]

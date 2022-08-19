@@ -13,7 +13,10 @@ namespace AtlasMVCAPI.Controllers
     public class ShipController : ApiController
     {
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         // Get : https://localhost:44391/api/Ship/GetAllShip
         [Route("GetAllShip")]
         public IHttpActionResult GetAllShip()

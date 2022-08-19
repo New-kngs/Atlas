@@ -9,10 +9,13 @@ using AtlasDTO;
 
 namespace AtlasMVCAPI.Controllers
 {
-
+    
     [RoutePrefix("api/Emplog")]
     public class EmplogController : ApiController
-    {
+    {/// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
         [Route("GetEmplog")]
         public IHttpActionResult GetAllEmployee()
         {
@@ -41,7 +44,11 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
-      
+      /// <summary>
+      /// 
+      /// </summary>
+      /// <param name="emp"></param>
+      /// <returns></returns>
         [HttpPost]
         [Route("SaveEmplog")]
         public IHttpActionResult SaveEmplog(EmplogVO emp)

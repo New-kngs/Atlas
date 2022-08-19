@@ -13,6 +13,10 @@ namespace AtlasMVCAPI.Controllers
     [RoutePrefix("api/Customer")]
     public class CustomerController : ApiController
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         // https://localhost:44391/api/Customer/AllCustomer
         [Route("AllCustomer")]
         public IHttpActionResult GetAllCustomer()
@@ -42,7 +46,10 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         // https://localhost:44391/api/Customer/GetCustomerlist
         [Route("GetCustomerlist")]
         public IHttpActionResult GetCustomerlist()
@@ -72,7 +79,11 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="vo"></param>
+        /// <returns></returns>
         //POST : https://localhost:44391/api/Customer/SaveCustomer
         [HttpPost]
         [Route("SaveCustomer")]
@@ -102,7 +113,11 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="vo"></param>
+        /// <returns></returns>
         //POST : https://localhost:44391/api/Customer/UpdateCustomer
         [HttpPost]
         [Route("UpdateCustomer")]
@@ -132,7 +147,11 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="vo"></param>
+        /// <returns></returns>
         //POST : https://localhost:44391/api/Customer/DeleteCustomer
         [HttpPost]
         [Route("DeleteCustomer")]

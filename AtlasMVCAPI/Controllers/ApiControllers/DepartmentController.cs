@@ -10,6 +10,10 @@ namespace AtlasMVCAPI.Controllers
     [RoutePrefix("api/Department")]
     public class DepartmentController : ApiController
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
       //https://localhost:44391/api/Depament/all
         [Route("all")]
         public IHttpActionResult GetDepartmentAll()
@@ -39,7 +43,11 @@ namespace AtlasMVCAPI.Controllers
                 });
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         //POST : https://localhost:44391/api/Depamenrtt/UpdateDepart
         [HttpPost]
         [Route("UpdateDepart")]
