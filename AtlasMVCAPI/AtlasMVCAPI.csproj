@@ -2083,6 +2083,7 @@
     <Compile Include="Models\DAC\ShipDAC.cs" />
     <Compile Include="Models\DAC\WareHouseDAC.cs" />
     <Compile Include="Models\Helper\Helper.cs" />
+    <Compile Include="Models\FailRateModel.cs" />
     <Compile Include="Models\PagingInfo.cs" />
     <Compile Include="Models\MoneyViewModel.cs" />
     <Compile Include="Models\ProductListViewModel.cs" />

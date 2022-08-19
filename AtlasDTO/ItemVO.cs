@@ -35,7 +35,5 @@ namespace AtlasDTO
         public string OpID { get; set; }
 
 
-        // 추가 (김지현)
-        public int UnitQty { get; set; }
     }
 }

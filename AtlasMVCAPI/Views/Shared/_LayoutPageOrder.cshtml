@@ -20,7 +20,6 @@
 <body class="hold-transition layout-top-nav">
     <div class="wrapper">
         <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
-
             <!-- Left navbar links -->
             <div class="container">
                 <a href="/Home/Index/" class="navbar-brand">
@@ -31,7 +30,6 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse order-3" id="navbarCollapse">
-
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a href="/Product/List" class="nav-link">제품목록</a>
@@ -51,7 +49,7 @@
                         @if (loginInfo != null)
                         {
                             <li class="nav-item dropdown">
-                                <a class="nav-link"href="#">
+                                <a class="nav-link" href="#">
                                     <i class="fa fa-thin fa-phone"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-left">
@@ -63,7 +61,7 @@
                                         <!--Session["EmpName"]-->
 
                                         <span class="float-right text-muted text-sm">@loginInfo.DeptName.ToString() @loginInfo.EmpName.ToString()</span>
-                                        
+
                                     </a>
                                     <div class="dropdown-divider"></div>
                                     <a href="#" class="dropdown-item">
@@ -79,24 +77,15 @@
                             </li>
                         }
                     </ul>
-
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <i class='fa fa-id-badge'></i>
-                        </li>
-                        <li class="nav-item">
-                            <p>@loginInfo.CustomerName.ToString()</p>
-                        </li>
-                        <li class="nav-item">
-                            @using (Html.BeginForm("Logout", "Login"))
-                            {
-                                <input type="submit" class="btn btn-secondary" value="LogOut"></input>
-                            }
-                        </li>
-                    </ul>
                 </div>
             </div>
-        </nav>
+            @using (Html.BeginForm("Logout", "Login"))
+            {
+        <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+            <li class="nav-item"><i class='fa fa-id-badge'></i></li>
+            <li class="nav-item">@loginInfo.CustomerName.ToString()</li>
+            <li class="nav-item"><button type="button" class="btn btn-link">LogOut</button></li>
+        </ul> }</nav>
         <div class="content-wrapper">
 
             <div class="content-header">

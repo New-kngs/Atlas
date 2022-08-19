@@ -1,11 +1,12 @@
-﻿@model IEnumerable<string>
+﻿@using System.Data;
+@model AtlasMVCAPI.Models.FailRateModel
 @{
     ViewBag.Title = "ItemPricePivotSearch";
     Layout = "~/Views/Shared/_LayoutPageEIS.cshtml";
 }
 @{
-    string strLabels = ViewData["labels"] as string;
-    List<string> listData = Model.ToList(); 
+//string strLabels = ViewData["labels"] as string;
+//List<string> listData = Model.ToList();
 }
 <!-- Main content -->
 <section class="content">
@@ -80,7 +81,7 @@
 
         // Get context with jQuery - using jQuery's .get() method.
         var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
-        var temp = "@strLabels"; //"January,February,March,April,May,June,July"
+        var temp = "@Model.ItemNames.ToString()" // January,February,March,April,May,June,July"
             var arrTemp = temp.split(',')
 
         var areaChartData = {
@@ -96,10 +97,10 @@
                     pointStrokeColor: '#c1c7d1',
                     pointHighlightFill: '#fff',
                     pointHighlightStroke: 'rgba(220,220,220,1)',
-                    data: @listData[0]
+                    data: @Model.OF.ToString()
                 },
                 {
-                    label: '없음',
+                    label: '정상',
                     backgroundColor: 'rgba(93,93,93,0.9)',
                     borderColor: 'rgba(93,93,93,0.8)',
                     pointRadius: false,
@@ -107,7 +108,7 @@
                     pointStrokeColor: 'rgba(60,141,188,1)',
                     pointHighlightFill: '#fff',
                     pointHighlightStroke: 'rgba(60,141,188,1)',
-                    data: @listData[1]
+                    data: @Model.Complete.ToString()
                 },
                 {
                     label: '설비고장',
@@ -118,7 +119,7 @@
                     pointStrokeColor: '#c1c7d1',
                     pointHighlightFill: '#fff',
                     pointHighlightStroke: 'rgba(178, 235, 244,1)',
-                    data: @listData[2]
+                    data: @Model.EF.ToString()
                 },
                 {
                     label: '시스템오류',
@@ -129,7 +130,7 @@
                     pointStrokeColor: '#c1c7d1',
                     pointHighlightFill: '#fff',
                     pointHighlightStroke: 'rgba(220,220,220,1)',
-                    data: @listData[3]
+                    data: @Model.SF.ToString()
                 },
                 {
                     label: '자재불량',
@@ -140,7 +141,7 @@
                     pointStrokeColor: '#c1c7d1',
                     pointHighlightFill: '#fff',
                     pointHighlightStroke: 'rgba(220,220,220,1)',
-                    data: @listData[4]
+                    data: @Model.IF.ToString()
                 },
             ]
         }

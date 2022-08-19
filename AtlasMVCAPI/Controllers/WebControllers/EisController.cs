@@ -278,6 +278,8 @@ namespace AtlasMVCAPI.Controllers
         }
         public ActionResult FailRate(string searchDate)
         {
+            FailRateModel model = new FailRateModel();
+
             if (searchDate == null)
             {
                 searchDate = DateTime.Now.ToString("yyyy-MM-dd");
@@ -285,86 +287,51 @@ namespace AtlasMVCAPI.Controllers
             ViewBag.searchDate = searchDate;
 
             FailDAC failDB = new FailDAC();
-            ItemDAC itemDB = new ItemDAC();
-            List<FailVO> failInfoList = failDB.GetFailRate(searchDate);
+            // List<FailRateChartVO> failInfoList = failDB.GetFailRate(searchDate);
+            List<FailRateChartVO> listChartInfo = failDB.GetFailRate(searchDate);
 
-            // var failInfo = failInfoList.GroupBy((x) => x.ItemName);
-            List<ItemVO> itemNames = itemDB.GetItemName(); // 완제품명 리스트
-            string[] arrData = new string[5]; // label(에러CommonCode)는 총 5개
-            // 예를 들어 arr[0]은 작업실수에 대한 완제품 수량
-            StringBuilder sbLabels = new StringBuilder(); // 완제품명을 누적하여 labels(x축)을 생성
+            // ChartJS에 맞게 데이터를 가공합니다.
 
-            // 총 5번을 돌아야한다.(label의 수량)
-            // 작업실수, 없음, 설비고장, 시스템오류, 자재불량
-            foreach (ItemVO name in itemNames) // 완제품 목록(bom복사 없을 시 완제품 8개를 반복)
+            // X축 (제품명을 모아서 1개의 긴 문자열로)
+            StringBuilder sbLabels = new StringBuilder();
+            StringBuilder sbData0 = new StringBuilder();
+            StringBuilder sbData1 = new StringBuilder();
+            StringBuilder sbData2 = new StringBuilder();
+            StringBuilder sbData3 = new StringBuilder();
+            StringBuilder sbData4 = new StringBuilder();
+
+            foreach(FailRateChartVO x in listChartInfo)
             {
-                sbLabels.Append(name.ItemName);
-                sbLabels.Append(",");
-
-                StringBuilder sbData = new StringBuilder();
-
-                var c = failInfoList.Find((x) => x.ItemName.Equals(name.ItemName));
-                if (c == null) // ItemName이 없으므로 CodeName이 없는 완제품 입니다.
-                {
-                    for (int k = 0; k < 5; k++)
-                    {
-                        arrData[k] = arrData[k] + "0,";
-                    }
-                }
-                else // CodeName이 있는 완제품 입니다.
-                {
-                    for(int z=0;z< failInfoList.Count; z++)
-                    {
-                        if(failInfoList[z].ItemName.Equals(name.ItemName) && failInfoList[z].CodeName.Equals("작업실수"))
-                        {
-                            arrData[0] = arrData[0] + failInfoList[z].FailQty.ToString() + ",";
-                        }
-                        else
-                        {
-                            arrData[0] = arrData[0] + "0,";
-                        }
-                        if (failInfoList[z].ItemName.Equals(name.ItemName) && failInfoList[z].CodeName.Equals("없음"))
-                        {
-                            arrData[1] = arrData[1] + failInfoList[z].FailQty.ToString() + ",";
-                        }
-                        else
-                        {
-                            arrData[1] = arrData[1] + "0,";
-                        }
-                        if (failInfoList[z].ItemName.Equals(name.ItemName) && failInfoList[z].CodeName.Equals("설비고장"))
-                        {
-                            arrData[2] = arrData[2] + failInfoList[z].FailQty.ToString() + ",";
-                        }
-                        else
-                        {
-                            arrData[2] = arrData[2] + "0,";
-                        }
-                        if (failInfoList[z].ItemName.Equals(name.ItemName) && failInfoList[z].CodeName.Equals("시스템오류"))
-                        {
-                            arrData[3] = arrData[3] + failInfoList[z].FailQty.ToString() + ",";
-                        }
-                        else
-                        {
-                            arrData[3] = arrData[3] + "0,";
-                        }
-                        if (failInfoList[z].ItemName.Equals(name.ItemName) && failInfoList[z].CodeName.Equals("자재불량"))
-                        {
-                            arrData[4] = arrData[0] + failInfoList[z].FailQty.ToString() + ",";
-                        }
-                        else
-                        {
-                            arrData[4] = arrData[0] + "0,";
-                        }
-                    }
-                }
+                sbLabels.Append(x.ItemName + ",");
             }
-
-            ViewData["labels"] = sbLabels.ToString().TrimEnd(',');
-            for(int i = 0; i < 5; i++)
+            // y축
+            foreach (FailRateChartVO c in listChartInfo)
             {
-                arrData[i] = "[" + arrData[i].ToString().TrimEnd(',') + "]";
+                sbData0.Append(c.CompleteQty + ",");
             }
-            List<string> model = arrData.ToList();
+            foreach (FailRateChartVO y in listChartInfo)
+            {
+                sbData1.Append(y.OF_Qty + ",");
+            }
+            foreach (FailRateChartVO y in listChartInfo)
+            {
+                sbData2.Append(y.EF_Qty + ",");
+            }
+            foreach (FailRateChartVO y in listChartInfo)
+            {
+                sbData3.Append(y.SF_Qty + ",");
+            }
+            foreach (FailRateChartVO y in listChartInfo)
+            {
+                sbData4.Append(y.IF_Qty + ",");
+            }
+            model.ItemNames = sbLabels.ToString().TrimEnd(',');
+            model.Complete = "[" + sbData0.ToString().TrimEnd(',') + "]";
+            model.OF = "[" + sbData1.ToString().TrimEnd(',') + "]";
+            model.EF = "[" + sbData2.ToString().TrimEnd(',') + "]";
+            model.SF = "[" + sbData3.ToString().TrimEnd(',') + "]";
+            model.IF = "[" + sbData4.ToString().TrimEnd(',') + "]";
+
 
             return View(model);
         }
