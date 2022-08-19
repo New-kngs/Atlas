@@ -75,8 +75,19 @@ namespace AtlasPOP
         {
             tableLayoutPanel1.Visible = true;
 
-            string CustomerID = oderList.Data.Find((n) => n.OrderID == Oper.OrderID).CustomerID;
 
+            string CustomerID;
+            if (Oper.OrderID.Length < 1)
+            {
+                Oper.OrderID = "ORD_0001";
+                CustomerID = "CUS_0002";
+
+
+            }
+            else
+            {
+                CustomerID = oderList.Data.Find((n) => n.OrderID == Oper.OrderID).CustomerID;
+            }
             lblOper.Text = Oper.OpID;
             lblOder.Text = Oper.OrderID;
             lblOperDate.Text = Oper.OpDate;
