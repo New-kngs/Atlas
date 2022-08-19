@@ -22,6 +22,9 @@ namespace AltasMES
             InitializeComponent();
         }
 
+
+        string[] inputColumn = { "불량ID", "작업지시ID", "제품명", "유형", "불량명", "불량갯수", "생성날짜", "생성사용자", "변경날짜", "변경사용자" };
+
         private void frmFail_Load(object sender, EventArgs e)
         {
             service = new ServiceHelper("");
@@ -99,6 +102,25 @@ namespace AltasMES
         private void frmFail_Shown(object sender, EventArgs e)
         {
             dgvList.ClearSelection();
+        }
+
+        private void btnExecl_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Filter = "Execl Files(*.xls)|*.xls";
+            dlg.Title = "엑셀파일로 내보내기";
+
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+
+                ExcelUtil excel = new ExcelUtil();
+
+                if (excel.ExportExcelGridView(dlg.FileName, dgvList, inputColumn))
+                {
+                    MessageBox.Show("엑셀 다운로드 완료", "엑셀 다운로드", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+            }
         }
     }
 }

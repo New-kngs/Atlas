@@ -74,14 +74,18 @@ namespace AltasMES
             this.imageList1.Images.SetKeyName(3, "Serach.png");
             this.imageList1.Images.SetKeyName(4, "Execl.png");
             // 
+            // btnExecl
+            // 
+            this.btnExecl.Click += new System.EventHandler(this.btnExecl_Click);
+            // 
             // btnDelete
             // 
             this.btnDelete.Visible = false;
             // 
             // lblTitle
             // 
-            this.lblTitle.Size = new System.Drawing.Size(98, 51);
-            this.lblTitle.Text = "불량";
+            this.lblTitle.Size = new System.Drawing.Size(174, 51);
+            this.lblTitle.Text = "불량현황";
             // 
             // btnModify
             // 
@@ -167,7 +171,7 @@ namespace AltasMES
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1034, 682);
             this.Name = "frmFail";
-            this.Text = "불량";
+            this.Text = "불량현황";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmFail_FormClosing);
             this.Load += new System.EventHandler(this.frmFail_Load);
             this.Shown += new System.EventHandler(this.frmFail_Shown);
