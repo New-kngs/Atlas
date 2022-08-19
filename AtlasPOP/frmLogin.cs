@@ -23,12 +23,6 @@ namespace AtlasPOP
         }
         private void frmLogin_Load(object sender, EventArgs e)
         {
-#if DEBUG
-            txtID.Text = "MA1234";
-            txtPWD.Text = "1111";
-#endif
-
-
             service = new popServiceHelper("");
         }
 
