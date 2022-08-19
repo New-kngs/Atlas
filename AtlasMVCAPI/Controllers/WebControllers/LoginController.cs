@@ -44,9 +44,7 @@ namespace AtlasMVCAPI.Controllers
 
                 return RedirectToAction("HomePage", "Eis");
             }
-        }
-
-        [HttpPost]
+        }       
         public ActionResult Logout()
         {
             Session["LoginInfo"] = null;

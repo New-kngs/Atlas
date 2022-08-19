@@ -78,14 +78,13 @@
                         }
                     </ul>
                 </div>
-            </div>
-            @using (Html.BeginForm("Logout", "Login"))
-            {
-        <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-            <li class="nav-item"><i class='fa fa-id-badge'></i></li>
-            <li class="nav-item">@loginInfo.CustomerName.ToString()</li>
-            <li class="nav-item"><button type="button" class="btn btn-link">LogOut</button></li>
-        </ul> }</nav>
+            </div>            
+            <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+                <li class="nav-item"><i class='fa fa-id-badge'></i></li>
+                <li class="nav-item">@loginInfo.CustomerName.ToString()</li>
+                <li class="nav-item">&nbsp;&nbsp;<a href="/Login/Logout"><span class="badge badge-secondary">LogOut</span></a></li>
+            </ul>
+        </nav>
         <div class="content-wrapper">
 
             <div class="content-header">
