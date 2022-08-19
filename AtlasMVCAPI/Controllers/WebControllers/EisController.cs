@@ -332,6 +332,7 @@ namespace AtlasMVCAPI.Controllers
             model.SF = "[" + sbData3.ToString().TrimEnd(',') + "]";
             model.IF = "[" + sbData4.ToString().TrimEnd(',') + "]";
 
+            model.ListChartInfo = listChartInfo;
 
             return View(model);
         }

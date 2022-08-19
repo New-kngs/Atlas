@@ -14,5 +14,6 @@ namespace AtlasMVCAPI.Models
         public string EF { get; set; } // 설비고장
         public string SF { get; set; } // 시스템오류
         public string IF { get; set; } // 자재불량
+        public List<FailRateChartVO> ListChartInfo { get; set; } // 테이블
     }
 }

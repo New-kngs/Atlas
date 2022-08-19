@@ -12,7 +12,16 @@
 <section class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-4">
+
+                @*<div class="form-group">
+            <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" />
+                <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+            </div>
+        </div>*@
                 <form action="/Eis/FailRate" method="post">
                     <!-- class="form-control" -->
                     <input type="date" max="@DateTime.Now.ToString("yyyy-MM-dd")" name="searchDate"><button type="submit" class="btn btn-primary">조회</button>
@@ -47,6 +56,32 @@
                         <div class="chart">
                             <canvas id="stackedBarChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                         </div>
+                        <br /><br />
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">제품명</th>
+                                    <th scope="col">정상</th>
+                                    <th scope="col">작업실수</th>
+                                    <th scope="col">설비고장</th>
+                                    <th scope="col">시스템오류</th>
+                                    <th scope="col">자재불량</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0;i<8;i++)
+                                {
+                                    <tr>
+                                        <th scope="row">@Model.ListChartInfo[i].ItemName</th>
+                                        <td>@Model.ListChartInfo[i].CompleteQty</td>
+                                        <td>@Model.ListChartInfo[i].OF_Qty</td>
+                                        <td>@Model.ListChartInfo[i].EF_Qty</td>
+                                        <td>@Model.ListChartInfo[i].SF_Qty</td>
+                                        <td>@Model.ListChartInfo[i].IF_Qty</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
                     </div>
                     <!-- /.card-body -->
                 </div>
