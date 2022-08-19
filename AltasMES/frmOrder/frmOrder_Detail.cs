@@ -21,8 +21,8 @@ namespace AltasMES
             srv = new ServiceHelper("");
 
             InitializeComponent();
-
-            this.order = order;
+              
+            this.order = order;    
             txtOrderID.Text = order.OrderID;
             txtName.Text = order.CustomerName;
             //txtState.Text = order.OrderShip;
