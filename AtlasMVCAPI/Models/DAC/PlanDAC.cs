@@ -42,7 +42,8 @@ namespace AtlasMVCAPI.Models
                         on O.OrderID = T.OrderID and O.ItemID = T.ItemID
                         inner join (select OrderID, ItemID from TB_OrderDetails except select OrderID, ItemID from TB_LOT) B 
                         on O.OrderID = B.OrderID and O.ItemID = B.ItemID
-                        where CreateDate Between @From and @To";
+                        where CreateDate Between @From and @To
+                        order by  O.OrderID desc";
 
                 cmd.Parameters.AddWithValue("@From", from);
                 cmd.Parameters.AddWithValue("@To", to);

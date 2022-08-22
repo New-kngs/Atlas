@@ -140,6 +140,7 @@ namespace AtlasPOP
 
         private void opFinish(object sender, DoWorkEventArgs e)
         {
+
             dicEquip[index].DrawState("작업종료");
             index++;
             
