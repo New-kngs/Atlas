@@ -33,7 +33,7 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvList, "작업지시생성여부", "CreateYN", visibility : false);
             DataGridUtil.AddGridTextBoxColumn(dgvList, "생성날짜", "CreateDate", colwidth: 165, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvList, "생성사용자", "CreateUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvList, "수정일날짜", "ModifyDate", colwidth: 165, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvList, "수정날짜", "ModifyDate", colwidth: 165, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvList, "수정사용자", "ModifyUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
 
             LoadData();

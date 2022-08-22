@@ -29,8 +29,8 @@ namespace AltasMES
             DataGridUtil.AddGridTextBoxColumn(dgvEquip, "설비명", "EquipName", colwidth: 200, align: DataGridViewContentAlignment.MiddleLeft);    
             DataGridUtil.AddGridTextBoxColumn(dgvEquip, "생성날짜", "CreateDate", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
             DataGridUtil.AddGridTextBoxColumn(dgvEquip, "생성사용자", "CreateUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleLeft);
-            DataGridUtil.AddGridTextBoxColumn(dgvEquip, "변경날짜", "ModifyDate", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
-            DataGridUtil.AddGridTextBoxColumn(dgvEquip, "변경사용자", "ModifyUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleLeft);
+            DataGridUtil.AddGridTextBoxColumn(dgvEquip, "수정날짜", "ModifyDate", colwidth: 200, align: DataGridViewContentAlignment.MiddleCenter);
+            DataGridUtil.AddGridTextBoxColumn(dgvEquip, "수정사용자", "ModifyUser", colwidth: 150, align: DataGridViewContentAlignment.MiddleLeft);
             DataGridUtil.AddGridTextBoxColumn(dgvEquip, "사용여부", "StateYN", colwidth: 150, align: DataGridViewContentAlignment.MiddleCenter);
             LoadData();
         }
