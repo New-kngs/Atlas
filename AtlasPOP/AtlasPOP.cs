@@ -220,16 +220,16 @@ namespace AtlasPOP
         {
             if (Oper == null)
             {
-                MessageBox.Show("작업을 선택해주세요.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning
-);
+                MessageBox.Show("작업을 선택해주세요.", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             if (!Oper.OpState.Equals("입고대기"))
             {
-                MessageBox.Show("작업중이지 않습니다. ", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning
-);
+                MessageBox.Show("작업중이지 않습니다. ", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+
 
             operList = service.GetAsync<List<OperationVO>>("api/pop/AllOperation");
 
