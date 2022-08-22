@@ -40,7 +40,7 @@
                             <div class="card-body">
                                 <h2 class="card-title" style="font-weight: bold">@Model.Products.ToList()[i].ItemName</h2>
                                 <br /><br />
-                                <p class="card-text" style="color:dodgerblue;">@Model.Products.ToList()[i].ItemPrice.ToString("c")</p>
+                                <p class="card-text" style="color:dodgerblue;">@Model.Products.ToList()[i].ItemPrice.ToString("#,##0")</p>
                                 <hr />
                                 <div class="text-right">
                                     <input type="button" value="상세보기" class="btn btn-outline-primary" onclick='javascript:window.open("/Cart/Popup?productID=@Model.Products.ToList()[i].ItemID", "PopupWin", "width=900,height=600")' />
@@ -74,7 +74,7 @@
                                     <div class="card-body">
                                         <h2 class="card-title" style="font-weight: bold">@Model.Products.ToList()[i + 1].ItemName</h2>
                                         <br /><br />
-                                        <p class="card-text" style="color:dodgerblue;">@Model.Products.ToList()[i + 1].ItemPrice.ToString("c")</p>
+                                              <p class="card-text" style="color:dodgerblue;">@Model.Products.ToList()[i + 1].ItemPrice.ToString("#,##0")</p>
                                         <hr />
 
                                         <div class="text-right">

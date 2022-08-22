@@ -95,7 +95,7 @@
                                     <td>@Model.ToList()[i].ItemSize</td>
                                     <td>@Model.ToList()[i].ItemName</td>
                                     <td>@Model.ToList()[i].Qty</td>
-                                    <td>@Model.ToList()[i].SumQty.ToString("c")</td>
+                                    <td>@Model.ToList()[i].SumQty.ToString("#,##0")</td>
                                 </tr>
                             }
                         </tbody>
@@ -110,8 +110,10 @@
                 </div>
                 <!-- /.col -->
                 <div class="col-7">
-                    <h5>총 결제금액 : &nbsp;&nbsp;
-                     @Model.Sum((p) => p.SumQty).ToString("c")</h5>
+                    <h5>
+                        총 결제금액 : &nbsp;&nbsp;
+                        @Model.Sum((p) => p.SumQty).ToString("#,##0")
+                    </h5>
                 </div>
                 <!-- /.col -->
             </div>

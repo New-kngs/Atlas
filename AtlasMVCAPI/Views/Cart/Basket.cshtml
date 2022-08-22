@@ -37,7 +37,7 @@
                                         <tr>
                                             <td>@line.Product.ItemName</td>
                                             <td class="text-right">
-                                                <span id="linePrice">@line.Product.ItemPrice.ToString("C")</span>
+                                                <span id="linePrice">@line.Product.ItemPrice.ToString("#,##0")</span>
                                             </td>
                                             <td class="text-right">
                                                 @using (Html.BeginForm("UpdateQty", "Cart", FormMethod.Get, new { id = "updateQty" }))
@@ -48,7 +48,7 @@
                                                 }
                                             </td>
                                             <td class="text-right">
-                                                <span id="lineAmt">@((line.Product.ItemPrice * line.Qty).ToString("C"))</span>
+                                                <span id="lineAmt">@((line.Product.ItemPrice * line.Qty).ToString("#,##0"))</span>
                                             </td>
                                             <td class="text-center">
                                                 @using (Html.BeginForm("RemoveToCart", "Cart", FormMethod.Post))
@@ -66,7 +66,7 @@
                             <tfoot>
                                 <tr>
                                     <td colspan="3" class="text-right">Total :</td>
-                                    <td colspan="1" class="text-right">@Model.CalcTotalValue().ToString("c")</td>
+                                    <td colspan="1" class="text-right">@Model.CalcTotalValue().ToString("#,##0")</td>
                                     <td colspan="1" class="text-right">&nbsp;</td>
                                 </tr>
                                 <tr>
