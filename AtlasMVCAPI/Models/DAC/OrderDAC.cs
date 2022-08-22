@@ -43,7 +43,8 @@ namespace AtlasMVCAPI.Models
                 cmd.Connection = new SqlConnection(strConn);
                 cmd.CommandText = @"select OrderID, CustomerName, OrderShip, convert(varchar(30), OrderEndDate, 120) OrderEndDate, convert(varchar(30), O.CreateDate, 120) CreateDate, O.CreateUser, convert(varchar(30), O.ModifyDate, 120) ModifyDate, O.ModifyUser 
                                     from TB_Order O inner join TB_Customer C on O.CustomerID = C.CustomerID
-                                    where O.CreateDate Between @from and @to";
+                                    where O.CreateDate Between @from and @to
+                                    order by OrderID desc";
 
                 cmd.Parameters.AddWithValue("@from", from);
                 cmd.Parameters.AddWithValue("@to", to);
